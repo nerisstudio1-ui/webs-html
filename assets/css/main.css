@@ -290,7 +290,7 @@ p {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  color: var(--cream);
+  color: var(--text);
   transition: transform 0.5s var(--ease), background-color 0.4s var(--ease),
     box-shadow 0.4s var(--ease);
 }
@@ -460,87 +460,83 @@ body.menu-open .mobile-menu {
   overflow-wrap: anywhere;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero: fondo plano + collage que sube ----------
+   .hero es alto y .hero__stage queda pegada arriba; el JS escribe --p
+   (0 → 1) según el avance del scroll y cada pieza sube su --rise. */
 .hero {
+  --p: 0;
   position: relative;
-  min-height: 100svh;
-  display: grid;
-  align-items: end;
-  padding-block: clamp(7rem, 14vh, 11rem) clamp(2rem, 5vw, 3.5rem);
-  background: var(--terra);
-  color: var(--cream);
-  overflow: hidden;
+  height: 250svh;
+  background: var(--cream-2);
+  color: var(--text);
 }
-.hero__bg {
+.hero__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.hero__tiles {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-      120% 90% at 78% 12%,
-      rgba(255, 255, 255, 0.12),
-      transparent 60%
-    ),
-    radial-gradient(90% 70% at 10% 96%, rgba(30, 53, 56, 0.22), transparent 65%);
+  z-index: 1;
   pointer-events: none;
 }
-.hero__zero {
+.tile {
   position: absolute;
-  right: -2vw;
-  top: 42%;
-  transform: translateY(-50%);
-  width: clamp(280px, 46vw, 720px);
-  opacity: 0.12;
-  pointer-events: none;
-}
-.hero__inner {
-  position: relative;
-  display: grid;
-  gap: clamp(2rem, 5vw, 3rem);
-}
-.hero__title {
-  font-size: var(--step-5);
-  max-width: 18ch;
-}
-.hero__title .hand {
-  display: block;
-  font-size: 1.16em;
-  font-weight: 700;
-  letter-spacing: 0;
-  margin-bottom: 0.06em;
-  color: var(--cream);
-}
-.hero__title em {
-  font-style: normal;
-  color: var(--ink);
-}
-.hero__meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
-  border-top: 1px solid rgba(248, 237, 221, 0.28);
-  padding-top: 1.6rem;
-}
-.hero__meta p {
-  max-width: 38ch;
   margin: 0;
-  font-size: var(--step-0);
-  color: rgba(248, 237, 221, 0.82);
+  overflow: hidden;
+  transform: translate3d(0, calc(var(--rise, 100svh) * (1 - var(--p))), 0);
+  will-change: transform;
 }
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.scroll-hint {
+/* Posiciones finales del collage: alto en svh para que nada se salga
+   del encuadre, y un --rise distinto por pieza para que lleguen escalonadas. */
+.tile--1 { left: 3%;  top: 24%; width: 20vw; height: 44svh; --rise: 80svh; }
+.tile--2 { left: 64%; top: 8%;  width: 26vw; height: 30svh; --rise: 112svh; }
+.tile--3 { left: 30%; top: 56%; width: 17vw; height: 38svh; --rise: 136svh; }
+.tile--4 { left: 6%;  top: 70%; width: 15vw; height: 26svh; --rise: 96svh; }
+.tile--5 { left: 70%; top: 54%; width: 20vw; height: 40svh; --rise: 152svh; }
+.tile--6 { left: 26%; top: 6%;  width: 16vw; height: 26svh; --rise: 124svh; }
+
+.hero__wordmark {
+  position: relative;
+  z-index: 3;
+  margin: 0;
+  text-align: center;
+  font-size: clamp(3.2rem, 15.5vw, 12.5rem);
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  font-weight: 800;
+  color: var(--ink);
+  padding-inline: var(--gutter);
+}
+.hero__wordmark span {
+  display: block;
+}
+.hero__wordmark .dot {
+  display: inline;
+  color: var(--terra);
+}
+.hero__scroll {
+  position: absolute;
+  z-index: 3;
+  right: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.6rem);
   font-family: var(--hand);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  opacity: 0.85;
+  color: var(--terra);
 }
-.scroll-hint::after {
+.hero__scroll::after {
   content: "";
   width: 34px;
   height: 1px;
@@ -557,6 +553,32 @@ body.menu-open .mobile-menu {
     transform: scaleX(0.4);
     opacity: 0.5;
   }
+}
+
+/* ---------- Frase de marca bajo el hero ---------- */
+.statement {
+  padding-block: clamp(4rem, 10vw, 8rem);
+  background: var(--cream);
+}
+.statement__text {
+  font-size: var(--step-4);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  max-width: 24ch;
+  margin: 0 0 2rem;
+}
+.statement__text .hand {
+  display: block;
+  font-size: 1.18em;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--terra);
+}
+.statement__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }
 
 /* ---------- Marquee ---------- */
@@ -1375,6 +1397,30 @@ body.menu-open .mobile-menu {
 @media print {
   .has-js .reveal {
     opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Collage responsive ---------- */
+@media (max-width: 860px) {
+  .hero {
+    height: 220svh;
+  }
+  .tile--1 { left: -2%; top: 16%; width: 40vw; height: 30svh; }
+  .tile--2 { left: 52%; top: 6%;  width: 46vw; height: 22svh; }
+  .tile--3 { left: 28%; top: 54%; width: 34vw; height: 26svh; }
+  .tile--4 { display: none; }
+  .tile--5 { left: 58%; top: 66%; width: 40vw; height: 28svh; }
+  .tile--6 { left: 2%;  top: 72%; width: 30vw; height: 20svh; }
+}
+
+/* Sin animación: el collage se muestra ya colocado */
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: auto;
+    min-height: 100svh;
+  }
+  .tile {
     transform: none;
   }
 }

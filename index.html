@@ -74,26 +74,43 @@
 
 <main id="main">
 
-  <!-- ============ Hero ============ -->
-  <section class="hero grain">
-    <div class="hero__bg" aria-hidden="true"></div>
-    <svg class="hero__zero" viewBox="0 0 100 100" aria-hidden="true">
-      <ellipse cx="50" cy="50" rx="24" ry="34" fill="none" stroke="#f8eddd" stroke-width="19"/>
-    </svg>
-    <div class="wrap hero__inner">
-      <p class="eyebrow reveal">Estudio creativo · Barcelona &amp; remoto</p>
-      <h1 class="hero__title reveal" data-delay="1">
-        <span class="hand">Cada marca comunica,</span>
-        pero no todas <em>conectan</em>.
-      </h1>
-      <div class="hero__meta reveal" data-delay="2">
-        <p>Somos Laconic: contenido, social media y diseño para marcas que prefieren decir poco y decirlo bien.</p>
-        <div class="hero__actions">
-          <a class="btn" href="contacto.html"><span>Empezar un proyecto</span><span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn--ghost" href="trabajo.html"><span>Ver trabajo</span></a>
-        </div>
+  <!-- ============ Hero ============
+       Fondo plano, nombre del estudio centrado y collage de proyectos que
+       sube al hacer scroll. Las imágenes son placeholders: se sustituyen
+       cambiando el src de cada <img> por la fotografía real. -->
+  <section class="hero" data-collage>
+    <div class="hero__stage">
+
+      <div class="hero__tiles" aria-hidden="true">
+        <figure class="tile tile--1"><img src="assets/img/proyecto-01.svg" alt="" width="900" height="1200" loading="eager"></figure>
+        <figure class="tile tile--2"><img src="assets/img/proyecto-02.svg" alt="" width="1200" height="900" loading="eager"></figure>
+        <figure class="tile tile--3"><img src="assets/img/proyecto-03.svg" alt="" width="900" height="1200" loading="lazy"></figure>
+        <figure class="tile tile--4"><img src="assets/img/proyecto-04.svg" alt="" width="1000" height="1000" loading="lazy"></figure>
+        <figure class="tile tile--5"><img src="assets/img/proyecto-05.svg" alt="" width="900" height="1200" loading="lazy"></figure>
+        <figure class="tile tile--6"><img src="assets/img/proyecto-06.svg" alt="" width="1200" height="900" loading="lazy"></figure>
       </div>
-      <span class="scroll-hint reveal" data-delay="3" aria-hidden="true">scroll</span>
+
+      <h1 class="hero__wordmark">
+        <span>Laconic</span>
+        <span>Studio<span class="dot">.</span></span>
+      </h1>
+
+      <span class="hero__scroll" aria-hidden="true">scroll</span>
+    </div>
+  </section>
+
+  <!-- ============ Frase de marca ============ -->
+  <section class="statement">
+    <div class="wrap">
+      <p class="eyebrow reveal">Estudio creativo · Contenido, social media y diseño</p>
+      <p class="statement__text reveal">
+        <span class="hand">Cada marca comunica,</span>
+        pero no todas conectan.
+      </p>
+      <div class="statement__actions reveal" data-delay="1">
+        <a class="btn" href="contacto.html"><span>Empezar un proyecto</span><span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="trabajo.html"><span>Ver trabajo</span></a>
+      </div>
     </div>
   </section>
 

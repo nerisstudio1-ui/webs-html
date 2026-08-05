@@ -117,6 +117,31 @@
     if (first) first.click();
   }
 
+  /* ---- Hero: collage que sube con el scroll ----
+     Escribe --p (0 → 1) en la sección; el CSS decide cuánto sube cada pieza. */
+  var collage = document.querySelector("[data-collage]");
+  if (collage && !reduced) {
+    var ticking = false;
+    var setProgress = function () {
+      var travel = collage.offsetHeight - window.innerHeight;
+      var scrolled = window.scrollY - collage.offsetTop;
+      var p = travel > 0 ? scrolled / travel : 1;
+      collage.style.setProperty("--p", Math.min(1, Math.max(0, p)).toFixed(4));
+      ticking = false;
+    };
+    var request = function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(setProgress);
+      }
+    };
+    window.addEventListener("scroll", request, { passive: true });
+    window.addEventListener("resize", request);
+    setProgress();
+  } else if (collage) {
+    collage.style.setProperty("--p", "1");
+  }
+
   /* ---- Marquee: duplicar contenido para bucle continuo ---- */
   document.querySelectorAll(".marquee__track").forEach(function (track) {
     track.innerHTML += track.innerHTML;
