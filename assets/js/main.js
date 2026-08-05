@@ -142,6 +142,20 @@
     collage.style.setProperty("--p", "1");
   }
 
+  /* ---- Palabra rotatoria ("Trabajamos a través de …") ---- */
+  var rotator = document.querySelector("[data-rotator]");
+  if (rotator) {
+    var words = rotator.querySelectorAll(".rotator__word");
+    if (words.length > 1 && !reduced) {
+      var current = 0;
+      window.setInterval(function () {
+        words[current].classList.remove("is-on");
+        current = (current + 1) % words.length;
+        words[current].classList.add("is-on");
+      }, 2200);
+    }
+  }
+
   /* ---- Marquee: duplicar contenido para bucle continuo ---- */
   document.querySelectorAll(".marquee__track").forEach(function (track) {
     track.innerHTML += track.innerHTML;

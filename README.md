@@ -9,7 +9,7 @@ terracota, crema y verde profundo, manuscrita + sans pesada, y el símbolo del *
 
 | Archivo | Contenido |
 | --- | --- |
-| `index.html` | Hero, manifiesto, servicios en acordeón, trabajo, proceso, cita, tienda y CTA |
+| `index.html` | Hero con logo y collage que sube, declaración de estudio, texto sobredimensionado, índice numerado, frase con palabra rotatoria, claims y contacto |
 | `estudio.html` | Manifiesto largo, reglas del estudio, paleta de marca y FAQ |
 | `servicios.html` | Los 5 servicios en detalle (`#content`, `#social`, `#design`, `#ads`, `#ugc`), packs y FAQ |
 | `trabajo.html` | Fichas de proyecto (`#pure`, `#paipai`, `#nocturna`, `#estudio-b`, `#raiz`) |
@@ -52,11 +52,17 @@ Las escalas de tipografía (`--step--1` … `--step-5`) y el espaciado son fluid
 
 ## Pendiente de conectar / revisar
 
-- **Imágenes de proyecto**: las fichas de `trabajo.html` y las tarjetas del inicio usan
-  bloques de color generados con CSS (clases `.ph`, marcados con la etiqueta
-  «Muestra de estudio»). Para poner material real, sustituir
-  `<div class="ph ...">…</div>` por `<img src="assets/img/…" alt="…">`
-  dentro de `.card__media` y quitar la etiqueta `.badge`.
+- **Collage del hero**: las seis piezas son placeholders SVG
+  (`assets/img/proyecto-01.svg` … `-06.svg`). Se sustituyen cambiando el `src`
+  de cada `<img>` del hero, sin tocar el CSS.
+- **Logo**: el hero compone el logotipo con el símbolo del 0 y la manuscrita.
+  Si hay logo original en SVG o PNG, se cambia ese bloque por
+  `<img class="hero__logo-img" src="assets/img/logo-laconic.svg" alt="Laconic Studio">`
+  (queda indicado en un comentario dentro de `index.html`).
+- **Imágenes de proyecto**: las fichas de `trabajo.html` usan bloques de color
+  generados con CSS (clases `.ph`, con la etiqueta «Muestra de estudio»). Para
+  poner material real, sustituir `<div class="ph ...">…</div>` por
+  `<img src="assets/img/…" alt="…">` dentro de `.card__media` y quitar `.badge`.
 - **Textos y precios**: los casos, cifras y precios de packs y tienda son propuestas de
   ejemplo redactadas con el tono de la marca. Hay que revisarlos antes de publicar.
 - **Formulario**: `contacto.html` no tiene backend; compone un correo con los datos y

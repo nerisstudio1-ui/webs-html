@@ -75,9 +75,9 @@
 <main id="main">
 
   <!-- ============ Hero ============
-       Fondo plano, nombre del estudio centrado y collage de proyectos que
-       sube al hacer scroll. Las imágenes son placeholders: se sustituyen
-       cambiando el src de cada <img> por la fotografía real. -->
+       Fondo plano, logo del estudio centrado y collage de proyectos que sube
+       al hacer scroll. Las imágenes son placeholders: se sustituyen cambiando
+       el src de cada <img> por la fotografía real. -->
   <section class="hero" data-collage>
     <div class="hero__stage">
 
@@ -90,424 +90,129 @@
         <figure class="tile tile--6"><img src="assets/img/proyecto-06.svg" alt="" width="1200" height="900" loading="lazy"></figure>
       </div>
 
-      <h1 class="hero__wordmark">
-        <span>Laconic</span>
-        <span>Studio<span class="dot">.</span></span>
+      <!-- Logo de la marca: el símbolo del 0 y el logotipo manuscrito.
+           Si tienes el logo original en SVG o PNG, sustituye este bloque por
+           <img class="hero__logo-img" src="assets/img/logo-laconic.svg" alt="Laconic Studio"> -->
+      <h1 class="hero__logo">
+        <svg class="hero__logo-mark" viewBox="0 0 100 100" aria-hidden="true">
+          <ellipse cx="50" cy="50" rx="24" ry="34" fill="none" stroke="currentColor" stroke-width="19"/>
+        </svg>
+        <span class="hero__logo-word">laconic</span>
+        <span class="hero__logo-sub">studio</span>
       </h1>
 
       <span class="hero__scroll" aria-hidden="true">scroll</span>
     </div>
   </section>
 
-  <!-- ============ Frase de marca ============ -->
-  <section class="statement">
+  <!-- ============ Intro ============ -->
+  <section class="intro" id="estudio">
     <div class="wrap">
-      <p class="eyebrow reveal">Estudio creativo · Contenido, social media y diseño</p>
-      <p class="statement__text reveal">
-        <span class="hand">Cada marca comunica,</span>
-        pero no todas conectan.
-      </p>
-      <div class="statement__actions reveal" data-delay="1">
-        <a class="btn" href="contacto.html"><span>Empezar un proyecto</span><span class="arrow" aria-hidden="true">→</span></a>
-        <a class="btn btn--ghost" href="trabajo.html"><span>Ver trabajo</span></a>
+      <p class="eyebrow reveal">Contenido, social media y diseño</p>
+      <p class="display reveal" data-delay="1">Creamos contenido y marcas que dicen lo justo y se quedan contigo: cada marca comunica, pero no todas conectan.</p>
+      <p class="intro__by reveal" data-delay="2">Laconic Studio &mdash; dirección creativa</p>
+
+      <div class="intro__body reveal" data-delay="3">
+        <p>Trabajamos con marcas que tienen algo que decir y necesitan decirlo mejor. Estrategia, dirección de arte, producción y publicación; desde la idea hasta la pieza publicada.</p>
+        <p>Cada marca es un mundo y hay que estar dentro de él: pensar como ella y vibrar como ella. Por eso trabajamos en pocos proyectos a la vez, como una extensión de tu equipo.</p>
+        <p><a class="arrow-link" href="estudio.html">Conocer más <span class="arrow" aria-hidden="true">&rarr;</span></a></p>
       </div>
     </div>
   </section>
 
-  <!-- ============ Marquee ============ -->
-  <div class="marquee" aria-hidden="true">
+  <!-- ============ Texto sobredimensionado ============ -->
+  <div class="marquee marquee--big" aria-hidden="true">
     <div class="marquee__track">
-      <span>Content creation</span>
-      <span class="hand">Social media</span>
-      <span>Graphic design</span>
-      <span class="hand">Ads &amp; campaigns</span>
-      <span>UGC</span>
-      <span class="hand">Branding</span>
+      <span>let&rsquo;s collab</span>
+      <span class="hand">two of two</span>
+      <span>let&rsquo;s collab</span>
+      <span class="hand">two of two</span>
     </div>
   </div>
 
-  <!-- ============ Manifiesto ============ -->
-  <section class="section" id="manifiesto">
-    <div class="wrap split">
-      <div class="reveal">
-        <p class="eyebrow">El estudio</p>
-        <h2 class="manifesto__title">
-          <span class="hand">Comunica</span>
-          lo que eres.
-        </h2>
-      </div>
-      <div class="reveal" data-delay="1">
-        <p class="lead">Hay marcas que hablan mucho y no dicen nada. Nosotras trabajamos al revés: encontramos la frase, la imagen y el tono exactos, y quitamos todo lo demás.</p>
-        <p class="muted">Laconic nace de una idea simple: la atención no se compra, se merece. Diseñamos identidades, contenido y campañas pensadas para el scroll real — el de alguien con prisa, en el metro, con el móvil en una mano.</p>
-        <p class="muted">Trabajamos como una extensión de tu equipo: estrategia, producción y publicación. Sin cadenas de correos infinitas ni PDFs de 90 páginas que nadie lee.</p>
-        <p><a class="link-underline" href="estudio.html">Conoce al estudio →</a></p>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="stat__num">5</div>
-            <p class="stat__label">servicios que se combinan como quieras</p>
-          </div>
-          <div class="stat">
-            <div class="stat__num">48h</div>
-            <p class="stat__label">para responder a tu primer mensaje</p>
-          </div>
-          <div class="stat">
-            <div class="stat__num">100%</div>
-            <p class="stat__label">contenido hecho a medida, cero plantillas</p>
-          </div>
-        </div>
-      </div>
+  <!-- ============ Índice numerado ============ -->
+  <div class="dome" aria-hidden="true"></div>
+  <section class="index-nav">
+    <div class="wrap">
+      <ol class="index-list">
+        <li class="index-list__item reveal">
+          <a href="servicios.html">
+            <span class="index-list__num">01</span>
+            <span class="index-list__label">Servicios</span>
+          </a>
+        </li>
+        <li class="index-list__item reveal" data-delay="1">
+          <a href="trabajo.html">
+            <span class="index-list__num">02</span>
+            <span class="index-list__label">Trabajo</span>
+          </a>
+        </li>
+        <li class="index-list__item reveal" data-delay="2">
+          <a href="contacto.html">
+            <span class="index-list__num">03</span>
+            <span class="index-list__label">Contacto</span>
+          </a>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- ============ Servicios ============ -->
-  <section class="section bg-ink grain" id="servicios">
+  <!-- ============ Frase con palabra rotatoria ============ -->
+  <section class="rotator-block">
     <div class="wrap">
-      <div class="split" style="align-items:end">
-        <div class="reveal">
-          <p class="eyebrow">Servicios</p>
-          <h2 class="manifesto__title">
-            <span class="hand" style="color:var(--terra-soft)">Lo que hacemos</span>
-            y cómo lo hacemos.
-          </h2>
-        </div>
-        <p class="muted reveal" data-delay="1" style="max-width:40ch">Elige un servicio o combínalos en un pack mensual. Todo empieza con una conversación de veinte minutos, no con un contrato de veinte páginas.</p>
-      </div>
-
-      <div class="services reveal" data-delay="2" style="margin-top:clamp(2.5rem,6vw,4rem)">
-
-        <article class="service">
-          <button class="service__head" type="button" aria-expanded="false" aria-controls="srv-1">
-            <span class="service__idx">01</span>
-            <span class="service__name">Content creation</span>
-            <span class="service__tag">Contenido con ese no-sé-qué</span>
-            <span class="service__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="service__panel" id="srv-1">
-            <div class="service__panel-inner">
-              <p>Ideamos, grabamos y editamos contenido que parece nativo de la plataforma y no un anuncio disfrazado. Guion, dirección, edición y entrega lista para publicar.</p>
-              <ul class="service__list">
-                <li>Sesiones de foto y vídeo para redes</li>
-                <li>Reels, TikToks y formatos verticales</li>
-                <li>Guion y storyboard</li>
-                <li>Edición, subtítulos y sonido</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="service">
-          <button class="service__head" type="button" aria-expanded="false" aria-controls="srv-2">
-            <span class="service__idx">02</span>
-            <span class="service__name">Social media</span>
-            <span class="service__tag">Scroll &amp; pausa, eso buscamos</span>
-            <span class="service__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="service__panel" id="srv-2">
-            <div class="service__panel-inner">
-              <p>Gestión completa de tus perfiles: qué se dice, cuándo se dice y quién responde. Con un calendario que puedes ver y aprobar en un clic.</p>
-              <ul class="service__list">
-                <li>Estrategia y línea editorial</li>
-                <li>Calendario y publicación</li>
-                <li>Community management</li>
-                <li>Informe mensual con lo que importa</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="service">
-          <button class="service__head" type="button" aria-expanded="false" aria-controls="srv-3">
-            <span class="service__idx">03</span>
-            <span class="service__name">Graphic design</span>
-            <span class="service__tag">Intención &amp; actitud</span>
-            <span class="service__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="service__panel" id="srv-3">
-            <div class="service__panel-inner">
-              <p>Identidad visual con criterio: un sistema que aguanta el logo, la story, el packaging y la factura sin romperse.</p>
-              <ul class="service__list">
-                <li>Identidad visual y logotipo</li>
-                <li>Manual de marca y sistema gráfico</li>
-                <li>Packaging y piezas impresas</li>
-                <li>Plantillas editables para tu equipo</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="service">
-          <button class="service__head" type="button" aria-expanded="false" aria-controls="srv-4">
-            <span class="service__idx">04</span>
-            <span class="service__name">Ads &amp; campaigns</span>
-            <span class="service__tag">Ni ruido ni suerte, impacto</span>
-            <span class="service__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="service__panel" id="srv-4">
-            <div class="service__panel-inner">
-              <p>Campañas que se miden. Creatividad, segmentación y optimización semanal para que cada euro sepa a dónde va.</p>
-              <ul class="service__list">
-                <li>Concepto y creatividades</li>
-                <li>Meta &amp; TikTok Ads</li>
-                <li>Test A/B y optimización</li>
-                <li>Lanzamientos y campañas de temporada</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="service">
-          <button class="service__head" type="button" aria-expanded="false" aria-controls="srv-5">
-            <span class="service__idx">05</span>
-            <span class="service__name">UGC</span>
-            <span class="service__tag">Real y con propósito</span>
-            <span class="service__toggle" aria-hidden="true"></span>
-          </button>
-          <div class="service__panel" id="srv-5">
-            <div class="service__panel-inner">
-              <p>Contenido de usuario que no huele a brief. Buscamos perfiles afines, coordinamos entregas y nos aseguramos de que suene a persona.</p>
-              <ul class="service__list">
-                <li>Selección de creadores</li>
-                <li>Briefing y coordinación</li>
-                <li>Producción de piezas UGC</li>
-                <li>Derechos de uso y adaptación a ads</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <p class="reveal" data-delay="3" style="margin-top:2.5rem">
-        <a class="btn btn--cream" href="servicios.html"><span>Ver servicios en detalle</span><span class="arrow" aria-hidden="true">→</span></a>
+      <p class="rotator">
+        Trabajamos a través de
+        <span class="rotator__words" data-rotator>
+          <span class="rotator__word is-on">estrategia</span>
+          <span class="rotator__word">diseño</span>
+          <span class="rotator__word">contenido</span>
+          <span class="rotator__word">campañas</span>
+        </span>
       </p>
     </div>
   </section>
 
-  <!-- ============ Trabajo ============ -->
-  <section class="section" id="trabajo">
+  <!-- ============ Marquee de claims ============ -->
+  <div class="marquee marquee--claim" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Comunica lo que eres</span>
+      <span>Get people talking</span>
+      <span>Marcas que conectan</span>
+    </div>
+  </div>
+
+  <!-- ============ Contacto ============ -->
+  <section class="contact-block" id="contacto">
     <div class="wrap">
-      <div class="split" style="align-items:end;margin-bottom:clamp(2rem,5vw,3.5rem)">
-        <div class="reveal">
-          <p class="eyebrow">Trabajo</p>
-          <h2 class="manifesto__title">
-            <span class="hand">Get people talking</span>
-            about your brand.
-          </h2>
-        </div>
-        <p class="muted reveal" data-delay="1" style="max-width:38ch">Una selección de formatos y direcciones creativas del estudio. Los casos completos, con contexto y resultados, viven en la página de trabajo.</p>
+      <p class="contact-block__title reveal">Contáctanos <span class="arrow-down" aria-hidden="true">&darr;</span></p>
+      <div class="contact-block__panel reveal" data-delay="1">
+        <p><em>Así es.</em> Si tienes dudas sobre algún servicio o cualquier otra consulta, podemos resolverla.</p>
+        <a class="btn btn--outline" href="contacto.html"><span>Enviar un mensaje</span></a>
       </div>
-
-      <!-- Las tarjetas usan arte de relleno CSS (.ph): sustituir por imágenes
-           reales del proyecto cuando estén disponibles. -->
-      <div class="work-grid">
-        <a class="card card--wide reveal" href="trabajo.html#bruma">
-          <span class="badge">Muestra de estudio</span>
-          <div class="card__media"><div class="ph ph--terra-ink"><span class="ph__word">skincare que no grita</span></div></div>
-          <div class="card__body">
-            <div>
-              <h3 class="card__title">Bruma — Skincare</h3>
-              <p class="card__cat">Identidad · Social media · UGC</p>
-            </div>
-            <span class="card__go" aria-hidden="true">ver caso</span>
-          </div>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="trabajo.html#duna">
-          <span class="badge">Muestra de estudio</span>
-          <div class="card__media"><div class="ph ph--dots"><span class="ph__word">two of two</span></div></div>
-          <div class="card__body">
-            <div>
-              <h3 class="card__title">Duna — Productora</h3>
-              <p class="card__cat">Dirección de arte · Contenido</p>
-            </div>
-            <span class="card__go" aria-hidden="true">ver caso</span>
-          </div>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="trabajo.html#nocturna">
-          <span class="badge">Muestra de estudio</span>
-          <div class="card__media"><div class="ph ph--rings"><span class="ph__word">campaña de noche</span></div></div>
-          <div class="card__body">
-            <div>
-              <h3 class="card__title">Nocturna — Hostelería</h3>
-              <p class="card__cat">Ads &amp; campaigns</p>
-            </div>
-            <span class="card__go" aria-hidden="true">ver caso</span>
-          </div>
-        </a>
-
-        <a class="card reveal" data-delay="1" href="trabajo.html#estudio-b">
-          <span class="badge">Muestra de estudio</span>
-          <div class="card__media"><div class="ph ph--stripes"><span class="ph__word">menos, pero mejor</span></div></div>
-          <div class="card__body">
-            <div>
-              <h3 class="card__title">Estudio B — Arquitectura</h3>
-              <p class="card__cat">Branding · Web</p>
-            </div>
-            <span class="card__go" aria-hidden="true">ver caso</span>
-          </div>
-        </a>
-
-        <a class="card reveal" data-delay="2" href="trabajo.html#raiz">
-          <span class="badge">Muestra de estudio</span>
-          <div class="card__media"><div class="ph ph--cream"><span class="ph__word">raíz &amp; ritmo</span></div></div>
-          <div class="card__body">
-            <div>
-              <h3 class="card__title">Raíz — Café de especialidad</h3>
-              <p class="card__cat">Identidad · Packaging · Contenido</p>
-            </div>
-            <span class="card__go" aria-hidden="true">ver caso</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Proceso ============ -->
-  <section class="section bg-cream-2" id="proceso">
-    <div class="wrap">
-      <div class="reveal">
-        <p class="eyebrow">Cómo trabajamos</p>
-        <h2 class="manifesto__title"><span class="hand">Sin misterio,</span> con método.</h2>
-      </div>
-      <div class="steps">
-        <div class="step reveal">
-          <div>
-            <h3>Escuchamos</h3>
-            <p>Una llamada de veinte minutos para entender el negocio, no solo el feed. Qué vendes, a quién y qué te está frenando.</p>
-          </div>
-        </div>
-        <div class="step reveal" data-delay="1">
-          <div>
-            <h3>Definimos</h3>
-            <p>Una propuesta corta: objetivo, entregables, plazos y precio. Si algo no aporta, lo quitamos antes de empezar.</p>
-          </div>
-        </div>
-        <div class="step reveal" data-delay="2">
-          <div>
-            <h3>Creamos</h3>
-            <p>Producción en ciclos cortos con revisiones acotadas. Ves el material en un tablero compartido, no en cadenas de correo.</p>
-          </div>
-        </div>
-        <div class="step reveal" data-delay="3">
-          <div>
-            <h3>Medimos</h3>
-            <p>Publicamos, leemos los datos y ajustamos. Cada mes te contamos qué funcionó, qué no y qué vamos a probar.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ Cita ============ -->
-  <section class="section bg-terra grain">
-    <div class="wrap quote">
-      <blockquote class="quote__text reveal">
-        <span class="hand">Haz match con lo que</span>
-        vibre contigo.
-      </blockquote>
-      <cite class="reveal" data-delay="1">Laconic Studio</cite>
-    </div>
-  </section>
-
-  <!-- ============ Tienda ============ -->
-  <section class="section" id="tienda">
-    <div class="wrap">
-      <div class="split" style="align-items:end;margin-bottom:clamp(2rem,5vw,3rem)">
-        <div class="reveal">
-          <p class="eyebrow">Tienda</p>
-          <h2 class="manifesto__title"><span class="hand">Recursos</span> para hacerlo tú.</h2>
-        </div>
-        <p class="muted reveal" data-delay="1" style="max-width:38ch">Plantillas, guías y mockups del propio estudio para marcas que van por su cuenta pero quieren buen criterio.</p>
-      </div>
-      <div class="grid grid--3">
-        <article class="shop-card reveal">
-          <span class="shop-card__tag">Plantillas</span>
-          <h3>Kit de stories</h3>
-          <p>30 plantillas editables en Canva con el mismo criterio tipográfico que usamos en cliente.</p>
-          <span class="shop-card__price">29 €</span>
-        </article>
-        <article class="shop-card reveal" data-delay="1">
-          <span class="shop-card__tag">Guía</span>
-          <h3>Tono de voz en 10 pasos</h3>
-          <p>El método que usamos para que una marca deje de sonar como todas las demás.</p>
-          <span class="shop-card__price">19 €</span>
-        </article>
-        <article class="shop-card reveal" data-delay="2">
-          <span class="shop-card__tag">Mockups</span>
-          <h3>Pack presentación</h3>
-          <p>Mockups en alta para presentar identidad y packaging sin que parezca una plantilla.</p>
-          <span class="shop-card__price">39 €</span>
-        </article>
-      </div>
-      <p class="reveal" data-delay="3" style="margin-top:2.5rem">
-        <a class="btn" href="tienda.html"><span>Entrar en la tienda</span><span class="arrow" aria-hidden="true">→</span></a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ============ CTA ============ -->
-  <section class="section bg-ink grain">
-    <div class="wrap cta">
-      <p class="eyebrow reveal" style="justify-content:center">Siguiente paso</p>
-      <h2 class="cta__title reveal" data-delay="1">
-        <span class="hand" style="color:var(--terra-soft)">Esto empieza</span>
-        con un mensaje.
-      </h2>
-      <p class="cta__mail reveal" data-delay="2">
-        <a class="link-underline" href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a>
-      </p>
-      <p class="reveal" data-delay="3">
-        <a class="btn btn--terra" href="contacto.html"><span>Cuéntanos tu proyecto</span><span class="arrow" aria-hidden="true">→</span></a>
-      </p>
     </div>
   </section>
 
 </main>
 
+</main>
+
 <!-- ============ Footer ============ -->
 <footer class="footer">
-  <svg class="footer__zero" viewBox="0 0 100 100" aria-hidden="true">
-    <ellipse cx="50" cy="50" rx="24" ry="34" fill="none" stroke="#f8eddd" stroke-width="19"/>
-  </svg>
   <div class="wrap">
-    <div class="footer__top">
-      <div>
-        <h2><span class="hand">two of two.</span> Comunica lo que eres.</h2>
-      </div>
-      <div class="footer__col">
-        <h3>Estudio</h3>
-        <ul>
-          <li><a href="estudio.html">Sobre nosotras</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="trabajo.html">Trabajo</a></li>
-          <li><a href="tienda.html">Tienda</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h3>Servicios</h3>
-        <ul>
-          <li><a href="servicios.html#content">Content creation</a></li>
-          <li><a href="servicios.html#social">Social media</a></li>
-          <li><a href="servicios.html#design">Graphic design</a></li>
-          <li><a href="servicios.html#ads">Ads &amp; campaigns</a></li>
-          <li><a href="servicios.html#ugc">UGC</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h3>Contacto</h3>
-        <ul>
-          <li><a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
-          <li><a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">@laconicstudio_</a></li>
-          <li><a href="contacto.html">Formulario</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>© <span data-year>2026</span> Laconic Studio</span>
-      <span>Barcelona · trabajamos en remoto</span>
-    </div>
+    <p class="footer__sign"><span class="hand">two of two.</span> Comunica lo que eres.</p>
+    <ul class="footer__rows">
+      <li><a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
+      <li><a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">Instagram</a></li>
+      <li>Barcelona, trabajamos en remoto.</li>
+      <li class="footer__nav">
+        <a href="estudio.html">Estudio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="trabajo.html">Trabajo</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="contacto.html">Contacto</a>
+      </li>
+    </ul>
+    <p class="footer__copy">&copy; <span data-year>2026</span> Laconic Studio</p>
   </div>
 </footer>
 
