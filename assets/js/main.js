@@ -63,58 +63,12 @@
             }
           });
         },
-        { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+        { rootMargin: "0px 0px -10% 0px", threshold: 0 }
       );
       revealables.forEach(function (el) {
         io.observe(el);
       });
     }
-  }
-
-  /* ---- Acordeón de servicios ---- */
-  var services = document.querySelectorAll(".service");
-  services.forEach(function (service) {
-    var head = service.querySelector(".service__head");
-    var panel = service.querySelector(".service__panel");
-    if (!head || !panel) return;
-
-    var close = function () {
-      service.classList.remove("is-open");
-      head.setAttribute("aria-expanded", "false");
-      panel.style.height = "0px";
-    };
-    var open = function () {
-      service.classList.add("is-open");
-      head.setAttribute("aria-expanded", "true");
-      panel.style.height = panel.scrollHeight + "px";
-    };
-
-    close();
-
-    head.addEventListener("click", function () {
-      var isOpen = service.classList.contains("is-open");
-      services.forEach(function (other) {
-        if (other !== service && other.classList.contains("is-open")) {
-          other.classList.remove("is-open");
-          other.querySelector(".service__head").setAttribute("aria-expanded", "false");
-          other.querySelector(".service__panel").style.height = "0px";
-        }
-      });
-      if (isOpen) close();
-      else open();
-    });
-
-    window.addEventListener("resize", function () {
-      if (service.classList.contains("is-open")) {
-        panel.style.height = panel.scrollHeight + "px";
-      }
-    });
-  });
-
-  /* Abre el primer servicio en escritorio para que la sección no parezca vacía */
-  if (services.length && window.innerWidth > 860) {
-    var first = services[0].querySelector(".service__head");
-    if (first) first.click();
   }
 
   /* ---- Hero: collage que sube con el scroll ----
@@ -140,20 +94,6 @@
     setProgress();
   } else if (collage) {
     collage.style.setProperty("--p", "1");
-  }
-
-  /* ---- Palabra rotatoria ("Trabajamos a través de …") ---- */
-  var rotator = document.querySelector("[data-rotator]");
-  if (rotator) {
-    var words = rotator.querySelectorAll(".rotator__word");
-    if (words.length > 1 && !reduced) {
-      var current = 0;
-      window.setInterval(function () {
-        words[current].classList.remove("is-on");
-        current = (current + 1) % words.length;
-        words[current].classList.add("is-on");
-      }, 2200);
-    }
   }
 
   /* ---- Marquee: duplicar contenido para bucle continuo ---- */

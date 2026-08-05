@@ -1,0 +1,4 @@
+<!-- Símbolo de la marca: el cero de Laconic. Hereda el color con currentColor. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" role="img" aria-label="Laconic Studio">
+  <path fill="currentColor" fill-rule="evenodd" d="M60 2A58 78 0 1 1 60 158A58 78 0 1 1 60 2ZM60 44A18 36 0 1 1 60 116A18 36 0 1 1 60 44Z"/>
+</svg>

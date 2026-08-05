@@ -3,52 +3,53 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laconic Studio | Estudio creativo de contenido, social media y branding</title>
-<meta name="description" content="Laconic Studio es un estudio creativo de contenido, social media, diseño gráfico, campañas y UGC. Cada marca comunica, pero no todas conectan.">
+<title>Laconic Studio | Estudio creativo de contenido, social media y diseño</title>
+<meta name="description" content="Laconic Studio: contenido, social media, diseño gráfico, campañas y UGC. Cada marca comunica, pero no todas conectan.">
 <meta name="theme-color" content="#c0574a">
 <link rel="canonical" href="https://laconicstudio.com/">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Laconic Studio | Estudio creativo">
 <meta property="og:description" content="Cada marca comunica, pero no todas conectan. Contenido, social media, diseño, campañas y UGC.">
-<meta property="og:image" content="assets/img/mark.svg">
+<meta property="og:image" content="assets/img/laconic-03.jpg">
 <link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/caveat-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/caveat-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add("has-js");</script>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/main.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CreativeWorkSeries",
+  "@type": "ProfessionalService",
   "name": "Laconic Studio",
   "description": "Estudio creativo de contenido, social media, diseño gráfico, campañas y UGC.",
   "email": "itslaconicstudio@gmail.com",
+  "areaServed": "ES",
   "sameAs": ["https://www.instagram.com/laconicstudio_/"]
 }
 </script>
 </head>
 <body>
-<a class="skip" href="#main">Saltar al contenido</a>
+<a class="skip" href="#estudio">Saltar al contenido</a>
 
 <!-- ============ Header ============ -->
 <header class="header">
   <div class="wrap header__inner">
-    <a class="brand" href="index.html" aria-label="Laconic Studio — inicio">
-      <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
-        <ellipse cx="50" cy="50" rx="24" ry="34" fill="none" stroke="currentColor" stroke-width="19"/>
+    <a class="brand" href="#top" aria-label="Laconic Studio — inicio">
+      <svg class="brand__mark" viewBox="0 0 120 160" aria-hidden="true">
+        <path fill="currentColor" fill-rule="evenodd" d="M60 2A58 78 0 1 1 60 158A58 78 0 1 1 60 2ZM60 44A18 36 0 1 1 60 116A18 36 0 1 1 60 44Z"/>
       </svg>
-      <span class="brand__name">laconic <small>studio</small></span>
+      <span class="brand__word">laconic</span>
     </a>
 
     <nav class="nav" aria-label="Navegación principal">
-      <a href="estudio.html">Estudio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="trabajo.html">Trabajo</a>
-      <a href="tienda.html">Tienda</a>
+      <a href="#estudio">Estudio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajo">Trabajo</a>
+      <a href="#recursos">Recursos</a>
     </nav>
 
-    <a class="btn header__cta" href="contacto.html">
+    <a class="btn btn--ink header__cta" href="#contacto">
       <span>Hablemos</span><span class="arrow" aria-hidden="true">→</span>
     </a>
 
@@ -60,11 +61,11 @@
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <nav aria-label="Navegación móvil">
-    <a href="estudio.html">Estudio <span>quiénes somos</span></a>
-    <a href="servicios.html">Servicios <span>qué hacemos</span></a>
-    <a href="trabajo.html">Trabajo <span>casos</span></a>
-    <a href="tienda.html">Tienda <span>recursos</span></a>
-    <a href="contacto.html">Contacto <span>escríbenos</span></a>
+    <a href="#estudio">Estudio <span>quiénes somos</span></a>
+    <a href="#servicios">Servicios <span>qué hacemos</span></a>
+    <a href="#trabajo">Trabajo <span>proyectos</span></a>
+    <a href="#recursos">Recursos <span>plantillas</span></a>
+    <a href="#contacto">Contacto <span>escríbenos</span></a>
   </nav>
   <div class="mobile-menu__foot">
     <a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a>
@@ -72,30 +73,28 @@
   </div>
 </div>
 
-<main id="main">
+<main id="top">
 
   <!-- ============ Hero ============
-       Fondo plano, logo del estudio centrado y collage de proyectos que sube
-       al hacer scroll. Las imágenes son placeholders: se sustituyen cambiando
-       el src de cada <img> por la fotografía real. -->
+       Fondo terracota plano, logo centrado y fotos de proyecto que suben al
+       hacer scroll. El JS escribe --p (0→1) y cada pieza sube su --rise. -->
   <section class="hero" data-collage>
     <div class="hero__stage">
 
-      <div class="hero__tiles" aria-hidden="true">
-        <figure class="tile tile--1"><img src="assets/img/proyecto-01.svg" alt="" width="900" height="1200" loading="eager"></figure>
-        <figure class="tile tile--2"><img src="assets/img/proyecto-02.svg" alt="" width="1200" height="900" loading="eager"></figure>
-        <figure class="tile tile--3"><img src="assets/img/proyecto-03.svg" alt="" width="900" height="1200" loading="lazy"></figure>
-        <figure class="tile tile--4"><img src="assets/img/proyecto-04.svg" alt="" width="1000" height="1000" loading="lazy"></figure>
-        <figure class="tile tile--5"><img src="assets/img/proyecto-05.svg" alt="" width="900" height="1200" loading="lazy"></figure>
-        <figure class="tile tile--6"><img src="assets/img/proyecto-06.svg" alt="" width="1200" height="900" loading="lazy"></figure>
+      <div class="hero__tiles">
+        <figure class="tile tile--1"><img src="assets/img/laconic-03.jpg" alt="Montaje de un espacio de trabajo y rótulo de neón" width="1168" height="1438" loading="eager"></figure>
+        <figure class="tile tile--2"><img src="assets/img/laconic-01.jpg" alt="Contenido de retail: lineal de tienda y botella de vino" width="1169" height="1477" loading="eager"></figure>
+        <figure class="tile tile--3"><img src="assets/img/laconic-05.jpg" alt="Botellas de licor artesano y tarros de plantas aromáticas" width="1169" height="1484" loading="lazy"></figure>
+        <figure class="tile tile--4"><img src="assets/img/laconic-02.jpg" alt="Material de entrenamiento y línea de meta" width="1168" height="1463" loading="lazy"></figure>
+        <figure class="tile tile--5"><img src="assets/img/laconic-04.jpg" alt="Entrenamiento de fútbol base" width="1168" height="1468" loading="lazy"></figure>
       </div>
 
-      <!-- Logo de la marca: el símbolo del 0 y el logotipo manuscrito.
-           Si tienes el logo original en SVG o PNG, sustituye este bloque por
+      <!-- Logo: el cero de la marca y el logotipo manuscrito.
+           Con el archivo original basta cambiar este bloque por
            <img class="hero__logo-img" src="assets/img/logo-laconic.svg" alt="Laconic Studio"> -->
       <h1 class="hero__logo">
-        <svg class="hero__logo-mark" viewBox="0 0 100 100" aria-hidden="true">
-          <ellipse cx="50" cy="50" rx="24" ry="34" fill="none" stroke="currentColor" stroke-width="19"/>
+        <svg class="hero__logo-mark" viewBox="0 0 120 160" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M60 2A58 78 0 1 1 60 158A58 78 0 1 1 60 2ZM60 44A18 36 0 1 1 60 116A18 36 0 1 1 60 44Z"/>
         </svg>
         <span class="hero__logo-word">laconic</span>
         <span class="hero__logo-sub">studio</span>
@@ -105,111 +104,327 @@
     </div>
   </section>
 
-  <!-- ============ Intro ============ -->
-  <section class="intro" id="estudio">
+  <!-- ============ Manifiesto ============ -->
+  <section class="section" id="estudio">
     <div class="wrap">
-      <p class="eyebrow reveal">Contenido, social media y diseño</p>
-      <p class="display reveal" data-delay="1">Creamos contenido y marcas que dicen lo justo y se quedan contigo: cada marca comunica, pero no todas conectan.</p>
-      <p class="intro__by reveal" data-delay="2">Laconic Studio &mdash; dirección creativa</p>
+      <p class="eyebrow reveal">El estudio</p>
+      <h2 class="big reveal" data-delay="1">
+        <span class="hand">Cada marca comunica,</span>
+        pero no todas conectan.
+      </h2>
 
-      <div class="intro__body reveal" data-delay="3">
-        <p>Trabajamos con marcas que tienen algo que decir y necesitan decirlo mejor. Estrategia, dirección de arte, producción y publicación; desde la idea hasta la pieza publicada.</p>
-        <p>Cada marca es un mundo y hay que estar dentro de él: pensar como ella y vibrar como ella. Por eso trabajamos en pocos proyectos a la vez, como una extensión de tu equipo.</p>
-        <p><a class="arrow-link" href="estudio.html">Conocer más <span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+      <div class="split split--wide reveal" data-delay="2">
+        <div>
+          <p class="lead">Somos Laconic: contenido, social media y diseño para marcas que prefieren decir poco y decirlo bien.</p>
+        </div>
+        <div>
+          <p>Hay marcas que hablan mucho y no dicen nada. Nosotras trabajamos al revés: encontramos la frase, la imagen y el tono exactos, y quitamos todo lo demás.</p>
+          <p>Diseñamos identidades, contenido y campañas pensadas para el scroll real — el de alguien con prisa, con el móvil en una mano. Trabajamos como una extensión de tu equipo: estrategia, producción y publicación.</p>
+          <p class="hand hand--accent">two of two. Comunica lo que eres.</p>
+        </div>
+      </div>
+
+      <div class="stats reveal" data-delay="3">
+        <div class="stat">
+          <div class="stat__num">5</div>
+          <p class="stat__label">servicios que se combinan como quieras</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num">48h</div>
+          <p class="stat__label">para responder a tu primer mensaje</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num">100%</div>
+          <p class="stat__label">contenido hecho a medida, cero plantillas</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ Texto sobredimensionado ============ -->
-  <div class="marquee marquee--big" aria-hidden="true">
+  <!-- ============ Marquesina ============ -->
+  <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
-      <span>let&rsquo;s collab</span>
-      <span class="hand">two of two</span>
-      <span>let&rsquo;s collab</span>
-      <span class="hand">two of two</span>
+      <span class="hand">Content creation</span>
+      <span>Social media</span>
+      <span class="hand">Graphic design</span>
+      <span>Ads &amp; campaigns</span>
+      <span class="hand">UGC</span>
     </div>
   </div>
 
-  <!-- ============ Índice numerado ============ -->
-  <div class="dome" aria-hidden="true"></div>
-  <section class="index-nav">
+  <!-- ============ Servicios ============ -->
+  <section class="section section--terra" id="servicios">
     <div class="wrap">
-      <ol class="index-list">
-        <li class="index-list__item reveal">
-          <a href="servicios.html">
-            <span class="index-list__num">01</span>
-            <span class="index-list__label">Servicios</span>
-          </a>
+      <p class="eyebrow reveal">Servicios</p>
+      <h2 class="big big--cream reveal" data-delay="1">
+        <span class="hand">Lo que hacemos</span>
+        y qué te llevas.
+      </h2>
+
+      <ol class="services-list">
+        <li class="service-item reveal">
+          <div class="service-item__head">
+            <span class="service-item__name hand">Content creation</span>
+            <span class="service-item__tag">Contenido con ese no-sé-qué</span>
+          </div>
+          <ul class="service-item__list">
+            <li>Concepto y guion</li>
+            <li>Sesión de foto y vídeo</li>
+            <li>Reels, TikToks y verticales</li>
+            <li>Edición, subtítulos y sonido</li>
+          </ul>
         </li>
-        <li class="index-list__item reveal" data-delay="1">
-          <a href="trabajo.html">
-            <span class="index-list__num">02</span>
-            <span class="index-list__label">Trabajo</span>
-          </a>
+        <li class="service-item reveal" data-delay="1">
+          <div class="service-item__head">
+            <span class="service-item__name hand">Social media</span>
+            <span class="service-item__tag">Scroll &amp; pausa, eso buscamos</span>
+          </div>
+          <ul class="service-item__list">
+            <li>Estrategia y línea editorial</li>
+            <li>Calendario y publicación</li>
+            <li>Community management</li>
+            <li>Informe mensual accionable</li>
+          </ul>
         </li>
-        <li class="index-list__item reveal" data-delay="2">
-          <a href="contacto.html">
-            <span class="index-list__num">03</span>
-            <span class="index-list__label">Contacto</span>
-          </a>
+        <li class="service-item reveal" data-delay="2">
+          <div class="service-item__head">
+            <span class="service-item__name hand">Graphic design</span>
+            <span class="service-item__tag">Intención &amp; actitud</span>
+          </div>
+          <ul class="service-item__list">
+            <li>Identidad visual y logotipo</li>
+            <li>Manual de marca y sistema gráfico</li>
+            <li>Packaging y piezas impresas</li>
+            <li>Plantillas editables para tu equipo</li>
+          </ul>
+        </li>
+        <li class="service-item reveal" data-delay="3">
+          <div class="service-item__head">
+            <span class="service-item__name hand">Ads &amp; campaigns</span>
+            <span class="service-item__tag">Ni ruido ni suerte, impacto</span>
+          </div>
+          <ul class="service-item__list">
+            <li>Concepto y creatividades</li>
+            <li>Meta Ads y TikTok Ads</li>
+            <li>Test A/B y escalado</li>
+            <li>Panel de resultados</li>
+          </ul>
+        </li>
+        <li class="service-item reveal" data-delay="4">
+          <div class="service-item__head">
+            <span class="service-item__name hand">UGC</span>
+            <span class="service-item__tag">Real y con propósito</span>
+          </div>
+          <ul class="service-item__list">
+            <li>Selección de creadores</li>
+            <li>Briefing y coordinación</li>
+            <li>Producción de piezas</li>
+            <li>Derechos de uso y adaptación a ads</li>
+          </ul>
         </li>
       </ol>
-    </div>
-  </section>
 
-  <!-- ============ Frase con palabra rotatoria ============ -->
-  <section class="rotator-block">
-    <div class="wrap">
-      <p class="rotator">
-        Trabajamos a través de
-        <span class="rotator__words" data-rotator>
-          <span class="rotator__word is-on">estrategia</span>
-          <span class="rotator__word">diseño</span>
-          <span class="rotator__word">contenido</span>
-          <span class="rotator__word">campañas</span>
-        </span>
+      <p class="reveal" data-delay="4" style="margin-top:clamp(2rem,5vw,3rem)">
+        <a class="btn btn--cream" href="#contacto"><span>Pedir presupuesto</span><span class="arrow" aria-hidden="true">→</span></a>
       </p>
     </div>
   </section>
 
-  <!-- ============ Marquee de claims ============ -->
-  <div class="marquee marquee--claim" aria-hidden="true">
-    <div class="marquee__track">
-      <span>Comunica lo que eres</span>
-      <span>Get people talking</span>
-      <span>Marcas que conectan</span>
+  <!-- ============ Trabajo ============ -->
+  <section class="section" id="trabajo">
+    <div class="wrap">
+      <p class="eyebrow reveal">Trabajo</p>
+      <h2 class="big reveal" data-delay="1">
+        <span class="hand">Get people talking</span>
+        about your brand.
+      </h2>
+
+      <div class="work reveal" data-delay="2">
+        <figure class="work__item work__item--tall">
+          <img src="assets/img/laconic-01.jpg" alt="Contenido de retail: lineal de tienda y botella de vino" width="1169" height="1477" loading="lazy">
+          <figcaption><strong>Retail &amp; vino</strong><span>Contenido de producto y punto de venta</span></figcaption>
+        </figure>
+        <figure class="work__item">
+          <img src="assets/img/laconic-02.jpg" alt="Material de entrenamiento y línea de meta de una pista" width="1168" height="1463" loading="lazy">
+          <figcaption><strong>Fitness &amp; performance</strong><span>Dirección de arte y contenido</span></figcaption>
+        </figure>
+        <figure class="work__item">
+          <img src="assets/img/laconic-03.jpg" alt="Montaje de un espacio de trabajo y rótulo de neón" width="1168" height="1438" loading="lazy">
+          <figcaption><strong>Startup &amp; espacios</strong><span>Cobertura y social media</span></figcaption>
+        </figure>
+        <figure class="work__item">
+          <img src="assets/img/laconic-04.jpg" alt="Entrenamiento de fútbol base en campo de césped" width="1168" height="1468" loading="lazy">
+          <figcaption><strong>Deporte base</strong><span>Vídeo y piezas para redes</span></figcaption>
+        </figure>
+        <figure class="work__item work__item--tall">
+          <img src="assets/img/laconic-05.jpg" alt="Botellas de ratafía y tarros de plantas aromáticas" width="1169" height="1484" loading="lazy">
+          <figcaption><strong>Licores artesanos</strong><span>Producto, etiqueta y contenido</span></figcaption>
+        </figure>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ============ Frase ============ -->
+  <section class="section section--ink">
+    <div class="wrap">
+      <p class="big big--cream center reveal" style="margin:0">
+        <span class="hand">Haz match con lo que</span>
+        vibre contigo.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ Proceso ============ -->
+  <section class="section" id="proceso">
+    <div class="wrap">
+      <p class="eyebrow reveal">Cómo trabajamos</p>
+      <h2 class="big reveal" data-delay="1">
+        <span class="hand">Sin misterio,</span>
+        con método.
+      </h2>
+      <div class="steps">
+        <div class="step reveal">
+          <div>
+            <h3>Escuchamos</h3>
+            <p>Una llamada de veinte minutos para entender el negocio, no solo el feed. Qué vendes, a quién y qué te está frenando.</p>
+          </div>
+        </div>
+        <div class="step reveal" data-delay="1">
+          <div>
+            <h3>Definimos</h3>
+            <p>Una propuesta corta: objetivo, entregables, plazos y precio. Si algo no aporta, lo quitamos antes de empezar.</p>
+          </div>
+        </div>
+        <div class="step reveal" data-delay="2">
+          <div>
+            <h3>Creamos</h3>
+            <p>Producción en ciclos cortos con revisiones acotadas. Ves el material en un tablero compartido, no en cadenas de correo.</p>
+          </div>
+        </div>
+        <div class="step reveal" data-delay="3">
+          <div>
+            <h3>Medimos</h3>
+            <p>Publicamos, leemos los datos y ajustamos. Cada mes te contamos qué funcionó, qué no y qué vamos a probar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Recursos ============ -->
+  <section class="section section--cream2" id="recursos">
+    <div class="wrap">
+      <p class="eyebrow reveal">Recursos</p>
+      <h2 class="big reveal" data-delay="1">
+        <span class="hand">Plantillas</span>
+        para hacerlo tú.
+      </h2>
+      <div class="grid grid--3" style="margin-top:clamp(2rem,5vw,3rem)">
+        <article class="shop-card reveal">
+          <span class="shop-card__tag">Plantillas</span>
+          <h3>Kit de stories</h3>
+          <p>30 plantillas editables en Canva con nuestro sistema tipográfico y de color.</p>
+          <span class="shop-card__price">29 €</span>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Pedido%20Kit%20de%20stories"><span>Lo quiero</span><span class="arrow" aria-hidden="true">→</span></a></p>
+        </article>
+        <article class="shop-card reveal" data-delay="1">
+          <span class="shop-card__tag">Guía</span>
+          <h3>Tono de voz en 10 pasos</h3>
+          <p>El método que usamos para que una marca deje de sonar como todas las demás.</p>
+          <span class="shop-card__price">19 €</span>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Pedido%20Tono%20de%20voz"><span>Lo quiero</span><span class="arrow" aria-hidden="true">→</span></a></p>
+        </article>
+        <article class="shop-card reveal" data-delay="2">
+          <span class="shop-card__tag">Bundle</span>
+          <h3>Todo el estudio</h3>
+          <p>Los recursos juntos, con actualizaciones incluidas durante un año.</p>
+          <span class="shop-card__price">89 €</span>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Pedido%20Bundle"><span>Lo quiero</span><span class="arrow" aria-hidden="true">→</span></a></p>
+        </article>
+      </div>
+      <p class="form__note reveal" data-delay="3" style="margin-top:1.6rem">Los pedidos se gestionan por correo mientras conectamos la pasarela de pago. Enviamos el enlace de descarga en menos de 24 h.</p>
+    </div>
+  </section>
 
   <!-- ============ Contacto ============ -->
-  <section class="contact-block" id="contacto">
+  <section class="section section--terra" id="contacto">
     <div class="wrap">
-      <p class="contact-block__title reveal">Contáctanos <span class="arrow-down" aria-hidden="true">&darr;</span></p>
-      <div class="contact-block__panel reveal" data-delay="1">
-        <p><em>Así es.</em> Si tienes dudas sobre algún servicio o cualquier otra consulta, podemos resolverla.</p>
-        <a class="btn btn--outline" href="contacto.html"><span>Enviar un mensaje</span></a>
+      <p class="eyebrow reveal">Contacto</p>
+      <h2 class="big big--cream reveal" data-delay="1">
+        <span class="hand">Esto empieza</span>
+        con un mensaje.
+      </h2>
+
+      <div class="split split--wide" style="margin-top:clamp(2rem,5vw,3.5rem)">
+        <div class="reveal" data-delay="2">
+          <p class="lead lead--cream">Cuéntanos qué marca eres y qué te está frenando. Respondemos en menos de 48 horas laborables, siempre una persona.</p>
+          <ul class="contact-direct">
+            <li><a class="link-underline" href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
+            <li><a class="link-underline" href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">DM a @laconicstudio_</a></li>
+          </ul>
+          <p class="hand hand--cream">Haz match con lo que vibre contigo</p>
+        </div>
+
+        <div class="reveal" data-delay="3">
+          <!-- Formulario sin backend: compone un correo con los datos.
+               Para recibirlo en un servidor, cambiar data-mailto por action + method. -->
+          <form class="form form--cream" data-mailto="itslaconicstudio@gmail.com" novalidate>
+            <div class="grid grid--2" style="gap:1.4rem">
+              <div class="field">
+                <label for="nombre">Tu nombre</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="marca">Marca o proyecto</label>
+                <input id="marca" name="marca" type="text" autocomplete="organization">
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <span id="servicios-label" class="field__label">Qué necesitas</span>
+              <div class="chips" role="group" aria-labelledby="servicios-label">
+                <label class="chip"><input type="checkbox" name="servicio" value="Content creation"><span>Content creation</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Social media"><span>Social media</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Graphic design"><span>Graphic design</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Ads &amp; campaigns"><span>Ads &amp; campaigns</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="UGC"><span>UGC</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="mensaje">Cuéntanos</label>
+              <textarea id="mensaje" name="mensaje" rows="4" placeholder="Qué vendes, a quién y qué te gustaría cambiar."></textarea>
+            </div>
+            <div>
+              <button class="btn btn--ink" type="submit"><span>Enviar mensaje</span><span class="arrow" aria-hidden="true">→</span></button>
+            </div>
+            <p class="form__note" data-form-status role="status">Al enviar se abre tu cliente de correo con el mensaje ya redactado.</p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 
 </main>
 
-</main>
-
-<!-- ============ Footer ============ -->
 <footer class="footer">
   <div class="wrap">
+    <svg class="footer__mark" viewBox="0 0 120 160" aria-hidden="true">
+      <path fill="currentColor" fill-rule="evenodd" d="M60 2A58 78 0 1 1 60 158A58 78 0 1 1 60 2ZM60 44A18 36 0 1 1 60 116A18 36 0 1 1 60 44Z"/>
+    </svg>
     <p class="footer__sign"><span class="hand">two of two.</span> Comunica lo que eres.</p>
     <ul class="footer__rows">
       <li><a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
       <li><a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">Instagram</a></li>
       <li>Barcelona, trabajamos en remoto.</li>
       <li class="footer__nav">
-        <a href="estudio.html">Estudio</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="trabajo.html">Trabajo</a>
-        <a href="tienda.html">Tienda</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="#estudio">Estudio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#trabajo">Trabajo</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#contacto">Contacto</a>
       </li>
     </ul>
     <p class="footer__copy">&copy; <span data-year>2026</span> Laconic Studio</p>
