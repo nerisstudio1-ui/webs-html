@@ -38,7 +38,7 @@ Debe quedar así: `/wp-content/uploads/laconic/assets/css/`, `.../fonts/`,
 Abre `widget-ca.html` en un editor de texto y sustituye:
 
 - `__BASE__` → `https://TUDOMINIO.com/wp-content/uploads/laconic/`
-  (sale unas 10 veces; usa buscar y reemplazar. **Con la barra final.**)
+  (sale 59 veces; usa **reemplazar todo**. Ojo: **con la barra final.**)
 - `__URL_ES__` → la URL de la página en castellano, por ejemplo
   `https://TUDOMINIO.com/es/`
 
