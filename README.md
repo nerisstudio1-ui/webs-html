@@ -51,11 +51,29 @@ Todo se controla desde los tokens de `:root` en `assets/css/main.css`:
 | `--cream` | `#F9F0E1` | fondo base y texto sobre terracota |
 | `--ink` | `#1C2825` | secciones oscuras, botones, titulares sobre crema |
 | `--text` | `#1C2825` | texto sobre crema (el mismo verde) |
-| `--hand` | Caveat 500 | logotipo y líneas manuscritas (`class="hand"`) |
-| `--sans` | Inter 800 | titulares pesados; Inter 400 para texto |
+| `--hand` | Caveat 500 | líneas manuscritas (`class="hand"`) |
+| `--display` | Archivo 700 | titulares (`class="display"`) |
+| `--sans` | Inter 400/500 | texto corrido y antetítulos |
 
 Los titulares usan el patrón de la marca: la línea manuscrita arriba y la línea
-en sans pesada debajo (`<h2 class="big"><span class="hand">…</span>…</h2>`).
+en display debajo (`<h2 class="display rl"><span class="hand">…</span>…</h2>`).
+La clase `rl` activa el revelado palabra a palabra.
+
+## Movimiento
+
+Todo con IntersectionObserver y un único bucle de `requestAnimationFrame`, sin
+librerías, y desactivado con `prefers-reduced-motion`:
+
+- **Hero**: el logotipo entra con un `clip-path` y las cinco fotos suben con
+  velocidades distintas (`--rise` por pieza) mientras el escenario queda pegado.
+- **Titulares**: cada palabra sube desde su propia caja, en cascada.
+- **Cabecera**: cambia de color según el tema de la sección que cruza
+  (`data-theme` → `data-on`), y el enlace de la sección visible se subraya.
+- **Servicios**: la foto pegada al scroll cambia con el servicio activo, por
+  ratón o por posición.
+- **Trabajo**: cada foto se mueve en paralaje dentro de su marco.
+- **Proceso**: el raíl se rellena y los puntos se encienden al pasar.
+- **Cursor**: punto que crece sobre elementos interactivos (solo ratón).
 
 ## Cómo se cambian las cosas
 

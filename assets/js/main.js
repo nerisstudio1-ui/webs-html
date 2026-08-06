@@ -1,24 +1,118 @@
-/* Laconic Studio — interacciones básicas (sin dependencias) */
+/* Laconic Studio — interacciones (sin dependencias) */
 (function () {
   "use strict";
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  /* ---- Header: fondo al hacer scroll + auto-ocultar ---- */
+  /* ---- Marca de carga: dispara la entrada del logo ---- */
+  var loaded = function () {
+    document.documentElement.classList.add("is-loaded");
+  };
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(loaded);
+    window.setTimeout(loaded, 1200); // por si las tipografías tardan
+  } else {
+    loaded();
+  }
+
+  /* ---- Titulares: cada palabra en su propia caja para revelarla ---- */
+  var splitWords = function (root) {
+    var index = 0;
+    var walk = function (node) {
+      var kids = Array.prototype.slice.call(node.childNodes);
+      kids.forEach(function (child) {
+        if (child.nodeType === 3) {
+          var text = child.textContent;
+          if (!text.trim()) return;
+          var frag = document.createDocumentFragment();
+          text.split(/(\s+)/).forEach(function (chunk) {
+            if (!chunk) return;
+            if (!chunk.trim()) {
+              frag.appendChild(document.createTextNode(chunk));
+              return;
+            }
+            var wrap = document.createElement("span");
+            wrap.className = "w";
+            wrap.style.setProperty("--i", index++);
+            var inner = document.createElement("i");
+            inner.textContent = chunk;
+            wrap.appendChild(inner);
+            frag.appendChild(wrap);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          walk(child);
+        }
+      });
+    };
+    walk(root);
+  };
+
+  var headlines = document.querySelectorAll(".rl");
+  if (!reduced) {
+    headlines.forEach(splitWords);
+  }
+
+  /* ---- Entradas al viewport (titulares y bloques) ---- */
+  var animables = document.querySelectorAll(".rl, .fade");
+  if (animables.length) {
+    if (reduced || !("IntersectionObserver" in window)) {
+      animables.forEach(function (el) {
+        el.classList.add("is-in");
+      });
+    } else {
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-in");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -12% 0px", threshold: 0 }
+      );
+      animables.forEach(function (el) {
+        io.observe(el);
+      });
+    }
+  }
+
+  /* ---- Cabecera: color según la sección de detrás, fondo y auto-ocultar ---- */
   var header = document.querySelector(".header");
+  var temas = document.querySelectorAll("[data-theme]");
   if (header) {
     var lastY = window.scrollY;
     var onScroll = function () {
       var y = window.scrollY;
-      header.classList.toggle("is-stuck", y > 40);
-      var goingDown = y > lastY && y > 320;
+      header.classList.toggle("is-stuck", y > 60);
       if (!document.body.classList.contains("menu-open")) {
-        header.classList.toggle("is-hidden", goingDown);
+        header.classList.toggle("is-hidden", y > lastY && y > 400);
       }
       lastY = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+
+    if (temas.length && "IntersectionObserver" in window) {
+      // La sección que cruza la línea de la cabecera define su color
+      var alto = header.offsetHeight || 70;
+      var ioTema = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              header.dataset.on = entry.target.dataset.theme;
+              document.documentElement.dataset.on = entry.target.dataset.theme;
+            }
+          });
+        },
+        { rootMargin: -(alto / 2) + "px 0px " + (-100 + alto / 2 + 0.1) + "% 0px", threshold: 0 }
+      );
+      temas.forEach(function (s) {
+        ioTema.observe(s);
+      });
+    }
   }
 
   /* ---- Menú móvil ---- */
@@ -46,67 +140,173 @@
     setMenu(false);
   }
 
-  /* ---- Reveal al entrar en viewport ---- */
-  var revealables = document.querySelectorAll(".reveal");
-  if (revealables.length) {
-    if (reduced || !("IntersectionObserver" in window)) {
-      revealables.forEach(function (el) {
-        el.classList.add("is-in");
+  /* ---- Navegación: marca el enlace de la sección visible ---- */
+  var navLinks = document.querySelectorAll(".nav a[href^='#']");
+  if (navLinks.length && "IntersectionObserver" in window) {
+    var porId = {};
+    navLinks.forEach(function (a) {
+      porId[a.getAttribute("href").slice(1)] = a;
+    });
+    var ioNav = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var link = porId[entry.target.id];
+          if (link && entry.isIntersecting) {
+            navLinks.forEach(function (a) {
+              a.classList.remove("is-active");
+            });
+            link.classList.add("is-active");
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+    Object.keys(porId).forEach(function (id) {
+      var sec = document.getElementById(id);
+      if (sec) ioNav.observe(sec);
+    });
+  }
+
+  /* ---- Servicios: la foto sigue al servicio activo ---- */
+  var svcList = document.querySelector("[data-svc-list]");
+  if (svcList) {
+    var items = svcList.querySelectorAll(".svc__item");
+    var imgs = document.querySelectorAll("[data-svc-img]");
+    var activar = function (clave) {
+      imgs.forEach(function (im) {
+        im.classList.toggle("is-on", im.dataset.svcImg === clave);
       });
-    } else {
-      var io = new IntersectionObserver(
+      items.forEach(function (it) {
+        it.classList.toggle("is-active", it.dataset.svc === clave);
+      });
+    };
+    activar(items[0] ? items[0].dataset.svc : null);
+
+    items.forEach(function (item) {
+      item.addEventListener("mouseenter", function () {
+        activar(item.dataset.svc);
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      var ioSvc = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-in");
-              io.unobserve(entry.target);
-            }
+            if (entry.isIntersecting) activar(entry.target.dataset.svc);
           });
         },
-        { rootMargin: "0px 0px -10% 0px", threshold: 0 }
+        { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
       );
-      revealables.forEach(function (el) {
-        io.observe(el);
+      items.forEach(function (it) {
+        ioSvc.observe(it);
       });
     }
   }
 
-  /* ---- Hero: collage que sube con el scroll ----
-     Escribe --p (0 → 1) en la sección; el CSS decide cuánto sube cada pieza. */
+  /* ---- Bucle de scroll: collage, paralaje, raíl del proceso, giro del cero ---- */
   var collage = document.querySelector("[data-collage]");
-  if (collage && !reduced) {
-    var ticking = false;
-    var setProgress = function () {
-      var travel = collage.offsetHeight - window.innerHeight;
-      var scrolled = window.scrollY - collage.offsetTop;
-      var p = travel > 0 ? scrolled / travel : 1;
-      collage.style.setProperty("--p", Math.min(1, Math.max(0, p)).toFixed(4));
-      ticking = false;
-    };
-    var request = function () {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(setProgress);
+  var parallax = document.querySelectorAll("[data-parallax]");
+  var rail = document.querySelector("[data-rail]");
+  var spin = document.querySelector("[data-spin]");
+  var pasos = rail ? rail.querySelectorAll(".step") : [];
+
+  var clamp01 = function (v) {
+    return v < 0 ? 0 : v > 1 ? 1 : v;
+  };
+
+  var frame = function () {
+    var vh = window.innerHeight;
+
+    if (collage) {
+      var travel = collage.offsetHeight - vh;
+      var p = travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1;
+      collage.style.setProperty("--p", clamp01(p).toFixed(4));
+    }
+
+    parallax.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      // -1 al entrar por abajo, +1 al salir por arriba
+      var centro = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+      el.style.setProperty("--py", (-clamp01((centro + 1) / 2) * 2 + 1).toFixed(3));
+    });
+
+    if (rail) {
+      var rr = rail.getBoundingClientRect();
+      var avance = clamp01((vh * 0.62 - rr.top) / rr.height);
+      rail.style.setProperty("--fill", avance.toFixed(3));
+      pasos.forEach(function (paso, i) {
+        var pr = paso.getBoundingClientRect();
+        paso.classList.toggle("is-on", pr.top < vh * 0.66);
+      });
+    }
+
+    if (spin) {
+      var sr = spin.getBoundingClientRect();
+      if (sr.bottom > 0 && sr.top < vh) {
+        var giro = ((vh - sr.top) / (vh + sr.height)) * 40 - 12;
+        spin.style.setProperty("--spin", giro.toFixed(2) + "deg");
       }
-    };
-    window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", request);
-    setProgress();
-  } else if (collage) {
-    collage.style.setProperty("--p", "1");
+    }
+
+    ticking = false;
+  };
+
+  var ticking = false;
+  var pedir = function () {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(frame);
+    }
+  };
+
+  if (reduced) {
+    if (collage) collage.style.setProperty("--p", "1");
+    pasos.forEach(function (p) {
+      p.classList.add("is-on");
+    });
+  } else {
+    window.addEventListener("scroll", pedir, { passive: true });
+    window.addEventListener("resize", pedir);
+    frame();
   }
 
-  /* ---- Marquee: duplicar contenido para bucle continuo ---- */
+  /* ---- Marquesina: duplicar para que el bucle no tenga costura ---- */
   document.querySelectorAll(".marquee__track").forEach(function (track) {
     track.innerHTML += track.innerHTML;
   });
 
-  /* ---- Año en el footer ---- */
+  /* ---- Cursor ---- */
+  var cursor = document.querySelector(".cursor");
+  if (cursor && fine && !reduced) {
+    var cx = -100, cy = -100, tx = -100, ty = -100;
+    document.addEventListener("mousemove", function (e) {
+      tx = e.clientX;
+      ty = e.clientY;
+    });
+    var seguir = function () {
+      cx += (tx - cx) * 0.18;
+      cy += (ty - cy) * 0.18;
+      cursor.style.transform = "translate3d(" + (cx - 4.5) + "px," + (cy - 4.5) + "px,0)";
+      window.requestAnimationFrame(seguir);
+    };
+    seguir();
+
+    var interactivos = "a, button, .card, .svc__item, input, textarea, label";
+    document.addEventListener("mouseover", function (e) {
+      if (e.target.closest(interactivos)) document.body.classList.add("cursor-on");
+    });
+    document.addEventListener("mouseout", function (e) {
+      if (e.target.closest(interactivos)) document.body.classList.remove("cursor-on");
+    });
+  }
+
+  /* ---- Año del footer ---- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = String(new Date().getFullYear());
   });
 
-  /* ---- Formulario de contacto: sin backend, abre el correo ---- */
+  /* ---- Formulario sin backend: compone el correo ---- */
   var form = document.querySelector("[data-mailto]");
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -118,21 +318,15 @@
         "Marca: " + (data.get("marca") || ""),
         "Email: " + (data.get("email") || ""),
         "Servicios: " + servicios,
-        "Presupuesto: " + (data.get("presupuesto") || ""),
         "",
         "Cuéntanos:",
         data.get("mensaje") || ""
       ].join("\n");
 
-      var href =
-        "mailto:" +
-        form.getAttribute("data-mailto") +
-        "?subject=" +
-        encodeURIComponent("Nuevo proyecto — " + (data.get("marca") || data.get("nombre") || "Laconic")) +
-        "&body=" +
-        encodeURIComponent(body);
-
-      window.location.href = href;
+      window.location.href =
+        "mailto:" + form.getAttribute("data-mailto") +
+        "?subject=" + encodeURIComponent("Nuevo proyecto — " + (data.get("marca") || data.get("nombre") || "Laconic")) +
+        "&body=" + encodeURIComponent(body);
 
       var status = form.querySelector("[data-form-status]");
       if (status) {
