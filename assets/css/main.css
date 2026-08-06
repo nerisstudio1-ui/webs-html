@@ -6,18 +6,18 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  /* Color de marca */
-  --terra: #c0574a;
-  --terra-deep: #a44639;
-  --terra-soft: #e0a094;
-  --cream: #f8eddd;
-  --cream-2: #fbf3e7;
-  --ink: #1e3538;
-  --ink-2: #17282b;
-  --text: #2b2724;
-  --muted: rgba(43, 39, 36, 0.6);
-  --line: rgba(43, 39, 36, 0.14);
-  --line-cream: rgba(248, 237, 221, 0.28);
+  /* Color de marca (los tres hex de la identidad) */
+  --terra: #c95948;
+  --cream: #f9f0e1;
+  --ink: #1c2825;
+  /* Variantes derivadas, solo para estados y matices */
+  --terra-deep: #ab4a3c;
+  --terra-soft: #de9d8d;
+  --cream-2: #fcf7ec;
+  --text: #1c2825;
+  --muted: rgba(28, 40, 37, 0.62);
+  --line: rgba(28, 40, 37, 0.14);
+  --line-cream: rgba(249, 240, 225, 0.28);
 
   /* Tipografía */
   --hand: "Caveat", "Bradley Hand", "Segoe Script", cursive;
@@ -181,7 +181,10 @@ ul {
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  opacity: 0.7;
+  opacity: 0.72;
+}
+.section--terra .eyebrow {
+  opacity: 1;
 }
 .eyebrow::before {
   content: "";
@@ -235,9 +238,11 @@ ul {
   color: var(--cream);
 }
 
-.section--terra p,
+.section--terra p {
+  color: var(--cream);
+}
 .section--ink p {
-  color: rgba(248, 237, 221, 0.86);
+  color: rgba(249, 240, 225, 0.86);
 }
 .section--terra .lead,
 .section--ink .lead {
@@ -453,7 +458,7 @@ body.menu-open .mobile-menu {
   font-weight: 800;
   letter-spacing: -0.04em;
   padding-block: 0.32em;
-  border-bottom: 1px solid rgba(248, 237, 221, 0.14);
+  border-bottom: 1px solid rgba(249, 240, 225, 0.14);
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -693,7 +698,7 @@ body.menu-open .mobile-menu {
   margin-top: 0.5rem;
   font-size: var(--step-0);
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 600;
 }
 .service-item__list {
   display: grid;
@@ -703,7 +708,7 @@ body.menu-open .mobile-menu {
 .service-item__list li {
   display: flex;
   gap: 0.6rem;
-  color: rgba(248, 237, 221, 0.9);
+  color: var(--cream);
 }
 .service-item__list li::before {
   content: "—";
@@ -883,7 +888,7 @@ body.menu-open .mobile-menu {
   border-color: var(--cream);
 }
 .form--cream ::placeholder {
-  color: rgba(248, 237, 221, 0.5);
+  color: rgba(249, 240, 225, 0.72);
 }
 .chips {
   display: flex;
@@ -923,7 +928,7 @@ body.menu-open .mobile-menu {
   margin: 0;
 }
 .section--terra .form__note {
-  color: rgba(248, 237, 221, 0.7);
+  color: var(--cream);
 }
 
 /* ---------- Footer ---------- */
@@ -953,13 +958,13 @@ body.menu-open .mobile-menu {
   margin-bottom: 0.05em;
 }
 .footer__rows {
-  border-top: 1px solid rgba(248, 237, 221, 0.16);
+  border-top: 1px solid rgba(249, 240, 225, 0.16);
 }
 .footer__rows > li {
-  border-bottom: 1px solid rgba(248, 237, 221, 0.16);
+  border-bottom: 1px solid rgba(249, 240, 225, 0.16);
   padding-block: clamp(1.1rem, 3vw, 1.6rem);
   font-size: var(--step-1);
-  color: rgba(248, 237, 221, 0.85);
+  color: rgba(249, 240, 225, 0.85);
 }
 .footer__rows a:hover {
   color: var(--terra-soft);
