@@ -51,17 +51,32 @@ los textos de `index.html` por estos originales.
 - **Misión**: engranar tus ideas con el mundo, asegurando que tu visión llegue a
   quienes realmente importan.
 
-## Proyectos y piezas publicadas
+## Proyectos
 
-| Proyecto | Piezas |
-| --- | --- |
-| Quality Training | https://www.instagram.com/p/DYzzgzto1uT/ · https://www.instagram.com/p/DZIkSk0s2Yc/ |
-| Jordi Coll | https://www.instagram.com/p/DVgLjIqjHTp/ · https://www.instagram.com/p/DVxsEDcjHw5/ |
-| Malhivern | https://www.instagram.com/p/DZKUPZXNnqz/ · https://www.instagram.com/p/DVgLjIqjHTp/ |
-| Comercial Puig | https://www.instagram.com/p/Daiq_1ztSC-/ · https://www.instagram.com/p/DT24wj7iAJN/ |
+Siete, con las descripciones que escribió el estudio en las tarjetas de cada
+carpeta (originales en catalán; la versión castellana es su traducción, y las dos
+están en `build/build.py`).
 
-Nota: el segundo enlace de Malhivern es el mismo que el primero de Jordi Coll;
-conviene confirmarlo.
+| Proyecto | Servicios | Fotos | Piezas publicadas |
+| --- | --- | --- | --- |
+| Quality Training (QTTR) | Contenido · Social media | 3 | 2 reels |
+| Ratafia Malhivern | Estrategia · Dirección creativa · Social media | 4 | 1 reel |
+| Football 4 Stars (F4S) | Social media · Contenido | 4 | — |
+| Maitasuna | Contenido · Social media | 4 | — |
+| Jordi Coll | Estrategia · Reels | 3 | 2 reels |
+| F45 Training | Contenido · Vídeo | 3 | — |
+| Comercial Puig | Contenido · Social media | 3 | 2 reels |
 
-Los vídeos están enlazados a Instagram. Para que se reproduzcan dentro de la web
-lo mejor es tener los archivos `.mp4` y servirlos desde `assets/video/`.
+Las fotos vienen de los ZIP originales (1080×1350 PNG) y están convertidas a JPEG
+en dos anchos, 700 y 1100 px, en `assets/img/proyectos/`. La primera imagen de
+cada carpeta era la tarjeta con el nombre y el texto: no se usa como fotografía
+porque el texto va en el HTML.
+
+Pendiente de aclarar:
+
+- El segundo enlace que llegó para Malhivern (`DVgLjIqjHTp`) es el mismo que el
+  primero de Jordi Coll, así que solo se ha publicado el primero.
+- Las fotos de pilates que se mencionaron no llegaron como archivo, solo los ZIP
+  de Quality Training y Malhivern.
+- Los vídeos siguen enlazando a Instagram. Para reproducirlos dentro de la web
+  hacen falta los `.mp4` en `assets/video/`.

@@ -331,8 +331,7 @@
       var status = form.querySelector("[data-form-status]");
       if (status) {
         status.textContent =
-          "Abrimos tu cliente de correo con el mensaje listo. Si no se abre, escríbenos a " +
-          form.getAttribute("data-mailto") + ".";
+          (form.getAttribute("data-ok") || "") + form.getAttribute("data-mailto") + ".";
       }
     });
   }

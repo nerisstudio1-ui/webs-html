@@ -1,7 +1,20 @@
-# Laconic Studio — landing
+# Laconic Studio — web
 
-Landing de una sola página para **Laconic Studio**. HTML + CSS + JS, sin
-dependencias ni proceso de build: se abre con doble clic.
+Web de una sola página para **Laconic Studio**, en **catalán y castellano**.
+HTML + CSS + JS, sin dependencias ni frameworks.
+
+- `index.html` — catalán (versión por defecto)
+- `es/index.html` — castellano
+
+Las dos se generan desde `build/build.py`, donde vive todo el contenido en los dos
+idiomas. Para cambiar un texto se edita ahí y se ejecuta:
+
+```bash
+python3 build/build.py
+```
+
+Así las dos versiones no se desincronizan. El selector CA/ES está en la cabecera
+y en el pie, y las páginas se declaran entre sí con `hreflang`.
 
 Todo el branding sale de la identidad de la marca: terracota, crema y verde
 profundo, logotipo manuscrito con el símbolo del **0**, y titulares que combinan
@@ -9,7 +22,7 @@ la manuscrita con la sans pesada.
 
 ## Secciones (todas en `index.html`)
 
-| Ancla | Contenido |
+| Ancla (CA / ES) | Contenido |
 | --- | --- |
 | — | Hero: terracota plano, logo centrado y fotos de proyecto que suben con el scroll |
 | `#estudio` | Manifiesto, frase de marca y cifras |

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laconic Studio | Estudio creativo de contenido, social media y diseño</title>
-<meta name="description" content="Laconic Studio: contenido, social media, diseño gráfico, campañas y UGC. Cada marca comunica, pero no todas conectan.">
+<title>Laconic Studio | Estudi creatiu de contingut, social media i estratègia</title>
+<meta name="description" content="Laconic Studio: creació de contingut, social media i estratègia digital. Less noise. More meaning.">
 <meta name="theme-color" content="#c95948">
 <link rel="canonical" href="https://laconicstudio.com/">
+<link rel="alternate" hreflang="ca" href="https://laconicstudio.com/">
+<link rel="alternate" hreflang="es" href="https://laconicstudio.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://laconicstudio.com/">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Laconic Studio | Estudio creativo">
-<meta property="og:description" content="Cada marca comunica, pero no todas conectan. Contenido, social media, diseño, campañas y UGC.">
+<meta property="og:title" content="Laconic Studio | Estudi creatiu de contingut, social media i estratègia">
+<meta property="og:description" content="Laconic Studio: creació de contingut, social media i estratègia digital. Less noise. More meaning.">
 <link rel="preload" href="assets/fonts/raleway-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/raleway-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/biro-script-plus.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,7 +25,7 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Laconic Studio",
-  "description": "Estudio creativo de contenido, social media, diseño gráfico, campañas y UGC.",
+  "description": "Laconic Studio: creació de contingut, social media i estratègia digital. Less noise. More meaning.",
   "email": "itslaconicstudio@gmail.com",
   "areaServed": "ES",
   "sameAs": ["https://www.instagram.com/laconicstudio_/"]
@@ -40,60 +43,63 @@
 
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>
-<a class="skip" href="#estudio">Saltar al contenido</a>
+<a class="skip" href="#estudi">Salta al contingut</a>
 
-<!-- ============ Cabecera ============ -->
 <header class="header" data-on="terra">
   <div class="wrap header__inner">
-    <a class="brand" href="#top" aria-label="Laconic Studio — inicio">
+    <a class="brand" href="#top" aria-label="Laconic Studio">
       <svg class="brand__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lg-zero"/></svg>
       <svg class="brand__word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lg-word"/></svg>
     </a>
 
-    <nav class="nav" aria-label="Navegación principal">
-      <a href="#estudio">Estudio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#trabajo">Trabajo</a>
+    <nav class="nav" aria-label="L'estudi">
+      <a href="#estudi">Estudi</a>
+      <a href="#serveis">Serveis</a>
+      <a href="#treball">Treball</a>
       <a href="#recursos">Recursos</a>
     </nav>
 
-    <a class="btn btn--ink header__cta" href="#contacto">
-      <span>Hablemos</span><span class="arrow" aria-hidden="true">&rarr;</span>
-    </a>
-
-    <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
-      <span></span><span></span>
-    </button>
+    <div class="header__right">
+      <p class="lang" aria-label="Idioma">
+        <span aria-current="true">CA</span>
+        <a href="es/" hreflang="es">ES</a>
+      </p>
+      <a class="btn btn--ink header__cta" href="#contacte">
+        <span>Parlem</span><span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Obre el menú">
+        <span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <nav aria-label="Navegación móvil">
-    <a href="#estudio">Estudio <span>quiénes somos</span></a>
-    <a href="#servicios">Servicios <span>qué hacemos</span></a>
-    <a href="#trabajo">Trabajo <span>proyectos</span></a>
-    <a href="#recursos">Recursos <span>plantillas</span></a>
-    <a href="#contacto">Contacto <span>escríbenos</span></a>
+  <nav>
+    <a href="#estudi">Estudi <span>qui som</span></a>
+    <a href="#serveis">Serveis <span>què fem</span></a>
+    <a href="#treball">Treball <span>projectes</span></a>
+    <a href="#recursos">Recursos <span>plantilles</span></a>
+    <a href="#contacte">Contacte <span>escriu-nos</span></a>
   </nav>
   <div class="mobile-menu__foot">
     <a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a>
     <a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">@laconicstudio_</a>
+    <a href="es/" hreflang="es">ES</a>
   </div>
 </div>
 
 <main id="top">
 
-  <!-- ============ Hero ============
-       Terracota plano, logo centrado y fotos que suben con el scroll.
-       El JS escribe --p (0→1); cada foto sube su propio --rise. -->
+  <!-- Hero: terracota pla, logo centrat i fotos que pugen amb el scroll -->
   <section class="hero" data-theme="terra" data-collage>
     <div class="hero__stage">
       <div class="hero__tiles">
-        <figure class="tile tile--1"><img src="assets/img/laconic-03-1100.jpg" srcset="assets/img/laconic-03-700.jpg 700w, assets/img/laconic-03-1100.jpg 1100w, assets/img/laconic-03.jpg 1168w" sizes="24vw" width="1100" height="1380" alt="" loading="eager" decoding="async"></figure>
-        <figure class="tile tile--2"><img src="assets/img/laconic-01-1100.jpg" srcset="assets/img/laconic-01-700.jpg 700w, assets/img/laconic-01-1100.jpg 1100w, assets/img/laconic-01.jpg 1168w" sizes="26vw" width="1100" height="1380" alt="" loading="eager" decoding="async"></figure>
-        <figure class="tile tile--3"><img src="assets/img/laconic-05-1100.jpg" srcset="assets/img/laconic-05-700.jpg 700w, assets/img/laconic-05-1100.jpg 1100w, assets/img/laconic-05.jpg 1168w" sizes="20vw" width="1100" height="1380" alt="" loading="lazy" decoding="async"></figure>
-        <figure class="tile tile--4"><img src="assets/img/laconic-02-1100.jpg" srcset="assets/img/laconic-02-700.jpg 700w, assets/img/laconic-02-1100.jpg 1100w, assets/img/laconic-02.jpg 1168w" sizes="18vw" width="1100" height="1380" alt="" loading="lazy" decoding="async"></figure>
-        <figure class="tile tile--5"><img src="assets/img/laconic-04-1100.jpg" srcset="assets/img/laconic-04-700.jpg 700w, assets/img/laconic-04-1100.jpg 1100w, assets/img/laconic-04.jpg 1168w" sizes="24vw" width="1100" height="1380" alt="" loading="lazy" decoding="async"></figure>
+        <figure class="tile tile--1"><img src="assets/img/proyectos/malhivern-1-1100.jpg" srcset="assets/img/proyectos/malhivern-1-700.jpg 700w, assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Ampolla de ratafia Malhivern amb llum càlida" loading="eager" decoding="async"></figure>
+        <figure class="tile tile--2"><img src="assets/img/proyectos/quality-1-1100.jpg" srcset="assets/img/proyectos/quality-1-700.jpg 700w, assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="eager" decoding="async"></figure>
+        <figure class="tile tile--3"><img src="assets/img/proyectos/maitasuna-1-1100.jpg" srcset="assets/img/proyectos/maitasuna-1-700.jpg 700w, assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async"></figure>
+        <figure class="tile tile--4"><img src="assets/img/proyectos/puig-1-1100.jpg" srcset="assets/img/proyectos/puig-1-700.jpg 700w, assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Ampolla de vi a la mà en el punt de venda" loading="lazy" decoding="async"></figure>
+        <figure class="tile tile--5"><img src="assets/img/proyectos/f4s-1-1100.jpg" srcset="assets/img/proyectos/f4s-1-700.jpg 700w, assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async"></figure>
       </div>
 
       <h1 class="hero__logo">
@@ -103,29 +109,29 @@
         <span class="hero__logo-sub" aria-hidden="true">studio</span>
       </h1>
 
-      <p class="hero__note">Estudio creativo · Barcelona &amp; remoto</p>
+      <p class="hero__note">Estudi creatiu · Barcelona i remot</p>
       <span class="hero__scroll" aria-hidden="true">scroll</span>
     </div>
   </section>
 
-  <!-- ============ Manifiesto ============ -->
-  <section class="section slab-top" data-theme="cream" id="estudio">
+  <!-- Estudi -->
+  <section class="section slab-top" data-theme="cream" id="estudi">
     <div class="wrap">
-      <p class="kicker fade">El estudio</p>
+      <p class="kicker fade">L'estudi</p>
       <h2 class="display rl">
         <span class="hand">Cada marca comunica,</span>
-        pero no todas conectan.
+        però no totes connecten.
       </h2>
 
       <div class="manifesto__grid">
         <div class="fade">
-          <p class="lead">Una buena comunicación no consiste en publicar más, sino en explicar mejor.</p>
+          <p class="lead">Una bona comunicació no consisteix a publicar més, sinó a explicar millor.</p>
           <p class="claim">Less noise. <em>More meaning.</em></p>
         </div>
         <div class="body-col fade" data-delay="1">
-          <p>Somos un estudio creativo especializado en redes sociales, creación de contenido y estrategia digital. Trabajamos con marcas que quieren construir una presencia coherente, auténtica y con criterio, creando contenido que conecte con las personas y tenga un objetivo detrás.</p>
-          <p>Nos implicamos en cada proyecto como si fuera nuestro: analizamos, planificamos, grabamos, editamos y pensamos cada detalle para que cada publicación sume y tenga sentido dentro de una estrategia.</p>
-          <p class="hand-note">No buscamos llenar un calendario. Buscamos marcas que dejen huella.</p>
+          <p>Som un estudi creatiu especialitzat en xarxes socials, creació de contingut i estratègia digital. Treballem amb marques que volen construir una presència coherent, autèntica i amb criteri, creant contingut que connecti amb les persones i tingui un objectiu darrere.</p>
+          <p>Ens impliquem en cada projecte com si fos nostre: analitzem, planifiquem, gravem, editem i pensem cada detall perquè cada publicació sumi i tingui sentit dins d'una estratègia.</p>
+          <p class="hand-note">No busquem omplir un calendari. Busquem marques que deixin empremta.</p>
         </div>
       </div>
 
@@ -141,136 +147,134 @@
           <span class="person__role">Strategist &amp; Founder</span>
         </div>
         <div class="person">
-          <p class="person__note">Somos dos. Eso significa que hablas siempre con quien hace el trabajo, y que decimos no a lo que no podemos hacer bien.</p>
+          <p class="person__note">Som dues. Això vol dir que parles sempre amb qui fa la feina, i que diem no a allò que no podem fer bé.</p>
         </div>
       </div>
 
       <div class="stats fade" data-delay="2">
         <div class="stat">
-          <div class="stat__num">5</div>
-          <p class="stat__label">servicios que se combinan como quieras</p>
+          <div class="stat__num">7</div>
+          <p class="stat__label">marques acompanyades fins ara</p>
         </div>
         <div class="stat">
           <div class="stat__num">48h</div>
-          <p class="stat__label">para responder a tu primer mensaje</p>
+          <p class="stat__label">per respondre el teu primer missatge</p>
         </div>
         <div class="stat">
           <div class="stat__num">100%</div>
-          <p class="stat__label">contenido hecho a medida, cero plantillas</p>
+          <p class="stat__label">contingut fet a mida, zero plantilles</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ Marquesina ============ -->
   <div class="marquee" data-theme="ink" aria-hidden="true">
     <div class="marquee__track">
       <span class="hand">Content creation</span>
       <span>Social media</span>
-      <span class="hand">Graphic design</span>
-      <span>Ads &amp; campaigns</span>
+      <span class="hand">Estratègia</span>
+      <span>Direcció creativa</span>
       <span class="hand">UGC</span>
     </div>
   </div>
 
-  <!-- ============ Servicios ============
-       La foto cambia según el servicio activo al hacer scroll o al pasar el ratón. -->
-  <section class="section slab-top" data-theme="terra" id="servicios">
+  <!-- Serveis: la foto segueix el servei actiu -->
+  <section class="section slab-top" data-theme="terra" id="serveis">
     <div class="wrap">
-      <p class="kicker fade">Servicios</p>
+      <p class="kicker fade">Serveis</p>
       <h2 class="display rl">
-        <span class="hand">Lo que hacemos</span>
-        y qué te llevas.
+        <span class="hand">Això és el que fem</span>
+        i què te'n queda.
       </h2>
 
       <div class="svc">
         <div class="svc__media fade" aria-hidden="true">
-          <img class="is-on" src="assets/img/laconic-03-1100.jpg" srcset="assets/img/laconic-03-700.jpg 700w, assets/img/laconic-03-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1380" alt="Montaje de un espacio de trabajo y rótulo de neón" loading="lazy" decoding="async" data-svc-img="03">
-          <img class="" src="assets/img/laconic-01-1100.jpg" srcset="assets/img/laconic-01-700.jpg 700w, assets/img/laconic-01-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1380" alt="Contenido de retail: lineal de tienda y botella de vino" loading="lazy" decoding="async" data-svc-img="01">
-          <img class="" src="assets/img/laconic-05-1100.jpg" srcset="assets/img/laconic-05-700.jpg 700w, assets/img/laconic-05-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1380" alt="Botellas de ratafía y tarros de plantas aromáticas" loading="lazy" decoding="async" data-svc-img="05">
-          <img class="" src="assets/img/laconic-02-1100.jpg" srcset="assets/img/laconic-02-700.jpg 700w, assets/img/laconic-02-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1380" alt="Material de entrenamiento y línea de meta de una pista" loading="lazy" decoding="async" data-svc-img="02">
-          <img class="" src="assets/img/laconic-04-1100.jpg" srcset="assets/img/laconic-04-700.jpg 700w, assets/img/laconic-04-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1380" alt="Entrenamiento de fútbol base en campo de césped" loading="lazy" decoding="async" data-svc-img="04">
+          <img data-svc-img="malhivern" class="is-on" src="assets/img/proyectos/malhivern-1-1100.jpg" srcset="assets/img/proyectos/malhivern-1-700.jpg 700w, assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Ampolla de ratafia Malhivern amb llum càlida" loading="lazy" decoding="async">
+          <img data-svc-img="quality" src="assets/img/proyectos/quality-1-1100.jpg" srcset="assets/img/proyectos/quality-1-700.jpg 700w, assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="lazy" decoding="async">
+          <img data-svc-img="maitasuna" src="assets/img/proyectos/maitasuna-1-1100.jpg" srcset="assets/img/proyectos/maitasuna-1-700.jpg 700w, assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async">
+          <img data-svc-img="puig" src="assets/img/proyectos/puig-1-1100.jpg" srcset="assets/img/proyectos/puig-1-700.jpg 700w, assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Ampolla de vi a la mà en el punt de venda" loading="lazy" decoding="async">
+          <img data-svc-img="f4s" src="assets/img/proyectos/f4s-1-1100.jpg" srcset="assets/img/proyectos/f4s-1-700.jpg 700w, assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async">
         </div>
 
         <ol class="svc__list" data-svc-list>
-        <li class="svc__item" data-svc="03">
-          <div class="svc__head">
-            <span class="svc__num">01</span>
-            <span class="svc__name hand">Content creation</span>
-          </div>
-          <p class="svc__tag">Contenido con ese no-sé-qué</p>
-          <ul class="svc__items">
-            <li>Concepto y guion</li>
-            <li>Foto y vídeo</li>
-            <li>Reels y verticales</li>
-            <li>Edición y subtítulos</li>
-          </ul>
-        </li>
-        <li class="svc__item" data-svc="01">
-          <div class="svc__head">
-            <span class="svc__num">02</span>
-            <span class="svc__name hand">Social media</span>
-          </div>
-          <p class="svc__tag">Scroll &amp; pausa, eso buscamos</p>
-          <ul class="svc__items">
-            <li>Línea editorial</li>
-            <li>Calendario</li>
-            <li>Community management</li>
-            <li>Informe mensual</li>
-          </ul>
-        </li>
-        <li class="svc__item" data-svc="05">
-          <div class="svc__head">
-            <span class="svc__num">03</span>
-            <span class="svc__name hand">Graphic design</span>
-          </div>
-          <p class="svc__tag">Intención &amp; actitud</p>
-          <ul class="svc__items">
-            <li>Identidad y logotipo</li>
-            <li>Manual de marca</li>
-            <li>Packaging</li>
-            <li>Plantillas editables</li>
-          </ul>
-        </li>
-        <li class="svc__item" data-svc="02">
-          <div class="svc__head">
-            <span class="svc__num">04</span>
-            <span class="svc__name hand">Ads &amp; campaigns</span>
-          </div>
-          <p class="svc__tag">Ni ruido ni suerte, impacto</p>
-          <ul class="svc__items">
-            <li>Concepto y creatividades</li>
-            <li>Meta y TikTok Ads</li>
-            <li>Test A/B</li>
-            <li>Panel de resultados</li>
-          </ul>
-        </li>
-        <li class="svc__item" data-svc="04">
-          <div class="svc__head">
-            <span class="svc__num">05</span>
-            <span class="svc__name hand">UGC</span>
-          </div>
-          <p class="svc__tag">Real y con propósito</p>
-          <ul class="svc__items">
-            <li>Selección de creadores</li>
-            <li>Briefing</li>
-            <li>Producción</li>
-            <li>Derechos de uso</li>
-          </ul>
-        </li>
+          <li class="svc__item" data-svc="malhivern">
+            <div class="svc__head">
+              <span class="svc__num">01</span>
+              <span class="svc__name hand">Content creation</span>
+            </div>
+            <p class="svc__tag">Contingut amb aquell no-sé-què</p>
+            <ul class="svc__items">
+              <li>Concepte i guió</li>
+              <li>Foto i vídeo</li>
+              <li>Reels i verticals</li>
+              <li>Edició i subtítols</li>
+            </ul>
+          </li>
+          <li class="svc__item" data-svc="quality">
+            <div class="svc__head">
+              <span class="svc__num">02</span>
+              <span class="svc__name hand">Social media</span>
+            </div>
+            <p class="svc__tag">Scroll i pausa, això busquem</p>
+            <ul class="svc__items">
+              <li>Línia editorial</li>
+              <li>Calendari</li>
+              <li>Community management</li>
+              <li>Informe mensual</li>
+            </ul>
+          </li>
+          <li class="svc__item" data-svc="maitasuna">
+            <div class="svc__head">
+              <span class="svc__num">03</span>
+              <span class="svc__name hand">Estratègia</span>
+            </div>
+            <p class="svc__tag">Intenció i criteri</p>
+            <ul class="svc__items">
+              <li>Auditoria i posicionament</li>
+              <li>Pilars de contingut</li>
+              <li>Tom de veu</li>
+              <li>Objectius i mètriques</li>
+            </ul>
+          </li>
+          <li class="svc__item" data-svc="puig">
+            <div class="svc__head">
+              <span class="svc__num">04</span>
+              <span class="svc__name hand">Direcció creativa</span>
+            </div>
+            <p class="svc__tag">Ni soroll ni sort, impacte</p>
+            <ul class="svc__items">
+              <li>Concepte de campanya</li>
+              <li>Direcció d'art</li>
+              <li>Guions i storyboard</li>
+              <li>Peces per a xarxes</li>
+            </ul>
+          </li>
+          <li class="svc__item" data-svc="f4s">
+            <div class="svc__head">
+              <span class="svc__num">05</span>
+              <span class="svc__name hand">UGC</span>
+            </div>
+            <p class="svc__tag">Real i amb propòsit</p>
+            <ul class="svc__items">
+              <li>Selecció de creadors</li>
+              <li>Briefing</li>
+              <li>Producció</li>
+              <li>Drets d'ús</li>
+            </ul>
+          </li>
         </ol>
       </div>
 
       <p class="fade" style="margin-top:clamp(2.5rem,6vw,4rem)">
-        <a class="btn btn--cream btn--lg" href="#contacto"><span>Pedir presupuesto</span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn--cream btn--lg" href="#contacte"><span>Demana pressupost</span><span class="arrow" aria-hidden="true">&rarr;</span></a>
       </p>
     </div>
   </section>
 
-  <!-- ============ Trabajo ============ -->
-  <section class="section slab-top" data-theme="cream" id="trabajo">
+  <!-- Treball -->
+  <section class="section slab-top" data-theme="cream" id="treball">
     <div class="wrap">
-      <p class="kicker fade">Trabajo · Cuatro marcas</p>
+      <p class="kicker fade">Treball · Set marques</p>
       <h2 class="display rl">
         <span class="hand">Get people talking</span>
         about your brand.
@@ -279,72 +283,114 @@
     <div class="wrap">
       <article class="slab fade">
         <div class="slab__media" data-parallax>
-          <img src="assets/img/laconic-02-1100.jpg" srcset="assets/img/laconic-02-700.jpg 700w, assets/img/laconic-02-1100.jpg 1100w, assets/img/laconic-02.jpg 1168w" sizes="(min-width: 900px) 52vw, 100vw" width="1100" height="1380" alt="Material de entrenamiento y línea de meta de una pista" loading="lazy" decoding="async">
+          <img src="assets/img/proyectos/quality-1-1100.jpg" srcset="assets/img/proyectos/quality-1-700.jpg 700w, assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="lazy" decoding="async">
         </div>
         <div class="slab__text">
-          <span class="slab__index">01 / 04 &middot; Fitness &amp; performance</span>
+          <span class="slab__index">01 / 07 &middot; Entrenament</span>
           <h3 class="slab__title">Quality Training</h3>
-          <p>Material de entrenamiento y sesiones en pista: luz dura, color saturado y el gesto justo antes del esfuerzo.</p>
+          <p>Hem transformat el coneixement tècnic de Quality Training en contingut atractiu per a xarxes socials, reforçant la seva imatge de marca, la connexió amb la comunitat i la captació de nous clients.</p>
           <div class="slab__links">
-            <a href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener">Pieza 01 <span aria-hidden="true">&#8599;</span></a>
-            <a href="https://www.instagram.com/p/DZIkSk0s2Yc/" target="_blank" rel="noopener">Pieza 02 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DZIkSk0s2Yc/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
           </div>
           <div class="slab__meta">
-            <span>Contenido</span>
+            <span>Creació de contingut</span>
             <span>Social media</span>
           </div>
         </div>
       </article>
       <article class="slab slab--flip fade">
         <div class="slab__media" data-parallax>
-          <img src="assets/img/laconic-04-1100.jpg" srcset="assets/img/laconic-04-700.jpg 700w, assets/img/laconic-04-1100.jpg 1100w, assets/img/laconic-04.jpg 1168w" sizes="(min-width: 900px) 52vw, 100vw" width="1100" height="1380" alt="Entrenamiento de fútbol base en campo de césped" loading="lazy" decoding="async">
+          <img src="assets/img/proyectos/malhivern-1-1100.jpg" srcset="assets/img/proyectos/malhivern-1-700.jpg 700w, assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Ampolla de ratafia Malhivern amb llum càlida" loading="lazy" decoding="async">
         </div>
         <div class="slab__text">
-          <span class="slab__index">02 / 04 &middot; Deporte</span>
-          <h3 class="slab__title">Jordi Coll</h3>
-          <p>Vídeo con el ritmo del entrenamiento, cortado en vertical y pensado para que lo comparta la grada.</p>
+          <span class="slab__index">02 / 07 &middot; Licors artesans</span>
+          <h3 class="slab__title">Ratafia Malhivern</h3>
+          <p>Estratègia de continguts, direcció creativa i gestió de xarxes socials per construir una marca propera, autèntica i amb una identitat pròpia.</p>
           <div class="slab__links">
-            <a href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener">Pieza 01 <span aria-hidden="true">&#8599;</span></a>
-            <a href="https://www.instagram.com/p/DVxsEDcjHw5/" target="_blank" rel="noopener">Pieza 02 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
           </div>
           <div class="slab__meta">
-            <span>Vídeo</span>
+            <span>Estratègia</span>
+            <span>Direcció creativa</span>
             <span>Social media</span>
           </div>
         </div>
       </article>
       <article class="slab fade">
         <div class="slab__media" data-parallax>
-          <img src="assets/img/laconic-05-1100.jpg" srcset="assets/img/laconic-05-700.jpg 700w, assets/img/laconic-05-1100.jpg 1100w, assets/img/laconic-05.jpg 1168w" sizes="(min-width: 900px) 52vw, 100vw" width="1100" height="1380" alt="Botellas de ratafía y tarros de plantas aromáticas" loading="lazy" decoding="async">
+          <img src="assets/img/proyectos/f4s-1-1100.jpg" srcset="assets/img/proyectos/f4s-1-700.jpg 700w, assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async">
         </div>
         <div class="slab__text">
-          <span class="slab__index">03 / 04 &middot; Licores artesanos</span>
-          <h3 class="slab__title">Malhivern</h3>
-          <p>Producto y contexto en la misma familia visual: el ingrediente, el tarro y la piedra de la bodega.</p>
-          <div class="slab__links">
-            <a href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener">Pieza 01 <span aria-hidden="true">&#8599;</span></a>
-            <a href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener">Pieza 02 <span aria-hidden="true">&#8599;</span></a>
-          </div>
+          <span class="slab__index">03 / 07 &middot; Futbol formatiu</span>
+          <h3 class="slab__title">Football 4 Stars</h3>
+          <p>Hem impulsat la presència digital de Football 4 Stars amb contingut aspiracional, estratègic i orientat a la captació.</p>
           <div class="slab__meta">
-            <span>Contenido</span>
-            <span>Producto</span>
+            <span>Social media</span>
+            <span>Creació de contingut</span>
           </div>
         </div>
       </article>
       <article class="slab slab--flip fade">
         <div class="slab__media" data-parallax>
-          <img src="assets/img/laconic-01-1100.jpg" srcset="assets/img/laconic-01-700.jpg 700w, assets/img/laconic-01-1100.jpg 1100w, assets/img/laconic-01.jpg 1168w" sizes="(min-width: 900px) 52vw, 100vw" width="1100" height="1380" alt="Contenido de retail: lineal de tienda y botella de vino" loading="lazy" decoding="async">
+          <img src="assets/img/proyectos/maitasuna-1-1100.jpg" srcset="assets/img/proyectos/maitasuna-1-700.jpg 700w, assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async">
         </div>
         <div class="slab__text">
-          <span class="slab__index">04 / 04 &middot; Retail &amp; distribución</span>
-          <h3 class="slab__title">Comercial Puig</h3>
-          <p>Contenido de producto y punto de venta que se entiende en dos segundos: el lineal, la botella y la mano que la coge.</p>
+          <span class="slab__index">04 / 07 &middot; Pizza artesana</span>
+          <h3 class="slab__title">Maitasuna</h3>
+          <p>Hem treballat una estratègia de contingut centrada en humanitzar la marca i potenciar la figura de l'Alain, transmetent l'essència artesana i propera de Maitasuna.</p>
+          <div class="slab__meta">
+            <span>Creació de contingut</span>
+            <span>Social media</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab fade">
+        <div class="slab__media" data-parallax>
+          <img src="assets/img/proyectos/jordi-coll-1-1100.jpg" srcset="assets/img/proyectos/jordi-coll-1-700.jpg 700w, assets/img/proyectos/jordi-coll-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Exemplar d'El pont de les mentides en una presentació" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">05 / 07 &middot; Marca personal</span>
+          <h3 class="slab__title">Jordi Coll</h3>
+          <p>Hem treballat l'estratègia de continguts de Jordi Coll, creant reels per potenciar la seva marca personal i promocionar el llançament d'<em>El pont de les mentides</em>.</p>
           <div class="slab__links">
-            <a href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener">Pieza 01 <span aria-hidden="true">&#8599;</span></a>
-            <a href="https://www.instagram.com/p/DT24wj7iAJN/" target="_blank" rel="noopener">Pieza 02 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DVxsEDcjHw5/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
           </div>
           <div class="slab__meta">
-            <span>Contenido</span>
+            <span>Estratègia</span>
+            <span>Reels</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab slab--flip fade">
+        <div class="slab__media" data-parallax>
+          <img src="assets/img/proyectos/f45-1-1100.jpg" srcset="assets/img/proyectos/f45-1-700.jpg 700w, assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Assistent a la inauguració de F45" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">06 / 07 &middot; Esdeveniment</span>
+          <h3 class="slab__title">F45 Training</h3>
+          <p>Vam crear contingut audiovisual per a la inauguració de F45, capturant l'energia de l'esdeveniment i reforçant la imatge de marca amb peces pensades per a xarxes socials.</p>
+          <div class="slab__meta">
+            <span>Creació de contingut</span>
+            <span>Vídeo</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab fade">
+        <div class="slab__media" data-parallax>
+          <img src="assets/img/proyectos/puig-1-1100.jpg" srcset="assets/img/proyectos/puig-1-700.jpg 700w, assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Ampolla de vi a la mà en el punt de venda" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">07 / 07 &middot; Distribució</span>
+          <h3 class="slab__title">Comercial Puig</h3>
+          <p>Creem contingut que apropa Comercial Puig als seus clients, mostrant el valor dels seus productes, l'assessorament personalitzat i el dia a dia d'un negoci familiar.</p>
+          <div class="slab__links">
+            <a href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DT24wj7iAJN/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
+          </div>
+          <div class="slab__meta">
+            <span>Creació de contingut</span>
             <span>Social media</span>
           </div>
         </div>
@@ -352,121 +398,121 @@
     </div>
   </section>
 
-  <!-- ============ Cita ============ -->
+  <!-- Cita -->
   <section class="section slab-top quote" data-theme="deep">
     <svg class="quote__mark" viewBox="0 0 71.7 100" aria-hidden="true" data-spin><use href="#lg-zero"/></svg>
     <div class="wrap">
       <blockquote class="quote__text rl">
-        <span class="hand">Haz match con lo que</span>
-        vibre contigo.
+        <span class="hand">Menys soroll.</span>
+        Més sentit.
       </blockquote>
       <cite class="fade">Laconic Studio</cite>
     </div>
   </section>
 
-  <!-- ============ Proceso ============ -->
-  <section class="section slab-top" data-theme="cream" id="proceso">
+  <!-- Procés -->
+  <section class="section slab-top" data-theme="cream" id="proces">
     <div class="wrap">
       <div class="process">
         <div class="process__head">
-          <p class="kicker fade">Cómo trabajamos</p>
+          <p class="kicker fade">Com treballem</p>
           <h2 class="display display--sm rl">
-            <span class="hand">Sin misterio,</span>
-            con método.
+            <span class="hand">Sense misteri,</span>
+            amb mètode.
           </h2>
         </div>
         <div class="rail" data-rail>
           <span class="rail__fill" aria-hidden="true"></span>
           <div class="step">
             <span class="step__n">01</span>
-            <h3>Escuchamos</h3>
-            <p>Una llamada de veinte minutos para entender el negocio, no solo el feed. Qué vendes, a quién y qué te está frenando.</p>
+            <h3>Escoltem</h3>
+            <p>Una trucada de vint minuts per entendre el negoci, no només el feed. Què venes, a qui i què t'està frenant.</p>
           </div>
           <div class="step">
             <span class="step__n">02</span>
-            <h3>Definimos</h3>
-            <p>Una propuesta corta: objetivo, entregables, plazos y precio. Si algo no aporta, lo quitamos antes de empezar.</p>
+            <h3>Definim</h3>
+            <p>Una proposta curta: objectiu, entregables, terminis i preu. Si alguna cosa no aporta, la traiem abans de començar.</p>
           </div>
           <div class="step">
             <span class="step__n">03</span>
-            <h3>Creamos</h3>
-            <p>Producción en ciclos cortos con revisiones acotadas. Ves el material en un tablero compartido, no en cadenas de correo.</p>
+            <h3>Creem</h3>
+            <p>Producció en cicles curts amb revisions acotades. Veus el material en un tauler compartit, no en cadenes de correu.</p>
           </div>
           <div class="step">
             <span class="step__n">04</span>
-            <h3>Medimos</h3>
-            <p>Publicamos, leemos los datos y ajustamos. Cada mes te contamos qué funcionó, qué no y qué vamos a probar.</p>
+            <h3>Mesurem</h3>
+            <p>Publiquem, llegim les dades i ajustem. Cada mes t'expliquem què ha funcionat, què no i què provarem.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ Recursos ============ -->
+  <!-- Recursos -->
   <section class="section" data-theme="cream-2" id="recursos">
     <div class="wrap">
       <p class="kicker fade">Recursos</p>
       <h2 class="display display--sm rl">
-        <span class="hand">Plantillas</span>
-        para hacerlo tú.
+        <span class="hand">Plantilles</span>
+        per fer-ho tu.
       </h2>
       <div class="cards">
         <article class="card fade">
-          <span class="card__tag">Plantillas</span>
+          <span class="card__tag">Plantilles</span>
           <h3>Kit de stories</h3>
-          <p>30 plantillas editables en Canva con nuestro sistema tipográfico y de color.</p>
+          <p>30 plantilles editables al Canva amb el nostre sistema tipogràfic i de color.</p>
           <span class="card__price">29 €</span>
-          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Pedido%20Kit%20de%20stories"><span>Lo quiero</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Kit%20de%20stories"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
         </article>
         <article class="card fade" data-delay="1">
-          <span class="card__tag">Guía</span>
-          <h3>Tono de voz en 10 pasos</h3>
-          <p>El método que usamos para que una marca deje de sonar como todas las demás.</p>
+          <span class="card__tag">Guia</span>
+          <h3>Tom de veu en 10 passos</h3>
+          <p>El mètode que fem servir perquè una marca deixi de sonar com totes les altres.</p>
           <span class="card__price">19 €</span>
-          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Pedido%20Tono%20de%20voz"><span>Lo quiero</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Tom%20de%20veu%20en%2010%20passos"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
         </article>
         <article class="card fade" data-delay="2">
           <span class="card__tag">Bundle</span>
-          <h3>Todo el estudio</h3>
-          <p>Los recursos juntos, con actualizaciones incluidas durante un año.</p>
+          <h3>Tot l'estudi</h3>
+          <p>Els recursos junts, amb actualitzacions incloses durant un any.</p>
           <span class="card__price">89 €</span>
-          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Pedido%20Bundle"><span>Lo quiero</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Tot%20l'estudi"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
         </article>
       </div>
-      <p class="note fade" data-delay="3">Los pedidos se gestionan por correo mientras conectamos la pasarela de pago. Enviamos el enlace de descarga en menos de 24 h.</p>
+      <p class="note fade" data-delay="3">Les comandes es gestionen per correu mentre connectem la passarel·la de pagament. Enviem l'enllaç de descàrrega en menys de 24 h.</p>
     </div>
   </section>
 
-  <!-- ============ Contacto ============ -->
-  <section class="section slab-top" data-theme="ink" id="contacto">
+  <!-- Contacte -->
+  <section class="section slab-top" data-theme="ink" id="contacte">
     <div class="wrap">
-      <p class="kicker fade">Contacto</p>
+      <p class="kicker fade">Contacte</p>
       <h2 class="display rl">
-        <span class="hand">Esto empieza</span>
-        con un mensaje.
+        <span class="hand">Això comença</span>
+        amb un missatge.
       </h2>
 
       <div class="contact">
         <div class="fade">
-          <p class="lead">Cuéntanos qué marca eres y qué te está frenando. Respondemos en menos de 48 horas laborables, siempre una persona.</p>
+          <p class="lead">Explica'ns quina marca ets i què t'està frenant. Responem en menys de 48 hores laborables, sempre una persona.</p>
           <ul class="contact__direct">
             <li><a class="link-line" href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
             <li><a class="link-line" href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">DM a @laconicstudio_</a></li>
           </ul>
-          <p class="hand-note">Haz match con lo que vibre contigo</p>
+          <p class="hand-note">Fes match amb allò que vibri amb tu</p>
         </div>
 
         <div class="fade" data-delay="1">
-          <!-- Sin backend: compone un correo con los datos. Para recibirlo en un
-               servidor, cambiar data-mailto por action + method. -->
-          <form class="form" data-mailto="itslaconicstudio@gmail.com" novalidate>
+          <!-- Sense backend: compon un correu amb les dades. Per rebre-ho en un
+               servidor, canviar data-mailto per action + method. -->
+          <form class="form" data-mailto="itslaconicstudio@gmail.com" data-ok="Obrim el teu client de correu amb el missatge llest. Si no s'obre, escriu-nos a " novalidate>
             <div class="form__row">
               <div class="field">
-                <label for="nombre">Tu nombre</label>
+                <label for="nombre">El teu nom</label>
                 <input id="nombre" name="nombre" type="text" autocomplete="name" required>
               </div>
               <div class="field">
-                <label for="marca">Marca o proyecto</label>
+                <label for="marca">Marca o projecte</label>
                 <input id="marca" name="marca" type="text" autocomplete="organization">
               </div>
             </div>
@@ -475,23 +521,23 @@
               <input id="email" name="email" type="email" autocomplete="email" required>
             </div>
             <div class="field">
-              <span id="servicios-label" class="field__label">Qué necesitas</span>
+              <span id="servicios-label" class="field__label">Què necessites</span>
               <div class="chips" role="group" aria-labelledby="servicios-label">
                 <label class="chip"><input type="checkbox" name="servicio" value="Content creation"><span>Content creation</span></label>
                 <label class="chip"><input type="checkbox" name="servicio" value="Social media"><span>Social media</span></label>
-                <label class="chip"><input type="checkbox" name="servicio" value="Graphic design"><span>Graphic design</span></label>
-                <label class="chip"><input type="checkbox" name="servicio" value="Ads &amp; campaigns"><span>Ads &amp; campaigns</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Estratègia"><span>Estratègia</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Direcció creativa"><span>Direcció creativa</span></label>
                 <label class="chip"><input type="checkbox" name="servicio" value="UGC"><span>UGC</span></label>
               </div>
             </div>
             <div class="field">
-              <label for="mensaje">Cuéntanos</label>
-              <textarea id="mensaje" name="mensaje" rows="4" placeholder="Qué vendes, a quién y qué te gustaría cambiar."></textarea>
+              <label for="mensaje">Explica'ns</label>
+              <textarea id="mensaje" name="mensaje" rows="4" placeholder="Què venes, a qui i què t'agradaria canviar."></textarea>
             </div>
             <div>
-              <button class="btn btn--cream btn--lg" type="submit"><span>Enviar mensaje</span><span class="arrow" aria-hidden="true">&rarr;</span></button>
+              <button class="btn btn--cream btn--lg" type="submit"><span>Envia el missatge</span><span class="arrow" aria-hidden="true">&rarr;</span></button>
             </div>
-            <p class="note" data-form-status role="status">Al enviar se abre tu cliente de correo con el mensaje ya redactado.</p>
+            <p class="note" data-form-status role="status">En enviar s'obre el teu client de correu amb el missatge ja redactat.</p>
           </form>
         </div>
       </div>
@@ -506,13 +552,14 @@
     <ul class="footer__rows">
       <li><a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
       <li><a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">Instagram</a></li>
-      <li>Barcelona, trabajamos en remoto.</li>
+      <li>Barcelona, treballem en remot.</li>
       <li class="footer__nav">
-        <a href="#estudio">Estudio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#trabajo">Trabajo</a>
+        <a href="#estudi">Estudi</a>
+        <a href="#serveis">Serveis</a>
+        <a href="#treball">Treball</a>
         <a href="#recursos">Recursos</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#contacte">Contacte</a>
+        <a href="es/" hreflang="es">ES</a>
       </li>
     </ul>
     <p class="footer__copy">&copy; <span data-year>2026</span> Laconic Studio</p>
