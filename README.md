@@ -59,10 +59,14 @@ en sans pesada debajo (`<h2 class="big"><span class="hand">…</span>…</h2>`).
 
 ## Cómo se cambian las cosas
 
-- **Logo**: el hero compone el logotipo con el símbolo del 0 y la manuscrita. Con
-  el archivo original basta sustituir ese bloque por
-  `<img class="hero__logo-img" src="assets/img/logo-laconic.svg" alt="Laconic Studio">`
-  (queda indicado en un comentario dentro de `index.html`).
+- **Logo**: es el logotipo real, vectorizado a partir de la pieza de marca:
+  `assets/img/logo-laconic.svg` (logotipo manuscrito) y `assets/img/logo-zero.svg`
+  (el cero). Los dos están declarados como `<symbol>` en un sprite al principio
+  de `index.html` (`#lg-word` y `#lg-zero`) y se usan con `<use>`, así que heredan
+  el color de la sección con `currentColor`. Si aparece el archivo original del
+  estudio, basta sustituir el `<path>` de cada `<symbol>`.
+  Nota: la manuscrita de los titulares (`class="hand"`) sí es una tipografía
+  (Caveat), la más parecida al trazo de la marca.
 - **Fotos del hero**: cinco `<img>` dentro de `.hero__tiles`. Se cambia el `src`
   y ya está; la posición y la velocidad de subida las controlan `.tile--1` … `.tile--5`
   en el CSS (`--rise` es cuánto sube cada una).
