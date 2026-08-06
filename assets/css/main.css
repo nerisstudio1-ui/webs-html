@@ -5,10 +5,13 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  /* Color de marca (los tres hex de la identidad) */
-  --terra: #c95948;
-  --cream: #f9f0e1;
-  --ink: #1c2825;
+  /* Paleta del manual de identidad */
+  --terra: #c95948;      /* Burnt Coral */
+  --cream: #f9f0e1;      /* Sanded Blush */
+  --ink: #1c2825;        /* Night Moss */
+  --clay: #9f5d51;       /* Clay Heat */
+  --sand: #e0bf9a;       /* Pale Almond */
+  --deep: #00393e;       /* Deep Current */
   /* Derivados, solo para estados y matices */
   --terra-deep: #ab4a3c;
   --terra-soft: #e2a698;
@@ -20,11 +23,12 @@
   --cream-rgb: 249, 240, 225;
   --terra-rgb: 201, 89, 72;
   --ink-rgb: 28, 40, 37;
+  --deep-rgb: 0, 57, 62;
 
   /* Tipografía */
-  --hand: "Caveat", "Bradley Hand", "Segoe Script", cursive;
-  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --hand: "Biro Script Plus", "Bradley Hand", "Segoe Script", cursive;
+  --display: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  --sans: "Raleway", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 
   /* Escala */
   --step--2: clamp(0.7rem, 0.68rem + 0.1vw, 0.76rem);
@@ -33,7 +37,7 @@
   --step-1: clamp(1.18rem, 1.08rem + 0.5vw, 1.5rem);
   --step-2: clamp(1.45rem, 1.2rem + 1.1vw, 2.1rem);
   --step-3: clamp(1.9rem, 1.5rem + 2vw, 3rem);
-  --display-1: clamp(2.4rem, 7vw, 5.6rem);
+  --display-1: clamp(2.4rem, 6.6vw, 5.2rem);
   --display-2: clamp(2rem, 5vw, 3.6rem);
 
   /* Layout */
@@ -95,7 +99,7 @@ h4 {
   margin: 0;
   font-family: var(--display);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   line-height: 0.98;
   text-wrap: balance;
 }
@@ -180,6 +184,21 @@ ul {
   background: var(--ink);
   color: var(--cream);
 }
+[data-theme="deep"] {
+  background: var(--deep);
+  color: var(--cream);
+}
+[data-theme="deep"] p {
+  color: var(--cream);
+}
+[data-theme="deep"] .display,
+[data-theme="deep"] .quote__text {
+  color: var(--cream);
+}
+[data-theme="deep"] .display .hand,
+[data-theme="deep"] .quote__text .hand {
+  color: var(--sand);
+}
 [data-theme="terra"] p,
 [data-theme="ink"] p {
   color: var(--cream);
@@ -224,9 +243,9 @@ ul {
 /* Manuscrita de marca */
 .hand {
   font-family: var(--hand);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0;
-  line-height: 0.95;
+  line-height: 1;
   display: inline-block;
 }
 
@@ -235,18 +254,18 @@ ul {
   font-family: var(--display);
   font-size: var(--display-1);
   font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.94;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
   max-width: 20ch;
   margin: 0 0 clamp(1.8rem, 4vw, 2.8rem);
 }
 .display .hand {
   display: block;
-  font-size: 1.3em;
-  font-weight: 500;
+  font-size: 0.5em;
+  font-weight: 400;
   letter-spacing: 0;
-  line-height: 0.92;
-  margin-bottom: 0.02em;
+  line-height: 1.05;
+  margin-bottom: 0.34em;
   color: var(--terra);
 }
 [data-theme="terra"] .display {
@@ -410,6 +429,10 @@ ul {
 .header[data-on="ink"] {
   --hdr-fg: var(--cream);
   --hdr-bg: var(--ink-rgb);
+}
+.header[data-on="deep"] {
+  --hdr-fg: var(--cream);
+  --hdr-bg: var(--deep-rgb);
 }
 .header__inner {
   display: flex;
@@ -688,7 +711,7 @@ body.menu-open .mobile-menu {
   right: var(--gutter);
   bottom: clamp(1.5rem, 4vh, 2.6rem);
   font-family: var(--hand);
-  font-size: 1.45rem;
+  font-size: 1.3rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -731,9 +754,9 @@ body.menu-open .mobile-menu {
 }
 .hand-note {
   font-family: var(--hand);
-  font-weight: 500;
-  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
-  line-height: 1;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+  line-height: 1.25;
   color: var(--terra);
   margin: 1.8rem 0 0;
 }
@@ -801,8 +824,8 @@ body.menu-open .mobile-menu {
 }
 .marquee .hand {
   font-family: var(--hand);
-  font-size: 1.5em;
-  font-weight: 500;
+  font-size: 0.95em;
+  font-weight: 400;
   letter-spacing: 0;
   color: var(--terra-soft);
 }
@@ -881,9 +904,9 @@ body.menu-open .mobile-menu {
 }
 .svc__name {
   font-family: var(--hand);
-  font-weight: 500;
-  font-size: clamp(2rem, 5.2vw, 3.4rem);
-  line-height: 0.92;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.05;
   color: var(--cream);
 }
 .svc__tag {
@@ -1012,10 +1035,11 @@ body.menu-open .mobile-menu {
 }
 .quote__text .hand {
   display: block;
-  font-size: 1.3em;
-  font-weight: 500;
+  font-size: 0.46em;
+  font-weight: 400;
+  line-height: 1.05;
   color: var(--terra-soft);
-  margin-bottom: 0.02em;
+  margin-bottom: 0.3em;
 }
 .quote cite {
   display: block;
@@ -1147,8 +1171,8 @@ body.menu-open .mobile-menu {
 }
 .card__price {
   font-family: var(--hand);
-  font-weight: 500;
-  font-size: 2rem;
+  font-weight: 400;
+  font-size: 1.7rem;
   color: var(--ink);
 }
 .note {
@@ -1392,4 +1416,85 @@ body.cursor-on .cursor {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ---------- Equipo: dos socias, "two of two" ---------- */
+.team {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  border-top: 1px solid var(--line);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+.person {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+.person__mark {
+  height: 30px;
+  width: auto;
+  color: var(--sand);
+  margin-bottom: 0.6rem;
+}
+.person__name {
+  font-family: var(--hand);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.1;
+  color: var(--terra);
+}
+.person__role {
+  font-size: var(--step--2);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.person__note {
+  font-size: var(--step--1);
+  color: var(--muted);
+  max-width: 30ch;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Reclamo de marca */
+.claim {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4.2vw, 3rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+.claim em {
+  font-style: normal;
+  color: var(--terra);
+}
+[data-theme="terra"] .claim em,
+[data-theme="ink"] .claim em,
+[data-theme="deep"] .claim em {
+  color: var(--sand);
+}
+
+/* Enlaces a las piezas publicadas de cada proyecto */
+.slab__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  margin-top: 1.2rem;
+}
+.slab__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--step--1);
+  font-weight: 500;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: color 0.35s var(--ease);
+}
+.slab__links a:hover {
+  color: var(--terra);
 }

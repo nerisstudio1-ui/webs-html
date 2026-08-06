@@ -51,9 +51,20 @@ Todo se controla desde los tokens de `:root` en `assets/css/main.css`:
 | `--cream` | `#F9F0E1` | fondo base y texto sobre terracota |
 | `--ink` | `#1C2825` | secciones oscuras, botones, titulares sobre crema |
 | `--text` | `#1C2825` | texto sobre crema (el mismo verde) |
-| `--hand` | Caveat 500 | líneas manuscritas (`class="hand"`) |
-| `--display` | Archivo 700 | titulares (`class="display"`) |
-| `--sans` | Inter 400/500 | texto corrido y antetítulos |
+| `--hand` | Biro Script Plus | líneas manuscritas (`class="hand"`) |
+| `--display` | Raleway 700 | titulares (`class="display"`) |
+| `--sans` | Raleway 300/400/500 | texto corrido y antetítulos |
+
+Las dos son las tipografías del manual de identidad, autoalojadas en
+`assets/fonts` (convertidas a woff2 desde los originales y subsetadas a latín).
+Biro Script Plus es un trazo de bolígrafo: en el manual titula secciones a tamaño
+medio, así que en la web se usa como **acento sobre el titular**, no como titular
+—a 100 px el trazo se rompe.
+
+La paleta completa del manual está en los tokens: `--terra` Burnt Coral,
+`--cream` Sanded Blush, `--ink` Night Moss, `--clay` Clay Heat, `--sand`
+Pale Almond y `--deep` Deep Current (este último es el fondo de la sección de
+la cita, `data-theme="deep"`).
 
 Los titulares usan el patrón de la marca: la línea manuscrita arriba y la línea
 en display debajo (`<h2 class="display rl"><span class="hand">…</span>…</h2>`).
@@ -77,14 +88,11 @@ librerías, y desactivado con `prefers-reduced-motion`:
 
 ## Cómo se cambian las cosas
 
-- **Logo**: es el logotipo real, vectorizado a partir de la pieza de marca:
-  `assets/img/logo-laconic.svg` (logotipo manuscrito) y `assets/img/logo-zero.svg`
-  (el cero). Los dos están declarados como `<symbol>` en un sprite al principio
-  de `index.html` (`#lg-word` y `#lg-zero`) y se usan con `<use>`, así que heredan
-  el color de la sección con `currentColor`. Si aparece el archivo original del
-  estudio, basta sustituir el `<path>` de cada `<symbol>`.
-  Nota: la manuscrita de los titulares (`class="hand"`) sí es una tipografía
-  (Caveat), la más parecida al trazo de la marca.
+- **Logo**: vectorizado de los archivos oficiales del estudio:
+  `logo-laconic.svg` (logotipo), `logo-zero.svg` (el cero) y `logo-lockup.svg`
+  (con EST · STUDIO · 2024). Los tres van como `<symbol>` en un sprite al
+  principio de `index.html` (`#lg-word`, `#lg-zero`, `#lg-lockup`) y se usan con
+  `<use>`, así que heredan el color de la sección con `currentColor`.
 - **Fotos del hero**: cinco `<img>` dentro de `.hero__tiles`. Se cambia el `src`
   y ya está; la posición y la velocidad de subida las controlan `.tile--1` … `.tile--5`
   en el CSS (`--rise` es cuánto sube cada una).
@@ -98,6 +106,18 @@ Con estos tres colores, crema sobre terracota da 3.7:1 y verde sobre terracota
 3:1), pero se queda por debajo del 4.5:1 que pide el texto pequeño. Por eso en
 las secciones de terracota el texto va en crema a opacidad plena y los
 subtítulos en negrita. Crema sobre verde profundo da 13.5:1, sin problema.
+
+## Contenido del cliente
+
+Todo el material que envió el estudio está recogido en
+`contenido/textos-cliente.md`: equipo, textos, paleta del manual y los enlaces de
+las piezas publicadas de cada proyecto.
+
+Los cuatro proyectos de la sección de trabajo son reales — Quality Training,
+Jordi Coll, Malhivern y Comercial Puig — y cada uno enlaza a sus dos piezas en
+Instagram. Para que los vídeos se reproduzcan **dentro** de la web hace falta
+tener los `.mp4` y servirlos desde `assets/video/` con `<video>`; enlazando a
+Instagram el visitante sale del sitio.
 
 ## Pendiente de revisar
 
