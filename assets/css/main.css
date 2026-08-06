@@ -1,6 +1,7 @@
 /* ==========================================================================
    Laconic Studio — landing
-   Tres colores de marca, manuscrita + Archivo para display, Inter para texto.
+   Tres colores de marca, Biro Script Plus para la manuscrita y Raleway para
+   display y texto. Todo se controla desde los tokens de :root.
    ========================================================================== */
 
 /* ---------- Tokens ---------- */
@@ -17,7 +18,7 @@
   --terra-soft: #e2a698;
   --cream-2: #fcf7ec;
   --text: #1c2825;
-  --muted: rgba(28, 40, 37, 0.6);
+  --muted: rgba(28, 40, 37, 0.72);
   --line: rgba(28, 40, 37, 0.16);
   --line-cream: rgba(249, 240, 225, 0.26);
   --cream-rgb: 249, 240, 225;
@@ -163,8 +164,12 @@ ul {
 }
 
 .section {
-  padding-block: clamp(5rem, 11vw, 11rem);
+  padding-block: clamp(4.5rem, 9vw, 9rem);
   position: relative;
+}
+/* La sección que va justo detrás de la marquesina ya trae su propio aire */
+.section--tight {
+  padding-bottom: clamp(3rem, 6vw, 6rem);
 }
 
 /* Temas de sección */
@@ -553,6 +558,7 @@ ul {
   display: none;
   width: 44px;
   height: 44px;
+  padding: 0;
   border: 1px solid currentColor;
   border-radius: 999px;
   background: none;
@@ -669,11 +675,13 @@ body.menu-open .mobile-menu {
   height: 100%;
   object-fit: cover;
 }
-.tile--1 { left: 3%;  top: 21%; width: 20vw; height: 46svh; --rise: 84svh; --rot: -3deg; }
-.tile--2 { left: 63%; top: 8%;  width: 24vw; height: 38svh; --rise: 118svh; --rot: 2.5deg; }
-.tile--3 { left: 31%; top: 57%; width: 17vw; height: 38svh; --rise: 142svh; --rot: 3.5deg; }
-.tile--4 { left: 5%;  top: 72%; width: 15vw; height: 26svh; --rise: 100svh; --rot: 2deg; }
-.tile--5 { left: 71%; top: 54%; width: 21vw; height: 42svh; --rise: 158svh; --rot: -2.5deg; }
+/* Las cinco piezas rodean el logotipo: dos a cada lado y una que asoma abajo,
+   ninguna cruza la banda central donde está el logotipo. */
+.tile--1 { left: 1%;   top: 14%; width: 17vw; height: 44svh; --rise: 84svh;  --rot: -3deg; }
+.tile--2 { left: 74%;  top: 6%;  width: 20vw; height: 40svh; --rise: 122svh; --rot: 2.5deg; }
+.tile--3 { left: 40%;  top: 74%; width: 15vw; height: 34svh; --rise: 148svh; --rot: 3.5deg; }
+.tile--4 { left: 12%;  top: 66%; width: 14vw; height: 30svh; --rise: 102svh; --rot: 2deg; }
+.tile--5 { left: 66%;  top: 61%; width: 18vw; height: 36svh; --rise: 162svh; --rot: -2.5deg; }
 
 .hero__logo {
   position: relative;
@@ -816,9 +824,12 @@ body.menu-open .mobile-menu {
 }
 
 /* ---------- Marquesina ---------- */
+/* La sección siguiente monta encima con la esquina redondeada, así que la
+   marquesina reserva ese alto abajo para que no le corte las letras. */
 .marquee {
   overflow: hidden;
-  padding-block: clamp(1.3rem, 3vw, 2.2rem);
+  padding-top: clamp(1.6rem, 3.4vw, 2.6rem);
+  padding-bottom: calc(clamp(1.6rem, 3.4vw, 2.6rem) + var(--radius-slab));
   background: var(--ink);
   color: var(--cream);
 }
@@ -878,11 +889,27 @@ body.menu-open .mobile-menu {
     grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
     align-items: start;
   }
+  /* La lista ocupa toda la columna derecha; la foto se pega arriba en la
+     izquierda y el botón cierra la columna, así no queda hueco muerto. */
   .svc__media {
+    grid-column: 1;
+    grid-row: 1;
     position: sticky;
-    top: 15vh;
-    height: 70svh;
+    top: 14vh;
+    height: 72svh;
   }
+  .svc__list {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .svc__cta {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+  }
+}
+.svc__cta {
+  margin: 0;
 }
 .svc__media img {
   position: absolute;
@@ -976,10 +1003,13 @@ body.menu-open .mobile-menu {
     padding-right: clamp(1rem, 4vw, 3rem);
   }
 }
+/* Las fotos del estudio son verticales (4:5): el marco respeta su formato en
+   lugar de recortarlas a un apaisado. */
 .slab__media {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 4 / 5;
+  max-height: 78svh;
 }
 .slab__media img {
   width: 100%;
@@ -995,6 +1025,7 @@ body.menu-open .mobile-menu {
   inset: 0;
   background: linear-gradient(to top, rgba(var(--ink-rgb), 0.22), transparent 55%);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.6s var(--ease);
 }
 .slab:hover .slab__media::after {
@@ -1011,6 +1042,10 @@ body.menu-open .mobile-menu {
   font-size: var(--display-2);
   letter-spacing: -0.045em;
   margin-bottom: 0.8rem;
+  transition: color 0.4s var(--ease);
+}
+.slab:hover .slab__title {
+  color: var(--terra);
 }
 .slab__text p {
   color: var(--muted);
@@ -1032,6 +1067,104 @@ body.menu-open .mobile-menu {
 }
 [data-theme="ink"] .slab__meta {
   border-color: var(--line-cream);
+}
+
+/* ---------- Reels: los vídeos del proyecto en marco vertical ----------
+   Los archivos van en assets/video/<proyecto>-1.mp4. El generador los detecta
+   solos: si están, la columna de la izquierda deja de ser una foto y pasa a ser
+   el vídeo (con la foto como póster). Si no están, se queda la foto. */
+.slab__media--reels {
+  aspect-ratio: auto;
+  max-height: none;
+  overflow: visible;
+  display: flex;
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+  justify-content: center;
+  align-items: flex-start;
+}
+/* El velo de hover que llevan las fotos aquí no pinta nada y taparía el vídeo */
+.slab__media--reels::after {
+  content: none;
+}
+.reel {
+  position: relative;
+  flex: 1 1 0;
+  max-width: 340px;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: rgba(var(--ink-rgb), 0.14);
+  box-shadow: 0 40px 70px -50px rgba(var(--ink-rgb), 0.65);
+}
+/* Cuando solo hay un vídeo se le da algo más de presencia */
+.slab__media--reels > .reel:only-child {
+  max-width: 400px;
+}
+/* La segunda pieza baja un poco, como un contacto de dos tomas */
+.reel:nth-child(2) {
+  margin-top: clamp(1.5rem, 5vw, 3.5rem);
+}
+/* Un velo abajo para que la etiqueta y el botón se lean sobre cualquier plano */
+.reel::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+.reel video,
+.reel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.reel__sound {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border: 1px solid rgba(var(--cream-rgb), 0.5);
+  border-radius: 50%;
+  background: rgba(var(--ink-rgb), 0.45);
+  color: var(--cream);
+  backdrop-filter: blur(6px);
+  font-size: 0.9rem;
+  line-height: 1;
+  transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease),
+    transform 0.35s var(--ease-out);
+}
+.reel__sound:hover {
+  background: var(--terra);
+  border-color: var(--terra);
+  transform: scale(1.08);
+}
+.reel__sound .is-off {
+  display: none;
+}
+.reel.is-audible .reel__sound .is-off {
+  display: block;
+}
+.reel.is-audible .reel__sound .is-on {
+  display: none;
+}
+/* Etiqueta discreta con el número de pieza */
+.reel__tag {
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.8rem;
+  z-index: 2;
+  font-size: var(--step--2);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
 }
 
 /* ---------- Cita grande ---------- */
@@ -1256,6 +1389,7 @@ body.menu-open .mobile-menu {
 .field input,
 .field textarea {
   font: inherit;
+  letter-spacing: inherit;
   color: var(--cream);
   background: transparent;
   border: 0;
@@ -1316,11 +1450,11 @@ body.menu-open .mobile-menu {
   overflow: hidden;
 }
 .footer__word {
-  width: min(90%, 1000px);
+  width: min(82%, 840px);
   height: auto;
   margin: 0 auto clamp(2.5rem, 6vw, 4rem);
   color: var(--cream);
-  opacity: 0.14;
+  opacity: 0.9;
 }
 .footer__rows {
   border-top: 1px solid rgba(var(--cream-rgb), 0.16);

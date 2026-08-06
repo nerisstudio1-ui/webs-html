@@ -252,7 +252,8 @@ T = {
         btn_presupuesto='Demana pressupost',
         k_trabajo='Treball · Set marques',
         h_trabajo_hand='Get people talking', h_trabajo='about your brand.',
-        pieza='Peça',
+        pieza='Peça', reel_sonido='Activa el so', reel_silencio='Silencia el so',
+        ver_instagram='Mira-ho a Instagram',
         cita_hand='Menys soroll.', cita='Més sentit.',
         k_proceso='Com treballem',
         h_proceso_hand='Sense misteri,', h_proceso='amb mètode.',
@@ -341,7 +342,8 @@ T = {
         btn_presupuesto='Pedir presupuesto',
         k_trabajo='Trabajo · Siete marcas',
         h_trabajo_hand='Get people talking', h_trabajo='about your brand.',
-        pieza='Pieza',
+        pieza='Pieza', reel_sonido='Activar el sonido', reel_silencio='Silenciar',
+        ver_instagram='Verlo en Instagram',
         cita_hand='Menos ruido.', cita='Más sentido.',
         k_proceso='Cómo trabajamos',
         h_proceso_hand='Sin misterio,', h_proceso='con método.',
@@ -388,6 +390,36 @@ DOMINIO = 'https://laconicstudio.com'
 
 # Fotos del collage del hero: proyecto y número de foto
 COLLAGE = [('malhivern', 1), ('quality', 1), ('maitasuna', 1), ('puig', 1), ('f4s', 1)]
+
+# --------------------------------------------------------------------------- #
+# Vídeos. Se detectan solos: basta dejar los archivos en assets/video con el
+# nombre del proyecto, `<slug>-1.mp4`, `<slug>-2.mp4`… Si un proyecto tiene
+# vídeos, su columna de la izquierda pasa a ser el reel (con la foto como
+# póster). Si no los tiene, se queda la foto. No hay nada que tocar aquí.
+# --------------------------------------------------------------------------- #
+
+VIDEO_DIR = ROOT / 'assets/video'
+FORMATOS = ('.mp4', '.webm')   # si están los dos del mismo clip, gana el mp4
+MAX_REELS = 2
+
+
+def videos_de(slug):
+    """Devuelve los nombres de archivo de los vídeos del proyecto, ordenados."""
+    if not VIDEO_DIR.is_dir():
+        return []
+    por_clip = {}
+    for ruta in VIDEO_DIR.iterdir():
+        if ruta.suffix.lower() not in FORMATOS or not ruta.stem.startswith(slug + '-'):
+            continue
+        # El resto del nombre tiene que ser el número de la pieza
+        resto = ruta.stem[len(slug) + 1:]
+        if not resto.isdigit():
+            continue
+        clip = int(resto)
+        anterior = por_clip.get(clip)
+        if anterior is None or FORMATOS.index(ruta.suffix.lower()) < FORMATOS.index(anterior.suffix.lower()):
+            por_clip[clip] = ruta
+    return [por_clip[k].name for k in sorted(por_clip)][:MAX_REELS]
 
 
 def foto(prefix, slug, n, sizes, lang, loading='lazy', clases=''):
@@ -594,16 +626,16 @@ def render(lang):
         w('''            </ul>
           </li>''')
     w(f'''        </ol>
-      </div>
 
-      <p class="fade" style="margin-top:clamp(2.5rem,6vw,4rem)">
-        <a class="btn btn--cream btn--lg" href="#{t['id_contacto']}"><span>{t['btn_presupuesto']}</span><span class="arrow" aria-hidden="true">&rarr;</span></a>
-      </p>
+        <p class="svc__cta fade">
+          <a class="btn btn--cream btn--lg" href="#{t['id_contacto']}"><span>{t['btn_presupuesto']}</span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- Treball -->
-  <section class="section slab-top" data-theme="cream" id="{t['id_trabajo']}">
+  <section class="section section--tight slab-top" data-theme="cream" id="{t['id_trabajo']}">
     <div class="wrap">
       <p class="kicker fade">{t['k_trabajo']}</p>
       <h2 class="display rl">
@@ -614,19 +646,47 @@ def render(lang):
     <div class="wrap">''')
     for i, pr in enumerate(PROYECTOS):
         flip = ' slab--flip' if i % 2 else ''
-        w(f'''      <article class="slab{flip} fade">
+        vids = videos_de(pr['slug'])
+        if vids:
+            # Reels: se reproducen solos y sin sonido al entrar en pantalla,
+            # y el botón activa el audio. La foto hace de póster.
+            w(f'''      <article class="slab{flip} fade">
+        <div class="slab__media slab__media--reels">''')
+            for j, nombre_video in enumerate(vids, 1):
+                n_foto = min(j, pr['fotos'])
+                w(f'''          <div class="reel" data-reel>
+            <video src="{prefix}assets/video/{nombre_video}"
+              poster="{prefix}assets/img/proyectos/{pr['slug']}-{n_foto}-700.jpg"
+              muted loop playsinline preload="metadata"
+              aria-label="{t['pieza']} {j:02d} &mdash; {pr['nombre']}"></video>
+            <span class="reel__tag" aria-hidden="true">{t['pieza']} {j:02d}</span>
+            <button class="reel__sound" type="button" data-sound
+              data-on="{t['reel_sonido']}" data-off="{t['reel_silencio']}"
+              aria-label="{t['reel_sonido']}">
+              <span class="is-on" aria-hidden="true">&#9834;</span>
+              <span class="is-off" aria-hidden="true">&times;</span>
+            </button>
+          </div>''')
+            w('        </div>')
+        else:
+            w(f'''      <article class="slab{flip} fade">
         <div class="slab__media" data-parallax>
           {foto(prefix, pr['slug'], 1, '(min-width: 900px) 52vw, 100vw', lang)}
-        </div>
-        <div class="slab__text">
+        </div>''')
+        w(f'''        <div class="slab__text">
           <span class="slab__index">{i + 1:02d} / {len(PROYECTOS):02d} &middot; {pr['sector'][lang]}</span>
           <h3 class="slab__title">{pr['nombre']}</h3>
           <p>{pr['texto'][lang]}</p>''')
         if pr['piezas']:
             w('          <div class="slab__links">')
-            for j, url in enumerate(pr['piezas'], 1):
-                w(f'            <a href="{url}" target="_blank" rel="noopener">'
-                  f'{t["pieza"]} {j:02d} <span aria-hidden="true">&#8599;</span></a>')
+            if vids:
+                # El vídeo ya se ve en la web: el enlace solo lleva al original.
+                w(f'            <a href="{pr["piezas"][0]}" target="_blank" rel="noopener">'
+                  f'{t["ver_instagram"]} <span aria-hidden="true">&#8599;</span></a>')
+            else:
+                for j, url in enumerate(pr['piezas'], 1):
+                    w(f'            <a href="{url}" target="_blank" rel="noopener">'
+                      f'{t["pieza"]} {j:02d} <span aria-hidden="true">&#8599;</span></a>')
             w('          </div>')
         w('          <div class="slab__meta">')
         for s in pr['servicios'][lang]:

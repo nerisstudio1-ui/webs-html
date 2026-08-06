@@ -27,11 +27,22 @@ la manuscrita con la sans pesada.
 | — | Hero: terracota plano, logo centrado y fotos de proyecto que suben con el scroll |
 | `#estudio` | Manifiesto, frase de marca y cifras |
 | `#servicios` | Los cinco servicios con su subtítulo y entregables |
-| `#trabajo` | Rejilla de proyectos con fotografía real |
+| `#trabajo` | Los siete proyectos, con su vídeo si lo hay y si no la fotografía |
 | — | Frase «Haz match con lo que vibre contigo» sobre verde profundo |
 | `#proceso` | Los cuatro pasos de trabajo |
 | `#recursos` | Plantillas y guías a la venta |
 | `#contacto` | Formulario y contacto directo |
+
+## Vídeos de los proyectos
+
+Los reels van en `assets/video` con el nombre del proyecto: `quality-1.mp4`,
+`malhivern-1.mp4`… El generador los detecta solos. Si un proyecto tiene vídeo, su
+columna deja de ser una foto y pasa a ser el reel en marco vertical, con la foto
+del proyecto como póster; si no lo tiene, se queda la foto. Arrancan sin sonido
+al entrar en pantalla, se paran al salir, y el botón redondo activa el audio de
+uno (solo puede sonar uno a la vez).
+
+Los detalles de formato y nombres están en `assets/video/LEEME.md`.
 
 ## Versión para WordPress
 
@@ -46,16 +57,23 @@ python3 build/build_widget.py
 ## Estructura de archivos
 
 ```
-index.html
+index.html                 catalán (generado)
+es/index.html              castellano (generado)
+build/build.py             contenido en los dos idiomas + generador de las páginas
+build/build_widget.py      generador de la versión para WordPress
+contenido/textos-cliente.md   material que envió el estudio
 assets/
-  css/main.css      sistema de diseño completo (tokens, componentes, responsive)
-  css/fonts.css     @font-face de las tipografías autoalojadas
-  fonts/*.woff2     Caveat + Inter (subsets latin y latin-ext, OFL 1.1)
-  js/main.js        header, menú móvil, collage del hero, reveals, marquesina, formulario
-  img/laconic-0*.jpg  fotografías de proyecto
-  img/logo-zero.svg   símbolo del 0 (hereda color con currentColor)
-  img/mark.svg        símbolo del 0 en crema
-  img/favicon.svg     favicon
+  css/main.css             sistema de diseño completo (tokens, componentes, responsive)
+  css/fonts.css            @font-face de las tipografías autoalojadas
+  fonts/*.woff2            Biro Script Plus + Raleway 300–800 (subsets latin y latin-ext)
+  js/main.js               cabecera, menú, collage, reveals, reels, marquesina, formulario
+  img/proyectos/*.jpg      fotos de los proyectos, en 700 y 1100 px
+  img/logo-laconic.svg     logotipo vectorizado
+  img/logo-zero.svg        el 0 (hereda color con currentColor)
+  img/logo-lockup.svg      el lockup con EST · STUDIO · 2024
+  img/favicon.svg          favicon
+  video/                   los reels; ver LEEME.md
+wordpress/                 los cuatro archivos para pegar + INSTALACION.md
 ```
 
 Para probar en local:
@@ -116,11 +134,13 @@ librerías, y desactivado con `prefers-reduced-motion`:
   (con EST · STUDIO · 2024). Los tres van como `<symbol>` en un sprite al
   principio de `index.html` (`#lg-word`, `#lg-zero`, `#lg-lockup`) y se usan con
   `<use>`, así que heredan el color de la sección con `currentColor`.
-- **Fotos del hero**: cinco `<img>` dentro de `.hero__tiles`. Se cambia el `src`
-  y ya está; la posición y la velocidad de subida las controlan `.tile--1` … `.tile--5`
-  en el CSS (`--rise` es cuánto sube cada una).
-- **Proyectos**: cada `<figure class="work__item">` lleva su foto y su pie. Añadir
-  o quitar piezas no rompe la rejilla.
+- **Fotos del hero**: se eligen en `COLLAGE` (`build/build.py`). La posición y la
+  velocidad de subida las controlan `.tile--1` … `.tile--5` en el CSS (`--rise` es
+  cuánto sube cada una). Están colocadas para rodear el logotipo, no para
+  cruzarlo: si se mueven, conviene dejar libre la banda central.
+- **Proyectos**: cada `<article class="slab">` lleva su medio (vídeo o foto) y su
+  texto, y alterna lado con `slab--flip`. Todo sale de `PROYECTOS` en
+  `build/build.py`: añadir o quitar proyectos no rompe nada.
 
 ## Nota de contraste
 
@@ -136,11 +156,11 @@ Todo el material que envió el estudio está recogido en
 `contenido/textos-cliente.md`: equipo, textos, paleta del manual y los enlaces de
 las piezas publicadas de cada proyecto.
 
-Los cuatro proyectos de la sección de trabajo son reales — Quality Training,
-Jordi Coll, Malhivern y Comercial Puig — y cada uno enlaza a sus dos piezas en
-Instagram. Para que los vídeos se reproduzcan **dentro** de la web hace falta
-tener los `.mp4` y servirlos desde `assets/video/` con `<video>`; enlazando a
-Instagram el visitante sale del sitio.
+Los siete proyectos de la sección de trabajo son reales, y los que tienen piezas
+publicadas —Quality Training, Jordi Coll, Malhivern y Comercial Puig— enlazan a
+Instagram. En cuanto los `.mp4` estén en `assets/video`, el vídeo se ve **dentro**
+de la web y el enlace pasa a ser secundario («Míralo en Instagram»); mientras no
+estén, el enlace es la única forma de ver la pieza y el visitante sale del sitio.
 
 ## Pendiente de revisar
 

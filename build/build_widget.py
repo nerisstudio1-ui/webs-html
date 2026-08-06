@@ -156,17 +156,39 @@ def scope_css(css):
         '  box-shadow: none;\n'
         '  outline: 0;\n'
         '  text-decoration: none;\n'
-        '  text-transform: none;\n'
-        '  font-style: normal;\n'
-        '  font-variant: normal;\n'
+        # Estas se heredan, y ahí está la trampa: si aquí les damos un valor
+        # fijo, el hijo (que también encaja con el *) deja de heredar lo que
+        # declara el padre, y una regla que encaja siempre gana a la herencia.
+        # Así se perdían las mayúsculas de .slab__meta en sus <span>. Con
+        # `inherit` el valor del tema no entra y el nuestro sigue bajando: eso
+        # tapa además las que el tema pone por etiqueta (`h2 { color }`,
+        # `.entry-content p { color }`, `.btn { font-family }`…), que si no se
+        # cuelan en cuanto nosotros heredamos en vez de declarar.
+        '  color: inherit;\n'
+        '  font-family: inherit;\n'
+        '  font-style: inherit;\n'
+        '  font-variant: inherit;\n'
+        '  line-height: inherit;\n'
+        '  letter-spacing: inherit;\n'
+        '  text-transform: inherit;\n'
+        '  text-shadow: inherit;\n'
         '  list-style: none;\n'
-        '  text-shadow: none;\n'
         '  float: none;\n'
         '  clear: none;\n'
         '  min-width: 0;\n'
         '  max-height: none;\n'
         '  transition: none;\n'
         '  animation: none;\n'
+        '}\n'
+        # El contenedor sí las fija, para no heredarlas del tema. El resto
+        # (font-family, color, line-height, letter-spacing) las pone la regla
+        # que sale del `body` de nuestra hoja, que va después de este reinicio.
+        + APP + ' {\n'
+        '  font-style: normal;\n'
+        '  font-variant: normal;\n'
+        '  text-align: left;\n'
+        '  text-transform: none;\n'
+        '  text-shadow: none;\n'
         '}\n'
         + ',\n'.join(APP + ' ' + e for e in
                      ('h1', 'h2', 'h3', 'h4', 'p', 'ul', 'ol', 'li', 'figure',
@@ -237,6 +259,12 @@ def scope_html(html, lang, prefix_assets):
         cuerpo = cuerpo.replace('aria-labelledby="%s"' % i, 'aria-labelledby="lac-%s"' % i)
         cuerpo = cuerpo.replace('href="#%s"' % i, 'href="#lac-%s"' % i)
         cuerpo = cuerpo.replace('#%s"/>' % i, '#lac-%s"/>' % i)  # <use href="#lg-zero"/>
+
+    # Los vídeos nunca se meten dentro del archivo, ni en la versión
+    # autocontenida: siempre se sirven por URL. Su póster va con ellos.
+    if not prefix_assets:
+        cuerpo = cuerpo.replace('"assets/video/', '"' + BASE + 'assets/video/')
+        cuerpo = re.sub(r'poster="assets/', 'poster="' + BASE + 'assets/', cuerpo)
 
     # El cambio de idioma apunta a la otra página de WordPress
     otra = '__URL_ES__' if lang == 'ca' else '__URL_CA__'

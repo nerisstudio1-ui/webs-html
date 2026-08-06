@@ -14,6 +14,11 @@ meten 2,9 MB de texto en la base de datos y el editor de WordPress se vuelve
 lento; además el navegador no puede cachear las fotos, así que la página carga
 peor cada vez.
 
+> **Con vídeos**: los reels nunca van dentro del archivo, ni en la versión
+> autocontenida. Se sirven siempre por URL, así que si hay vídeos hay que subir
+> la carpeta `assets` igualmente y sustituir `__BASE__` también en la versión
+> autocontenida.
+
 ---
 
 ## Opción recomendada (`widget-ca.html` / `widget-es.html`)

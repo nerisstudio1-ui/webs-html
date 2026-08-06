@@ -203,6 +203,72 @@
     }
   }
 
+  /* ---- Reels: se reproducen solos al entrar en pantalla y se paran al salir.
+         El botón activa el audio de uno y silencia el resto. ---- */
+  var reels = document.querySelectorAll("[data-reel]");
+  if (reels.length) {
+    var videos = [];
+    reels.forEach(function (reel) {
+      var v = reel.querySelector("video");
+      if (!v) return;
+      videos.push(v);
+      v.muted = true;
+
+      var boton = reel.querySelector("[data-sound]");
+      if (boton) {
+        boton.addEventListener("click", function () {
+          var encender = v.muted;
+          // Solo puede sonar uno a la vez
+          videos.forEach(function (otro) {
+            otro.muted = true;
+            var suyo = otro.closest("[data-reel]");
+            if (suyo) suyo.classList.remove("is-audible");
+            var b = suyo && suyo.querySelector("[data-sound]");
+            if (b) b.setAttribute("aria-label", b.getAttribute("data-on") || "");
+          });
+          v.muted = !encender;
+          reel.classList.toggle("is-audible", encender);
+          boton.setAttribute(
+            "aria-label",
+            boton.getAttribute(encender ? "data-off" : "data-on") || ""
+          );
+          if (encender) v.play().catch(function () {});
+        });
+      }
+
+      // Al hacer clic en el vídeo, pausa o sigue
+      v.addEventListener("click", function () {
+        if (v.paused) {
+          v.play().catch(function () {});
+        } else {
+          v.pause();
+        }
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      var ioReel = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            var v = entry.target.querySelector("video");
+            if (!v) return;
+            if (entry.isIntersecting) {
+              if (!reduced) v.play().catch(function () {});
+            } else {
+              v.pause();
+              v.muted = true;
+              entry.target.classList.remove("is-audible");
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      reels.forEach(function (reel) {
+        ioReel.observe(reel);
+      });
+    }
+  }
+
   /* ---- Bucle de scroll: collage, paralaje, raíl del proceso, giro del cero ---- */
   var collage = document.querySelector("[data-collage]");
   var parallax = document.querySelectorAll("[data-parallax]");
