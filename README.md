@@ -33,6 +33,16 @@ la manuscrita con la sans pesada.
 | `#recursos` | Plantillas y guías a la venta |
 | `#contacto` | Formulario y contacto directo |
 
+## Versión para WordPress
+
+En `wordpress/` hay la web preparada para pegarla en un bloque de **HTML
+personalizado**, con todo aislado para que el tema y la web no se pisen. Los pasos
+están en `wordpress/INSTALACION.md`. Se regenera con:
+
+```bash
+python3 build/build_widget.py
+```
+
 ## Estructura de archivos
 
 ```

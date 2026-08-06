@@ -1,0 +1,2554 @@
+<!-- Laconic Studio — bloque de HTML personalizado (CA).
+     Pegar tal cual en un bloque "HTML personalizado" de WordPress.
+     Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets, por ejemplo
+     https://tudominio.com/wp-content/uploads/laconic/
+     Cambiar __URL_ES__ por la URL de la otra versión de idioma. -->
+
+<style>
+/* Tipografías de la identidad de Laconic Studio.
+   Biro Script Plus para el logotipo y las líneas manuscritas;
+   Raleway para titulares y texto. Convertidas a woff2 y subsetadas
+   a latín + latín extendido desde los archivos originales. */
+
+@font-face {
+  font-family: "Biro Script Plus";
+  src: url(__BASE__assets/fonts/biro-script-plus.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url(__BASE__assets/fonts/raleway-300.woff2) format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url(__BASE__assets/fonts/raleway-400.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url(__BASE__assets/fonts/raleway-500.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url(__BASE__assets/fonts/raleway-600.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url(__BASE__assets/fonts/raleway-700.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url(__BASE__assets/fonts/raleway-800.woff2) format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+#laconic-app,
+#laconic-app *,
+#laconic-app *::before,
+#laconic-app *::after {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  outline: 0;
+  text-decoration: none;
+  text-transform: none;
+  font-style: normal;
+  font-variant: normal;
+  list-style: none;
+  text-shadow: none;
+  float: none;
+  clear: none;
+  min-width: 0;
+  max-height: none;
+  transition: none;
+  animation: none;
+}
+#laconic-app h1,
+#laconic-app h2,
+#laconic-app h3,
+#laconic-app h4,
+#laconic-app p,
+#laconic-app ul,
+#laconic-app ol,
+#laconic-app li,
+#laconic-app figure,
+#laconic-app blockquote,
+#laconic-app form,
+#laconic-app fieldset {
+  margin: 0;
+  padding: 0;
+}
+#laconic-app em {
+  font-style: italic;
+}
+#laconic-app img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   Laconic Studio — landing
+   Tres colores de marca, manuscrita + Archivo para display, Inter para texto.
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+#laconic-app {
+  /* Paleta del manual de identidad */
+  --terra: #c95948;      /* Burnt Coral */
+  --cream: #f9f0e1;      /* Sanded Blush */
+  --ink: #1c2825;        /* Night Moss */
+  --clay: #9f5d51;       /* Clay Heat */
+  --sand: #e0bf9a;       /* Pale Almond */
+  --deep: #00393e;       /* Deep Current */
+  /* Derivados, solo para estados y matices */
+  --terra-deep: #ab4a3c;
+  --terra-soft: #e2a698;
+  --cream-2: #fcf7ec;
+  --text: #1c2825;
+  --muted: rgba(28, 40, 37, 0.6);
+  --line: rgba(28, 40, 37, 0.16);
+  --line-cream: rgba(249, 240, 225, 0.26);
+  --cream-rgb: 249, 240, 225;
+  --terra-rgb: 201, 89, 72;
+  --ink-rgb: 28, 40, 37;
+  --deep-rgb: 0, 57, 62;
+
+  /* Tipografía */
+  --hand: "Biro Script Plus", "Bradley Hand", "Segoe Script", cursive;
+  --display: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  --sans: "Raleway", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+
+  /* Escala */
+  --step--2: clamp(0.7rem, 0.68rem + 0.1vw, 0.76rem);
+  --step--1: clamp(0.82rem, 0.79rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.18rem, 1.08rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.45rem, 1.2rem + 1.1vw, 2.1rem);
+  --step-3: clamp(1.9rem, 1.5rem + 2vw, 3rem);
+  --display-1: clamp(2.4rem, 6.6vw, 5.2rem);
+  --display-2: clamp(2rem, 5vw, 3.6rem);
+
+  /* Layout */
+  --wrap: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --radius-slab: clamp(22px, 3.5vw, 56px);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Base ---------- */
+#laconic-app,
+#laconic-app *,
+#laconic-app *::before,
+#laconic-app *::after {
+  box-sizing: border-box;
+}
+
+
+#laconic-app {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  letter-spacing: -0.006em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#laconic-app img,
+#laconic-app svg {
+  display: block;
+  max-width: 100%;
+}
+
+#laconic-app a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#laconic-app button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+#laconic-app h1,
+#laconic-app h2,
+#laconic-app h3,
+#laconic-app h4 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+#laconic-app p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+#laconic-app ol,
+#laconic-app ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#laconic-app ::selection {
+  background: var(--terra);
+  color: var(--cream);
+}
+
+#laconic-app :focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+#laconic-app .skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.75rem 1.25rem;
+}
+#laconic-app .skip:focus {
+  left: 0;
+}
+
+/* Grano de papel sobre todo el sitio */
+#laconic-app .grain {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ---------- Utilidades ---------- */
+#laconic-app .wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+#laconic-app .wrap--narrow {
+  max-width: 980px;
+}
+
+#laconic-app .section {
+  padding-block: clamp(5rem, 11vw, 11rem);
+  position: relative;
+}
+
+/* Temas de sección */
+#laconic-app [data-theme="cream"] {
+  background: var(--cream);
+  color: var(--text);
+}
+#laconic-app [data-theme="cream-2"] {
+  background: var(--cream-2);
+  color: var(--text);
+}
+#laconic-app [data-theme="terra"] {
+  background: var(--terra);
+  color: var(--cream);
+}
+#laconic-app [data-theme="ink"] {
+  background: var(--ink);
+  color: var(--cream);
+}
+#laconic-app [data-theme="deep"] {
+  background: var(--deep);
+  color: var(--cream);
+}
+#laconic-app [data-theme="deep"] p {
+  color: var(--cream);
+}
+#laconic-app [data-theme="deep"] .display,
+#laconic-app [data-theme="deep"] .quote__text {
+  color: var(--cream);
+}
+#laconic-app [data-theme="deep"] .display .hand,
+#laconic-app [data-theme="deep"] .quote__text .hand {
+  color: var(--sand);
+}
+#laconic-app [data-theme="terra"] p,
+#laconic-app [data-theme="ink"] p {
+  color: var(--cream);
+}
+
+/* Bloque que monta sobre el anterior con la esquina redondeada */
+#laconic-app .slab-top {
+  border-start-start-radius: var(--radius-slab);
+  border-start-end-radius: var(--radius-slab);
+  margin-top: calc(-1 * var(--radius-slab));
+  z-index: 2;
+  overflow: hidden;
+}
+
+#laconic-app .center {
+  text-align: center;
+}
+
+/* Antetítulo */
+#laconic-app .kicker {
+  font-family: var(--sans);
+  font-size: var(--step--2);
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  font-weight: 600;
+  margin: 0 0 clamp(1.6rem, 4vw, 2.6rem);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+#laconic-app .kicker::before {
+  content: "";
+  width: 30px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+#laconic-app .kicker--center {
+  justify-content: center;
+}
+
+/* Manuscrita de marca */
+#laconic-app .hand {
+  font-family: var(--hand);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* Titular: línea manuscrita + línea en display */
+#laconic-app .display {
+  font-family: var(--display);
+  font-size: var(--display-1);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  max-width: 20ch;
+  margin: 0 0 clamp(1.8rem, 4vw, 2.8rem);
+}
+#laconic-app .display .hand {
+  display: block;
+  font-size: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.05;
+  margin-bottom: 0.34em;
+  color: var(--terra);
+}
+#laconic-app [data-theme="terra"] .display {
+  color: var(--ink);
+}
+#laconic-app [data-theme="terra"] .display .hand {
+  color: var(--cream);
+}
+#laconic-app [data-theme="ink"] .display {
+  color: var(--cream);
+}
+#laconic-app [data-theme="ink"] .display .hand {
+  color: var(--terra-soft);
+}
+#laconic-app .display--sm {
+  font-size: var(--display-2);
+}
+
+#laconic-app .lead {
+  font-size: var(--step-1);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  max-width: 32ch;
+}
+
+#laconic-app .body-col {
+  max-width: 46ch;
+}
+#laconic-app .body-col p {
+  color: var(--muted);
+}
+#laconic-app [data-theme="terra"] .body-col p,
+#laconic-app [data-theme="ink"] .body-col p {
+  color: var(--cream);
+}
+
+/* ---------- Revelado de titulares palabra a palabra ---------- */
+#laconic-app.has-js .rl .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+#laconic-app.has-js .rl .w > i {
+  display: inline-block;
+  font-style: inherit;
+  transform: translateY(115%);
+  transition: transform 0.95s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 35ms);
+}
+#laconic-app.has-js .rl.is-in .w > i {
+  transform: none;
+}
+
+/* Aparición simple de bloques */
+#laconic-app.has-js .fade {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+#laconic-app.has-js .fade.is-in {
+  opacity: 1;
+  transform: none;
+}
+#laconic-app.has-js .fade[data-delay="1"] {
+  transition-delay: 0.1s;
+}
+#laconic-app.has-js .fade[data-delay="2"] {
+  transition-delay: 0.2s;
+}
+#laconic-app.has-js .fade[data-delay="3"] {
+  transition-delay: 0.3s;
+}
+
+/* ---------- Botones ---------- */
+#laconic-app .btn {
+  --btn-bg: var(--terra);
+  --btn-fg: var(--cream);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  padding: 1.05rem 1.8rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  #laconic-app transition: transform 0.4s var(--ease-out),
+#laconic-app background-color 0.4s var(--ease),
+    color 0.4s var(--ease);
+}
+#laconic-app .btn:hover {
+  transform: translateY(-3px);
+}
+#laconic-app .btn .arrow {
+  transition: transform 0.4s var(--ease-out);
+}
+#laconic-app .btn:hover .arrow {
+  transform: translateX(5px);
+}
+#laconic-app .btn--ink {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--cream);
+}
+#laconic-app .btn--cream {
+  --btn-bg: var(--cream);
+  --btn-fg: var(--ink);
+}
+#laconic-app .btn--lg {
+  padding: 1.3rem 2.4rem;
+  font-size: var(--step-0);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+#laconic-app .link-line {
+  position: relative;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#laconic-app .link-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+#laconic-app .link-line:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+/* ---------- Cabecera ---------- */
+#laconic-app .header {
+  position: sticky;
+  top: var(--lac-top, 0px);
+  width: 100%;
+  z-index: 1000;
+  color: var(--hdr-fg, var(--cream));
+  #laconic-app transition: transform 0.55s var(--ease-out),
+#laconic-app background-color 0.45s var(--ease),
+    color 0.45s var(--ease);
+}
+#laconic-app .header[data-on="cream"],
+#laconic-app .header[data-on="cream-2"] {
+  --hdr-fg: var(--ink);
+  --hdr-bg: var(--cream-rgb);
+}
+#laconic-app .header[data-on="terra"] {
+  --hdr-fg: var(--cream);
+  --hdr-bg: var(--terra-rgb);
+}
+#laconic-app .header[data-on="ink"] {
+  --hdr-fg: var(--cream);
+  --hdr-bg: var(--ink-rgb);
+}
+#laconic-app .header[data-on="deep"] {
+  --hdr-fg: var(--cream);
+  --hdr-bg: var(--deep-rgb);
+}
+#laconic-app .header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: clamp(1rem, 2vw, 1.5rem);
+  transition: padding 0.45s var(--ease);
+}
+#laconic-app .header.is-stuck {
+  background: rgba(var(--hdr-bg, var(--cream-rgb)), 0.86);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 1px 0 rgba(var(--hdr-fg-rgb, 28, 40, 37), 0.08);
+}
+#laconic-app .header.is-stuck .header__inner {
+  padding-block: 0.6rem;
+}
+#laconic-app .header.is-hidden {
+  transform: translateY(-105%);
+}
+
+/* Sprite del logo: solo define los símbolos */
+#laconic-app .sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+#laconic-app .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+#laconic-app .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+#laconic-app .brand__mark {
+  height: 21px;
+  width: auto;
+  flex: none;
+  transition: transform 0.6s var(--ease-out);
+}
+#laconic-app .brand:hover .brand__mark {
+  transform: rotate(-12deg);
+}
+#laconic-app .brand__word {
+  height: 21px;
+  width: auto;
+}
+
+#laconic-app .nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 2.6vw, 2.4rem);
+}
+#laconic-app .nav a {
+  font-size: var(--step--1);
+  font-weight: 500;
+  position: relative;
+  padding-block: 0.2rem;
+}
+#laconic-app .nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out);
+}
+#laconic-app .nav a:hover::after,
+#laconic-app .nav a.is-active::after {
+  transform: scaleX(1);
+}
+
+#laconic-app .header__right {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.8rem, 2vw, 1.6rem);
+}
+#laconic-app .header__cta {
+  padding: 0.72rem 1.3rem;
+}
+
+/* Selector de idioma */
+#laconic-app .lang {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+#laconic-app .lang span[aria-current] {
+  opacity: 1;
+}
+#laconic-app .lang a {
+  opacity: 0.55;
+  transition: opacity 0.35s var(--ease);
+}
+#laconic-app .lang a:hover {
+  opacity: 1;
+}
+
+#laconic-app .burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: none;
+  position: relative;
+}
+#laconic-app .burger span {
+  position: absolute;
+  left: 50%;
+  width: 15px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: transform 0.4s var(--ease-out);
+}
+#laconic-app .burger span:nth-child(1) {
+  top: 18px;
+}
+#laconic-app .burger span:nth-child(2) {
+  bottom: 18px;
+}
+#laconic-app.is-menu-open .burger span:nth-child(1) {
+  top: 21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+#laconic-app.is-menu-open .burger span:nth-child(2) {
+  bottom: 21.5px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* Menú móvil */
+#laconic-app .mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: var(--ink);
+  color: var(--cream);
+  display: grid;
+  align-content: center;
+  padding: 6rem var(--gutter) 2.5rem;
+  overflow-y: auto;
+  clip-path: circle(0% at 92% 4%);
+  transition: clip-path 0.8s var(--ease-out);
+  pointer-events: none;
+}
+#laconic-app.is-menu-open .mobile-menu {
+  clip-path: circle(145% at 92% 4%);
+  pointer-events: auto;
+}
+#laconic-app .mobile-menu nav a {
+  font-family: var(--display);
+  font-size: clamp(2rem, 9.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  padding-block: 0.3em;
+  border-bottom: 1px solid rgba(var(--cream-rgb), 0.14);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+#laconic-app .mobile-menu nav a span {
+  font-family: var(--hand);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+#laconic-app .mobile-menu__foot {
+  margin-top: 2.4rem;
+  display: grid;
+  gap: 0.7rem;
+  justify-items: start;
+}
+#laconic-app .mobile-menu__foot a {
+  font-size: var(--step--1);
+  opacity: 0.8;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Hero ---------- */
+#laconic-app .hero {
+  --p: 0;
+  position: relative;
+  height: 250svh;
+  background: var(--terra);
+  color: var(--cream);
+}
+#laconic-app .hero__stage {
+  position: sticky;
+  top: var(--lac-top, 0px);
+  height: calc(100svh - var(--lac-top, 0px));
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+#laconic-app .hero__tiles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+#laconic-app .tile {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  transform: translate3d(0, calc(var(--rise, 100svh) * (1 - var(--p))), 0)
+    rotate(var(--rot, 0deg));
+  will-change: transform;
+  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.45);
+}
+#laconic-app .tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tile--1 { left: 3%;  top: 21%; width: 20vw; height: 46svh; --rise: 84svh; --rot: -3deg; }
+.tile--2 { left: 63%; top: 8%;  width: 24vw; height: 38svh; --rise: 118svh; --rot: 2.5deg; }
+.tile--3 { left: 31%; top: 57%; width: 17vw; height: 38svh; --rise: 142svh; --rot: 3.5deg; }
+.tile--4 { left: 5%;  top: 72%; width: 15vw; height: 26svh; --rise: 100svh; --rot: 2deg; }
+.tile--5 { left: 71%; top: 54%; width: 21vw; height: 42svh; --rise: 158svh; --rot: -2.5deg; }
+
+#laconic-app .hero__logo {
+  position: relative;
+  z-index: 3;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  padding-inline: var(--gutter);
+  color: var(--cream);
+}
+#laconic-app .hero__logo-mark {
+  height: clamp(34px, 4.4vw, 66px);
+  width: auto;
+  margin-bottom: clamp(0.9rem, 2vw, 1.6rem);
+  opacity: 0;
+  transform: translateY(14px) rotate(-8deg);
+  transition: opacity 1s var(--ease-out) 0.35s, transform 1.1s var(--ease-out) 0.35s;
+}
+#laconic-app .hero__logo-word {
+  width: min(70vw, 800px);
+  height: auto;
+  clip-path: inset(0 0 105% 0);
+  transition: clip-path 1.35s var(--ease-out) 0.1s;
+}
+#laconic-app .hero__logo-sub {
+  font-size: clamp(0.64rem, 1.3vw, 0.9rem);
+  font-weight: 500;
+  letter-spacing: 0.64em;
+  text-transform: uppercase;
+  margin: clamp(0.7rem, 1.6vw, 1.1rem) 0 0 0.64em;
+  opacity: 0;
+  transition: opacity 1s var(--ease) 0.9s;
+}
+#laconic-app.is-loaded .hero__logo-mark {
+  opacity: 1;
+  transform: none;
+}
+#laconic-app.is-loaded .hero__logo-word {
+  clip-path: inset(-10% -2% -10% -2%);
+}
+#laconic-app.is-loaded .hero__logo-sub {
+  opacity: 0.92;
+}
+
+#laconic-app .hero__note {
+  position: absolute;
+  z-index: 3;
+  left: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.6rem);
+  margin: 0;
+  max-width: 34ch;
+  font-size: var(--step--2);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: calc((1 - var(--p) * 4) * 0.85);
+  transition: opacity 0.4s linear;
+}
+#laconic-app .hero__scroll {
+  position: absolute;
+  z-index: 3;
+  right: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.6rem);
+  font-family: var(--hand);
+  font-size: 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cream);
+  opacity: 0;
+  transition: opacity 1s var(--ease) 1.2s;
+}
+#laconic-app.is-loaded .hero__scroll {
+  opacity: 0.9;
+}
+#laconic-app .hero__scroll::after {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: currentColor;
+  animation: slide 2s var(--ease) infinite;
+}
+@keyframes slide {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.35);
+    opacity: 0.5;
+  }
+}
+
+/* ---------- Manifiesto ---------- */
+#laconic-app .manifesto__grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+@media (min-width: 900px) {
+  #laconic-app .manifesto__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+#laconic-app .hand-note {
+  font-family: var(--hand);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+  line-height: 1.25;
+  color: var(--terra);
+  margin: 1.8rem 0 0;
+}
+#laconic-app [data-theme="terra"] .hand-note,
+#laconic-app [data-theme="ink"] .hand-note {
+  color: var(--cream);
+}
+
+#laconic-app .stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(3rem, 7vw, 5rem);
+  border-top: 1px solid var(--line);
+  padding-top: clamp(1.5rem, 3vw, 2.2rem);
+}
+#laconic-app .stat__num {
+  font-family: var(--display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--terra);
+  line-height: 1;
+}
+#laconic-app .stat__label {
+  font-size: var(--step--1);
+  color: var(--muted);
+  margin: 0.6rem 0 0;
+  max-width: 24ch;
+}
+
+/* ---------- Marquesina ---------- */
+#laconic-app .marquee {
+  overflow: hidden;
+  padding-block: clamp(1.3rem, 3vw, 2.2rem);
+  background: var(--ink);
+  color: var(--cream);
+}
+#laconic-app .marquee__track {
+  display: flex;
+  gap: clamp(2rem, 5vw, 4rem);
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+#laconic-app .marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+#laconic-app .marquee span {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3.6vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  white-space: nowrap;
+}
+#laconic-app .marquee span::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--terra);
+  flex: none;
+}
+#laconic-app .marquee .hand {
+  font-family: var(--hand);
+  font-size: 0.95em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--terra-soft);
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Servicios: panel de foto pegado + lista ---------- */
+#laconic-app .svc {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+#laconic-app .svc__media {
+  position: relative;
+  overflow: hidden;
+  height: 34svh;
+  background: rgba(var(--ink-rgb), 0.15);
+}
+@media (min-width: 940px) {
+  #laconic-app .svc {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: start;
+  }
+  #laconic-app .svc__media {
+    position: sticky;
+    top: calc(15vh + var(--lac-top, 0px));
+    height: 70svh;
+  }
+}
+#laconic-app .svc__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.8s var(--ease), transform 1.4s var(--ease-out);
+}
+#laconic-app .svc__media img.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+#laconic-app .svc__list {
+  border-top: 1px solid var(--line-cream);
+}
+#laconic-app .svc__item {
+  border-bottom: 1px solid var(--line-cream);
+  padding-block: clamp(1.4rem, 3vw, 2.1rem);
+  display: grid;
+  gap: 0.4rem;
+  transition: opacity 0.5s var(--ease);
+}
+@media (min-width: 940px) {
+  #laconic-app .svc__item {
+    opacity: 0.55;
+  }
+  #laconic-app .svc__item.is-active {
+    opacity: 1;
+  }
+}
+#laconic-app .svc__head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+#laconic-app .svc__num {
+  font-size: var(--step--2);
+  letter-spacing: 0.18em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+  flex: none;
+}
+#laconic-app .svc__name {
+  font-family: var(--hand);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.05;
+  color: var(--cream);
+}
+#laconic-app .svc__tag {
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+#laconic-app .svc__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  margin-top: 0.6rem;
+  font-size: var(--step--1);
+  color: var(--cream);
+}
+#laconic-app .svc__items li {
+  display: flex;
+  gap: 0.5rem;
+}
+#laconic-app .svc__items li::before {
+  content: "—";
+  opacity: 0.55;
+}
+
+/* ---------- Trabajo: bandas alternas con paralaje ---------- */
+#laconic-app .slab {
+  display: grid;
+  gap: clamp(1.4rem, 4vw, 3.5rem);
+  align-items: center;
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+@media (min-width: 900px) {
+  #laconic-app .slab {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+  #laconic-app .slab--flip .slab__media {
+    order: 2;
+  }
+  #laconic-app .slab--flip .slab__text {
+    padding-right: clamp(1rem, 4vw, 3rem);
+  }
+}
+#laconic-app .slab__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 5 / 4;
+}
+#laconic-app .slab__media img {
+  width: 100%;
+  height: 118%;
+  object-fit: cover;
+  transform: translate3d(0, calc(var(--py, 0) * -9%), 0) scale(1.01);
+  will-change: transform;
+  transition: filter 0.6s var(--ease);
+}
+#laconic-app .slab__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(var(--ink-rgb), 0.22), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+#laconic-app .slab:hover .slab__media::after {
+  opacity: 1;
+}
+#laconic-app .slab__index {
+  font-size: var(--step--2);
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 0.9rem;
+}
+#laconic-app .slab__title {
+  font-size: var(--display-2);
+  letter-spacing: -0.045em;
+  margin-bottom: 0.8rem;
+}
+#laconic-app .slab__text p {
+  color: var(--muted);
+  max-width: 42ch;
+}
+#laconic-app [data-theme="ink"] .slab__text p {
+  color: rgba(var(--cream-rgb), 0.82);
+}
+#laconic-app .slab__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin-top: 1.4rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+#laconic-app [data-theme="ink"] .slab__meta {
+  border-color: var(--line-cream);
+}
+
+/* ---------- Cita grande ---------- */
+#laconic-app .quote {
+  position: relative;
+  overflow: hidden;
+}
+#laconic-app .quote__mark {
+  position: absolute;
+  right: -6vw;
+  top: 50%;
+  height: 78%;
+  width: auto;
+  transform: translateY(-50%) rotate(var(--spin, 0deg));
+  opacity: 0.12;
+  color: var(--cream);
+  pointer-events: none;
+}
+#laconic-app .quote__text {
+  position: relative;
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 6.2vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  max-width: 24ch;
+  margin: 0;
+}
+#laconic-app .quote__text .hand {
+  display: block;
+  font-size: 0.46em;
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--terra-soft);
+  margin-bottom: 0.3em;
+}
+#laconic-app .quote cite {
+  display: block;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  font-style: normal;
+  font-size: var(--step--2);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* ---------- Proceso ---------- */
+#laconic-app .process {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+@media (min-width: 900px) {
+  #laconic-app .process {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
+  #laconic-app .process__head {
+    position: sticky;
+    top: 20vh;
+  }
+}
+#laconic-app .rail {
+  position: relative;
+  padding-left: 2.6rem;
+}
+#laconic-app .rail::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 1px;
+  background: var(--line);
+}
+#laconic-app .rail__fill {
+  position: absolute;
+  left: 7px;
+  top: 0.6rem;
+  width: 1px;
+  background: var(--terra);
+  height: calc(var(--fill, 0) * (100% - 1.2rem));
+  transition: height 0.25s linear;
+}
+#laconic-app .step {
+  position: relative;
+  padding-block: clamp(1.2rem, 3vw, 1.8rem);
+}
+#laconic-app .step::before {
+  content: "";
+  position: absolute;
+  left: -2.6rem;
+  top: calc(clamp(1.2rem, 3vw, 1.8rem) + 0.45em);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  #laconic-app transition: background-color 0.4s var(--ease),
+#laconic-app border-color 0.4s var(--ease),
+    transform 0.4s var(--ease-out);
+}
+#laconic-app .step.is-on::before {
+  background: var(--terra);
+  border-color: var(--terra);
+  transform: scale(1.15);
+}
+#laconic-app .step h3 {
+  font-size: var(--step-2);
+  margin-bottom: 0.4rem;
+}
+#laconic-app .step p {
+  color: var(--muted);
+  max-width: 52ch;
+  margin: 0;
+}
+#laconic-app .step__n {
+  font-family: var(--hand);
+  font-size: 1.5rem;
+  color: var(--terra);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+
+/* ---------- Recursos ---------- */
+#laconic-app .cards {
+  display: grid;
+  gap: clamp(1.2rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+#laconic-app .card {
+  border: 1px solid var(--line);
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  background: var(--cream);
+  #laconic-app transition: transform 0.5s var(--ease-out),
+#laconic-app border-color 0.4s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+#laconic-app .card:hover {
+  transform: translateY(-6px);
+  border-color: var(--terra);
+  box-shadow: 0 30px 60px -45px rgba(var(--ink-rgb), 0.5);
+}
+#laconic-app .card > :last-child {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  margin-bottom: 0;
+}
+#laconic-app .card__tag {
+  font-size: var(--step--2);
+  color: var(--terra);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#laconic-app .card h3 {
+  font-size: var(--step-2);
+}
+#laconic-app .card p {
+  color: var(--muted);
+  margin: 0;
+}
+#laconic-app .card__price {
+  font-family: var(--hand);
+  font-weight: 400;
+  font-size: 1.7rem;
+  color: var(--ink);
+}
+#laconic-app .note {
+  font-size: var(--step--1);
+  color: var(--muted);
+  margin: 1.6rem 0 0;
+}
+#laconic-app [data-theme="terra"] .note,
+#laconic-app [data-theme="ink"] .note {
+  color: rgba(var(--cream-rgb), 0.75);
+}
+
+/* ---------- Contacto ---------- */
+#laconic-app .contact {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+}
+@media (min-width: 900px) {
+  #laconic-app .contact {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  }
+}
+#laconic-app .contact__direct {
+  display: grid;
+  gap: 0.9rem;
+  margin: 2rem 0 0;
+  font-size: var(--step-1);
+}
+
+#laconic-app .form {
+  display: grid;
+  gap: 1.4rem;
+}
+#laconic-app .form__row {
+  display: grid;
+  gap: 1.4rem;
+}
+@media (min-width: 600px) {
+  #laconic-app .form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+#laconic-app .field {
+  display: grid;
+  gap: 0.4rem;
+}
+#laconic-app .field label,
+#laconic-app .field__label {
+  font-size: var(--step--2);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+#laconic-app .field input,
+#laconic-app .field textarea {
+  font: inherit;
+  color: var(--cream);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line-cream);
+  padding: 0.7rem 0;
+  border-radius: 0;
+  transition: border-color 0.35s var(--ease);
+}
+#laconic-app .field textarea {
+  resize: vertical;
+}
+#laconic-app .field input:focus,
+#laconic-app .field textarea:focus {
+  outline: none;
+  border-color: var(--cream);
+}
+#laconic-app .form ::placeholder {
+  color: rgba(var(--cream-rgb), 0.55);
+}
+#laconic-app .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+#laconic-app .chip {
+  position: relative;
+}
+#laconic-app .chip input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+#laconic-app .chip span {
+  display: inline-block;
+  border: 1px solid var(--line-cream);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-size: var(--step--1);
+  transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+#laconic-app .chip input:checked + span {
+  background: var(--terra);
+  border-color: var(--terra);
+  color: var(--cream);
+}
+#laconic-app .chip input:focus-visible + span {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ---------- Footer ---------- */
+#laconic-app .footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding-block: clamp(3.5rem, 8vw, 6rem) 2.5rem;
+  overflow: hidden;
+}
+#laconic-app .footer__word {
+  width: min(90%, 1000px);
+  height: auto;
+  margin: 0 auto clamp(2.5rem, 6vw, 4rem);
+  color: var(--cream);
+  opacity: 0.14;
+}
+#laconic-app .footer__rows {
+  border-top: 1px solid rgba(var(--cream-rgb), 0.16);
+  text-align: center;
+}
+#laconic-app .footer__rows > li {
+  border-bottom: 1px solid rgba(var(--cream-rgb), 0.16);
+  padding-block: clamp(1.1rem, 3vw, 1.6rem);
+  font-size: var(--step-1);
+  color: rgba(var(--cream-rgb), 0.88);
+}
+#laconic-app .footer__rows a:hover {
+  color: var(--terra-soft);
+}
+#laconic-app .footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 1.8rem;
+  font-size: var(--step--2) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+#laconic-app .footer__copy {
+  margin: 1.8rem 0 0;
+  font-size: var(--step--2);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  text-align: center;
+}
+
+/* ---------- Cursor ---------- */
+#laconic-app .cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 70;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cur, var(--cream));
+  pointer-events: none;
+  transform: translate3d(-100px, -100px, 0);
+  #laconic-app transition: width 0.35s var(--ease-out),
+#laconic-app height 0.35s var(--ease-out),
+    opacity 0.3s var(--ease), background-color 0.4s var(--ease);
+  will-change: transform;
+}
+#laconic-app.cursor-on .cursor {
+  width: 42px;
+  height: 42px;
+  opacity: 0.35;
+}
+@media (hover: none), (pointer: coarse) {
+  #laconic-app .cursor {
+    display: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  #laconic-app .nav,
+  #laconic-app .header__cta {
+    display: none;
+  }
+  #laconic-app .burger {
+    display: block;
+  }
+  .tile--1 { left: -2%; top: 15%; width: 40vw; height: 30svh; }
+  .tile--2 { left: 53%; top: 5%;  width: 45vw; height: 24svh; }
+  .tile--3 { left: 27%; top: 53%; width: 34vw; height: 26svh; }
+  .tile--4 { display: none; }
+  .tile--5 { left: 57%; top: 67%; width: 40vw; height: 27svh; }
+  #laconic-app .quote__mark {
+    right: -18vw;
+    height: 60%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #laconic-app html {
+    scroll-behavior: auto;
+  }
+  #laconic-app *,
+  #laconic-app *::before,
+  #laconic-app *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  #laconic-app.has-js .fade,
+  #laconic-app.has-js .rl .w > i {
+    opacity: 1;
+    transform: none;
+  }
+  #laconic-app .hero {
+    height: auto;
+    min-height: 100svh;
+  }
+  #laconic-app .tile {
+    transform: rotate(var(--rot, 0deg));
+  }
+  #laconic-app .hero__logo-word {
+    clip-path: none;
+  }
+  #laconic-app .hero__logo-mark,
+  #laconic-app .hero__logo-sub,
+  #laconic-app .hero__scroll {
+    opacity: 1;
+    transform: none;
+  }
+  #laconic-app .cursor {
+    display: none;
+  }
+}
+
+@media print {
+  #laconic-app.has-js .fade,
+  #laconic-app.has-js .rl .w > i {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Equipo: dos socias, "two of two" ---------- */
+#laconic-app .team {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  border-top: 1px solid var(--line);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+#laconic-app .person {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+#laconic-app .person__mark {
+  height: 30px;
+  width: auto;
+  color: var(--sand);
+  margin-bottom: 0.6rem;
+}
+#laconic-app .person__name {
+  font-family: var(--hand);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.1;
+  color: var(--terra);
+}
+#laconic-app .person__role {
+  font-size: var(--step--2);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#laconic-app .person__note {
+  font-size: var(--step--1);
+  color: var(--muted);
+  max-width: 30ch;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Reclamo de marca */
+#laconic-app .claim {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4.2vw, 3rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+#laconic-app .claim em {
+  font-style: normal;
+  color: var(--terra);
+}
+#laconic-app [data-theme="terra"] .claim em,
+#laconic-app [data-theme="ink"] .claim em,
+#laconic-app [data-theme="deep"] .claim em {
+  color: var(--sand);
+}
+
+/* Enlaces a las piezas publicadas de cada proyecto */
+#laconic-app .slab__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  margin-top: 1.2rem;
+}
+#laconic-app .slab__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--step--1);
+  font-weight: 500;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: color 0.35s var(--ease);
+}
+#laconic-app .slab__links a:hover {
+  color: var(--terra);
+}
+
+
+/* ---------- Ajustes para vivir dentro de un tema ---------- */
+#laconic-app {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  /* Si el tema tiene cabecera fija o pegada, poner aquí su altura para que la
+     nuestra y el hero queden justo debajo. Con 0px se comporta como la web
+     suelta. */
+  --lac-top: 0px;
+  /* El tema mete el contenido en una columna estrecha. El contenedor sale a todo
+     el ancho de la ventana una sola vez y dentro todo funciona igual que en la
+     web suelta; clip evita que aparezca barra horizontal. */
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  overflow-x: clip;
+}
+#laconic-app .wrap {
+  box-sizing: border-box;
+}
+
+</style>
+
+<div id="laconic-app">
+<!-- Logo oficial de la marca vectorizado: el cero, el logotipo y el lockup.
+     Los tres heredan el color con currentColor. -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="lac-lg-zero" viewBox="0 0 71.7 100"><path fill="currentColor" fill-rule="evenodd" transform="scale(0.024155)" d="M1401.0 4136.7C1400.7 4136.4 1390.2 4135.9 1377.5 4135.6C1364.8 4135.2 1347.5 4134.5 1339.0 4134.0C1330.5 4133.4 1319.7 4132.8 1315.0 4132.5C1304.8 4131.9 1280.9 4130.2 1272.5 4129.5C1228.9 4125.9 1220.2 4125.0 1179.0 4120.5C1151.2 4117.4 1086.1 4108.7 1067.8 4105.5C1062.9 4104.7 1054.8 4103.3 1049.8 4102.5C1021.4 4097.7 982.7 4090.1 958.5 4084.5C955.2 4083.7 949.4 4082.4 945.5 4081.5C933.4 4078.7 919.7 4075.2 910.0 4072.5C907.5 4071.8 902.6 4070.5 899.0 4069.5C895.4 4068.6 890.7 4067.2 888.5 4066.5C886.3 4065.8 881.8 4064.5 878.5 4063.5C875.2 4062.5 870.9 4061.2 869.0 4060.5C867.1 4059.8 863.9 4058.7 862.0 4058.1C860.1 4057.4 857.1 4056.5 855.5 4056.0C842.3 4052.3 806.7 4037.7 788.4 4028.4C773.3 4020.7 773.8 4021.0 760.5 4012.1C731.4 3992.7 677.7 3945.4 619.1 3887.5C576.7 3845.6 507.4 3771.4 473.5 3731.5C469.6 3727.0 463.4 3719.7 459.5 3715.3C449.1 3703.4 431.6 3682.6 423.5 3672.5C385.1 3624.7 382.1 3620.9 365.0 3598.0C316.2 3533.0 277.6 3471.1 261.4 3432.3C259.4 3427.4 257.4 3422.6 257.0 3421.5C256.5 3420.4 255.1 3417.0 254.0 3414.0C252.8 3411.0 251.4 3407.6 251.0 3406.5C249.6 3403.4 243.1 3387.3 239.9 3379.2C238.3 3375.3 235.6 3368.5 233.9 3364.2C232.2 3360.0 230.1 3354.7 229.3 3352.5C228.4 3350.3 227.4 3347.6 226.9 3346.5C225.4 3342.7 222.1 3334.5 218.5 3325.0C214.0 3313.5 211.1 3305.9 205.5 3291.5C203.2 3285.4 199.8 3276.7 198.1 3272.0C196.3 3267.3 194.2 3261.8 193.4 3259.8C192.6 3257.7 191.3 3254.2 190.5 3252.0C189.7 3249.8 188.3 3246.1 187.4 3243.8C183.8 3234.2 183.0 3232.1 180.0 3223.5C176.8 3214.6 175.3 3210.4 172.6 3203.2C171.8 3201.2 169.7 3195.4 168.0 3190.5C166.3 3185.6 164.4 3180.4 163.8 3179.0C163.2 3177.6 162.4 3175.2 162.0 3173.5C161.5 3171.8 160.2 3168.0 159.0 3165.0C157.8 3162.0 156.4 3158.2 156.0 3156.5C155.1 3153.4 135.7 3095.3 133.5 3089.0C132.8 3087.1 131.5 3083.0 130.6 3080.0C129.8 3077.0 127.7 3070.2 126.0 3065.0C124.3 3059.8 122.2 3053.0 121.3 3050.0C120.4 3047.0 119.1 3042.5 118.4 3040.0C116.1 3032.5 111.4 3015.9 109.5 3009.0C108.6 3005.4 107.2 3000.5 106.5 2998.0C105.2 2993.2 103.1 2985.3 100.7 2975.5C99.8 2972.2 98.5 2966.8 97.6 2963.5C94.7 2952.2 91.1 2936.5 89.6 2929.0C88.7 2924.9 87.2 2917.2 86.2 2912.0C80.7 2884.6 77.8 2864.9 73.5 2825.5C71.1 2804.2 69.1 2785.8 67.5 2772.0C66.8 2765.1 65.8 2756.8 65.5 2753.5C65.1 2750.2 64.7 2746.2 64.4 2744.5C64.2 2742.8 62.6 2728.2 61.0 2712.0C59.3 2695.8 56.8 2671.9 55.4 2659.0C54.1 2646.1 52.1 2626.7 51.0 2616.0C50.0 2605.3 48.4 2589.5 47.5 2581.0C46.7 2572.5 45.3 2558.5 44.4 2550.0C42.1 2526.5 41.3 2518.4 39.1 2495.0C38.0 2483.2 36.6 2468.8 36.0 2463.0C34.6 2448.6 30.2 2401.0 29.5 2393.0C28.7 2382.2 26.1 2351.8 25.5 2346.5C25.3 2343.8 24.6 2335.4 24.0 2328.0C23.4 2320.6 22.7 2312.0 22.5 2309.0C21.9 2302.0 20.1 2277.6 19.5 2268.5C17.6 2238.4 17.0 2225.0 16.5 2200.5C16.3 2185.1 15.6 2163.1 15.0 2151.5C14.4 2139.9 13.8 2126.0 13.5 2120.5C13.2 2115.0 12.6 2103.5 12.0 2095.0C11.5 2086.5 10.8 2075.7 10.5 2071.0C9.8 2060.0 8.2 2034.0 7.4 2022.5C7.1 2017.5 6.8 2012.8 6.8 2012.0C6.8 2011.2 6.4 2004.4 5.9 1997.0C5.0 1982.2 4.4 1969.3 2.9 1935.0C2.4 1922.6 1.6 1907.1 1.1 1900.5C-0.1 1884.8 -0.1 1777.0 1.1 1766.0C1.6 1761.3 2.4 1750.3 2.9 1741.5C3.9 1724.5 6.7 1693.0 7.6 1688.9C7.8 1687.6 8.5 1682.7 9.0 1678.2C9.5 1673.6 10.4 1667.5 10.9 1664.7C11.5 1661.8 12.9 1654.1 14.0 1647.5C15.2 1640.9 16.6 1633.9 17.0 1632.0C19.7 1621.6 26.2 1594.0 28.5 1583.0C29.4 1578.9 30.7 1572.8 31.5 1569.5C33.4 1560.9 37.2 1542.8 40.5 1526.0C41.4 1521.3 42.8 1514.6 43.5 1511.0C44.2 1507.4 45.6 1500.7 46.5 1496.0C47.4 1491.3 48.7 1484.3 49.5 1480.5C50.3 1476.7 52.3 1465.8 54.0 1456.5C55.7 1447.2 57.8 1435.7 58.6 1431.0C60.2 1422.3 61.7 1414.4 64.5 1398.5C67.9 1380.1 69.1 1373.3 70.5 1366.5C71.2 1362.7 72.6 1355.2 73.5 1350.0C74.3 1344.8 75.7 1337.3 76.5 1333.5C77.3 1329.7 78.6 1322.5 79.5 1317.5C80.4 1312.5 81.7 1305.1 82.6 1301.0C83.4 1296.9 84.7 1289.9 85.6 1285.5C89.2 1266.9 92.5 1250.2 94.5 1240.5C98.9 1219.6 101.4 1207.5 103.5 1198.5C104.3 1195.2 105.6 1189.1 106.5 1185.0C108.1 1177.7 109.4 1172.4 112.5 1160.0C113.3 1156.7 114.7 1151.2 115.6 1147.8C118.2 1137.3 123.3 1118.9 127.5 1104.5C131.1 1092.6 146.2 1047.8 150.0 1038.0C151.2 1035.0 152.5 1031.2 153.0 1029.5C153.5 1027.8 154.8 1024.0 156.0 1021.0C157.2 1018.0 158.5 1014.4 159.0 1013.0C159.5 1011.6 160.8 1008.0 162.0 1005.0C163.2 1002.0 164.5 998.4 165.0 997.0C165.5 995.6 166.8 992.0 168.0 989.0C169.2 986.0 170.5 982.4 171.0 981.0C171.4 979.6 172.3 977.1 173.0 975.5C175.4 969.7 175.9 968.5 178.0 963.0C179.2 960.0 181.5 954.4 183.1 950.6C184.7 946.8 186.0 943.3 186.0 942.8C186.0 942.2 186.6 940.4 187.4 938.7C188.1 936.9 189.7 933.0 190.9 930.0C192.1 927.0 193.5 923.6 194.0 922.5C194.4 921.4 196.9 915.3 199.5 909.0C205.7 893.5 210.0 882.9 211.1 880.5C211.5 879.4 214.9 871.3 218.5 862.5C222.2 853.7 225.8 845.1 226.6 843.5C231.6 832.5 234.0 826.7 234.0 826.0C234.0 825.5 234.7 823.9 235.5 822.3C238.3 817.0 243.0 805.9 243.0 804.6C243.0 804.0 243.4 803.0 243.9 802.4C244.4 801.9 246.0 798.7 247.4 795.3C249.9 789.3 252.2 784.1 257.7 772.0C259.1 769.0 261.1 764.5 262.2 762.0C263.3 759.5 264.8 756.1 265.5 754.5C266.3 752.9 268.0 749.0 269.4 746.0C271.5 741.3 278.8 725.5 283.5 715.5C284.3 713.9 286.8 708.5 289.1 703.5C306.0 667.1 345.8 589.4 354.8 575.5C355.4 574.4 356.3 572.8 356.7 572.0C357.9 569.3 376.8 538.2 381.1 531.8C395.3 510.7 414.6 487.6 438.0 463.6C455.8 445.3 503.8 401.3 522.5 386.0C524.8 384.1 533.2 377.1 541.1 370.5C560.7 354.0 574.5 343.0 595.0 327.1C601.3 322.2 610.1 315.4 614.5 312.0C624.0 304.6 647.8 286.7 653.7 282.5C656.0 280.9 670.2 270.7 685.2 259.9C714.0 239.3 765.5 204.7 790.3 189.2C798.4 184.1 805.2 180.0 805.5 180.0C805.7 180.0 807.8 178.7 810.2 177.1C812.6 175.5 816.3 173.2 818.5 172.1C820.7 170.9 823.4 169.4 824.5 168.7C836.3 161.5 863.3 147.4 874.5 142.6C876.1 141.9 878.6 140.8 880.0 140.2C882.8 139.0 891.4 135.6 897.2 133.4C901.9 131.7 906.5 129.9 915.5 126.4C919.4 124.9 923.6 123.4 925.0 122.9C926.4 122.5 930.0 121.2 933.0 120.0C940.0 117.3 953.8 112.1 957.0 111.0C958.4 110.5 962.0 109.2 965.0 108.0C968.0 106.8 971.6 105.5 973.0 105.0C974.4 104.5 978.0 103.2 981.0 102.0C988.4 99.2 999.6 95.1 1004.5 93.5C1006.7 92.7 1011.0 91.2 1014.0 90.0C1017.0 88.8 1020.6 87.5 1022.0 87.0C1023.4 86.5 1027.0 85.2 1030.0 84.0C1033.0 82.9 1038.7 80.8 1042.5 79.5C1046.3 78.2 1052.0 76.2 1055.0 75.0C1066.5 70.6 1068.6 69.8 1071.5 69.0C1073.2 68.6 1077.0 67.2 1080.0 66.0C1083.0 64.9 1087.4 63.2 1089.7 62.4C1092.0 61.6 1097.6 59.6 1102.2 57.9C1106.8 56.3 1113.7 53.8 1117.5 52.5C1121.3 51.2 1126.5 49.3 1129.0 48.4C1138.6 44.9 1161.7 36.8 1164.5 36.0C1166.2 35.6 1170.0 34.2 1173.0 33.0C1176.0 31.8 1179.8 30.5 1181.5 30.0C1183.2 29.5 1186.1 28.6 1188.0 27.9C1189.9 27.3 1193.1 26.2 1195.0 25.5C1196.9 24.8 1200.1 23.7 1202.0 23.1C1203.9 22.4 1206.8 21.5 1208.5 21.0C1211.3 20.2 1213.8 19.4 1222.0 16.5C1223.9 15.8 1228.2 14.4 1231.5 13.5C1234.8 12.5 1239.3 11.1 1241.5 10.4C1255.2 6.2 1265.9 4.3 1285.0 3.0C1292.4 2.4 1301.7 1.6 1305.5 1.0C1313.3 -0.0 1434.3 -0.4 1435.3 0.7C1435.7 1.0 1439.5 1.4 1443.7 1.6C1466.4 2.3 1512.5 5.1 1531.4 7.0C1543.6 8.2 1568.3 11.8 1573.0 13.0C1589.6 17.3 1623.5 18.9 1706.5 19.4C1743.3 19.6 1777.1 20.1 1781.5 20.4C1788.3 21.0 1801.6 23.1 1823.5 27.1C1835.8 29.3 1851.9 32.2 1856.5 33.0C1859.2 33.5 1866.7 34.8 1873.0 36.0C1879.3 37.1 1887.0 38.5 1890.0 39.0C1893.0 39.5 1900.5 40.9 1906.5 42.0C1912.5 43.1 1920.0 44.5 1923.0 45.0C1926.0 45.5 1933.5 46.8 1939.5 48.0C1945.5 49.1 1953.0 50.5 1956.0 51.0C1959.0 51.5 1967.8 53.0 1975.5 54.4C1983.2 55.8 1993.5 57.7 1998.5 58.6C2003.5 59.4 2010.7 60.8 2014.5 61.5C2018.3 62.2 2025.8 63.6 2031.0 64.5C2036.2 65.3 2043.7 66.7 2047.5 67.5C2051.3 68.2 2058.8 69.6 2064.0 70.5C2086.1 74.2 2100.5 77.0 2110.5 79.7C2121.1 82.5 2136.3 86.8 2141.0 88.5C2142.9 89.2 2146.1 90.3 2148.0 90.9C2149.9 91.6 2152.8 92.6 2154.5 93.0C2161.6 95.1 2182.7 102.9 2203.0 111.2C2207.1 112.8 2211.4 114.6 2212.5 115.0C2214.9 116.0 2223.4 119.6 2227.5 121.5C2229.2 122.2 2232.5 123.7 2235.0 124.8C2248.4 130.8 2257.7 135.2 2278.5 145.7C2291.2 152.0 2302.2 157.6 2303.0 158.0C2303.8 158.5 2308.6 161.2 2313.5 163.9C2318.4 166.6 2324.1 169.7 2326.0 170.9C2327.9 172.0 2330.4 173.4 2331.5 173.9C2332.6 174.4 2335.2 176.0 2337.3 177.4C2339.4 178.8 2341.3 180.0 2341.6 180.0C2341.9 180.0 2343.3 180.8 2344.8 181.9C2346.3 182.9 2351.8 186.6 2357.0 190.0C2367.6 197.0 2382.0 208.1 2382.0 209.3C2382.0 209.7 2390.2 216.1 2400.2 223.6C2418.6 237.2 2420.1 238.3 2436.5 250.1C2447.3 257.9 2481.4 281.5 2503.5 296.5C2545.3 324.8 2560.5 336.6 2580.4 356.0C2607.5 382.4 2635.1 418.9 2673.7 479.5C2696.4 515.1 2705.0 530.0 2717.3 554.5C2724.2 568.4 2726.5 573.2 2737.8 598.0C2739.4 601.6 2743.1 610.1 2746.0 617.0C2748.9 623.9 2751.8 630.9 2752.5 632.5C2753.3 634.1 2755.5 639.5 2757.5 644.5C2759.5 649.5 2761.5 654.4 2761.9 655.5C2762.4 656.6 2763.4 659.3 2764.3 661.5C2765.1 663.7 2766.8 668.0 2768.1 671.0C2770.7 677.5 2773.8 685.5 2775.0 689.0C2775.5 690.4 2776.8 694.0 2778.0 697.0C2779.2 700.0 2780.5 703.6 2781.0 705.0C2781.5 706.4 2782.8 710.0 2784.0 713.0C2785.2 716.0 2786.5 719.6 2787.0 721.0C2787.5 722.4 2788.8 726.0 2790.0 729.0C2791.1 732.0 2793.2 737.6 2794.5 741.5C2795.8 745.4 2798.5 753.0 2800.5 758.5C2802.5 764.0 2804.5 769.9 2805.0 771.5C2805.4 773.1 2806.8 777.0 2808.0 780.0C2809.2 783.0 2810.6 786.9 2811.1 788.5C2812.0 791.9 2837.5 868.6 2839.5 874.0C2840.2 875.9 2841.5 880.2 2842.5 883.5C2843.4 886.8 2844.8 891.1 2845.5 893.0C2846.2 894.9 2848.0 900.5 2849.5 905.5C2851.0 910.5 2853.0 917.0 2854.0 920.0C2855.0 923.0 2856.5 928.0 2857.4 931.0C2858.3 934.0 2860.4 940.8 2862.0 946.0C2863.6 951.2 2865.7 958.0 2866.6 961.0C2867.5 964.0 2868.8 968.3 2869.5 970.5C2870.7 974.7 2873.3 983.1 2875.6 991.2C2876.4 993.9 2877.6 998.1 2878.4 1000.8C2879.1 1003.4 2880.5 1008.0 2881.4 1011.0C2884.2 1020.7 2888.7 1036.3 2890.5 1043.0C2891.5 1046.6 2892.8 1051.3 2893.5 1053.5C2894.2 1055.7 2895.6 1060.4 2896.5 1064.0C2897.5 1067.6 2898.8 1072.5 2899.5 1075.0C2901.4 1081.7 2903.6 1089.7 2905.5 1097.0C2906.5 1100.6 2907.8 1105.5 2908.5 1108.0C2909.9 1112.7 2911.1 1117.2 2916.0 1136.0C2917.6 1142.3 2919.7 1150.1 2920.5 1153.2C2922.0 1158.9 2923.5 1165.1 2926.4 1176.8C2928.5 1185.3 2930.7 1193.8 2932.4 1200.5C2934.5 1209.0 2939.8 1231.2 2941.6 1239.5C2942.5 1243.3 2943.8 1249.2 2944.5 1252.5C2949.8 1276.4 2951.9 1286.4 2956.4 1309.5C2961.3 1334.6 2964.6 1358.4 2965.4 1373.2C2965.5 1375.8 2965.9 1378.2 2966.3 1378.6C2967.3 1379.6 2967.0 1479.0 2965.9 1494.5C2965.4 1501.7 2964.6 1519.0 2964.1 1533.0C2962.5 1575.4 2962.0 1586.8 2961.0 1603.0C2960.5 1611.5 2959.8 1623.7 2959.5 1630.0C2959.2 1636.3 2958.5 1648.2 2958.0 1656.5C2957.5 1664.8 2956.8 1675.8 2956.5 1681.0C2956.2 1686.2 2955.5 1697.2 2954.9 1705.5C2954.4 1713.8 2953.7 1723.9 2953.4 1728.0C2953.2 1732.1 2952.3 1744.3 2951.5 1755.0C2950.7 1765.7 2949.8 1778.3 2949.5 1783.0C2949.2 1787.7 2948.7 1794.4 2948.4 1798.0C2947.7 1806.4 2947.2 1812.6 2946.6 1822.5C2946.0 1830.6 2945.3 1839.4 2944.5 1848.5C2943.8 1855.2 2942.3 1874.4 2940.5 1897.0C2939.7 1907.2 2938.3 1922.5 2937.5 1931.0C2936.7 1939.5 2935.1 1956.6 2934.0 1969.0C2932.9 1981.4 2931.6 1995.5 2931.0 2000.5C2930.5 2005.5 2929.4 2016.5 2928.6 2025.0C2925.3 2058.1 2921.0 2099.6 2920.5 2102.5C2920.3 2104.2 2919.6 2110.4 2919.0 2116.5C2918.4 2122.6 2917.7 2128.6 2917.5 2130.0C2917.3 2131.4 2916.9 2135.2 2916.5 2138.5C2916.2 2141.8 2915.3 2149.4 2914.5 2155.5C2913.7 2161.6 2912.4 2172.3 2911.5 2179.5C2907.8 2209.0 2906.9 2216.5 2904.0 2237.5C2894.5 2306.6 2883.1 2369.1 2875.6 2393.5C2874.9 2395.7 2873.6 2400.0 2872.7 2403.0C2869.8 2413.2 2867.7 2420.5 2866.4 2424.5C2865.8 2426.7 2864.4 2431.4 2863.5 2435.0C2862.5 2438.6 2861.2 2443.5 2860.5 2446.0C2859.8 2448.5 2858.5 2453.0 2857.6 2456.0C2856.8 2459.0 2855.4 2463.8 2854.7 2466.5C2853.9 2469.2 2852.5 2474.4 2851.5 2478.0C2850.5 2481.6 2849.2 2486.5 2848.5 2489.0C2847.8 2491.5 2846.5 2496.4 2845.5 2500.0C2844.5 2503.6 2843.2 2508.5 2842.5 2511.0C2841.8 2513.5 2840.5 2518.4 2839.5 2522.0C2838.5 2525.6 2837.2 2530.5 2836.5 2533.0C2835.8 2535.5 2834.5 2540.4 2833.6 2544.0C2832.6 2547.6 2831.3 2552.5 2830.5 2555.0C2829.8 2557.5 2828.5 2562.4 2827.5 2566.0C2824.5 2577.5 2822.6 2584.5 2818.6 2599.0C2817.1 2604.5 2812.4 2621.9 2811.0 2627.5C2810.6 2629.2 2809.2 2634.1 2808.0 2638.5C2806.8 2642.9 2805.4 2647.8 2805.0 2649.5C2804.6 2651.2 2803.2 2656.1 2802.0 2660.5C2797.5 2676.8 2797.0 2678.6 2796.5 2681.0C2795.9 2683.5 2794.0 2690.3 2791.5 2699.0C2790.8 2701.5 2789.5 2706.4 2788.5 2710.0C2786.6 2717.3 2784.4 2725.3 2782.5 2732.0C2781.8 2734.5 2780.5 2739.4 2779.5 2743.0C2777.6 2750.3 2775.4 2758.3 2773.5 2765.0C2772.8 2767.5 2771.4 2772.4 2770.5 2776.0C2769.5 2779.6 2768.2 2784.5 2767.5 2787.0C2766.8 2789.5 2765.5 2794.4 2764.5 2798.0C2763.6 2801.6 2762.2 2806.5 2761.5 2809.0C2760.8 2811.5 2759.5 2816.0 2758.6 2819.0C2757.8 2822.0 2756.4 2826.8 2755.7 2829.5C2754.9 2832.2 2753.5 2837.2 2752.6 2840.5C2751.7 2843.8 2749.8 2850.6 2748.4 2855.5C2746.9 2860.4 2745.4 2866.1 2745.0 2868.0C2744.5 2869.9 2743.2 2874.7 2742.0 2878.5C2740.8 2882.3 2739.5 2887.1 2739.0 2889.0C2738.6 2890.9 2737.8 2893.8 2737.2 2895.5C2736.7 2897.2 2735.5 2901.4 2734.5 2905.0C2733.6 2908.6 2732.2 2913.3 2731.6 2915.5C2730.3 2919.5 2728.4 2926.2 2725.4 2936.8C2724.5 2939.9 2723.2 2944.3 2722.5 2946.5C2721.8 2948.7 2720.5 2953.4 2719.5 2957.0C2718.5 2960.6 2717.2 2965.3 2716.5 2967.5C2715.8 2969.7 2714.4 2974.2 2713.5 2977.5C2712.5 2980.8 2711.2 2985.3 2710.5 2987.5C2709.9 2989.7 2708.5 2994.2 2707.5 2997.5C2706.6 3000.8 2705.2 3005.3 2704.5 3007.5C2703.9 3009.7 2702.5 3014.2 2701.5 3017.5C2700.5 3020.8 2699.2 3025.3 2698.5 3027.5C2697.8 3029.7 2696.5 3034.0 2695.6 3037.0C2694.7 3040.0 2692.7 3046.6 2691.1 3051.5C2689.6 3056.4 2686.8 3065.2 2685.0 3071.0C2683.3 3076.8 2681.2 3083.1 2680.5 3085.0C2679.8 3086.9 2678.4 3091.2 2677.5 3094.5C2676.5 3097.8 2675.2 3102.1 2674.5 3104.0C2673.8 3105.9 2672.7 3109.1 2672.1 3111.0C2671.4 3112.9 2670.5 3115.8 2670.0 3117.5C2669.5 3119.2 2668.2 3123.0 2667.0 3126.0C2665.8 3129.0 2664.5 3132.8 2664.0 3134.5C2663.6 3136.2 2662.8 3138.6 2662.2 3140.0C2661.6 3141.4 2659.7 3146.6 2658.0 3151.5C2656.3 3156.4 2654.2 3162.2 2653.4 3164.2C2652.6 3166.3 2651.3 3169.9 2650.4 3172.2C2649.5 3174.6 2648.4 3177.4 2647.9 3178.5C2647.5 3179.6 2646.1 3183.0 2644.9 3186.0C2641.3 3195.1 2639.3 3199.5 2627.8 3223.0C2609.7 3259.9 2604.5 3270.7 2596.6 3287.2C2589.1 3302.9 2579.2 3323.4 2568.0 3346.5C2558.2 3366.9 2498.2 3487.0 2493.1 3496.5C2490.5 3501.4 2485.3 3511.1 2481.7 3518.0C2478.1 3524.9 2474.0 3532.5 2472.6 3535.0C2471.2 3537.5 2468.9 3541.8 2467.5 3544.5C2466.1 3547.2 2464.5 3550.2 2464.0 3551.0C2462.8 3552.9 2451.6 3573.1 2450.6 3575.1C2450.2 3575.9 2449.4 3577.4 2448.7 3578.5C2448.0 3579.6 2445.7 3583.6 2443.5 3587.5C2441.3 3591.3 2439.1 3595.2 2438.5 3596.1C2437.9 3597.0 2436.3 3599.9 2434.7 3602.6C2429.1 3612.5 2426.7 3616.6 2423.9 3620.8C2422.3 3623.2 2421.0 3625.3 2421.0 3625.6C2421.0 3625.9 2419.5 3628.5 2417.6 3631.3C2415.8 3634.2 2409.7 3643.7 2404.0 3652.5C2390.9 3673.1 2377.5 3691.8 2363.0 3709.9C2342.0 3736.3 2331.2 3746.3 2305.0 3763.7C2290.3 3773.5 2272.2 3785.0 2259.5 3792.7C2240.5 3804.2 2233.3 3808.5 2231.6 3809.4C2229.5 3810.5 2223.2 3814.4 2219.5 3816.8C2218.4 3817.4 2216.8 3818.3 2216.0 3818.7C2215.2 3819.1 2212.7 3820.5 2210.6 3821.8C2205.9 3824.7 2132.0 3867.0 2131.6 3867.0C2131.4 3867.0 2125.3 3870.4 2118.0 3874.5C2110.7 3878.6 2104.6 3882.0 2104.5 3882.0C2104.4 3882.0 2099.8 3884.5 2094.4 3887.6C2088.9 3890.7 2083.6 3893.6 2082.5 3894.1C2081.4 3894.6 2078.7 3896.1 2076.5 3897.3C2072.4 3899.7 2061.7 3905.5 2050.0 3911.8C2046.4 3913.7 2041.2 3916.5 2038.5 3918.0C2017.6 3929.4 1966.0 3956.7 1948.5 3965.6C1943.5 3968.1 1932.5 3973.8 1924.0 3978.2C1904.7 3988.2 1846.0 4017.5 1828.0 4026.3C1802.9 4038.4 1783.5 4047.7 1777.0 4050.8C1773.4 4052.4 1767.6 4055.1 1764.0 4056.8C1752.2 4062.3 1743.3 4066.3 1729.0 4072.7C1727.1 4073.5 1724.8 4074.6 1723.9 4075.0C1723.0 4075.5 1717.8 4077.7 1712.4 4080.0C1707.0 4082.3 1700.7 4085.1 1698.5 4086.0C1693.9 4088.1 1673.0 4096.8 1662.2 4101.1C1658.3 4102.7 1651.5 4105.4 1647.2 4107.1C1643.0 4108.8 1637.7 4110.9 1635.5 4111.7C1633.3 4112.5 1630.4 4113.7 1629.0 4114.2C1626.3 4115.3 1599.2 4124.2 1592.0 4126.4C1574.0 4131.9 1560.2 4134.6 1544.5 4135.7C1536.2 4136.3 1401.5 4137.2 1401.0 4136.7ZM1380.5 3206.4C1391.6 3205.3 1420.1 3198.8 1436.5 3193.5C1438.7 3192.8 1443.2 3191.5 1446.5 3190.5C1449.8 3189.5 1453.6 3188.3 1455.0 3187.7C1456.4 3187.2 1458.8 3186.4 1460.5 3186.0C1463.5 3185.2 1467.4 3183.9 1474.0 3181.4C1475.9 3180.7 1481.5 3178.7 1486.5 3177.0C1491.5 3175.3 1497.2 3173.2 1499.2 3172.4C1509.5 3168.5 1511.7 3167.6 1514.7 3166.4C1516.4 3165.6 1518.2 3165.0 1518.8 3165.0C1519.3 3165.0 1522.8 3163.7 1526.6 3162.1C1530.4 3160.5 1537.1 3157.8 1541.5 3156.0C1545.9 3154.2 1550.8 3152.2 1552.5 3151.5C1554.2 3150.8 1556.6 3149.7 1558.0 3149.2C1568.7 3144.7 1608.7 3127.6 1609.9 3127.0C1610.8 3126.6 1613.1 3125.6 1615.0 3124.7C1635.3 3115.7 1653.8 3107.3 1672.0 3098.8C1676.7 3096.6 1684.3 3093.0 1689.0 3090.8C1701.1 3085.2 1775.7 3047.9 1786.5 3042.2C1802.7 3033.5 1815.4 3026.7 1819.5 3024.3C1821.7 3023.1 1824.2 3021.7 1825.0 3021.3C1828.6 3019.7 1860.5 3001.1 1872.0 2994.0C1892.6 2981.2 1904.0 2972.0 1915.0 2959.7C1936.8 2934.9 1965.8 2894.3 2002.2 2837.0C2012.6 2820.6 2030.3 2791.8 2034.9 2783.7C2036.2 2781.4 2038.6 2777.6 2040.1 2775.2C2041.7 2772.8 2043.0 2770.7 2043.0 2770.6C2043.0 2770.4 2047.0 2763.5 2051.8 2755.4C2056.7 2747.2 2060.9 2739.8 2061.3 2739.0C2061.7 2738.2 2062.4 2736.8 2063.0 2736.0C2064.3 2734.0 2078.4 2708.9 2079.3 2707.0C2079.7 2706.2 2080.8 2704.2 2081.8 2702.5C2084.8 2697.6 2091.9 2684.6 2101.6 2666.5C2104.5 2661.0 2108.9 2652.7 2111.4 2648.0C2117.2 2637.2 2140.6 2590.2 2145.8 2579.0C2153.6 2562.2 2155.3 2558.5 2158.7 2550.6C2160.6 2546.1 2163.7 2538.4 2165.6 2533.5C2167.5 2528.6 2169.6 2523.4 2170.1 2522.0C2171.1 2519.7 2173.3 2513.0 2176.5 2503.0C2177.2 2500.5 2178.6 2495.6 2179.5 2492.0C2180.4 2488.4 2181.7 2483.0 2182.5 2480.0C2184.4 2472.5 2186.6 2462.9 2188.4 2454.5C2189.2 2450.7 2190.5 2444.3 2191.3 2440.5C2194.7 2424.6 2196.2 2416.7 2200.5 2393.5C2201.4 2388.6 2202.7 2381.3 2203.5 2377.5C2205.2 2368.6 2208.7 2348.0 2212.4 2325.2C2213.2 2320.4 2214.6 2312.4 2215.4 2307.5C2216.3 2302.6 2217.9 2292.0 2219.0 2284.0C2220.2 2276.0 2221.3 2268.8 2221.5 2268.0C2221.8 2267.1 2222.4 2263.3 2222.9 2259.5C2223.4 2255.6 2225.7 2239.7 2227.9 2224.0C2235.8 2168.0 2239.7 2136.9 2243.5 2100.0C2244.4 2092.0 2245.3 2083.9 2245.6 2081.9C2246.5 2075.3 2250.4 2031.2 2251.4 2015.0C2255.7 1952.7 2255.6 1934.0 2251.1 1897.0C2250.5 1892.3 2249.3 1882.2 2248.5 1874.5C2247.6 1866.8 2246.3 1855.5 2245.5 1849.5C2244.7 1843.5 2243.4 1832.0 2242.5 1824.0C2240.4 1804.2 2238.3 1785.8 2236.5 1771.5C2235.7 1764.9 2234.4 1753.4 2233.5 1746.0C2232.7 1738.6 2231.3 1727.1 2230.5 1720.5C2229.7 1713.9 2228.4 1702.2 2227.5 1694.5C2226.6 1686.8 2225.3 1675.5 2224.5 1669.5C2222.1 1650.4 2220.1 1634.3 2217.0 1608.0C2213.4 1577.1 2212.7 1571.6 2204.5 1508.5C2199.4 1469.5 2192.9 1423.4 2191.5 1417.0C2190.2 1410.7 2188.9 1404.0 2185.6 1386.0C2184.8 1381.3 2183.4 1372.5 2182.5 1366.5C2181.6 1360.5 2180.4 1352.8 2179.8 1349.5C2179.2 1346.2 2178.4 1340.6 2178.0 1337.0C2177.0 1328.4 2169.4 1276.8 2167.6 1266.0C2166.8 1261.3 2165.4 1253.0 2164.5 1247.5C2162.9 1237.8 2161.8 1231.6 2158.5 1212.0C2154.9 1191.0 2148.4 1159.7 2143.4 1139.8C2138.6 1120.5 2136.6 1113.0 2134.4 1106.5C2133.6 1104.2 2133.0 1101.7 2133.0 1100.8C2133.0 1099.8 2132.4 1097.6 2131.6 1095.8C2130.9 1094.0 2128.8 1088.0 2127.1 1082.5C2125.3 1077.0 2123.3 1070.9 2122.5 1069.0C2120.0 1062.4 2114.8 1049.5 2113.5 1046.5C2112.7 1044.8 2111.1 1041.2 2110.0 1038.5C2103.6 1023.8 2092.6 1004.6 2082.9 991.3C2072.0 976.4 2020.1 922.8 1992.0 897.5C1969.2 877.0 1956.1 866.5 1941.0 856.6C1933.6 851.7 1920.3 844.2 1914.7 841.7C1912.7 840.8 1909.5 839.4 1907.7 838.6C1906.0 837.8 1900.5 835.8 1895.5 834.2C1875.8 827.8 1855.5 824.7 1819.0 822.5C1805.5 821.7 1792.6 820.9 1785.5 820.4C1781.7 820.2 1775.3 819.8 1771.5 819.5C1750.7 818.2 1724.8 815.5 1719.0 814.1C1717.1 813.6 1712.1 812.9 1707.9 812.6C1703.7 812.2 1699.2 811.7 1697.9 811.5C1695.5 811.0 1692.3 810.7 1669.0 809.5C1659.2 809.0 1622.2 810.2 1611.0 811.5C1609.1 811.7 1603.9 812.1 1599.5 812.5C1584.5 813.6 1533.9 820.2 1514.8 823.5C1509.9 824.3 1501.8 825.7 1496.8 826.6C1479.7 829.5 1438.3 837.5 1411.5 843.1C1406.6 844.1 1385.4 849.5 1380.8 850.8C1377.2 851.9 1370.8 853.8 1361.5 856.5C1358.2 857.5 1353.9 858.8 1352.0 859.5C1350.1 860.2 1346.9 861.3 1345.0 861.9C1343.1 862.6 1340.2 863.5 1338.5 864.0C1334.3 865.1 1326.6 867.9 1309.2 874.4C1289.7 881.7 1259.1 895.8 1243.5 904.5C1240.2 906.4 1236.6 908.3 1235.5 908.9C1234.4 909.4 1231.8 911.0 1229.7 912.4C1227.6 913.8 1225.7 915.0 1225.5 915.0C1225.2 915.0 1219.7 918.6 1213.3 923.0C1172.2 950.8 1126.0 1000.8 1070.9 1077.2C1066.3 1083.6 1059.8 1092.6 1056.5 1097.1C1038.1 1122.5 1032.0 1131.4 1026.5 1140.8C1025.9 1141.7 1024.3 1144.3 1022.9 1146.5C1021.5 1148.7 1018.8 1153.1 1017.1 1156.4C1013.1 1163.4 1008.3 1171.9 1007.0 1174.0C1002.6 1181.1 977.2 1232.3 969.7 1249.0C968.3 1252.0 965.9 1257.4 964.2 1261.0C962.6 1264.6 958.0 1275.2 954.1 1284.5C950.1 1293.8 946.3 1302.8 945.5 1304.5C944.2 1307.4 937.2 1325.1 928.3 1348.0C925.9 1354.3 923.3 1361.1 922.5 1363.0C921.7 1364.9 919.7 1370.5 918.0 1375.5C916.3 1380.5 914.2 1386.2 913.4 1388.2C909.9 1397.6 908.8 1400.8 899.0 1430.5C894.6 1443.7 890.5 1455.8 889.9 1457.5C889.3 1459.2 888.4 1462.1 888.0 1464.0C887.5 1465.9 885.3 1473.6 883.1 1481.0C878.9 1494.8 877.5 1499.9 874.6 1510.8C871.3 1523.5 870.1 1528.7 868.5 1538.0C867.6 1543.2 866.2 1550.9 865.5 1555.0C864.7 1559.1 863.4 1566.8 862.5 1572.0C861.6 1577.2 860.3 1584.7 859.6 1588.5C858.8 1592.3 857.5 1599.5 856.7 1604.5C854.2 1618.9 852.1 1630.9 850.5 1639.5C849.7 1643.9 848.3 1651.5 847.5 1656.5C846.6 1661.5 845.3 1668.9 844.6 1673.0C841.4 1690.1 840.0 1698.0 838.5 1707.0C837.7 1712.2 836.5 1718.5 836.0 1721.0C835.0 1725.2 833.2 1735.8 831.0 1749.0C830.5 1752.0 829.0 1760.8 827.6 1768.5C826.2 1776.2 824.3 1786.8 823.4 1792.0C822.5 1797.2 821.2 1804.7 820.5 1808.5C818.3 1820.0 816.2 1831.9 814.5 1842.0C813.7 1847.2 812.5 1853.5 812.0 1856.0C811.1 1860.1 810.2 1865.1 806.8 1885.0C805.5 1893.0 805.4 1894.3 804.6 1910.5C804.2 1917.7 803.6 1929.6 803.1 1937.0C802.6 1944.4 802.2 1951.4 802.2 1952.5C802.3 1956.3 801.0 1980.5 800.5 1985.5C800.2 1988.2 799.8 1996.1 799.5 2003.0C799.2 2009.9 798.5 2023.8 797.9 2034.0C796.6 2056.9 795.8 2072.0 795.9 2074.0C795.9 2074.8 795.4 2083.2 794.9 2092.5C794.0 2108.4 792.8 2133.6 792.8 2137.0C792.8 2137.8 792.2 2152.4 791.4 2169.5C790.7 2186.6 790.0 2203.2 790.0 2206.5C789.9 2230.2 790.0 2290.0 790.1 2292.0C790.5 2300.0 793.2 2333.6 795.0 2352.5C797.7 2383.0 801.7 2419.6 804.5 2440.0C805.4 2446.3 806.5 2454.9 807.0 2459.0C808.3 2469.9 816.9 2529.6 818.0 2535.5C818.5 2538.2 819.7 2545.4 820.5 2551.5C821.4 2557.6 822.7 2565.7 823.5 2569.5C824.2 2573.3 825.6 2581.0 826.5 2586.5C827.4 2592.0 828.8 2599.4 829.5 2603.0C830.2 2606.6 831.6 2613.3 832.5 2618.0C833.4 2622.7 834.7 2629.2 835.5 2632.5C836.2 2635.8 837.5 2641.9 838.4 2646.0C843.2 2667.9 857.4 2713.8 871.6 2753.5C873.5 2759.0 875.5 2764.6 876.0 2766.0C876.5 2767.4 877.8 2771.0 879.0 2774.0C880.2 2777.0 881.5 2780.6 882.0 2782.0C882.5 2783.4 883.7 2786.8 884.8 2789.5C890.0 2803.0 894.2 2813.7 895.0 2815.5C895.5 2816.6 896.9 2820.0 898.0 2823.0C899.2 2826.0 900.6 2829.4 901.1 2830.5C901.5 2831.6 904.4 2838.6 907.5 2846.0C914.3 2862.3 915.0 2864.1 916.0 2866.1C916.5 2867.0 918.7 2872.2 921.0 2877.6C935.1 2910.7 961.4 2964.1 975.1 2987.5C976.1 2989.2 977.8 2992.3 979.0 2994.4C986.6 3008.3 999.8 3027.9 1011.1 3042.1C1018.1 3050.7 1022.0 3054.5 1037.6 3067.6C1051.6 3079.2 1074.0 3094.0 1101.2 3109.5C1108.5 3113.7 1115.2 3117.5 1116.0 3118.0C1119.0 3119.9 1174.7 3147.6 1181.0 3150.3C1184.6 3151.9 1188.2 3153.6 1189.1 3154.0C1189.9 3154.4 1196.7 3157.3 1204.1 3160.5C1211.5 3163.6 1218.4 3166.5 1219.5 3166.9C1220.6 3167.4 1224.0 3168.8 1227.0 3170.0C1230.0 3171.1 1233.4 3172.5 1234.5 3172.9C1235.6 3173.4 1238.4 3174.5 1240.8 3175.4C1243.1 3176.3 1246.7 3177.6 1248.8 3178.4C1254.3 3180.6 1268.2 3185.4 1279.0 3188.9C1284.2 3190.6 1290.1 3192.5 1292.0 3193.2C1293.9 3193.8 1296.8 3194.7 1298.5 3195.1C1300.2 3195.5 1307.6 3197.4 1315.0 3199.3C1344.1 3206.9 1359.3 3208.5 1380.5 3206.4Z"/></symbol>
+  <symbol id="lac-lg-word" viewBox="0 0 366.0 100"><path fill="currentColor" fill-rule="evenodd" transform="scale(0.126904)" d="M153.5 785.2C138.3 778.0 121.3 742.8 99.1 672.5C94.7 658.8 87.7 633.0 80.6 604.3C75.6 584.4 73.6 576.3 69.4 558.2C68.7 554.8 67.3 549.2 66.5 545.8C65.7 542.3 64.6 537.2 64.0 534.5C63.5 531.8 62.1 525.2 61.0 520.0C59.9 514.8 57.8 504.9 56.5 498.0C55.1 491.1 53.6 483.2 53.0 480.5C52.5 477.8 51.4 470.6 50.6 464.5C49.8 458.4 48.2 448.8 47.0 443.0C44.7 431.4 41.8 415.5 39.5 401.0C38.7 395.8 37.5 389.0 37.0 386.0C36.5 383.0 35.6 377.1 35.0 373.0C34.4 368.9 33.5 363.0 33.0 360.0C30.6 345.3 24.2 295.4 21.0 267.0C20.4 261.8 19.5 254.3 19.0 250.5C18.5 246.7 17.6 238.8 17.0 233.0C16.4 227.2 15.5 218.7 15.0 214.0C12.4 189.8 9.4 158.8 7.0 132.5C6.4 125.9 5.5 116.0 5.0 110.5C4.5 105.0 3.6 94.4 3.0 87.0C2.4 79.6 1.6 71.2 1.2 68.5C-0.1 58.6 0.5 36.8 2.3 27.7C4.8 14.8 6.1 11.2 9.8 7.0C13.7 2.3 18.6 0.6 25.5 1.3C32.4 2.0 37.9 4.9 42.6 10.3C51.3 20.2 57.0 36.0 65.0 71.5C69.4 91.4 74.3 131.1 77.0 168.5C78.4 187.7 79.8 205.0 81.1 217.0C82.0 225.9 82.6 230.4 85.0 250.0C85.5 254.4 86.4 261.6 87.0 266.0C88.6 278.8 90.0 290.0 91.0 297.0C91.5 300.6 92.4 307.3 93.0 312.0C93.6 316.7 94.5 323.4 95.0 327.0C95.5 330.6 96.4 337.3 97.0 342.0C97.6 346.7 98.5 353.4 99.0 357.0C99.5 360.6 100.4 367.1 101.0 371.5C105.4 403.1 108.3 422.0 111.0 436.0C111.5 438.5 112.8 445.7 114.0 452.0C115.1 458.3 116.9 467.6 118.0 472.5C121.9 491.1 126.2 510.8 128.2 519.5C132.1 536.8 141.9 577.6 159.9 652.0C163.6 667.5 165.4 674.6 173.1 706.8C174.7 713.8 177.6 725.8 179.5 733.5C188.1 768.9 187.6 766.2 186.0 772.2C183.9 779.7 175.2 785.3 164.0 786.4C158.8 786.9 156.7 786.7 153.5 785.2ZM1065.0 752.9C1061.0 752.0 1053.9 750.3 1045.5 748.0C1040.1 746.6 1031.7 743.0 1023.0 738.3C998.9 725.4 978.6 703.6 965.9 677.2C960.2 665.3 959.0 662.1 956.6 652.0C946.4 608.9 954.0 537.2 973.5 492.5C974.3 490.9 975.8 487.1 977.0 484.1C981.8 471.9 995.8 443.0 1002.9 430.7C1009.6 419.1 1021.3 401.7 1028.0 393.5C1035.3 384.6 1061.5 359.0 1074.5 348.1C1085.7 338.8 1102.0 327.5 1109.2 324.2C1118.7 319.8 1130.7 322.0 1141.8 330.0C1151.0 336.6 1152.4 344.8 1146.3 356.5C1144.2 360.5 1135.3 369.7 1125.5 378.0C1114.0 387.6 1099.7 401.2 1091.7 410.0C1080.3 422.4 1063.4 445.8 1051.5 465.4C1041.0 482.7 1028.5 510.2 1022.4 529.0C1021.1 533.1 1019.6 537.9 1019.0 539.5C1017.3 544.8 1012.9 562.3 1011.9 568.0C1008.9 584.6 1008.0 593.7 1008.0 605.9C1008.1 623.5 1010.3 633.2 1017.1 644.8C1023.7 656.0 1040.2 670.0 1054.7 676.6C1067.2 682.4 1075.1 683.9 1091.6 684.0C1123.3 684.0 1151.5 676.6 1179.5 660.7C1218.7 638.6 1253.6 607.3 1290.3 561.4C1306.9 540.6 1314.2 534.8 1321.2 537.2C1325.8 538.7 1329.5 542.4 1330.9 546.9C1332.3 551.6 1332.4 571.9 1331.0 577.1C1330.5 579.3 1329.5 582.9 1328.9 585.2C1326.9 593.2 1323.7 603.5 1322.8 604.5C1322.4 605.0 1322.0 606.1 1322.0 607.0C1322.0 609.4 1318.4 613.9 1302.1 631.5C1273.6 662.4 1236.3 693.1 1202.5 713.7C1171.5 732.6 1153.0 741.4 1128.5 749.0C1126.8 749.5 1120.8 750.8 1115.1 751.9C1106.9 753.6 1101.2 754.0 1087.1 753.9C1077.4 753.8 1067.5 753.4 1065.0 752.9ZM2616.5 752.9C2601.7 749.8 2598.5 748.9 2587.5 744.7C2578.1 741.1 2565.2 733.8 2557.1 727.6C2534.9 710.5 2516.6 683.7 2508.9 657.0C2504.5 641.8 2503.6 632.6 2503.6 605.5C2503.7 576.8 2505.0 563.4 2510.2 539.0C2514.3 519.6 2521.3 498.3 2529.6 480.2C2530.9 477.3 2532.0 474.7 2532.0 474.4C2532.0 472.4 2551.2 435.1 2558.1 423.7C2570.8 402.7 2579.8 391.4 2598.6 373.0C2618.5 353.6 2631.7 342.3 2645.5 333.1C2658.7 324.2 2663.7 322.0 2670.3 322.0C2681.9 322.0 2695.5 329.3 2699.5 337.5C2701.5 341.9 2700.8 349.2 2697.8 355.6C2695.8 360.0 2684.3 371.5 2669.5 384.1C2649.3 401.3 2635.7 416.5 2618.4 441.0C2605.6 459.2 2591.0 484.6 2583.8 501.5C2582.9 503.7 2581.2 507.6 2580.1 510.3C2578.0 515.3 2571.2 535.3 2569.0 543.0C2568.3 545.5 2567.4 548.6 2566.9 550.0C2564.3 558.0 2560.6 579.3 2558.9 596.2C2557.9 605.7 2557.9 609.7 2559.0 616.7C2562.3 638.9 2570.9 653.5 2588.1 666.0C2606.7 679.5 2619.9 683.9 2642.6 684.0C2663.9 684.0 2680.6 681.1 2704.0 673.4C2717.4 668.9 2743.1 654.2 2762.8 639.6C2788.7 620.5 2815.9 593.2 2843.2 559.0C2852.7 547.1 2860.4 539.5 2865.1 537.6C2868.0 536.4 2869.4 536.3 2872.4 537.2C2877.2 538.7 2880.5 542.6 2882.4 549.4C2884.2 555.6 2884.4 562.7 2883.0 570.2C2880.3 584.0 2879.7 586.9 2877.8 593.0C2872.9 608.8 2871.9 610.8 2861.5 622.3C2823.4 665.0 2779.1 700.6 2732.6 725.9C2705.5 740.7 2689.2 747.1 2667.7 751.6C2657.6 753.6 2653.3 754.0 2638.2 753.9C2628.5 753.8 2618.7 753.4 2616.5 752.9ZM1551.0 752.0C1534.9 751.0 1518.9 748.8 1508.5 746.1C1506.3 745.6 1502.9 744.7 1501.0 744.2C1490.0 741.4 1480.2 734.3 1464.3 717.6C1446.8 699.2 1432.5 680.7 1428.0 670.5C1422.3 657.5 1418.4 647.5 1412.9 630.6C1406.3 610.8 1405.8 608.0 1401.9 569.0C1398.9 538.5 1397.9 523.1 1396.4 485.0C1395.8 468.7 1396.2 465.2 1401.4 439.5C1402.7 432.9 1405.0 421.2 1406.5 413.6C1410.0 395.6 1414.4 381.2 1420.4 367.6C1421.3 365.6 1422.6 362.5 1423.4 360.8C1433.8 336.6 1439.9 325.5 1447.3 317.3C1459.2 304.4 1490.9 281.6 1504.0 276.7C1508.1 275.1 1512.4 273.5 1513.5 273.0C1514.6 272.6 1517.1 271.7 1519.0 271.0C1520.9 270.3 1523.4 269.4 1524.5 269.0C1525.6 268.5 1530.8 266.7 1536.0 264.9C1545.4 261.7 1545.7 261.6 1563.0 261.8C1572.7 261.8 1582.6 262.4 1585.0 262.9C1587.5 263.5 1594.6 264.0 1600.8 264.0C1607.0 264.0 1614.0 264.4 1616.3 265.0C1618.6 265.5 1626.1 266.9 1633.0 268.0C1650.7 271.1 1651.4 271.3 1666.0 278.3C1671.2 280.8 1678.2 285.0 1681.5 287.6C1684.8 290.1 1690.7 294.4 1694.6 297.0C1706.2 304.9 1714.2 315.6 1723.0 335.3C1724.6 339.0 1726.0 342.5 1726.0 343.0C1726.0 343.6 1726.4 344.8 1727.0 345.8C1729.6 350.4 1739.2 382.3 1745.1 405.5C1748.3 418.3 1748.4 418.9 1748.2 439.0C1748.1 450.3 1747.6 464.9 1747.0 471.5C1746.4 478.1 1745.5 488.7 1744.9 495.0C1742.8 519.3 1740.3 536.7 1737.3 547.5C1736.0 552.5 1733.6 561.5 1732.0 567.5C1730.4 573.5 1727.7 583.5 1726.0 589.5C1724.3 595.5 1722.2 603.0 1721.4 606.0C1719.7 612.4 1719.3 613.4 1714.0 629.6C1707.0 650.9 1682.0 698.4 1673.9 705.7C1671.9 707.5 1655.4 718.0 1654.6 718.0C1654.5 718.0 1649.4 720.7 1643.4 724.1C1625.3 734.2 1600.9 746.0 1589.6 750.1C1583.4 752.4 1568.6 753.1 1551.0 752.0ZM633.0 732.8C619.8 730.6 597.6 724.6 589.5 721.1C588.4 720.6 585.7 719.4 583.5 718.5C539.3 699.7 502.9 668.0 485.8 633.5C483.9 629.6 481.5 624.4 480.5 621.8C479.5 619.1 478.2 617.0 477.4 617.0C475.9 617.0 468.3 627.0 461.0 638.7C450.7 655.3 434.8 679.4 429.2 686.9C421.1 697.8 404.8 714.2 397.5 719.0C388.2 725.0 381.0 727.4 371.5 727.5C364.7 727.5 362.6 727.1 357.9 724.7C348.4 720.1 340.3 709.6 331.5 690.6C325.0 676.4 317.5 650.1 315.0 632.0C314.3 627.3 313.4 621.3 312.9 618.7C311.7 612.5 311.7 592.8 312.9 585.9C313.4 582.9 314.4 577.4 315.0 573.5C318.7 551.5 324.9 523.5 330.1 506.0C331.8 500.2 333.5 494.1 334.0 492.5C335.0 488.6 341.8 468.1 342.9 465.5C343.4 464.4 344.8 460.8 346.0 457.5C348.1 451.7 348.9 449.6 350.9 444.8C351.4 443.5 352.7 440.5 353.6 438.0C357.2 429.2 373.7 397.3 379.7 387.8C387.0 376.2 398.4 361.0 405.1 353.6C410.6 347.6 422.1 338.6 429.2 334.7C439.1 329.2 451.4 326.1 462.8 326.0C476.1 326.0 481.5 329.9 486.1 343.0C488.1 349.0 488.4 351.7 488.8 376.0C489.2 405.0 489.1 404.4 495.5 407.8C497.1 408.7 502.0 410.6 506.2 412.1C522.4 417.7 526.5 422.5 529.1 438.4C530.3 446.1 530.1 451.7 528.0 467.0C526.7 476.4 527.3 511.1 529.0 524.0C529.6 528.1 530.5 535.1 531.1 539.5C533.9 561.1 538.8 577.9 547.6 595.8C562.4 625.8 588.0 648.9 617.5 658.8C627.7 662.2 628.8 662.5 640.8 664.6C653.1 666.9 692.5 666.9 707.0 664.6C728.4 661.3 743.8 656.7 760.7 648.4C773.6 642.1 795.4 627.8 810.2 616.0C833.0 597.7 863.2 564.1 882.0 536.0C891.0 522.6 898.3 513.7 903.3 510.4C906.9 507.9 908.4 507.5 913.8 507.6C919.2 507.7 920.6 508.1 923.7 510.6C929.9 515.7 931.2 522.4 928.6 536.1C926.5 546.7 924.7 551.8 918.0 565.5C907.0 588.2 889.6 612.1 867.5 634.9C843.3 659.9 818.7 678.9 787.5 697.0C778.1 702.4 754.9 713.9 747.0 717.0C728.1 724.5 708.3 729.6 685.3 732.9C676.7 734.2 640.7 734.1 633.0 732.8ZM1858.1 719.2C1851.2 715.8 1843.0 707.9 1840.3 702.0C1838.6 698.2 1838.2 694.8 1837.7 680.5C1837.3 671.1 1836.6 656.1 1836.0 647.0C1835.5 637.9 1834.6 623.1 1834.0 614.0C1833.5 604.9 1832.6 590.1 1832.0 581.0C1828.6 527.8 1827.5 505.4 1826.0 461.0C1824.8 427.8 1825.4 380.1 1827.1 370.0C1829.4 356.2 1831.7 347.3 1834.4 342.2C1836.6 338.0 1847.0 328.5 1852.0 325.9C1858.3 322.8 1868.1 322.6 1871.1 325.6C1875.9 330.5 1876.0 331.2 1876.0 458.1C1876.0 558.9 1876.2 578.1 1877.5 586.6C1879.8 601.6 1881.6 608.0 1883.6 608.0C1884.3 608.0 1885.8 606.1 1886.9 603.8C1889.7 597.5 1897.0 579.2 1898.6 574.0C1899.4 571.5 1900.5 568.6 1901.0 567.5C1902.3 564.5 1906.6 550.8 1911.9 533.0C1913.0 529.4 1914.8 523.4 1915.9 519.5C1917.1 515.6 1918.5 510.7 1919.1 508.5C1919.7 506.3 1920.6 503.4 1921.0 502.0C1921.5 500.6 1922.8 496.1 1924.0 492.0C1925.2 487.9 1926.6 483.4 1927.0 482.0C1927.5 480.6 1928.8 476.1 1930.1 472.0C1931.3 467.9 1933.0 462.0 1934.0 459.0C1934.9 456.0 1936.8 450.1 1938.0 446.0C1941.7 433.8 1944.7 425.0 1948.0 416.0C1949.8 411.3 1951.5 406.4 1952.0 405.0C1953.9 398.8 1959.6 385.6 1963.7 377.5C1969.2 366.7 1976.0 359.1 1981.7 357.2C1984.0 356.4 1986.9 356.4 1991.6 357.2C2000.2 358.5 2005.8 360.9 2009.9 365.1C2013.7 368.9 2019.4 379.9 2020.4 385.6C2021.8 393.2 2024.2 408.4 2026.0 420.0C2026.6 424.1 2027.6 430.2 2028.1 433.5C2028.6 436.8 2029.4 442.6 2029.9 446.5C2036.9 502.1 2046.9 535.4 2064.5 562.0C2077.2 581.2 2100.8 601.9 2120.0 610.8C2135.2 617.9 2159.2 624.0 2171.4 624.0C2177.7 623.9 2184.9 622.5 2193.4 619.5C2196.1 618.6 2200.2 617.8 2202.5 617.7C2208.0 617.5 2210.7 619.9 2215.2 628.9C2221.3 641.3 2218.7 650.6 2205.2 665.1C2201.2 669.4 2194.9 674.8 2191.2 677.2C2184.7 681.4 2182.7 682.5 2176.7 684.9C2173.3 686.3 2158.3 686.3 2150.9 685.0C2132.6 681.8 2126.2 680.4 2115.0 677.4C2095.5 672.1 2083.8 667.1 2070.0 658.1C2053.9 647.7 2033.1 624.1 2018.0 599.0C2012.6 590.0 1998.0 561.3 1998.0 559.6C1998.0 559.3 1996.7 556.2 1995.2 552.8C1993.6 549.3 1990.9 542.7 1989.1 538.0C1987.3 533.3 1985.4 528.6 1985.0 527.5C1983.8 524.5 1976.6 504.7 1975.6 501.7C1974.8 499.2 1973.3 500.4 1972.5 504.3C1971.4 509.4 1957.0 561.4 1955.1 567.0C1954.6 568.4 1952.8 574.2 1951.0 580.0C1947.0 592.9 1938.2 619.8 1937.1 622.5C1936.6 623.6 1935.2 627.2 1933.9 630.5C1928.3 645.0 1916.2 667.6 1904.8 684.8C1896.7 696.9 1879.1 719.0 1876.1 720.8C1872.5 722.9 1864.1 722.2 1858.1 719.2ZM2370.2 710.7C2365.4 709.2 2357.3 701.6 2352.6 694.0C2348.7 687.9 2343.8 678.5 2339.2 668.0C2335.4 659.4 2327.8 637.3 2324.0 623.5C2321.5 614.6 2319.9 608.7 2318.0 601.5C2313.7 585.1 2300.8 545.3 2297.0 536.5C2296.1 534.5 2291.6 521.4 2285.8 504.5C2282.9 495.9 2279.8 485.9 2278.0 479.5C2274.0 465.5 2274.1 466.4 2275.5 456.3C2277.7 439.7 2283.2 426.6 2290.7 420.0C2294.7 416.5 2295.9 416.0 2300.2 416.0C2308.0 416.0 2314.9 420.4 2322.9 430.4C2334.8 445.3 2348.9 472.0 2359.9 500.5C2362.3 506.6 2364.6 512.4 2365.0 513.5C2365.9 515.6 2370.1 527.5 2372.5 534.5C2373.2 536.7 2375.2 543.2 2377.0 549.0C2378.7 554.8 2380.5 560.6 2381.0 562.0C2383.1 567.9 2394.4 608.5 2399.4 628.3C2405.8 653.7 2412.0 683.1 2412.0 688.4C2412.0 693.5 2409.7 697.4 2404.6 700.9C2396.3 706.6 2382.0 712.1 2376.0 711.9C2374.6 711.8 2372.0 711.3 2370.2 710.7ZM403.9 627.8C407.6 619.9 412.1 610.5 413.9 606.8C419.4 594.7 422.7 587.6 425.4 581.8C426.8 578.6 429.2 573.4 430.6 570.2C436.8 556.7 438.0 553.9 438.0 553.5C438.0 553.2 438.9 550.8 440.1 548.2C441.3 545.6 442.6 542.6 443.0 541.5C443.8 539.8 447.9 527.3 451.0 517.5C452.5 512.7 455.8 494.3 457.1 483.5C458.6 470.4 458.0 461.8 455.0 455.5C451.9 449.0 452.0 443.9 455.3 436.7C458.7 429.4 458.7 425.6 455.3 420.7C453.0 417.5 452.2 417.0 450.1 417.5C443.3 419.2 433.7 429.6 424.3 445.5C419.1 454.2 406.0 480.0 406.0 481.4C406.0 481.7 404.8 484.5 403.4 487.7C397.1 501.5 391.1 519.6 386.1 540.5C380.5 563.5 379.7 568.8 379.7 582.4C379.6 595.9 381.8 607.7 387.9 627.8C389.6 633.4 394.3 642.0 395.7 642.0C396.5 642.0 400.1 635.6 403.9 627.8ZM1566.0 640.6C1582.1 635.7 1617.2 618.8 1622.6 613.4C1628.5 607.5 1639.6 589.9 1647.9 573.4C1652.9 563.3 1655.2 557.3 1656.4 551.0C1658.1 541.9 1659.9 530.7 1661.0 522.5C1661.6 517.5 1662.5 510.5 1663.0 506.8C1664.2 498.4 1664.3 490.4 1663.1 482.6C1662.6 479.2 1661.7 472.0 1661.0 466.5C1659.4 451.6 1658.1 441.9 1655.9 427.5C1649.9 387.5 1648.4 383.5 1635.3 370.9C1630.7 366.5 1625.8 362.4 1624.2 361.8C1616.6 358.7 1587.9 357.0 1577.8 359.1C1555.2 363.7 1549.4 365.6 1540.7 371.4C1529.5 378.8 1514.1 401.6 1507.1 421.0C1506.4 422.9 1505.4 425.4 1505.0 426.5C1501.8 434.4 1499.6 443.8 1497.0 459.5C1496.3 463.4 1495.0 470.9 1493.9 476.4C1492.9 481.8 1492.0 488.5 1492.0 491.4C1492.0 494.2 1491.5 503.8 1490.8 512.6C1489.9 525.4 1489.9 531.2 1490.9 540.1C1494.6 574.4 1497.9 586.4 1510.3 612.0C1514.7 621.0 1521.6 627.6 1532.1 632.8C1542.8 638.1 1553.4 641.9 1558.0 641.9C1559.9 642.0 1563.5 641.4 1566.0 640.6ZM2270.5 235.5C2269.9 235.3 2266.8 234.4 2263.5 233.4C2252.9 230.2 2243.4 223.6 2238.6 216.0C2236.0 211.9 2234.0 204.7 2234.0 199.3C2234.0 192.9 2237.8 180.3 2241.7 173.2C2246.4 164.6 2255.9 155.2 2263.2 151.6C2269.4 148.6 2280.1 146.8 2286.5 147.6C2300.0 149.4 2327.4 157.5 2340.8 163.6C2343.7 164.9 2346.2 166.0 2346.5 166.0C2347.6 166.0 2359.9 173.6 2362.3 175.9C2365.7 179.0 2368.0 183.1 2368.0 186.0C2368.0 193.9 2318.3 228.5 2298.3 234.5C2294.0 235.8 2273.6 236.5 2270.5 235.5Z"/></symbol>
+  <symbol id="lac-lg-lockup" viewBox="0 0 288.0 100"><path fill="currentColor" fill-rule="evenodd" transform="scale(0.099800)" d="M2669.5 999.1C2660.4 994.0 2655.2 983.8 2653.0 966.3C2650.6 947.8 2656.5 927.1 2666.3 919.6C2679.9 909.2 2697.2 913.9 2704.5 930.1C2708.6 939.4 2710.4 953.7 2708.9 966.5C2707.1 982.1 2702.5 992.5 2695.2 997.2C2689.2 1001.1 2686.2 1002.0 2680.2 1001.9C2675.9 1001.9 2673.3 1001.2 2669.5 999.1ZM2588.7 999.3C2588.3 999.0 2588.0 997.6 2588.0 996.2C2588.0 994.4 2591.8 989.9 2602.3 979.1C2610.1 971.1 2618.3 962.1 2620.4 959.2C2627.9 948.8 2629.8 939.3 2625.9 931.3C2623.2 925.7 2619.8 924.0 2611.4 924.0C2605.8 924.0 2603.8 924.5 2599.3 927.0L2594.0 930.0L2592.3 926.6C2590.4 922.6 2591.2 921.0 2596.4 918.3C2609.2 911.7 2624.5 913.1 2632.7 921.6C2637.4 926.5 2639.3 931.8 2639.2 939.5C2639.1 950.6 2633.6 960.1 2617.8 976.5C2611.3 983.3 2606.0 989.0 2606.0 989.4C2606.0 989.7 2613.3 990.0 2622.3 990.0C2640.9 990.0 2642.4 990.5 2641.8 996.0L2641.5 999.5L2615.4 999.8C2601.1 999.9 2589.1 999.7 2588.7 999.3ZM2720.7 999.3C2720.3 999.0 2720.0 997.6 2720.0 996.2C2720.0 994.4 2723.8 989.9 2734.3 979.1C2742.1 971.1 2750.3 962.1 2752.4 959.2C2759.9 948.8 2761.8 939.3 2757.9 931.3C2755.2 925.7 2751.8 924.0 2743.4 924.0C2737.8 924.0 2735.8 924.5 2731.3 927.0L2726.0 930.0L2724.3 926.6C2722.4 922.6 2723.2 921.0 2728.4 918.3C2741.2 911.7 2756.5 913.1 2764.7 921.6C2769.4 926.5 2771.3 931.8 2771.2 939.5C2771.1 950.6 2765.6 960.1 2749.8 976.5C2743.3 983.3 2738.0 989.0 2738.0 989.4C2738.0 989.7 2745.3 990.0 2754.3 990.0C2772.9 990.0 2774.4 990.5 2773.8 996.0L2773.5 999.5L2747.4 999.8C2733.1 999.9 2721.1 999.7 2720.7 999.3ZM2820.5 998.8C2820.2 998.1 2819.9 992.8 2819.8 987.0L2819.5 976.5L2800.8 976.2L2782.0 976.0L2782.0 972.7C2782.0 970.4 2783.5 967.3 2786.8 962.5C2789.4 958.6 2796.9 947.6 2803.5 938.0C2810.0 928.4 2816.1 919.5 2816.9 918.3C2818.2 916.4 2819.5 916.1 2824.2 916.0L2830.0 916.0L2830.2 941.8L2830.5 967.5L2836.0 968.0L2841.5 968.5L2841.8 972.2L2842.1 976.0L2837.3 976.0C2834.6 976.0 2831.9 976.5 2831.2 977.2C2830.4 978.0 2830.0 982.1 2830.0 989.2L2830.0 1000.0L2825.5 1000.0C2822.8 1000.0 2820.8 999.5 2820.5 998.8ZM2684.2 993.0C2688.0 991.9 2692.4 987.5 2694.2 983.1C2699.2 970.8 2699.2 945.2 2694.2 932.9C2692.4 928.5 2688.0 924.1 2684.2 923.0C2681.1 922.2 2679.8 922.4 2676.0 924.3C2672.4 926.0 2671.0 927.6 2668.9 931.8C2665.2 939.3 2663.6 949.7 2664.3 962.7C2665.1 979.2 2668.8 988.6 2676.0 992.2C2680.1 994.3 2679.5 994.3 2684.2 993.0ZM179.0 975.4C174.1 974.4 166.5 971.7 165.8 970.6C164.9 969.2 165.9 964.9 167.4 963.2C168.4 962.2 169.6 962.3 173.6 964.1C177.3 965.8 180.6 966.3 187.1 966.4C195.0 966.5 195.9 966.3 199.3 963.7C205.7 958.8 207.5 952.6 204.6 945.6C203.0 941.6 196.9 937.3 188.5 934.0C180.3 930.8 175.9 927.9 171.7 923.0C167.5 918.0 165.9 912.0 167.1 905.4C169.7 891.8 183.7 884.1 201.5 886.7C205.6 887.3 210.1 888.5 211.4 889.4C213.8 890.9 213.8 891.2 212.5 894.2C211.0 897.8 210.2 898.0 201.5 896.0C198.7 895.4 194.1 895.2 191.0 895.6C186.3 896.1 184.9 896.8 181.8 900.1C178.6 903.4 178.0 904.8 178.0 908.3C178.0 914.2 182.2 919.1 190.8 923.0C203.1 928.7 205.8 930.2 209.3 933.1C217.3 939.7 219.7 952.3 214.9 961.7C212.1 967.1 205.8 972.4 200.2 974.0C196.0 975.3 182.8 976.1 179.0 975.4ZM1271.0 975.4C1266.1 974.4 1258.5 971.7 1257.8 970.6C1256.9 969.2 1257.9 964.9 1259.4 963.2C1260.4 962.2 1261.6 962.3 1265.6 964.1C1269.3 965.8 1272.6 966.3 1279.1 966.4C1287.0 966.5 1287.9 966.3 1291.3 963.7C1297.7 958.8 1299.5 952.6 1296.6 945.6C1295.0 941.6 1288.9 937.3 1280.5 934.0C1272.3 930.8 1267.9 927.9 1263.7 923.0C1259.5 918.0 1257.9 912.0 1259.1 905.4C1261.7 891.8 1275.7 884.1 1293.5 886.7C1297.6 887.3 1302.1 888.5 1303.4 889.4C1305.8 890.9 1305.8 891.2 1304.5 894.2C1303.0 897.8 1302.2 898.0 1293.5 896.0C1290.7 895.4 1286.1 895.2 1283.0 895.6C1278.3 896.1 1276.9 896.8 1273.8 900.1C1270.6 903.4 1270.0 904.8 1270.0 908.3C1270.0 914.2 1274.2 919.1 1282.8 923.0C1295.1 928.7 1297.8 930.2 1301.3 933.1C1309.3 939.7 1311.7 952.3 1306.9 961.7C1304.1 967.1 1297.8 972.4 1292.2 974.0C1288.0 975.3 1274.8 976.1 1271.0 975.4ZM1411.5 974.8C1401.6 972.1 1394.4 964.0 1391.6 952.3C1390.2 946.6 1390.0 940.8 1390.2 917.0L1390.5 888.5L1396.0 888.5L1401.5 888.5L1402.0 920.5C1402.5 951.2 1402.6 952.7 1404.7 956.7C1406.0 959.0 1408.6 962.1 1410.7 963.7C1413.9 966.2 1415.2 966.5 1421.6 966.5C1428.2 966.4 1429.3 966.1 1432.7 963.4C1434.8 961.8 1437.6 958.2 1439.0 955.4C1441.5 950.6 1441.5 950.1 1442.0 919.5L1442.5 888.5L1448.0 888.5L1453.5 888.5L1453.8 913.0C1454.0 927.5 1453.6 940.8 1453.0 945.6C1450.9 960.3 1443.6 970.9 1433.2 974.0C1427.8 975.7 1416.1 976.1 1411.5 974.8ZM1610.8 974.5C1593.3 969.7 1581.9 952.8 1582.0 931.7C1582.1 918.1 1586.5 906.3 1594.8 897.7C1610.1 881.8 1635.8 882.2 1650.9 898.5C1666.2 915.1 1665.4 948.6 1649.4 964.6C1639.8 974.3 1624.3 978.2 1610.8 974.5ZM106.5 972.8C106.2 972.1 106.1 952.8 106.2 930.0L106.5 888.5L129.5 888.5L152.5 888.5L152.8 892.4C153.0 894.8 152.6 896.6 151.8 897.1C151.1 897.6 143.2 898.0 134.2 898.0L118.0 898.0L118.0 911.0L118.0 924.0L134.2 924.2L150.5 924.5L150.5 928.5L150.5 932.5L134.2 932.8L118.0 933.0L118.0 948.5L118.0 964.0L135.2 964.0C144.7 964.0 153.1 964.4 153.8 964.9C154.6 965.4 155.0 967.2 154.8 969.6L154.5 973.5L130.7 973.8C112.2 974.0 106.8 973.8 106.5 972.8ZM248.7 973.4C248.3 973.0 248.0 955.9 248.0 935.4L248.0 898.1L235.2 897.8L222.5 897.5L222.5 893.0L222.5 888.5L254.0 888.5L285.5 888.5L285.5 893.0L285.5 897.5L272.8 897.8L260.0 898.1L259.8 935.8L259.5 973.5L254.5 973.8C251.7 974.0 249.1 973.8 248.7 973.4ZM1342.7 973.4C1342.3 973.0 1342.0 955.9 1342.0 935.4L1342.0 898.1L1329.2 897.8L1316.5 897.5L1316.5 893.0L1316.5 888.5L1348.0 888.5L1379.5 888.5L1379.5 893.0L1379.5 897.5L1366.8 897.8L1354.0 898.1L1353.8 935.8L1353.5 973.5L1348.5 973.8C1345.7 974.0 1343.1 973.8 1342.7 973.4ZM1475.0 973.1L1472.5 972.4L1472.2 931.3L1472.0 890.1L1475.7 889.3C1477.8 888.9 1486.0 888.5 1494.0 888.5C1505.6 888.5 1509.7 888.9 1514.5 890.4C1526.9 894.4 1536.0 902.8 1539.5 913.5C1542.0 921.1 1542.5 932.3 1540.6 940.3C1538.4 949.7 1535.1 955.7 1528.8 961.6C1522.2 967.9 1516.3 970.7 1505.2 972.9C1499.4 974.1 1479.0 974.2 1475.0 973.1ZM1558.5 972.8C1558.2 972.1 1558.1 952.8 1558.2 930.0L1558.5 888.5L1564.0 888.5L1569.5 888.5L1569.5 931.0L1569.5 973.5L1564.2 973.8C1560.6 974.0 1558.8 973.7 1558.5 972.8ZM2820.0 948.2L2820.0 928.5L2818.0 931.0C2816.9 932.4 2816.0 934.0 2816.0 934.5C2816.0 935.0 2811.1 942.5 2805.1 951.0C2799.1 959.5 2794.4 966.8 2794.7 967.2C2794.9 967.7 2800.7 968.0 2807.6 968.0L2820.0 968.0L2820.0 948.2ZM1634.2 963.7C1636.6 962.3 1639.5 960.1 1640.7 958.8C1643.7 955.6 1647.5 947.5 1649.0 941.2C1650.5 934.6 1649.8 922.3 1647.5 915.5C1643.7 904.2 1634.9 896.4 1624.8 895.3C1608.0 893.6 1595.7 906.6 1594.2 927.8C1593.2 942.4 1598.3 955.8 1607.4 962.3C1615.0 967.7 1626.4 968.3 1634.2 963.7ZM1503.9 964.0C1511.4 962.6 1515.9 960.2 1521.0 955.0C1526.7 949.2 1529.0 942.9 1529.7 932.0C1530.6 917.7 1526.0 907.0 1516.6 901.5C1510.2 897.8 1498.3 895.5 1490.6 896.6L1484.5 897.5L1484.2 930.0C1484.1 947.9 1484.2 963.0 1484.5 963.7C1485.0 965.3 1496.4 965.4 1503.9 964.0ZM151.9 783.5C147.6 780.7 142.1 774.2 137.6 766.8C134.5 761.5 126.5 745.7 123.7 739.0C122.9 737.1 121.3 733.4 120.1 730.8C119.0 728.2 118.0 725.4 118.0 724.7C118.0 723.9 117.7 723.0 117.3 722.7C116.5 721.9 114.4 716.1 107.5 695.5C101.5 677.5 97.9 665.8 92.1 644.8C83.9 615.3 68.2 550.5 62.0 520.5C57.8 500.2 54.0 480.1 53.0 473.5C51.1 460.2 49.9 453.1 47.5 440.5C45.0 427.9 39.7 397.4 37.9 385.5C37.3 381.6 36.5 376.0 36.0 373.0C32.8 352.7 31.5 343.8 30.0 332.0C29.5 327.9 28.6 320.9 28.0 316.5C25.8 300.1 22.5 272.9 20.1 251.0C19.5 245.8 18.5 237.4 18.0 232.5C16.1 216.4 12.7 183.3 10.0 154.0C7.2 124.9 6.2 113.2 4.0 88.0C0.5 46.5 0.5 42.1 4.1 23.7C5.9 14.7 8.5 8.2 11.3 5.3C14.0 2.7 20.3 -0.0 24.0 -0.0C33.8 -0.0 45.0 8.8 50.8 21.1C63.6 48.1 73.6 102.4 78.0 169.0C80.2 201.3 82.5 223.9 87.9 265.8C88.5 270.3 89.4 277.5 90.0 281.8C90.5 286.0 91.4 293.1 92.0 297.5C92.6 301.9 93.5 308.4 94.0 312.0C94.5 315.6 95.4 322.3 96.0 327.0C96.6 331.7 97.5 338.4 98.0 342.0C98.5 345.6 99.3 351.9 99.9 356.0C102.4 373.8 103.2 379.9 104.0 386.0C107.2 411.1 113.2 444.8 121.1 482.5C122.2 487.4 123.4 493.5 123.9 496.0C127.2 511.7 131.0 528.2 140.4 567.0C146.2 590.8 151.1 611.3 154.9 627.0C156.5 633.9 159.3 645.4 161.0 652.5C162.7 659.6 165.7 672.0 167.6 680.0C172.5 700.2 175.1 711.3 181.0 735.5C183.8 747.0 186.6 758.7 187.2 761.3C190.6 775.1 179.5 786.1 162.2 785.9C156.9 785.9 154.7 785.4 151.9 783.5ZM1071.5 753.3C1070.4 753.1 1066.0 752.2 1061.7 751.4C1051.9 749.5 1037.9 745.0 1029.2 740.8C1003.6 728.6 979.5 703.8 966.2 676.0C960.5 663.9 958.2 656.4 954.8 638.5C953.1 629.5 953.2 582.1 954.9 569.5C959.4 536.3 965.9 511.3 975.9 488.8C977.1 486.2 978.0 483.8 978.0 483.5C978.0 483.3 979.1 480.7 980.4 477.8C981.7 474.9 983.8 470.2 985.0 467.5C998.9 436.3 1018.6 404.4 1035.2 386.0C1052.8 366.5 1083.7 339.7 1100.0 329.6C1111.8 322.4 1113.7 321.7 1122.2 322.2C1130.6 322.6 1138.3 325.7 1144.4 331.1C1149.6 335.6 1151.2 339.7 1150.4 346.3C1149.1 356.7 1145.3 361.5 1125.0 378.8C1098.0 401.9 1081.8 420.3 1061.4 451.0C1039.6 483.7 1024.4 518.7 1015.6 556.5C1011.5 573.9 1010.4 580.3 1008.9 595.6C1005.9 626.6 1015.5 649.1 1039.0 666.4C1049.9 674.5 1061.7 679.8 1075.0 682.6C1087.1 685.2 1111.0 683.9 1131.5 679.5C1157.5 674.0 1186.1 659.4 1216.9 636.3C1240.2 618.7 1266.8 591.5 1293.8 557.9C1305.1 543.7 1310.7 538.5 1316.2 536.8C1319.4 535.9 1320.6 536.0 1324.0 537.5C1329.0 539.8 1331.6 544.1 1333.1 552.6C1334.9 563.0 1332.6 577.9 1326.0 597.9C1322.1 609.9 1321.3 611.3 1313.4 620.0C1282.2 654.5 1249.7 682.9 1215.5 705.7C1206.7 711.6 1193.1 720.0 1192.5 720.0C1192.3 720.0 1188.4 722.2 1183.8 724.8C1157.8 739.7 1135.4 748.3 1111.7 752.5C1104.1 753.9 1076.6 754.4 1071.5 753.3ZM2614.5 752.0C2585.4 746.0 2565.0 735.2 2544.9 715.1C2533.3 703.6 2524.9 691.7 2517.9 677.2C2511.8 664.5 2510.8 661.8 2508.1 649.5C2507.0 644.5 2505.7 636.9 2505.1 632.5C2503.7 622.5 2503.7 590.1 2505.0 578.9C2508.4 550.7 2508.8 548.2 2513.1 530.4C2517.5 512.4 2523.2 495.8 2531.2 478.0C2532.3 475.5 2534.3 471.0 2535.7 468.0C2548.4 439.8 2565.0 411.5 2578.4 395.0C2587.8 383.5 2596.2 374.9 2612.0 360.6C2632.7 341.8 2646.8 331.1 2658.7 325.1C2663.6 322.6 2666.0 322.0 2671.3 322.0C2682.5 322.0 2694.2 327.8 2699.8 336.0C2701.8 339.0 2702.1 340.3 2701.7 344.9C2700.5 356.4 2696.9 360.9 2669.5 384.6C2654.1 398.0 2644.3 407.9 2635.2 419.3C2625.3 431.8 2612.6 449.8 2605.3 462.0C2598.4 473.4 2586.1 497.3 2582.6 506.0C2574.0 527.3 2568.2 546.6 2564.2 566.5C2560.4 585.2 2559.8 592.1 2560.2 608.5C2560.6 621.6 2561.1 625.7 2562.9 631.2C2567.3 644.4 2575.7 655.6 2588.2 665.0C2610.7 682.0 2632.1 686.9 2664.5 682.5C2687.9 679.3 2703.5 674.6 2722.5 665.0C2735.4 658.5 2756.5 645.0 2770.0 634.6C2791.8 617.9 2818.6 590.5 2842.5 560.5C2846.8 555.0 2852.2 548.5 2854.5 546.1C2859.3 540.8 2866.5 536.0 2869.7 536.0C2874.0 536.0 2879.6 539.7 2881.6 543.7C2885.0 550.6 2884.6 573.3 2880.9 585.5C2878.3 594.2 2873.6 607.8 2872.4 610.1C2870.6 613.7 2847.9 638.0 2833.3 652.1C2804.3 680.0 2770.6 705.0 2735.5 724.5C2719.4 733.5 2699.0 742.9 2688.5 746.2C2680.9 748.5 2670.1 751.2 2662.7 752.5C2650.9 754.6 2625.9 754.3 2614.5 752.0ZM1539.5 750.8C1520.8 748.5 1504.9 745.2 1496.0 741.8C1488.4 738.9 1481.3 733.4 1468.9 720.9C1455.9 707.8 1443.6 693.2 1436.1 682.0C1429.0 671.5 1427.3 667.9 1419.8 647.5C1410.2 621.3 1407.2 609.5 1405.0 589.0C1404.4 583.2 1403.5 574.7 1403.0 570.0C1399.5 537.9 1397.8 508.7 1397.7 481.5C1397.7 462.4 1398.0 458.4 1399.8 451.0C1401.0 446.3 1402.9 437.3 1404.0 431.0C1405.2 424.7 1406.9 416.1 1407.7 412.0C1408.5 407.9 1409.6 402.7 1410.0 400.5C1410.8 396.5 1415.3 382.4 1416.9 378.5C1417.4 377.4 1418.4 374.9 1419.1 373.0C1419.8 371.1 1421.6 366.7 1423.2 363.2C1424.7 359.8 1426.0 356.7 1426.0 356.4C1426.0 355.0 1438.1 330.9 1441.2 326.0C1450.9 311.1 1486.6 283.3 1505.5 276.1C1508.8 274.8 1512.4 273.4 1513.5 273.0C1514.6 272.6 1517.1 271.7 1519.0 271.0C1520.9 270.3 1523.4 269.4 1524.5 269.0C1525.6 268.5 1530.8 266.6 1536.0 264.8C1545.0 261.7 1546.2 261.5 1560.0 261.5C1577.2 261.5 1614.0 263.6 1619.0 264.8C1620.9 265.3 1625.7 266.3 1629.5 267.0C1643.5 269.4 1651.1 271.1 1655.3 272.6C1663.6 275.7 1673.9 281.1 1679.6 285.3C1682.9 287.7 1688.4 291.6 1692.0 294.0C1695.6 296.4 1700.4 300.2 1702.9 302.4C1711.7 310.6 1720.4 325.2 1727.5 343.9C1729.5 349.5 1737.3 373.0 1739.0 379.0C1739.7 381.5 1740.6 384.6 1741.1 386.0C1742.7 390.9 1745.9 403.7 1748.0 414.0C1750.0 423.2 1750.2 426.3 1749.6 439.0C1748.3 469.7 1745.5 503.5 1742.1 528.6C1741.0 536.4 1738.5 546.8 1732.0 570.5C1730.4 576.5 1727.6 586.6 1725.9 592.9C1724.2 599.2 1722.3 606.2 1721.6 608.4C1720.8 610.7 1719.3 615.9 1718.0 620.0C1716.8 624.1 1714.9 630.2 1713.8 633.5C1710.5 643.2 1688.9 685.7 1682.3 695.6C1677.0 703.4 1675.1 705.3 1668.4 709.7C1656.6 717.4 1638.8 727.1 1616.5 738.0C1587.7 752.2 1588.2 752.0 1565.4 751.9C1555.0 751.8 1543.3 751.3 1539.5 750.8ZM636.5 732.9C618.8 729.7 599.4 724.6 591.5 721.0C590.4 720.6 587.5 719.3 585.0 718.4C576.0 714.7 558.0 705.1 547.9 698.5C534.1 689.5 525.6 682.4 512.9 669.4C498.3 654.3 490.7 642.6 480.5 619.5L478.7 615.6L474.8 620.0C470.9 624.6 465.2 633.1 451.4 655.0C421.7 702.3 401.1 722.6 378.2 727.1C368.0 729.0 357.9 726.0 350.2 718.7C341.8 710.7 330.6 689.1 324.8 670.0C320.1 654.3 316.9 640.0 315.1 626.2C314.5 621.7 313.5 614.4 312.9 610.1C311.8 602.1 312.2 596.4 315.1 578.0C318.5 556.6 325.4 524.6 330.1 508.5C336.0 488.2 339.3 477.6 341.1 473.5C341.5 472.4 342.6 469.5 343.4 467.0C344.6 463.1 348.5 452.8 351.0 446.5C362.6 417.7 377.8 390.1 394.0 368.0C403.6 355.1 417.0 342.1 426.8 336.3C438.4 329.4 447.6 326.7 461.2 326.2C472.0 325.8 473.2 326.0 477.0 328.1C481.3 330.5 484.4 334.7 486.1 340.2C489.6 351.3 489.9 355.0 490.0 378.7L490.0 402.9L493.2 405.2C497.2 408.1 499.6 409.2 508.0 412.1C520.3 416.3 525.8 421.3 528.5 430.6C529.8 435.2 530.0 439.1 529.6 450.9C527.9 494.9 527.8 500.2 528.9 512.0C531.8 542.6 534.4 557.9 539.6 574.0C542.6 583.2 542.7 583.5 547.9 594.1C554.6 608.1 561.5 617.8 572.9 629.1C588.2 644.4 601.2 652.7 619.5 658.8C628.0 661.6 632.3 662.6 646.4 665.0C653.8 666.2 694.7 666.3 702.1 665.1C705.1 664.6 710.9 663.7 715.0 663.0C748.0 657.7 776.4 643.5 813.2 613.8C836.2 595.2 862.9 565.2 884.0 534.1C893.7 519.7 901.5 510.9 906.7 508.5C911.0 506.4 920.6 506.9 924.1 509.3C928.8 512.7 930.0 515.9 930.0 525.7C930.0 543.9 922.1 563.8 903.9 591.0C891.8 609.1 881.2 621.8 864.5 638.5C835.3 667.6 806.7 688.1 769.1 706.8C739.8 721.5 718.7 727.9 683.3 733.0C674.7 734.2 643.5 734.1 636.5 732.9ZM1860.3 719.5C1854.4 716.9 1845.9 709.4 1842.4 703.8C1839.6 699.4 1839.2 696.4 1837.9 668.0C1836.9 646.1 1836.2 633.8 1834.0 598.0C1828.1 502.6 1827.0 480.1 1826.4 432.5C1825.8 390.5 1826.9 370.7 1830.9 355.0C1833.7 343.8 1835.4 340.4 1841.5 334.5C1849.4 326.8 1854.8 323.9 1862.3 323.3C1867.6 322.9 1868.9 323.1 1871.2 324.9C1872.7 326.1 1874.3 328.5 1874.9 330.3C1877.4 338.4 1878.0 366.8 1878.0 474.1C1878.0 568.3 1878.2 586.7 1879.5 593.2C1881.1 601.7 1883.4 608.0 1884.8 608.0C1888.2 608.0 1907.9 552.4 1920.0 508.5C1920.5 506.9 1922.3 500.8 1924.0 495.0C1925.7 489.2 1927.5 483.1 1928.0 481.5C1928.5 479.9 1929.8 475.5 1930.9 471.8C1932.1 468.0 1933.9 462.0 1935.1 458.2C1936.2 454.5 1937.5 450.1 1938.0 448.5C1939.7 442.1 1949.9 412.1 1953.0 404.5C1953.4 403.4 1954.4 400.9 1955.1 399.0C1955.8 397.1 1957.4 393.0 1958.8 390.0C1967.1 371.0 1973.0 362.1 1979.5 358.2C1982.9 356.3 1984.5 356.0 1989.5 356.4C1996.6 357.0 2004.3 359.4 2008.4 362.3C2012.3 365.1 2017.5 373.4 2019.9 381.1C2021.9 387.6 2022.3 389.6 2026.0 414.0C2027.1 421.4 2028.5 430.0 2029.0 433.0C2029.5 436.0 2030.4 442.3 2031.0 447.0C2035.9 485.2 2043.2 517.3 2051.1 534.9C2055.5 544.6 2056.5 546.7 2060.4 553.5C2071.6 573.6 2097.1 598.4 2116.5 608.3C2124.2 612.2 2127.7 613.6 2137.5 616.8C2148.7 620.5 2153.1 621.5 2164.7 623.1C2174.7 624.4 2180.4 623.7 2191.9 619.9C2195.2 618.9 2199.9 617.7 2202.3 617.4C2205.9 616.9 2207.0 617.2 2209.6 619.3C2212.6 621.8 2218.3 632.1 2219.6 637.3C2222.1 647.7 2206.6 668.7 2188.7 679.2C2176.6 686.2 2169.7 687.3 2151.9 684.6C2117.4 679.4 2090.1 670.5 2072.0 658.6C2054.6 647.2 2034.1 624.2 2018.9 598.8C2014.6 591.6 2003.3 569.3 1998.7 559.0C1996.8 554.6 1984.5 523.3 1981.9 516.2C1977.7 504.7 1975.7 500.0 1975.1 500.0C1974.7 500.0 1973.8 502.4 1973.1 505.2C1970.2 517.2 1956.9 564.4 1954.1 573.0C1953.1 576.0 1950.8 583.2 1949.0 589.0C1938.8 621.3 1936.0 628.7 1926.2 649.0C1915.2 671.8 1895.5 701.3 1881.5 715.8C1875.6 721.8 1875.3 722.0 1870.5 721.9C1867.5 721.9 1863.4 720.9 1860.3 719.5ZM2373.8 710.9C2365.6 709.0 2358.0 702.0 2351.2 690.0C2346.3 681.3 2340.9 669.9 2338.1 662.5C2336.8 659.2 2335.4 655.6 2335.0 654.5C2332.8 649.4 2325.4 625.7 2322.0 612.5C2319.9 604.7 2317.8 596.8 2315.9 590.2C2315.4 588.5 2314.6 585.5 2314.1 583.8C2312.4 577.5 2298.8 537.7 2297.0 533.5C2296.5 532.4 2295.0 528.1 2293.6 524.0C2292.2 519.9 2289.5 512.0 2287.6 506.5C2285.7 501.0 2282.8 491.8 2281.0 486.0C2279.3 480.2 2277.4 474.2 2276.9 472.6C2275.3 467.6 2275.9 455.3 2278.1 446.2C2280.5 436.5 2283.0 430.6 2287.3 424.2C2291.3 418.2 2295.3 416.0 2302.1 416.0C2306.4 416.0 2308.5 416.6 2312.1 418.8C2314.5 420.4 2318.4 423.8 2320.8 426.4C2329.2 435.6 2343.7 460.0 2352.4 480.0C2354.0 483.6 2356.1 488.3 2357.1 490.6C2359.5 495.9 2363.0 504.9 2364.0 508.0C2364.5 509.4 2366.2 514.3 2368.0 519.0C2372.0 529.9 2375.0 538.9 2379.0 552.0C2380.7 557.8 2382.5 563.6 2382.9 565.0C2385.2 572.0 2387.9 581.5 2393.0 600.0C2393.5 601.9 2394.8 606.6 2395.9 610.5C2399.7 624.4 2406.9 654.5 2409.9 669.5C2413.1 685.1 2413.5 690.2 2411.7 693.6C2409.5 697.9 2405.3 701.4 2398.4 704.8C2387.8 710.1 2379.4 712.2 2373.8 710.9ZM401.8 633.8C408.3 620.4 424.5 585.6 428.9 575.8C430.1 573.1 432.0 568.9 433.1 566.2C441.5 547.5 442.4 545.3 445.9 536.0C448.1 529.9 453.4 511.4 454.4 506.0C457.3 490.8 458.0 484.6 458.2 472.9C458.4 460.7 458.2 459.2 456.2 455.7C453.4 450.8 453.2 441.8 455.8 437.5C458.6 432.9 459.3 426.5 457.4 422.5C456.6 420.7 455.0 418.4 454.0 417.5C452.2 415.9 451.8 416.0 446.3 419.6C439.1 424.4 432.7 432.3 424.5 446.5C417.1 459.2 405.6 483.1 401.5 494.0C400.6 496.5 399.4 499.4 399.0 500.5C394.4 511.1 385.6 542.9 383.0 558.0C382.4 561.6 381.5 566.9 381.0 569.9C378.9 581.8 380.5 596.8 386.1 618.0C389.5 630.9 394.5 642.0 397.0 642.0C397.4 642.0 399.6 638.3 401.8 633.8ZM1564.5 640.9C1569.1 639.7 1577.6 636.6 1583.7 633.9C1586.1 632.8 1588.3 632.0 1588.6 632.0C1590.6 632.0 1618.9 616.9 1622.2 614.1C1628.7 608.5 1643.3 585.4 1651.8 567.0C1655.6 558.7 1658.1 548.4 1660.9 529.2C1661.5 525.3 1662.5 519.0 1663.0 515.2C1664.5 506.1 1664.5 484.2 1663.2 475.0C1662.6 470.9 1661.6 463.0 1661.0 457.5C1659.9 447.2 1658.6 437.6 1657.0 428.0C1656.5 425.0 1655.6 419.4 1655.0 415.5C1652.1 396.4 1649.6 387.5 1645.5 381.0C1642.6 376.4 1629.4 363.7 1625.4 361.7C1617.6 357.7 1588.4 356.8 1571.9 360.1C1554.8 363.5 1545.3 367.4 1537.5 374.2C1532.4 378.7 1522.7 391.2 1517.7 399.7C1510.9 411.4 1502.0 435.1 1500.1 446.8C1498.4 456.8 1496.0 470.3 1495.0 475.5C1491.9 491.4 1490.7 535.1 1492.9 550.5C1496.3 573.8 1497.8 580.0 1504.0 595.5C1508.6 607.1 1515.6 620.2 1518.8 623.3C1524.5 628.8 1541.5 637.3 1553.0 640.6C1558.8 642.2 1559.7 642.2 1564.5 640.9ZM2269.0 234.4C2255.7 231.5 2242.3 222.2 2238.1 213.0C2236.5 209.5 2236.0 206.4 2236.0 198.9C2236.0 188.7 2237.9 180.8 2242.2 173.3C2245.4 167.7 2252.4 159.2 2256.7 155.8C2267.2 147.5 2281.4 145.2 2297.5 149.1C2308.1 151.7 2323.7 156.2 2329.0 158.1C2332.0 159.3 2335.4 160.5 2336.5 160.9C2337.6 161.3 2343.3 164.1 2349.2 167.0C2360.9 172.8 2367.4 178.4 2368.5 183.7C2369.1 186.6 2368.6 187.5 2363.9 192.5C2350.8 206.4 2316.7 228.5 2299.7 234.0C2292.5 236.4 2279.0 236.6 2269.0 234.4Z"/></symbol>
+</svg>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<a class="skip" href="#lac-estudi">Salta al contingut</a>
+
+<header class="header" data-on="terra">
+  <div class="wrap header__inner">
+    <a class="brand" href="#lac-top" aria-label="Laconic Studio">
+      <svg class="brand__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
+      <svg class="brand__word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lac-lg-word"/></svg>
+    </a>
+
+    <nav class="nav" aria-label="L'estudi">
+      <a href="#lac-estudi">Estudi</a>
+      <a href="#lac-serveis">Serveis</a>
+      <a href="#lac-treball">Treball</a>
+      <a href="#lac-recursos">Recursos</a>
+    </nav>
+
+    <div class="header__right">
+      <p class="lang" aria-label="Idioma">
+        <span aria-current="true">CA</span>
+        <a href="__URL_ES__" hreflang="es">ES</a>
+      </p>
+      <a class="btn btn--ink header__cta" href="#lac-contacte">
+        <span>Parlem</span><span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="lac-mobile-menu" aria-label="Obre el menú">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="lac-mobile-menu" aria-hidden="true">
+  <nav>
+    <a href="#lac-estudi">Estudi <span>qui som</span></a>
+    <a href="#lac-serveis">Serveis <span>què fem</span></a>
+    <a href="#lac-treball">Treball <span>projectes</span></a>
+    <a href="#lac-recursos">Recursos <span>plantilles</span></a>
+    <a href="#lac-contacte">Contacte <span>escriu-nos</span></a>
+  </nav>
+  <div class="mobile-menu__foot">
+    <a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a>
+    <a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">@laconicstudio_</a>
+    <a href="__URL_ES__" hreflang="es">ES</a>
+  </div>
+</div>
+
+<main id="lac-top">
+
+  <!-- Hero: terracota pla, logo centrat i fotos que pugen amb el scroll -->
+  <section class="hero" data-theme="terra" data-collage>
+    <div class="hero__stage">
+      <div class="hero__tiles">
+        <figure class="tile tile--1"><img src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Ampolla de ratafia Malhivern amb llum càlida" loading="eager" decoding="async"></figure>
+        <figure class="tile tile--2"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="eager" decoding="async"></figure>
+        <figure class="tile tile--3"><img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async"></figure>
+        <figure class="tile tile--4"><img src="__BASE__assets/img/proyectos/puig-1-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-1-700.jpg 700w, __BASE__assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Ampolla de vi a la mà en el punt de venda" loading="lazy" decoding="async"></figure>
+        <figure class="tile tile--5"><img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async"></figure>
+      </div>
+
+      <h1 class="hero__logo">
+        <span class="visually-hidden">Laconic Studio</span>
+        <svg class="hero__logo-mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
+        <svg class="hero__logo-word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lac-lg-word"/></svg>
+        <span class="hero__logo-sub" aria-hidden="true">studio</span>
+      </h1>
+
+      <p class="hero__note">Estudi creatiu · Barcelona i remot</p>
+      <span class="hero__scroll" aria-hidden="true">scroll</span>
+    </div>
+  </section>
+
+  <!-- Estudi -->
+  <section class="section slab-top" data-theme="cream" id="lac-estudi">
+    <div class="wrap">
+      <p class="kicker fade">L'estudi</p>
+      <h2 class="display rl">
+        <span class="hand">Cada marca comunica,</span>
+        però no totes connecten.
+      </h2>
+
+      <div class="manifesto__grid">
+        <div class="fade">
+          <p class="lead">Una bona comunicació no consisteix a publicar més, sinó a explicar millor.</p>
+          <p class="claim">Less noise. <em>More meaning.</em></p>
+        </div>
+        <div class="body-col fade" data-delay="1">
+          <p>Som un estudi creatiu especialitzat en xarxes socials, creació de contingut i estratègia digital. Treballem amb marques que volen construir una presència coherent, autèntica i amb criteri, creant contingut que connecti amb les persones i tingui un objectiu darrere.</p>
+          <p>Ens impliquem en cada projecte com si fos nostre: analitzem, planifiquem, gravem, editem i pensem cada detall perquè cada publicació sumi i tingui sentit dins d'una estratègia.</p>
+          <p class="hand-note">No busquem omplir un calendari. Busquem marques que deixin empremta.</p>
+        </div>
+      </div>
+
+      <div class="team fade" data-delay="2">
+        <div class="person">
+          <svg class="person__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
+          <span class="person__name">Núria</span>
+          <span class="person__role">Creative &amp; Founder</span>
+        </div>
+        <div class="person">
+          <svg class="person__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
+          <span class="person__name">Júlia</span>
+          <span class="person__role">Strategist &amp; Founder</span>
+        </div>
+        <div class="person">
+          <p class="person__note">Som dues. Això vol dir que parles sempre amb qui fa la feina, i que diem no a allò que no podem fer bé.</p>
+        </div>
+      </div>
+
+      <div class="stats fade" data-delay="2">
+        <div class="stat">
+          <div class="stat__num">7</div>
+          <p class="stat__label">marques acompanyades fins ara</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num">48h</div>
+          <p class="stat__label">per respondre el teu primer missatge</p>
+        </div>
+        <div class="stat">
+          <div class="stat__num">100%</div>
+          <p class="stat__label">contingut fet a mida, zero plantilles</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" data-theme="ink" aria-hidden="true">
+    <div class="marquee__track">
+      <span class="hand">Content creation</span>
+      <span>Social media</span>
+      <span class="hand">Estratègia</span>
+      <span>Direcció creativa</span>
+      <span class="hand">UGC</span>
+    </div>
+  </div>
+
+  <!-- Serveis: la foto segueix el servei actiu -->
+  <section class="section slab-top" data-theme="terra" id="lac-serveis">
+    <div class="wrap">
+      <p class="kicker fade">Serveis</p>
+      <h2 class="display rl">
+        <span class="hand">Això és el que fem</span>
+        i què te'n queda.
+      </h2>
+
+      <div class="svc">
+        <div class="svc__media fade" aria-hidden="true">
+          <img data-svc-img="malhivern" class="is-on" src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Ampolla de ratafia Malhivern amb llum càlida" loading="lazy" decoding="async">
+          <img data-svc-img="quality" src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="lazy" decoding="async">
+          <img data-svc-img="maitasuna" src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async">
+          <img data-svc-img="puig" src="__BASE__assets/img/proyectos/puig-1-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-1-700.jpg 700w, __BASE__assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Ampolla de vi a la mà en el punt de venda" loading="lazy" decoding="async">
+          <img data-svc-img="f4s" src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async">
+        </div>
+
+        <ol class="svc__list" data-svc-list>
+          <li class="svc__item" data-svc="malhivern">
+            <div class="svc__head">
+              <span class="svc__num">01</span>
+              <span class="svc__name hand">Content creation</span>
+            </div>
+            <p class="svc__tag">Contingut amb aquell no-sé-què</p>
+            <ul class="svc__items">
+              <li>Concepte i guió</li>
+              <li>Foto i vídeo</li>
+              <li>Reels i verticals</li>
+              <li>Edició i subtítols</li>
+            </ul>
+          </li>
+          <li class="svc__item" data-svc="quality">
+            <div class="svc__head">
+              <span class="svc__num">02</span>
+              <span class="svc__name hand">Social media</span>
+            </div>
+            <p class="svc__tag">Scroll i pausa, això busquem</p>
+            <ul class="svc__items">
+              <li>Línia editorial</li>
+              <li>Calendari</li>
+              <li>Community management</li>
+              <li>Informe mensual</li>
+            </ul>
+          </li>
+          <li class="svc__item" data-svc="maitasuna">
+            <div class="svc__head">
+              <span class="svc__num">03</span>
+              <span class="svc__name hand">Estratègia</span>
+            </div>
+            <p class="svc__tag">Intenció i criteri</p>
+            <ul class="svc__items">
+              <li>Auditoria i posicionament</li>
+              <li>Pilars de contingut</li>
+              <li>Tom de veu</li>
+              <li>Objectius i mètriques</li>
+            </ul>
+          </li>
+          <li class="svc__item" data-svc="puig">
+            <div class="svc__head">
+              <span class="svc__num">04</span>
+              <span class="svc__name hand">Direcció creativa</span>
+            </div>
+            <p class="svc__tag">Ni soroll ni sort, impacte</p>
+            <ul class="svc__items">
+              <li>Concepte de campanya</li>
+              <li>Direcció d'art</li>
+              <li>Guions i storyboard</li>
+              <li>Peces per a xarxes</li>
+            </ul>
+          </li>
+          <li class="svc__item" data-svc="f4s">
+            <div class="svc__head">
+              <span class="svc__num">05</span>
+              <span class="svc__name hand">UGC</span>
+            </div>
+            <p class="svc__tag">Real i amb propòsit</p>
+            <ul class="svc__items">
+              <li>Selecció de creadors</li>
+              <li>Briefing</li>
+              <li>Producció</li>
+              <li>Drets d'ús</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <p class="fade" style="margin-top:clamp(2.5rem,6vw,4rem)">
+        <a class="btn btn--cream btn--lg" href="#lac-contacte"><span>Demana pressupost</span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Treball -->
+  <section class="section slab-top" data-theme="cream" id="lac-treball">
+    <div class="wrap">
+      <p class="kicker fade">Treball · Set marques</p>
+      <h2 class="display rl">
+        <span class="hand">Get people talking</span>
+        about your brand.
+      </h2>
+    </div>
+    <div class="wrap">
+      <article class="slab fade">
+        <div class="slab__media" data-parallax>
+          <img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">01 / 07 &middot; Entrenament</span>
+          <h3 class="slab__title">Quality Training</h3>
+          <p>Hem transformat el coneixement tècnic de Quality Training en contingut atractiu per a xarxes socials, reforçant la seva imatge de marca, la connexió amb la comunitat i la captació de nous clients.</p>
+          <div class="slab__links">
+            <a href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DZIkSk0s2Yc/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
+          </div>
+          <div class="slab__meta">
+            <span>Creació de contingut</span>
+            <span>Social media</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab slab--flip fade">
+        <div class="slab__media" data-parallax>
+          <img src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Ampolla de ratafia Malhivern amb llum càlida" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">02 / 07 &middot; Licors artesans</span>
+          <h3 class="slab__title">Ratafia Malhivern</h3>
+          <p>Estratègia de continguts, direcció creativa i gestió de xarxes socials per construir una marca propera, autèntica i amb una identitat pròpia.</p>
+          <div class="slab__links">
+            <a href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
+          </div>
+          <div class="slab__meta">
+            <span>Estratègia</span>
+            <span>Direcció creativa</span>
+            <span>Social media</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab fade">
+        <div class="slab__media" data-parallax>
+          <img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">03 / 07 &middot; Futbol formatiu</span>
+          <h3 class="slab__title">Football 4 Stars</h3>
+          <p>Hem impulsat la presència digital de Football 4 Stars amb contingut aspiracional, estratègic i orientat a la captació.</p>
+          <div class="slab__meta">
+            <span>Social media</span>
+            <span>Creació de contingut</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab slab--flip fade">
+        <div class="slab__media" data-parallax>
+          <img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">04 / 07 &middot; Pizza artesana</span>
+          <h3 class="slab__title">Maitasuna</h3>
+          <p>Hem treballat una estratègia de contingut centrada en humanitzar la marca i potenciar la figura de l'Alain, transmetent l'essència artesana i propera de Maitasuna.</p>
+          <div class="slab__meta">
+            <span>Creació de contingut</span>
+            <span>Social media</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab fade">
+        <div class="slab__media" data-parallax>
+          <img src="__BASE__assets/img/proyectos/jordi-coll-1-1100.jpg" srcset="__BASE__assets/img/proyectos/jordi-coll-1-700.jpg 700w, __BASE__assets/img/proyectos/jordi-coll-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Exemplar d'El pont de les mentides en una presentació" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">05 / 07 &middot; Marca personal</span>
+          <h3 class="slab__title">Jordi Coll</h3>
+          <p>Hem treballat l'estratègia de continguts de Jordi Coll, creant reels per potenciar la seva marca personal i promocionar el llançament d'<em>El pont de les mentides</em>.</p>
+          <div class="slab__links">
+            <a href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DVxsEDcjHw5/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
+          </div>
+          <div class="slab__meta">
+            <span>Estratègia</span>
+            <span>Reels</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab slab--flip fade">
+        <div class="slab__media" data-parallax>
+          <img src="__BASE__assets/img/proyectos/f45-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f45-1-700.jpg 700w, __BASE__assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Assistent a la inauguració de F45" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">06 / 07 &middot; Esdeveniment</span>
+          <h3 class="slab__title">F45 Training</h3>
+          <p>Vam crear contingut audiovisual per a la inauguració de F45, capturant l'energia de l'esdeveniment i reforçant la imatge de marca amb peces pensades per a xarxes socials.</p>
+          <div class="slab__meta">
+            <span>Creació de contingut</span>
+            <span>Vídeo</span>
+          </div>
+        </div>
+      </article>
+      <article class="slab fade">
+        <div class="slab__media" data-parallax>
+          <img src="__BASE__assets/img/proyectos/puig-1-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-1-700.jpg 700w, __BASE__assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Ampolla de vi a la mà en el punt de venda" loading="lazy" decoding="async">
+        </div>
+        <div class="slab__text">
+          <span class="slab__index">07 / 07 &middot; Distribució</span>
+          <h3 class="slab__title">Comercial Puig</h3>
+          <p>Creem contingut que apropa Comercial Puig als seus clients, mostrant el valor dels seus productes, l'assessorament personalitzat i el dia a dia d'un negoci familiar.</p>
+          <div class="slab__links">
+            <a href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DT24wj7iAJN/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
+          </div>
+          <div class="slab__meta">
+            <span>Creació de contingut</span>
+            <span>Social media</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Cita -->
+  <section class="section slab-top quote" data-theme="deep">
+    <svg class="quote__mark" viewBox="0 0 71.7 100" aria-hidden="true" data-spin><use href="#lac-lg-zero"/></svg>
+    <div class="wrap">
+      <blockquote class="quote__text rl">
+        <span class="hand">Menys soroll.</span>
+        Més sentit.
+      </blockquote>
+      <cite class="fade">Laconic Studio</cite>
+    </div>
+  </section>
+
+  <!-- Procés -->
+  <section class="section slab-top" data-theme="cream" id="lac-proces">
+    <div class="wrap">
+      <div class="process">
+        <div class="process__head">
+          <p class="kicker fade">Com treballem</p>
+          <h2 class="display display--sm rl">
+            <span class="hand">Sense misteri,</span>
+            amb mètode.
+          </h2>
+        </div>
+        <div class="rail" data-rail>
+          <span class="rail__fill" aria-hidden="true"></span>
+          <div class="step">
+            <span class="step__n">01</span>
+            <h3>Escoltem</h3>
+            <p>Una trucada de vint minuts per entendre el negoci, no només el feed. Què venes, a qui i què t'està frenant.</p>
+          </div>
+          <div class="step">
+            <span class="step__n">02</span>
+            <h3>Definim</h3>
+            <p>Una proposta curta: objectiu, entregables, terminis i preu. Si alguna cosa no aporta, la traiem abans de començar.</p>
+          </div>
+          <div class="step">
+            <span class="step__n">03</span>
+            <h3>Creem</h3>
+            <p>Producció en cicles curts amb revisions acotades. Veus el material en un tauler compartit, no en cadenes de correu.</p>
+          </div>
+          <div class="step">
+            <span class="step__n">04</span>
+            <h3>Mesurem</h3>
+            <p>Publiquem, llegim les dades i ajustem. Cada mes t'expliquem què ha funcionat, què no i què provarem.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recursos -->
+  <section class="section" data-theme="cream-2" id="lac-recursos">
+    <div class="wrap">
+      <p class="kicker fade">Recursos</p>
+      <h2 class="display display--sm rl">
+        <span class="hand">Plantilles</span>
+        per fer-ho tu.
+      </h2>
+      <div class="cards">
+        <article class="card fade">
+          <span class="card__tag">Plantilles</span>
+          <h3>Kit de stories</h3>
+          <p>30 plantilles editables al Canva amb el nostre sistema tipogràfic i de color.</p>
+          <span class="card__price">29 €</span>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Kit%20de%20stories"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+        </article>
+        <article class="card fade" data-delay="1">
+          <span class="card__tag">Guia</span>
+          <h3>Tom de veu en 10 passos</h3>
+          <p>El mètode que fem servir perquè una marca deixi de sonar com totes les altres.</p>
+          <span class="card__price">19 €</span>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Tom%20de%20veu%20en%2010%20passos"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+        </article>
+        <article class="card fade" data-delay="2">
+          <span class="card__tag">Bundle</span>
+          <h3>Tot l'estudi</h3>
+          <p>Els recursos junts, amb actualitzacions incloses durant un any.</p>
+          <span class="card__price">89 €</span>
+          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Tot%20l'estudi"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+        </article>
+      </div>
+      <p class="note fade" data-delay="3">Les comandes es gestionen per correu mentre connectem la passarel·la de pagament. Enviem l'enllaç de descàrrega en menys de 24 h.</p>
+    </div>
+  </section>
+
+  <!-- Contacte -->
+  <section class="section slab-top" data-theme="ink" id="lac-contacte">
+    <div class="wrap">
+      <p class="kicker fade">Contacte</p>
+      <h2 class="display rl">
+        <span class="hand">Això comença</span>
+        amb un missatge.
+      </h2>
+
+      <div class="contact">
+        <div class="fade">
+          <p class="lead">Explica'ns quina marca ets i què t'està frenant. Responem en menys de 48 hores laborables, sempre una persona.</p>
+          <ul class="contact__direct">
+            <li><a class="link-line" href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
+            <li><a class="link-line" href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">DM a @laconicstudio_</a></li>
+          </ul>
+          <p class="hand-note">Fes match amb allò que vibri amb tu</p>
+        </div>
+
+        <div class="fade" data-delay="1">
+          <!-- Sense backend: compon un correu amb les dades. Per rebre-ho en un
+               servidor, canviar data-mailto per action + method. -->
+          <form class="form" data-mailto="itslaconicstudio@gmail.com" data-ok="Obrim el teu client de correu amb el missatge llest. Si no s'obre, escriu-nos a " novalidate>
+            <div class="form__row">
+              <div class="field">
+                <label for="lac-nombre">El teu nom</label>
+                <input id="lac-nombre" name="nombre" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="lac-marca">Marca o projecte</label>
+                <input id="lac-marca" name="marca" type="text" autocomplete="organization">
+              </div>
+            </div>
+            <div class="field">
+              <label for="lac-email">Email</label>
+              <input id="lac-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <span id="lac-servicios-label" class="field__label">Què necessites</span>
+              <div class="chips" role="group" aria-labelledby="lac-servicios-label">
+                <label class="chip"><input type="checkbox" name="servicio" value="Content creation"><span>Content creation</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Social media"><span>Social media</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Estratègia"><span>Estratègia</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Direcció creativa"><span>Direcció creativa</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="UGC"><span>UGC</span></label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="lac-mensaje">Explica'ns</label>
+              <textarea id="lac-mensaje" name="mensaje" rows="4" placeholder="Què venes, a qui i què t'agradaria canviar."></textarea>
+            </div>
+            <div>
+              <button class="btn btn--cream btn--lg" type="submit"><span>Envia el missatge</span><span class="arrow" aria-hidden="true">&rarr;</span></button>
+            </div>
+            <p class="note" data-form-status role="status">En enviar s'obre el teu client de correu amb el missatge ja redactat.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" data-theme="ink">
+  <div class="wrap">
+    <svg class="footer__word" viewBox="0 0 288.0 100" aria-hidden="true"><use href="#lac-lg-lockup"/></svg>
+    <ul class="footer__rows">
+      <li><a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
+      <li><a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">Instagram</a></li>
+      <li>Barcelona, treballem en remot.</li>
+      <li class="footer__nav">
+        <a href="#lac-estudi">Estudi</a>
+        <a href="#lac-serveis">Serveis</a>
+        <a href="#lac-treball">Treball</a>
+        <a href="#lac-recursos">Recursos</a>
+        <a href="#lac-contacte">Contacte</a>
+        <a href="__URL_ES__" hreflang="es">ES</a>
+      </li>
+    </ul>
+    <p class="footer__copy">&copy; <span data-year>2026</span> Laconic Studio</p>
+  </div>
+</footer>
+</div>
+
+<script>
+/* Laconic Studio — interacciones (sin dependencias) */
+(function () {
+  "use strict";
+
+  // Todo se busca dentro del contenedor del widget, nunca en el resto del tema
+  var APP = document.getElementById("laconic-app");
+  if (!APP) return;
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* ---- Marca de carga: dispara la entrada del logo ---- */
+  var loaded = function () {
+    APP.classList.add("is-loaded");
+  };
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(loaded);
+    window.setTimeout(loaded, 1200); // por si las tipografías tardan
+  } else {
+    loaded();
+  }
+
+  /* ---- Titulares: cada palabra en su propia caja para revelarla ---- */
+  var splitWords = function (root) {
+    var index = 0;
+    var walk = function (node) {
+      var kids = Array.prototype.slice.call(node.childNodes);
+      kids.forEach(function (child) {
+        if (child.nodeType === 3) {
+          var text = child.textContent;
+          if (!text.trim()) return;
+          var frag = document.createDocumentFragment();
+          text.split(/(\s+)/).forEach(function (chunk) {
+            if (!chunk) return;
+            if (!chunk.trim()) {
+              frag.appendChild(document.createTextNode(chunk));
+              return;
+            }
+            var wrap = document.createElement("span");
+            wrap.className = "w";
+            wrap.style.setProperty("--i", index++);
+            var inner = document.createElement("i");
+            inner.textContent = chunk;
+            wrap.appendChild(inner);
+            frag.appendChild(wrap);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          walk(child);
+        }
+      });
+    };
+    walk(root);
+  };
+
+  var headlines = APP.querySelectorAll(".rl");
+  if (!reduced) {
+    headlines.forEach(splitWords);
+  }
+
+  /* ---- Entradas al viewport (titulares y bloques) ---- */
+  var animables = APP.querySelectorAll(".rl, .fade");
+  if (animables.length) {
+    if (reduced || !("IntersectionObserver" in window)) {
+      animables.forEach(function (el) {
+        el.classList.add("is-in");
+      });
+    } else {
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-in");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -12% 0px", threshold: 0 }
+      );
+      animables.forEach(function (el) {
+        io.observe(el);
+      });
+    }
+  }
+
+  /* ---- Cabecera: color según la sección de detrás, fondo y auto-ocultar ---- */
+  var header = APP.querySelector(".header");
+  var temas = APP.querySelectorAll("[data-theme]");
+  if (header) {
+    var lastY = window.scrollY;
+    var onScroll = function () {
+      var y = window.scrollY;
+      var caja = header.getBoundingClientRect();
+      header.classList.toggle("is-stuck", caja.top <= 1);
+      if (!APP.classList.contains("is-menu-open")) {
+        header.classList.toggle("is-hidden", y > lastY && caja.top <= 1);
+      }
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    if (temas.length) {
+      var pintarCabecera = function () {
+        var linea = header.getBoundingClientRect().bottom - 2;
+        for (var i = 0; i < temas.length; i++) {
+          var r = temas[i].getBoundingClientRect();
+          if (r.top <= linea && r.bottom > linea) {
+            header.dataset.on = temas[i].dataset.theme;
+            APP.dataset.on = temas[i].dataset.theme;
+            return;
+          }
+        }
+      };
+      window.addEventListener("scroll", pintarCabecera, { passive: true });
+      window.addEventListener("resize", pintarCabecera);
+      pintarCabecera();
+    }
+  }
+
+  /* ---- Menú móvil ---- */
+  var burger = APP.querySelector(".burger");
+  var menu = APP.querySelector(".mobile-menu");
+  if (burger && menu) {
+    var setMenu = function (open) {
+      APP.classList.toggle("is-menu-open", open);
+      burger.setAttribute("aria-expanded", String(open));
+      menu.setAttribute("aria-hidden", String(!open));
+      document.documentElement.style.overflow = open ? "hidden" : "";
+    };
+    burger.addEventListener("click", function () {
+      setMenu(!APP.classList.contains("is-menu-open"));
+    });
+    menu.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && APP.classList.contains("is-menu-open")) {
+        setMenu(false);
+        burger.focus();
+      }
+    });
+    setMenu(false);
+  }
+
+  /* ---- Navegación: marca el enlace de la sección visible ---- */
+  var navLinks = APP.querySelectorAll(".nav a[href^='#']");
+  if (navLinks.length && "IntersectionObserver" in window) {
+    var porId = {};
+    navLinks.forEach(function (a) {
+      porId[a.getAttribute("href").slice(1)] = a;
+    });
+    var ioNav = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var link = porId[entry.target.id];
+          if (link && entry.isIntersecting) {
+            navLinks.forEach(function (a) {
+              a.classList.remove("is-active");
+            });
+            link.classList.add("is-active");
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+    Object.keys(porId).forEach(function (id) {
+      var sec = document.getElementById(id);
+      if (sec) ioNav.observe(sec);
+    });
+  }
+
+  /* ---- Servicios: la foto sigue al servicio activo ---- */
+  var svcList = APP.querySelector("[data-svc-list]");
+  if (svcList) {
+    var items = svcList.querySelectorAll(".svc__item");
+    var imgs = APP.querySelectorAll("[data-svc-img]");
+    var activar = function (clave) {
+      imgs.forEach(function (im) {
+        im.classList.toggle("is-on", im.dataset.svcImg === clave);
+      });
+      items.forEach(function (it) {
+        it.classList.toggle("is-active", it.dataset.svc === clave);
+      });
+    };
+    activar(items[0] ? items[0].dataset.svc : null);
+
+    items.forEach(function (item) {
+      item.addEventListener("mouseenter", function () {
+        activar(item.dataset.svc);
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      var ioSvc = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) activar(entry.target.dataset.svc);
+          });
+        },
+        { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+      );
+      items.forEach(function (it) {
+        ioSvc.observe(it);
+      });
+    }
+  }
+
+  /* ---- Bucle de scroll: collage, paralaje, raíl del proceso, giro del cero ---- */
+  var collage = APP.querySelector("[data-collage]");
+  var parallax = APP.querySelectorAll("[data-parallax]");
+  var rail = APP.querySelector("[data-rail]");
+  var spin = APP.querySelector("[data-spin]");
+  var pasos = rail ? rail.querySelectorAll(".step") : [];
+
+  var clamp01 = function (v) {
+    return v < 0 ? 0 : v > 1 ? 1 : v;
+  };
+
+  var frame = function () {
+    var vh = window.innerHeight;
+
+    if (collage) {
+      var travel = collage.offsetHeight - vh;
+      var p = travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1;
+      collage.style.setProperty("--p", clamp01(p).toFixed(4));
+    }
+
+    parallax.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      // -1 al entrar por abajo, +1 al salir por arriba
+      var centro = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+      el.style.setProperty("--py", (-clamp01((centro + 1) / 2) * 2 + 1).toFixed(3));
+    });
+
+    if (rail) {
+      var rr = rail.getBoundingClientRect();
+      var avance = clamp01((vh * 0.62 - rr.top) / rr.height);
+      rail.style.setProperty("--fill", avance.toFixed(3));
+      pasos.forEach(function (paso, i) {
+        var pr = paso.getBoundingClientRect();
+        paso.classList.toggle("is-on", pr.top < vh * 0.66);
+      });
+    }
+
+    if (spin) {
+      var sr = spin.getBoundingClientRect();
+      if (sr.bottom > 0 && sr.top < vh) {
+        var giro = ((vh - sr.top) / (vh + sr.height)) * 40 - 12;
+        spin.style.setProperty("--spin", giro.toFixed(2) + "deg");
+      }
+    }
+
+    ticking = false;
+  };
+
+  var ticking = false;
+  var pedir = function () {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(frame);
+    }
+  };
+
+  if (reduced) {
+    if (collage) collage.style.setProperty("--p", "1");
+    pasos.forEach(function (p) {
+      p.classList.add("is-on");
+    });
+  } else {
+    window.addEventListener("scroll", pedir, { passive: true });
+    window.addEventListener("resize", pedir);
+    frame();
+  }
+
+  /* ---- Marquesina: duplicar para que el bucle no tenga costura ---- */
+  APP.querySelectorAll(".marquee__track").forEach(function (track) {
+    track.innerHTML += track.innerHTML;
+  });
+
+  /* ---- Cursor ---- */
+  var cursor = APP.querySelector(".cursor");
+  if (cursor && fine && !reduced) {
+    var cx = -100, cy = -100, tx = -100, ty = -100;
+    document.addEventListener("mousemove", function (e) {
+      tx = e.clientX;
+      ty = e.clientY;
+    });
+    var seguir = function () {
+      cx += (tx - cx) * 0.18;
+      cy += (ty - cy) * 0.18;
+      cursor.style.transform = "translate3d(" + (cx - 4.5) + "px," + (cy - 4.5) + "px,0)";
+      window.requestAnimationFrame(seguir);
+    };
+    seguir();
+
+    var interactivos = "a, button, .card, .svc__item, input, textarea, label";
+    document.addEventListener("mouseover", function (e) {
+      if (e.target.closest(interactivos)) APP.classList.add("cursor-on");
+    });
+    document.addEventListener("mouseout", function (e) {
+      if (e.target.closest(interactivos)) APP.classList.remove("cursor-on");
+    });
+  }
+
+  /* ---- Año del footer ---- */
+  APP.querySelectorAll("[data-year]").forEach(function (el) {
+    el.textContent = String(new Date().getFullYear());
+  });
+
+  /* ---- Formulario sin backend: compone el correo ---- */
+  var form = APP.querySelector("[data-mailto]");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var servicios = data.getAll("servicio").join(", ") || "Sin especificar";
+      var body = [
+        "Nombre: " + (data.get("nombre") || ""),
+        "Marca: " + (data.get("marca") || ""),
+        "Email: " + (data.get("email") || ""),
+        "Servicios: " + servicios,
+        "",
+        "Cuéntanos:",
+        data.get("mensaje") || ""
+      ].join("\n");
+
+      window.location.href =
+        "mailto:" + form.getAttribute("data-mailto") +
+        "?subject=" + encodeURIComponent("Nuevo proyecto — " + (data.get("marca") || data.get("nombre") || "Laconic")) +
+        "&body=" + encodeURIComponent(body);
+
+      var status = form.querySelector("[data-form-status]");
+      if (status) {
+        status.textContent =
+          (form.getAttribute("data-ok") || "") + form.getAttribute("data-mailto") + ".";
+      }
+    });
+  }
+
+  /* ---- Scroll suave de los enlaces internos, con margen para la cabecera ---- */
+  APP.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var destino = document.getElementById(a.getAttribute("href").slice(1));
+      if (!destino) return;
+      e.preventDefault();
+      var top = destino.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
+    });
+  });
+})();
+
+</script>
