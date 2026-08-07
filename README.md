@@ -100,7 +100,7 @@ Todo se controla desde los tokens de `:root` en `assets/css/main.css`:
 
 | Token | Valor | Uso |
 | --- | --- | --- |
-| `--terra` | `#C95948` | hero, secciones de servicios y contacto, acentos |
+| `--terra` | `#C95948` | declaración, tira, servicios, acentos |
 | `--cream` | `#F9F0E1` | fondo base y texto sobre terracota |
 | `--ink` | `#1C2825` | secciones oscuras, botones, titulares sobre crema |
 | `--text` | `#1C2825` | texto sobre crema (el mismo verde) |
@@ -144,8 +144,8 @@ librerías, y desactivado con `prefers-reduced-motion`:
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.
-- **Cabecera**: cambia de color según el tema de la sección que cruza
-  (`data-theme` → `data-on`), y el enlace de la sección visible se subraya.
+- **Cabecera**: siempre clara; se le pone sombra al despegarse y se esconde al
+  bajar. El enlace de la sección visible se subraya.
 - **Servicios**: la foto pegada al scroll cambia con el servicio activo, por
   ratón o por posición.
 - **Trabajo**: cada foto se mueve en paralaje dentro de su marco.
@@ -159,11 +159,10 @@ librerías, y desactivado con `prefers-reduced-motion`:
   (con EST · STUDIO · 2024). Los tres van como `<symbol>` en un sprite al
   principio de `index.html` (`#lg-word`, `#lg-zero`, `#lg-lockup`) y se usan con
   `<use>`, así que heredan el color de la sección con `currentColor`.
-- **Fotos del inicio**: `HERO_FONDO` es la foto a sangre y `HERO_CHIP` la pieza
-  que se cruza con el logotipo (`build/build.py`). Las cinco de la tira están en
-  `TIRA`, y su velocidad de subida la controlan `.strip__cell--1` … `--5` en el
-  CSS (`--rise` es cuánto sube cada una). Las del panel de servicios, en
-  `COLLAGE`.
+- **Fotos del inicio**: `HERO_FOTO` es la foto de marca del fondo. Las cinco
+  piezas que suben están en `HERO_TILES`, y su recorrido lo controlan
+  `.tile--1` … `--5` en el CSS (`--rise` es cuánto sube cada una). Las de la tira
+  en bucle, en `TIRA`; las del panel de servicios, en `COLLAGE`.
 - **Proyectos**: cada `<article class="slab">` lleva su medio (vídeo o foto) y su
   texto, y alterna lado con `slab--flip`. Todo sale de `PROYECTOS` en
   `build/build.py`: añadir o quitar proyectos no rompe nada.
