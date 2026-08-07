@@ -254,29 +254,34 @@ ul {
   display: inline-block;
 }
 
-/* Titular: línea manuscrita + línea en display */
+/* Titular: la manuscrita va DENTRO de la frase, al mismo cuerpo que el resto.
+   Es el papel que en la referencia hace la cursiva: cambia la voz a media
+   frase sin cambiar de tamaño ni de línea. */
 .display {
   font-family: var(--display);
   font-size: var(--display-1);
   font-weight: 700;
   letter-spacing: -0.035em;
-  line-height: 0.98;
-  max-width: 20ch;
+  line-height: 1;
+  max-width: 22ch;
   margin: 0 0 clamp(1.8rem, 4vw, 2.8rem);
 }
 .display .hand {
-  display: block;
-  font-size: 0.5em;
+  display: inline;
+  font-size: 1.06em;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.05;
-  margin-bottom: 0.34em;
   color: var(--terra);
 }
 [data-theme="terra"] .display {
   color: var(--ink);
 }
 [data-theme="terra"] .display .hand {
+  color: var(--cream);
+}
+/* La declaración del inicio va en crema sobre el terracota, no en verde: es el
+   bloque que tiene que sonar más fuerte de la página. */
+[data-theme="terra"] .decl__text {
   color: var(--cream);
 }
 [data-theme="ink"] .display {
@@ -322,6 +327,12 @@ ul {
   transform: translateY(115%);
   transition: transform 0.95s var(--ease-out);
   transition-delay: calc(var(--i, 0) * 35ms);
+}
+/* La manuscrita se sale de su caja por arriba y por abajo, así que sus palabras
+   necesitan más aire dentro del recorte del revelado */
+.has-js .rl .hand .w {
+  padding: 0.16em 0 0.32em;
+  margin: -0.16em 0 -0.32em;
 }
 .has-js .rl.is-in .w > i {
   transform: none;
@@ -388,6 +399,29 @@ ul {
   font-size: var(--step-0);
   text-transform: none;
   letter-spacing: 0;
+}
+/* Botón de contorno, pequeño y muy espaciado: el de la referencia */
+.btn--line {
+  --btn-bg: transparent;
+  --btn-fg: currentColor;
+  border-color: currentColor;
+  border-radius: 2px;
+  padding: 1rem 2.1rem;
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-indent: 0.24em;
+}
+.btn--line:hover {
+  background: var(--cream);
+  color: var(--terra);
+  border-color: var(--cream);
+}
+[data-theme="cream"] .btn--line:hover,
+[data-theme="cream-2"] .btn--line:hover {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
 }
 
 .link-line {
@@ -501,6 +535,10 @@ ul {
   gap: clamp(1.2rem, 2.6vw, 2.4rem);
 }
 .nav a {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: var(--step--2);
+  font-weight: 600;
   font-size: var(--step--1);
   font-weight: 500;
   position: relative;
@@ -639,112 +677,203 @@ body.menu-open .mobile-menu {
   overflow-wrap: anywhere;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Inicio: foto a sangre + logotipo gigante ----------
+   La foto va oscurecida y con una viñeta encima para que el logotipo respire.
+   La pieza pequeña se cruza con las letras, como una foto dejada ahí. */
 .hero {
-  --p: 0;
   position: relative;
-  height: 250svh;
-  background: var(--terra);
-  color: var(--cream);
-}
-.hero__stage {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  overflow: hidden;
+  min-height: 100svh;
   display: grid;
   place-items: center;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--cream);
+  padding-block: clamp(6rem, 14vh, 10rem) clamp(5rem, 12vh, 8rem);
 }
-.hero__tiles {
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 34% 26%;
+  filter: grayscale(0.62) brightness(0.62) contrast(1.06);
+  transform: scale(1.06);
+}
+.hero::after {
+  content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  background:
+    radial-gradient(150% 105% at 50% 40%, rgba(var(--ink-rgb), 0.08) 18%, rgba(var(--ink-rgb), 0.62) 82%),
+    linear-gradient(to bottom, rgba(var(--ink-rgb), 0.62), transparent 24% 58%, rgba(var(--ink-rgb), 0.82));
 }
-.tile {
-  position: absolute;
+.hero__mid {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  padding-inline: var(--gutter);
+}
+.hero__logo {
   margin: 0;
-  overflow: hidden;
-  transform: translate3d(0, calc(var(--rise, 100svh) * (1 - var(--p))), 0)
-    rotate(var(--rot, 0deg));
-  will-change: transform;
-  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  display: grid;
+  justify-items: center;
 }
-.tile img {
+.hero__logo-word {
+  width: min(90vw, 1180px);
+  height: auto;
+  color: var(--cream);
+  clip-path: inset(0 0 105% 0);
+  transition: clip-path 1.5s var(--ease-out) 0.15s;
+}
+.is-loaded .hero__logo-word {
+  clip-path: inset(0 0 -3% 0);
+}
+.hero__chip {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  width: clamp(84px, 11vw, 170px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  left: 58%;
+  top: -14%;
+  border: clamp(4px, 0.5vw, 7px) solid var(--cream);
+  box-shadow: 0 34px 60px -28px rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  transform: rotate(4deg) translateY(18px);
+  transition: opacity 1s var(--ease) 1s, transform 1.2s var(--ease-out) 1s;
+}
+.is-loaded .hero__chip {
+  opacity: 1;
+  transform: rotate(4deg) translateY(0);
+}
+.hero__chip img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-/* Las cinco piezas rodean el logotipo: dos a cada lado y una que asoma abajo,
-   ninguna cruza la banda central donde está el logotipo. */
-.tile--1 { left: 1%;   top: 14%; width: 17vw; height: 44svh; --rise: 84svh;  --rot: -3deg; }
-.tile--2 { left: 74%;  top: 6%;  width: 20vw; height: 40svh; --rise: 122svh; --rot: 2.5deg; }
-.tile--3 { left: 40%;  top: 74%; width: 15vw; height: 34svh; --rise: 148svh; --rot: 3.5deg; }
-.tile--4 { left: 12%;  top: 66%; width: 14vw; height: 30svh; --rise: 102svh; --rot: 2deg; }
-.tile--5 { left: 66%;  top: 61%; width: 18vw; height: 36svh; --rise: 162svh; --rot: -2.5deg; }
-
-.hero__logo {
-  position: relative;
-  z-index: 3;
-  margin: 0;
-  display: grid;
-  justify-items: center;
-  padding-inline: var(--gutter);
-  color: var(--cream);
-}
-.hero__logo-mark {
-  height: clamp(34px, 4.4vw, 66px);
-  width: auto;
-  margin-bottom: clamp(0.9rem, 2vw, 1.6rem);
-  opacity: 0;
-  transform: translateY(14px) rotate(-8deg);
-  transition: opacity 1s var(--ease-out) 0.35s, transform 1.1s var(--ease-out) 0.35s;
-}
-.hero__logo-word {
-  width: min(70vw, 800px);
-  height: auto;
-  clip-path: inset(0 0 105% 0);
-  transition: clip-path 1.35s var(--ease-out) 0.1s;
-}
-.hero__logo-sub {
-  font-size: clamp(0.64rem, 1.3vw, 0.9rem);
-  font-weight: 500;
-  letter-spacing: 0.64em;
+.hero__sub {
+  margin-top: clamp(0.4rem, 1.2vw, 1rem);
+  font-size: var(--step--1);
   text-transform: uppercase;
-  margin: clamp(0.7rem, 1.6vw, 1.1rem) 0 0 0.64em;
+  letter-spacing: 0.62em;
+  text-indent: 0.62em;
   opacity: 0;
-  transition: opacity 1s var(--ease) 0.9s;
+  transition: opacity 1.2s var(--ease) 0.85s;
 }
-.is-loaded .hero__logo-mark {
-  opacity: 1;
-  transform: none;
+.is-loaded .hero__sub {
+  opacity: 0.85;
 }
-.is-loaded .hero__logo-word {
-  clip-path: inset(-10% -2% -10% -2%);
-}
-.is-loaded .hero__logo-sub {
-  opacity: 0.92;
-}
-
-.hero__note {
+/* Filete de abajo con los dos rótulos, como en la referencia */
+.hero__rule {
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   left: var(--gutter);
-  bottom: clamp(1.5rem, 4vh, 2.6rem);
-  margin: 0;
-  max-width: 34ch;
+  right: var(--gutter);
+  bottom: clamp(1.6rem, 5vh, 3.2rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.4rem);
   font-size: var(--step--2);
-  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--cream);
-  opacity: calc((1 - var(--p) * 4) * 0.85);
-  transition: opacity 0.4s linear;
+  letter-spacing: 0.24em;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease) 1.15s;
 }
+.is-loaded .hero__rule {
+  opacity: 0.9;
+}
+.hero__rule i {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+/* ---------- Declaración: bloque de color, centrado ---------- */
+.decl {
+  padding-block: clamp(4rem, 9vw, 8rem) clamp(3rem, 7vw, 6rem);
+  position: relative;
+}
+.decl__text {
+  font-size: clamp(1.55rem, 3.4vw, 3rem);
+  line-height: 1.26;
+  letter-spacing: -0.03em;
+  max-width: none;
+  margin: 0 auto clamp(2.2rem, 5vw, 3.4rem);
+  text-wrap: balance;
+}
+.decl__text .hand {
+  font-size: 0.98em;
+  color: var(--sand);
+}
+
+/* ---------- Tira de fotos con el titular gigante detrás ---------- */
+.strip {
+  --p: 1;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: clamp(2rem, 5.5vw, 5.5rem);
+  background: var(--terra);
+  color: var(--cream);
+}
+.strip__ghost {
+  position: absolute;
+  left: 50%;
+  bottom: -0.16em;
+  transform: translateX(-50%);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(3.5rem, 11.5vw, 11.5rem);
+  line-height: 0.78;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(var(--ink-rgb), 0.26);
+  pointer-events: none;
+  user-select: none;
+}
+.strip__row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.strip__cell {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  transform: translate3d(0, calc((1 - var(--p)) * var(--rise, 40%)), 0);
+  will-change: transform;
+}
+.strip__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.strip__cell--1 { --rise: 34%; }
+.strip__cell--2 { --rise: 62%; }
+.strip__cell--3 { --rise: 22%; }
+.strip__cell--4 { --rise: 70%; }
+.strip__cell--5 { --rise: 44%; }
+
+
+/* Va centrado y por encima del filete, que ocupa todo el ancho abajo */
 .hero__scroll {
   position: absolute;
   z-index: 3;
-  right: var(--gutter);
-  bottom: clamp(1.5rem, 4vh, 2.6rem);
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(clamp(1.6rem, 5vh, 3.2rem) + 2.4rem);
   font-family: var(--hand);
   font-size: 1.3rem;
   display: inline-flex;
@@ -1189,17 +1318,16 @@ body.menu-open .mobile-menu {
   font-size: clamp(2.2rem, 6.2vw, 5rem);
   font-weight: 700;
   letter-spacing: -0.045em;
-  line-height: 0.95;
-  max-width: 24ch;
+  line-height: 1.06;
+  max-width: 26ch;
   margin: 0;
 }
+/* Igual que en los titulares: la manuscrita va dentro de la frase */
 .quote__text .hand {
-  display: block;
-  font-size: 0.46em;
+  display: inline;
+  font-size: 1.04em;
   font-weight: 400;
-  line-height: 1.05;
-  color: var(--terra-soft);
-  margin-bottom: 0.3em;
+  color: var(--sand);
 }
 .quote cite {
   display: block;
@@ -1515,6 +1643,24 @@ body.cursor-on .cursor {
 }
 
 /* ---------- Responsive ---------- */
+@media (max-width: 700px) {
+  /* En estrecho la pieza taparía una letra del logotipo: baja a su derecha */
+  .hero__chip {
+    left: auto;
+    right: 3%;
+    top: 128%;
+    width: clamp(76px, 24vw, 104px);
+  }
+  /* A cinco columnas las fotos salen a 70 px: mejor tres */
+  .strip__row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .strip__cell--4,
+  .strip__cell--5 {
+    display: none;
+  }
+}
+
 @media (max-width: 900px) {
   .nav,
   .header__cta {
@@ -1523,11 +1669,6 @@ body.cursor-on .cursor {
   .burger {
     display: block;
   }
-  .tile--1 { left: -2%; top: 15%; width: 40vw; height: 30svh; }
-  .tile--2 { left: 53%; top: 5%;  width: 45vw; height: 24svh; }
-  .tile--3 { left: 27%; top: 53%; width: 34vw; height: 26svh; }
-  .tile--4 { display: none; }
-  .tile--5 { left: 57%; top: 67%; width: 40vw; height: 27svh; }
   .quote__mark {
     right: -18vw;
     height: 60%;
@@ -1554,16 +1695,20 @@ body.cursor-on .cursor {
     height: auto;
     min-height: 100svh;
   }
-  .tile {
-    transform: rotate(var(--rot, 0deg));
-  }
   .hero__logo-word {
     clip-path: none;
   }
-  .hero__logo-mark,
-  .hero__logo-sub,
+  .hero__chip,
+  .hero__sub,
+  .hero__rule,
   .hero__scroll {
     opacity: 1;
+    transform: none;
+  }
+  .hero__chip {
+    transform: rotate(4deg);
+  }
+  .strip__cell {
     transform: none;
   }
   .cursor {

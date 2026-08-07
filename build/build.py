@@ -45,7 +45,7 @@ SPRITE = (
 
 PROYECTOS = [
     dict(
-        slug='quality', fotos=3,
+        slug='quality', portada=1, fotos=3,
         nombre='Quality Training',
         sector=dict(ca='Entrenament', es='Entrenamiento'),
         texto=dict(
@@ -61,7 +61,7 @@ PROYECTOS = [
                 'https://www.instagram.com/p/DZIkSk0s2Yc/'],
     ),
     dict(
-        slug='malhivern', fotos=4,
+        slug='malhivern', portada=2, fotos=4,
         nombre='Ratafia Malhivern',
         sector=dict(ca='Licors artesans', es='Licores artesanos'),
         texto=dict(
@@ -74,7 +74,7 @@ PROYECTOS = [
         piezas=['https://www.instagram.com/p/DZKUPZXNnqz/'],
     ),
     dict(
-        slug='f4s', fotos=4,
+        slug='f4s', portada=1, fotos=4,
         nombre='Football 4 Stars',
         sector=dict(ca='Futbol formatiu', es='Fútbol formativo'),
         texto=dict(
@@ -87,7 +87,7 @@ PROYECTOS = [
         piezas=[],
     ),
     dict(
-        slug='maitasuna', fotos=4,
+        slug='maitasuna', portada=1, fotos=4,
         nombre='Maitasuna',
         sector=dict(ca='Pizza artesana', es='Pizza artesana'),
         texto=dict(
@@ -102,7 +102,7 @@ PROYECTOS = [
         piezas=[],
     ),
     dict(
-        slug='jordi-coll', fotos=3,
+        slug='jordi-coll', portada=2, fotos=3,
         nombre='Jordi Coll',
         sector=dict(ca='Marca personal', es='Marca personal'),
         texto=dict(
@@ -117,7 +117,7 @@ PROYECTOS = [
                 'https://www.instagram.com/p/DVxsEDcjHw5/'],
     ),
     dict(
-        slug='f45', fotos=3,
+        slug='f45', portada=1, fotos=3,
         nombre='F45 Training',
         sector=dict(ca='Esdeveniment', es='Evento'),
         texto=dict(
@@ -132,7 +132,7 @@ PROYECTOS = [
         piezas=[],
     ),
     dict(
-        slug='puig', fotos=3,
+        slug='puig', portada=3, fotos=3,
         nombre='Comercial Puig',
         sector=dict(ca='Distribució', es='Distribución'),
         texto=dict(
@@ -215,10 +215,17 @@ T = {
                    ('#contacte', 'Contacte', 'escriu-nos')],
         cta='Parlem', menu_abrir='Obre el menú',
         hero_nota='Estudi creatiu · Barcelona i remot',
+        hero_izq='Estudi creatiu', hero_der='Barcelona i remot',
+        k_sobre='Sobre Laconic',
+        # La manuscrita va dentro de la frase, como la cursiva de la referencia
+        declaracion='Ajudem marques a <span class="hand">travessar el soroll</span> '
+                    'i a deixar una <span class="hand">empremta que duri</span>.',
+        btn_saber='Saber-ne més',
+        tira_fantasma='laconic studio',
         id_estudio='estudi', id_servicios='serveis', id_trabajo='treball',
         id_proceso='proces', id_recursos='recursos', id_contacto='contacte',
         k_estudio='L\'estudi',
-        h_estudio_hand='Cada marca comunica,', h_estudio='però no totes connecten.',
+        h_estudio='Cada marca comunica, <span class="hand">però no totes connecten</span>.',
         lead_estudio='Una bona comunicació no consisteix a publicar més, sinó a explicar millor.',
         cuerpo_estudio=[
             'Som un estudi creatiu especialitzat en xarxes socials, creació de contingut i '
@@ -236,7 +243,7 @@ T = {
                 ('48h', 'per respondre el teu primer missatge'),
                 ('100%', 'contingut fet a mida, zero plantilles')],
         k_servicios='Serveis',
-        h_servicios_hand='Això és el que fem', h_servicios='i què te\'n queda.',
+        h_servicios='Això és el que fem <span class="hand">i què te\'n queda</span>.',
         servicios=[
             ('01', 'Content creation', 'Contingut amb aquell no-sé-què',
              ['Concepte i guió', 'Foto i vídeo', 'Reels i verticals', 'Edició i subtítols']),
@@ -251,12 +258,12 @@ T = {
         ],
         btn_presupuesto='Demana pressupost',
         k_trabajo='Treball · Set marques',
-        h_trabajo_hand='Get people talking', h_trabajo='about your brand.',
+        h_trabajo='Get people <span class="hand">talking</span> about your brand.',
         pieza='Peça', reel_sonido='Activa el so', reel_silencio='Silencia el so',
         ver_instagram='Mira-ho a Instagram',
-        cita_hand='Menys soroll.', cita='Més sentit.',
+        cita='Menys soroll. <span class="hand">Més sentit</span>.',
         k_proceso='Com treballem',
-        h_proceso_hand='Sense misteri,', h_proceso='amb mètode.',
+        h_proceso='Sense misteri, <span class="hand">amb mètode</span>.',
         pasos=[('Escoltem', 'Una trucada de vint minuts per entendre el negoci, no només el '
                             'feed. Què venes, a qui i què t\'està frenant.'),
                ('Definim', 'Una proposta curta: objectiu, entregables, terminis i preu. Si '
@@ -266,7 +273,7 @@ T = {
                ('Mesurem', 'Publiquem, llegim les dades i ajustem. Cada mes t\'expliquem què '
                            'ha funcionat, què no i què provarem.')],
         k_recursos='Recursos',
-        h_recursos_hand='Plantilles', h_recursos='per fer-ho tu.',
+        h_recursos='<span class="hand">Plantilles</span> per fer-ho tu.',
         recursos=[('Plantilles', 'Kit de stories', '30 plantilles editables al Canva amb el '
                    'nostre sistema tipogràfic i de color.', '29 €'),
                   ('Guia', 'Tom de veu en 10 passos', 'El mètode que fem servir perquè una '
@@ -277,7 +284,7 @@ T = {
         nota_recursos='Les comandes es gestionen per correu mentre connectem la passarel·la '
                       'de pagament. Enviem l\'enllaç de descàrrega en menys de 24 h.',
         k_contacto='Contacte',
-        h_contacto_hand='Això comença', h_contacto='amb un missatge.',
+        h_contacto='Això comença <span class="hand">amb un missatge</span>.',
         lead_contacto='Explica\'ns quina marca ets i què t\'està frenant. Responem en menys '
                       'de 48 hores laborables, sempre una persona.',
         dm='DM a @laconicstudio_',
@@ -305,10 +312,16 @@ T = {
                    ('#contacto', 'Contacto', 'escríbenos')],
         cta='Hablemos', menu_abrir='Abrir el menú',
         hero_nota='Estudio creativo · Barcelona y remoto',
+        hero_izq='Estudio creativo', hero_der='Barcelona y remoto',
+        k_sobre='Sobre Laconic',
+        declaracion='Ayudamos a marcas a <span class="hand">atravesar el ruido</span> '
+                    'y a dejar una <span class="hand">huella que dure</span>.',
+        btn_saber='Saber más',
+        tira_fantasma='laconic studio',
         id_estudio='estudio', id_servicios='servicios', id_trabajo='trabajo',
         id_proceso='proceso', id_recursos='recursos', id_contacto='contacto',
         k_estudio='El estudio',
-        h_estudio_hand='Cada marca comunica,', h_estudio='pero no todas conectan.',
+        h_estudio='Cada marca comunica, <span class="hand">pero no todas conectan</span>.',
         lead_estudio='Una buena comunicación no consiste en publicar más, sino en explicar mejor.',
         cuerpo_estudio=[
             'Somos un estudio creativo especializado en redes sociales, creación de contenido '
@@ -326,7 +339,7 @@ T = {
                 ('48h', 'para responder a tu primer mensaje'),
                 ('100%', 'contenido hecho a medida, cero plantillas')],
         k_servicios='Servicios',
-        h_servicios_hand='Esto es lo que hacemos', h_servicios='y qué te llevas.',
+        h_servicios='Esto es lo que hacemos <span class="hand">y qué te llevas</span>.',
         servicios=[
             ('01', 'Content creation', 'Contenido con ese no-sé-qué',
              ['Concepto y guion', 'Foto y vídeo', 'Reels y verticales', 'Edición y subtítulos']),
@@ -341,12 +354,12 @@ T = {
         ],
         btn_presupuesto='Pedir presupuesto',
         k_trabajo='Trabajo · Siete marcas',
-        h_trabajo_hand='Get people talking', h_trabajo='about your brand.',
+        h_trabajo='Get people <span class="hand">talking</span> about your brand.',
         pieza='Pieza', reel_sonido='Activar el sonido', reel_silencio='Silenciar',
         ver_instagram='Verlo en Instagram',
-        cita_hand='Menos ruido.', cita='Más sentido.',
+        cita='Menos ruido. <span class="hand">Más sentido</span>.',
         k_proceso='Cómo trabajamos',
-        h_proceso_hand='Sin misterio,', h_proceso='con método.',
+        h_proceso='Sin misterio, <span class="hand">con método</span>.',
         pasos=[('Escuchamos', 'Una llamada de veinte minutos para entender el negocio, no solo '
                               'el feed. Qué vendes, a quién y qué te está frenando.'),
                ('Definimos', 'Una propuesta corta: objetivo, entregables, plazos y precio. Si '
@@ -356,7 +369,7 @@ T = {
                ('Medimos', 'Publicamos, leemos los datos y ajustamos. Cada mes te contamos qué '
                            'funcionó, qué no y qué vamos a probar.')],
         k_recursos='Recursos',
-        h_recursos_hand='Plantillas', h_recursos='para hacerlo tú.',
+        h_recursos='<span class="hand">Plantillas</span> para hacerlo tú.',
         recursos=[('Plantillas', 'Kit de stories', '30 plantillas editables en Canva con '
                    'nuestro sistema tipográfico y de color.', '29 €'),
                   ('Guía', 'Tono de voz en 10 pasos', 'El método que usamos para que una marca '
@@ -367,7 +380,7 @@ T = {
         nota_recursos='Los pedidos se gestionan por correo mientras conectamos la pasarela de '
                       'pago. Enviamos el enlace de descarga en menos de 24 h.',
         k_contacto='Contacto',
-        h_contacto_hand='Esto empieza', h_contacto='con un mensaje.',
+        h_contacto='Esto empieza <span class="hand">con un mensaje</span>.',
         lead_contacto='Cuéntanos qué marca eres y qué te está frenando. Respondemos en menos '
                       'de 48 horas laborables, siempre una persona.',
         dm='DM a @laconicstudio_',
@@ -388,8 +401,18 @@ EMAIL = 'itslaconicstudio@gmail.com'
 INSTAGRAM = 'https://www.instagram.com/laconicstudio_/'
 DOMINIO = 'https://laconicstudio.com'
 
-# Fotos del collage del hero: proyecto y número de foto
-COLLAGE = [('malhivern', 1), ('quality', 1), ('maitasuna', 1), ('puig', 1), ('f4s', 1)]
+# Fotos del collage: proyecto y número de foto. COLLAGE alimenta el panel de
+# servicios; HERO_FONDO es la foto a sangre del inicio, HERO_CHIP la pieza
+# pequeña que se cruza con el logotipo, y TIRA la banda de cinco fotos que sube
+# con el scroll por delante del titular gigante.
+COLLAGE = [('malhivern', 3), ('quality', 1), ('maitasuna', 1), ('puig', 3), ('f4s', 1)]
+# Ojo: varias fotos del estudio son collages de dos o tres imágenes montadas, y
+# a sangre se les ve la costura. Las que se usan grandes son de una sola toma:
+# collages detectados y descartados aquí: f45-2, f45-3, jordi-coll-1, puig-2,
+# quality-2 y maitasuna-3.
+HERO_FONDO = ('f4s', 2)
+HERO_CHIP = ('malhivern', 1)
+TIRA = [('quality', 1), ('f45', 1), ('maitasuna', 1), ('f4s', 1), ('malhivern', 2)]
 
 # --------------------------------------------------------------------------- #
 # Vídeos. Se detectan solos: basta dejar los archivos en assets/video con el
@@ -521,34 +544,60 @@ def render(lang):
 
 <main id="top">
 
-  <!-- Hero: terracota pla, logo centrat i fotos que pugen amb el scroll -->
-  <section class="hero" data-theme="terra" data-collage>
-    <div class="hero__stage">
-      <div class="hero__tiles">''')
-    for i, (slug, n) in enumerate(COLLAGE, 1):
-        carga = 'eager' if i <= 2 else 'lazy'
-        w(f'        <figure class="tile tile--{i}">'
-          + foto(prefix, slug, n, '26vw', lang, carga) + '</figure>')
-    w(f'''      </div>
+  <!-- Inici: foto a sangre, logotipo gegant al mig amb una peça creuada,
+       i el filet amb els dos rètols a baix -->
+  <section class="hero" data-theme="ink">
+    <div class="hero__bg" aria-hidden="true">
+      {foto(prefix, HERO_FONDO[0], HERO_FONDO[1], '100vw', lang, 'eager')}
+    </div>
 
+    <div class="hero__mid">
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
-        <svg class="hero__logo-mark" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
         <svg class="hero__logo-word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
-        <span class="hero__logo-sub" aria-hidden="true">studio</span>
       </h1>
+      <figure class="hero__chip">
+        {foto(prefix, HERO_CHIP[0], HERO_CHIP[1], '22vw', lang, 'eager')}
+      </figure>
+      <span class="hero__sub" aria-hidden="true">studio</span>
+    </div>
 
-      <p class="hero__note">{t['hero_nota']}</p>
-      <span class="hero__scroll" aria-hidden="true">scroll</span>
+    <div class="hero__rule">
+      <span>{t['hero_izq']}</span>
+      <i aria-hidden="true"></i>
+      <span>{t['hero_der']}</span>
+    </div>
+    <span class="hero__scroll" aria-hidden="true">scroll</span>
+  </section>
+
+  <!-- Declaració: bloc de color, centrat, amb la manuscrita dins de la frase -->
+  <section class="decl" data-theme="terra">
+    <div class="wrap wrap--narrow center">
+      <p class="kicker kicker--center fade">{t['k_sobre']}</p>
+      <p class="decl__text display rl">{t['declaracion']}</p>
+      <p class="fade" data-delay="1">
+        <a class="btn btn--line" href="#{t['id_estudio']}"><span>{t['btn_saber']}</span></a>
+      </p>
     </div>
   </section>
+
+  <!-- Tira de fotos que puja per davant del titular gegant -->
+  <div class="strip" data-theme="terra" data-rise>
+    <span class="strip__ghost" aria-hidden="true">{t['tira_fantasma']}</span>
+    <div class="strip__row">''')
+    for i, (slug, n) in enumerate(TIRA, 1):
+        w(f'      <figure class="strip__cell strip__cell--{i}">'
+          + foto(prefix, slug, n, '20vw', lang) + '</figure>')
+    w('''    </div>
+  </div>
+''')
+    w(f'''
 
   <!-- Estudi -->
   <section class="section slab-top" data-theme="cream" id="{t['id_estudio']}">
     <div class="wrap">
       <p class="kicker fade">{t['k_estudio']}</p>
       <h2 class="display rl">
-        <span class="hand">{t['h_estudio_hand']}</span>
         {t['h_estudio']}
       </h2>
 
@@ -599,7 +648,6 @@ def render(lang):
     <div class="wrap">
       <p class="kicker fade">{t['k_servicios']}</p>
       <h2 class="display rl">
-        <span class="hand">{t['h_servicios_hand']}</span>
         {t['h_servicios']}
       </h2>
 
@@ -639,7 +687,6 @@ def render(lang):
     <div class="wrap">
       <p class="kicker fade">{t['k_trabajo']}</p>
       <h2 class="display rl">
-        <span class="hand">{t['h_trabajo_hand']}</span>
         {t['h_trabajo']}
       </h2>
     </div>
@@ -653,7 +700,7 @@ def render(lang):
             w(f'''      <article class="slab{flip} fade">
         <div class="slab__media slab__media--reels">''')
             for j, nombre_video in enumerate(vids, 1):
-                n_foto = min(j, pr['fotos'])
+                n_foto = pr['portada'] if j == 1 else min(j, pr['fotos'])
                 w(f'''          <div class="reel" data-reel>
             <video src="{prefix}assets/video/{nombre_video}"
               poster="{prefix}assets/img/proyectos/{pr['slug']}-{n_foto}-700.jpg"
@@ -671,7 +718,7 @@ def render(lang):
         else:
             w(f'''      <article class="slab{flip} fade">
         <div class="slab__media" data-parallax>
-          {foto(prefix, pr['slug'], 1, '(min-width: 900px) 52vw, 100vw', lang)}
+          {foto(prefix, pr['slug'], pr['portada'], '(min-width: 900px) 52vw, 100vw', lang)}
         </div>''')
         w(f'''        <div class="slab__text">
           <span class="slab__index">{i + 1:02d} / {len(PROYECTOS):02d} &middot; {pr['sector'][lang]}</span>
@@ -702,7 +749,6 @@ def render(lang):
     <svg class="quote__mark" viewBox="{VB_ZERO}" aria-hidden="true" data-spin><use href="#lg-zero"/></svg>
     <div class="wrap">
       <blockquote class="quote__text rl">
-        <span class="hand">{t['cita_hand']}</span>
         {t['cita']}
       </blockquote>
       <cite class="fade">Laconic Studio</cite>
@@ -716,7 +762,6 @@ def render(lang):
         <div class="process__head">
           <p class="kicker fade">{t['k_proceso']}</p>
           <h2 class="display display--sm rl">
-            <span class="hand">{t['h_proceso_hand']}</span>
             {t['h_proceso']}
           </h2>
         </div>
@@ -738,7 +783,6 @@ def render(lang):
     <div class="wrap">
       <p class="kicker fade">{t['k_recursos']}</p>
       <h2 class="display display--sm rl">
-        <span class="hand">{t['h_recursos_hand']}</span>
         {t['h_recursos']}
       </h2>
       <div class="cards">''')
@@ -762,7 +806,6 @@ def render(lang):
     <div class="wrap">
       <p class="kicker fade">{t['k_contacto']}</p>
       <h2 class="display rl">
-        <span class="hand">{t['h_contacto_hand']}</span>
         {t['h_contacto']}
       </h2>
 

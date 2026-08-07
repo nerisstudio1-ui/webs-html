@@ -269,7 +269,8 @@
     }
   }
 
-  /* ---- Bucle de scroll: collage, paralaje, raíl del proceso, giro del cero ---- */
+  /* ---- Bucle de scroll: tira, paralaje, raíl del proceso, giro del cero ---- */
+  var rise = document.querySelectorAll("[data-rise]");
   var collage = document.querySelector("[data-collage]");
   var parallax = document.querySelectorAll("[data-parallax]");
   var rail = document.querySelector("[data-rail]");
@@ -288,6 +289,14 @@
       var p = travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1;
       collage.style.setProperty("--p", clamp01(p).toFixed(4));
     }
+
+    // La tira de fotos sube mientras entra en pantalla: 0 cuando su borde
+    // superior está abajo del todo, 1 cuando ha subido un tercio de la ventana
+    rise.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 300) return;
+      el.style.setProperty("--p", clamp01((vh - r.top) / (vh * 0.72)).toFixed(4));
+    });
 
     parallax.forEach(function (el) {
       var r = el.getBoundingClientRect();
@@ -328,6 +337,9 @@
 
   if (reduced) {
     if (collage) collage.style.setProperty("--p", "1");
+    rise.forEach(function (el) {
+      el.style.setProperty("--p", "1");
+    });
     pasos.forEach(function (p) {
       p.classList.add("is-on");
     });

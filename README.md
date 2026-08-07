@@ -24,7 +24,9 @@ la manuscrita con la sans pesada.
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Hero: terracota plano, logo centrado y fotos de proyecto que suben con el scroll |
+| — | Inicio: foto a sangre oscurecida, logotipo gigante con una pieza cruzada y el filete con los dos rótulos |
+| — | Declaración sobre terracota, centrada, con la manuscrita dentro de la frase |
+| — | Tira de cinco fotos a sangre que sube con el scroll, con el titular gigante detrás |
 | `#estudio` | Manifiesto, frase de marca y cifras |
 | `#servicios` | Los cinco servicios con su subtítulo y entregables |
 | `#trabajo` | Los siete proyectos, con su vídeo si lo hay y si no la fotografía |
@@ -107,17 +109,28 @@ La paleta completa del manual está en los tokens: `--terra` Burnt Coral,
 Pale Almond y `--deep` Deep Current (este último es el fondo de la sección de
 la cita, `data-theme="deep"`).
 
-Los titulares usan el patrón de la marca: la línea manuscrita arriba y la línea
-en display debajo (`<h2 class="display rl"><span class="hand">…</span>…</h2>`).
-La clase `rl` activa el revelado palabra a palabra.
+Los titulares mezclan las dos tipografías **dentro de la misma frase**: Raleway
+800 y, a media frase, Biro Script Plus al mismo cuerpo
+(`<h2 class="display rl">Cada marca comunica, <span class="hand">però no totes
+connecten</span>.</h2>`). Es el papel que en las webs editoriales hace la cursiva
+de una serif: cambia la voz sin cambiar de tamaño ni de línea. La clase `rl`
+activa el revelado palabra a palabra.
+
+**Aviso sobre las fotos**: seis de las que envió el estudio son collages de dos o
+tres imágenes montadas (`f45-2`, `f45-3`, `jordi-coll-1`, `puig-2`, `quality-2` y
+`maitasuna-3`). A tamaño grande se les ve la costura, así que la portada de cada
+proyecto y las fotos a sangre usan solo tomas sueltas; está anotado en
+`build/build.py`.
 
 ## Movimiento
 
 Todo con IntersectionObserver y un único bucle de `requestAnimationFrame`, sin
 librerías, y desactivado con `prefers-reduced-motion`:
 
-- **Hero**: el logotipo entra con un `clip-path` y las cinco fotos suben con
-  velocidades distintas (`--rise` por pieza) mientras el escenario queda pegado.
+- **Inicio**: el logotipo entra con un `clip-path` sobre la foto, y detrás la
+  pieza cruzada, el subtítulo y el filete aparecen escalonados.
+- **Tira**: las cinco fotos suben a velocidades distintas (`--rise` por pieza)
+  mientras entran en pantalla, y quedan a ras al llegar.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.
 - **Cabecera**: cambia de color según el tema de la sección que cruza
   (`data-theme` → `data-on`), y el enlace de la sección visible se subraya.

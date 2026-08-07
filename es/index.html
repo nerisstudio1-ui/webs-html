@@ -91,36 +91,63 @@
 
 <main id="top">
 
-  <!-- Hero: terracota pla, logo centrat i fotos que pugen amb el scroll -->
-  <section class="hero" data-theme="terra" data-collage>
-    <div class="hero__stage">
-      <div class="hero__tiles">
-        <figure class="tile tile--1"><img src="../assets/img/proyectos/malhivern-1-1100.jpg" srcset="../assets/img/proyectos/malhivern-1-700.jpg 700w, ../assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Botella de ratafía Malhivern con luz cálida" loading="eager" decoding="async"></figure>
-        <figure class="tile tile--2"><img src="../assets/img/proyectos/quality-1-1100.jpg" srcset="../assets/img/proyectos/quality-1-700.jpg 700w, ../assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Corredor en un camino con un pino al fondo" loading="eager" decoding="async"></figure>
-        <figure class="tile tile--3"><img src="../assets/img/proyectos/maitasuna-1-1100.jpg" srcset="../assets/img/proyectos/maitasuna-1-700.jpg 700w, ../assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Pizza artesana recién salida del horno" loading="lazy" decoding="async"></figure>
-        <figure class="tile tile--4"><img src="../assets/img/proyectos/puig-1-1100.jpg" srcset="../assets/img/proyectos/puig-1-700.jpg 700w, ../assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Botella de vino en la mano en el punto de venta" loading="lazy" decoding="async"></figure>
-        <figure class="tile tile--5"><img src="../assets/img/proyectos/f4s-1-1100.jpg" srcset="../assets/img/proyectos/f4s-1-700.jpg 700w, ../assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="26vw" width="1080" height="1350" alt="Entrenamiento de fútbol formativo en el campo" loading="lazy" decoding="async"></figure>
-      </div>
+  <!-- Inici: foto a sangre, logotipo gegant al mig amb una peça creuada,
+       i el filet amb els dos rètols a baix -->
+  <section class="hero" data-theme="ink">
+    <div class="hero__bg" aria-hidden="true">
+      <img src="../assets/img/proyectos/f4s-2-1100.jpg" srcset="../assets/img/proyectos/f4s-2-700.jpg 700w, ../assets/img/proyectos/f4s-2-1100.jpg 1100w" sizes="100vw" width="1080" height="1350" alt="Jugador conduciendo el balón entre conos" loading="eager" decoding="async">
+    </div>
 
+    <div class="hero__mid">
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
-        <svg class="hero__logo-mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lg-zero"/></svg>
         <svg class="hero__logo-word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lg-word"/></svg>
-        <span class="hero__logo-sub" aria-hidden="true">studio</span>
       </h1>
+      <figure class="hero__chip">
+        <img src="../assets/img/proyectos/malhivern-1-1100.jpg" srcset="../assets/img/proyectos/malhivern-1-700.jpg 700w, ../assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="22vw" width="1080" height="1350" alt="Botella de ratafía Malhivern con luz cálida" loading="eager" decoding="async">
+      </figure>
+      <span class="hero__sub" aria-hidden="true">studio</span>
+    </div>
 
-      <p class="hero__note">Estudio creativo · Barcelona y remoto</p>
-      <span class="hero__scroll" aria-hidden="true">scroll</span>
+    <div class="hero__rule">
+      <span>Estudio creativo</span>
+      <i aria-hidden="true"></i>
+      <span>Barcelona y remoto</span>
+    </div>
+    <span class="hero__scroll" aria-hidden="true">scroll</span>
+  </section>
+
+  <!-- Declaració: bloc de color, centrat, amb la manuscrita dins de la frase -->
+  <section class="decl" data-theme="terra">
+    <div class="wrap wrap--narrow center">
+      <p class="kicker kicker--center fade">Sobre Laconic</p>
+      <p class="decl__text display rl">Ayudamos a marcas a <span class="hand">atravesar el ruido</span> y a dejar una <span class="hand">huella que dure</span>.</p>
+      <p class="fade" data-delay="1">
+        <a class="btn btn--line" href="#estudio"><span>Saber más</span></a>
+      </p>
     </div>
   </section>
+
+  <!-- Tira de fotos que puja per davant del titular gegant -->
+  <div class="strip" data-theme="terra" data-rise>
+    <span class="strip__ghost" aria-hidden="true">laconic studio</span>
+    <div class="strip__row">
+      <figure class="strip__cell strip__cell--1"><img src="../assets/img/proyectos/quality-1-1100.jpg" srcset="../assets/img/proyectos/quality-1-700.jpg 700w, ../assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Corredor en un camino con un pino al fondo" loading="lazy" decoding="async"></figure>
+      <figure class="strip__cell strip__cell--2"><img src="../assets/img/proyectos/f45-1-1100.jpg" srcset="../assets/img/proyectos/f45-1-700.jpg 700w, ../assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Asistente a la inauguración de F45" loading="lazy" decoding="async"></figure>
+      <figure class="strip__cell strip__cell--3"><img src="../assets/img/proyectos/maitasuna-1-1100.jpg" srcset="../assets/img/proyectos/maitasuna-1-700.jpg 700w, ../assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Pizza artesana recién salida del horno" loading="lazy" decoding="async"></figure>
+      <figure class="strip__cell strip__cell--4"><img src="../assets/img/proyectos/f4s-1-1100.jpg" srcset="../assets/img/proyectos/f4s-1-700.jpg 700w, ../assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Entrenamiento de fútbol formativo en el campo" loading="lazy" decoding="async"></figure>
+      <figure class="strip__cell strip__cell--5"><img src="../assets/img/proyectos/malhivern-2-1100.jpg" srcset="../assets/img/proyectos/malhivern-2-700.jpg 700w, ../assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Botella de ratafía sobre piedra con plantas aromáticas" loading="lazy" decoding="async"></figure>
+    </div>
+  </div>
+
+
 
   <!-- Estudi -->
   <section class="section slab-top" data-theme="cream" id="estudio">
     <div class="wrap">
       <p class="kicker fade">El estudio</p>
       <h2 class="display rl">
-        <span class="hand">Cada marca comunica,</span>
-        pero no todas conectan.
+        Cada marca comunica, <span class="hand">pero no todas conectan</span>.
       </h2>
 
       <div class="manifesto__grid">
@@ -183,16 +210,15 @@
     <div class="wrap">
       <p class="kicker fade">Servicios</p>
       <h2 class="display rl">
-        <span class="hand">Esto es lo que hacemos</span>
-        y qué te llevas.
+        Esto es lo que hacemos <span class="hand">y qué te llevas</span>.
       </h2>
 
       <div class="svc">
         <div class="svc__media fade" aria-hidden="true">
-          <img data-svc-img="malhivern" class="is-on" src="../assets/img/proyectos/malhivern-1-1100.jpg" srcset="../assets/img/proyectos/malhivern-1-700.jpg 700w, ../assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Botella de ratafía Malhivern con luz cálida" loading="lazy" decoding="async">
+          <img data-svc-img="malhivern" class="is-on" src="../assets/img/proyectos/malhivern-3-1100.jpg" srcset="../assets/img/proyectos/malhivern-3-700.jpg 700w, ../assets/img/proyectos/malhivern-3-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Botellas de licor artesano en una estantería de piedra" loading="lazy" decoding="async">
           <img data-svc-img="quality" src="../assets/img/proyectos/quality-1-1100.jpg" srcset="../assets/img/proyectos/quality-1-700.jpg 700w, ../assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Corredor en un camino con un pino al fondo" loading="lazy" decoding="async">
           <img data-svc-img="maitasuna" src="../assets/img/proyectos/maitasuna-1-1100.jpg" srcset="../assets/img/proyectos/maitasuna-1-700.jpg 700w, ../assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Pizza artesana recién salida del horno" loading="lazy" decoding="async">
-          <img data-svc-img="puig" src="../assets/img/proyectos/puig-1-1100.jpg" srcset="../assets/img/proyectos/puig-1-700.jpg 700w, ../assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Botella de vino en la mano en el punto de venta" loading="lazy" decoding="async">
+          <img data-svc-img="puig" src="../assets/img/proyectos/puig-3-1100.jpg" srcset="../assets/img/proyectos/puig-3-700.jpg 700w, ../assets/img/proyectos/puig-3-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Retrato en blanco y negro en la tienda" loading="lazy" decoding="async">
           <img data-svc-img="f4s" src="../assets/img/proyectos/f4s-1-1100.jpg" srcset="../assets/img/proyectos/f4s-1-700.jpg 700w, ../assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1080" height="1350" alt="Entrenamiento de fútbol formativo en el campo" loading="lazy" decoding="async">
         </div>
 
@@ -276,8 +302,7 @@
     <div class="wrap">
       <p class="kicker fade">Trabajo · Siete marcas</p>
       <h2 class="display rl">
-        <span class="hand">Get people talking</span>
-        about your brand.
+        Get people <span class="hand">talking</span> about your brand.
       </h2>
     </div>
     <div class="wrap">
@@ -301,7 +326,7 @@
       </article>
       <article class="slab slab--flip fade">
         <div class="slab__media" data-parallax>
-          <img src="../assets/img/proyectos/malhivern-1-1100.jpg" srcset="../assets/img/proyectos/malhivern-1-700.jpg 700w, ../assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Botella de ratafía Malhivern con luz cálida" loading="lazy" decoding="async">
+          <img src="../assets/img/proyectos/malhivern-2-1100.jpg" srcset="../assets/img/proyectos/malhivern-2-700.jpg 700w, ../assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Botella de ratafía sobre piedra con plantas aromáticas" loading="lazy" decoding="async">
         </div>
         <div class="slab__text">
           <span class="slab__index">02 / 07 &middot; Licores artesanos</span>
@@ -347,7 +372,7 @@
       </article>
       <article class="slab fade">
         <div class="slab__media" data-parallax>
-          <img src="../assets/img/proyectos/jordi-coll-1-1100.jpg" srcset="../assets/img/proyectos/jordi-coll-1-700.jpg 700w, ../assets/img/proyectos/jordi-coll-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Ejemplar de El pont de les mentides en una presentación" loading="lazy" decoding="async">
+          <img src="../assets/img/proyectos/jordi-coll-2-1100.jpg" srcset="../assets/img/proyectos/jordi-coll-2-700.jpg 700w, ../assets/img/proyectos/jordi-coll-2-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Público asistiendo a la presentación del libro" loading="lazy" decoding="async">
         </div>
         <div class="slab__text">
           <span class="slab__index">05 / 07 &middot; Marca personal</span>
@@ -379,7 +404,7 @@
       </article>
       <article class="slab fade">
         <div class="slab__media" data-parallax>
-          <img src="../assets/img/proyectos/puig-1-1100.jpg" srcset="../assets/img/proyectos/puig-1-700.jpg 700w, ../assets/img/proyectos/puig-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Botella de vino en la mano en el punto de venta" loading="lazy" decoding="async">
+          <img src="../assets/img/proyectos/puig-3-1100.jpg" srcset="../assets/img/proyectos/puig-3-700.jpg 700w, ../assets/img/proyectos/puig-3-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Retrato en blanco y negro en la tienda" loading="lazy" decoding="async">
         </div>
         <div class="slab__text">
           <span class="slab__index">07 / 07 &middot; Distribución</span>
@@ -403,8 +428,7 @@
     <svg class="quote__mark" viewBox="0 0 71.7 100" aria-hidden="true" data-spin><use href="#lg-zero"/></svg>
     <div class="wrap">
       <blockquote class="quote__text rl">
-        <span class="hand">Menos ruido.</span>
-        Más sentido.
+        Menos ruido. <span class="hand">Más sentido</span>.
       </blockquote>
       <cite class="fade">Laconic Studio</cite>
     </div>
@@ -417,8 +441,7 @@
         <div class="process__head">
           <p class="kicker fade">Cómo trabajamos</p>
           <h2 class="display display--sm rl">
-            <span class="hand">Sin misterio,</span>
-            con método.
+            Sin misterio, <span class="hand">con método</span>.
           </h2>
         </div>
         <div class="rail" data-rail>
@@ -453,8 +476,7 @@
     <div class="wrap">
       <p class="kicker fade">Recursos</p>
       <h2 class="display display--sm rl">
-        <span class="hand">Plantillas</span>
-        para hacerlo tú.
+        <span class="hand">Plantillas</span> para hacerlo tú.
       </h2>
       <div class="cards">
         <article class="card fade">
@@ -488,8 +510,7 @@
     <div class="wrap">
       <p class="kicker fade">Contacto</p>
       <h2 class="display rl">
-        <span class="hand">Esto empieza</span>
-        con un mensaje.
+        Esto empieza <span class="hand">con un mensaje</span>.
       </h2>
 
       <div class="contact">
