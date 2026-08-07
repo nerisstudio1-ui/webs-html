@@ -100,9 +100,9 @@ Todo se controla desde los tokens de `:root` en `assets/css/main.css`:
 
 Las dos son las tipografías del manual de identidad, autoalojadas en
 `assets/fonts` (convertidas a woff2 desde los originales y subsetadas a latín).
-Biro Script Plus es un trazo de bolígrafo: en el manual titula secciones a tamaño
-medio, así que en la web se usa como **acento sobre el titular**, no como titular
-—a 100 px el trazo se rompe.
+Biro Script Plus es un trazo de bolígrafo, y por encima de unos 100 px se rompe.
+Por eso nunca titula sola: va **dentro del titular**, al mismo cuerpo que la
+Raleway, en el tramo de frase que tiene que cambiar de voz.
 
 La paleta completa del manual está en los tokens: `--terra` Burnt Coral,
 `--cream` Sanded Blush, `--ink` Night Moss, `--clay` Clay Heat, `--sand`
@@ -147,10 +147,11 @@ librerías, y desactivado con `prefers-reduced-motion`:
   (con EST · STUDIO · 2024). Los tres van como `<symbol>` en un sprite al
   principio de `index.html` (`#lg-word`, `#lg-zero`, `#lg-lockup`) y se usan con
   `<use>`, así que heredan el color de la sección con `currentColor`.
-- **Fotos del hero**: se eligen en `COLLAGE` (`build/build.py`). La posición y la
-  velocidad de subida las controlan `.tile--1` … `.tile--5` en el CSS (`--rise` es
-  cuánto sube cada una). Están colocadas para rodear el logotipo, no para
-  cruzarlo: si se mueven, conviene dejar libre la banda central.
+- **Fotos del inicio**: `HERO_FONDO` es la foto a sangre y `HERO_CHIP` la pieza
+  que se cruza con el logotipo (`build/build.py`). Las cinco de la tira están en
+  `TIRA`, y su velocidad de subida la controlan `.strip__cell--1` … `--5` en el
+  CSS (`--rise` es cuánto sube cada una). Las del panel de servicios, en
+  `COLLAGE`.
 - **Proyectos**: cada `<article class="slab">` lleva su medio (vídeo o foto) y su
   texto, y alterna lado con `slab--flip`. Todo sale de `PROYECTOS` en
   `build/build.py`: añadir o quitar proyectos no rompe nada.
