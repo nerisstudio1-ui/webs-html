@@ -394,10 +394,11 @@
 #laconic-app [data-theme="terra"] .display .hand {
   color: var(--cream);
 }
-/* La declaración del inicio va en crema sobre el terracota, no en verde: es el
-   bloque que tiene que sonar más fuerte de la página. */
-#laconic-app [data-theme="terra"] .decl__text {
-  color: var(--cream);
+/* La declaración va sobre crema, con todo el texto en el terracota de la marca:
+   la manuscrita se distingue por el trazo, no por el color. */
+#laconic-app [data-theme="cream"] .decl__text,
+#laconic-app [data-theme="cream"] .decl__text .hand {
+  color: var(--terra);
 }
 #laconic-app [data-theme="ink"] .display {
   color: var(--cream);
@@ -564,32 +565,16 @@
 }
 
 /* ---------- Cabecera ---------- */
+/* Barra clara siempre, con las letras en verde: ya no cambia de color con la
+   sección que cruza. */
 #laconic-app .header {
   position: sticky;
   top: var(--lac-top, 0px);
   width: 100%;
   z-index: 1000;
-  color: var(--hdr-fg, var(--cream));
-  #laconic-app transition: transform 0.55s var(--ease-out),
-#laconic-app background-color 0.45s var(--ease),
-    color 0.45s var(--ease);
-}
-#laconic-app .header[data-on="cream"],
-#laconic-app .header[data-on="cream-2"] {
-  --hdr-fg: var(--ink);
-  --hdr-bg: var(--cream-rgb);
-}
-#laconic-app .header[data-on="terra"] {
-  --hdr-fg: var(--cream);
-  --hdr-bg: var(--terra-rgb);
-}
-#laconic-app .header[data-on="ink"] {
-  --hdr-fg: var(--cream);
-  --hdr-bg: var(--ink-rgb);
-}
-#laconic-app .header[data-on="deep"] {
-  --hdr-fg: var(--cream);
-  --hdr-bg: var(--deep-rgb);
+  background: var(--cream);
+  color: var(--ink);
+  transition: transform 0.55s var(--ease-out), box-shadow 0.45s var(--ease);
 }
 #laconic-app .header__inner {
   display: flex;
@@ -600,9 +585,7 @@
   transition: padding 0.45s var(--ease);
 }
 #laconic-app .header.is-stuck {
-  background: rgba(var(--hdr-bg, var(--cream-rgb)), 0.86);
-  backdrop-filter: blur(16px) saturate(140%);
-  box-shadow: 0 1px 0 rgba(var(--hdr-fg-rgb, 28, 40, 37), 0.08);
+  box-shadow: 0 1px 0 rgba(var(--ink-rgb), 0.12), 0 18px 40px -32px rgba(var(--ink-rgb), 0.5);
 }
 #laconic-app .header.is-stuck .header__inner {
   padding-block: 0.6rem;
@@ -795,18 +778,23 @@
   overflow-wrap: anywhere;
 }
 
-/* ---------- Inicio: foto a sangre + logotipo gigante ----------
-   La foto va oscurecida y con una viñeta encima para que el logotipo respire.
-   La pieza pequeña se cruza con las letras, como una foto dejada ahí. */
+/* ---------- Inicio: foto de fondo, el cero encima y las piezas subiendo ----
+   El escenario queda pegado 100svh mientras la sección mide 250svh: ese sobrante
+   es el recorrido que usan las fotos para subir (--p va de 0 a 1). */
 #laconic-app .hero {
+  --p: 0;
   position: relative;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
+  height: 250svh;
   background: var(--ink);
   color: var(--cream);
-  padding-block: clamp(6rem, 14vh, 10rem) clamp(5rem, 12vh, 8rem);
+}
+#laconic-app .hero__stage {
+  position: sticky;
+  top: var(--lac-top, 0px);
+  height: calc(100svh - var(--lac-top, 0px));
+  overflow: hidden;
+  display: grid;
+  place-items: center;
 }
 #laconic-app .hero__bg {
   position: absolute;
@@ -817,88 +805,90 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 34% 26%;
-  filter: grayscale(0.62) brightness(0.62) contrast(1.06);
+  object-position: 50% 38%;
+  filter: grayscale(0.55) brightness(0.5) contrast(1.08);
   transform: scale(1.06);
 }
-#laconic-app .hero::after {
+#laconic-app .hero__stage::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(150% 105% at 50% 40%,
+    radial-gradient(140% 100% at 50% 42%,
 #laconic-app rgba(var(--ink-rgb),
-0.08) 18%,
+0.12) 20%,
 #laconic-app rgba(var(--ink-rgb),
-#laconic-app 0.62) 82%),
-    linear-gradient(to bottom, rgba(var(--ink-rgb), 0.62), transparent 24% 58%, rgba(var(--ink-rgb), 0.82));
+#laconic-app 0.66) 84%),
+    linear-gradient(to bottom, rgba(var(--ink-rgb), 0.62), transparent 26% 60%, rgba(var(--ink-rgb), 0.84));
 }
-#laconic-app .hero__mid {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  display: grid;
-  justify-items: center;
-  padding-inline: var(--gutter);
-}
-#laconic-app .hero__logo {
-  margin: 0;
-  width: 100%;
-  display: grid;
-  justify-items: center;
-}
-#laconic-app .hero__logo-word {
-  width: min(90vw, 1180px);
-  height: auto;
-  color: var(--cream);
-  clip-path: inset(0 0 105% 0);
-  transition: clip-path 1.5s var(--ease-out) 0.15s;
-}
-#laconic-app.is-loaded .hero__logo-word {
-  clip-path: inset(0 0 -3% 0);
-}
-#laconic-app .hero__chip {
+
+/* Las piezas suben desde abajo, cada una a su ritmo, por delante de la foto */
+#laconic-app .hero__tiles {
   position: absolute;
-  z-index: 3;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+#laconic-app .tile {
+  position: absolute;
   margin: 0;
-  width: clamp(84px, 11vw, 170px);
-  aspect-ratio: 4 / 5;
   overflow: hidden;
-  left: 58%;
-  top: -14%;
-  border: clamp(4px, 0.5vw, 7px) solid var(--cream);
-  box-shadow: 0 34px 60px -28px rgba(0, 0, 0, 0.65);
-  opacity: 0;
-  transform: rotate(4deg) translateY(18px);
-  transition: opacity 1s var(--ease) 1s, transform 1.2s var(--ease-out) 1s;
+  transform: translate3d(0, calc(var(--rise, 100svh) * (1 - var(--p))), 0)
+    rotate(var(--rot, 0deg));
+  will-change: transform;
+  box-shadow: 0 34px 70px -40px rgba(0, 0, 0, 0.7);
 }
-#laconic-app.is-loaded .hero__chip {
-  opacity: 1;
-  transform: rotate(4deg) translateY(0);
-}
-#laconic-app .hero__chip img {
+#laconic-app .tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-#laconic-app .hero__sub {
-  margin-top: clamp(0.4rem, 1.2vw, 1rem);
+/* Colocadas para rodear el cero, no para taparlo */
+.tile--1 { left: 2%;  top: 16%; width: 17vw; height: 42svh; --rise: 88svh;  --rot: -3deg; }
+.tile--2 { left: 75%; top: 9%;  width: 19vw; height: 38svh; --rise: 124svh; --rot: 2.5deg; }
+.tile--3 { left: 39%; top: 72%; width: 15vw; height: 32svh; --rise: 150svh; --rot: 3.5deg; }
+.tile--4 { left: 13%; top: 64%; width: 14vw; height: 30svh; --rise: 104svh; --rot: 2deg; }
+.tile--5 { left: 67%; top: 58%; width: 18vw; height: 36svh; --rise: 164svh; --rot: -2.5deg; }
+
+/* El cero, centrado y grande */
+#laconic-app .hero__logo {
+  position: relative;
+  z-index: 3;
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: clamp(1.4rem, 2.6vw, 2.2rem);
+  padding-inline: var(--gutter);
+}
+#laconic-app .hero__zero {
+  height: clamp(148px, 26vw, 330px);
+  width: auto;
+  color: var(--cream);
+  opacity: 0;
+  transform: translateY(22px) scale(0.94);
+  transition: opacity 1.2s var(--ease) 0.2s, transform 1.4s var(--ease-out) 0.2s;
+}
+#laconic-app.is-loaded .hero__zero {
+  opacity: 1;
+  transform: none;
+}
+#laconic-app .hero__name {
   font-size: var(--step--1);
   text-transform: uppercase;
-  letter-spacing: 0.62em;
-  text-indent: 0.62em;
+  letter-spacing: 0.52em;
+  text-indent: 0.52em;
   opacity: 0;
-  transition: opacity 1.2s var(--ease) 0.85s;
+  transition: opacity 1.2s var(--ease) 0.9s;
 }
-#laconic-app.is-loaded .hero__sub {
-  opacity: 0.85;
+#laconic-app.is-loaded .hero__name {
+  opacity: 0.88;
 }
-/* Filete de abajo con los dos rótulos, como en la referencia */
+/* Filete de abajo con los dos rótulos */
 #laconic-app .hero__rule {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   left: var(--gutter);
   right: var(--gutter);
   bottom: clamp(1.6rem, 5vh, 3.2rem);
@@ -921,6 +911,7 @@
   opacity: 0.45;
 }
 
+
 /* ---------- Declaración: bloque de color, centrado ---------- */
 #laconic-app .decl {
   padding-block: clamp(4rem, 9vw, 8rem) clamp(3rem, 7vw, 6rem);
@@ -936,96 +927,105 @@
 }
 #laconic-app .decl__text .hand {
   font-size: 0.98em;
-  color: var(--sand);
 }
 
-/* ---------- Tira de fotos con el titular gigante detrás ---------- */
+/* ---------- Tira de fotos que pasa en bucle, con el rótulo grande debajo ----
+   Las fotos van pegadas, sin hueco, y el carril se duplica en el JS para que el
+   bucle no tenga costura. El rótulo queda entero debajo, no tapado. */
 #laconic-app .strip {
-  --p: 1;
   position: relative;
   overflow: hidden;
-  padding-bottom: clamp(2rem, 5.5vw, 5.5rem);
+  padding-bottom: clamp(2.5rem, 6vw, 6rem);
   background: var(--terra);
   color: var(--cream);
 }
-#laconic-app .strip__ghost {
-  position: absolute;
-  left: 50%;
-  bottom: -0.16em;
-  transform: translateX(-50%);
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(3.5rem, 11.5vw, 11.5rem);
-  line-height: 0.78;
-  letter-spacing: -0.055em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: rgba(var(--ink-rgb), 0.26);
-  pointer-events: none;
-  user-select: none;
+#laconic-app .strip__band {
+  overflow: hidden;
 }
-#laconic-app .strip__row {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+#laconic-app .strip__track {
+  display: flex;
+  width: max-content;
+  animation: strip 52s linear infinite;
+}
+#laconic-app .strip:hover .strip__track {
+  animation-play-state: paused;
+}
+@keyframes strip {
+  to {
+    transform: translateX(-50%);
+  }
 }
 #laconic-app .strip__cell {
   margin: 0;
+  flex: none;
+  width: clamp(160px, 22vw, 300px);
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  transform: translate3d(0, calc((1 - var(--p)) * var(--rise, 40%)), 0);
-  will-change: transform;
 }
 #laconic-app .strip__cell img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.strip__cell--1 { --rise: 34%; }
-.strip__cell--2 { --rise: 62%; }
-.strip__cell--3 { --rise: 22%; }
-.strip__cell--4 { --rise: 70%; }
-.strip__cell--5 { --rise: 44%; }
+/* El rótulo, ahora sí legible: verde sobre el terracota, y entero */
+#laconic-app .strip__ghost {
+  display: block;
+  margin-top: clamp(0.6rem, 2vw, 1.6rem);
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 8.6vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(var(--ink-rgb), 0.55);
+  user-select: none;
+}
 
-
-/* Va centrado y por encima del filete, que ocupa todo el ancho abajo */
-#laconic-app .hero__scroll {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(clamp(1.6rem, 5vh, 3.2rem) + 2.4rem);
-  font-family: var(--hand);
-  font-size: 1.3rem;
-  display: inline-flex;
+/* ---------- Marcas con las que ha trabajado el estudio ---------- */
+#laconic-app .clients {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
+}
+#laconic-app .clients__label {
+  font-size: var(--step--2);
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 clamp(1.2rem, 3vw, 2rem);
+}
+#laconic-app .clients__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2em 0.9em;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+/* Un punto en terracota entre marca y marca, menos después de la última */
+#laconic-app .clients__list li {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--cream);
-  opacity: 0;
-  transition: opacity 1s var(--ease) 1.2s;
+  gap: 0.9em;
 }
-#laconic-app.is-loaded .hero__scroll {
-  opacity: 0.9;
-}
-#laconic-app .hero__scroll::after {
+#laconic-app .clients__list li::after {
   content: "";
-  width: 36px;
-  height: 1px;
-  background: currentColor;
-  animation: slide 2s var(--ease) infinite;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--terra);
+  flex: none;
 }
-@keyframes slide {
-  0%,
-  100% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scaleX(0.35);
-    opacity: 0.5;
-  }
+#laconic-app .clients__list li:last-child::after {
+  display: none;
 }
+
 
 /* ---------- Manifiesto ---------- */
 #laconic-app .manifesto__grid {
@@ -1051,28 +1051,6 @@
   color: var(--cream);
 }
 
-#laconic-app .stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  margin-top: clamp(3rem, 7vw, 5rem);
-  border-top: 1px solid var(--line);
-  padding-top: clamp(1.5rem, 3vw, 2.2rem);
-}
-#laconic-app .stat__num {
-  font-family: var(--display);
-  font-size: var(--step-3);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  color: var(--terra);
-  line-height: 1;
-}
-#laconic-app .stat__label {
-  font-size: var(--step--1);
-  color: var(--muted);
-  margin: 0.6rem 0 0;
-  max-width: 24ch;
-}
 
 /* ---------- Marquesina ---------- */
 /* La sección siguiente monta encima con la esquina redondeada, así que la
@@ -1318,6 +1296,27 @@
 }
 #laconic-app [data-theme="ink"] .slab__meta {
   border-color: var(--line-cream);
+}
+/* Las demás fotos del proyecto, pequeñas, debajo del texto */
+#laconic-app .slab__extra {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.6rem, 1.4vw, 1rem);
+  margin-top: clamp(1.4rem, 3vw, 2.2rem);
+}
+#laconic-app .slab__extra figure {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+#laconic-app .slab__extra img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out);
+}
+#laconic-app .slab__extra figure:hover img {
+  transform: scale(1.05);
 }
 
 /* ---------- Reels: los vídeos del proyecto en marco vertical ----------
@@ -1970,18 +1969,17 @@
 <div class="cursor" aria-hidden="true"></div>
 <a class="skip" href="#lac-estudi">Salta al contingut</a>
 
-<header class="header" data-on="terra">
+<header class="header">
   <div class="wrap header__inner">
     <a class="brand" href="#lac-top" aria-label="Laconic Studio">
       <svg class="brand__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
-      <svg class="brand__word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lac-lg-word"/></svg>
     </a>
 
     <nav class="nav" aria-label="L'estudi">
       <a href="#lac-estudi">Estudi</a>
       <a href="#lac-serveis">Serveis</a>
       <a href="#lac-treball">Treball</a>
-      <a href="#lac-recursos">Recursos</a>
+      <a href="#lac-contacte">Contacte</a>
     </nav>
 
     <div class="header__right">
@@ -2004,7 +2002,6 @@
     <a href="#lac-estudi">Estudi <span>qui som</span></a>
     <a href="#lac-serveis">Serveis <span>què fem</span></a>
     <a href="#lac-treball">Treball <span>projectes</span></a>
-    <a href="#lac-recursos">Recursos <span>plantilles</span></a>
     <a href="#lac-contacte">Contacte <span>escriu-nos</span></a>
   </nav>
   <div class="mobile-menu__foot">
@@ -2016,34 +2013,38 @@
 
 <main id="lac-top">
 
-  <!-- Inici: foto a sangre, logotipo gegant al mig amb una peça creuada,
-       i el filet amb els dos rètols a baix -->
-  <section class="hero" data-theme="ink">
-    <div class="hero__bg" aria-hidden="true">
-      <img src="__BASE__assets/img/proyectos/f4s-2-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-2-700.jpg 700w, __BASE__assets/img/proyectos/f4s-2-1100.jpg 1100w" sizes="100vw" width="1080" height="1350" alt="Jugador conduint la pilota entre cons" loading="eager" decoding="async">
-    </div>
+  <!-- Inici: foto a sangre de fons, el cero al mig i les peces que pugen -->
+  <section class="hero" data-theme="ink" data-collage>
+    <div class="hero__stage">
+      <div class="hero__bg" aria-hidden="true">
+        <img src="__BASE__assets/img/proyectos/f4s-2-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-2-700.jpg 700w, __BASE__assets/img/proyectos/f4s-2-1100.jpg 1100w" sizes="100vw" width="1080" height="1350" alt="Jugador conduint la pilota entre cons" loading="eager" decoding="async">
+      </div>
 
-    <div class="hero__mid">
+      <div class="hero__tiles" aria-hidden="true">
+        <figure class="tile tile--1"><img src="__BASE__assets/img/proyectos/malhivern-2-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-2-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="24vw" width="1080" height="1350" alt="Ampolla de ratafia sobre pedra amb plantes aromàtiques" loading="eager" decoding="async"></figure>
+        <figure class="tile tile--2"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="24vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="eager" decoding="async"></figure>
+        <figure class="tile tile--3"><img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="24vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async"></figure>
+        <figure class="tile tile--4"><img src="__BASE__assets/img/proyectos/puig-3-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-3-700.jpg 700w, __BASE__assets/img/proyectos/puig-3-1100.jpg 1100w" sizes="24vw" width="1080" height="1350" alt="Retrat en blanc i negre a la botiga" loading="lazy" decoding="async"></figure>
+        <figure class="tile tile--5"><img src="__BASE__assets/img/proyectos/jordi-coll-3-1100.jpg" srcset="__BASE__assets/img/proyectos/jordi-coll-3-700.jpg 700w, __BASE__assets/img/proyectos/jordi-coll-3-1100.jpg 1100w" sizes="24vw" width="1080" height="1350" alt="Lector amb el llibre signat a la llibreria" loading="lazy" decoding="async"></figure>
+      </div>
+
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
-        <svg class="hero__logo-word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lac-lg-word"/></svg>
+        <svg class="hero__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
+        <span class="hero__name" aria-hidden="true">laconic studio</span>
       </h1>
-      <figure class="hero__chip">
-        <img src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="22vw" width="1080" height="1350" alt="Ampolla de ratafia Malhivern amb llum càlida" loading="eager" decoding="async">
-      </figure>
-      <span class="hero__sub" aria-hidden="true">studio</span>
-    </div>
 
-    <div class="hero__rule">
-      <span>Estudi creatiu</span>
-      <i aria-hidden="true"></i>
-      <span>Barcelona i remot</span>
+      <div class="hero__rule">
+        <span>Estudi creatiu</span>
+        <i aria-hidden="true"></i>
+        <span>Barcelona i remot</span>
+      </div>
+      <span class="hero__scroll" aria-hidden="true">scroll</span>
     </div>
-    <span class="hero__scroll" aria-hidden="true">scroll</span>
   </section>
 
   <!-- Declaració: bloc de color, centrat, amb la manuscrita dins de la frase -->
-  <section class="decl" data-theme="terra">
+  <section class="decl slab-top" data-theme="cream">
     <div class="wrap wrap--narrow center">
       <p class="kicker kicker--center fade">Sobre Laconic</p>
       <p class="decl__text display rl">Ajudem marques a <span class="hand">travessar el soroll</span> i a deixar una <span class="hand">empremta que duri</span>.</p>
@@ -2053,19 +2054,19 @@
     </div>
   </section>
 
-  <!-- Tira de fotos que puja per davant del titular gegant -->
-  <div class="strip" data-theme="terra" data-rise>
-    <span class="strip__ghost" aria-hidden="true">laconic studio</span>
-    <div class="strip__row">
-      <figure class="strip__cell strip__cell--1"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="lazy" decoding="async"></figure>
-      <figure class="strip__cell strip__cell--2"><img src="__BASE__assets/img/proyectos/f45-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f45-1-700.jpg 700w, __BASE__assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Assistent a la inauguració de F45" loading="lazy" decoding="async"></figure>
-      <figure class="strip__cell strip__cell--3"><img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async"></figure>
-      <figure class="strip__cell strip__cell--4"><img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async"></figure>
-      <figure class="strip__cell strip__cell--5"><img src="__BASE__assets/img/proyectos/malhivern-2-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-2-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="20vw" width="1080" height="1350" alt="Ampolla de ratafia sobre pedra amb plantes aromàtiques" loading="lazy" decoding="async"></figure>
+  <!-- Tira de fotos que passa en bucle, amb el rètol gran a sota -->
+  <div class="strip" data-theme="terra">
+    <div class="strip__band">
+      <div class="strip__track">
+        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="22vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="lazy" decoding="async"></figure>
+        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/f45-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f45-1-700.jpg 700w, __BASE__assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="22vw" width="1080" height="1350" alt="Assistent a la inauguració de F45" loading="lazy" decoding="async"></figure>
+        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="22vw" width="1080" height="1350" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async"></figure>
+        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="22vw" width="1080" height="1350" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async"></figure>
+        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/malhivern-2-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-2-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="22vw" width="1080" height="1350" alt="Ampolla de ratafia sobre pedra amb plantes aromàtiques" loading="lazy" decoding="async"></figure>
+      </div>
     </div>
+    <span class="strip__ghost" aria-hidden="true">laconic studio</span>
   </div>
-
-
 
   <!-- Estudi -->
   <section class="section slab-top" data-theme="cream" id="lac-estudi">
@@ -2103,19 +2104,17 @@
         </div>
       </div>
 
-      <div class="stats fade" data-delay="2">
-        <div class="stat">
-          <div class="stat__num">7</div>
-          <p class="stat__label">marques acompanyades fins ara</p>
-        </div>
-        <div class="stat">
-          <div class="stat__num">48h</div>
-          <p class="stat__label">per respondre el teu primer missatge</p>
-        </div>
-        <div class="stat">
-          <div class="stat__num">100%</div>
-          <p class="stat__label">contingut fet a mida, zero plantilles</p>
-        </div>
+      <div class="clients fade" data-delay="2">
+        <p class="clients__label">Marques amb qui hem treballat</p>
+        <ul class="clients__list">
+          <li>Quality Training</li>
+          <li>Ratafia Malhivern</li>
+          <li>Football 4 Stars</li>
+          <li>Maitasuna</li>
+          <li>Jordi Coll</li>
+          <li>F45 Training</li>
+          <li>Comercial Puig</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -2247,6 +2246,9 @@
             <span>Creació de contingut</span>
             <span>Social media</span>
           </div>
+          <div class="slab__extra">
+            <figure><img src="__BASE__assets/img/proyectos/quality-3-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-3-700.jpg 700w, __BASE__assets/img/proyectos/quality-3-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1080" height="1350" alt="Entrenador amb la samarreta de Quality Training parlant amb un client" loading="lazy" decoding="async"></figure>
+          </div>
         </div>
       </article>
       <article class="slab slab--flip fade">
@@ -2265,6 +2267,10 @@
             <span>Direcció creativa</span>
             <span>Social media</span>
           </div>
+          <div class="slab__extra">
+            <figure><img src="__BASE__assets/img/proyectos/malhivern-3-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-3-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-3-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1080" height="1350" alt="Ampolles de licor artesà en una lleixa de pedra" loading="lazy" decoding="async"></figure>
+            <figure><img src="__BASE__assets/img/proyectos/malhivern-4-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-4-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-4-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1080" height="1350" alt="Prestatge amb la gamma de licors Sol i Serena" loading="lazy" decoding="async"></figure>
+          </div>
         </div>
       </article>
       <article class="slab fade">
@@ -2279,6 +2285,10 @@
             <span>Social media</span>
             <span>Creació de contingut</span>
           </div>
+          <div class="slab__extra">
+            <figure><img src="__BASE__assets/img/proyectos/f4s-2-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-2-700.jpg 700w, __BASE__assets/img/proyectos/f4s-2-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1080" height="1350" alt="Jugador conduint la pilota entre cons" loading="lazy" decoding="async"></figure>
+            <figure><img src="__BASE__assets/img/proyectos/f4s-4-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-4-700.jpg 700w, __BASE__assets/img/proyectos/f4s-4-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1080" height="1350" alt="" loading="lazy" decoding="async"></figure>
+          </div>
         </div>
       </article>
       <article class="slab slab--flip fade">
@@ -2292,6 +2302,10 @@
           <div class="slab__meta">
             <span>Creació de contingut</span>
             <span>Social media</span>
+          </div>
+          <div class="slab__extra">
+            <figure><img src="__BASE__assets/img/proyectos/maitasuna-2-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-2-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-2-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1080" height="1350" alt="Mans pastant massa amb la jaqueta de l'obrador" loading="lazy" decoding="async"></figure>
+            <figure><img src="__BASE__assets/img/proyectos/maitasuna-4-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-4-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-4-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1080" height="1350" alt="" loading="lazy" decoding="async"></figure>
           </div>
         </div>
       </article>
@@ -2310,6 +2324,9 @@
           <div class="slab__meta">
             <span>Estratègia</span>
             <span>Reels</span>
+          </div>
+          <div class="slab__extra">
+            <figure><img src="__BASE__assets/img/proyectos/jordi-coll-3-1100.jpg" srcset="__BASE__assets/img/proyectos/jordi-coll-3-700.jpg 700w, __BASE__assets/img/proyectos/jordi-coll-3-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1080" height="1350" alt="Lector amb el llibre signat a la llibreria" loading="lazy" decoding="async"></figure>
           </div>
         </div>
       </article>
@@ -2396,40 +2413,6 @@
     </div>
   </section>
 
-  <!-- Recursos -->
-  <section class="section" data-theme="cream-2" id="lac-recursos">
-    <div class="wrap">
-      <p class="kicker fade">Recursos</p>
-      <h2 class="display display--sm rl">
-        <span class="hand">Plantilles</span> per fer-ho tu.
-      </h2>
-      <div class="cards">
-        <article class="card fade">
-          <span class="card__tag">Plantilles</span>
-          <h3>Kit de stories</h3>
-          <p>30 plantilles editables al Canva amb el nostre sistema tipogràfic i de color.</p>
-          <span class="card__price">29 €</span>
-          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Kit%20de%20stories"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
-        </article>
-        <article class="card fade" data-delay="1">
-          <span class="card__tag">Guia</span>
-          <h3>Tom de veu en 10 passos</h3>
-          <p>El mètode que fem servir perquè una marca deixi de sonar com totes les altres.</p>
-          <span class="card__price">19 €</span>
-          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Tom%20de%20veu%20en%2010%20passos"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
-        </article>
-        <article class="card fade" data-delay="2">
-          <span class="card__tag">Bundle</span>
-          <h3>Tot l'estudi</h3>
-          <p>Els recursos junts, amb actualitzacions incloses durant un any.</p>
-          <span class="card__price">89 €</span>
-          <p><a class="btn btn--ink" href="mailto:itslaconicstudio@gmail.com?subject=Tot%20l'estudi"><span>El vull</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
-        </article>
-      </div>
-      <p class="note fade" data-delay="3">Les comandes es gestionen per correu mentre connectem la passarel·la de pagament. Enviem l'enllaç de descàrrega en menys de 24 h.</p>
-    </div>
-  </section>
-
   <!-- Contacte -->
   <section class="section slab-top" data-theme="ink" id="lac-contacte">
     <div class="wrap">
@@ -2503,7 +2486,6 @@
         <a href="#lac-estudi">Estudi</a>
         <a href="#lac-serveis">Serveis</a>
         <a href="#lac-treball">Treball</a>
-        <a href="#lac-recursos">Recursos</a>
         <a href="#lac-contacte">Contacte</a>
         <a href="__URL_ES__" hreflang="es">ES</a>
       </li>
@@ -2599,9 +2581,9 @@
     }
   }
 
-  /* ---- Cabecera: color según la sección de detrás, fondo y auto-ocultar ---- */
+  /* ---- Cabecera: sombra al despegarse y auto-ocultar al bajar ----
+         El color ya no depende de la sección: la barra es clara siempre. ---- */
   var header = APP.querySelector(".header");
-  var temas = APP.querySelectorAll("[data-theme]");
   if (header) {
     var lastY = window.scrollY;
     var onScroll = function () {
@@ -2615,23 +2597,6 @@
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-
-    if (temas.length) {
-      var pintarCabecera = function () {
-        var linea = header.getBoundingClientRect().bottom - 2;
-        for (var i = 0; i < temas.length; i++) {
-          var r = temas[i].getBoundingClientRect();
-          if (r.top <= linea && r.bottom > linea) {
-            header.dataset.on = temas[i].dataset.theme;
-            APP.dataset.on = temas[i].dataset.theme;
-            return;
-          }
-        }
-      };
-      window.addEventListener("scroll", pintarCabecera, { passive: true });
-      window.addEventListener("resize", pintarCabecera);
-      pintarCabecera();
-    }
   }
 
   /* ---- Menú móvil ---- */
@@ -2789,7 +2754,6 @@
   }
 
   /* ---- Bucle de scroll: tira, paralaje, raíl del proceso, giro del cero ---- */
-  var rise = APP.querySelectorAll("[data-rise]");
   var collage = APP.querySelector("[data-collage]");
   var parallax = APP.querySelectorAll("[data-parallax]");
   var rail = APP.querySelector("[data-rail]");
@@ -2808,14 +2772,6 @@
       var p = travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1;
       collage.style.setProperty("--p", clamp01(p).toFixed(4));
     }
-
-    // La tira de fotos sube mientras entra en pantalla: 0 cuando su borde
-    // superior está abajo del todo, 1 cuando ha subido un tercio de la ventana
-    rise.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 300) return;
-      el.style.setProperty("--p", clamp01((vh - r.top) / (vh * 0.72)).toFixed(4));
-    });
 
     parallax.forEach(function (el) {
       var r = el.getBoundingClientRect();
@@ -2856,9 +2812,6 @@
 
   if (reduced) {
     if (collage) collage.style.setProperty("--p", "1");
-    rise.forEach(function (el) {
-      el.style.setProperty("--p", "1");
-    });
     pasos.forEach(function (p) {
       p.classList.add("is-on");
     });
@@ -2868,8 +2821,8 @@
     frame();
   }
 
-  /* ---- Marquesina: duplicar para que el bucle no tenga costura ---- */
-  APP.querySelectorAll(".marquee__track").forEach(function (track) {
+  /* ---- Carriles en bucle: duplicar para que no se vea la costura ---- */
+  APP.querySelectorAll(".marquee__track, .strip__track").forEach(function (track) {
     track.innerHTML += track.innerHTML;
   });
 

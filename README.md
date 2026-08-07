@@ -17,22 +17,21 @@ Así las dos versiones no se desincronizan. El selector CA/ES está en la cabece
 y en el pie, y las páginas se declaran entre sí con `hreflang`.
 
 Todo el branding sale de la identidad de la marca: terracota, crema y verde
-profundo, logotipo manuscrito con el símbolo del **0**, y titulares que combinan
-la manuscrita con la sans pesada.
+profundo, el símbolo del **0** como marca en la cabecera y en el inicio, y
+titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 ## Secciones (todas en `index.html`)
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Inicio: foto a sangre oscurecida, logotipo gigante con una pieza cruzada y el filete con los dos rótulos |
+| — | Inicio: foto a sangre oscurecida, el **cero** grande al medio, las piezas de proyecto subiendo con el scroll y el filete con los dos rótulos |
 | — | Declaración sobre terracota, centrada, con la manuscrita dentro de la frase |
-| — | Tira de cinco fotos a sangre que sube con el scroll, con el titular gigante detrás |
-| `#estudio` | Manifiesto, frase de marca y cifras |
+| — | Tira de fotos que pasa en bucle, con **LACONIC STUDIO** grande debajo |
+| `#estudio` | Manifiesto, equipo y las siete marcas con las que ha trabajado el estudio |
 | `#servicios` | Los cinco servicios con su subtítulo y entregables |
 | `#trabajo` | Los siete proyectos, con su vídeo si lo hay y si no la fotografía |
 | — | Frase «Haz match con lo que vibre contigo» sobre verde profundo |
 | `#proceso` | Los cuatro pasos de trabajo |
-| `#recursos` | Plantillas y guías a la venta |
 | `#contacto` | Formulario y contacto directo |
 
 ## Vídeos de los proyectos
@@ -127,10 +126,12 @@ proyecto y las fotos a sangre usan solo tomas sueltas; está anotado en
 Todo con IntersectionObserver y un único bucle de `requestAnimationFrame`, sin
 librerías, y desactivado con `prefers-reduced-motion`:
 
-- **Inicio**: el logotipo entra con un `clip-path` sobre la foto, y detrás la
-  pieza cruzada, el subtítulo y el filete aparecen escalonados.
-- **Tira**: las cinco fotos suben a velocidades distintas (`--rise` por pieza)
-  mientras entran en pantalla, y quedan a ras al llegar.
+- **Inicio**: el cero entra sobre la foto, y el nombre y el filete después,
+  escalonados.
+- **Piezas del inicio**: suben a velocidades distintas (`--rise` por pieza)
+  mientras el escenario queda pegado, y acaban colocadas alrededor del cero.
+- **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
+  para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.
 - **Cabecera**: cambia de color según el tema de la sección que cruza
   (`data-theme` → `data-on`), y el enlace de la sección visible se subraya.
@@ -178,13 +179,13 @@ estén, el enlace es la única forma de ver la pieza y el visitante sale del sit
 
 ## Pendiente de revisar
 
-- **Textos y precios**: los pies de los proyectos, las cifras del manifiesto y los
-  precios de recursos son propuestas con el tono de la marca. Conviene repasarlos.
+- **Textos**: los pies de los proyectos son propuestas escritas con el tono de la
+  marca; conviene repasarlos. Las cifras inventadas («48 h», «100 % a medida») y
+  la sección de plantillas de pago **se han quitado**: no las envió el estudio.
+  Si quieren vender recursos, hay que decidir qué y a qué precio.
 - **Formulario**: no tiene backend; compone un correo con los datos y abre el
   cliente de email. Para recibirlo en un servidor, cambiar el atributo `data-mailto`
   del `<form>` por `action` + `method` (Formspree, Netlify Forms, etc.).
-- **Recursos**: los botones «Lo quiero» abren un correo. Al conectar Stripe,
-  Gumroad o Shopify basta con cambiar el `href`.
 - **Dominio y metadatos**: revisar `<link rel="canonical">` y las etiquetas Open
   Graph con la URL definitiva.
 

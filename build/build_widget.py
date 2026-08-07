@@ -303,41 +303,15 @@ def scope_js(js):
                     'APP.classList.contains("is-menu-open")')
     js = js.replace('document.body.classList.add("cursor-on")', 'APP.classList.add("cursor-on")')
     js = js.replace('document.body.classList.remove("cursor-on")', 'APP.classList.remove("cursor-on")')
-    js = js.replace('document.documentElement.dataset.on = entry.target.dataset.theme;',
-                    'APP.dataset.on = entry.target.dataset.theme;')
 
     # Dentro de una página, la cabecera no está en la parte alta de la ventana:
-    # el widget empieza más abajo. Así que "pegada" y color de la cabecera se
-    # deciden por la posición real de la cabecera, no por window.scrollY ni por
-    # qué sección cruza el borde de la ventana.
+    # el widget empieza más abajo. Así que "pegada" se decide por la posición
+    # real de la cabecera, no por window.scrollY.
     js = js.replace('''      header.classList.toggle("is-stuck", y > 60);''',
                     '''      var caja = header.getBoundingClientRect();
       header.classList.toggle("is-stuck", caja.top <= 1);''')
     js = js.replace('''        header.classList.toggle("is-hidden", y > lastY && y > 400);''',
                     '''        header.classList.toggle("is-hidden", y > lastY && caja.top <= 1);''')
-
-    # El color de la cabecera lo da la sección que hay justo detrás de ella
-    inicio = js.index('    if (temas.length && "IntersectionObserver" in window) {')
-    fin = js.index('  /* ---- Menú móvil ---- */')
-    js = js[:inicio] + '''    if (temas.length) {
-      var pintarCabecera = function () {
-        var linea = header.getBoundingClientRect().bottom - 2;
-        for (var i = 0; i < temas.length; i++) {
-          var r = temas[i].getBoundingClientRect();
-          if (r.top <= linea && r.bottom > linea) {
-            header.dataset.on = temas[i].dataset.theme;
-            APP.dataset.on = temas[i].dataset.theme;
-            return;
-          }
-        }
-      };
-      window.addEventListener("scroll", pintarCabecera, { passive: true });
-      window.addEventListener("resize", pintarCabecera);
-      pintarCabecera();
-    }
-  }
-
-''' + js[fin:]
 
     # El contenedor arranca con has-js, y el scroll suave lo hacemos aquí porque
     # ya no tocamos el html del tema

@@ -209,9 +209,9 @@ T = {
                     'Less noise. More meaning.',
         saltar='Salta al contingut',
         nav=[('#estudi', 'Estudi'), ('#serveis', 'Serveis'),
-             ('#treball', 'Treball'), ('#recursos', 'Recursos')],
+             ('#treball', 'Treball'), ('#contacte', 'Contacte')],
         nav_movil=[('#estudi', 'Estudi', 'qui som'), ('#serveis', 'Serveis', 'què fem'),
-                   ('#treball', 'Treball', 'projectes'), ('#recursos', 'Recursos', 'plantilles'),
+                   ('#treball', 'Treball', 'projectes'),
                    ('#contacte', 'Contacte', 'escriu-nos')],
         cta='Parlem', menu_abrir='Obre el menú',
         hero_nota='Estudi creatiu · Barcelona i remot',
@@ -223,7 +223,7 @@ T = {
         btn_saber='Saber-ne més',
         tira_fantasma='laconic studio',
         id_estudio='estudi', id_servicios='serveis', id_trabajo='treball',
-        id_proceso='proces', id_recursos='recursos', id_contacto='contacte',
+        id_proceso='proces', id_contacto='contacte',
         k_estudio='L\'estudi',
         h_estudio='Cada marca comunica, <span class="hand">però no totes connecten</span>.',
         lead_estudio='Una bona comunicació no consisteix a publicar més, sinó a explicar millor.',
@@ -239,9 +239,7 @@ T = {
         equipo=[('Núria', 'Creative &amp; Founder'), ('Júlia', 'Strategist &amp; Founder')],
         equipo_nota='Som dues. Això vol dir que parles sempre amb qui fa la feina, i que '
                     'diem no a allò que no podem fer bé.',
-        cifras=[('7', 'marques acompanyades fins ara'),
-                ('48h', 'per respondre el teu primer missatge'),
-                ('100%', 'contingut fet a mida, zero plantilles')],
+        k_clientes='Marques amb qui hem treballat',
         k_servicios='Serveis',
         h_servicios='Això és el que fem <span class="hand">i què te\'n queda</span>.',
         servicios=[
@@ -272,17 +270,6 @@ T = {
                          'en un tauler compartit, no en cadenes de correu.'),
                ('Mesurem', 'Publiquem, llegim les dades i ajustem. Cada mes t\'expliquem què '
                            'ha funcionat, què no i què provarem.')],
-        k_recursos='Recursos',
-        h_recursos='<span class="hand">Plantilles</span> per fer-ho tu.',
-        recursos=[('Plantilles', 'Kit de stories', '30 plantilles editables al Canva amb el '
-                   'nostre sistema tipogràfic i de color.', '29 €'),
-                  ('Guia', 'Tom de veu en 10 passos', 'El mètode que fem servir perquè una '
-                   'marca deixi de sonar com totes les altres.', '19 €'),
-                  ('Bundle', 'Tot l\'estudi', 'Els recursos junts, amb actualitzacions '
-                   'incloses durant un any.', '89 €')],
-        btn_quiero='El vull',
-        nota_recursos='Les comandes es gestionen per correu mentre connectem la passarel·la '
-                      'de pagament. Enviem l\'enllaç de descàrrega en menys de 24 h.',
         k_contacto='Contacte',
         h_contacto='Això comença <span class="hand">amb un missatge</span>.',
         lead_contacto='Explica\'ns quina marca ets i què t\'està frenant. Responem en menys '
@@ -297,7 +284,7 @@ T = {
         f_ok='Obrim el teu client de correu amb el missatge llest. Si no s\'obre, escriu-nos a ',
         pie_ubicacion='Barcelona, treballem en remot.',
         pie_nav=[('#estudi', 'Estudi'), ('#serveis', 'Serveis'), ('#treball', 'Treball'),
-                 ('#recursos', 'Recursos'), ('#contacte', 'Contacte')],
+                 ('#contacte', 'Contacte')],
     ),
     'es': dict(
         lang='es', otra='ca', otra_nombre='CA', propia_nombre='ES',
@@ -306,9 +293,9 @@ T = {
                     'Less noise. More meaning.',
         saltar='Saltar al contenido',
         nav=[('#estudio', 'Estudio'), ('#servicios', 'Servicios'),
-             ('#trabajo', 'Trabajo'), ('#recursos', 'Recursos')],
+             ('#trabajo', 'Trabajo'), ('#contacto', 'Contacto')],
         nav_movil=[('#estudio', 'Estudio', 'quiénes somos'), ('#servicios', 'Servicios', 'qué hacemos'),
-                   ('#trabajo', 'Trabajo', 'proyectos'), ('#recursos', 'Recursos', 'plantillas'),
+                   ('#trabajo', 'Trabajo', 'proyectos'),
                    ('#contacto', 'Contacto', 'escríbenos')],
         cta='Hablemos', menu_abrir='Abrir el menú',
         hero_nota='Estudio creativo · Barcelona y remoto',
@@ -319,7 +306,7 @@ T = {
         btn_saber='Saber más',
         tira_fantasma='laconic studio',
         id_estudio='estudio', id_servicios='servicios', id_trabajo='trabajo',
-        id_proceso='proceso', id_recursos='recursos', id_contacto='contacto',
+        id_proceso='proceso', id_contacto='contacto',
         k_estudio='El estudio',
         h_estudio='Cada marca comunica, <span class="hand">pero no todas conectan</span>.',
         lead_estudio='Una buena comunicación no consiste en publicar más, sino en explicar mejor.',
@@ -335,9 +322,7 @@ T = {
         equipo=[('Núria', 'Creative &amp; Founder'), ('Júlia', 'Strategist &amp; Founder')],
         equipo_nota='Somos dos. Eso significa que hablas siempre con quien hace el trabajo, y '
                     'que decimos no a lo que no podemos hacer bien.',
-        cifras=[('7', 'marcas acompañadas hasta ahora'),
-                ('48h', 'para responder a tu primer mensaje'),
-                ('100%', 'contenido hecho a medida, cero plantillas')],
+        k_clientes='Marcas con las que hemos trabajado',
         k_servicios='Servicios',
         h_servicios='Esto es lo que hacemos <span class="hand">y qué te llevas</span>.',
         servicios=[
@@ -368,17 +353,6 @@ T = {
                            'material en un tablero compartido, no en cadenas de correo.'),
                ('Medimos', 'Publicamos, leemos los datos y ajustamos. Cada mes te contamos qué '
                            'funcionó, qué no y qué vamos a probar.')],
-        k_recursos='Recursos',
-        h_recursos='<span class="hand">Plantillas</span> para hacerlo tú.',
-        recursos=[('Plantillas', 'Kit de stories', '30 plantillas editables en Canva con '
-                   'nuestro sistema tipográfico y de color.', '29 €'),
-                  ('Guía', 'Tono de voz en 10 pasos', 'El método que usamos para que una marca '
-                   'deje de sonar como todas las demás.', '19 €'),
-                  ('Bundle', 'Todo el estudio', 'Los recursos juntos, con actualizaciones '
-                   'incluidas durante un año.', '89 €')],
-        btn_quiero='Lo quiero',
-        nota_recursos='Los pedidos se gestionan por correo mientras conectamos la pasarela de '
-                      'pago. Enviamos el enlace de descarga en menos de 24 h.',
         k_contacto='Contacto',
         h_contacto='Esto empieza <span class="hand">con un mensaje</span>.',
         lead_contacto='Cuéntanos qué marca eres y qué te está frenando. Respondemos en menos '
@@ -393,7 +367,7 @@ T = {
         f_ok='Abrimos tu cliente de correo con el mensaje listo. Si no se abre, escríbenos a ',
         pie_ubicacion='Barcelona, trabajamos en remoto.',
         pie_nav=[('#estudio', 'Estudio'), ('#servicios', 'Servicios'), ('#trabajo', 'Trabajo'),
-                 ('#recursos', 'Recursos'), ('#contacto', 'Contacto')],
+                 ('#contacto', 'Contacto')],
     ),
 }
 
@@ -411,7 +385,7 @@ COLLAGE = [('malhivern', 3), ('quality', 1), ('maitasuna', 1), ('puig', 3), ('f4
 # collages detectados y descartados aquí: f45-2, f45-3, jordi-coll-1, puig-2,
 # quality-2 y maitasuna-3.
 HERO_FONDO = ('f4s', 2)
-HERO_CHIP = ('malhivern', 1)
+HERO_TILES = [('malhivern', 2), ('quality', 1), ('maitasuna', 1), ('puig', 3), ('jordi-coll', 3)]
 TIRA = [('quality', 1), ('f45', 1), ('maitasuna', 1), ('f4s', 1), ('malhivern', 2)]
 
 # --------------------------------------------------------------------------- #
@@ -420,6 +394,23 @@ TIRA = [('quality', 1), ('f45', 1), ('maitasuna', 1), ('f4s', 1), ('malhivern', 
 # vídeos, su columna de la izquierda pasa a ser el reel (con la foto como
 # póster). Si no los tiene, se queda la foto. No hay nada que tocar aquí.
 # --------------------------------------------------------------------------- #
+
+# Fotos que son collages de dos o tres imágenes montadas, o que tienen una
+# costura visible. No se usan en ningún sitio donde se vean grandes.
+COLAJES = {'f45-2', 'f45-3', 'jordi-coll-1', 'puig-2', 'quality-2', 'maitasuna-3',
+           'malhivern-1', 'puig-1', 'f4s-3', 'quality-4'}
+IMG_DIR = ROOT / 'assets/img/proyectos'
+
+
+def extras_de(slug, portada, cuantas=2):
+    """Las demás fotos sueltas del proyecto, para la galería de su bloque."""
+    numeros = []
+    for ruta in IMG_DIR.glob(f'{slug}-*-700.jpg'):
+        resto = ruta.stem[len(slug) + 1:-4]   # quita el slug y el '-700'
+        if resto.isdigit() and int(resto) != portada and f'{slug}-{resto}' not in COLAJES:
+            numeros.append(int(resto))
+    return sorted(numeros)[:cuantas]
+
 
 VIDEO_DIR = ROOT / 'assets/video'
 FORMATOS = ('.mp4', '.webm')   # si están los dos del mismo clip, gana el mp4
@@ -503,11 +494,10 @@ def render(lang):
 <div class="cursor" aria-hidden="true"></div>
 <a class="skip" href="#{t['id_estudio']}">{t['saltar']}</a>
 
-<header class="header" data-on="terra">
+<header class="header">
   <div class="wrap header__inner">
     <a class="brand" href="#top" aria-label="Laconic Studio">
       <svg class="brand__mark" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
-      <svg class="brand__word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
     </a>
 
     <nav class="nav" aria-label="{t['k_estudio']}">''')
@@ -544,34 +534,38 @@ def render(lang):
 
 <main id="top">
 
-  <!-- Inici: foto a sangre, logotipo gegant al mig amb una peça creuada,
-       i el filet amb els dos rètols a baix -->
-  <section class="hero" data-theme="ink">
-    <div class="hero__bg" aria-hidden="true">
-      {foto(prefix, HERO_FONDO[0], HERO_FONDO[1], '100vw', lang, 'eager')}
-    </div>
+  <!-- Inici: foto a sangre de fons, el cero al mig i les peces que pugen -->
+  <section class="hero" data-theme="ink" data-collage>
+    <div class="hero__stage">
+      <div class="hero__bg" aria-hidden="true">
+        {foto(prefix, HERO_FONDO[0], HERO_FONDO[1], '100vw', lang, 'eager')}
+      </div>
 
-    <div class="hero__mid">
+      <div class="hero__tiles" aria-hidden="true">
+        <figure class="tile tile--1">{foto(prefix, HERO_TILES[0][0], HERO_TILES[0][1], '24vw', lang, 'eager')}</figure>
+        <figure class="tile tile--2">{foto(prefix, HERO_TILES[1][0], HERO_TILES[1][1], '24vw', lang, 'eager')}</figure>
+        <figure class="tile tile--3">{foto(prefix, HERO_TILES[2][0], HERO_TILES[2][1], '24vw', lang, 'lazy')}</figure>
+        <figure class="tile tile--4">{foto(prefix, HERO_TILES[3][0], HERO_TILES[3][1], '24vw', lang, 'lazy')}</figure>
+        <figure class="tile tile--5">{foto(prefix, HERO_TILES[4][0], HERO_TILES[4][1], '24vw', lang, 'lazy')}</figure>
+      </div>
+
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
-        <svg class="hero__logo-word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
+        <svg class="hero__zero" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
+        <span class="hero__name" aria-hidden="true">laconic studio</span>
       </h1>
-      <figure class="hero__chip">
-        {foto(prefix, HERO_CHIP[0], HERO_CHIP[1], '22vw', lang, 'eager')}
-      </figure>
-      <span class="hero__sub" aria-hidden="true">studio</span>
-    </div>
 
-    <div class="hero__rule">
-      <span>{t['hero_izq']}</span>
-      <i aria-hidden="true"></i>
-      <span>{t['hero_der']}</span>
+      <div class="hero__rule">
+        <span>{t['hero_izq']}</span>
+        <i aria-hidden="true"></i>
+        <span>{t['hero_der']}</span>
+      </div>
+      <span class="hero__scroll" aria-hidden="true">scroll</span>
     </div>
-    <span class="hero__scroll" aria-hidden="true">scroll</span>
   </section>
 
   <!-- Declaració: bloc de color, centrat, amb la manuscrita dins de la frase -->
-  <section class="decl" data-theme="terra">
+  <section class="decl slab-top" data-theme="cream">
     <div class="wrap wrap--narrow center">
       <p class="kicker kicker--center fade">{t['k_sobre']}</p>
       <p class="decl__text display rl">{t['declaracion']}</p>
@@ -581,17 +575,19 @@ def render(lang):
     </div>
   </section>
 
-  <!-- Tira de fotos que puja per davant del titular gegant -->
-  <div class="strip" data-theme="terra" data-rise>
+  <!-- Tira de fotos que passa en bucle, amb el rètol gran a sota -->
+  <div class="strip" data-theme="terra">
+    <div class="strip__band">
+      <div class="strip__track">
+        <figure class="strip__cell">{foto(prefix, TIRA[0][0], TIRA[0][1], '22vw', lang)}</figure>
+        <figure class="strip__cell">{foto(prefix, TIRA[1][0], TIRA[1][1], '22vw', lang)}</figure>
+        <figure class="strip__cell">{foto(prefix, TIRA[2][0], TIRA[2][1], '22vw', lang)}</figure>
+        <figure class="strip__cell">{foto(prefix, TIRA[3][0], TIRA[3][1], '22vw', lang)}</figure>
+        <figure class="strip__cell">{foto(prefix, TIRA[4][0], TIRA[4][1], '22vw', lang)}</figure>
+      </div>
+    </div>
     <span class="strip__ghost" aria-hidden="true">{t['tira_fantasma']}</span>
-    <div class="strip__row">''')
-    for i, (slug, n) in enumerate(TIRA, 1):
-        w(f'      <figure class="strip__cell strip__cell--{i}">'
-          + foto(prefix, slug, n, '20vw', lang) + '</figure>')
-    w('''    </div>
   </div>
-''')
-    w(f'''
 
   <!-- Estudi -->
   <section class="section slab-top" data-theme="cream" id="{t['id_estudio']}">
@@ -625,13 +621,18 @@ def render(lang):
         </div>
       </div>
 
-      <div class="stats fade" data-delay="2">''')
-    for num, etiqueta in t['cifras']:
-        w(f'''        <div class="stat">
-          <div class="stat__num">{num}</div>
-          <p class="stat__label">{etiqueta}</p>
-        </div>''')
-    w('''      </div>
+      <div class="clients fade" data-delay="2">
+        <p class="clients__label">{t['k_clientes']}</p>
+        <ul class="clients__list">
+          <li>{PROYECTOS[0]["nombre"]}</li>
+          <li>{PROYECTOS[1]["nombre"]}</li>
+          <li>{PROYECTOS[2]["nombre"]}</li>
+          <li>{PROYECTOS[3]["nombre"]}</li>
+          <li>{PROYECTOS[4]["nombre"]}</li>
+          <li>{PROYECTOS[5]["nombre"]}</li>
+          <li>{PROYECTOS[6]["nombre"]}</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -738,8 +739,16 @@ def render(lang):
         w('          <div class="slab__meta">')
         for s in pr['servicios'][lang]:
             w(f'            <span>{s}</span>')
-        w('''          </div>
-        </div>
+        w('          </div>')
+        extras = extras_de(pr['slug'], pr['portada'])
+        if extras:
+            w('          <div class="slab__extra">')
+            for n in extras:
+                w('            <figure>'
+                  + foto(prefix, pr['slug'], n, '(min-width: 900px) 22vw, 46vw', lang)
+                  + '</figure>')
+            w('          </div>')
+        w('''        </div>
       </article>''')
     w(f'''    </div>
   </section>
@@ -775,29 +784,6 @@ def render(lang):
           </div>''')
     w(f'''        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Recursos -->
-  <section class="section" data-theme="cream-2" id="{t['id_recursos']}">
-    <div class="wrap">
-      <p class="kicker fade">{t['k_recursos']}</p>
-      <h2 class="display display--sm rl">
-        {t['h_recursos']}
-      </h2>
-      <div class="cards">''')
-    for i, (tag, titulo, texto, precio) in enumerate(t['recursos']):
-        delay = f' data-delay="{i}"' if i else ''
-        asunto = titulo.replace(' ', '%20')
-        w(f'''        <article class="card fade"{delay}>
-          <span class="card__tag">{tag}</span>
-          <h3>{titulo}</h3>
-          <p>{texto}</p>
-          <span class="card__price">{precio}</span>
-          <p><a class="btn btn--ink" href="mailto:{EMAIL}?subject={asunto}"><span>{t['btn_quiero']}</span><span class="arrow" aria-hidden="true">&rarr;</span></a></p>
-        </article>''')
-    w(f'''      </div>
-      <p class="note fade" data-delay="3">{t['nota_recursos']}</p>
     </div>
   </section>
 

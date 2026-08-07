@@ -79,9 +79,9 @@
     }
   }
 
-  /* ---- Cabecera: color según la sección de detrás, fondo y auto-ocultar ---- */
+  /* ---- Cabecera: sombra al despegarse y auto-ocultar al bajar ----
+         El color ya no depende de la sección: la barra es clara siempre. ---- */
   var header = document.querySelector(".header");
-  var temas = document.querySelectorAll("[data-theme]");
   if (header) {
     var lastY = window.scrollY;
     var onScroll = function () {
@@ -94,25 +94,6 @@
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-
-    if (temas.length && "IntersectionObserver" in window) {
-      // La sección que cruza la línea de la cabecera define su color
-      var alto = header.offsetHeight || 70;
-      var ioTema = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              header.dataset.on = entry.target.dataset.theme;
-              document.documentElement.dataset.on = entry.target.dataset.theme;
-            }
-          });
-        },
-        { rootMargin: -(alto / 2) + "px 0px " + (-100 + alto / 2 + 0.1) + "% 0px", threshold: 0 }
-      );
-      temas.forEach(function (s) {
-        ioTema.observe(s);
-      });
-    }
   }
 
   /* ---- Menú móvil ---- */
@@ -270,7 +251,6 @@
   }
 
   /* ---- Bucle de scroll: tira, paralaje, raíl del proceso, giro del cero ---- */
-  var rise = document.querySelectorAll("[data-rise]");
   var collage = document.querySelector("[data-collage]");
   var parallax = document.querySelectorAll("[data-parallax]");
   var rail = document.querySelector("[data-rail]");
@@ -289,14 +269,6 @@
       var p = travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1;
       collage.style.setProperty("--p", clamp01(p).toFixed(4));
     }
-
-    // La tira de fotos sube mientras entra en pantalla: 0 cuando su borde
-    // superior está abajo del todo, 1 cuando ha subido un tercio de la ventana
-    rise.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 300) return;
-      el.style.setProperty("--p", clamp01((vh - r.top) / (vh * 0.72)).toFixed(4));
-    });
 
     parallax.forEach(function (el) {
       var r = el.getBoundingClientRect();
@@ -337,9 +309,6 @@
 
   if (reduced) {
     if (collage) collage.style.setProperty("--p", "1");
-    rise.forEach(function (el) {
-      el.style.setProperty("--p", "1");
-    });
     pasos.forEach(function (p) {
       p.classList.add("is-on");
     });
@@ -349,8 +318,8 @@
     frame();
   }
 
-  /* ---- Marquesina: duplicar para que el bucle no tenga costura ---- */
-  document.querySelectorAll(".marquee__track").forEach(function (track) {
+  /* ---- Carriles en bucle: duplicar para que no se vea la costura ---- */
+  document.querySelectorAll(".marquee__track, .strip__track").forEach(function (track) {
     track.innerHTML += track.innerHTML;
   });
 
