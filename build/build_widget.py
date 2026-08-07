@@ -266,8 +266,14 @@ def scope_html(html, lang, prefix_assets):
         cuerpo = cuerpo.replace('"assets/video/', '"' + BASE + 'assets/video/')
         cuerpo = re.sub(r'poster="assets/', 'poster="' + BASE + 'assets/', cuerpo)
 
-    # El cambio de idioma apunta a la otra página de WordPress
-    otra = '__URL_ES__' if lang == 'ca' else '__URL_CA__'
+    # El cambio de idioma apunta a la otra página de WordPress. En la versión
+    # autocontenida no dejamos marcador: se pega y funciona, con la ruta más
+    # probable (/es/ y /). Si la página de castellano acaba en otra dirección,
+    # se cambia ese enlace y ya está.
+    if prefix_assets:
+        otra = '__URL_ES__' if lang == 'ca' else '__URL_CA__'
+    else:
+        otra = '/es/' if lang == 'ca' else '/'
     cuerpo = re.sub(r'href="(es/|\.\./)" hreflang', 'href="%s" hreflang' % otra, cuerpo)
 
     return cuerpo.strip()
@@ -392,14 +398,19 @@ def construir(lang, autocontenido):
 
     aviso = ('<!-- Laconic Studio — bloque de HTML personalizado (%s).\n'
              '     Pegar tal cual en un bloque "HTML personalizado" de WordPress.\n'
-             '     %s\n'
-             '     Cambiar %s por la URL de la otra versión de idioma. -->\n')
+             '%s -->\n')
     if autocontenido:
-        nota = 'Las tipografias y las fotos van dentro del archivo: no hay nada que subir.'
+        nota = ('     Todo va dentro del archivo: tipografías, fotos, estilos y guion.\n'
+                '     No hay nada que subir ni nada que sustituir.\n'
+                '     El enlace de idioma apunta a %s; si la otra página acaba en\n'
+                '     otra dirección, se cambia ese enlace.'
+                % ('/es/' if lang == 'ca' else '/'))
     else:
-        nota = ('Antes de pegar: sustituir %s por la URL de la carpeta assets, por ejemplo\n'
-                '     https://tudominio.com/wp-content/uploads/laconic/' % BASE)
-    aviso = aviso % (lang.upper(), nota, '__URL_ES__' if lang == 'ca' else '__URL_CA__')
+        nota = ('     Antes de pegar: sustituir %s por la URL de la carpeta assets,\n'
+                '     por ejemplo https://tudominio.com/wp-content/uploads/laconic/\n'
+                '     y %s por la URL de la otra versión de idioma.'
+                % (BASE, '__URL_ES__' if lang == 'ca' else '__URL_CA__'))
+    aviso = aviso % (lang.upper(), nota)
 
     partes = [aviso,
               '<style>',
