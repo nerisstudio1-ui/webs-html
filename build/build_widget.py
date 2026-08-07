@@ -346,18 +346,25 @@ def fuentes_css(inline):
 
 
 def inline_imagenes(html):
-    """Sustituye las fotos por data URI y quita el srcset."""
+    """Mete todas las fotos dentro como data URI y quita el srcset.
+
+    Recorre las rutas que hay en el HTML en lugar de una carpeta concreta: así
+    una foto nueva (la del hero, por ejemplo) no se queda fuera y con la ruta
+    relativa rota.
+    """
     html = re.sub(r'\s*srcset="[^"]*"', '', html)
     html = re.sub(r'\s*sizes="[^"]*"', '', html)
     from PIL import Image
-    for stem in sorted(set(re.findall(r'proyectos/([a-z0-9-]+)-1100\.jpg', html))):
-        im = Image.open(ROOT / f'assets/img/proyectos/{stem}-1100.jpg').convert('RGB')
-        w = 900
+    rutas = set(re.findall(r'(?:src|poster)="((?:__BASE__)?assets/img/[^"]+\.jpg)"', html))
+    for ruta in sorted(rutas):
+        rel = ruta.replace(BASE, '')
+        im = Image.open(ROOT / rel).convert('RGB')
+        w = min(900, im.width)
         im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
         buf = io.BytesIO()
         im.save(buf, 'JPEG', quality=80, optimize=True, progressive=True)
         uri = 'data:image/jpeg;base64,' + base64.b64encode(buf.getvalue()).decode()
-        html = re.sub(r'src="[^"]*proyectos/' + stem + r'-1100\.jpg"', 'src="%s"' % uri, html)
+        html = html.replace('"%s"' % ruta, '"%s"' % uri)
     return html
 
 

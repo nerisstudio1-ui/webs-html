@@ -28,15 +28,36 @@ VB_WORD, P_WORD = leer_svg('logo-laconic.svg')
 VB_ZERO, P_ZERO = leer_svg('logo-zero.svg')
 VB_LOCK, P_LOCK = leer_svg('logo-lockup.svg')
 
+# Los cinco iconos que el estudio usa junto a cada servicio en su flyer:
+# un sol pequeño, la pausa, un asterisco, la flecha y el cero.
+ICONOS = {
+    'ic-sol': '<g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">'
+              '<circle cx="12" cy="12" r="3.2"/>'
+              '<path d="M12 1.6v3.2M12 19.2v3.2M1.6 12h3.2M19.2 12h3.2'
+              'M4.6 4.6l2.3 2.3M17.1 17.1l2.3 2.3M19.4 4.6l-2.3 2.3M6.9 17.1l-2.3 2.3"/></g>',
+    'ic-pausa': '<g fill="currentColor"><rect x="7" y="3" width="3.4" height="18" rx="1.7"/>'
+                '<rect x="13.6" y="3" width="3.4" height="18" rx="1.7"/></g>',
+    'ic-asterisc': '<g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">'
+                   '<path d="M12 1.5v21M2.9 6.8l18.2 10.4M21.1 6.8L2.9 17.2"/></g>',
+    'ic-fletxa': '<g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" '
+                 'stroke-linejoin="round"><path d="M5.5 18.5L18.5 5.5"/><path d="M8.7 5.5h9.8v9.8"/></g>',
+    'ic-cercle': '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/>',
+}
+
 SPRITE = (
-    '<!-- Logo oficial de la marca vectorizado: el cero, el logotipo y el lockup.\n'
-    '     Los tres heredan el color con currentColor. -->\n'
+    '<!-- Logo oficial de la marca vectorizado: el cero, el logotipo y el lockup,\n'
+    '     más los iconos de los servicios. Todos heredan color con currentColor. -->\n'
     '<svg class="sprite" aria-hidden="true" focusable="false">\n'
     f'  <symbol id="lg-zero" viewBox="{VB_ZERO}">{P_ZERO}</symbol>\n'
     f'  <symbol id="lg-word" viewBox="{VB_WORD}">{P_WORD}</symbol>\n'
     f'  <symbol id="lg-lockup" viewBox="{VB_LOCK}">{P_LOCK}</symbol>\n'
-    '</svg>'
+    + ''.join(f'  <symbol id="{k}" viewBox="0 0 24 24">{v}</symbol>\n'
+              for k, v in ICONOS.items())
+    + '</svg>'
 )
+
+# Un icono por servicio, en el orden del flyer
+ICONO_SERVICIO = ['ic-sol', 'ic-pausa', 'ic-asterisc', 'ic-fletxa', 'ic-cercle']
 
 # --------------------------------------------------------------------------- #
 # Proyectos. Las descripciones en catalán son las que escribió el estudio en las
@@ -216,6 +237,7 @@ T = {
         cta='Parlem', menu_abrir='Obre el menú',
         hero_nota='Estudi creatiu · Barcelona i remot',
         hero_izq='Estudi creatiu', hero_der='Barcelona i remot',
+        reclamo="L'agència de RRSS que connecta, crea i converteix",
         k_sobre='Sobre Laconic',
         # La manuscrita va dentro de la frase, como la cursiva de la referencia
         declaracion='Ajudem marques a <span class="hand">travessar el soroll</span> '
@@ -242,15 +264,16 @@ T = {
         k_clientes='Marques amb qui hem treballat',
         k_servicios='Serveis',
         h_servicios='Això és el que fem <span class="hand">i què te\'n queda</span>.',
+        # Los cinco del flyer del estudio, con su subtítulo tal cual
         servicios=[
             ('01', 'Content creation', 'Contingut amb aquell no-sé-què',
              ['Concepte i guió', 'Foto i vídeo', 'Reels i verticals', 'Edició i subtítols']),
             ('02', 'Social media', 'Scroll i pausa, això busquem',
              ['Línia editorial', 'Calendari', 'Community management', 'Informe mensual']),
-            ('03', 'Estratègia', 'Intenció i criteri',
-             ['Auditoria i posicionament', 'Pilars de contingut', 'Tom de veu', 'Objectius i mètriques']),
-            ('04', 'Direcció creativa', 'Ni soroll ni sort, impacte',
-             ['Concepte de campanya', 'Direcció d\'art', 'Guions i storyboard', 'Peces per a xarxes']),
+            ('03', 'Graphic design', 'Intenció i actitud',
+             ['Identitat visual', 'Sistema de plantilles', 'Peces per a xarxes', 'Presentacions']),
+            ('04', 'Ads &amp; campaigns', 'Ni soroll ni sort, impacte',
+             ['Meta i TikTok Ads', 'Segmentació i públics', 'Creativitats per provar', 'Informe de resultats']),
             ('05', 'UGC', 'Real i amb propòsit',
              ['Selecció de creadors', 'Briefing', 'Producció', 'Drets d\'ús']),
         ],
@@ -300,6 +323,7 @@ T = {
         cta='Hablemos', menu_abrir='Abrir el menú',
         hero_nota='Estudio creativo · Barcelona y remoto',
         hero_izq='Estudio creativo', hero_der='Barcelona y remoto',
+        reclamo='La agencia de RRSS que conecta, crea y convierte',
         k_sobre='Sobre Laconic',
         declaracion='Ayudamos a marcas a <span class="hand">atravesar el ruido</span> '
                     'y a dejar una <span class="hand">huella que dure</span>.',
@@ -325,15 +349,16 @@ T = {
         k_clientes='Marcas con las que hemos trabajado',
         k_servicios='Servicios',
         h_servicios='Esto es lo que hacemos <span class="hand">y qué te llevas</span>.',
+        # Los cinco del flyer del estudio, con su subtítulo tal cual
         servicios=[
             ('01', 'Content creation', 'Contenido con ese no-sé-qué',
              ['Concepto y guion', 'Foto y vídeo', 'Reels y verticales', 'Edición y subtítulos']),
             ('02', 'Social media', 'Scroll y pausa, eso buscamos',
              ['Línea editorial', 'Calendario', 'Community management', 'Informe mensual']),
-            ('03', 'Estrategia', 'Intención y criterio',
-             ['Auditoría y posicionamiento', 'Pilares de contenido', 'Tono de voz', 'Objetivos y métricas']),
-            ('04', 'Dirección creativa', 'Ni ruido ni suerte, impacto',
-             ['Concepto de campaña', 'Dirección de arte', 'Guiones y storyboard', 'Piezas para redes']),
+            ('03', 'Graphic design', 'Intención y actitud',
+             ['Identidad visual', 'Sistema de plantillas', 'Piezas para redes', 'Presentaciones']),
+            ('04', 'Ads &amp; campaigns', 'Ni ruido ni suerte, impacto',
+             ['Meta y TikTok Ads', 'Segmentación y públicos', 'Creatividades para testar', 'Informe de resultados']),
             ('05', 'UGC', 'Real y con propósito',
              ['Selección de creadores', 'Briefing', 'Producción', 'Derechos de uso']),
         ],
@@ -384,7 +409,9 @@ COLLAGE = [('malhivern', 3), ('quality', 1), ('maitasuna', 1), ('puig', 3), ('f4
 # a sangre se les ve la costura. Las que se usan grandes son de una sola toma:
 # collages detectados y descartados aquí: f45-2, f45-3, jordi-coll-1, puig-2,
 # quality-2 y maitasuna-3.
-HERO_FONDO = ('f4s', 2)
+# Foto de marca del estudio (el flyer sobre el coche), no una foto de proyecto
+HERO_FOTO = 'marca/flyer-cotxe'
+HERO_ANCHOS = (900, 1600)
 HERO_TILES = [('malhivern', 2), ('quality', 1), ('maitasuna', 1), ('puig', 3), ('jordi-coll', 3)]
 TIRA = [('quality', 1), ('f45', 1), ('maitasuna', 1), ('f4s', 1), ('malhivern', 2)]
 
@@ -538,7 +565,9 @@ def render(lang):
   <section class="hero" data-theme="ink" data-collage>
     <div class="hero__stage">
       <div class="hero__bg" aria-hidden="true">
-        {foto(prefix, HERO_FONDO[0], HERO_FONDO[1], '100vw', lang, 'eager')}
+        <img src="{prefix}assets/img/{HERO_FOTO}-1600.jpg"
+          srcset="{prefix}assets/img/{HERO_FOTO}-900.jpg 900w, {prefix}assets/img/{HERO_FOTO}-1600.jpg 1600w"
+          sizes="100vw" width="1600" height="2843" alt="" loading="eager" decoding="async">
       </div>
 
       <div class="hero__tiles" aria-hidden="true">
@@ -554,6 +583,7 @@ def render(lang):
         <svg class="hero__zero" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
         <span class="hero__name" aria-hidden="true">laconic studio</span>
       </h1>
+      <p class="hero__claim">{t['reclamo']}</p>
 
       <div class="hero__rule">
         <span>{t['hero_izq']}</span>
@@ -665,6 +695,7 @@ def render(lang):
         slug = COLLAGE[i][0]
         w(f'''          <li class="svc__item" data-svc="{slug}">
             <div class="svc__head">
+              <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#{ICONO_SERVICIO[i]}"/></svg>
               <span class="svc__num">{num}</span>
               <span class="svc__name hand">{nombre}</span>
             </div>

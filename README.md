@@ -24,7 +24,7 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Inicio: foto a sangre oscurecida, el **cero** grande al medio, las piezas de proyecto subiendo con el scroll y el filete con los dos rótulos |
+| — | Inicio: la foto del flyer del estudio a sangre, con el **cero**, el nombre y el reclamo a la izquierda, y las piezas de proyecto subiendo con el scroll |
 | — | Declaración sobre terracota, centrada, con la manuscrita dentro de la frase |
 | — | Tira de fotos que pasa en bucle, con **LACONIC STUDIO** grande debajo |
 | `#estudio` | Manifiesto, equipo y las siete marcas con las que ha trabajado el estudio |
@@ -33,6 +33,17 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 | — | Frase «Haz match con lo que vibre contigo» sobre verde profundo |
 | `#proceso` | Los cuatro pasos de trabajo |
 | `#contacto` | Formulario y contacto directo |
+
+## Fotografía de marca
+
+`assets/img/marca/flyer-cotxe-*.jpg` es la foto del flyer del estudio sobre un
+coche, y es la del inicio. Se elige en `HERO_FOTO` (`build/build.py`). El bloque
+de texto va a la izquierda sobre un degradado, para que la foto se lea entera a
+la derecha.
+
+Los cinco servicios y sus subtítulos son **los del flyer**, con sus cinco iconos
+redibujados como SVG en `ICONOS`: el sol, la pausa, el asterisco, la flecha y el
+cero. El reclamo del inicio también sale de ahí.
 
 ## Vídeos de los proyectos
 

@@ -677,7 +677,9 @@ body.menu-open .mobile-menu {
   height: 100svh;
   overflow: hidden;
   display: grid;
-  place-items: center;
+  align-content: center;
+  justify-items: start;
+  padding-inline: clamp(1.25rem, 6vw, 7rem);
 }
 .hero__bg {
   position: absolute;
@@ -699,7 +701,7 @@ body.menu-open .mobile-menu {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(140% 100% at 50% 42%, rgba(var(--ink-rgb), 0.12) 20%, rgba(var(--ink-rgb), 0.66) 84%),
+    linear-gradient(100deg, rgba(var(--ink-rgb), 0.9) 4%, rgba(var(--ink-rgb), 0.42) 46%, rgba(var(--ink-rgb), 0.28) 72%),
     linear-gradient(to bottom, rgba(var(--ink-rgb), 0.62), transparent 26% 60%, rgba(var(--ink-rgb), 0.84));
 }
 
@@ -725,11 +727,13 @@ body.menu-open .mobile-menu {
   object-fit: cover;
 }
 /* Colocadas para rodear el cero, no para taparlo */
-.tile--1 { left: 2%;  top: 16%; width: 17vw; height: 42svh; --rise: 88svh;  --rot: -3deg; }
-.tile--2 { left: 75%; top: 9%;  width: 19vw; height: 38svh; --rise: 124svh; --rot: 2.5deg; }
-.tile--3 { left: 39%; top: 72%; width: 15vw; height: 32svh; --rise: 150svh; --rot: 3.5deg; }
-.tile--4 { left: 13%; top: 64%; width: 14vw; height: 30svh; --rise: 104svh; --rot: 2deg; }
-.tile--5 { left: 67%; top: 58%; width: 18vw; height: 36svh; --rise: 164svh; --rot: -2.5deg; }
+/* Acaban apoyadas en la banda de abajo, como un montón de copias sobre el
+   coche: así suben por delante del flyer pero no le tapan el texto. */
+.tile--1 { left: 30%; top: 70%; width: 14vw; height: 30svh; --rise: 92svh;  --rot: -3deg; }
+.tile--2 { left: 86%; top: 62%; width: 15vw; height: 32svh; --rise: 128svh; --rot: 2.5deg; }
+.tile--3 { left: 62%; top: 74%; width: 13vw; height: 28svh; --rise: 152svh; --rot: 3.5deg; }
+.tile--4 { left: 46%; top: 66%; width: 12vw; height: 26svh; --rise: 106svh; --rot: 2deg; }
+.tile--5 { left: 74%; top: 68%; width: 14vw; height: 29svh; --rise: 168svh; --rot: -2.5deg; }
 
 /* El cero, centrado y grande */
 .hero__logo {
@@ -737,12 +741,11 @@ body.menu-open .mobile-menu {
   z-index: 3;
   margin: 0;
   display: grid;
-  justify-items: center;
-  gap: clamp(1.4rem, 2.6vw, 2.2rem);
-  padding-inline: var(--gutter);
+  justify-items: start;
+  gap: clamp(1.2rem, 2.4vw, 1.9rem);
 }
 .hero__zero {
-  height: clamp(148px, 26vw, 330px);
+  height: clamp(130px, 20vw, 260px);
   width: auto;
   color: var(--cream);
   opacity: 0;
@@ -763,6 +766,23 @@ body.menu-open .mobile-menu {
 }
 .is-loaded .hero__name {
   opacity: 0.88;
+}
+/* El reclamo del flyer del estudio */
+.hero__claim {
+  position: relative;
+  z-index: 3;
+  margin: clamp(1.2rem, 3vw, 2rem) 0 0;
+  max-width: 22ch;
+  font-size: var(--step--2);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  line-height: 1.9;
+  color: var(--cream);
+  opacity: 0;
+  transition: opacity 1.2s var(--ease) 1.05s;
+}
+.is-loaded .hero__claim {
+  opacity: 0.82;
 }
 /* Filete de abajo con los dos rótulos */
 .hero__rule {
@@ -1055,7 +1075,16 @@ body.menu-open .mobile-menu {
 .svc__head {
   display: flex;
   align-items: baseline;
-  gap: 1rem;
+  gap: 0.85rem;
+}
+/* Icono del servicio, el mismo que usa el estudio en su flyer */
+.svc__icon {
+  width: clamp(15px, 1.5vw, 19px);
+  height: auto;
+  flex: none;
+  align-self: center;
+  color: var(--cream);
+  opacity: 0.9;
 }
 .svc__num {
   font-size: var(--step--2);
