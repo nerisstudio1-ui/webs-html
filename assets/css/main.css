@@ -1610,6 +1610,40 @@ body.menu-open .mobile-menu {
   letter-spacing: 0.18em;
   font-size: var(--step--2);
 }
+/* La cita abre con el cero de la marca en vez de una comilla cualquiera */
+.quotes__item blockquote::before {
+  content: "0";
+  display: block;
+  font-family: var(--hand);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--terra);
+  margin-bottom: 0.6rem;
+}
+/* Aviso de que el texto es de muestra: se va con RESENAS_EJEMPLO = False */
+.quotes__aviso {
+  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+  padding-left: 1.9rem;
+  position: relative;
+  max-width: 62ch;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+.quotes__aviso::before {
+  content: "!";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid var(--terra);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--terra);
+}
 
 /* ---------- Contacto ---------- */
 .contact {

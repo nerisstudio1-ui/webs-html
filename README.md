@@ -33,15 +33,24 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 | — | Frase «Haz match con lo que vibre contigo» sobre verde profundo |
 | `#proceso` | Los cuatro pasos de trabajo |
 | `#faq` | Seis preguntas frecuentes, en acordeón |
-| `#resenyes` | Reseñas de clientes (solo aparece si hay citas en `RESENAS`) |
+| `#resenyes` | Reseñas (texto de muestra; ver más abajo) |
 | `#contacto` | Formulario y contacto directo |
 
-## Reseñas: pendientes de las citas
+## Reseñas: el texto es de muestra
 
-`RESENAS` en `build/build.py` está **vacío a propósito**: una reseña son palabras
-de otra persona y no se inventan. En cuanto lleguen tres o cuatro se añaden ahí
-—nombre, marca y la cita en los dos idiomas— y la sección aparece sola, sin tocar
-nada más. Mientras esté vacía no se dibuja.
+`RESENAS` en `build/build.py` lleva tres reseñas escritas para ver la sección
+montada. **No van firmadas con el nombre de ningún cliente real**, sino por
+sector («Client · Licors artesans»), y la sección muestra un aviso de que el
+texto es de muestra.
+
+El motivo no es de estilo: atribuir una frase a Quality Training, a Malhivern o a
+Jordi Coll sin que la hayan dicho es inventarles palabras, y una reseña falsa con
+nombre y apellido es publicidad engañosa (Ley de Competencia Desleal, arts. 5
+y 26). Sale más barato pedirle la frase al cliente.
+
+Al recibir las de verdad: se sustituyen en `RESENAS`, se pone
+`RESENAS_EJEMPLO = False` y el aviso desaparece. Si la lista se deja vacía, la
+sección entera no se dibuja.
 
 Las respuestas del FAQ sí están escritas, pero solo dicen cosas que ya están en
 la web (servicios, proceso, equipo, idiomas, Barcelona y remoto). Conviene que

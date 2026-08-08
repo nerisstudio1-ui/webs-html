@@ -320,6 +320,8 @@ T = {
              'Català, castellà i anglès. El contingut es pensa en l\'idioma en què '
              'parla la marca als seus clients, no en el nostre.'),
         ],
+        nota_resenas='Text de mostra. Aquestes ressenyes encara no són de clients '
+                     'reals: quan arribin les seves, se substitueixen i aquest avís marxa.',
         k_resenas='El que diuen',
         h_resenas='Marques que <span class="hand">ho han provat</span>.',
         k_contacto='Contacte',
@@ -437,6 +439,8 @@ T = {
              'Catalán, castellano e inglés. El contenido se piensa en el idioma en que '
              'la marca habla a sus clientes, no en el nuestro.'),
         ],
+        nota_resenas='Texto de muestra. Estas reseñas todavía no son de clientes '
+                     'reales: cuando lleguen las suyas, se sustituyen y este aviso se va.',
         k_resenas='Lo que dicen',
         h_resenas='Marcas que <span class="hand">lo han probado</span>.',
         k_contacto='Contacto',
@@ -457,10 +461,45 @@ T = {
     ),
 }
 
-# Reseñas de clientes. Vacío a propósito: son palabras de otra persona y no se
-# inventan. En cuanto lleguen, se añaden aquí y la sección aparece sola.
+# Reseñas.
+#
+# Estas son de muestra: el texto está escrito para ver la sección montada, pero
+# NO va firmado con el nombre de ningún cliente real. Atribuir una frase a
+# Quality Training, a Malhivern o a Jordi Coll sin que la hayan dicho es
+# inventarles palabras, y una reseña falsa con nombre y apellido es además
+# publicidad engañosa (Ley de Competencia Desleal, art. 5 y 26). Van firmadas
+# por sector, y con RESENAS_EJEMPLO en True sale un aviso visible.
+#
+# Al recibir las de verdad: se sustituyen aquí, se pone RESENAS_EJEMPLO = False
+# y desaparece el aviso. Formato:
 #   ('Nom Cognom', 'Marca', {'ca': 'La cita…', 'es': 'La cita…'})
-RESENAS = []
+RESENAS_EJEMPLO = True
+RESENAS = [
+    (dict(ca='Client', es='Cliente'),
+     dict(ca='Entrenament esportiu', es='Entrenamiento deportivo'),
+     dict(ca='Sabíem explicar el que fem, però no en xarxes. Ens van muntar una '
+             'manera de dir-ho que sona a nosaltres, i per fi entra gent que ja '
+             've sabent què oferim.',
+          es='Sabíamos explicar lo que hacemos, pero no en redes. Nos montaron una '
+             'manera de contarlo que suena a nosotros, y por fin entra gente que '
+             'ya viene sabiendo qué ofrecemos.')),
+    (dict(ca='Client', es='Cliente'),
+     dict(ca='Licors artesans', es='Licores artesanos'),
+     dict(ca='El producte és artesà i el compte no ho semblava. Van entendre la '
+             'història que hi ha darrere abans de gravar res, i això es nota a '
+             'cada peça.',
+          es='El producto es artesano y la cuenta no lo parecía. Entendieron la '
+             'historia que hay detrás antes de grabar nada, y eso se nota en cada '
+             'pieza.')),
+    (dict(ca='Client', es='Cliente'),
+     dict(ca='Marca personal', es='Marca personal'),
+     dict(ca='Vaig arribar amb una data de llançament i poc més. Van fer la feina '
+             'de pensar-ho, no només la de gravar-ho, i jo només vaig haver de '
+             'presentar-me.',
+          es='Llegué con una fecha de lanzamiento y poco más. Hicieron el trabajo '
+             'de pensarlo, no solo el de grabarlo, y yo solo tuve que '
+             'presentarme.')),
+]
 
 EMAIL = 'itslaconicstudio@gmail.com'
 INSTAGRAM = 'https://www.instagram.com/laconicstudio_/'
@@ -947,14 +986,18 @@ def render(lang):
       <p class="kicker fade">{t['k_resenas']}</p>
       <h2 class="display display--sm rl">{t['h_resenas']}</h2>
       <div class="quotes">''')
-        for i, (nombre, marca_cli, cita) in enumerate(RESENAS):
+        for i, (nombre, sector, cita) in enumerate(RESENAS):
             retardo = f' data-delay="{min(i, 3)}"' if i else ''
+            quien = nombre[lang] if isinstance(nombre, dict) else nombre
+            donde = sector[lang] if isinstance(sector, dict) else sector
             w(f'''        <figure class="quotes__item fade"{retardo}>
           <blockquote><p>{cita[lang]}</p></blockquote>
-          <figcaption><strong>{nombre}</strong><span>{marca_cli}</span></figcaption>
+          <figcaption><strong>{quien}</strong><span>{donde}</span></figcaption>
         </figure>''')
-        w('''      </div>
-    </div>
+        w('      </div>')
+        if RESENAS_EJEMPLO:
+            w(f'      <p class="quotes__aviso fade" data-delay="3">{t["nota_resenas"]}</p>')
+        w('''    </div>
   </section>''')
     w(f'''
   <!-- Contacte -->

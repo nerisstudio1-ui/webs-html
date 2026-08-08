@@ -1731,6 +1731,40 @@
   letter-spacing: 0.18em;
   font-size: var(--step--2);
 }
+/* La cita abre con el cero de la marca en vez de una comilla cualquiera */
+#laconic-app .quotes__item blockquote::before {
+  content: "0";
+  display: block;
+  font-family: var(--hand);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--terra);
+  margin-bottom: 0.6rem;
+}
+/* Aviso de que el texto es de muestra: se va con RESENAS_EJEMPLO = False */
+#laconic-app .quotes__aviso {
+  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+  padding-left: 1.9rem;
+  position: relative;
+  max-width: 62ch;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+#laconic-app .quotes__aviso::before {
+  content: "!";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid var(--terra);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--terra);
+}
 
 /* ---------- Contacto ---------- */
 #laconic-app .contact {
@@ -2650,6 +2684,27 @@
   </section>
 
   <!-- El que diuen. Només es dibuixa si hi ha cites a RESENAS -->
+  <section class="section" data-theme="cream" id="ressenyes">
+    <div class="wrap">
+      <p class="kicker fade">El que diuen</p>
+      <h2 class="display display--sm rl">Marques que <span class="hand">ho han provat</span>.</h2>
+      <div class="quotes">
+        <figure class="quotes__item fade">
+          <blockquote><p>Sabíem explicar el que fem, però no en xarxes. Ens van muntar una manera de dir-ho que sona a nosaltres, i per fi entra gent que ja ve sabent què oferim.</p></blockquote>
+          <figcaption><strong>Client</strong><span>Entrenament esportiu</span></figcaption>
+        </figure>
+        <figure class="quotes__item fade" data-delay="1">
+          <blockquote><p>El producte és artesà i el compte no ho semblava. Van entendre la història que hi ha darrere abans de gravar res, i això es nota a cada peça.</p></blockquote>
+          <figcaption><strong>Client</strong><span>Licors artesans</span></figcaption>
+        </figure>
+        <figure class="quotes__item fade" data-delay="2">
+          <blockquote><p>Vaig arribar amb una data de llançament i poc més. Van fer la feina de pensar-ho, no només la de gravar-ho, i jo només vaig haver de presentar-me.</p></blockquote>
+          <figcaption><strong>Client</strong><span>Marca personal</span></figcaption>
+        </figure>
+      </div>
+      <p class="quotes__aviso fade" data-delay="3">Text de mostra. Aquestes ressenyes encara no són de clients reals: quan arribin les seves, se substitueixen i aquest avís marxa.</p>
+    </div>
+  </section>
 
   <!-- Contacte -->
   <section class="section slab-top" data-theme="ink" id="lac-contacte">
