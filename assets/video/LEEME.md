@@ -1,17 +1,33 @@
 # Vídeos de los proyectos
 
 Aquí van los reels. El generador los detecta solos: si un proyecto tiene vídeo,
-su columna de la izquierda deja de ser una foto y pasa a ser el vídeo, con la
-foto del proyecto como imagen de espera (póster).
+su columna deja de ser una foto y pasa a ser el vídeo en marco vertical.
 
-## Cómo se llaman los archivos
+## Lo que hay ahora
 
-`<proyecto>-<número>.mp4`
+| Archivo | Proyecto | Duración | Peso |
+| --- | --- | --- | --- |
+| `quality-1.mp4` | Quality Training — «Vols córrer ràpid?» / QT Endurance | 20 s | 3,0 MB |
+| `malhivern-1.mp4` | Ratafia Malhivern — la ruta, la masia | 1:28 | 7,3 MB |
+| `jordi-coll-1.mp4` | Jordi Coll — *El pont de les mentides* | 43 s | 2,7 MB |
+| `puig-1.mp4` | Comercial Puig — el equipo en la tienda | 52 s | 6,3 MB |
 
-| Proyecto | Archivos |
+Cada uno tiene su `-poster.jpg` al lado: es un fotograma del propio vídeo y hace
+de imagen de espera. Si se borra, el generador usa la foto del proyecto.
+
+Los cuatro vienen de los originales de Instagram, reconvertidos para web:
+H.264, 720 × 1280, CRF 30, audio AAC 64 kbps mono y `+faststart` (el índice al
+principio del archivo, para que empiecen a reproducirse sin descargarse enteros).
+
+## Cómo añadir más
+
+`<proyecto>-<número>.mp4`, y a su lado `<proyecto>-<número>-poster.jpg` si se
+quiere un fotograma concreto de espera.
+
+| Proyecto | Nombre de archivo |
 | --- | --- |
 | Quality Training | `quality-1.mp4`, `quality-2.mp4` |
-| Ratafia Malhivern | `malhivern-1.mp4` |
+| Ratafia Malhivern | `malhivern-1.mp4`, `malhivern-2.mp4` |
 | Football 4 Stars | `f4s-1.mp4` |
 | Maitasuna | `maitasuna-1.mp4` |
 | Jordi Coll | `jordi-coll-1.mp4`, `jordi-coll-2.mp4` |
@@ -21,15 +37,14 @@ foto del proyecto como imagen de espera (póster).
 Se muestran **como máximo dos por proyecto** (`MAX_REELS` en `build/build.py`).
 También vale `.webm`; si están los dos formatos del mismo clip, gana el `.mp4`.
 
-## Cómo tienen que ser
+Para reconvertir un original de Instagram:
 
-- **Vertical 9:16** (1080 × 1920), como salen de Instagram.
-- **`.mp4` con H.264 + AAC.** Es lo que descarga Instagram y lo que reproducen
-  todos los navegadores.
-- **Cortos y ligeros**: por debajo de 4 MB cada uno. Si pesan más, conviene
-  bajar el bitrate: se reproducen sin sonido y en un marco pequeño, no hace
-  falta calidad de cine.
-- **Sin texto quemado importante en los bordes**, que el marco recorta un poco.
+```bash
+ffmpeg -i original.mp4 -c:v libx264 -crf 30 -preset slow -pix_fmt yuv420p \
+  -vf scale=720:1280 -r 30 -c:a aac -b:a 64k -ac 1 -movflags +faststart \
+  quality-1.mp4
+ffmpeg -ss 1.2 -i quality-1.mp4 -frames:v 1 -vf scale=540:-1 quality-1-poster.jpg
+```
 
 ## Cómo se comportan en la web
 
@@ -37,8 +52,10 @@ También vale `.webm`; si están los dos formatos del mismo clip, gana el `.mp4`
 - El botón redondo activa el audio; solo puede sonar uno a la vez.
 - Al hacer clic en el vídeo se pausa y se reanuda.
 - Con `prefers-reduced-motion` no arrancan solos: se queda el póster.
+- `preload="metadata"`: hasta que no entran en pantalla solo se descarga la
+  cabecera del archivo, no el vídeo.
 
-Después de dejar los archivos aquí:
+Después de dejar archivos aquí:
 
 ```bash
 python3 build/build.py

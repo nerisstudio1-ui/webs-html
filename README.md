@@ -17,14 +17,14 @@ Así las dos versiones no se desincronizan. El selector CA/ES está en la cabece
 y en el pie, y las páginas se declaran entre sí con `hreflang`.
 
 Todo el branding sale de la identidad de la marca: terracota, crema y verde
-profundo, el símbolo del **0** como marca en la cabecera y en el inicio, y
+profundo, el símbolo del **0** como marca en la cabecera, el logotipo en el inicio, y
 titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 ## Secciones (todas en `index.html`)
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Inicio: la foto del flyer del estudio a sangre, con el **cero**, el nombre y el reclamo a la izquierda, y las piezas de proyecto subiendo con el scroll |
+| — | Inicio: la foto del flyer del estudio a sangre, con el **logotipo**, el nombre y el reclamo a la izquierda, y las piezas de proyecto subiendo con el scroll |
 | — | Declaración sobre terracota, centrada, con la manuscrita dentro de la frase |
 | — | Tira de fotos que pasa en bucle, con **LACONIC STUDIO** grande debajo |
 | `#estudio` | Manifiesto, equipo y las siete marcas con las que ha trabajado el estudio |
@@ -47,12 +47,15 @@ cero. El reclamo del inicio también sale de ahí.
 
 ## Vídeos de los proyectos
 
-Los reels van en `assets/video` con el nombre del proyecto: `quality-1.mp4`,
-`malhivern-1.mp4`… El generador los detecta solos. Si un proyecto tiene vídeo, su
-columna deja de ser una foto y pasa a ser el reel en marco vertical, con la foto
-del proyecto como póster; si no lo tiene, se queda la foto. Arrancan sin sonido
-al entrar en pantalla, se paran al salir, y el botón redondo activa el audio de
-uno (solo puede sonar uno a la vez).
+Cuatro proyectos ya tienen su reel en `assets/video`: **Quality Training**,
+**Ratafia Malhivern**, **Jordi Coll** y **Comercial Puig**. El generador los
+detecta solos: si un proyecto tiene vídeo, su columna deja de ser una foto y pasa
+a ser el reel en marco vertical; si no lo tiene, se queda la foto. El póster es un
+fotograma del propio vídeo.
+
+Arrancan sin sonido al entrar en pantalla, se paran al salir, y el botón redondo
+activa el audio de uno (solo puede sonar uno a la vez). Con `preload="metadata"`
+no se descargan hasta que hacen falta.
 
 Los detalles de formato y nombres están en `assets/video/LEEME.md`.
 
@@ -137,10 +140,10 @@ proyecto y las fotos a sangre usan solo tomas sueltas; está anotado en
 Todo con IntersectionObserver y un único bucle de `requestAnimationFrame`, sin
 librerías, y desactivado con `prefers-reduced-motion`:
 
-- **Inicio**: el cero entra sobre la foto, y el nombre y el filete después,
-  escalonados.
+- **Inicio**: el logotipo entra recortándose sobre la foto, y el nombre, el
+  reclamo y el filete después, escalonados.
 - **Piezas del inicio**: suben a velocidades distintas (`--rise` por pieza)
-  mientras el escenario queda pegado, y acaban colocadas alrededor del cero.
+  mientras el escenario queda pegado, y acaban apoyadas en la banda de abajo.
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.

@@ -807,7 +807,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 38%;
+  /* Encuadre bajo, para que el logotipo impreso del flyer no caiga justo
+     detrás del nuestro y se vea su lista de servicios */
+  object-position: 50% 58%;
   filter: grayscale(0.55) brightness(0.5) contrast(1.08);
   transform: scale(1.06);
 }
@@ -858,7 +860,7 @@
 .tile--4 { left: 46%; top: 66%; width: 12vw; height: 26svh; --rise: 106svh; --rot: 2deg; }
 .tile--5 { left: 74%; top: 68%; width: 14vw; height: 29svh; --rise: 168svh; --rot: -2.5deg; }
 
-/* El cero, centrado y grande */
+/* El logotipo, grande y a la izquierda */
 #laconic-app .hero__logo {
   position: relative;
   z-index: 3;
@@ -867,23 +869,22 @@
   justify-items: start;
   gap: clamp(1.2rem, 2.4vw, 1.9rem);
 }
-#laconic-app .hero__zero {
-  height: clamp(130px, 20vw, 260px);
-  width: auto;
+#laconic-app .hero__word {
+  width: min(42vw, 510px);
+  height: auto;
   color: var(--cream);
-  opacity: 0;
-  transform: translateY(22px) scale(0.94);
-  transition: opacity 1.2s var(--ease) 0.2s, transform 1.4s var(--ease-out) 0.2s;
+  clip-path: inset(0 0 105% 0);
+  transition: clip-path 1.5s var(--ease-out) 0.15s;
 }
-#laconic-app.is-loaded .hero__zero {
-  opacity: 1;
-  transform: none;
+#laconic-app.is-loaded .hero__word {
+  clip-path: inset(0 0 -4% 0);
 }
 #laconic-app .hero__name {
   font-size: var(--step--1);
   text-transform: uppercase;
-  letter-spacing: 0.52em;
-  text-indent: 0.52em;
+  letter-spacing: 0.62em;
+  text-indent: 0.62em;
+  padding-left: 0.4em;
   opacity: 0;
   transition: opacity 1.2s var(--ease) 0.9s;
 }
@@ -2068,8 +2069,8 @@
 
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
-        <svg class="hero__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
-        <span class="hero__name" aria-hidden="true">laconic studio</span>
+        <svg class="hero__word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lac-lg-word"/></svg>
+        <span class="hero__name" aria-hidden="true">studio</span>
       </h1>
       <p class="hero__claim">L'agència de RRSS que connecta, crea i converteix</p>
 
@@ -2275,16 +2276,27 @@
     </div>
     <div class="wrap">
       <article class="slab fade">
-        <div class="slab__media" data-parallax>
-          <img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Corredor en un camí amb un pi al fons" loading="lazy" decoding="async">
+        <div class="slab__media slab__media--reels">
+          <div class="reel" data-reel>
+            <video src="__BASE__assets/video/quality-1.mp4"
+              poster="__BASE__assets/video/quality-1-poster.jpg"
+              muted loop playsinline preload="metadata"
+              aria-label="Peça 01 &mdash; Quality Training"></video>
+            <span class="reel__tag" aria-hidden="true">Peça 01</span>
+            <button class="reel__sound" type="button" data-sound
+              data-on="Activa el so" data-off="Silencia el so"
+              aria-label="Activa el so">
+              <span class="is-on" aria-hidden="true">&#9834;</span>
+              <span class="is-off" aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
         <div class="slab__text">
           <span class="slab__index">01 / 07 &middot; Entrenament</span>
           <h3 class="slab__title">Quality Training</h3>
           <p>Hem transformat el coneixement tècnic de Quality Training en contingut atractiu per a xarxes socials, reforçant la seva imatge de marca, la connexió amb la comunitat i la captació de nous clients.</p>
           <div class="slab__links">
-            <a href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
-            <a href="https://www.instagram.com/p/DZIkSk0s2Yc/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener">Mira-ho a Instagram <span aria-hidden="true">&#8599;</span></a>
           </div>
           <div class="slab__meta">
             <span>Creació de contingut</span>
@@ -2296,15 +2308,27 @@
         </div>
       </article>
       <article class="slab slab--flip fade">
-        <div class="slab__media" data-parallax>
-          <img src="__BASE__assets/img/proyectos/malhivern-2-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-2-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Ampolla de ratafia sobre pedra amb plantes aromàtiques" loading="lazy" decoding="async">
+        <div class="slab__media slab__media--reels">
+          <div class="reel" data-reel>
+            <video src="__BASE__assets/video/malhivern-1.mp4"
+              poster="__BASE__assets/video/malhivern-1-poster.jpg"
+              muted loop playsinline preload="metadata"
+              aria-label="Peça 01 &mdash; Ratafia Malhivern"></video>
+            <span class="reel__tag" aria-hidden="true">Peça 01</span>
+            <button class="reel__sound" type="button" data-sound
+              data-on="Activa el so" data-off="Silencia el so"
+              aria-label="Activa el so">
+              <span class="is-on" aria-hidden="true">&#9834;</span>
+              <span class="is-off" aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
         <div class="slab__text">
           <span class="slab__index">02 / 07 &middot; Licors artesans</span>
           <h3 class="slab__title">Ratafia Malhivern</h3>
           <p>Estratègia de continguts, direcció creativa i gestió de xarxes socials per construir una marca propera, autèntica i amb una identitat pròpia.</p>
           <div class="slab__links">
-            <a href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener">Mira-ho a Instagram <span aria-hidden="true">&#8599;</span></a>
           </div>
           <div class="slab__meta">
             <span>Estratègia</span>
@@ -2354,16 +2378,27 @@
         </div>
       </article>
       <article class="slab fade">
-        <div class="slab__media" data-parallax>
-          <img src="__BASE__assets/img/proyectos/jordi-coll-2-1100.jpg" srcset="__BASE__assets/img/proyectos/jordi-coll-2-700.jpg 700w, __BASE__assets/img/proyectos/jordi-coll-2-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Públic assistint a la presentació del llibre" loading="lazy" decoding="async">
+        <div class="slab__media slab__media--reels">
+          <div class="reel" data-reel>
+            <video src="__BASE__assets/video/jordi-coll-1.mp4"
+              poster="__BASE__assets/video/jordi-coll-1-poster.jpg"
+              muted loop playsinline preload="metadata"
+              aria-label="Peça 01 &mdash; Jordi Coll"></video>
+            <span class="reel__tag" aria-hidden="true">Peça 01</span>
+            <button class="reel__sound" type="button" data-sound
+              data-on="Activa el so" data-off="Silencia el so"
+              aria-label="Activa el so">
+              <span class="is-on" aria-hidden="true">&#9834;</span>
+              <span class="is-off" aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
         <div class="slab__text">
           <span class="slab__index">05 / 07 &middot; Marca personal</span>
           <h3 class="slab__title">Jordi Coll</h3>
           <p>Hem treballat l'estratègia de continguts de Jordi Coll, creant reels per potenciar la seva marca personal i promocionar el llançament d'<em>El pont de les mentides</em>.</p>
           <div class="slab__links">
-            <a href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
-            <a href="https://www.instagram.com/p/DVxsEDcjHw5/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener">Mira-ho a Instagram <span aria-hidden="true">&#8599;</span></a>
           </div>
           <div class="slab__meta">
             <span>Estratègia</span>
@@ -2389,16 +2424,27 @@
         </div>
       </article>
       <article class="slab fade">
-        <div class="slab__media" data-parallax>
-          <img src="__BASE__assets/img/proyectos/puig-3-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-3-700.jpg 700w, __BASE__assets/img/proyectos/puig-3-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1080" height="1350" alt="Retrat en blanc i negre a la botiga" loading="lazy" decoding="async">
+        <div class="slab__media slab__media--reels">
+          <div class="reel" data-reel>
+            <video src="__BASE__assets/video/puig-1.mp4"
+              poster="__BASE__assets/video/puig-1-poster.jpg"
+              muted loop playsinline preload="metadata"
+              aria-label="Peça 01 &mdash; Comercial Puig"></video>
+            <span class="reel__tag" aria-hidden="true">Peça 01</span>
+            <button class="reel__sound" type="button" data-sound
+              data-on="Activa el so" data-off="Silencia el so"
+              aria-label="Activa el so">
+              <span class="is-on" aria-hidden="true">&#9834;</span>
+              <span class="is-off" aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
         <div class="slab__text">
           <span class="slab__index">07 / 07 &middot; Distribució</span>
           <h3 class="slab__title">Comercial Puig</h3>
           <p>Creem contingut que apropa Comercial Puig als seus clients, mostrant el valor dels seus productes, l'assessorament personalitzat i el dia a dia d'un negoci familiar.</p>
           <div class="slab__links">
-            <a href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener">Peça 01 <span aria-hidden="true">&#8599;</span></a>
-            <a href="https://www.instagram.com/p/DT24wj7iAJN/" target="_blank" rel="noopener">Peça 02 <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener">Mira-ho a Instagram <span aria-hidden="true">&#8599;</span></a>
           </div>
           <div class="slab__meta">
             <span>Creació de contingut</span>

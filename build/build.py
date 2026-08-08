@@ -444,6 +444,12 @@ FORMATOS = ('.mp4', '.webm')   # si están los dos del mismo clip, gana el mp4
 MAX_REELS = 2
 
 
+def poster_de(nombre_video):
+    """Fotograma del propio vídeo, si se ha extraído; si no, None."""
+    ruta = VIDEO_DIR / (pathlib.Path(nombre_video).stem + '-poster.jpg')
+    return ruta.name if ruta.exists() else None
+
+
 def videos_de(slug):
     """Devuelve los nombres de archivo de los vídeos del proyecto, ordenados."""
     if not VIDEO_DIR.is_dir():
@@ -580,8 +586,8 @@ def render(lang):
 
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
-        <svg class="hero__zero" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
-        <span class="hero__name" aria-hidden="true">laconic studio</span>
+        <svg class="hero__word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
+        <span class="hero__name" aria-hidden="true">studio</span>
       </h1>
       <p class="hero__claim">{t['reclamo']}</p>
 
@@ -733,9 +739,12 @@ def render(lang):
         <div class="slab__media slab__media--reels">''')
             for j, nombre_video in enumerate(vids, 1):
                 n_foto = pr['portada'] if j == 1 else min(j, pr['fotos'])
+                poster = poster_de(nombre_video)
+                ruta_poster = (f'{prefix}assets/video/{poster}' if poster else
+                               f'{prefix}assets/img/proyectos/{pr["slug"]}-{n_foto}-700.jpg')
                 w(f'''          <div class="reel" data-reel>
             <video src="{prefix}assets/video/{nombre_video}"
-              poster="{prefix}assets/img/proyectos/{pr['slug']}-{n_foto}-700.jpg"
+              poster="{ruta_poster}"
               muted loop playsinline preload="metadata"
               aria-label="{t['pieza']} {j:02d} &mdash; {pr['nombre']}"></video>
             <span class="reel__tag" aria-hidden="true">{t['pieza']} {j:02d}</span>
