@@ -24,7 +24,7 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Inicio: la foto del flyer del estudio a sangre, con el **logotipo**, el nombre y el reclamo a la izquierda, y las piezas de proyecto subiendo con el scroll |
+| — | Inicio: fondo beige, el **logotipo en terracota** centrado y las piezas de proyecto subiendo hasta salir por arriba |
 | — | Declaración sobre terracota, centrada, con la manuscrita dentro de la frase |
 | — | Tira de fotos que pasa en bucle, con **LACONIC STUDIO** grande debajo |
 | `#estudio` | Manifiesto, equipo y las siete marcas con las que ha trabajado el estudio |
@@ -32,14 +32,25 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 | `#trabajo` | Los siete proyectos, con su vídeo si lo hay y si no la fotografía |
 | — | Frase «Haz match con lo que vibre contigo» sobre verde profundo |
 | `#proceso` | Los cuatro pasos de trabajo |
+| `#faq` | Seis preguntas frecuentes, en acordeón |
+| `#resenyes` | Reseñas de clientes (solo aparece si hay citas en `RESENAS`) |
 | `#contacto` | Formulario y contacto directo |
 
-## Fotografía de marca
+## Reseñas: pendientes de las citas
+
+`RESENAS` en `build/build.py` está **vacío a propósito**: una reseña son palabras
+de otra persona y no se inventan. En cuanto lleguen tres o cuatro se añaden ahí
+—nombre, marca y la cita en los dos idiomas— y la sección aparece sola, sin tocar
+nada más. Mientras esté vacía no se dibuja.
+
+Las respuestas del FAQ sí están escritas, pero solo dicen cosas que ya están en
+la web (servicios, proceso, equipo, idiomas, Barcelona y remoto). Conviene que
+las repase el estudio antes de publicar.
+
+## Material de marca
 
 `assets/img/marca/flyer-cotxe-*.jpg` es la foto del flyer del estudio sobre un
-coche, y es la del inicio. Se elige en `HERO_FOTO` (`build/build.py`). El bloque
-de texto va a la izquierda sobre un degradado, para que la foto se lea entera a
-la derecha.
+coche. Ya no se usa en el inicio, pero se conserva por si sirve en otra sección.
 
 Los cinco servicios y sus subtítulos son **los del flyer**, con sus cinco iconos
 redibujados como SVG en `ICONOS`: el sol, la pausa, el asterisco, la flecha y el
@@ -140,10 +151,11 @@ proyecto y las fotos a sangre usan solo tomas sueltas; está anotado en
 Todo con IntersectionObserver y un único bucle de `requestAnimationFrame`, sin
 librerías, y desactivado con `prefers-reduced-motion`:
 
-- **Inicio**: el logotipo entra recortándose sobre la foto, y el nombre, el
+- **Inicio**: el logotipo entra recortándose de arriba abajo, y el nombre, el
   reclamo y el filete después, escalonados.
 - **Piezas del inicio**: suben a velocidades distintas (`--rise` por pieza)
-  mientras el escenario queda pegado, y acaban apoyadas en la banda de abajo.
+  mientras el escenario queda pegado, pasan por detrás del logotipo y salen por
+  el borde de arriba.
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.
@@ -162,8 +174,8 @@ librerías, y desactivado con `prefers-reduced-motion`:
   (con EST · STUDIO · 2024). Los tres van como `<symbol>` en un sprite al
   principio de `index.html` (`#lg-word`, `#lg-zero`, `#lg-lockup`) y se usan con
   `<use>`, así que heredan el color de la sección con `currentColor`.
-- **Fotos del inicio**: `HERO_FOTO` es la foto de marca del fondo. Las cinco
-  piezas que suben están en `HERO_TILES`, y su recorrido lo controlan
+- **Fotos del inicio**: las cinco piezas que suben están en `HERO_TILES`, y su
+  recorrido lo controlan
   `.tile--1` … `--5` en el CSS (`--rise` es cuánto sube cada una). Las de la tira
   en bucle, en `TIRA`; las del panel de servicios, en `COLLAGE`.
 - **Proyectos**: cada `<article class="slab">` lleva su medio (vídeo o foto) y su

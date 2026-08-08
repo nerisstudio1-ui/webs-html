@@ -38,8 +38,8 @@
   --step-1: clamp(1.18rem, 1.08rem + 0.5vw, 1.5rem);
   --step-2: clamp(1.45rem, 1.2rem + 1.1vw, 2.1rem);
   --step-3: clamp(1.9rem, 1.5rem + 2vw, 3rem);
-  --display-1: clamp(2.4rem, 6.6vw, 5.2rem);
-  --display-2: clamp(2rem, 5vw, 3.6rem);
+  --display-1: clamp(2rem, 4.6vw, 3.6rem);
+  --display-2: clamp(1.7rem, 3.6vw, 2.6rem);
 
   /* Layout */
   --wrap: 1280px;
@@ -279,11 +279,11 @@ ul {
 [data-theme="terra"] .display .hand {
   color: var(--cream);
 }
-/* La declaración va sobre crema, con todo el texto en el terracota de la marca:
-   la manuscrita se distingue por el trazo, no por el color. */
-[data-theme="cream"] .decl__text,
-[data-theme="cream"] .decl__text .hand {
-  color: var(--terra);
+/* La declaración va sobre terracota, en crema: es el bloque que tiene que sonar
+   más fuerte. La manuscrita se distingue por el trazo, no por el color. */
+[data-theme="terra"] .decl__text,
+[data-theme="terra"] .decl__text .hand {
+  color: var(--cream);
 }
 [data-theme="ink"] .display {
   color: var(--cream);
@@ -661,15 +661,16 @@ body.menu-open .mobile-menu {
   overflow-wrap: anywhere;
 }
 
-/* ---------- Inicio: foto de fondo, el cero encima y las piezas subiendo ----
-   El escenario queda pegado 100svh mientras la sección mide 250svh: ese sobrante
-   es el recorrido que usan las fotos para subir (--p va de 0 a 1). */
+/* ---------- Inicio: fondo beige, logotipo en teja y las piezas subiendo ----
+   El escenario queda pegado 100svh mientras la sección mide 260svh: ese sobrante
+   es el recorrido que usan las fotos para subir (--p va de 0 a 1). Acaban
+   arriba del todo, saliendo por el borde superior. */
 .hero {
   --p: 0;
   position: relative;
-  height: 250svh;
-  background: var(--ink);
-  color: var(--cream);
+  height: 260svh;
+  background: var(--cream);
+  color: var(--text);
 }
 .hero__stage {
   position: sticky;
@@ -678,78 +679,51 @@ body.menu-open .mobile-menu {
   overflow: hidden;
   display: grid;
   align-content: center;
-  justify-items: start;
-  padding-inline: clamp(1.25rem, 6vw, 7rem);
-}
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-.hero__bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Encuadre bajo, para que el logotipo impreso del flyer no caiga justo
-     detrás del nuestro y se vea su lista de servicios */
-  object-position: 50% 58%;
-  filter: grayscale(0.55) brightness(0.5) contrast(1.08);
-  transform: scale(1.06);
-}
-.hero__stage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(100deg, rgba(var(--ink-rgb), 0.9) 4%, rgba(var(--ink-rgb), 0.42) 46%, rgba(var(--ink-rgb), 0.28) 72%),
-    linear-gradient(to bottom, rgba(var(--ink-rgb), 0.62), transparent 26% 60%, rgba(var(--ink-rgb), 0.84));
+  justify-items: center;
+  padding-inline: var(--gutter);
 }
 
-/* Las piezas suben desde abajo, cada una a su ritmo, por delante de la foto */
+/* Las piezas suben desde debajo del pliegue hasta salir por arriba, por detrás
+   del logotipo. */
 .hero__tiles {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
 }
 .tile {
   position: absolute;
   margin: 0;
   overflow: hidden;
-  transform: translate3d(0, calc(var(--rise, 100svh) * (1 - var(--p))), 0)
+  transform: translate3d(0, calc(var(--rise, 150svh) * (1 - var(--p))), 0)
     rotate(var(--rot, 0deg));
   will-change: transform;
-  box-shadow: 0 34px 70px -40px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 30px 60px -44px rgba(var(--ink-rgb), 0.55);
 }
 .tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-/* Colocadas para rodear el cero, no para taparlo */
-/* Acaban apoyadas en la banda de abajo, como un montón de copias sobre el
-   coche: así suben por delante del flyer pero no le tapan el texto. */
-.tile--1 { left: 30%; top: 70%; width: 14vw; height: 30svh; --rise: 92svh;  --rot: -3deg; }
-.tile--2 { left: 86%; top: 62%; width: 15vw; height: 32svh; --rise: 128svh; --rot: 2.5deg; }
-.tile--3 { left: 62%; top: 74%; width: 13vw; height: 28svh; --rise: 152svh; --rot: 3.5deg; }
-.tile--4 { left: 46%; top: 66%; width: 12vw; height: 26svh; --rise: 106svh; --rot: 2deg; }
-.tile--5 { left: 74%; top: 68%; width: 14vw; height: 29svh; --rise: 168svh; --rot: -2.5deg; }
+.tile--1 { left: 3%;  top: -8%;  width: 17vw; height: 42svh; --rise: 156svh; --rot: -3deg; }
+.tile--2 { left: 71%; top: -16%; width: 19vw; height: 44svh; --rise: 182svh; --rot: 2.5deg; }
+.tile--3 { left: 38%; top: 1%;   width: 15vw; height: 36svh; --rise: 204svh; --rot: 3.5deg; }
+.tile--4 { left: 17%; top: 14%;  width: 14vw; height: 34svh; --rise: 138svh; --rot: 2deg; }
+.tile--5 { left: 55%; top: -22%; width: 18vw; height: 40svh; --rise: 226svh; --rot: -2.5deg; }
 
-/* El logotipo, grande y a la izquierda */
+/* El logotipo, centrado y en teja */
 .hero__logo {
   position: relative;
   z-index: 3;
   margin: 0;
   display: grid;
-  justify-items: start;
-  gap: clamp(1.2rem, 2.4vw, 1.9rem);
+  justify-items: center;
+  gap: clamp(0.9rem, 2vw, 1.5rem);
 }
 .hero__word {
-  width: min(42vw, 510px);
+  width: min(48vw, 520px);
   height: auto;
-  color: var(--cream);
+  color: var(--terra);
   clip-path: inset(0 0 105% 0);
   transition: clip-path 1.5s var(--ease-out) 0.15s;
 }
@@ -761,29 +735,29 @@ body.menu-open .mobile-menu {
   text-transform: uppercase;
   letter-spacing: 0.62em;
   text-indent: 0.62em;
-  padding-left: 0.4em;
+  color: var(--terra);
   opacity: 0;
-  transition: opacity 1.2s var(--ease) 0.9s;
+  transition: opacity 1.2s var(--ease) 0.85s;
 }
 .is-loaded .hero__name {
-  opacity: 0.88;
+  opacity: 0.9;
 }
-/* El reclamo del flyer del estudio */
 .hero__claim {
   position: relative;
   z-index: 3;
-  margin: clamp(1.2rem, 3vw, 2rem) 0 0;
-  max-width: 22ch;
+  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+  max-width: 34ch;
+  text-align: center;
   font-size: var(--step--2);
   text-transform: uppercase;
   letter-spacing: 0.22em;
   line-height: 1.9;
-  color: var(--cream);
+  color: var(--text);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.05s;
 }
 .is-loaded .hero__claim {
-  opacity: 0.82;
+  opacity: 0.72;
 }
 /* Filete de abajo con los dos rótulos */
 .hero__rule {
@@ -802,13 +776,50 @@ body.menu-open .mobile-menu {
   transition: opacity 1.2s var(--ease) 1.15s;
 }
 .is-loaded .hero__rule {
-  opacity: 0.9;
+  opacity: 0.75;
 }
 .hero__rule i {
   flex: 1;
   height: 1px;
   background: currentColor;
-  opacity: 0.45;
+  opacity: 0.35;
+}
+/* Aviso de scroll, centrado justo encima del filete */
+.hero__scroll {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(clamp(1.6rem, 5vh, 3.2rem) + 2.6rem);
+  font-family: var(--hand);
+  font-size: 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--terra);
+  opacity: 0;
+  transition: opacity 1s var(--ease) 1.3s;
+}
+.is-loaded .hero__scroll {
+  opacity: 0.9;
+}
+.hero__scroll::after {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: currentColor;
+  animation: slide 2s var(--ease) infinite;
+}
+@keyframes slide {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.35);
+    opacity: 0.5;
+  }
 }
 
 
@@ -818,8 +829,8 @@ body.menu-open .mobile-menu {
   position: relative;
 }
 .decl__text {
-  font-size: clamp(1.55rem, 3.4vw, 3rem);
-  line-height: 1.26;
+  font-size: clamp(1.35rem, 2.6vw, 2.2rem);
+  line-height: 1.32;
   letter-spacing: -0.03em;
   max-width: none;
   margin: 0 auto clamp(2.2rem, 5vw, 3.4rem);
@@ -874,8 +885,8 @@ body.menu-open .mobile-menu {
   text-align: center;
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(2rem, 8.6vw, 8.5rem);
-  line-height: 0.9;
+  font-size: clamp(1.7rem, 6.4vw, 6rem);
+  line-height: 0.92;
   letter-spacing: -0.05em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -904,9 +915,9 @@ body.menu-open .mobile-menu {
   gap: 0.2em 0.9em;
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(1.4rem, 3.4vw, 2.6rem);
-  letter-spacing: -0.035em;
-  line-height: 1.1;
+  font-size: clamp(1.15rem, 2.4vw, 1.85rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 /* Un punto en terracota entre marca y marca, menos después de la última */
 .clients__list li {
@@ -1097,7 +1108,7 @@ body.menu-open .mobile-menu {
 .svc__name {
   font-family: var(--hand);
   font-weight: 400;
-  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
   line-height: 1.05;
   color: var(--cream);
 }
@@ -1248,7 +1259,7 @@ body.menu-open .mobile-menu {
 .reel {
   position: relative;
   flex: 1 1 0;
-  max-width: 340px;
+  max-width: 250px;
   aspect-ratio: 9 / 16;
   overflow: hidden;
   background: rgba(var(--ink-rgb), 0.14);
@@ -1256,7 +1267,7 @@ body.menu-open .mobile-menu {
 }
 /* Cuando solo hay un vídeo se le da algo más de presencia */
 .slab__media--reels > .reel:only-child {
-  max-width: 400px;
+  max-width: 300px;
 }
 /* La segunda pieza baja un poco, como un contacto de dos tomas */
 .reel:nth-child(2) {
@@ -1345,9 +1356,9 @@ body.menu-open .mobile-menu {
 .quote__text {
   position: relative;
   font-family: var(--display);
-  font-size: clamp(2.2rem, 6.2vw, 5rem);
+  font-size: clamp(1.8rem, 4.4vw, 3.4rem);
   font-weight: 700;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.04em;
   line-height: 1.06;
   max-width: 26ch;
   margin: 0;
@@ -1501,6 +1512,103 @@ body.menu-open .mobile-menu {
 [data-theme="terra"] .note,
 [data-theme="ink"] .note {
   color: rgba(var(--cream-rgb), 0.75);
+}
+
+/* ---------- Preguntas frecuentes: acordeón sin JavaScript ---------- */
+.faq {
+  border-top: 1px solid var(--line);
+}
+.faq__item {
+  border-bottom: 1px solid var(--line);
+}
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: clamp(1.1rem, 2.4vw, 1.6rem);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--step-1);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  transition: color 0.35s var(--ease);
+}
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+.faq__item summary:hover {
+  color: var(--terra);
+}
+/* El signo pasa de + a — al abrir, con dos barras cruzadas */
+.faq__sign {
+  position: relative;
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+.faq__sign::before,
+.faq__sign::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1.5px;
+  background: var(--terra);
+  transition: transform 0.4s var(--ease-out);
+}
+.faq__sign::after {
+  transform: rotate(90deg);
+}
+.faq__item[open] .faq__sign::after {
+  transform: rotate(0deg);
+}
+.faq__body {
+  padding-bottom: clamp(1.1rem, 2.4vw, 1.7rem);
+}
+.faq__body p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+/* ---------- Reseñas de clientes ---------- */
+.quotes {
+  display: grid;
+  gap: clamp(1.2rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+.quotes__item {
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.quotes__item blockquote {
+  margin: 0;
+  flex: 1;
+}
+.quotes__item blockquote p {
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+.quotes__item figcaption {
+  display: grid;
+  gap: 0.15rem;
+  font-size: var(--step--1);
+}
+.quotes__item figcaption strong {
+  font-weight: 600;
+}
+.quotes__item figcaption span {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: var(--step--2);
 }
 
 /* ---------- Contacto ---------- */
@@ -1674,20 +1782,14 @@ body.cursor-on .cursor {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 700px) {
-  /* En estrecho la pieza taparía una letra del logotipo: baja a su derecha */
-  .hero__chip {
-    left: auto;
-    right: 3%;
-    top: 128%;
-    width: clamp(76px, 24vw, 104px);
-  }
-  /* A cinco columnas las fotos salen a 70 px: mejor tres */
-  .strip__row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .strip__cell--4,
-  .strip__cell--5 {
-    display: none;
+  /* En estrecho las piezas del inicio se ensanchan y se separan del logotipo */
+  .tile--1 { left: -3%; top: -6%;  width: 40vw; height: 30svh; }
+  .tile--2 { left: 62%; top: -12%; width: 42vw; height: 32svh; }
+  .tile--3 { left: 26%; top: 6%;   width: 36vw; height: 27svh; --rise: 190svh; }
+  .tile--4 { display: none; }
+  .tile--5 { left: 55%; top: 22%;  width: 38vw; height: 29svh; }
+  .hero__claim {
+    max-width: 26ch;
   }
 }
 
@@ -1725,21 +1827,21 @@ body.cursor-on .cursor {
     height: auto;
     min-height: 100svh;
   }
-  .hero__logo-word {
+  .hero__word {
     clip-path: none;
   }
-  .hero__chip,
-  .hero__sub,
+  .hero__name,
+  .hero__claim,
   .hero__rule,
   .hero__scroll {
     opacity: 1;
     transform: none;
   }
-  .hero__chip {
-    transform: rotate(4deg);
+  .tile {
+    transform: rotate(var(--rot, 0deg));
   }
-  .strip__cell {
-    transform: none;
+  .strip__track {
+    animation: none;
   }
   .cursor {
     display: none;

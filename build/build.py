@@ -230,9 +230,10 @@ T = {
                     'Less noise. More meaning.',
         saltar='Salta al contingut',
         nav=[('#estudi', 'Estudi'), ('#serveis', 'Serveis'),
-             ('#treball', 'Treball'), ('#contacte', 'Contacte')],
+             ('#treball', 'Treball'), ('#faq', 'FAQ'), ('#contacte', 'Contacte')],
         nav_movil=[('#estudi', 'Estudi', 'qui som'), ('#serveis', 'Serveis', 'què fem'),
                    ('#treball', 'Treball', 'projectes'),
+                   ('#faq', 'FAQ', 'dubtes'),
                    ('#contacte', 'Contacte', 'escriu-nos')],
         cta='Parlem', menu_abrir='Obre el menú',
         hero_nota='Estudi creatiu · Barcelona i remot',
@@ -245,7 +246,7 @@ T = {
         btn_saber='Saber-ne més',
         tira_fantasma='laconic studio',
         id_estudio='estudi', id_servicios='serveis', id_trabajo='treball',
-        id_proceso='proces', id_contacto='contacte',
+        id_proceso='proces', id_faq='faq', id_contacto='contacte',
         k_estudio='L\'estudi',
         h_estudio='Cada marca comunica, <span class="hand">però no totes connecten</span>.',
         lead_estudio='Una bona comunicació no consisteix a publicar més, sinó a explicar millor.',
@@ -293,6 +294,34 @@ T = {
                          'en un tauler compartit, no en cadenes de correu.'),
                ('Mesurem', 'Publiquem, llegim les dades i ajustem. Cada mes t\'expliquem què '
                            'ha funcionat, què no i què provarem.')],
+        k_faq='Preguntes freqüents',
+        h_faq='El que ens pregunten <span class="hand">abans de començar</span>.',
+        faq=[
+            ('Amb quines marques treballeu?',
+             'Amb marques petites i mitjanes que volen una presència amb criteri: '
+             'formació esportiva, alimentació, licors artesans, distribució i marca '
+             'personal. A la secció de treball hi són totes les que hem acompanyat.'),
+            ('Què inclou exactament cada servei?',
+             'A la secció de serveis hi ha els entregables d\'un en un. Si el que '
+             'necessites no hi és o va a mig camí entre dos, ens ho expliques i ho '
+             'muntem a mida: no venem paquets tancats.'),
+            ('Cal que us contractem tots els serveis?',
+             'No. Hi ha marques amb qui fem només contingut i altres amb qui portem '
+             'social media, direcció creativa i campanyes. Es pot començar per un i '
+             'ampliar quan tingui sentit.'),
+            ('Com és treballar amb vosaltres?',
+             'Som dues, així que parles sempre amb qui fa la feina. El procés està '
+             'explicat a la secció de com treballem: escoltem, definim, creem i '
+             'mesurem, amb revisions acotades i el material en un tauler compartit.'),
+            ('Veniu a gravar o ho feu tot en remot?',
+             'Som de Barcelona i ens movem per gravar quan el projecte ho demana. La '
+             'resta —estratègia, edició, calendari, informes— la portem en remot.'),
+            ('En quins idiomes treballeu?',
+             'Català, castellà i anglès. El contingut es pensa en l\'idioma en què '
+             'parla la marca als seus clients, no en el nostre.'),
+        ],
+        k_resenas='El que diuen',
+        h_resenas='Marques que <span class="hand">ho han provat</span>.',
         k_contacto='Contacte',
         h_contacto='Això comença <span class="hand">amb un missatge</span>.',
         lead_contacto='Explica\'ns quina marca ets i què t\'està frenant. Responem en menys '
@@ -307,7 +336,7 @@ T = {
         f_ok='Obrim el teu client de correu amb el missatge llest. Si no s\'obre, escriu-nos a ',
         pie_ubicacion='Barcelona, treballem en remot.',
         pie_nav=[('#estudi', 'Estudi'), ('#serveis', 'Serveis'), ('#treball', 'Treball'),
-                 ('#contacte', 'Contacte')],
+                 ('#faq', 'FAQ'), ('#contacte', 'Contacte')],
     ),
     'es': dict(
         lang='es', otra='ca', otra_nombre='CA', propia_nombre='ES',
@@ -316,9 +345,10 @@ T = {
                     'Less noise. More meaning.',
         saltar='Saltar al contenido',
         nav=[('#estudio', 'Estudio'), ('#servicios', 'Servicios'),
-             ('#trabajo', 'Trabajo'), ('#contacto', 'Contacto')],
+             ('#trabajo', 'Trabajo'), ('#faq', 'FAQ'), ('#contacto', 'Contacto')],
         nav_movil=[('#estudio', 'Estudio', 'quiénes somos'), ('#servicios', 'Servicios', 'qué hacemos'),
                    ('#trabajo', 'Trabajo', 'proyectos'),
+                   ('#faq', 'FAQ', 'dudas'),
                    ('#contacto', 'Contacto', 'escríbenos')],
         cta='Hablemos', menu_abrir='Abrir el menú',
         hero_nota='Estudio creativo · Barcelona y remoto',
@@ -330,7 +360,7 @@ T = {
         btn_saber='Saber más',
         tira_fantasma='laconic studio',
         id_estudio='estudio', id_servicios='servicios', id_trabajo='trabajo',
-        id_proceso='proceso', id_contacto='contacto',
+        id_proceso='proceso', id_faq='faq', id_contacto='contacto',
         k_estudio='El estudio',
         h_estudio='Cada marca comunica, <span class="hand">pero no todas conectan</span>.',
         lead_estudio='Una buena comunicación no consiste en publicar más, sino en explicar mejor.',
@@ -378,6 +408,37 @@ T = {
                            'material en un tablero compartido, no en cadenas de correo.'),
                ('Medimos', 'Publicamos, leemos los datos y ajustamos. Cada mes te contamos qué '
                            'funcionó, qué no y qué vamos a probar.')],
+        k_faq='Preguntas frecuentes',
+        h_faq='Lo que nos preguntan <span class="hand">antes de empezar</span>.',
+        faq=[
+            ('¿Con qué marcas trabajáis?',
+             'Con marcas pequeñas y medianas que quieren una presencia con criterio: '
+             'formación deportiva, alimentación, licores artesanos, distribución y '
+             'marca personal. En la sección de trabajo están todas las que hemos '
+             'acompañado.'),
+            ('¿Qué incluye exactamente cada servicio?',
+             'En la sección de servicios están los entregables uno por uno. Si lo que '
+             'necesitas no está o va a medio camino entre dos, nos lo cuentas y lo '
+             'montamos a medida: no vendemos paquetes cerrados.'),
+            ('¿Hay que contrataros todos los servicios?',
+             'No. Hay marcas con las que hacemos solo contenido y otras con las que '
+             'llevamos social media, dirección creativa y campañas. Se puede empezar '
+             'por uno y ampliar cuando tenga sentido.'),
+            ('¿Cómo es trabajar con vosotras?',
+             'Somos dos, así que hablas siempre con quien hace el trabajo. El proceso '
+             'está explicado en la sección de cómo trabajamos: escuchamos, definimos, '
+             'creamos y medimos, con revisiones acotadas y el material en un tablero '
+             'compartido.'),
+            ('¿Vais a grabar o lo hacéis todo en remoto?',
+             'Somos de Barcelona y nos movemos para grabar cuando el proyecto lo pide. '
+             'El resto —estrategia, edición, calendario, informes— lo llevamos en '
+             'remoto.'),
+            ('¿En qué idiomas trabajáis?',
+             'Catalán, castellano e inglés. El contenido se piensa en el idioma en que '
+             'la marca habla a sus clientes, no en el nuestro.'),
+        ],
+        k_resenas='Lo que dicen',
+        h_resenas='Marcas que <span class="hand">lo han probado</span>.',
         k_contacto='Contacto',
         h_contacto='Esto empieza <span class="hand">con un mensaje</span>.',
         lead_contacto='Cuéntanos qué marca eres y qué te está frenando. Respondemos en menos '
@@ -392,9 +453,14 @@ T = {
         f_ok='Abrimos tu cliente de correo con el mensaje listo. Si no se abre, escríbenos a ',
         pie_ubicacion='Barcelona, trabajamos en remoto.',
         pie_nav=[('#estudio', 'Estudio'), ('#servicios', 'Servicios'), ('#trabajo', 'Trabajo'),
-                 ('#contacto', 'Contacto')],
+                 ('#faq', 'FAQ'), ('#contacto', 'Contacto')],
     ),
 }
+
+# Reseñas de clientes. Vacío a propósito: son palabras de otra persona y no se
+# inventan. En cuanto lleguen, se añaden aquí y la sección aparece sola.
+#   ('Nom Cognom', 'Marca', {'ca': 'La cita…', 'es': 'La cita…'})
+RESENAS = []
 
 EMAIL = 'itslaconicstudio@gmail.com'
 INSTAGRAM = 'https://www.instagram.com/laconicstudio_/'
@@ -567,15 +633,9 @@ def render(lang):
 
 <main id="top">
 
-  <!-- Inici: foto a sangre de fons, el cero al mig i les peces que pugen -->
-  <section class="hero" data-theme="ink" data-collage>
+  <!-- Inici: fons beix, el logotip al mig i les peces que pugen fins a dalt -->
+  <section class="hero" data-theme="cream" data-collage>
     <div class="hero__stage">
-      <div class="hero__bg" aria-hidden="true">
-        <img src="{prefix}assets/img/{HERO_FOTO}-1600.jpg"
-          srcset="{prefix}assets/img/{HERO_FOTO}-900.jpg 900w, {prefix}assets/img/{HERO_FOTO}-1600.jpg 1600w"
-          sizes="100vw" width="1600" height="2843" alt="" loading="eager" decoding="async">
-      </div>
-
       <div class="hero__tiles" aria-hidden="true">
         <figure class="tile tile--1">{foto(prefix, HERO_TILES[0][0], HERO_TILES[0][1], '24vw', lang, 'eager')}</figure>
         <figure class="tile tile--2">{foto(prefix, HERO_TILES[1][0], HERO_TILES[1][1], '24vw', lang, 'eager')}</figure>
@@ -601,7 +661,7 @@ def render(lang):
   </section>
 
   <!-- Declaració: bloc de color, centrat, amb la manuscrita dins de la frase -->
-  <section class="decl slab-top" data-theme="cream">
+  <section class="decl slab-top" data-theme="terra">
     <div class="wrap wrap--narrow center">
       <p class="kicker kicker--center fade">{t['k_sobre']}</p>
       <p class="decl__text display rl">{t['declaracion']}</p>
@@ -827,6 +887,76 @@ def render(lang):
     </div>
   </section>
 
+
+  <!-- Preguntes freqüents -->
+  <section class="section slab-top" data-theme="cream-2" id="{t['id_faq']}">
+    <div class="wrap wrap--narrow">
+      <p class="kicker fade">{t['k_faq']}</p>
+      <h2 class="display display--sm rl">{t['h_faq']}</h2>
+      <div class="faq">
+        <details class="faq__item fade">
+          <summary>
+            <span>{t['faq'][0][0]}</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__body"><p>{t['faq'][0][1]}</p></div>
+        </details>
+        <details class="faq__item fade" data-delay="1">
+          <summary>
+            <span>{t['faq'][1][0]}</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__body"><p>{t['faq'][1][1]}</p></div>
+        </details>
+        <details class="faq__item fade" data-delay="1">
+          <summary>
+            <span>{t['faq'][2][0]}</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__body"><p>{t['faq'][2][1]}</p></div>
+        </details>
+        <details class="faq__item fade" data-delay="1">
+          <summary>
+            <span>{t['faq'][3][0]}</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__body"><p>{t['faq'][3][1]}</p></div>
+        </details>
+        <details class="faq__item fade" data-delay="1">
+          <summary>
+            <span>{t['faq'][4][0]}</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__body"><p>{t['faq'][4][1]}</p></div>
+        </details>
+        <details class="faq__item fade" data-delay="1">
+          <summary>
+            <span>{t['faq'][5][0]}</span>
+            <span class="faq__sign" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__body"><p>{t['faq'][5][1]}</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- El que diuen. Només es dibuixa si hi ha cites a RESENAS -->''')
+    if RESENAS:
+        w(f'''  <section class="section" data-theme="cream" id="ressenyes">
+    <div class="wrap">
+      <p class="kicker fade">{t['k_resenas']}</p>
+      <h2 class="display display--sm rl">{t['h_resenas']}</h2>
+      <div class="quotes">''')
+        for i, (nombre, marca_cli, cita) in enumerate(RESENAS):
+            retardo = f' data-delay="{min(i, 3)}"' if i else ''
+            w(f'''        <figure class="quotes__item fade"{retardo}>
+          <blockquote><p>{cita[lang]}</p></blockquote>
+          <figcaption><strong>{nombre}</strong><span>{marca_cli}</span></figcaption>
+        </figure>''')
+        w('''      </div>
+    </div>
+  </section>''')
+    w(f'''
   <!-- Contacte -->
   <section class="section slab-top" data-theme="ink" id="{t['id_contacto']}">
     <div class="wrap">
