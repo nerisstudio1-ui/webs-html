@@ -993,6 +993,7 @@ def render(lang):
             quien = nombre[lang] if isinstance(nombre, dict) else nombre
             donde = sector[lang] if isinstance(sector, dict) else sector
             w(f'''        <figure class="quotes__item fade"{retardo}>
+          <svg class="quotes__zero" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
           <blockquote><p>{cita[lang]}</p></blockquote>
           <figcaption><strong>{quien}</strong><span>{donde}</span></figcaption>
         </figure>''')

@@ -1619,18 +1619,17 @@ body.menu-open .mobile-menu {
   letter-spacing: -0.015em;
   color: var(--cream);
 }
-/* La cita abre con el cero de la marca */
-.quotes__item blockquote::before {
-  content: "";
-  display: block;
-  width: 15px;
-  height: 21px;
-  margin-bottom: clamp(0.9rem, 2vw, 1.3rem);
-  background: currentColor;
+/* La cita abre con el cero de la marca. Va como <svg> del sprite y no como
+   máscara con url(): dentro del bloque de WordPress el CSS vive en la propia
+   página, así que una ruta relativa a la carpeta del CSS no resuelve. */
+.quotes__zero {
+  /* align-self, o como hijo de un flex en columna se estira y el cero sale
+     centrado en vez de a la izquierda */
+  align-self: flex-start;
+  width: 16px;
+  height: auto;
   color: var(--cream);
   opacity: 0.55;
-  -webkit-mask: url("../img/logo-zero.svg") no-repeat center / contain;
-  mask: url("../img/logo-zero.svg") no-repeat center / contain;
 }
 .quotes__item figcaption {
   display: grid;

@@ -1740,18 +1740,17 @@
   letter-spacing: -0.015em;
   color: var(--cream);
 }
-/* La cita abre con el cero de la marca */
-#laconic-app .quotes__item blockquote::before {
-  content: "";
-  display: block;
-  width: 15px;
-  height: 21px;
-  margin-bottom: clamp(0.9rem, 2vw, 1.3rem);
-  background: currentColor;
+/* La cita abre con el cero de la marca. Va como <svg> del sprite y no como
+   máscara con url(): dentro del bloque de WordPress el CSS vive en la propia
+   página, así que una ruta relativa a la carpeta del CSS no resuelve. */
+#laconic-app .quotes__zero {
+  /* align-self, o como hijo de un flex en columna se estira y el cero sale
+     centrado en vez de a la izquierda */
+  align-self: flex-start;
+  width: 16px;
+  height: auto;
   color: var(--cream);
   opacity: 0.55;
-  -webkit-mask: url("../img/logo-zero.svg") no-repeat center / contain;
-  mask: url("../img/logo-zero.svg") no-repeat center / contain;
 }
 #laconic-app .quotes__item figcaption {
   display: grid;
@@ -2696,14 +2695,17 @@
       <h2 class="display display--sm rl">Marques que <span class="hand">ho han provat</span>.</h2>
       <div class="quotes">
         <figure class="quotes__item fade">
+          <svg class="quotes__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
           <blockquote><p>Sabíem explicar el que fem, però no en xarxes. Ens van muntar una manera de dir-ho que sona a nosaltres, i per fi entra gent que ja ve sabent què oferim.</p></blockquote>
           <figcaption><strong>Client</strong><span>Entrenament esportiu</span></figcaption>
         </figure>
         <figure class="quotes__item fade" data-delay="1">
+          <svg class="quotes__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
           <blockquote><p>El producte és artesà i el compte no ho semblava. Van entendre la història que hi ha darrere abans de gravar res, i això es nota a cada peça.</p></blockquote>
           <figcaption><strong>Client</strong><span>Licors artesans</span></figcaption>
         </figure>
         <figure class="quotes__item fade" data-delay="2">
+          <svg class="quotes__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
           <blockquote><p>Vaig arribar amb una data de llançament i poc més. Van fer la feina de pensar-ho, no només la de gravar-ho, i jo només vaig haver de presentar-me.</p></blockquote>
           <figcaption><strong>Client</strong><span>Marca personal</span></figcaption>
         </figure>
