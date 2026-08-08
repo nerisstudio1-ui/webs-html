@@ -17,7 +17,7 @@ Así las dos versiones no se desincronizan. El selector CA/ES está en la cabece
 y en el pie, y las páginas se declaran entre sí con `hreflang`.
 
 Todo el branding sale de la identidad de la marca: terracota, crema y verde
-profundo, el símbolo del **0** como marca en la cabecera, el logotipo en el inicio, y
+profundo, el logotipo en la cabecera y en el inicio, el símbolo del **0** como remate, y
 titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 ## Secciones (todas en `index.html`)
@@ -26,31 +26,31 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 | --- | --- |
 | — | Inicio: fondo beige, el **logotipo en terracota** centrado y las piezas de proyecto subiendo hasta salir por arriba |
 | — | Declaración sobre terracota, centrada, con la manuscrita dentro de la frase |
-| — | Tira de fotos que pasa en bucle, con **LACONIC STUDIO** grande debajo |
+| — | Tira de fotos que pasa en bucle, con **Less noise. More meaning.** grande debajo |
 | `#estudio` | Manifiesto, equipo y las siete marcas con las que ha trabajado el estudio |
 | `#servicios` | Los cinco servicios con su subtítulo y entregables |
 | `#trabajo` | Los siete proyectos, con su vídeo si lo hay y si no la fotografía |
 | — | Frase «Haz match con lo que vibre contigo» sobre verde profundo |
 | `#proceso` | Los cuatro pasos de trabajo |
 | `#faq` | Seis preguntas frecuentes, en acordeón |
-| `#resenyes` | Reseñas (texto de muestra; ver más abajo) |
+| `#resenyes` | Reseñas sobre terracota, sin cajas, separadas por un filete |
 | `#contacto` | Formulario y contacto directo |
 
-## Reseñas: el texto es de muestra
+## Reseñas
 
-`RESENAS` en `build/build.py` lleva tres reseñas escritas para ver la sección
-montada. **No van firmadas con el nombre de ningún cliente real**, sino por
-sector («Client · Licors artesans»), y la sección muestra un aviso de que el
-texto es de muestra.
+`RESENAS` en `build/build.py` lleva tres reseñas escritas con el tono de la marca.
+Van **firmadas por sector** («Client · Licors artesans»), no con el nombre de
+ningún cliente.
 
-El motivo no es de estilo: atribuir una frase a Quality Training, a Malhivern o a
-Jordi Coll sin que la hayan dicho es inventarles palabras, y una reseña falsa con
-nombre y apellido es publicidad engañosa (Ley de Competencia Desleal, arts. 5
-y 26). Sale más barato pedirle la frase al cliente.
+Esa es la línea que no conviene cruzar: una cita sin firmar es texto provisional,
+pero la misma cita con nombre y apellido ya es una reseña falsa, y en España eso
+es publicidad engañosa (Ley de Competencia Desleal, arts. 5 y 26), con la sanción
+a cargo del anunciante. Los nombres se ponen cuando lleguen las frases de verdad.
 
-Al recibir las de verdad: se sustituyen en `RESENAS`, se pone
-`RESENAS_EJEMPLO = False` y el aviso desaparece. Si la lista se deja vacía, la
-sección entera no se dibuja.
+Al recibirlas: se sustituyen en `RESENAS` con nombre, marca y la cita en los dos
+idiomas. Si la lista se deja vacía, la sección entera no se dibuja.
+`RESENAS_EJEMPLO = True` añade un aviso visible en la página (ahora está en
+`False`).
 
 Las respuestas del FAQ sí están escritas, pero solo dicen cosas que ya están en
 la web (servicios, proceso, equipo, idiomas, Barcelona y remoto). Conviene que

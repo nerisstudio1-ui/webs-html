@@ -244,7 +244,7 @@ T = {
         declaracion='Ajudem marques a <span class="hand">travessar el soroll</span> '
                     'i a deixar una <span class="hand">empremta que duri</span>.',
         btn_saber='Saber-ne més',
-        tira_fantasma='laconic studio',
+        tira_fantasma='Less noise. More meaning.',
         id_estudio='estudi', id_servicios='serveis', id_trabajo='treball',
         id_proceso='proces', id_faq='faq', id_contacto='contacte',
         k_estudio='L\'estudi',
@@ -360,7 +360,7 @@ T = {
         declaracion='Ayudamos a marcas a <span class="hand">atravesar el ruido</span> '
                     'y a dejar una <span class="hand">huella que dure</span>.',
         btn_saber='Saber más',
-        tira_fantasma='laconic studio',
+        tira_fantasma='Less noise. More meaning.',
         id_estudio='estudio', id_servicios='servicios', id_trabajo='trabajo',
         id_proceso='proceso', id_faq='faq', id_contacto='contacto',
         k_estudio='El estudio',
@@ -467,13 +467,15 @@ T = {
 # NO va firmado con el nombre de ningún cliente real. Atribuir una frase a
 # Quality Training, a Malhivern o a Jordi Coll sin que la hayan dicho es
 # inventarles palabras, y una reseña falsa con nombre y apellido es además
-# publicidad engañosa (Ley de Competencia Desleal, art. 5 y 26). Van firmadas
-# por sector, y con RESENAS_EJEMPLO en True sale un aviso visible.
+# publicidad engañosa (Ley de Competencia Desleal, art. 5 y 26). Por eso van
+# firmadas por sector y no por nombre: una cita sin firmar es texto provisional,
+# la misma cita con nombre y apellido ya es una reseña falsa. Mientras no lleguen
+# las de verdad, el nombre se queda fuera.
 #
 # Al recibir las de verdad: se sustituyen aquí, se pone RESENAS_EJEMPLO = False
 # y desaparece el aviso. Formato:
 #   ('Nom Cognom', 'Marca', {'ca': 'La cita…', 'es': 'La cita…'})
-RESENAS_EJEMPLO = True
+RESENAS_EJEMPLO = False
 RESENAS = [
     (dict(ca='Client', es='Cliente'),
      dict(ca='Entrenament esportiu', es='Entrenamiento deportivo'),
@@ -635,7 +637,7 @@ def render(lang):
 <header class="header">
   <div class="wrap header__inner">
     <a class="brand" href="#top" aria-label="Laconic Studio">
-      <svg class="brand__mark" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
+      <svg class="brand__word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
     </a>
 
     <nav class="nav" aria-label="{t['k_estudio']}">''')
@@ -981,7 +983,7 @@ def render(lang):
 
   <!-- El que diuen. Només es dibuixa si hi ha cites a RESENAS -->''')
     if RESENAS:
-        w(f'''  <section class="section" data-theme="cream" id="ressenyes">
+        w(f'''  <section class="section slab-top" data-theme="terra" id="ressenyes">
     <div class="wrap">
       <p class="kicker fade">{t['k_resenas']}</p>
       <h2 class="display display--sm rl">{t['h_resenas']}</h2>

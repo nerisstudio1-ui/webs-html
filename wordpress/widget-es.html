@@ -626,8 +626,12 @@
   transform: rotate(-12deg);
 }
 #laconic-app .brand__word {
-  height: 21px;
+  height: clamp(20px, 2vw, 26px);
   width: auto;
+  transition: transform 0.6s var(--ease-out);
+}
+#laconic-app .brand:hover .brand__word {
+  transform: translateY(-2px);
 }
 
 #laconic-app .nav {
@@ -1002,9 +1006,9 @@
   text-align: center;
   font-family: var(--display);
   font-weight: 800;
-  font-size: clamp(1.7rem, 6.4vw, 6rem);
-  line-height: 0.92;
-  letter-spacing: -0.05em;
+  font-size: clamp(1.4rem, 4.6vw, 4.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   white-space: nowrap;
   color: rgba(var(--ink-rgb), 0.55);
@@ -1691,20 +1695,38 @@
   max-width: 62ch;
 }
 
-/* ---------- Reseñas de clientes ---------- */
+/* ---------- Reseñas: sin cajas, separadas por un filete ----------
+   Van sobre el terracota, en crema y a cuerpo grande: se leen como tres voces
+   seguidas, no como tres tarjetas de plantilla. */
 #laconic-app .quotes {
   display: grid;
-  gap: clamp(1.2rem, 2.5vw, 2rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  margin-top: clamp(2rem, 5vw, 3rem);
+  gap: clamp(2rem, 4vw, 3rem);
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+@media (min-width: 860px) {
+  #laconic-app .quotes {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  /* El filete va entre columna y columna, no en los extremos */
+  #laconic-app .quotes__item + .quotes__item {
+    border-left: 1px solid var(--line-cream);
+  }
+  #laconic-app .quotes__item {
+    padding-inline: clamp(1.5rem, 3vw, 2.6rem);
+  }
+  #laconic-app .quotes__item:first-child {
+    padding-left: 0;
+  }
+  #laconic-app .quotes__item:last-child {
+    padding-right: 0;
+  }
 }
 #laconic-app .quotes__item {
   margin: 0;
-  padding: clamp(1.5rem, 3vw, 2.2rem);
-  border: 1px solid var(--line);
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: clamp(1.2rem, 2.5vw, 1.8rem);
 }
 #laconic-app .quotes__item blockquote {
   margin: 0;
@@ -1713,56 +1735,40 @@
 #laconic-app .quotes__item blockquote p {
   margin: 0;
   font-size: var(--step-1);
-  line-height: 1.4;
+  line-height: 1.45;
   letter-spacing: -0.015em;
+  color: var(--cream);
+}
+/* La cita abre con el cero de la marca */
+#laconic-app .quotes__item blockquote::before {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 21px;
+  margin-bottom: clamp(0.9rem, 2vw, 1.3rem);
+  background: currentColor;
+  color: var(--cream);
+  opacity: 0.55;
+  -webkit-mask: url("../img/logo-zero.svg") no-repeat center / contain;
+  mask: url("../img/logo-zero.svg") no-repeat center / contain;
 }
 #laconic-app .quotes__item figcaption {
   display: grid;
-  gap: 0.15rem;
-  font-size: var(--step--1);
+  gap: 0.2rem;
+  padding-top: clamp(0.9rem, 2vw, 1.3rem);
+  border-top: 1px solid var(--line-cream);
 }
 #laconic-app .quotes__item figcaption strong {
   font-weight: 600;
+  font-size: var(--step--1);
+  color: var(--cream);
 }
 #laconic-app .quotes__item figcaption span {
-  color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   font-size: var(--step--2);
-}
-/* La cita abre con el cero de la marca en vez de una comilla cualquiera */
-#laconic-app .quotes__item blockquote::before {
-  content: "0";
-  display: block;
-  font-family: var(--hand);
-  font-size: 2rem;
-  line-height: 1;
-  color: var(--terra);
-  margin-bottom: 0.6rem;
-}
-/* Aviso de que el texto es de muestra: se va con RESENAS_EJEMPLO = False */
-#laconic-app .quotes__aviso {
-  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
-  padding-left: 1.9rem;
-  position: relative;
-  max-width: 62ch;
-  font-size: var(--step--1);
-  color: var(--muted);
-}
-#laconic-app .quotes__aviso::before {
-  content: "!";
-  position: absolute;
-  left: 0;
-  top: 0.15em;
-  display: grid;
-  place-items: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 1px solid var(--terra);
-  border-radius: 50%;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--terra);
+  color: var(--cream);
+  opacity: 0.7;
 }
 
 /* ---------- Contacto ---------- */
@@ -2139,7 +2145,7 @@
 <header class="header">
   <div class="wrap header__inner">
     <a class="brand" href="#lac-top" aria-label="Laconic Studio">
-      <svg class="brand__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
+      <svg class="brand__word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lac-lg-word"/></svg>
     </a>
 
     <nav class="nav" aria-label="El estudio">
@@ -2231,7 +2237,7 @@
         <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/malhivern-2-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-2-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="22vw" width="1080" height="1350" alt="Botella de ratafía sobre piedra con plantas aromáticas" loading="lazy" decoding="async"></figure>
       </div>
     </div>
-    <span class="strip__ghost" aria-hidden="true">laconic studio</span>
+    <span class="strip__ghost" aria-hidden="true">Less noise. More meaning.</span>
   </div>
 
   <!-- Estudi -->
@@ -2683,7 +2689,7 @@
   </section>
 
   <!-- El que diuen. Només es dibuixa si hi ha cites a RESENAS -->
-  <section class="section" data-theme="cream" id="ressenyes">
+  <section class="section slab-top" data-theme="terra" id="ressenyes">
     <div class="wrap">
       <p class="kicker fade">Lo que dicen</p>
       <h2 class="display display--sm rl">Marcas que <span class="hand">lo han probado</span>.</h2>
@@ -2701,7 +2707,6 @@
           <figcaption><strong>Cliente</strong><span>Marca personal</span></figcaption>
         </figure>
       </div>
-      <p class="quotes__aviso fade" data-delay="3">Texto de muestra. Estas reseñas todavía no son de clientes reales: cuando lleguen las suyas, se sustituyen y este aviso se va.</p>
     </div>
   </section>
 
