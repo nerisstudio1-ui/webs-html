@@ -98,8 +98,9 @@ personalizado**, con todo aislado para que el tema y la web no se pisen, en dos
 versiones:
 
 - `widget-*-copiar-pegar.html` (5,7 MB) — tipografías, fotos y pósters dentro del
-  archivo. Se pega y ya está; solo los cuatro `.mp4` se suben por la Biblioteca de
-  medios y se pegan sus URL en los marcadores `__VIDEO_*__`. Sin FTP.
+  archivo, y los cuatro vídeos apuntando a la Biblioteca de medios. Se pega y ya
+  está: nada que subir, nada que sustituir. Las URL de los vídeos están en
+  `VIDEOS_WORDPRESS` (`build/build_widget.py`).
 - `widget-*.html` (158 KB) — lo mismo con los archivos aparte. Mucho más ligero en
   la base de datos y cacheable, pero hay que subir `assets/` por FTP.
 
