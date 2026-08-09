@@ -40,6 +40,29 @@ APP = '#laconic-app'
 # Marcador que el usuario sustituye por la URL donde suba la carpeta assets
 BASE = '__BASE__'
 
+# Vídeos ya subidos a la Biblioteca de medios de WordPress.
+#
+# Van como ruta desde la raíz del dominio, sin `https://dominio`, a propósito: el
+# sitio está de momento en el dominio de pruebas de Hostinger
+# (darkviolet-partridge-547677.hostingersite.com) y al conectar el definitivo
+# estas rutas seguirán resolviendo solas. Con la URL completa habría que
+# reemplazarlas una a una.
+#
+# WordPress cambia el nombre del archivo al subirlo (mete guiones donde encuentra
+# ciertas secuencias), así que estos nombres son los que devolvió el panel, no los
+# de los archivos originales.
+CARPETA_WP = '/wp-content/uploads/2026/08/'
+VIDEOS_WORDPRESS = {
+    'quality-1': 'SaveClip.App_AQNGmLNHLGiFU9jlnXVKT2ZTtiSuHIAXimbueKtPY6wd2bGcTUdY'
+                 '_qu04_bKFnE2nSWoPuglzN2pdciWazSeGuvtksqPb3KGlhxDjr8.mp4',
+    'malhivern-1': 'SaveClip.App_AQMSZ3boGR5agJ7If7Wa-Ydn36pldFkvnxjJGkcYEIMSpLz2R7T'
+                   '_qK3WYX6RbpTZMmqp5BT7JlaJcqwII2wp_gCQjfPnRqPElfeSddM.mp4',
+    'jordi-coll-1': 'SaveClip.App_AQNS2Ec6oy9vSJAV-da-cldU22A56AM9Li009TWgQvCXM4PHD33eA80Dq'
+                    '_GteYQnpFsn8XSnFV1G7ry1Kclem41v.mp4',
+    'puig-1': 'SaveClip.App_AQM3VYtfZNzijSNtRXjDuO_lcED8X0m2o9ldGC5tbg2BILJT5jHHIwBgBkSSANH9'
+              'P3ZKMH92GnYktmVwknUt1KlHcq2FVBEqgMHYwYI.mp4',
+}
+
 
 # --------------------------------------------------------------------------- #
 # CSS
@@ -432,29 +455,26 @@ def copiar_pegar(lang):
                             'data:image/jpeg;base64,'
                             + base64.b64encode(buf.getvalue()).decode())
 
-    # Y los vídeos pasan a ser un marcador con su nombre dentro
+    # Y los vídeos apuntan a la Biblioteca de medios si ya están subidos; si no,
+    # se queda un marcador con el nombre del proyecto para pegar su URL a mano.
     for ruta in sorted(set(re.findall(r'__BASE__assets/video/([^"]+\.mp4)', html))):
-        html = html.replace(BASE + 'assets/video/' + ruta,
-                            '__VIDEO_%s__' % ruta[:-4])
+        clave = ruta[:-4]
+        destino = (CARPETA_WP + VIDEOS_WORDPRESS[clave] if clave in VIDEOS_WORDPRESS
+                   else '__VIDEO_%s__' % clave)
+        html = html.replace(BASE + 'assets/video/' + ruta, destino)
 
     aviso = ('<!-- Laconic Studio — bloque de HTML personalizado (%s), para copiar y pegar.\n'
              '\n'
-             '     Tipografías, fotos y pósters van DENTRO de este archivo: no hay nada\n'
-             '     que subir por FTP. Solo quedan cuatro cosas por sustituir, los vídeos.\n'
+             '     Tipografías, fotos y pósters van DENTRO de este archivo, y los cuatro\n'
+             '     vídeos apuntan ya a la Biblioteca de medios. No hay nada que subir ni\n'
+             '     nada que sustituir: se copia todo y se pega.\n'
              '\n'
-             '     1. Sube los cuatro .mp4 a Medios -> Añadir nuevo, y copia la URL que\n'
-             '        te da WordPress de cada uno.\n'
-             '     2. Busca y reemplaza cada marcador por su URL:\n'
-             '          __VIDEO_quality-1__      el reel de Quality Training\n'
-             '          __VIDEO_malhivern-1__    el de Ratafia Malhivern\n'
-             '          __VIDEO_jordi-coll-1__   el de Jordi Coll\n'
-             '          __VIDEO_puig-1__         el de Comercial Puig\n'
+             '     Los vídeos van como ruta desde la raíz (/wp-content/uploads/...), sin\n'
+             '     el dominio, así que seguirán funcionando cuando el sitio pase del\n'
+             '     dominio de pruebas al definitivo.\n'
              '\n'
              '     El enlace de idioma apunta a %s. Si la otra página acaba en otra\n'
-             '     dirección, cambia ese enlace (sale tres veces).\n'
-             '\n'
-             '     Si dejas los marcadores sin sustituir el vídeo no se ve, pero la\n'
-             '     página funciona: se queda la imagen de espera. -->\n'
+             '     dirección, cambia ese enlace (sale tres veces). -->\n'
              % (lang.upper(), '/es/' if lang == 'ca' else '/'))
     return re.sub(r'^<!--.*?-->\n', aviso, html, count=1, flags=re.S)
 

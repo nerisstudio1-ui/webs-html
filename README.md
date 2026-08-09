@@ -79,6 +79,18 @@ no se descargan hasta que hacen falta.
 
 Los detalles de formato y nombres están en `assets/video/LEEME.md`.
 
+## Formulario de contacto
+
+Tal cual está, el formulario **compone un correo y abre el cliente de email** del
+visitante. No hace falta configurar nada, pero se pierde a quien usa webmail o no
+tiene cliente configurado, que en escritorio es mucha gente.
+
+Para que el mensaje llegue de verdad, se rellena `FORM_ACTION` (y `FORM_OCULTOS`
+si el servicio lo pide) en `build/build.py` y se regenera. Los dos servicios que
+funcionan dentro de un bloque de HTML de WordPress, sin plugin, están anotados
+ahí: **Web3Forms** y **Formspree**. Un plugin tipo Contact Form 7 no sirve, porque
+su shortcode no se ejecuta dentro de un bloque de HTML personalizado.
+
 ## Versión para WordPress
 
 En `wordpress/` hay la web preparada para pegarla en un bloque de **HTML
@@ -163,6 +175,11 @@ tres imágenes montadas (`f45-2`, `f45-3`, `jordi-coll-1`, `puig-2`, `quality-2`
 `maitasuna-3`). A tamaño grande se les ve la costura, así que la portada de cada
 proyecto y las fotos a sangre usan solo tomas sueltas; está anotado en
 `build/build.py`.
+
+Otras cinco traían un marco blanco dentro del propio archivo (`jordi-coll-3`,
+`maitasuna-2`, `malhivern-1`, `malhivern-3` y `puig-3`). Están recortadas, así que
+ya no son 4:5 y el generador lee el tamaño real de cada archivo con `medidas()` en
+lugar de darlo por hecho.
 
 ## Movimiento
 

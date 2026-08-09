@@ -261,13 +261,29 @@
     return v < 0 ? 0 : v > 1 ? 1 : v;
   };
 
+  // Las piezas del inicio no siguen el scroll uno a uno: el valor que las mueve
+  // persigue al del scroll acercándose un 9 % cada fotograma. Con la rueda del
+  // ratón, que llega a saltos de decenas de píxeles, la diferencia entre las dos
+  // cosas es lo que se nota: sin esto el movimiento va a tirones.
+  var pSuave = null;
+  var SEGUIMIENTO = 0.09;
+
   var frame = function () {
     var vh = window.innerHeight;
+    var sigue = false;
 
     if (collage) {
       var travel = collage.offsetHeight - vh;
-      var p = travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1;
-      collage.style.setProperty("--p", clamp01(p).toFixed(4));
+      var objetivo = clamp01(travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1);
+      if (pSuave === null) pSuave = objetivo;   // el primer fotograma, sin arrastre
+      var salto = objetivo - pSuave;
+      if (Math.abs(salto) < 0.0004) {
+        pSuave = objetivo;
+      } else {
+        pSuave += salto * SEGUIMIENTO;
+        sigue = true;                            // aún no ha llegado: otro fotograma
+      }
+      collage.style.setProperty("--p", pSuave.toFixed(4));
     }
 
     parallax.forEach(function (el) {
@@ -297,6 +313,7 @@
     }
 
     ticking = false;
+    if (sigue) pedir();   // sigue habiendo movimiento pendiente
   };
 
   var ticking = false;

@@ -337,6 +337,7 @@ T = {
         f_nota='En enviar s\'obre el teu client de correu amb el missatge ja redactat.',
         f_ok='Obrim el teu client de correu amb el missatge llest. Si no s\'obre, escriu-nos a ',
         pie_ubicacion='Barcelona, treballem en remot.',
+        pie_credito='Web feta per', pie_credito_quien='Neris Studio',
         pie_nav=[('#estudi', 'Estudi'), ('#serveis', 'Serveis'), ('#treball', 'Treball'),
                  ('#faq', 'FAQ'), ('#contacte', 'Contacte')],
     ),
@@ -456,6 +457,7 @@ T = {
         f_nota='Al enviar se abre tu cliente de correo con el mensaje ya redactado.',
         f_ok='Abrimos tu cliente de correo con el mensaje listo. Si no se abre, escríbenos a ',
         pie_ubicacion='Barcelona, trabajamos en remoto.',
+        pie_credito='Web hecha por', pie_credito_quien='Neris Studio',
         pie_nav=[('#estudio', 'Estudio'), ('#servicios', 'Servicios'), ('#trabajo', 'Trabajo'),
                  ('#faq', 'FAQ'), ('#contacto', 'Contacto')],
     ),
@@ -505,6 +507,29 @@ RESENAS = [
 
 EMAIL = 'itslaconicstudio@gmail.com'
 INSTAGRAM = 'https://www.instagram.com/laconicstudio_/'
+NERIS = 'https://www.nerisstudio.com'
+
+# Destino del formulario.
+#
+# Vacío = el formulario compone un correo y abre el cliente de email del
+# visitante (mailto). Funciona sin configurar nada, pero se pierde a quien usa
+# webmail o no tiene cliente configurado, que en escritorio es mucha gente.
+#
+# Para que el mensaje llegue de verdad hay que poner aquí la dirección de un
+# servicio de formularios. Los dos que funcionan dentro de un bloque de HTML de
+# WordPress, sin plugin:
+#
+#   Web3Forms   https://web3forms.com   gratis y sin cuenta: pides una clave con
+#               el correo y te la mandan.
+#                 FORM_ACTION = 'https://api.web3forms.com/submit'
+#                 FORM_OCULTOS = {'access_key': 'la-clave-que-te-envien'}
+#   Formspree   https://formspree.io    gratis hasta 50 mensajes al mes.
+#                 FORM_ACTION = 'https://formspree.io/f/xxxxxxx'
+#
+# Un plugin tipo Contact Form 7 no sirve aquí: su shortcode no se ejecuta dentro
+# de un bloque de HTML personalizado.
+FORM_ACTION = ''
+FORM_OCULTOS = {}
 DOMINIO = 'https://laconicstudio.com'
 
 # Fotos del collage: proyecto y número de foto. COLLAGE alimenta el panel de
@@ -576,17 +601,34 @@ def videos_de(slug):
     return [por_clip[k].name for k in sorted(por_clip)][:MAX_REELS]
 
 
+def medidas(slug, n):
+    """Tamaño real del archivo. Varias fotos venían con un marco blanco dentro y
+    al recortarlo dejaron de ser 4:5, así que no se puede dar por hecho."""
+    from PIL import Image
+    with Image.open(IMG_DIR / f'{slug}-{n}-1100.jpg') as im:
+        return im.size
+
+
 def foto(prefix, slug, n, sizes, lang, loading='lazy', clases=''):
     alt = ALT.get(f'{slug}-{n}', {}).get(lang, '')
     cls = f' class="{clases}"' if clases else ''
+    ancho, alto = medidas(slug, n)
     return (f'<img{cls} src="{prefix}assets/img/proyectos/{slug}-{n}-1100.jpg" '
             f'srcset="{prefix}assets/img/proyectos/{slug}-{n}-700.jpg 700w, '
             f'{prefix}assets/img/proyectos/{slug}-{n}-1100.jpg 1100w" sizes="{sizes}" '
-            f'width="1080" height="1350" alt="{alt}" loading="{loading}" decoding="async">')
+            f'width="{ancho}" height="{alto}" alt="{alt}" loading="{loading}" decoding="async">')
 
 
 def render(lang):
     t = T[lang]
+    if FORM_ACTION:
+        atributos_form = f' action="{FORM_ACTION}" method="POST"'
+        ocultos_form = ''.join(
+            f'\n            <input type="hidden" name="{k}" value="{v}">'
+            for k, v in FORM_OCULTOS.items())
+    else:
+        atributos_form = f' data-mailto="{EMAIL}" data-ok="{t["f_ok"]}"'
+        ocultos_form = ''
     prefix = '' if lang == 'ca' else '../'
     url_otra = 'es/' if lang == 'ca' else '../'
     p = []
@@ -1022,9 +1064,9 @@ def render(lang):
         </div>
 
         <div class="fade" data-delay="1">
-          <!-- Sense backend: compon un correu amb les dades. Per rebre-ho en un
-               servidor, canviar data-mailto per action + method. -->
-          <form class="form" data-mailto="{EMAIL}" data-ok="{t['f_ok']}" novalidate>
+          <!-- Si FORM_ACTION está puesto, envía al servicio; si no, compone un
+               correo y abre el cliente de email. Se cambia en build/build.py. -->
+          <form class="form"{atributos_form} novalidate>{ocultos_form}
             <div class="form__row">
               <div class="field">
                 <label for="nombre">{t['f_nombre']}</label>
@@ -1076,7 +1118,11 @@ def render(lang):
     w(f'''        <a href="{url_otra}" hreflang="{t['otra']}">{t['otra_nombre']}</a>
       </li>
     </ul>
-    <p class="footer__copy">&copy; <span data-year>2026</span> Laconic Studio</p>
+    <p class="footer__copy">
+      <span>&copy; <span data-year>2026</span> Laconic Studio</span>
+      <span class="footer__credito">{t['pie_credito']}
+        <a href="{NERIS}" target="_blank" rel="noopener">{t['pie_credito_quien']}</a></span>
+    </p>
   </div>
 </footer>
 

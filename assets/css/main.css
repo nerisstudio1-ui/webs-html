@@ -1792,8 +1792,22 @@ body.menu-open .mobile-menu {
   font-size: var(--step--2);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  opacity: 0.55;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.6rem;
+  opacity: 0.55;
+}
+/* Crédito del estudio que ha hecho la web */
+.footer__credito a {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: color 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+.footer__credito a:hover {
+  color: var(--terra-soft);
+  border-color: var(--terra-soft);
 }
 
 /* ---------- Cursor ---------- */
