@@ -318,10 +318,21 @@
       <article class="slab fade">
         <div class="slab__media slab__media--reels">
           <div class="reel" data-reel>
-            <video src="../assets/video/quality-1.mp4"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="../assets/video/quality-1.mp4"
               poster="../assets/video/quality-1-poster.jpg"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="Pieza 01 &mdash; Quality Training"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">Pieza 01</span>
             <button class="reel__sound" type="button" data-sound
               data-on="Activar el sonido" data-off="Silenciar"
@@ -350,10 +361,21 @@
       <article class="slab slab--flip fade">
         <div class="slab__media slab__media--reels">
           <div class="reel" data-reel>
-            <video src="../assets/video/malhivern-1.mp4"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="../assets/video/malhivern-1.mp4"
               poster="../assets/video/malhivern-1-poster.jpg"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="Pieza 01 &mdash; Ratafia Malhivern"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">Pieza 01</span>
             <button class="reel__sound" type="button" data-sound
               data-on="Activar el sonido" data-off="Silenciar"
@@ -420,10 +442,21 @@
       <article class="slab fade">
         <div class="slab__media slab__media--reels">
           <div class="reel" data-reel>
-            <video src="../assets/video/jordi-coll-1.mp4"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="../assets/video/jordi-coll-1.mp4"
               poster="../assets/video/jordi-coll-1-poster.jpg"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="Pieza 01 &mdash; Jordi Coll"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">Pieza 01</span>
             <button class="reel__sound" type="button" data-sound
               data-on="Activar el sonido" data-off="Silenciar"
@@ -466,10 +499,21 @@
       <article class="slab fade">
         <div class="slab__media slab__media--reels">
           <div class="reel" data-reel>
-            <video src="../assets/video/puig-1.mp4"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="../assets/video/puig-1.mp4"
               poster="../assets/video/puig-1-poster.jpg"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="Pieza 01 &mdash; Comercial Puig"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">Pieza 01</span>
             <button class="reel__sound" type="button" data-sound
               data-on="Activar el sonido" data-off="Silenciar"

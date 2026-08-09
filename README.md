@@ -77,6 +77,19 @@ Arrancan sin sonido al entrar en pantalla, se paran al salir, y el botón redond
 activa el audio de uno (solo puede sonar uno a la vez). Con `preload="metadata"`
 no se descargan hasta que hacen falta.
 
+El arranque **no depende de nuestro JavaScript**: el `<video>` lleva `autoplay
+muted playsinline`, así que si un plugin de caché aplaza o rompe el guion, el reel
+se reproduce igual. Los navegadores no empiezan un vídeo silenciado hasta que está
+en pantalla, así que no se descarga de más. Además lleva `class="skip-lazy"` y
+`data-no-lazy` para que los plugins de carga diferida no le quiten el `src`, que es
+lo que los deja en negro.
+
+Cuando el navegador **no** permite arrancar solo —un móvil en ahorro de batería o
+de datos— aparece un círculo de play sobre el reel y basta con tocarlo. Ese aviso
+sigue al estado real del vídeo (eventos `play`/`pause`), no a lo que le pedimos, y
+solo se muestra si hay JavaScript: sin él, tocar no serviría de nada. Quien pide
+`prefers-reduced-motion` no ve ningún vídeo arrancar solo.
+
 Los detalles de formato y nombres están en `assets/video/LEEME.md`.
 
 ## Formulario de contacto
@@ -113,12 +126,21 @@ En `wordpress/` hay la web preparada para pegarla en un bloque de **HTML
 personalizado**, con todo aislado para que el tema y la web no se pisen, en dos
 versiones:
 
-- `widget-*-copiar-pegar.html` (5,7 MB) — tipografías, fotos y pósters dentro del
+- `widget-*-copiar-pegar.html` (6 MB) — tipografías, fotos y pósters dentro del
   archivo, y los cuatro vídeos apuntando a la Biblioteca de medios. Se pega y ya
   está: nada que subir, nada que sustituir. Las URL de los vídeos están en
   `VIDEOS_WORDPRESS` (`build/build_widget.py`).
 - `widget-*.html` (158 KB) — lo mismo con los archivos aparte. Mucho más ligero en
   la base de datos y cacheable, pero hay que subir `assets/` por FTP.
+
+Los cuatro llevan la fecha y hora de generación en el comentario de cabecera
+(`Generado: …`). Sirve para saber qué versión está publicada de verdad: si en la
+web pública falta algo que en el editor sí se ve, es caché, y ese sello lo confirma.
+
+La estructura que esperan los enlaces de idioma: la página **catalana es la portada**
+del sitio y la **castellana** es una página con el slug **`es`**. Si van a otras
+direcciones, se cambian los tres enlaces de cada archivo. Todo detallado, con el
+apartado de caché, en `wordpress/INSTALACION.md`.
 
 Los pasos están en `wordpress/INSTALACION.md`. Se regenera con:
 

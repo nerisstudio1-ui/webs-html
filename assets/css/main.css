@@ -1298,6 +1298,50 @@ body.menu-open .mobile-menu {
   object-fit: cover;
   display: block;
 }
+/* Aviso de «toca para ver». Solo se ve mientras el vídeo está parado: si el
+   navegador no deja que arranque solo —un móvil en ahorro de batería o de
+   datos— el reel no se queda como una foto muda sin explicación. No intercepta
+   el clic: el toque llega al vídeo, que es quien lo escucha.
+   Sin JavaScript no aparece: ahí el vídeo arranca por el atributo autoplay y
+   nadie puede tocarlo para nada, así que el aviso solo estorbaría. */
+.reel__play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(var(--ink-rgb), 0.18);
+  transition: opacity 0.4s var(--ease);
+}
+.has-js .reel__play {
+  opacity: 1;
+}
+.reel__play span {
+  display: block;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: 1px solid rgba(var(--cream-rgb), 0.75);
+  border-radius: 50%;
+  background: rgba(var(--ink-rgb), 0.4);
+  backdrop-filter: blur(6px);
+  position: relative;
+}
+/* El triángulo, hecho con bordes para no cargar ningún icono */
+.reel__play span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 0.5rem 0 0.5rem 0.85rem;
+  border-color: transparent transparent transparent var(--cream);
+}
+.has-js .reel.is-playing .reel__play {
+  opacity: 0;
+}
 .reel__sound {
   position: absolute;
   right: 0.7rem;

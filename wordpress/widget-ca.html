@@ -1,4 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (CA).
+     Generado: 2026-08-09 15:57 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -70,6 +71,8 @@
   box-shadow: none;
   outline: 0;
   text-decoration: none;
+  filter: none;
+  mix-blend-mode: normal;
   color: inherit;
   font-family: inherit;
   font-style: inherit;
@@ -1415,6 +1418,50 @@
   object-fit: cover;
   display: block;
 }
+/* Aviso de «toca para ver». Solo se ve mientras el vídeo está parado: si el
+   navegador no deja que arranque solo —un móvil en ahorro de batería o de
+   datos— el reel no se queda como una foto muda sin explicación. No intercepta
+   el clic: el toque llega al vídeo, que es quien lo escucha.
+   Sin JavaScript no aparece: ahí el vídeo arranca por el atributo autoplay y
+   nadie puede tocarlo para nada, así que el aviso solo estorbaría. */
+#laconic-app .reel__play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(var(--ink-rgb), 0.18);
+  transition: opacity 0.4s var(--ease);
+}
+#laconic-app.has-js .reel__play {
+  opacity: 1;
+}
+#laconic-app .reel__play span {
+  display: block;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: 1px solid rgba(var(--cream-rgb), 0.75);
+  border-radius: 50%;
+  background: rgba(var(--ink-rgb), 0.4);
+  backdrop-filter: blur(6px);
+  position: relative;
+}
+/* El triángulo, hecho con bordes para no cargar ningún icono */
+#laconic-app .reel__play span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 0.5rem 0 0.5rem 0.85rem;
+  border-color: transparent transparent transparent var(--cream);
+}
+#laconic-app.has-js .reel.is-playing .reel__play {
+  opacity: 0;
+}
 #laconic-app .reel__sound {
   position: absolute;
   right: 0.7rem;
@@ -2159,6 +2206,7 @@
 </style>
 
 <div id="laconic-app">
+<script>(function(){var a=document.getElementById("laconic-app");if(!a)return;a.classList.add("has-js");var r=function(){if(!a.classList.contains("lac-ok"))a.classList.remove("has-js");};if(document.readyState==="complete"){setTimeout(r,300);}else{window.addEventListener("load",function(){setTimeout(r,300);});}setTimeout(r,6000);})();</script>
 <!-- Logo oficial de la marca vectorizado: el cero, el logotipo y el lockup,
      más los iconos de los servicios. Todos heredan color con currentColor. -->
 <svg class="sprite" aria-hidden="true" focusable="false">
@@ -2444,10 +2492,21 @@
       <article class="slab fade">
         <div class="slab__media slab__media--reels">
           <div class="reel" data-reel>
-            <video src="__BASE__assets/video/quality-1.mp4"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="__BASE__assets/video/quality-1.mp4"
               poster="__BASE__assets/video/quality-1-poster.jpg"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="Peça 01 &mdash; Quality Training"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">Peça 01</span>
             <button class="reel__sound" type="button" data-sound
               data-on="Activa el so" data-off="Silencia el so"
@@ -2476,10 +2535,21 @@
       <article class="slab slab--flip fade">
         <div class="slab__media slab__media--reels">
           <div class="reel" data-reel>
-            <video src="__BASE__assets/video/malhivern-1.mp4"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="__BASE__assets/video/malhivern-1.mp4"
               poster="__BASE__assets/video/malhivern-1-poster.jpg"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="Peça 01 &mdash; Ratafia Malhivern"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">Peça 01</span>
             <button class="reel__sound" type="button" data-sound
               data-on="Activa el so" data-off="Silencia el so"
@@ -2546,10 +2616,21 @@
       <article class="slab fade">
         <div class="slab__media slab__media--reels">
           <div class="reel" data-reel>
-            <video src="__BASE__assets/video/jordi-coll-1.mp4"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="__BASE__assets/video/jordi-coll-1.mp4"
               poster="__BASE__assets/video/jordi-coll-1-poster.jpg"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="Peça 01 &mdash; Jordi Coll"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">Peça 01</span>
             <button class="reel__sound" type="button" data-sound
               data-on="Activa el so" data-off="Silencia el so"
@@ -2592,10 +2673,21 @@
       <article class="slab fade">
         <div class="slab__media slab__media--reels">
           <div class="reel" data-reel>
-            <video src="__BASE__assets/video/puig-1.mp4"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="__BASE__assets/video/puig-1.mp4"
               poster="__BASE__assets/video/puig-1-poster.jpg"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="Peça 01 &mdash; Comercial Puig"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">Peça 01</span>
             <button class="reel__sound" type="button" data-sound
               data-on="Activa el so" data-off="Silencia el so"
@@ -2848,6 +2940,10 @@
   var APP = document.getElementById("laconic-app");
   if (!APP) return;
 
+  // Señal de vida para la red de seguridad del principio del bloque: si esto no
+  // llega a ejecutarse, retira has-js y la web se ve entera, sin animaciones.
+  APP.classList.add("lac-ok");
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -3042,6 +3138,15 @@
       videos.push(v);
       v.muted = true;
 
+      // Quien pide menos movimiento no quiere cuatro vídeos arrancando solos.
+      // El atributo autoplay del HTML está para que funcione sin JS; aquí, que
+      // sí lo hay, se retira y el reel espera un toque.
+      if (reduced) {
+        v.autoplay = false;
+        v.removeAttribute("autoplay");
+        v.pause();
+      }
+
       var boton = reel.querySelector("[data-sound]");
       if (boton) {
         boton.addEventListener("click", function () {
@@ -3064,7 +3169,9 @@
         });
       }
 
-      // Al hacer clic en el vídeo, pausa o sigue
+      // Al hacer clic en el vídeo, pausa o sigue. En un móvil que no deja
+      // arrancar solo (ahorro de batería o de datos) este toque es la única
+      // manera de verlo, y el aviso de play está para que se sepa.
       v.addEventListener("click", function () {
         if (v.paused) {
           v.play().catch(function () {});
@@ -3072,6 +3179,16 @@
           v.pause();
         }
       });
+
+      // El aviso de play sigue al estado real del vídeo, no a lo que le
+      // pedimos: si el navegador rechaza el play, se queda visible.
+      var estado = function () {
+        reel.classList.toggle("is-playing", !v.paused && !v.ended);
+      };
+      ["play", "playing", "pause", "ended", "waiting", "stalled"].forEach(function (ev) {
+        v.addEventListener(ev, estado);
+      });
+      estado();
     });
 
     if ("IntersectionObserver" in window) {

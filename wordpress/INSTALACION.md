@@ -45,11 +45,72 @@ FTP.** Cambiar de uno a otro es sustituir el contenido del bloque.
 5. Haz el paso de **«Confirma el correo del formulario»**, aquí abajo. Es una vez
    y sin él los mensajes no llegan.
 
-El enlace de idioma apunta a `/es/` en el archivo catalán y a `/` en el
-castellano. Si tus páginas acaban en otra dirección, cambia ese enlace: sale tres
-veces en cada archivo.
+6. **Vacía la caché.** Ver «Si en el editor se ve y en la web no» más abajo. Sin
+   esto la web pública puede seguir mostrando la versión anterior durante horas.
 
 Sigue en el apartado **«Ajusta la cabecera»** si tu tema tiene cabecera fija.
+
+---
+
+# Las dos páginas y el enlace de idioma
+
+Los archivos ya llevan puesto el enlace a la otra lengua, y esperan esta
+estructura:
+
+| Página | Dirección que espera el archivo | Cómo se monta en WordPress |
+| --- | --- | --- |
+| Catalán | `https://tudominio.com/` | **Ajustes → Lectura → Tu página de inicio es: una página estática → Página de inicio:** la página en catalán |
+| Castellano | `https://tudominio.com/es/` | Una página normal con el **slug** `es` (el campo *Enlace permanente* de la página) |
+
+Es decir: el catalán es la portada del sitio, y el castellano es una página cuyo
+enlace permanente acaba en `/es/`. Si lo montas así, los tres enlaces `CA / ES`
+funcionan sin tocar nada.
+
+**Si prefieres otra dirección** —`/castellano/`, `/es-es/`, un subdominio— se
+cambia con un buscar y reemplazar en el archivo, antes de pegarlo:
+
+- en el archivo **catalán**: `href="/es/"` → tu dirección (sale **3 veces**)
+- en el archivo **castellano**: `href="/"` → la dirección de la catalana (**3 veces**)
+
+Las direcciones pueden ir completas (`https://tudominio.com/castellano/`) o desde
+la raíz (`/castellano/`). Desde la raíz es mejor: así siguen funcionando cuando el
+sitio cambie de dominio.
+
+---
+
+# Si en el editor se ve y en la web no
+
+Este es el fallo más habitual y **no es del archivo**: el editor de WordPress te
+muestra lo que acabas de guardar, mientras la web pública sirve una **copia
+guardada (caché)** de antes. Se nota porque falta algo que sí está en el editor
+—el crédito del pie, los vídeos, un texto nuevo— y a menudo se ve distinto en el
+móvil que en el ordenador, porque cada uno tiene su propia copia.
+
+**Comprobarlo en diez segundos:** abre tu web añadiendo algo al final de la
+dirección, por ejemplo `https://tudominio.com/?x=1`. Con eso casi ninguna caché
+responde, así que si **así sí se ve bien**, el archivo está perfecto y lo único que
+falta es vaciar la caché.
+
+**Vaciarla, por este orden:**
+
+1. **En el hosting.** En Hostinger: **hPanel → Rendimiento → Caché** (o *Optimización
+   del sitio web*) → **Vaciar caché**. Es la que más manda.
+2. **En WordPress**, si tienes un plugin de caché (LiteSpeed Cache, WP Rocket,
+   W3 Total Cache, WP Super Cache): en su menú, **Purgar todo / Vaciar toda la
+   caché**.
+3. **En Elementor:** **Elementor → Herramientas → Regenerar CSS y datos**, y en la
+   misma pantalla **Sincronizar biblioteca**.
+4. **En tu navegador:** `Ctrl+Shift+R` (Mac: `Cmd+Shift+R`), o ábrela en una
+   ventana privada. En el móvil, ventana de incógnito.
+5. **Si hay Cloudflare** delante del dominio: **Caching → Configuration →
+   Purge Everything**.
+
+**Para saber qué versión está publicada de verdad:** en la web pública, `Ctrl+U`
+(ver código fuente) y busca `Generado`. Sale la fecha y la hora del archivo que
+está sirviendo. Si no coincide con la del archivo que pegaste, es caché.
+
+> Mientras trabajes en la web, lo cómodo es dejar la caché desactivada en el
+> hosting y activarla al terminar.
 
 ---
 
@@ -162,6 +223,9 @@ Un tema y una web entera usan los mismos nombres (`.card`, `.section`, `.btn`,
 - El bloque sale a todo el ancho de la ventana, aunque tu tema meta el contenido
   en una columna estrecha.
 - El JavaScript solo mira dentro del contenedor y no toca nada de la página.
+- Las entradas al hacer scroll llevan red de seguridad: si un plugin de caché
+  rompiera el guion, en lugar de quedarse media web escondida se muestra todo, sin
+  animaciones. Y los vídeos arrancan por su cuenta, sin depender del guion.
 
 ## Si algo no sale bien
 
@@ -172,7 +236,9 @@ Un tema y una web entera usan los mismos nombres (`.card`, `.section`, `.btn`,
 | La cabecera del tema tapa la nuestra | Pon la altura en `--lac-top`, como se explica arriba. |
 | Aparece barra de scroll horizontal | Añade al final del `<style>`: `#laconic-app { overflow-x: clip; }` (ya viene puesto; si tu tema lo pisa, repítelo con `!important`). |
 | Sale el título de la página encima | Cambia la plantilla de la página a una a ancho completo o sin título. |
+| Falta algo que en el editor sí se ve | Caché. Ver «Si en el editor se ve y en la web no». |
 | Los vídeos salen en negro o no arrancan | Comprueba que abre en el navegador `TUDOMINIO/wp-content/uploads/laconic/assets/video/quality-1.mp4`. Si da 404, faltan por subir; si da error de permisos, el hosting bloquea `.mp4` en `uploads` y hay que subirlos por la Biblioteca de medios. |
+| Se ve la foto de espera del reel y no arranca | Primero, caché. Si con `?x=1` tampoco arranca: los vídeos llevan `autoplay muted playsinline`, así que empiezan solos sin depender de nuestro guion. Si aun así no lo hacen, el navegador lo está impidiendo (móvil en **ahorro de batería** o **ahorro de datos**): aparece el círculo de play y basta con tocar el vídeo. Si un plugin de **carga diferida (lazy load)** los toca a pesar de `skip-lazy`, quítalos de su lista de excepciones o desactiva la carga diferida de vídeos. |
 | El formulario dice «Recibido» pero no llega nada | Falta el paso de confirmación de FormSubmit, o el correo de activación está en Spam. Repite «Confirma el correo del formulario». |
 | El formulario dice «No hemos podido enviarlo» | El servicio no contesta. Comprueba que abre en el navegador `https://formsubmit.co`; si está caído, se recupera solo. Mientras tanto, el aviso da el correo del estudio. |
 | Los vídeos tardan en empezar | Normal la primera vez. No se descargan hasta que el reel entra en pantalla, y el archivo está preparado para empezar sin bajarse entero. |

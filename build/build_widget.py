@@ -9,7 +9,7 @@ Escribe en `wordpress/`:
 
     widget-ca.html                 catalán, con los archivos por URL (158 KB)
     widget-es.html                 castellano, ídem
-    widget-ca-copiar-pegar.html    catalán, con todo dentro menos los .mp4 (5,7 MB)
+    widget-ca-copiar-pegar.html    catalán, con todo dentro menos los .mp4 (6 MB)
     widget-es-copiar-pegar.html    castellano, ídem
 
 El problema de pegar una web entera en un tema es que las dos hojas de estilo se
@@ -27,8 +27,13 @@ Aquí se resuelve así:
 4. La cabecera pasa de `fixed` a `sticky` y las secciones se sacan a todo el
    ancho de la ventana, porque el tema las mete en una columna estrecha.
 5. El JavaScript solo mira dentro del contenedor.
+6. La marca `has-js` —la que permite que los bloques empiecen escondidos para
+   entrar al hacer scroll— se pone en el contenedor y no en el `<html>` del tema,
+   con una red de seguridad: si el guion no llega a arrancar porque un plugin lo
+   ha roto, la marca se retira y la web se ve entera, sin animaciones.
 """
 import base64
+import datetime
 import io
 import pathlib
 import re
@@ -39,6 +44,12 @@ APP = '#laconic-app'
 
 # Marcador que el usuario sustituye por la URL donde suba la carpeta assets
 BASE = '__BASE__'
+
+# Sello de generación. Va en el comentario de cabecera de los cuatro archivos
+# para poder saber qué versión está publicada de verdad: si la web sirve una
+# copia en caché de antes, en el código fuente de la página aparecerá un sello
+# viejo. Se busca con Ctrl+U y Ctrl+F, «Generado».
+SELLO = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
 
 # Vídeos ya subidos a la Biblioteca de medios de WordPress.
 #
@@ -179,6 +190,11 @@ def scope_css(css):
         '  box-shadow: none;\n'
         '  outline: 0;\n'
         '  text-decoration: none;\n'
+        # Un tema con `video { filter: invert(1) }` o `img { mix-blend-mode }`
+        # nos repintaba los reels: no las declaramos en ningún sitio, así que
+        # ganaba él. Nuestras reglas llevan clase y pisan esto sin esfuerzo.
+        '  filter: none;\n'
+        '  mix-blend-mode: normal;\n'
         # Estas se heredan, y ahí está la trampa: si aquí les damos un valor
         # fijo, el hijo (que también encaja con el *) deja de heredar lo que
         # declara el padre, y una regla que encaja siempre gana a la herencia.
@@ -313,7 +329,11 @@ def scope_js(js):
 
   // Todo se busca dentro del contenedor del widget, nunca en el resto del tema
   var APP = document.getElementById("laconic-app");
-  if (!APP) return;''')
+  if (!APP) return;
+
+  // Señal de vida para la red de seguridad del principio del bloque: si esto no
+  // llega a ejecutarse, retira has-js y la web se ve entera, sin animaciones.
+  APP.classList.add("lac-ok");''')
     js = js.replace('document.documentElement.classList.add("is-loaded")',
                     'APP.classList.add("is-loaded")')
     js = js.replace('document.documentElement.classList.add("has-js")',
@@ -336,8 +356,8 @@ def scope_js(js):
     js = js.replace('''        header.classList.toggle("is-hidden", y > lastY && y > 400);''',
                     '''        header.classList.toggle("is-hidden", y > lastY && caja.top <= 1);''')
 
-    # El contenedor arranca con has-js, y el scroll suave lo hacemos aquí porque
-    # ya no tocamos el html del tema
+    # El scroll suave se hace aquí porque ya no tocamos el html del tema (la
+    # marca has-js la pone GUARDIA, al principio del contenedor)
     js = js.replace('})();', '''
   /* ---- Scroll suave de los enlaces internos, con margen para la cabecera ---- */
   APP.querySelectorAll('a[href^="#"]').forEach(function (a) {
@@ -356,6 +376,29 @@ def scope_js(js):
 # --------------------------------------------------------------------------- #
 # Empaquetado
 # --------------------------------------------------------------------------- #
+
+# En la web normal, `has-js` se pone en el <head>: es la marca de que hay guion y
+# de que, por tanto, los bloques pueden empezar escondidos para entrar al hacer
+# scroll. Aquí no tocamos el <head> del tema, así que se pone en el contenedor, y
+# desde dentro del propio contenedor para que no haya parpadeo: cuando el
+# navegador llega a esta línea todavía no ha pintado el resto del bloque.
+#
+# Y va con red. Si un plugin de caché aplaza, combina o rompe el guion grande, sin
+# esta salvaguarda todo lo que entra al hacer scroll se quedaría escondido para
+# siempre: la página, medio en blanco. Así que se comprueba si el guion arrancó
+# —él pone `lac-ok` en su primera línea— y, si no, se retira la marca y todo se ve,
+# sin animaciones pero completo.
+#
+# Se mira poco después del load, que es cuando ya han corrido hasta los guiones
+# que el plugin haya aplazado, con un tope de 6 s por si el load no llega nunca.
+GUARDIA = (
+    '<script>(function(){var a=document.getElementById("laconic-app");if(!a)return;'
+    'a.classList.add("has-js");'
+    'var r=function(){if(!a.classList.contains("lac-ok"))a.classList.remove("has-js");};'
+    'if(document.readyState==="complete"){setTimeout(r,300);}'
+    'else{window.addEventListener("load",function(){setTimeout(r,300);});}'
+    'setTimeout(r,6000);})();</script>')
+
 
 def fuentes_css(inline):
     css = (ROOT / 'assets/css/fonts.css').read_text(encoding='utf-8')
@@ -401,6 +444,7 @@ def construir(lang, autocontenido):
         cuerpo = inline_imagenes(cuerpo)
 
     aviso = ('<!-- Laconic Studio — bloque de HTML personalizado (%s).\n'
+             '     Generado: %s\n'
              '     Pegar tal cual en un bloque "HTML personalizado" de WordPress.\n'
              '%s -->\n')
     if autocontenido:
@@ -414,7 +458,7 @@ def construir(lang, autocontenido):
                 '     por ejemplo https://tudominio.com/wp-content/uploads/laconic/\n'
                 '     y %s por la URL de la otra versión de idioma.'
                 % (BASE, '__URL_ES__' if lang == 'ca' else '__URL_CA__'))
-    aviso = aviso % (lang.upper(), nota)
+    aviso = aviso % (lang.upper(), SELLO, nota)
 
     partes = [aviso,
               '<style>',
@@ -423,6 +467,7 @@ def construir(lang, autocontenido):
               '</style>',
               '',
               '<div id="laconic-app">',
+              GUARDIA,
               cuerpo,
               '</div>',
               '',
@@ -464,6 +509,7 @@ def copiar_pegar(lang):
         html = html.replace(BASE + 'assets/video/' + ruta, destino)
 
     aviso = ('<!-- Laconic Studio — bloque de HTML personalizado (%s), para copiar y pegar.\n'
+             '     Generado: %s\n'
              '\n'
              '     Tipografías, fotos y pósters van DENTRO de este archivo, y los cuatro\n'
              '     vídeos apuntan ya a la Biblioteca de medios. No hay nada que subir ni\n'
@@ -475,7 +521,7 @@ def copiar_pegar(lang):
              '\n'
              '     El enlace de idioma apunta a %s. Si la otra página acaba en otra\n'
              '     dirección, cambia ese enlace (sale tres veces). -->\n'
-             % (lang.upper(), '/es/' if lang == 'ca' else '/'))
+             % (lang.upper(), SELLO, '/es/' if lang == 'ca' else '/'))
     return re.sub(r'^<!--.*?-->\n', aviso, html, count=1, flags=re.S)
 
 

@@ -195,6 +195,15 @@
       videos.push(v);
       v.muted = true;
 
+      // Quien pide menos movimiento no quiere cuatro vídeos arrancando solos.
+      // El atributo autoplay del HTML está para que funcione sin JS; aquí, que
+      // sí lo hay, se retira y el reel espera un toque.
+      if (reduced) {
+        v.autoplay = false;
+        v.removeAttribute("autoplay");
+        v.pause();
+      }
+
       var boton = reel.querySelector("[data-sound]");
       if (boton) {
         boton.addEventListener("click", function () {
@@ -217,7 +226,9 @@
         });
       }
 
-      // Al hacer clic en el vídeo, pausa o sigue
+      // Al hacer clic en el vídeo, pausa o sigue. En un móvil que no deja
+      // arrancar solo (ahorro de batería o de datos) este toque es la única
+      // manera de verlo, y el aviso de play está para que se sepa.
       v.addEventListener("click", function () {
         if (v.paused) {
           v.play().catch(function () {});
@@ -225,6 +236,16 @@
           v.pause();
         }
       });
+
+      // El aviso de play sigue al estado real del vídeo, no a lo que le
+      // pedimos: si el navegador rechaza el play, se queda visible.
+      var estado = function () {
+        reel.classList.toggle("is-playing", !v.paused && !v.ended);
+      };
+      ["play", "playing", "pause", "ended", "waiting", "stalled"].forEach(function (ev) {
+        v.addEventListener(ev, estado);
+      });
+      estado();
     });
 
     if ("IntersectionObserver" in window) {

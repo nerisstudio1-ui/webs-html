@@ -920,10 +920,21 @@ def render(lang):
                 ruta_poster = (f'{prefix}assets/video/{poster}' if poster else
                                f'{prefix}assets/img/proyectos/{pr["slug"]}-{n_foto}-700.jpg')
                 w(f'''          <div class="reel" data-reel>
-            <video src="{prefix}assets/video/{nombre_video}"
+            <!-- autoplay + muted + playsinline hace que arranque sin depender de
+                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
+                 se reproduce igual. Los navegadores no lo empiezan hasta que
+                 entra en pantalla, así que no se descarga de más. skip-lazy y
+                 data-no-lazy piden a los plugins de carga diferida que no toquen
+                 el src, que es lo que los deja en negro. -->
+            <video class="reel__video skip-lazy" src="{prefix}assets/video/{nombre_video}"
               poster="{ruta_poster}"
-              muted loop playsinline preload="metadata"
+              autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true"
               aria-label="{t['pieza']} {j:02d} &mdash; {pr['nombre']}"></video>
+            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
+                 batería, modo de ahorro de datos), queda este aviso y basta
+                 con tocar el vídeo. -->
+            <span class="reel__play" aria-hidden="true"><span></span></span>
             <span class="reel__tag" aria-hidden="true">{t['pieza']} {j:02d}</span>
             <button class="reel__sound" type="button" data-sound
               data-on="{t['reel_sonido']}" data-off="{t['reel_silencio']}"
