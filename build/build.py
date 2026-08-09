@@ -244,7 +244,7 @@ T = {
         declaracion='Ajudem marques a <span class="hand">travessar el soroll</span> '
                     'i a deixar una <span class="hand">empremta que duri</span>.',
         btn_saber='Saber-ne més',
-        tira_fantasma='Less noise. More meaning.',
+        tira_fantasma='Designed to speak <strong>quietly</strong>',
         id_estudio='estudi', id_servicios='serveis', id_trabajo='treball',
         id_proceso='proces', id_faq='faq', id_contacto='contacte',
         k_estudio='L\'estudi',
@@ -360,7 +360,7 @@ T = {
         declaracion='Ayudamos a marcas a <span class="hand">atravesar el ruido</span> '
                     'y a dejar una <span class="hand">huella que dure</span>.',
         btn_saber='Saber más',
-        tira_fantasma='Less noise. More meaning.',
+        tira_fantasma='Designed to speak <strong>quietly</strong>',
         id_estudio='estudio', id_servicios='servicios', id_trabajo='trabajo',
         id_proceso='proceso', id_faq='faq', id_contacto='contacto',
         k_estudio='El estudio',

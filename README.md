@@ -26,7 +26,7 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 | --- | --- |
 | — | Inicio: fondo beige, el **logotipo en terracota** centrado y las piezas de proyecto subiendo hasta salir por arriba |
 | — | Declaración sobre terracota, centrada, con la manuscrita dentro de la frase |
-| — | Tira de fotos que pasa en bucle, con **Less noise. More meaning.** grande debajo |
+| — | Tira de fotos que pasa en bucle, con **Designed to speak quietly** grande debajo |
 | `#estudio` | Manifiesto, equipo y las siete marcas con las que ha trabajado el estudio |
 | `#servicios` | Los cinco servicios con su subtítulo y entregables |
 | `#trabajo` | Los siete proyectos, con su vídeo si lo hay y si no la fotografía |

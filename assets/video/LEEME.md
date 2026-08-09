@@ -7,17 +7,24 @@ su columna deja de ser una foto y pasa a ser el vídeo en marco vertical.
 
 | Archivo | Proyecto | Duración | Peso |
 | --- | --- | --- | --- |
-| `quality-1.mp4` | Quality Training — «Vols córrer ràpid?» / QT Endurance | 20 s | 3,0 MB |
-| `malhivern-1.mp4` | Ratafia Malhivern — la ruta, la masia | 1:28 | 7,3 MB |
-| `jordi-coll-1.mp4` | Jordi Coll — *El pont de les mentides* | 43 s | 2,7 MB |
-| `puig-1.mp4` | Comercial Puig — el equipo en la tienda | 52 s | 6,3 MB |
+| `quality-1.mp4` | Quality Training — «Vols córrer ràpid?» / QT Endurance | 20 s | 5,3 MB |
+| `malhivern-1.mp4` | Ratafia Malhivern — la ruta, la masia | 1:28 | 12,9 MB |
+| `jordi-coll-1.mp4` | Jordi Coll — *El pont de les mentides* | 43 s | 4,5 MB |
+| `puig-1.mp4` | Comercial Puig — el equipo en la tienda | 52 s | 10,5 MB |
 
 Cada uno tiene su `-poster.jpg` al lado: es un fotograma del propio vídeo y hace
 de imagen de espera. Si se borra, el generador usa la foto del proyecto.
 
 Los cuatro vienen de los originales de Instagram, reconvertidos para web:
-H.264, 720 × 1280, CRF 30, audio AAC 64 kbps mono y `+faststart` (el índice al
-principio del archivo, para que empiecen a reproducirse sin descargarse enteros).
+H.264, 720 × 1280, **CRF 25**, audio AAC 96 kbps estéreo y `+faststart` (el índice
+al principio del archivo, para que empiecen a reproducirse sin descargarse
+enteros).
+
+El CRF es lo que manda en la nitidez. Con 30 se veían blandos en los planos con
+movimiento —y estos son reels, van todos con movimiento—, así que están a 25.
+Sube el peso al doble, pero no afecta a la carga de la página: con
+`preload="metadata"` no se descarga nada hasta que el reel entra en pantalla.
+Bajar de 25 no se nota en un marco de 300 px.
 
 ## Cómo añadir más
 
@@ -40,10 +47,11 @@ También vale `.webm`; si están los dos formatos del mismo clip, gana el `.mp4`
 Para reconvertir un original de Instagram:
 
 ```bash
-ffmpeg -i original.mp4 -c:v libx264 -crf 30 -preset slow -pix_fmt yuv420p \
-  -vf scale=720:1280 -r 30 -c:a aac -b:a 64k -ac 1 -movflags +faststart \
-  quality-1.mp4
-ffmpeg -ss 1.2 -i quality-1.mp4 -frames:v 1 -vf scale=540:-1 quality-1-poster.jpg
+ffmpeg -i original.mp4 -c:v libx264 -crf 25 -preset slow -pix_fmt yuv420p \
+  -vf scale=720:1280:flags=lanczos -r 30 -c:a aac -b:a 96k -ac 2 \
+  -movflags +faststart quality-1.mp4
+ffmpeg -ss 1.2 -i quality-1.mp4 -frames:v 1 -vf scale=720:-1 -q:v 3 \
+  quality-1-poster.jpg
 ```
 
 ## Cómo se comportan en la web

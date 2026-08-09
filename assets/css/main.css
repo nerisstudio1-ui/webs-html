@@ -888,7 +888,7 @@ body.menu-open .mobile-menu {
   margin-top: clamp(0.6rem, 2vw, 1.6rem);
   text-align: center;
   font-family: var(--display);
-  font-weight: 800;
+  font-weight: 400;
   font-size: clamp(1.4rem, 4.6vw, 4.4rem);
   line-height: 0.96;
   letter-spacing: -0.04em;
@@ -896,6 +896,10 @@ body.menu-open .mobile-menu {
   white-space: nowrap;
   color: rgba(var(--ink-rgb), 0.55);
   user-select: none;
+}
+/* La palabra que lleva el peso de la frase */
+.strip__ghost strong {
+  font-weight: 800;
 }
 
 /* ---------- Marcas con las que ha trabajado el estudio ---------- */
