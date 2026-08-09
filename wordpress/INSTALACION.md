@@ -4,20 +4,19 @@ En esta carpeta hay cuatro archivos:
 
 | Archivo | Qué es | Peso |
 | --- | --- | --- |
-| `widget-ca.html` | Catalán. Las tipografías y las fotos se cargan por URL. | 130 KB |
-| `widget-es.html` | Castellano, igual. | 130 KB |
-| `widget-ca-autocontenido.html` | Catalán con todo dentro (nada que subir). | 2,9 MB |
-| `widget-es-autocontenido.html` | Castellano, ídem. | 2,9 MB |
+| `widget-ca.html` | Catalán. Tipografías, fotos y vídeos por URL. | 158 KB |
+| `widget-es.html` | Castellano, igual. | 158 KB |
+| `widget-ca-autocontenido.html` | Catalán con las fotos y las tipografías dentro. | 5,4 MB |
+| `widget-es-autocontenido.html` | Castellano, ídem. | 5,4 MB |
 
-**Usa los de 130 KB.** Los autocontenidos sirven para una prueba rápida, pero
-meten 2,9 MB de texto en la base de datos y el editor de WordPress se vuelve
-lento; además el navegador no puede cachear las fotos, así que la página carga
-peor cada vez.
+**Usa los de 158 KB.** Los autocontenidos meten 5,4 MB de texto en la base de
+datos, el editor de WordPress se vuelve lento y el navegador no puede cachear las
+fotos, así que la página carga peor en cada visita.
 
-> **Con vídeos**: los reels nunca van dentro del archivo, ni en la versión
-> autocontenida. Se sirven siempre por URL, así que si hay vídeos hay que subir
-> la carpeta `assets` igualmente y sustituir `__BASE__` también en la versión
-> autocontenida.
+> **Y con vídeos da igual cuál elijas**: los reels nunca van dentro del archivo,
+> ni en la versión autocontenida. Se sirven siempre por URL, así que hay que
+> subir la carpeta `assets` y sustituir `__BASE__` en los dos casos. Es decir: la
+> versión autocontenida ya no te ahorra el FTP. Usa la de 158 KB.
 
 ---
 
@@ -33,17 +32,26 @@ completa a:
 ```
 
 Debe quedar así: `/wp-content/uploads/laconic/assets/css/`, `.../fonts/`,
-`.../img/`, `.../js/`.
+`.../img/`, `.../js/`, `.../video/`. Son **91 archivos y unos 45 MB**, de los que
+34 MB son los cuatro reels.
+
+La carpeta se saca del repositorio: en GitHub, botón verde **Code → Download ZIP**
+con la rama `claude/cs-creative-studio-website-6q44im` seleccionada, y de dentro
+del ZIP solo hace falta `assets/`.
 
 > No la subas desde la Biblioteca de medios: WordPress renombra los archivos y
 > rompe las rutas. Tiene que ser por FTP o gestor de archivos.
+
+> Si el hosting limita el peso por archivo, `malhivern-1.mp4` (12,9 MB) es el más
+> grande. Los cuatro vídeos se pueden subir también a la Biblioteca de medios y
+> pegar sus URL a mano en el HTML, buscando `assets/video/`.
 
 ### 2. Prepara el archivo
 
 Abre `widget-ca.html` en un editor de texto y sustituye:
 
 - `__BASE__` → `https://TUDOMINIO.com/wp-content/uploads/laconic/`
-  (sale 59 veces; usa **reemplazar todo**. Ojo: **con la barra final.**)
+  (sale 94 veces; usa **reemplazar todo**. Ojo: **con la barra final.**)
 - `__URL_ES__` → la URL de la página en castellano, por ejemplo
   `https://TUDOMINIO.com/es/`
 
@@ -82,9 +90,13 @@ Si prefieres que nuestra cabecera no se quede pegada, cambia en el mismo archivo
 
 ## Opción rápida (`*-autocontenido.html`)
 
-No hay que subir nada: se pega y funciona. Solo hay que cambiar `__URL_ES__` o
-`__URL_CA__` por la URL de la otra página. Ojo con lo del peso que se explica
-arriba: úsalo para enseñarlo, no para dejarlo publicado.
+Las fotos y las tipografías van dentro, así que sin tocar nada ya se ve casi todo:
+solo hay que cambiar `__URL_ES__` o `__URL_CA__` por la URL de la otra página.
+
+Lo que **no** funciona sin subir la carpeta es el bloque de trabajo: los cuatro
+reels y sus imágenes de espera se sirven por URL, así que saldrán en blanco hasta
+que subas `assets/` y sustituyas `__BASE__`. Sirve para enseñar el diseño; para
+publicar, la de 158 KB.
 
 ---
 
@@ -112,6 +124,8 @@ Un tema y una web entera usan los mismos nombres (`.card`, `.section`, `.btn`,
 | La cabecera del tema tapa la nuestra | Pon la altura en `--lac-top`, como se explica arriba. |
 | Aparece barra de scroll horizontal | Añade al final del `<style>`: `#laconic-app { overflow-x: clip; }` (ya viene puesto; si tu tema lo pisa, repítelo con `!important`). |
 | Sale el título de la página encima | Cambia la plantilla de la página a una a ancho completo o sin título. |
+| Los vídeos salen en negro o no arrancan | Comprueba que abre en el navegador `TUDOMINIO/wp-content/uploads/laconic/assets/video/quality-1.mp4`. Si da 404, faltan por subir; si da error de permisos, el hosting bloquea `.mp4` en `uploads` y hay que subirlos por la Biblioteca de medios. |
+| Los vídeos tardan en empezar | Normal la primera vez. No se descargan hasta que el reel entra en pantalla, y el archivo está preparado para empezar sin bajarse entero. |
 
 ## Regenerar los archivos
 
