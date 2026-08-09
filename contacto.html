@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reservar cita — BELA. Brow Design</title>
-<meta name="description" content="Pide tu valoración gratuita en BELA. Brow Design. Horarios, dirección, teléfono y formulario de reserva.">
+<title>Reservar cita — Bela Brow Studio &amp; Beauty</title>
+<meta name="description" content="Reserva tu cita en Bela Brow Studio &amp; Beauty. Escríbenos por WhatsApp al 611 599 132 o rellena el formulario y te contestamos en menos de 24 h.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,9 +20,9 @@
       <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 1 1 5l4 4M1 5h15"/></svg>
     </button>
     <div class="announce-track">
-      <span class="announce-item">primera valoración gratuita · sin compromiso</span>
-      <span class="announce-item">retoque a los 45 días incluido en todas las técnicas</span>
-      <span class="announce-item">pigmentos veganos y material de un solo uso</span>
+      <span class="announce-item is-active">estudio previo y diseño personalizado en cada tratamiento</span>
+      <span class="announce-item">técnica hair stroke · acabado natural y a medida</span>
+      <span class="announce-item">citas por WhatsApp · +34 611 599 132</span>
     </div>
     <button type="button" data-announce-step="1" aria-label="Siguiente">
       <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
@@ -32,15 +32,15 @@
 
 <header class="header header--over">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="BELA. Brow Design — inicio"><b>B<i>e</i>LA.</b><span>Brow Design</span></a>
+    <a class="logo" href="index.html" aria-label="Bela Brow Studio and Beauty — inicio"><b>B<i>e</i>LA.</b><span>Brow Design</span></a>
     <nav class="nav" aria-label="Principal">
       <a href="servicios.html">tratamientos</a>
       <a href="metodo.html">el método</a>
-      <a href="estudio.html">el estudio</a>
+      <a href="estudio.html">sobre bela</a>
       <a href="contacto.html" aria-current="page">contacto</a>
     </nav>
     <div class="header-actions">
-      <a class="icon desk-only" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+      <a class="icon desk-only" href="https://www.instagram.com/micropigmentacionbela/" target="_blank" rel="noopener" aria-label="Instagram de Bela">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
       </a>
       <a class="btn btn--sm btn--dark desk-only" href="#reservar">reservar cita</a>
@@ -60,12 +60,12 @@
     <a href="index.html">inicio</a>
     <a href="servicios.html">tratamientos</a>
     <a href="metodo.html">el método</a>
-    <a href="estudio.html">el estudio</a>
+    <a href="estudio.html">sobre bela</a>
     <a href="contacto.html">contacto</a>
   </nav>
   <div class="mobile-nav__foot">
-    <p class="small" style="color:inherit;opacity:.7">Calle Ejemplo 12 · Ciudad</p>
-    <p class="small" style="color:inherit;opacity:.7">+34 600 000 000 · hola@beladesign.es</p>
+    <p class="small" style="color:inherit;opacity:.7">Bela Brow Studio &amp; Beauty · solo con cita previa</p>
+    <p class="small" style="color:inherit;opacity:.7"><a href="https://wa.me/34611599132" target="_blank" rel="noopener">WhatsApp +34 611 599 132</a></p>
   </div>
 </div>
 
@@ -76,7 +76,10 @@
       <p class="breadcrumb"><a href="index.html">inicio</a> / contacto</p>
       <span class="eyebrow">reservar</span>
       <h1 class="display">cuéntanos qué<br>tienes en <em>mente</em>.</h1>
-      <p class="lead" style="margin-top:1.25rem">Rellena el formulario y te escribimos por WhatsApp en menos de 24 h con los huecos disponibles. Si prefieres llamar, también.</p>
+      <p class="lead" style="margin-top:1.25rem">La forma más rápida es WhatsApp: mándanos una foto de tus cejas con luz natural y sin maquillaje y te contamos qué se puede hacer. Si lo prefieres, rellena el formulario y te contestamos en menos de 24 h.</p>
+      <p style="margin-top:2rem">
+        <a class="btn" href="https://wa.me/34611599132" target="_blank" rel="noopener">escribir por WhatsApp</a>
+      </p>
     </div>
   </section>
 
@@ -86,8 +89,9 @@
 
         <!-- Formulario -->
         <div>
+          <div class="rule-gold"></div>
           <h2 class="h2" style="margin-bottom:1.5rem">solicitar cita</h2>
-          <form class="form" data-demo-form="cita">
+          <form class="form" data-contact-form>
             <div class="field-row">
               <div class="field">
                 <label for="nombre">Nombre y apellidos</label>
@@ -101,27 +105,29 @@
 
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" required autocomplete="email">
+              <input id="email" name="email" type="email" autocomplete="email">
             </div>
 
             <div class="field-row">
               <div class="field">
                 <label for="tratamiento">Tratamiento de interés</label>
                 <select id="tratamiento" name="tratamiento">
-                  <option>Valoración (no lo tengo claro)</option>
-                  <option>Microblading</option>
-                  <option>Powder Brows</option>
-                  <option>Cejas combinadas</option>
-                  <option>Labios Aquarela</option>
-                  <option>Eyeliner permanente</option>
-                  <option>Laminado de cejas</option>
-                  <option>Lifting de pestañas</option>
-                  <option>Corrección de trabajo previo</option>
+                  <option>Estudio previo (no lo tengo claro)</option>
+                  <option>Micropigmentación de cejas · Hair Stroke</option>
+                  <option>Retoque o mantenimiento</option>
+                  <option>Corrección o falta de densidad</option>
+                  <option>Trabajo previo de otro centro</option>
+                  <option>Avisadme de los próximos servicios</option>
                 </select>
               </div>
               <div class="field">
-                <label for="fecha">Fecha preferente</label>
-                <input id="fecha" name="fecha" type="date">
+                <label for="franja">Cuándo te viene mejor</label>
+                <select id="franja" name="franja">
+                  <option>Indiferente</option>
+                  <option>Mañanas entre semana</option>
+                  <option>Tardes entre semana</option>
+                  <option>Sábados</option>
+                </select>
               </div>
             </div>
 
@@ -135,60 +141,53 @@
               <span>He leído y acepto la política de privacidad y el tratamiento de mis datos para gestionar la cita.</span>
             </label>
 
-            <div>
-              <button class="btn btn--dark" type="submit">enviar solicitud</button>
+            <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center">
+              <button class="btn btn--dark" type="submit">enviar por WhatsApp</button>
+              <button class="btn btn--ghost" type="button" data-send-email>enviar por email</button>
             </div>
             <p class="form-status"></p>
-            <p class="form-note">Este formulario es una demostración: aún no envía datos a ningún servidor. Conéctalo a tu gestor de citas o a un servicio de formularios antes de publicar.</p>
+            <p class="form-note">De momento el formulario abre WhatsApp o tu gestor de correo con los datos ya escritos. Cuando el estudio tenga dominio y hosting se puede conectar a un servicio de formularios para que la solicitud llegue directamente al correo.</p>
           </form>
         </div>
 
         <!-- Info -->
         <div style="display:grid;gap:clamp(1.25rem,2.5vw,2rem)">
           <div class="info-card">
-            <h3 class="h3">El estudio</h3>
+            <h3 class="h3">Contacto directo</h3>
             <dl>
-              <dt>Dirección</dt><dd>Calle Ejemplo 12, bajo<br>28000 Ciudad</dd>
-              <dt>Teléfono</dt><dd><a href="tel:+34600000000">+34 600 000 000</a></dd>
-              <dt>WhatsApp</dt><dd><a href="https://wa.me/34600000000" target="_blank" rel="noopener">Escribir por WhatsApp</a></dd>
-              <dt>Email</dt><dd><a href="mailto:hola@beladesign.es">hola@beladesign.es</a></dd>
-              <dt>Instagram</dt><dd><a href="https://www.instagram.com/" target="_blank" rel="noopener">@bela.browdesign</a></dd>
+              <dt>WhatsApp</dt><dd><a href="https://wa.me/34611599132" target="_blank" rel="noopener">+34 611 599 132</a></dd>
+              <dt>Teléfono</dt><dd><a href="tel:+34611599132">611 599 132</a></dd>
+              <dt>Email</dt><dd><a href="mailto:nerea.lapcampos@gmail.com">nerea.lapcampos@gmail.com</a></dd>
+              <dt>Instagram</dt><dd><a href="https://www.instagram.com/micropigmentacionbela/" target="_blank" rel="noopener">@micropigmentacionbela</a></dd>
             </dl>
           </div>
 
           <div class="info-card">
-            <h3 class="h3">Horario</h3>
-            <dl>
-              <dt>Lunes</dt><dd>Cerrado</dd>
-              <dt>Martes a viernes</dt><dd>10:00 – 20:00</dd>
-              <dt>Sábado</dt><dd>10:00 – 14:00</dd>
-              <dt>Domingo</dt><dd>Cerrado</dd>
-            </dl>
-            <p class="small" style="margin-top:1rem">Solo con cita previa. Las sesiones de micropigmentación duran entre 2 y 3 horas.</p>
+            <h3 class="h3">Reserva online</h3>
+            <p class="lead" style="font-size:.92rem">Estamos preparando la reserva de citas online para que puedas elegir hueco directamente desde aquí. Mientras tanto, gestionamos todas las citas por WhatsApp.</p>
+            <p style="margin-top:1.25rem"><a class="btn btn--sm btn--dark" href="https://wa.me/34611599132" target="_blank" rel="noopener">pedir hueco</a></p>
+            <p class="form-note" style="margin-top:1.25rem">Aquí se insertará el sistema de reservas cuando esté contratado.</p>
           </div>
 
           <div class="info-card">
-            <h3 class="h3">Antes de venir</h3>
+            <h3 class="h3">Antes de tu cita</h3>
             <ul class="checklist">
               <li>Ven sin maquillaje en la zona a tratar</li>
               <li>Evita café y alcohol el día de la sesión</li>
-              <li>No te depiles las cejas 15 días antes</li>
+              <li>No te depiles las cejas los días previos</li>
               <li>Avísanos si tomas anticoagulantes o isotretinoína</li>
+              <li>Reserva tiempo: la sesión incluye el estudio y el diseño</li>
             </ul>
+          </div>
+
+          <div class="info-card">
+            <h3 class="h3">Dónde estamos</h3>
+            <p class="lead" style="font-size:.92rem">Atendemos solo con cita previa. Te confirmamos la dirección exacta y cómo llegar al reservar.</p>
+            <p class="form-note" style="margin-top:1rem">Pendiente de publicar la dirección del estudio y el mapa.</p>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
-
-  <!-- Mapa -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <div class="section-head"><span class="dot"></span><h2 class="h2">cómo llegar</h2></div>
-      <iframe class="map" title="Mapa de ubicación del estudio" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7100%2C40.4130%2C-3.6900%2C40.4250&amp;layer=mapnik"></iframe>
-      <p class="form-note" style="margin-top:1rem">Mapa de ejemplo. Sustituye la URL del iframe por la ubicación real del estudio.</p>
     </div>
   </section>
 
@@ -199,7 +198,7 @@
     <div class="footer__top">
       <div>
         <span class="logo"><b>B<i>e</i>LA.</b><span>Brow Design</span></span>
-        <p class="lead" style="color:rgba(246,241,236,.8)">Recibe consejos de cuidado y avisos de hueco libre por cancelación.</p>
+        <p class="lead" style="color:rgba(246,241,236,.8)">Avisos de huecos libres por cancelación y consejos de cuidado de tus cejas.</p>
         <form class="newsletter" data-demo-form="newsletter">
           <label for="nl-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email</label>
           <input id="nl-email" type="email" required placeholder="tu email">
@@ -213,38 +212,45 @@
         <div>
           <h4>Tratamientos</h4>
           <ul>
-            <li><a href="servicios.html#cejas">Microblading</a></li>
-            <li><a href="servicios.html#cejas">Powder Brows</a></li>
-            <li><a href="servicios.html#labios">Labios</a></li>
-            <li><a href="servicios.html#mirada">Mirada</a></li>
+            <li><a href="servicios.html#cejas">Hair Stroke</a></li>
+            <li><a href="servicios.html#cejas">Estudio y diseño</a></li>
+            <li><a href="servicios.html#cejas">Retoque y mantenimiento</a></li>
+            <li><a href="servicios.html#proximamente">Próximamente</a></li>
           </ul>
         </div>
         <div>
           <h4>Estudio</h4>
           <ul>
             <li><a href="metodo.html">El método</a></li>
-            <li><a href="estudio.html">El espacio</a></li>
+            <li><a href="estudio.html">Sobre Bela</a></li>
             <li><a href="index.html#faq">Preguntas frecuentes</a></li>
-            <li><a href="contacto.html">Reservar</a></li>
+            <li><a href="contacto.html">Reservar cita</a></li>
           </ul>
         </div>
         <div>
           <h4>Contacto</h4>
           <ul>
-            <li>Calle Ejemplo 12<br>28000 Ciudad</li>
-            <li><a href="tel:+34600000000">+34 600 000 000</a></li>
-            <li><a href="mailto:hola@beladesign.es">hola@beladesign.es</a></li>
-            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://wa.me/34611599132" target="_blank" rel="noopener">WhatsApp +34 611 599 132</a></li>
+            <li><a href="tel:+34611599132">611 599 132</a></li>
+            <li><a href="mailto:nerea.lapcampos@gmail.com">nerea.lapcampos@gmail.com</a></li>
+            <li><a href="https://www.instagram.com/micropigmentacionbela/" target="_blank" rel="noopener">@micropigmentacionbela</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© <span data-year>2026</span> BELA. Brow Design</span>
+      <span>© <span data-year>2026</span> Bela Brow Studio &amp; Beauty</span>
       <span>Aviso legal · Privacidad · Cookies</span>
     </div>
   </div>
 </footer>
+
+
+<!-- Botón flotante de WhatsApp, presente en toda la web -->
+<a class="wa-float" href="https://wa.me/34611599132" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.81.83-3.03-.2-.31a8.17 8.17 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.21-8.24 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.21.89 2.39 1.01 2.55.12.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+  <span>WhatsApp</span>
+</a>
 
 <script src="assets/js/main.js" defer></script>
 </body>

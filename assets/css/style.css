@@ -14,6 +14,7 @@
   --cream-warm:    #efe6de;
   --sand:          #e2d3c6;
   --mocha:         #b99177;
+  --gold:          #a98a63;
   --ink:           #1c1210;
   --muted:         #8a7a72;
   --line:          rgba(28, 18, 16, .14);
@@ -284,7 +285,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hero__panel::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(28,18,16,.32) 0%, rgba(28,18,16,.05) 40%, rgba(28,18,16,.42) 100%);
+  background: linear-gradient(180deg, rgba(46,15,19,.34) 0%, rgba(46,15,19,.06) 32%, rgba(46,15,19,.62) 100%);
 }
 .hero__content {
   position: absolute;
@@ -598,6 +599,43 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* galería */
 .gallery { columns: 3; column-gap: clamp(.75rem, 1.5vw, 1.25rem); }
 .gallery img { width: 100%; margin-bottom: clamp(.75rem, 1.5vw, 1.25rem); break-inside: avoid; }
+
+/* --- 18b. Botón flotante de WhatsApp ------------------------------------ */
+.wa-float {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 2rem);
+  bottom: clamp(1rem, 2.5vw, 2rem);
+  z-index: 55;
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .8rem 1.35rem .8rem 1.05rem;
+  border-radius: 100px;
+  background: var(--burgundy);
+  color: var(--cream);
+  font-size: .78rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(46, 15, 19, .28);
+  transition: transform .4s var(--ease), background .4s var(--ease);
+}
+.wa-float:hover { transform: translateY(-3px); background: var(--burgundy-deep); }
+.wa-float svg { width: 20px; height: 20px; flex: 0 0 auto; }
+
+/* --- 18c. Etiqueta «próximamente» --------------------------------------- */
+.tag-soon {
+  display: inline-block;
+  padding: .3em .8em;
+  border: 1px solid var(--gold);
+  border-radius: 100px;
+  color: var(--gold);
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.is-soon .card__media, .is-soon .service-row__media { opacity: .8; }
+.rule-gold { width: 44px; height: 1px; background: var(--gold); margin-bottom: 1.5rem; }
 
 /* --- 19. Animación de entrada ------------------------------------------ */
 /* Solo se oculta si el JS está activo: sin JS el contenido se ve siempre. */

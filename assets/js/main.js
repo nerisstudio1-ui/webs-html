@@ -150,18 +150,65 @@
     }
   }
 
-  /* --- Formularios (demo sin backend) ----------------------------------- */
+  /* --- Newsletter (demostración, sin backend) --------------------------- */
   document.querySelectorAll('[data-demo-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var status = form.querySelector('.form-status');
-      if (status) {
-        status.textContent = form.dataset.demoForm === 'newsletter'
-          ? 'Gracias, ya estás dentro ✦'
-          : 'Solicitud enviada. Te escribimos por WhatsApp en menos de 24 h ✦';
-      }
+      if (status) status.textContent = 'Gracias, ya estás dentro ✦';
       form.reset();
     });
+  });
+
+  /* --- Formulario de cita ------------------------------------------------
+     Sin servidor detrás: compone la solicitud y la abre en WhatsApp o en el
+     gestor de correo con todo escrito. Al contratar hosting basta con
+     sustituir este bloque por el envío real al backend.                    */
+  var WHATSAPP = '34611599132';
+  var EMAIL = 'nerea.lapcampos@gmail.com';
+
+  document.querySelectorAll('[data-contact-form]').forEach(function (form) {
+    var status = form.querySelector('.form-status');
+
+    function collect() {
+      var get = function (id) {
+        var el = form.querySelector('#' + id);
+        return el ? el.value.trim() : '';
+      };
+      var lines = [
+        'Hola Bela, me gustaría pedir cita.',
+        '',
+        'Nombre: ' + get('nombre'),
+        'Teléfono: ' + get('telefono')
+      ];
+      if (get('email')) lines.push('Email: ' + get('email'));
+      lines.push('Tratamiento: ' + get('tratamiento'));
+      lines.push('Disponibilidad: ' + get('franja'));
+      if (get('mensaje')) lines.push('', get('mensaje'));
+      return lines.join('\n');
+    }
+
+    function ready() {
+      if (form.reportValidity && !form.reportValidity()) return false;
+      return true;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(collect()), '_blank', 'noopener');
+      if (status) status.textContent = 'Abriendo WhatsApp con tu solicitud ✦';
+    });
+
+    var mailBtn = form.querySelector('[data-send-email]');
+    if (mailBtn) {
+      mailBtn.addEventListener('click', function () {
+        if (!ready()) return;
+        window.location.href = 'mailto:' + EMAIL +
+          '?subject=' + encodeURIComponent('Solicitud de cita — web') +
+          '&body=' + encodeURIComponent(collect());
+        if (status) status.textContent = 'Abriendo tu gestor de correo ✦';
+      });
+    }
   });
 
   /* --- Año en el footer -------------------------------------------------- */
