@@ -1,26 +1,64 @@
 # Pegar la web en WordPress como bloque de HTML
 
-En esta carpeta hay cuatro archivos:
+Hay dos caminos. Los dos dan la misma web; cambia dónde viven las fotos.
 
-| Archivo | Qué es | Peso |
-| --- | --- | --- |
-| `widget-ca.html` | Catalán. Tipografías, fotos y vídeos por URL. | 158 KB |
-| `widget-es.html` | Castellano, igual. | 158 KB |
-| `widget-ca-autocontenido.html` | Catalán con las fotos y las tipografías dentro. | 5,4 MB |
-| `widget-es-autocontenido.html` | Castellano, ídem. | 5,4 MB |
+## A. Copiar y pegar, sin FTP
 
-**Usa los de 158 KB.** Los autocontenidos meten 5,4 MB de texto en la base de
-datos, el editor de WordPress se vuelve lento y el navegador no puede cachear las
-fotos, así que la página carga peor en cada visita.
+**`widget-ca-copiar-pegar.html` · `widget-es-copiar-pegar.html` — 5,7 MB**
 
-> **Y con vídeos da igual cuál elijas**: los reels nunca van dentro del archivo,
-> ni en la versión autocontenida. Se sirven siempre por URL, así que hay que
-> subir la carpeta `assets` y sustituir `__BASE__` en los dos casos. Es decir: la
-> versión autocontenida ya no te ahorra el FTP. Usa la de 158 KB.
+Las tipografías, las 31 fotos y las imágenes de espera de los vídeos van **dentro
+del archivo**. Se abre, se copia todo y se pega. No hay que subir ninguna carpeta.
+
+Lo único que queda fuera son los cuatro `.mp4`, porque 34 MB de vídeo dentro de
+una entrada de WordPress no es viable. Se suben por **Medios → Añadir nuevo** —el
+panel de siempre, sin FTP— y se pegan sus cuatro URL en el archivo, buscando:
+
+```
+__VIDEO_quality-1__      __VIDEO_malhivern-1__
+__VIDEO_jordi-coll-1__   __VIDEO_puig-1__
+```
+
+Si no los sustituyes, la web funciona igual: en lugar del vídeo se queda su
+imagen de espera, que es un fotograma del propio reel. No se ve roto.
+
+**Lo que cuesta:** esos 5,7 MB se guardan en la base de datos, así que el editor
+de WordPress va lento al abrir y guardar esa página. Y el navegador no puede
+cachear las fotos por separado: cada visita se las baja otra vez.
+
+## B. Con la carpeta subida, mucho más ligero
+
+**`widget-ca.html` · `widget-es.html` — 158 KB**
+
+Lo mismo, pero las fotos y las tipografías se cargan como archivos aparte. Pesa
+40 veces menos en la base de datos y el navegador las cachea, así que la segunda
+visita es casi instantánea. A cambio hay que subir la carpeta `assets` por FTP o
+por el gestor de archivos del hosting.
+
+**Empieza por A para tenerlo publicado, y pásate a B cuando tengas acceso al
+FTP.** Cambiar de uno a otro es sustituir el contenido del bloque.
 
 ---
 
-## Opción recomendada (`widget-ca.html` / `widget-es.html`)
+# A. Copiar y pegar
+
+1. Abre `widget-ca-copiar-pegar.html` en un editor de texto (Notepad, TextEdit,
+   VS Code… no en Word).
+2. `Ctrl+A`, `Ctrl+C`.
+3. En WordPress: **Páginas → Añadir nueva**, bloque **HTML personalizado** (el de
+   las comillas `</>`), y pega.
+4. Publica. Ya se ve la web.
+5. Para los vídeos: **Medios → Añadir nuevo**, sube los cuatro `.mp4`, copia la
+   URL de cada uno y sustituye su marcador en el bloque.
+
+El enlace de idioma apunta a `/es/` en el archivo catalán y a `/` en el
+castellano. Si tus páginas acaban en otra dirección, cambia ese enlace: sale tres
+veces en cada archivo.
+
+Sigue en el apartado **«Ajusta la cabecera»** si tu tema tiene cabecera fija.
+
+---
+
+# B. Con la carpeta subida
 
 ### 1. Sube la carpeta `assets`
 
@@ -88,18 +126,6 @@ Si prefieres que nuestra cabecera no se quede pegada, cambia en el mismo archivo
 
 ---
 
-## Opción rápida (`*-autocontenido.html`)
-
-Las fotos y las tipografías van dentro, así que sin tocar nada ya se ve casi todo:
-solo hay que cambiar `__URL_ES__` o `__URL_CA__` por la URL de la otra página.
-
-Lo que **no** funciona sin subir la carpeta es el bloque de trabajo: los cuatro
-reels y sus imágenes de espera se sirven por URL, así que saldrán en blanco hasta
-que subas `assets/` y sustituyas `__BASE__`. Sirve para enseñar el diseño; para
-publicar, la de 158 KB.
-
----
-
 ## Qué hace el archivo para no pelearse con tu tema
 
 Un tema y una web entera usan los mismos nombres (`.card`, `.section`, `.btn`,
@@ -129,8 +155,8 @@ Un tema y una web entera usan los mismos nombres (`.card`, `.section`, `.btn`,
 
 ## Regenerar los archivos
 
-Si se cambia un texto o una foto en la web, estos cuatro archivos se vuelven a
-generar con:
+Si se cambia un texto o una foto en la web, los archivos de esta carpeta se
+vuelven a generar con:
 
 ```bash
 python3 build/build.py          # las dos webs, catalán y castellano

@@ -7,10 +7,10 @@ WordPress (o de cualquier gestor).
 
 Escribe en `wordpress/`:
 
-    widget-ca.html                 catalán, con los archivos por URL
-    widget-es.html                 castellano, con los archivos por URL
-    widget-ca-autocontenido.html   catalán, con tipografías y fotos dentro
-    widget-es-autocontenido.html   castellano, ídem
+    widget-ca.html                 catalán, con los archivos por URL (158 KB)
+    widget-es.html                 castellano, ídem
+    widget-ca-copiar-pegar.html    catalán, con todo dentro menos los .mp4 (5,7 MB)
+    widget-es-copiar-pegar.html    castellano, ídem
 
 El problema de pegar una web entera en un tema es que las dos hojas de estilo se
 pisan: el tema define `.card`, `.section`, `.btn`, `body`… igual que nosotros.
@@ -409,12 +409,62 @@ def construir(lang, autocontenido):
     return '\n'.join(partes) + '\n'
 
 
+def copiar_pegar(lang):
+    """Versión sin nada que subir por FTP.
+
+    Mete dentro del archivo las tipografías, las fotos y también los pósters de
+    los vídeos, que son pequeños. Lo único que queda fuera son los cuatro `.mp4`:
+    45 MB de base64 dentro de una entrada de WordPress no es viable. En su lugar
+    deja un marcador por vídeo, `__VIDEO_quality-1__`, para pegar la URL que da la
+    Biblioteca de medios al subirlo. Cuatro sustituciones y sin tocar el FTP.
+    """
+    from PIL import Image
+    html = construir(lang, autocontenido=True)
+
+    # Los pósters sí caben dentro
+    for ruta in sorted(set(re.findall(r'__BASE__(assets/video/[^"]+\.jpg)', html))):
+        im = Image.open(ROOT / ruta).convert('RGB')
+        w = min(720, im.width)
+        im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+        buf = io.BytesIO()
+        im.save(buf, 'JPEG', quality=78, optimize=True, progressive=True)
+        html = html.replace(BASE + ruta,
+                            'data:image/jpeg;base64,'
+                            + base64.b64encode(buf.getvalue()).decode())
+
+    # Y los vídeos pasan a ser un marcador con su nombre dentro
+    for ruta in sorted(set(re.findall(r'__BASE__assets/video/([^"]+\.mp4)', html))):
+        html = html.replace(BASE + 'assets/video/' + ruta,
+                            '__VIDEO_%s__' % ruta[:-4])
+
+    aviso = ('<!-- Laconic Studio — bloque de HTML personalizado (%s), para copiar y pegar.\n'
+             '\n'
+             '     Tipografías, fotos y pósters van DENTRO de este archivo: no hay nada\n'
+             '     que subir por FTP. Solo quedan cuatro cosas por sustituir, los vídeos.\n'
+             '\n'
+             '     1. Sube los cuatro .mp4 a Medios -> Añadir nuevo, y copia la URL que\n'
+             '        te da WordPress de cada uno.\n'
+             '     2. Busca y reemplaza cada marcador por su URL:\n'
+             '          __VIDEO_quality-1__      el reel de Quality Training\n'
+             '          __VIDEO_malhivern-1__    el de Ratafia Malhivern\n'
+             '          __VIDEO_jordi-coll-1__   el de Jordi Coll\n'
+             '          __VIDEO_puig-1__         el de Comercial Puig\n'
+             '\n'
+             '     El enlace de idioma apunta a %s. Si la otra página acaba en otra\n'
+             '     dirección, cambia ese enlace (sale tres veces).\n'
+             '\n'
+             '     Si dejas los marcadores sin sustituir el vídeo no se ve, pero la\n'
+             '     página funciona: se queda la imagen de espera. -->\n'
+             % (lang.upper(), '/es/' if lang == 'ca' else '/'))
+    return re.sub(r'^<!--.*?-->\n', aviso, html, count=1, flags=re.S)
+
+
 def main():
     DEST.mkdir(exist_ok=True)
     for lang in ('ca', 'es'):
-        for auto in (False, True):
-            nombre = 'widget-%s%s.html' % (lang, '-autocontenido' if auto else '')
-            texto = construir(lang, auto)
+        for nombre, texto in (
+                ('widget-%s.html' % lang, construir(lang, autocontenido=False)),
+                ('widget-%s-copiar-pegar.html' % lang, copiar_pegar(lang))):
             (DEST / nombre).write_text(texto, encoding='utf-8')
             print('%-34s %6.2f MB' % (nombre, len(texto.encode()) / 1024 / 1024))
 

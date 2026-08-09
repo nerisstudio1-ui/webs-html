@@ -82,8 +82,16 @@ Los detalles de formato y nombres están en `assets/video/LEEME.md`.
 ## Versión para WordPress
 
 En `wordpress/` hay la web preparada para pegarla en un bloque de **HTML
-personalizado**, con todo aislado para que el tema y la web no se pisen. Los pasos
-están en `wordpress/INSTALACION.md`. Se regenera con:
+personalizado**, con todo aislado para que el tema y la web no se pisen, en dos
+versiones:
+
+- `widget-*-copiar-pegar.html` (5,7 MB) — tipografías, fotos y pósters dentro del
+  archivo. Se pega y ya está; solo los cuatro `.mp4` se suben por la Biblioteca de
+  medios y se pegan sus URL en los marcadores `__VIDEO_*__`. Sin FTP.
+- `widget-*.html` (158 KB) — lo mismo con los archivos aparte. Mucho más ligero en
+  la base de datos y cacheable, pero hay que subir `assets/` por FTP.
+
+Los pasos están en `wordpress/INSTALACION.md`. Se regenera con:
 
 ```bash
 python3 build/build_widget.py
@@ -109,6 +117,7 @@ assets/
   img/favicon.svg          favicon
   video/                   los reels; ver LEEME.md
 wordpress/                 los cuatro archivos para pegar + INSTALACION.md
+                           (dos por idioma: 158 KB y copiar-pegar)
 ```
 
 Para probar en local:
