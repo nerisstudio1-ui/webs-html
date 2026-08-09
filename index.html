@@ -640,9 +640,14 @@
         </div>
 
         <div class="fade" data-delay="1">
-          <!-- Si FORM_ACTION está puesto, envía al servicio; si no, compone un
-               correo y abre el cliente de email. Se cambia en build/build.py. -->
-          <form class="form" data-mailto="itslaconicstudio@gmail.com" data-ok="Obrim el teu client de correu amb el missatge llest. Si no s'obre, escriu-nos a " novalidate>
+          <!-- El mensaje llega por correo a través del servicio de FORM_ACTION.
+               Si esa casilla se deja vacía en build/build.py, el formulario pasa
+               al modo de reserva: abre el cliente de email del visitante. -->
+          <form class="form" action="https://formsubmit.co/itslaconicstudio@gmail.com" method="POST" data-envia="https://formsubmit.co/ajax/itslaconicstudio@gmail.com" data-correo="itslaconicstudio@gmail.com" data-enviando="Enviant…" data-hecho="Rebut. Et responem en menys de 48 hores laborables." data-error="No hem pogut enviar-ho. Escriu-nos directament a ">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_honey" value="">
+            <input type="hidden" name="_subject" value="Nou missatge des de la web (CA)">
             <div class="form__row">
               <div class="field">
                 <label for="nombre">El teu nom</label>
@@ -674,7 +679,7 @@
             <div>
               <button class="btn btn--cream btn--lg" type="submit"><span>Envia el missatge</span><span class="arrow" aria-hidden="true">&rarr;</span></button>
             </div>
-            <p class="note" data-form-status role="status">En enviar s'obre el teu client de correu amb el missatge ja redactat.</p>
+            <p class="note" data-form-status role="status">Et responem al correu que ens deixis. No el fem servir per a res més.</p>
           </form>
         </div>
       </div>

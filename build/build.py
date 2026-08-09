@@ -334,6 +334,11 @@ T = {
         f_necesitas='Què necessites', f_cuentanos='Explica\'ns',
         f_placeholder='Què venes, a qui i què t\'agradaria canviar.',
         f_enviar='Envia el missatge',
+        f_asunto='Nou missatge des de la web',
+        f_nota_envio='Et responem al correu que ens deixis. No el fem servir per a res més.',
+        f_enviando='Enviant…',
+        f_ok_envio='Rebut. Et responem en menys de 48 hores laborables.',
+        f_error='No hem pogut enviar-ho. Escriu-nos directament a ',
         f_nota='En enviar s\'obre el teu client de correu amb el missatge ja redactat.',
         f_ok='Obrim el teu client de correu amb el missatge llest. Si no s\'obre, escriu-nos a ',
         pie_ubicacion='Barcelona, treballem en remot.',
@@ -454,6 +459,11 @@ T = {
         f_necesitas='Qué necesitas', f_cuentanos='Cuéntanos',
         f_placeholder='Qué vendes, a quién y qué te gustaría cambiar.',
         f_enviar='Enviar mensaje',
+        f_asunto='Nuevo mensaje desde la web',
+        f_nota_envio='Te respondemos al correo que nos dejes. No lo usamos para nada más.',
+        f_enviando='Enviando…',
+        f_ok_envio='Recibido. Te respondemos en menos de 48 horas laborables.',
+        f_error='No hemos podido enviarlo. Escríbenos directamente a ',
         f_nota='Al enviar se abre tu cliente de correo con el mensaje ya redactado.',
         f_ok='Abrimos tu cliente de correo con el mensaje listo. Si no se abre, escríbenos a ',
         pie_ubicacion='Barcelona, trabajamos en remoto.',
@@ -509,27 +519,40 @@ EMAIL = 'itslaconicstudio@gmail.com'
 INSTAGRAM = 'https://www.instagram.com/laconicstudio_/'
 NERIS = 'https://www.nerisstudio.com'
 
-# Destino del formulario.
+# A dónde llega el formulario.
 #
-# Vacío = el formulario compone un correo y abre el cliente de email del
-# visitante (mailto). Funciona sin configurar nada, pero se pierde a quien usa
-# webmail o no tiene cliente configurado, que en escritorio es mucha gente.
+# FormSubmit envía el mensaje por correo a EMAIL y no pide cuenta, clave ni
+# plugin: basta con que la dirección aparezca en el action. La primera vez hay
+# que confirmarla una sola vez —ver wordpress/INSTALACION.md—: se envía el
+# formulario desde la web publicada, FormSubmit manda un correo a EMAIL con un
+# enlace, se pulsa, y desde ese momento todos los mensajes entran en la bandeja.
 #
-# Para que el mensaje llegue de verdad hay que poner aquí la dirección de un
-# servicio de formularios. Los dos que funcionan dentro de un bloque de HTML de
-# WordPress, sin plugin:
+# Alternativas que también funcionan dentro de un bloque de HTML de WordPress;
+# solo cambia esta casilla:
+#   Web3Forms   https://web3forms.com    FORM_ACTION = 'https://api.web3forms.com/submit'
+#                                        FORM_AJAX   = igual que FORM_ACTION
+#                                        FORM_OCULTOS = {'access_key': 'la-clave'}
+#   Formspree   https://formspree.io     FORM_ACTION = 'https://formspree.io/f/xxxxxxx'
+#                                        FORM_AJAX   = igual que FORM_ACTION
 #
-#   Web3Forms   https://web3forms.com   gratis y sin cuenta: pides una clave con
-#               el correo y te la mandan.
-#                 FORM_ACTION = 'https://api.web3forms.com/submit'
-#                 FORM_OCULTOS = {'access_key': 'la-clave-que-te-envien'}
-#   Formspree   https://formspree.io    gratis hasta 50 mensajes al mes.
-#                 FORM_ACTION = 'https://formspree.io/f/xxxxxxx'
+# Vacío = sin servicio: el formulario compone el correo y abre el cliente de
+# email del visitante (mailto). Es el modo de reserva y pierde a quien usa
+# webmail, así que solo para pruebas en local.
 #
 # Un plugin tipo Contact Form 7 no sirve aquí: su shortcode no se ejecuta dentro
 # de un bloque de HTML personalizado.
-FORM_ACTION = ''
-FORM_OCULTOS = {}
+FORM_ACTION = f'https://formsubmit.co/{EMAIL}'
+
+# La misma dirección en la variante que contesta en JSON. Con ella el envío
+# ocurre sin salir de la página. Si el visitante no tiene JS, el <form> se envía
+# como siempre a FORM_ACTION y responde la página de gracias del servicio.
+FORM_AJAX = f'https://formsubmit.co/ajax/{EMAIL}'
+
+# Campos de control del servicio. En FormSubmit empiezan por guion bajo:
+#   _captcha  false, porque su reCAPTCHA intermedio corta el envío desde la web
+#   _template table, para que el correo llegue ordenado y no en un párrafo
+#   _honey    trampa para robots: si llega con algo escrito, se descarta el envío
+FORM_OCULTOS = {'_captcha': 'false', '_template': 'table', '_honey': ''}
 DOMINIO = 'https://laconicstudio.com'
 
 # Fotos del collage: proyecto y número de foto. COLLAGE alimenta el panel de
@@ -622,13 +645,24 @@ def foto(prefix, slug, n, sizes, lang, loading='lazy', clases=''):
 def render(lang):
     t = T[lang]
     if FORM_ACTION:
-        atributos_form = f' action="{FORM_ACTION}" method="POST"'
+        # El asunto va por idioma, para saber de qué página viene el mensaje.
+        ocultos = dict(FORM_OCULTOS)
+        ocultos['_subject'] = f'{t["f_asunto"]} ({lang.upper()})'
         ocultos_form = ''.join(
             f'\n            <input type="hidden" name="{k}" value="{v}">'
-            for k, v in FORM_OCULTOS.items())
+            for k, v in ocultos.items())
+        # data-envia: si hay JS, el mensaje se manda desde aquí y la visita no
+        # sale de la página. Sin JS, el action normal hace el trabajo.
+        atributos_form = (
+            f' action="{FORM_ACTION}" method="POST"'
+            f' data-envia="{FORM_AJAX}" data-correo="{EMAIL}"'
+            f' data-enviando="{t["f_enviando"]}" data-hecho="{t["f_ok_envio"]}"'
+            f' data-error="{t["f_error"]}"')
+        nota_form = t['f_nota_envio']
     else:
         atributos_form = f' data-mailto="{EMAIL}" data-ok="{t["f_ok"]}"'
         ocultos_form = ''
+        nota_form = t['f_nota']
     prefix = '' if lang == 'ca' else '../'
     url_otra = 'es/' if lang == 'ca' else '../'
     p = []
@@ -1064,9 +1098,10 @@ def render(lang):
         </div>
 
         <div class="fade" data-delay="1">
-          <!-- Si FORM_ACTION está puesto, envía al servicio; si no, compone un
-               correo y abre el cliente de email. Se cambia en build/build.py. -->
-          <form class="form"{atributos_form} novalidate>{ocultos_form}
+          <!-- El mensaje llega por correo a través del servicio de FORM_ACTION.
+               Si esa casilla se deja vacía en build/build.py, el formulario pasa
+               al modo de reserva: abre el cliente de email del visitante. -->
+          <form class="form"{atributos_form}>{ocultos_form}
             <div class="form__row">
               <div class="field">
                 <label for="nombre">{t['f_nombre']}</label>
@@ -1096,7 +1131,7 @@ def render(lang):
             <div>
               <button class="btn btn--cream btn--lg" type="submit"><span>{t['f_enviar']}</span><span class="arrow" aria-hidden="true">&rarr;</span></button>
             </div>
-            <p class="note" data-form-status role="status">{t['f_nota']}</p>
+            <p class="note" data-form-status role="status">{nota_form}</p>
           </form>
         </div>
       </div>

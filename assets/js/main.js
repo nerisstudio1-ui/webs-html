@@ -371,32 +371,85 @@
   });
 
   /* ---- Formulario sin backend: compone el correo ---- */
-  var form = document.querySelector("[data-mailto]");
+  /* ---- Formulario de contacto ----
+         Con data-envia el mensaje se manda al servicio de correo desde aquí, sin
+         que la visita salga de la página. El action del <form> sigue puesto, así
+         que si no hay JS (o si falla fetch) el envío ocurre igual, a la manera de
+         siempre. Con data-mailto en su lugar, el formulario compone el correo y
+         abre el cliente de email: es el modo de reserva. ---- */
+  var form = document.querySelector(".form");
   if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var data = new FormData(form);
-      var servicios = data.getAll("servicio").join(", ") || "Sin especificar";
-      var body = [
-        "Nombre: " + (data.get("nombre") || ""),
-        "Marca: " + (data.get("marca") || ""),
-        "Email: " + (data.get("email") || ""),
-        "Servicios: " + servicios,
-        "",
-        "Cuéntanos:",
-        data.get("mensaje") || ""
-      ].join("\n");
+    var status = form.querySelector("[data-form-status]");
+    var boton = form.querySelector("button[type='submit']");
+    var attr = function (nombre) {
+      return form.getAttribute(nombre) || "";
+    };
+    var decir = function (texto) {
+      if (status) status.textContent = texto;
+    };
+    var envia = form.getAttribute("data-envia");
 
-      window.location.href =
-        "mailto:" + form.getAttribute("data-mailto") +
-        "?subject=" + encodeURIComponent("Nuevo proyecto — " + (data.get("marca") || data.get("nombre") || "Laconic")) +
-        "&body=" + encodeURIComponent(body);
+    if (envia && window.fetch) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (form.classList.contains("is-sending")) return;
 
-      var status = form.querySelector("[data-form-status]");
-      if (status) {
-        status.textContent =
-          (form.getAttribute("data-ok") || "") + form.getAttribute("data-mailto") + ".";
-      }
-    });
+        // Un objeto plano: las casillas marcadas comparten nombre y se juntan.
+        var datos = {};
+        new FormData(form).forEach(function (valor, clave) {
+          datos[clave] = clave in datos ? datos[clave] + ", " + valor : valor;
+        });
+
+        form.classList.remove("is-sent", "has-error");
+        form.classList.add("is-sending");
+        if (boton) boton.disabled = true;
+        decir(attr("data-enviando"));
+
+        window
+          .fetch(envia, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(datos)
+          })
+          .then(function (r) {
+            if (!r.ok) throw new Error(String(r.status));
+            form.classList.remove("is-sending");
+            form.classList.add("is-sent");
+            form.reset();
+            if (boton) boton.disabled = false;
+            decir(attr("data-hecho"));
+          })
+          .catch(function () {
+            // Si el servicio no responde, no se pierde el mensaje: se dice a
+            // dónde escribir, con el texto ya redactado a mano.
+            form.classList.remove("is-sending");
+            form.classList.add("has-error");
+            if (boton) boton.disabled = false;
+            decir(attr("data-error") + attr("data-correo") + ".");
+          });
+      });
+    } else if (form.hasAttribute("data-mailto")) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        var servicios = data.getAll("servicio").join(", ") || "Sin especificar";
+        var body = [
+          "Nombre: " + (data.get("nombre") || ""),
+          "Marca: " + (data.get("marca") || ""),
+          "Email: " + (data.get("email") || ""),
+          "Servicios: " + servicios,
+          "",
+          "Cuéntanos:",
+          data.get("mensaje") || ""
+        ].join("\n");
+
+        window.location.href =
+          "mailto:" + form.getAttribute("data-mailto") +
+          "?subject=" + encodeURIComponent("Nuevo proyecto — " + (data.get("marca") || data.get("nombre") || "Laconic")) +
+          "&body=" + encodeURIComponent(body);
+
+        decir(attr("data-ok") + form.getAttribute("data-mailto") + ".");
+      });
+    }
   }
 })();

@@ -1718,6 +1718,23 @@ body.menu-open .mobile-menu {
 .form ::placeholder {
   color: rgba(var(--cream-rgb), 0.55);
 }
+/* Estado del envío. Mientras va, el formulario se atenúa y el botón no admite
+   un segundo clic; al terminar, el aviso de abajo sube de tono para que se lea
+   como respuesta y no como letra pequeña. */
+.form.is-sending {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.form button[disabled] {
+  cursor: progress;
+}
+.form.is-sent [data-form-status],
+.form.has-error [data-form-status] {
+  color: var(--cream);
+}
+.form.has-error [data-form-status] a {
+  color: inherit;
+}
 .chips {
   display: flex;
   flex-wrap: wrap;

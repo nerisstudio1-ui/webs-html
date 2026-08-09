@@ -81,15 +81,31 @@ Los detalles de formato y nombres están en `assets/video/LEEME.md`.
 
 ## Formulario de contacto
 
-Tal cual está, el formulario **compone un correo y abre el cliente de email** del
-visitante. No hace falta configurar nada, pero se pierde a quien usa webmail o no
-tiene cliente configurado, que en escritorio es mucha gente.
+Los mensajes **llegan por correo** a `itslaconicstudio@gmail.com` a través de
+[FormSubmit](https://formsubmit.co), que no pide cuenta, clave ni plugin: basta
+con que la dirección esté en el `action` del formulario.
 
-Para que el mensaje llegue de verdad, se rellena `FORM_ACTION` (y `FORM_OCULTOS`
-si el servicio lo pide) en `build/build.py` y se regenera. Los dos servicios que
-funcionan dentro de un bloque de HTML de WordPress, sin plugin, están anotados
-ahí: **Web3Forms** y **Formspree**. Un plugin tipo Contact Form 7 no sirve, porque
-su shortcode no se ejecuta dentro de un bloque de HTML personalizado.
+Falta **confirmar la dirección una sola vez**, y solo se puede hacer desde la web
+ya publicada: se envía el formulario, FormSubmit manda un correo a la bandeja del
+estudio con un enlace, se pulsa, y desde ese momento entran todos los mensajes.
+El paso está detallado en [`wordpress/INSTALACION.md`](wordpress/INSTALACION.md).
+
+Cómo se comporta:
+
+- Con JavaScript, el envío ocurre **sin salir de la página**: el botón se apaga
+  mientras va y debajo aparece «Recibido. Te respondemos en menos de 48 horas
+  laborables». Si el servicio no contesta, el aviso pasa a dar la dirección de
+  correo para escribir a mano, así que el mensaje no se pierde en silencio.
+- Sin JavaScript, el `<form>` se envía como siempre a `action` y responde la
+  página de gracias del propio servicio.
+- El asunto del correo lleva el idioma de la página (`(CA)` o `(ES)`), y va un
+  campo trampa `_honey` para el spam automático.
+
+Se cambia de servicio en `build/build.py`, en `FORM_ACTION`, `FORM_AJAX` y
+`FORM_OCULTOS`, con **Web3Forms** y **Formspree** anotados ahí como alternativas.
+Dejando `FORM_ACTION` vacío, el formulario vuelve al modo de reserva: compone el
+correo y abre el cliente de email del visitante. Un plugin tipo Contact Form 7 no
+sirve, porque su shortcode no se ejecuta dentro de un bloque de HTML personalizado.
 
 ## Versión para WordPress
 
@@ -244,9 +260,9 @@ estén, el enlace es la única forma de ver la pieza y el visitante sale del sit
   marca; conviene repasarlos. Las cifras inventadas («48 h», «100 % a medida») y
   la sección de plantillas de pago **se han quitado**: no las envió el estudio.
   Si quieren vender recursos, hay que decidir qué y a qué precio.
-- **Formulario**: no tiene backend; compone un correo con los datos y abre el
-  cliente de email. Para recibirlo en un servidor, cambiar el atributo `data-mailto`
-  del `<form>` por `action` + `method` (Formspree, Netlify Forms, etc.).
+- **Formulario**: queda **confirmar la dirección en FormSubmit** enviando el
+  formulario una vez desde la web publicada y pulsando el enlace del correo que
+  llega. Hasta que se haga, los mensajes no entran en la bandeja.
 - **Dominio y metadatos**: revisar `<link rel="canonical">` y las etiquetas Open
   Graph con la URL definitiva.
 

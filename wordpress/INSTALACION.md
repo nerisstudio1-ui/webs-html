@@ -4,24 +4,19 @@ Hay dos caminos. Los dos dan la misma web; cambia dónde viven las fotos.
 
 ## A. Copiar y pegar, sin FTP
 
-**`widget-ca-copiar-pegar.html` · `widget-es-copiar-pegar.html` — 5,7 MB**
+**`widget-ca-copiar-pegar.html` · `widget-es-copiar-pegar.html` — 6 MB**
 
 Las tipografías, las 31 fotos y las imágenes de espera de los vídeos van **dentro
 del archivo**. Se abre, se copia todo y se pega. No hay que subir ninguna carpeta.
 
 Lo único que queda fuera son los cuatro `.mp4`, porque 34 MB de vídeo dentro de
-una entrada de WordPress no es viable. Se suben por **Medios → Añadir nuevo** —el
-panel de siempre, sin FTP— y se pegan sus cuatro URL en el archivo, buscando:
+una entrada de WordPress no es viable: el archivo ya apunta a los cuatro reels
+que están subidos en la Biblioteca de medios, en
+`/wp-content/uploads/2026/08/`. No hay que sustituir nada. Si algún día se
+vuelven a subir y cambian de nombre, sus direcciones están en
+`VIDEOS_WORDPRESS`, en `build/build_widget.py`.
 
-```
-__VIDEO_quality-1__      __VIDEO_malhivern-1__
-__VIDEO_jordi-coll-1__   __VIDEO_puig-1__
-```
-
-Si no los sustituyes, la web funciona igual: en lugar del vídeo se queda su
-imagen de espera, que es un fotograma del propio reel. No se ve roto.
-
-**Lo que cuesta:** esos 5,7 MB se guardan en la base de datos, así que el editor
+**Lo que cuesta:** esos 6 MB se guardan en la base de datos, así que el editor
 de WordPress va lento al abrir y guardar esa página. Y el navegador no puede
 cachear las fotos por separado: cada visita se las baja otra vez.
 
@@ -47,14 +42,41 @@ FTP.** Cambiar de uno a otro es sustituir el contenido del bloque.
 3. En WordPress: **Páginas → Añadir nueva**, bloque **HTML personalizado** (el de
    las comillas `</>`), y pega.
 4. Publica. Ya se ve la web.
-5. Para los vídeos: **Medios → Añadir nuevo**, sube los cuatro `.mp4`, copia la
-   URL de cada uno y sustituye su marcador en el bloque.
+5. Haz el paso de **«Confirma el correo del formulario»**, aquí abajo. Es una vez
+   y sin él los mensajes no llegan.
 
 El enlace de idioma apunta a `/es/` en el archivo catalán y a `/` en el
 castellano. Si tus páginas acaban en otra dirección, cambia ese enlace: sale tres
 veces en cada archivo.
 
 Sigue en el apartado **«Ajusta la cabecera»** si tu tema tiene cabecera fija.
+
+---
+
+# Confirma el correo del formulario (una sola vez)
+
+Los mensajes del formulario llegan a **itslaconicstudio@gmail.com** a través de
+FormSubmit, que no necesita cuenta, clave ni plugin. Solo pide confirmar, una vez,
+que esa dirección acepta recibirlos. Y solo se puede hacer con la web publicada.
+
+1. Abre la página publicada y ve a **Contacto**.
+2. Rellena el formulario con cualquier cosa —«prueba» en todos los campos vale— y
+   envíalo.
+3. En la bandeja de **itslaconicstudio@gmail.com** llega un correo de FormSubmit
+   con un enlace de activación. Púlsalo. Si no aparece, mira en **Spam**.
+4. Envía el formulario otra vez. Ese segundo mensaje ya tiene que llegar a la
+   bandeja, con el asunto *Nuevo mensaje desde la web*.
+
+Hazlo en la página en catalán **y** en la castellana solo si están en dominios
+distintos; si comparten dominio, con una vez basta.
+
+Cuando funciona, el visitante no sale de la página: el botón se apaga un momento y
+debajo aparece «Recibido. Te respondemos en menos de 48 horas laborables». Si el
+servicio se cae, el aviso cambia y da el correo del estudio para escribir a mano,
+así que ningún mensaje se pierde en silencio.
+
+> Para cambiar la dirección de destino, se edita `EMAIL` en `build/build.py` y se
+> vuelve a generar. La confirmación hay que repetirla con la dirección nueva.
 
 ---
 
@@ -151,6 +173,8 @@ Un tema y una web entera usan los mismos nombres (`.card`, `.section`, `.btn`,
 | Aparece barra de scroll horizontal | Añade al final del `<style>`: `#laconic-app { overflow-x: clip; }` (ya viene puesto; si tu tema lo pisa, repítelo con `!important`). |
 | Sale el título de la página encima | Cambia la plantilla de la página a una a ancho completo o sin título. |
 | Los vídeos salen en negro o no arrancan | Comprueba que abre en el navegador `TUDOMINIO/wp-content/uploads/laconic/assets/video/quality-1.mp4`. Si da 404, faltan por subir; si da error de permisos, el hosting bloquea `.mp4` en `uploads` y hay que subirlos por la Biblioteca de medios. |
+| El formulario dice «Recibido» pero no llega nada | Falta el paso de confirmación de FormSubmit, o el correo de activación está en Spam. Repite «Confirma el correo del formulario». |
+| El formulario dice «No hemos podido enviarlo» | El servicio no contesta. Comprueba que abre en el navegador `https://formsubmit.co`; si está caído, se recupera solo. Mientras tanto, el aviso da el correo del estudio. |
 | Los vídeos tardan en empezar | Normal la primera vez. No se descargan hasta que el reel entra en pantalla, y el archivo está preparado para empezar sin bajarse entero. |
 
 ## Regenerar los archivos

@@ -1838,6 +1838,23 @@
 #laconic-app .form ::placeholder {
   color: rgba(var(--cream-rgb), 0.55);
 }
+/* Estado del envío. Mientras va, el formulario se atenúa y el botón no admite
+   un segundo clic; al terminar, el aviso de abajo sube de tono para que se lea
+   como respuesta y no como letra pequeña. */
+#laconic-app .form.is-sending {
+  opacity: 0.7;
+  pointer-events: none;
+}
+#laconic-app .form button[disabled] {
+  cursor: progress;
+}
+#laconic-app .form.is-sent [data-form-status],
+#laconic-app .form.has-error [data-form-status] {
+  color: var(--cream);
+}
+#laconic-app .form.has-error [data-form-status] a {
+  color: inherit;
+}
 #laconic-app .chips {
   display: flex;
   flex-wrap: wrap;
@@ -2749,9 +2766,14 @@
         </div>
 
         <div class="fade" data-delay="1">
-          <!-- Si FORM_ACTION está puesto, envía al servicio; si no, compone un
-               correo y abre el cliente de email. Se cambia en build/build.py. -->
-          <form class="form" data-mailto="itslaconicstudio@gmail.com" data-ok="Obrim el teu client de correu amb el missatge llest. Si no s'obre, escriu-nos a " novalidate>
+          <!-- El mensaje llega por correo a través del servicio de FORM_ACTION.
+               Si esa casilla se deja vacía en build/build.py, el formulario pasa
+               al modo de reserva: abre el cliente de email del visitante. -->
+          <form class="form" action="https://formsubmit.co/itslaconicstudio@gmail.com" method="POST" data-envia="https://formsubmit.co/ajax/itslaconicstudio@gmail.com" data-correo="itslaconicstudio@gmail.com" data-enviando="Enviant…" data-hecho="Rebut. Et responem en menys de 48 hores laborables." data-error="No hem pogut enviar-ho. Escriu-nos directament a ">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_honey" value="">
+            <input type="hidden" name="_subject" value="Nou missatge des de la web (CA)">
             <div class="form__row">
               <div class="field">
                 <label for="lac-nombre">El teu nom</label>
@@ -2783,7 +2805,7 @@
             <div>
               <button class="btn btn--cream btn--lg" type="submit"><span>Envia el missatge</span><span class="arrow" aria-hidden="true">&rarr;</span></button>
             </div>
-            <p class="note" data-form-status role="status">En enviar s'obre el teu client de correu amb el missatge ja redactat.</p>
+            <p class="note" data-form-status role="status">Et responem al correu que ens deixis. No el fem servir per a res més.</p>
           </form>
         </div>
       </div>
@@ -3196,33 +3218,86 @@
   });
 
   /* ---- Formulario sin backend: compone el correo ---- */
-  var form = APP.querySelector("[data-mailto]");
+  /* ---- Formulario de contacto ----
+         Con data-envia el mensaje se manda al servicio de correo desde aquí, sin
+         que la visita salga de la página. El action del <form> sigue puesto, así
+         que si no hay JS (o si falla fetch) el envío ocurre igual, a la manera de
+         siempre. Con data-mailto en su lugar, el formulario compone el correo y
+         abre el cliente de email: es el modo de reserva. ---- */
+  var form = APP.querySelector(".form");
   if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var data = new FormData(form);
-      var servicios = data.getAll("servicio").join(", ") || "Sin especificar";
-      var body = [
-        "Nombre: " + (data.get("nombre") || ""),
-        "Marca: " + (data.get("marca") || ""),
-        "Email: " + (data.get("email") || ""),
-        "Servicios: " + servicios,
-        "",
-        "Cuéntanos:",
-        data.get("mensaje") || ""
-      ].join("\n");
+    var status = form.querySelector("[data-form-status]");
+    var boton = form.querySelector("button[type='submit']");
+    var attr = function (nombre) {
+      return form.getAttribute(nombre) || "";
+    };
+    var decir = function (texto) {
+      if (status) status.textContent = texto;
+    };
+    var envia = form.getAttribute("data-envia");
 
-      window.location.href =
-        "mailto:" + form.getAttribute("data-mailto") +
-        "?subject=" + encodeURIComponent("Nuevo proyecto — " + (data.get("marca") || data.get("nombre") || "Laconic")) +
-        "&body=" + encodeURIComponent(body);
+    if (envia && window.fetch) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (form.classList.contains("is-sending")) return;
 
-      var status = form.querySelector("[data-form-status]");
-      if (status) {
-        status.textContent =
-          (form.getAttribute("data-ok") || "") + form.getAttribute("data-mailto") + ".";
-      }
-    });
+        // Un objeto plano: las casillas marcadas comparten nombre y se juntan.
+        var datos = {};
+        new FormData(form).forEach(function (valor, clave) {
+          datos[clave] = clave in datos ? datos[clave] + ", " + valor : valor;
+        });
+
+        form.classList.remove("is-sent", "has-error");
+        form.classList.add("is-sending");
+        if (boton) boton.disabled = true;
+        decir(attr("data-enviando"));
+
+        window
+          .fetch(envia, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(datos)
+          })
+          .then(function (r) {
+            if (!r.ok) throw new Error(String(r.status));
+            form.classList.remove("is-sending");
+            form.classList.add("is-sent");
+            form.reset();
+            if (boton) boton.disabled = false;
+            decir(attr("data-hecho"));
+          })
+          .catch(function () {
+            // Si el servicio no responde, no se pierde el mensaje: se dice a
+            // dónde escribir, con el texto ya redactado a mano.
+            form.classList.remove("is-sending");
+            form.classList.add("has-error");
+            if (boton) boton.disabled = false;
+            decir(attr("data-error") + attr("data-correo") + ".");
+          });
+      });
+    } else if (form.hasAttribute("data-mailto")) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        var servicios = data.getAll("servicio").join(", ") || "Sin especificar";
+        var body = [
+          "Nombre: " + (data.get("nombre") || ""),
+          "Marca: " + (data.get("marca") || ""),
+          "Email: " + (data.get("email") || ""),
+          "Servicios: " + servicios,
+          "",
+          "Cuéntanos:",
+          data.get("mensaje") || ""
+        ].join("\n");
+
+        window.location.href =
+          "mailto:" + form.getAttribute("data-mailto") +
+          "?subject=" + encodeURIComponent("Nuevo proyecto — " + (data.get("marca") || data.get("nombre") || "Laconic")) +
+          "&body=" + encodeURIComponent(body);
+
+        decir(attr("data-ok") + form.getAttribute("data-mailto") + ".");
+      });
+    }
   }
 
   /* ---- Scroll suave de los enlaces internos, con margen para la cabecera ---- */

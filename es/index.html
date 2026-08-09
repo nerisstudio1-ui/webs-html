@@ -640,9 +640,14 @@
         </div>
 
         <div class="fade" data-delay="1">
-          <!-- Si FORM_ACTION está puesto, envía al servicio; si no, compone un
-               correo y abre el cliente de email. Se cambia en build/build.py. -->
-          <form class="form" data-mailto="itslaconicstudio@gmail.com" data-ok="Abrimos tu cliente de correo con el mensaje listo. Si no se abre, escríbenos a " novalidate>
+          <!-- El mensaje llega por correo a través del servicio de FORM_ACTION.
+               Si esa casilla se deja vacía en build/build.py, el formulario pasa
+               al modo de reserva: abre el cliente de email del visitante. -->
+          <form class="form" action="https://formsubmit.co/itslaconicstudio@gmail.com" method="POST" data-envia="https://formsubmit.co/ajax/itslaconicstudio@gmail.com" data-correo="itslaconicstudio@gmail.com" data-enviando="Enviando…" data-hecho="Recibido. Te respondemos en menos de 48 horas laborables." data-error="No hemos podido enviarlo. Escríbenos directamente a ">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_honey" value="">
+            <input type="hidden" name="_subject" value="Nuevo mensaje desde la web (ES)">
             <div class="form__row">
               <div class="field">
                 <label for="nombre">Tu nombre</label>
@@ -674,7 +679,7 @@
             <div>
               <button class="btn btn--cream btn--lg" type="submit"><span>Enviar mensaje</span><span class="arrow" aria-hidden="true">&rarr;</span></button>
             </div>
-            <p class="note" data-form-status role="status">Al enviar se abre tu cliente de correo con el mensaje ya redactado.</p>
+            <p class="note" data-form-status role="status">Te respondemos al correo que nos dejes. No lo usamos para nada más.</p>
           </form>
         </div>
       </div>
