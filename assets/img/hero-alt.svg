@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1400" width="1200" height="1400" role="img" aria-label="Diseno de cejas en cabina">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EFE3D8"/><stop offset="1" stop-color="#DFCDBD"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="100"/></filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="11"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.10"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="1200" height="1400" fill="url(#g)"/>
+  <g filter="url(#blur)"><ellipse cx="531" cy="800" rx="735" ry="628" fill="#EFE3D8" opacity="0.43"/><ellipse cx="726" cy="170" rx="545" ry="543" fill="#DFCDBD" opacity="0.48"/><ellipse cx="16" cy="370" rx="350" ry="331" fill="#C9AE9B" opacity="0.54"/><ellipse cx="-60" cy="1510" rx="754" ry="684" fill="#EFE3D8" opacity="0.49"/><ellipse cx="107" cy="-115" rx="552" ry="384" fill="#DFCDBD" opacity="0.30"/></g>
+  <g><path d="M104,490 Q535,354 966,500" fill="none" stroke="#C9AE9B" stroke-width="1.3" opacity="0.22"/><path d="M139,686 Q636,544 1132,700" fill="none" stroke="#C9AE9B" stroke-width="1.3" opacity="0.22"/><path d="M175,882 Q619,724 1062,900" fill="none" stroke="#C9AE9B" stroke-width="1.3" opacity="0.22"/></g>
+  <rect width="1200" height="1400" filter="url(#grain)" opacity="0.55"/>
+</svg>

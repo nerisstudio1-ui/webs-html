@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" width="900" height="1100" role="img" aria-label="Lifting de pestanas">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#DAD3CD"/><stop offset="1" stop-color="#A79C94"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="79"/></filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="26"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.10"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="900" height="1100" fill="url(#g)"/>
+  <g filter="url(#blur)"><ellipse cx="717" cy="158" rx="316" ry="199" fill="#DAD3CD" opacity="0.47"/><ellipse cx="748" cy="899" rx="257" ry="219" fill="#A79C94" opacity="0.50"/><ellipse cx="596" cy="1149" rx="600" ry="613" fill="#57504B" opacity="0.41"/><ellipse cx="759" cy="1173" rx="252" ry="180" fill="#DAD3CD" opacity="0.58"/><ellipse cx="50" cy="679" rx="547" ry="427" fill="#A79C94" opacity="0.59"/></g>
+  <g><path d="M157,385 Q441,234 725,393" fill="none" stroke="#57504B" stroke-width="1.0" opacity="0.22"/><path d="M85,539 Q444,462 803,550" fill="none" stroke="#57504B" stroke-width="1.0" opacity="0.22"/><path d="M51,693 Q386,574 721,707" fill="none" stroke="#57504B" stroke-width="1.0" opacity="0.22"/></g>
+  <rect width="900" height="1100" filter="url(#grain)" opacity="0.55"/>
+</svg>

@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BELA. Brow Design — Centro de microblading y micropigmentación</title>
+<meta name="description" content="Centro especializado en microblading, micropigmentación de cejas, labios y mirada. Diseño personalizado, técnica pelo a pelo y resultados naturales.">
+<meta property="og:title" content="BELA. Brow Design">
+<meta property="og:description" content="Microblading y micropigmentación con diseño personalizado. Tu mirada, tu diseño.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+<!-- ===== Barra de anuncios ===== -->
+<div class="announce" data-announce>
+  <div class="wrap">
+    <button type="button" data-announce-step="-1" aria-label="Anterior">
+      <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 1 1 5l4 4M1 5h15"/></svg>
+    </button>
+    <div class="announce-track">
+      <span class="announce-item">primera valoración gratuita · sin compromiso</span>
+      <span class="announce-item">retoque a los 45 días incluido en todas las técnicas</span>
+      <span class="announce-item">pigmentos veganos y material de un solo uso</span>
+    </div>
+    <button type="button" data-announce-step="1" aria-label="Siguiente">
+      <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="header header--over">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="BELA. Brow Design — inicio">
+      <b>B<i>e</i>LA.</b>
+      <span>Brow Design</span>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      <a href="servicios.html">tratamientos</a>
+      <a href="metodo.html">el método</a>
+      <a href="estudio.html">el estudio</a>
+      <a href="contacto.html">contacto</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="icon desk-only" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="btn btn--sm btn--dark desk-only" href="contacto.html">reservar cita</a>
+      <button class="burger" type="button" data-burger aria-expanded="false" aria-label="Abrir menú">
+        <svg viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h22M0 7h22M0 13h14"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Menú móvil ===== -->
+<div class="mobile-nav" role="dialog" aria-modal="true" aria-label="Menú">
+  <div class="mobile-nav__top">
+    <span class="logo"><b>B<i>e</i>LA.</b><span>Brow Design</span></span>
+    <button type="button" data-close aria-label="Cerrar menú" style="font-size:1.6rem;line-height:1">✕</button>
+  </div>
+  <nav class="mobile-nav__links" aria-label="Móvil">
+    <a href="index.html">inicio</a>
+    <a href="servicios.html">tratamientos</a>
+    <a href="metodo.html">el método</a>
+    <a href="estudio.html">el estudio</a>
+    <a href="contacto.html">contacto</a>
+  </nav>
+  <div class="mobile-nav__foot">
+    <p class="small" style="color:inherit;opacity:.7">Calle Ejemplo 12 · Ciudad</p>
+    <p class="small" style="color:inherit;opacity:.7">+34 600 000 000 · hola@beladesign.es</p>
+  </div>
+</div>
+
+<main>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" data-hero>
+    <div class="hero__panel">
+      <img src="assets/img/hero-left.svg" alt="Mirada con cejas diseñadas a medida" fetchpriority="high">
+      <div class="hero__content">
+        <h1 class="display">tu mirada,<br>tu <em>diseño</em>.</h1>
+        <p>Microblading y micropigmentación con trazo natural, pensados desde tu rostro y no desde una plantilla.</p>
+        <a class="btn" href="servicios.html">ver tratamientos</a>
+      </div>
+    </div>
+
+    <div class="hero__panel">
+      <div class="hero__slides">
+        <div class="hero__slide is-active"><img src="assets/img/hero-right.svg" alt="Detalle de pigmentos y herramientas de trabajo"></div>
+        <div class="hero__slide"><img src="assets/img/hero-alt.svg" alt="Sesión de diseño de cejas en cabina"></div>
+        <div class="hero__slide"><img src="assets/img/studio-1.svg" alt="Interior del estudio BELA"></div>
+      </div>
+      <div class="hero__controls">
+        <div class="hero__dots" role="tablist" aria-label="Imágenes">
+          <button type="button" role="tab" aria-selected="true" aria-label="Imagen 1"></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="Imagen 2"></button>
+          <button type="button" role="tab" aria-selected="false" aria-label="Imagen 3"></button>
+        </div>
+        <button class="hero__pause" type="button" aria-pressed="false" aria-label="Pausar presentación">
+          <svg viewBox="0 0 12 12" fill="currentColor"><rect x="1" y="1" width="3.5" height="10"/><rect x="7.5" y="1" width="3.5" height="10"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Tratamientos ===== -->
+  <section class="section" id="tratamientos">
+    <div class="wrap" data-tabs>
+      <div class="section-head">
+        <span class="dot"></span>
+        <div class="tabs" role="tablist" aria-label="Categorías de tratamientos">
+          <button type="button" role="tab" id="tab-cejas" aria-controls="panel-cejas" aria-selected="true">más solicitados</button>
+          <button type="button" role="tab" id="tab-mirada" aria-controls="panel-mirada" aria-selected="false">mirada</button>
+        </div>
+        <span class="spacer"></span>
+        <a class="link-arrow" href="servicios.html">todos los tratamientos
+          <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+        </a>
+      </div>
+
+      <div class="rail" id="panel-cejas" role="tabpanel" aria-labelledby="tab-cejas">
+        <article class="card">
+          <div class="card__tags"><span>pelo a pelo</span><span>efecto natural</span></div>
+          <div class="card__media"><img src="assets/img/srv-microblading.svg" alt="Microblading pelo a pelo" loading="lazy"></div>
+          <h3 class="card__title">Microblading</h3>
+          <p class="card__price">290 €</p>
+        </article>
+        <article class="card">
+          <div class="card__tags"><span>efecto sombra</span><span>larga duración</span></div>
+          <div class="card__media"><img src="assets/img/srv-powder.svg" alt="Cejas efecto polvo" loading="lazy"></div>
+          <h3 class="card__title">Powder Brows</h3>
+          <p class="card__price">320 €</p>
+        </article>
+        <article class="card">
+          <div class="card__tags"><span>técnica mixta</span><span>máxima definición</span></div>
+          <div class="card__media"><img src="assets/img/srv-lips.svg" alt="Cejas técnica combinada" loading="lazy"></div>
+          <h3 class="card__title">Cejas combinadas</h3>
+          <p class="card__price"><del>360 €</del><ins>340 €</ins></p>
+        </article>
+        <article class="card">
+          <div class="card__tags"><span>sin pigmento</span><span>resultado 6-8 semanas</span></div>
+          <div class="card__media"><img src="assets/img/srv-laminado.svg" alt="Laminado de cejas" loading="lazy"></div>
+          <h3 class="card__title">Laminado de cejas</h3>
+          <p class="card__price">65 €</p>
+        </article>
+      </div>
+
+      <div class="rail" id="panel-mirada" role="tabpanel" aria-labelledby="tab-mirada" hidden>
+        <article class="card">
+          <div class="card__tags"><span>línea fina</span><span>efecto pestaña densa</span></div>
+          <div class="card__media"><img src="assets/img/srv-eyeliner.svg" alt="Eyeliner permanente" loading="lazy"></div>
+          <h3 class="card__title">Eyeliner permanente</h3>
+          <p class="card__price">250 €</p>
+        </article>
+        <article class="card">
+          <div class="card__tags"><span>curvatura natural</span><span>sin extensiones</span></div>
+          <div class="card__media"><img src="assets/img/srv-lashes.svg" alt="Lifting de pestañas" loading="lazy"></div>
+          <h3 class="card__title">Lifting de pestañas</h3>
+          <p class="card__price">55 €</p>
+        </article>
+        <article class="card">
+          <div class="card__tags"><span>color y contorno</span><span>aspecto hidratado</span></div>
+          <div class="card__media"><img src="assets/img/srv-lips.svg" alt="Micropigmentación de labios" loading="lazy"></div>
+          <h3 class="card__title">Labios Aquarela</h3>
+          <p class="card__price">340 €</p>
+        </article>
+        <article class="card">
+          <div class="card__tags"><span>mantenimiento</span><span>hasta 18 meses</span></div>
+          <div class="card__media"><img src="assets/img/srv-powder.svg" alt="Sesión de retoque" loading="lazy"></div>
+          <h3 class="card__title">Retoque anual</h3>
+          <p class="card__price">150 €</p>
+        </article>
+      </div>
+
+      <div class="progress"><span></span></div>
+    </div>
+  </section>
+
+  <!-- ===== Categorías ===== -->
+  <section class="cats">
+    <a class="cat" href="servicios.html#cejas">
+      <img src="assets/img/cat-cejas.svg" alt="Tratamientos de cejas" loading="lazy">
+      <span class="cat__label">cejas</span>
+      <span class="btn btn--sm">ver cejas</span>
+    </a>
+    <a class="cat" href="servicios.html#labios">
+      <img src="assets/img/cat-labios.svg" alt="Tratamientos de labios" loading="lazy">
+      <span class="cat__label">labios</span>
+      <span class="btn btn--sm">ver labios</span>
+    </a>
+    <a class="cat" href="servicios.html#mirada">
+      <img src="assets/img/cat-mirada.svg" alt="Tratamientos de mirada" loading="lazy">
+      <span class="cat__label">mirada</span>
+      <span class="btn btn--sm">ver mirada</span>
+    </a>
+  </section>
+
+  <!-- ===== Método ===== -->
+  <section class="section method" id="metodo">
+    <div class="wrap">
+      <div class="collage">
+        <div class="collage__text reveal">
+          <span class="eyebrow">el método bela</span>
+          <h2 class="h2 display" style="margin-top:1rem;font-size:clamp(1.9rem,3.8vw,3.4rem)">diseño antes<br>que <em>pigmento</em>.</h2>
+          <p class="lead">Ninguna ceja se dibuja igual. Medimos proporciones, estudiamos la simetría real de tu rostro y elegimos el pigmento según tu subtono de piel. Solo cuando el diseño te convence, empezamos.</p>
+          <a class="link-arrow" href="metodo.html">cómo trabajamos
+            <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+          </a>
+        </div>
+        <figure class="collage__a reveal" data-delay="1">
+          <img src="assets/img/studio-1.svg" alt="Sesión de diseño previo" loading="lazy">
+          <figcaption>Mapeo y simetría, sesión 01</figcaption>
+        </figure>
+        <figure class="collage__b reveal" data-delay="2">
+          <img src="assets/img/studio-3.svg" alt="Material estéril de un solo uso" loading="lazy">
+          <figcaption>Material de un solo uso</figcaption>
+        </figure>
+        <figure class="collage__c reveal" data-delay="3">
+          <img src="assets/img/studio-2.svg" alt="Detalle de cabina" loading="lazy">
+          <figcaption>Cabina privada</figcaption>
+        </figure>
+      </div>
+
+      <ol class="steps">
+        <li class="step reveal"><b>01</b><h3>Valoración</h3><p>Analizamos piel, forma natural y expectativas. Sin coste y sin compromiso.</p></li>
+        <li class="step reveal" data-delay="1"><b>02</b><h3>Diseño</h3><p>Dibujamos la ceja sobre tu rostro y la ajustamos hasta que digas que sí.</p></li>
+        <li class="step reveal" data-delay="2"><b>03</b><h3>Pigmentación</h3><p>Trabajo capa a capa, con anestesia tópica y control del color en cada pasada.</p></li>
+        <li class="step reveal" data-delay="3"><b>04</b><h3>Retoque</h3><p>A los 45 días fijamos el resultado. Incluido en el precio del tratamiento.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Marquee ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>microblading</span><span>powder brows</span><span>labios aquarela</span><span>eyeliner</span><span>laminado</span>
+      <span>microblading</span><span>powder brows</span><span>labios aquarela</span><span>eyeliner</span><span>laminado</span>
+    </div>
+  </div>
+
+  <!-- ===== Testimonios ===== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="dot"></span>
+        <h2 class="h2">lo que dicen</h2>
+        <span class="spacer"></span>
+        <span class="small">valoración media 4,9 / 5 · 240 reseñas</span>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal">
+          <div class="stars" aria-label="5 sobre 5">★★★★★</div>
+          <blockquote>«Llevaba años pintándome las cejas cada mañana. Ahora me levanto y ya están. El diseño es exactamente el que hablamos.»</blockquote>
+          <figcaption>Marta R. · Microblading</figcaption>
+        </figure>
+        <figure class="quote reveal" data-delay="1">
+          <div class="stars" aria-label="5 sobre 5">★★★★★</div>
+          <blockquote>«Me daba miedo que quedara artificial. Es justo lo contrario: nadie nota que están pigmentadas, solo dicen que se me ve mejor cara.»</blockquote>
+          <figcaption>Lucía G. · Powder Brows</figcaption>
+        </figure>
+        <figure class="quote reveal" data-delay="2">
+          <div class="stars" aria-label="5 sobre 5">★★★★★</div>
+          <blockquote>«La sesión de diseño previa marca la diferencia. No tocaron nada hasta que estuve completamente segura.»</blockquote>
+          <figcaption>Andrea P. · Cejas combinadas</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section section--tight" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="dot"></span>
+        <h2 class="h2">preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-1">¿Duele el microblading?<span class="plus"></span></button>
+          <div class="faq__a" id="faq-1"><p>Se aplica anestesia tópica antes y durante la sesión. La mayoría de clientas describe una molestia leve, comparable a una pinza de depilar. La sesión completa dura entre dos horas y dos horas y media, diseño incluido.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-2">¿Cuánto dura el resultado?<span class="plus"></span></button>
+          <div class="faq__a" id="faq-2"><p>Entre 12 y 18 meses según el tipo de piel, la exposición solar y el cuidado posterior. Las pieles grasas retienen menos pigmento y suelen necesitar un retoque antes.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-3">¿Cómo es la cicatrización?<span class="plus"></span></button>
+          <div class="faq__a" id="faq-3"><p>Los primeros días el color se ve más intenso; entre el día 5 y el 10 aparece una fina descamación y el tono baja alrededor de un 30 %. El resultado real se valora a partir de la cuarta semana, justo antes del retoque.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-4">¿Puedo hacérmelo si ya tengo micropigmentación antigua?<span class="plus"></span></button>
+          <div class="faq__a" id="faq-4"><p>En muchos casos sí, pero necesitamos ver el trabajo previo. Envíanos una foto con luz natural y sin maquillaje por WhatsApp y te decimos si se puede corregir directamente o conviene aclarar antes.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-5">¿Hay casos en los que no se puede hacer?<span class="plus"></span></button>
+          <div class="faq__a" id="faq-5"><p>No trabajamos durante el embarazo o la lactancia, ni sobre piel con dermatitis activa, queloides o tratamientos recientes con isotretinoína. En la valoración revisamos tu historial y te lo confirmamos.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Journal ===== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="dot"></span>
+        <h2 class="h2">journal</h2>
+        <span class="spacer"></span>
+        <a class="link-arrow" href="metodo.html">todos los artículos
+          <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+        </a>
+      </div>
+      <div class="posts">
+        <a class="post reveal" href="metodo.html#cuidados">
+          <img src="assets/img/journal-1.svg" alt="" loading="lazy">
+          <span class="eyebrow">cuidados</span>
+          <h3>Los 10 días después: qué hacer y qué evitar</h3>
+        </a>
+        <a class="post reveal" data-delay="1" href="metodo.html#pieles">
+          <img src="assets/img/journal-2.svg" alt="" loading="lazy">
+          <span class="eyebrow">técnica</span>
+          <h3>Piel grasa y microblading: cuándo conviene powder</h3>
+        </a>
+        <a class="post reveal" data-delay="2" href="metodo.html#pigmentos">
+          <img src="assets/img/journal-3.svg" alt="" loading="lazy">
+          <span class="eyebrow">pigmentos</span>
+          <h3>Por qué el subtono de tu piel decide el color</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta">
+    <img src="assets/img/cta-wide.svg" alt="" loading="lazy">
+    <div class="wrap">
+      <h2 class="display">empecemos por<br>una <em>valoración</em>.</h2>
+      <p>Veinte minutos, sin coste y sin compromiso. Salimos de ahí sabiendo qué técnica te conviene y cuánto va a durar.</p>
+      <a class="btn" href="contacto.html">pedir cita</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <span class="logo"><b>B<i>e</i>LA.</b><span>Brow Design</span></span>
+        <p class="lead" style="color:rgba(246,241,236,.8)">Recibe consejos de cuidado y avisos de hueco libre por cancelación.</p>
+        <form class="newsletter" data-demo-form="newsletter">
+          <label for="nl-email" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email</label>
+          <input id="nl-email" type="email" required placeholder="tu email">
+          <button type="submit" aria-label="Suscribirse">
+            <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+          </button>
+        </form>
+        <p class="form-status" style="color:var(--mocha)"></p>
+      </div>
+
+      <div class="footer__cols">
+        <div>
+          <h4>Tratamientos</h4>
+          <ul>
+            <li><a href="servicios.html#cejas">Microblading</a></li>
+            <li><a href="servicios.html#cejas">Powder Brows</a></li>
+            <li><a href="servicios.html#labios">Labios</a></li>
+            <li><a href="servicios.html#mirada">Mirada</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Estudio</h4>
+          <ul>
+            <li><a href="metodo.html">El método</a></li>
+            <li><a href="estudio.html">El espacio</a></li>
+            <li><a href="index.html#faq">Preguntas frecuentes</a></li>
+            <li><a href="contacto.html">Reservar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li>Calle Ejemplo 12<br>28000 Ciudad</li>
+            <li><a href="tel:+34600000000">+34 600 000 000</a></li>
+            <li><a href="mailto:hola@beladesign.es">hola@beladesign.es</a></li>
+            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> BELA. Brow Design</span>
+      <span>Aviso legal · Privacidad · Cookies</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

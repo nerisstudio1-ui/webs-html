@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700" role="img" aria-label="Articulo cuidados post">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EFE3D8"/><stop offset="1" stop-color="#DFCDBD"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="64"/></filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="61"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.10"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="900" height="700" fill="url(#g)"/>
+  <g filter="url(#blur)"><ellipse cx="444" cy="398" rx="438" ry="333" fill="#EFE3D8" opacity="0.38"/><ellipse cx="659" cy="338" rx="305" ry="233" fill="#DFCDBD" opacity="0.41"/><ellipse cx="91" cy="461" rx="463" ry="425" fill="#C9AE9B" opacity="0.50"/><ellipse cx="275" cy="294" rx="241" ry="180" fill="#EFE3D8" opacity="0.51"/><ellipse cx="225" cy="754" rx="299" ry="272" fill="#DFCDBD" opacity="0.59"/></g>
+  <g><path d="M148,245 Q482,193 816,250" fill="none" stroke="#C9AE9B" stroke-width="1.0" opacity="0.22"/><path d="M141,343 Q450,278 760,350" fill="none" stroke="#C9AE9B" stroke-width="1.0" opacity="0.22"/><path d="M63,441 Q396,378 729,450" fill="none" stroke="#C9AE9B" stroke-width="1.0" opacity="0.22"/></g>
+  <rect width="900" height="700" filter="url(#grain)" opacity="0.55"/>
+</svg>

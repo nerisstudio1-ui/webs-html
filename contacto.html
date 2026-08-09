@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reservar cita — BELA. Brow Design</title>
+<meta name="description" content="Pide tu valoración gratuita en BELA. Brow Design. Horarios, dirección, teléfono y formulario de reserva.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+<div class="announce" data-announce>
+  <div class="wrap">
+    <button type="button" data-announce-step="-1" aria-label="Anterior">
+      <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 1 1 5l4 4M1 5h15"/></svg>
+    </button>
+    <div class="announce-track">
+      <span class="announce-item">primera valoración gratuita · sin compromiso</span>
+      <span class="announce-item">retoque a los 45 días incluido en todas las técnicas</span>
+      <span class="announce-item">pigmentos veganos y material de un solo uso</span>
+    </div>
+    <button type="button" data-announce-step="1" aria-label="Siguiente">
+      <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+    </button>
+  </div>
+</div>
+
+<header class="header header--over">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="BELA. Brow Design — inicio"><b>B<i>e</i>LA.</b><span>Brow Design</span></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="servicios.html">tratamientos</a>
+      <a href="metodo.html">el método</a>
+      <a href="estudio.html">el estudio</a>
+      <a href="contacto.html" aria-current="page">contacto</a>
+    </nav>
+    <div class="header-actions">
+      <a class="icon desk-only" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="btn btn--sm btn--dark desk-only" href="#reservar">reservar cita</a>
+      <button class="burger" type="button" data-burger aria-expanded="false" aria-label="Abrir menú">
+        <svg viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h22M0 7h22M0 13h14"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" role="dialog" aria-modal="true" aria-label="Menú">
+  <div class="mobile-nav__top">
+    <span class="logo"><b>B<i>e</i>LA.</b><span>Brow Design</span></span>
+    <button type="button" data-close aria-label="Cerrar menú" style="font-size:1.6rem;line-height:1">✕</button>
+  </div>
+  <nav class="mobile-nav__links" aria-label="Móvil">
+    <a href="index.html">inicio</a>
+    <a href="servicios.html">tratamientos</a>
+    <a href="metodo.html">el método</a>
+    <a href="estudio.html">el estudio</a>
+    <a href="contacto.html">contacto</a>
+  </nav>
+  <div class="mobile-nav__foot">
+    <p class="small" style="color:inherit;opacity:.7">Calle Ejemplo 12 · Ciudad</p>
+    <p class="small" style="color:inherit;opacity:.7">+34 600 000 000 · hola@beladesign.es</p>
+  </div>
+</div>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="index.html">inicio</a> / contacto</p>
+      <span class="eyebrow">reservar</span>
+      <h1 class="display">cuéntanos qué<br>tienes en <em>mente</em>.</h1>
+      <p class="lead" style="margin-top:1.25rem">Rellena el formulario y te escribimos por WhatsApp en menos de 24 h con los huecos disponibles. Si prefieres llamar, también.</p>
+    </div>
+  </section>
+
+  <section class="section" id="reservar">
+    <div class="wrap">
+      <div class="split" style="align-items:start">
+
+        <!-- Formulario -->
+        <div>
+          <h2 class="h2" style="margin-bottom:1.5rem">solicitar cita</h2>
+          <form class="form" data-demo-form="cita">
+            <div class="field-row">
+              <div class="field">
+                <label for="nombre">Nombre y apellidos</label>
+                <input id="nombre" name="nombre" type="text" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="telefono">Teléfono / WhatsApp</label>
+                <input id="telefono" name="telefono" type="tel" required autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required autocomplete="email">
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="tratamiento">Tratamiento de interés</label>
+                <select id="tratamiento" name="tratamiento">
+                  <option>Valoración (no lo tengo claro)</option>
+                  <option>Microblading</option>
+                  <option>Powder Brows</option>
+                  <option>Cejas combinadas</option>
+                  <option>Labios Aquarela</option>
+                  <option>Eyeliner permanente</option>
+                  <option>Laminado de cejas</option>
+                  <option>Lifting de pestañas</option>
+                  <option>Corrección de trabajo previo</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="fecha">Fecha preferente</label>
+                <input id="fecha" name="fecha" type="date">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="mensaje">Cuéntanos más</label>
+              <textarea id="mensaje" name="mensaje" placeholder="¿Tienes micropigmentación anterior? ¿Alguna alergia o medicación? ¿Qué te gustaría conseguir?"></textarea>
+            </div>
+
+            <label class="consent">
+              <input type="checkbox" required>
+              <span>He leído y acepto la política de privacidad y el tratamiento de mis datos para gestionar la cita.</span>
+            </label>
+
+            <div>
+              <button class="btn btn--dark" type="submit">enviar solicitud</button>
+            </div>
+            <p class="form-status"></p>
+            <p class="form-note">Este formulario es una demostración: aún no envía datos a ningún servidor. Conéctalo a tu gestor de citas o a un servicio de formularios antes de publicar.</p>
+          </form>
+        </div>
+
+        <!-- Info -->
+        <div style="display:grid;gap:clamp(1.25rem,2.5vw,2rem)">
+          <div class="info-card">
+            <h3 class="h3">El estudio</h3>
+            <dl>
+              <dt>Dirección</dt><dd>Calle Ejemplo 12, bajo<br>28000 Ciudad</dd>
+              <dt>Teléfono</dt><dd><a href="tel:+34600000000">+34 600 000 000</a></dd>
+              <dt>WhatsApp</dt><dd><a href="https://wa.me/34600000000" target="_blank" rel="noopener">Escribir por WhatsApp</a></dd>
+              <dt>Email</dt><dd><a href="mailto:hola@beladesign.es">hola@beladesign.es</a></dd>
+              <dt>Instagram</dt><dd><a href="https://www.instagram.com/" target="_blank" rel="noopener">@bela.browdesign</a></dd>
+            </dl>
+          </div>
+
+          <div class="info-card">
+            <h3 class="h3">Horario</h3>
+            <dl>
+              <dt>Lunes</dt><dd>Cerrado</dd>
+              <dt>Martes a viernes</dt><dd>10:00 – 20:00</dd>
+              <dt>Sábado</dt><dd>10:00 – 14:00</dd>
+              <dt>Domingo</dt><dd>Cerrado</dd>
+            </dl>
+            <p class="small" style="margin-top:1rem">Solo con cita previa. Las sesiones de micropigmentación duran entre 2 y 3 horas.</p>
+          </div>
+
+          <div class="info-card">
+            <h3 class="h3">Antes de venir</h3>
+            <ul class="checklist">
+              <li>Ven sin maquillaje en la zona a tratar</li>
+              <li>Evita café y alcohol el día de la sesión</li>
+              <li>No te depiles las cejas 15 días antes</li>
+              <li>Avísanos si tomas anticoagulantes o isotretinoína</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Mapa -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="section-head"><span class="dot"></span><h2 class="h2">cómo llegar</h2></div>
+      <iframe class="map" title="Mapa de ubicación del estudio" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7100%2C40.4130%2C-3.6900%2C40.4250&amp;layer=mapnik"></iframe>
+      <p class="form-note" style="margin-top:1rem">Mapa de ejemplo. Sustituye la URL del iframe por la ubicación real del estudio.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <span class="logo"><b>B<i>e</i>LA.</b><span>Brow Design</span></span>
+        <p class="lead" style="color:rgba(246,241,236,.8)">Recibe consejos de cuidado y avisos de hueco libre por cancelación.</p>
+        <form class="newsletter" data-demo-form="newsletter">
+          <label for="nl-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email</label>
+          <input id="nl-email" type="email" required placeholder="tu email">
+          <button type="submit" aria-label="Suscribirse">
+            <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+          </button>
+        </form>
+        <p class="form-status" style="color:var(--mocha)"></p>
+      </div>
+      <div class="footer__cols">
+        <div>
+          <h4>Tratamientos</h4>
+          <ul>
+            <li><a href="servicios.html#cejas">Microblading</a></li>
+            <li><a href="servicios.html#cejas">Powder Brows</a></li>
+            <li><a href="servicios.html#labios">Labios</a></li>
+            <li><a href="servicios.html#mirada">Mirada</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Estudio</h4>
+          <ul>
+            <li><a href="metodo.html">El método</a></li>
+            <li><a href="estudio.html">El espacio</a></li>
+            <li><a href="index.html#faq">Preguntas frecuentes</a></li>
+            <li><a href="contacto.html">Reservar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li>Calle Ejemplo 12<br>28000 Ciudad</li>
+            <li><a href="tel:+34600000000">+34 600 000 000</a></li>
+            <li><a href="mailto:hola@beladesign.es">hola@beladesign.es</a></li>
+            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> BELA. Brow Design</span>
+      <span>Aviso legal · Privacidad · Cookies</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
