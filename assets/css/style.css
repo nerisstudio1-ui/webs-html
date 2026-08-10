@@ -22,8 +22,10 @@
   --white:         #fff;
 
   /* tipografía */
-  --serif: "Playfair Display", "Times New Roman", serif;
-  --sans:  "Jost", "Helvetica Neue", Arial, sans-serif;
+  /* Con la webfont cargada mandan Playfair y Jost; si no, el respaldo busca
+     familias del sistema con el mismo carácter antes de caer en las genéricas. */
+  --serif: "Playfair Display", "Didot", "Bodoni MT", Georgia, "Times New Roman", serif;
+  --sans:  "Jost", "Futura", "Avenir Next", "Century Gothic", "Trebuchet MS", system-ui, sans-serif;
 
   /* medidas */
   --gutter: clamp(1.25rem, 4vw, 4.5rem);

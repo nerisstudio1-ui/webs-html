@@ -18,7 +18,22 @@ y tipografía elegante. Las imágenes son las protagonistas de cada bloque.
 | `estudio.html` | Sobre Bela, forma de trabajar, galería y hacia dónde va el estudio |
 | `contacto.html` | Formulario de cita, contacto directo, hueco para la reserva online e indicaciones previas |
 
-## Ver la web en local
+## Ver la web
+
+### Vista previa en una sola página
+
+`tools/build-preview.py` empaqueta las cinco páginas en un único HTML
+autocontenido (CSS, JS e ilustraciones incrustados, navegación por hash), útil
+para enseñar la web sin necesidad de hosting:
+
+```bash
+python3 tools/build-preview.py   # genera bela-preview.html
+```
+
+El archivo generado no se versiona. Es solo para enseñar el diseño: la web que
+se publica es la de los cinco archivos HTML.
+
+### En local
 
 Abriendo `index.html` con doble clic funciona. Para que se comporte igual que
 en producción, mejor con un servidor:
