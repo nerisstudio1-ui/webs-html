@@ -24,7 +24,9 @@ const AD = (() => {
   const T = {
     hookOut: 1.30,    // hook starts leaving upward
     hookGone: 2.10,   // hook fully clear of the frame
-    beltStart: 1.30,  // first site card enters from below as the hook leaves
+    beltStart: 0.90,  // belt starts under the hook, so the first card is already
+                      // arriving as the hook clears — otherwise there is a beat
+                      // of empty ground between the two
     flowEnd: 7.80,    // conveyor stops cruising
     sweepEnd: 8.90,   // last site card has left the top
     plateIn: 7.80,    // the offer enters on the belt behind the last card
@@ -121,8 +123,9 @@ const AD = (() => {
 
     const cardH = cards[0].h;
     slot = cardH * OVERLAP;
-    // Card 0 waits just below the bottom edge so nothing sits behind the hook.
-    first = H + cardH * 0.92;
+    // Card 0 waits below the bottom edge — far enough that the tilt's bounding
+    // box stays out of frame while the hook is still holding.
+    first = H + cardH * 1.05;
     const distance = (first - H * 0.5) + (cards.length - 1) * slot;
     cruise = distance / (T.flowEnd - T.beltStart);
 
