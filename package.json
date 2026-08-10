@@ -1,0 +1,26 @@
+{
+  "name": "neris-webs-299-ad",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Anuncio de video en HTML para Facebook - Neris Studio, webs a 299 EUR",
+  "type": "module",
+  "scripts": {
+    "preview": "python3 -m http.server -d src 8000",
+    "render": "node tools/render.mjs",
+    "shots": "node tools/shots.mjs",
+    "build": "python3 tools/build.py",
+    "fonts": "python3 tools/build_fonts.py"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerisstudio1-ui/webs-html.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nerisstudio1-ui/webs-html/issues"
+  },
+  "homepage": "https://github.com/nerisstudio1-ui/webs-html#readme",
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

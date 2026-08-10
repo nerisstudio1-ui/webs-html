@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neris Studio — Webs a 299 € · anuncio</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="ad.css">
+<style>
+  /* Page chrome. Deliberately kept out of ad.css: that file describes the ad
+     itself, which also has to render inside the preview page and inside the
+     renderer's bare viewport. */
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { background: #d9d7d2; font-family: 'Work Sans', system-ui, sans-serif; }
+  #host { width: 100vw; height: 100vh; }
+
+  body.is-rendering { background: #fff; }
+  body.is-rendering #controls { display: none; }
+
+  #controls {
+    position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%);
+    z-index: 20; display: flex; gap: 6px; align-items: center;
+    padding: 7px; border-radius: 999px;
+    background: rgba(16, 16, 16, 0.88); backdrop-filter: blur(8px);
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  #controls button {
+    font: inherit; color: #f4f4f2; background: transparent; border: 0;
+    border-radius: 999px; padding: 8px 14px; cursor: pointer;
+  }
+  #controls button:hover { background: rgba(255, 255, 255, 0.12); }
+  #controls button[aria-pressed='true'] { background: #f4f4f2; color: #101010; }
+  #controls button:focus-visible { outline: 2px solid #ff2e00; outline-offset: 2px; }
+  #controls .sep { width: 1px; height: 18px; background: rgba(255, 255, 255, 0.2); margin: 0 4px; }
+  #controls .time { color: #8f8d89; padding: 0 10px; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+
+<div class="ad-host" id="host">
+  <div id="stage">
+    <div id="marquee" aria-hidden="true"></div>
+    <div id="conveyor" aria-hidden="true"></div>
+    <div id="offer" style="visibility:hidden"></div>
+
+    <div class="hud tl">Neris Studio</div>
+    <div class="hud tr">Webs desde 299&thinsp;€</div>
+    <div class="hud br"></div>
+  </div>
+</div>
+
+<div id="controls" role="group" aria-label="Previsualización">
+  <button type="button" id="play">Pausa</button>
+  <button type="button" id="restart">Reiniciar</button>
+  <span class="sep"></span>
+  <button type="button" data-fmt="4x5">4:5</button>
+  <button type="button" data-fmt="3x4">3:4</button>
+  <button type="button" data-fmt="9x16">9:16</button>
+  <button type="button" data-fmt="1x1">1:1</button>
+  <span class="time" id="time">0.0s</span>
+</div>
+
+<script src="art.js"></script>
+<script src="sites.js"></script>
+<script src="ad.js"></script>
+<script>
+(async function () {
+  const params = new URLSearchParams(location.search);
+  const format = params.get('f') || '4x5';
+  const rendering = params.has('render');
+  if (rendering) document.body.classList.add('is-rendering');
+
+  const api = await AD.init(format);
+
+  // The renderer talks to the page through this: set a time, wait a frame,
+  // screenshot. No clock of our own runs while it is in charge.
+  window.__AD__ = {
+    seek: (t) => api.seek(t),
+    duration: api.duration,
+    width: api.format.w,
+    height: api.format.h,
+    ready: true,
+  };
+
+  if (rendering) return;
+
+  document.querySelectorAll('[data-fmt]').forEach((b) => {
+    b.setAttribute('aria-pressed', String(b.dataset.fmt === format));
+    b.addEventListener('click', () => {
+      params.set('f', b.dataset.fmt);
+      location.search = params.toString();
+    });
+  });
+
+  const still = getComputedStyle(document.getElementById('stage'))
+    .getPropertyValue('--hold-still').trim() === '1';
+
+  const playBtn = document.getElementById('play');
+  const timeEl = document.getElementById('time');
+  let playing = !still;
+  let t = still ? api.duration - 1.2 : 0;
+  let last = performance.now();
+
+  api.seek(t);
+  timeEl.textContent = t.toFixed(1) + 's';
+  if (still) playBtn.textContent = 'Reproducir';
+
+  playBtn.addEventListener('click', () => {
+    playing = !playing;
+    playBtn.textContent = playing ? 'Pausa' : 'Reproducir';
+    last = performance.now();
+  });
+  document.getElementById('restart').addEventListener('click', () => {
+    t = 0; playing = true; playBtn.textContent = 'Pausa'; last = performance.now();
+  });
+
+  (function frame(now) {
+    const dt = (now - last) / 1000;
+    last = now;
+    if (playing) {
+      t += dt;
+      if (t > api.duration) t = 0;   // preview loops; the exported file does not
+      api.seek(t);
+      timeEl.textContent = t.toFixed(1) + 's';
+    }
+    requestAnimationFrame(frame);
+  })(performance.now());
+})();
+</script>
+</body>
+</html>

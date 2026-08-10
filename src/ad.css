@@ -1,0 +1,309 @@
+/* ---------------------------------------------------------------------------
+   Neris Studio — anuncio de vídeo "Webs a 299 €"
+
+   Design plan
+   -----------
+   Colour   paper #FFFFFF · ink #0A0A0A · signal #FF2E00 · ash #6E6A66 ·
+            hairline rgba(10,10,10,.10). One accent only, and it is spent
+            entirely on the price — which is the whole point of the ad.
+   Type     Big Shoulders Bold for the display field (an ultra-condensed
+            grotesque that can be set at 30% of the frame width and still fit
+            a whole word), Geist Mono for the pinned micro-labels, and a
+            different pairing inside every mock site so the nine cards read as
+            nine clients rather than one template.
+   Layout   Two planes. Behind: a justified wall of display type scrolling up,
+            reading TU WEB / A 299 € down the frame, cropped at both edges.
+            In front: a conveyor of site cards on a shared 3D tilt, travelling
+            bottom-to-top and overlapping heavily. The offer arrives as one
+            more card on that same conveyor, then straightens to face the
+            viewer — the pitch becomes the last thing on the belt.
+
+   The piece is a single deterministic timeline: nothing animates on its own,
+   every frame is a pure function of `t`. That is what lets tools/render.mjs
+   step it frame by frame and get an identical result every run.
+--------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --paper: #ffffff;
+  --ink: #0a0a0a;
+  --signal: #ff2e00;
+  --ash: #6e6a66;
+  --hairline: rgba(10, 10, 10, 0.10);
+
+  /* Overwritten by the format the page is loaded with. */
+  --W: 1080px;
+  --H: 1440px;
+  /* Sizing unit for the offer plate — see #offer. */
+  --u: 1080px;
+}
+
+/* --- the frame ----------------------------------------------------------
+   The stage is a component, not a page: it positions itself inside whatever
+   `.ad-host` box it is given and scales to fit. Standalone, that host is the
+   window; in the preview page it is a bordered player. The renderer opens a
+   host of exactly W x H, where the scale resolves to 1 and the capture is
+   pixel-exact. Page-level chrome lives with the page, not here. */
+
+.ad-host {
+  position: relative;
+  overflow: hidden;
+}
+
+#stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--W);
+  height: var(--H);
+  background: var(--paper);
+  overflow: hidden;
+  transform-origin: 0 0;
+  isolation: isolate;
+  font-family: 'Work Sans', system-ui, sans-serif;
+}
+
+/* --- display type field ------------------------------------------------- */
+
+#marquee {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  will-change: transform;
+}
+
+#marquee .line {
+  /* Each line is optically justified to the same over-width by a per-line
+     letter-spacing measured at init, so both words bleed off the same edges
+     despite having different character counts. `width: max-content` plus auto
+     margins lets the overflow spill evenly past both edges. */
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+  font-family: 'Shoulders', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+  font-size: var(--type);
+  line-height: 0.80;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+#marquee .line.price { color: var(--signal); }
+
+/* --- conveyor ----------------------------------------------------------- */
+
+#conveyor {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  perspective: 2400px;
+  perspective-origin: 50% 42%;
+  pointer-events: none;
+}
+
+.ad-card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  will-change: transform;
+  box-shadow:
+    0 2px 4px rgba(12, 10, 8, 0.05),
+    0 18px 32px rgba(12, 10, 8, 0.10),
+    0 64px 96px -24px rgba(12, 10, 8, 0.32);
+}
+
+/* Hairline that survives on both light and dark mock sites. */
+.ad-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10),
+              inset 0 0 0 1px var(--hairline);
+  pointer-events: none;
+}
+
+/* The mock site is authored at a real desktop size and scaled down bodily,
+   so its internal proportions and type sizes stay truthful. */
+.ad-site {
+  width: 1440px;
+  height: 900px;
+  transform-origin: 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- pinned micro-labels ------------------------------------------------ */
+
+/* Pinned above the conveyor, so they cross both white and near-black cards.
+   Difference blending against white resolves to ink on paper and to paper on
+   ink, which keeps them readable everywhere without a plate behind them. */
+.hud {
+  position: absolute;
+  z-index: 4;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: calc(var(--W) * 0.0135);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.hud.tl { top: calc(var(--W) * 0.022); left: calc(var(--W) * 0.026); }
+.hud.tr { top: calc(var(--W) * 0.022); right: calc(var(--W) * 0.026); }
+.hud.br {
+  bottom: calc(var(--W) * 0.022);
+  right: calc(var(--W) * 0.026);
+  color: #9a9a9a;
+  font-variant-numeric: tabular-nums;
+}
+
+/* One inverting label, no local accent: whatever passes behind it — paper,
+   a near-black card, or a vermilion glyph — it comes back as that colour's
+   opposite. Adding a second rule here would break that logic. */
+
+/* --- the offer, riding the same conveyor -------------------------------- */
+
+/* The plate is sized off `--u`, not `--W`: a 1:1 frame is as wide as a 9:16
+   one but has barely half the height, so type scaled purely off width would
+   push the offer past the top and bottom edges. `--u` is set in JS to
+   min(W, H * 0.75) and keeps the whole lockup inside every placement. */
+#offer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 3;
+  width: calc(var(--W) * 0.855);
+  border-radius: 18px;
+  background: var(--paper);
+  will-change: transform;
+  box-shadow:
+    0 2px 4px rgba(12, 10, 8, 0.05),
+    0 20px 36px rgba(12, 10, 8, 0.12),
+    0 72px 110px -26px rgba(12, 10, 8, 0.38);
+  padding: calc(var(--u) * 0.058) calc(var(--u) * 0.055) calc(var(--u) * 0.050);
+}
+
+#offer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px var(--hairline);
+  pointer-events: none;
+}
+
+#offer .eyebrow {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: calc(var(--u) * 0.0150);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-bottom: calc(var(--u) * 0.028);
+}
+
+#offer h2 {
+  margin: 0;
+  font-family: 'Shoulders', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+  font-size: calc(var(--u) * 0.108);
+  /* Big Shoulders sets its acute accents high; anything under ~0.86 and the
+     Í in DÍAS collides with the line above. */
+  line-height: 0.88;
+  letter-spacing: 0.004em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+#offer h2 span { display: block; }
+
+#offer .rule {
+  height: 2px;
+  background: var(--ink);
+  margin: calc(var(--u) * 0.038) 0 calc(var(--u) * 0.030);
+  transform-origin: 0 50%;
+}
+
+#offer .lock {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: calc(var(--u) * 0.03);
+}
+
+#offer .amount {
+  font-family: 'Shoulders', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+  font-size: calc(var(--u) * 0.195);
+  line-height: 0.80;
+  color: var(--signal);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+#offer .terms {
+  text-align: right;
+  font-size: calc(var(--u) * 0.0210);
+  line-height: 1.45;
+  color: var(--ash);
+  padding-bottom: calc(var(--u) * 0.014);
+  text-wrap: balance;
+}
+
+#offer .terms b { color: var(--ink); font-weight: 700; }
+
+#offer ul {
+  list-style: none;
+  margin: calc(var(--u) * 0.036) 0 0;
+  padding: 0;
+  display: grid;
+  gap: calc(var(--u) * 0.015);
+}
+
+#offer li {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 0.028) 1fr;
+  align-items: baseline;
+  gap: calc(var(--u) * 0.013);
+  font-size: calc(var(--u) * 0.0235);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+#offer li i {
+  font-style: normal;
+  color: var(--signal);
+  font-weight: 700;
+}
+
+#offer .cta {
+  margin-top: calc(var(--u) * 0.040);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--u) * 0.02);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  padding: calc(var(--u) * 0.026) calc(var(--u) * 0.036);
+  font-size: calc(var(--u) * 0.0275);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+#offer .cta .arrow { color: var(--signal); }
+
+/* Staggered reveal inside the plate; driven from JS, not CSS animation, so it
+   stays on the deterministic timeline. */
+#offer .stagger { opacity: 0; }
+
+/* The reduced-motion hint is read by the host page, which decides whether to
+   autoplay. The timeline itself is never degraded — it is the deliverable. */
+@media (prefers-reduced-motion: reduce) {
+  #stage { --hold-still: 1; }
+}
