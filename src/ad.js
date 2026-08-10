@@ -16,32 +16,36 @@ const AD = (() => {
 
   const DURATION = 12.0;
 
-  /* Beat sheet, in seconds. */
+  /* Beat sheet, in seconds.
+   *
+   * The first beat exists because feeds autoplay muted and most people are
+   * gone inside two seconds: frame 0 already carries the price, full frame,
+   * before a single mock site appears. */
   const T = {
-    flowEnd: 7.0,     // conveyor stops running at cruising speed
-    sweepEnd: 8.3,    // last site card has left the top of the frame
-    plateIn: 7.0,     // the offer enters on the belt behind the last card
-    plateSet: 8.9,    // offer has braked to centre and squared up to camera
+    hookOut: 1.30,    // hook starts leaving upward
+    hookGone: 2.10,   // hook fully clear of the frame
+    beltStart: 1.30,  // first site card enters from below as the hook leaves
+    flowEnd: 7.80,    // conveyor stops cruising
+    sweepEnd: 8.90,   // last site card has left the top
+    plateIn: 7.80,    // the offer enters on the belt behind the last card
+    plateSet: 9.30,   // offer has braked to centre and squared up to camera
     // The plate's contents fill in while it is still travelling, so it never
     // sits centred with an empty lower half waiting to be populated.
-    ruleIn: 7.85,
-    listIn: 8.00,
-    ctaIn: 8.55,
+    ruleIn: 8.50,
+    listIn: 8.65,
+    ctaIn: 9.10,
   };
 
-  /* Geometry. Cards are deliberately narrower than the frame: the tilt then
-     leaves wedges of paper down both edges, which is where the display type
-     shows through. Cover the whole width and the field behind disappears. */
+  /* Geometry. */
   const CARD_W = 0.775;   // card width as a fraction of frame width
-  const OVERLAP = 0.76;   // centre-to-centre gap as a fraction of card height
-  const FIRST = 0.10;     // centre of card 0 at t=0, as a fraction of height
-  const SWEEP_TOP = 1.40; // speed the belt accelerates to on the way out
-  const MARQ = 0.100;     // display-type field px/s (deliberate parallax)
+  const OVERLAP = 0.64;   // centre-to-centre gap as a fraction of card height
+  const SWEEP_TOP = 1.55; // speed the belt accelerates to on the way out
 
-  /* Cruise speed is solved rather than fixed, so that the ninth card reaches
-     the middle of the frame exactly as the flow ends — on every aspect ratio. */
+  /* Cruise speed is solved rather than fixed, so the ninth card reaches the
+     middle of the frame exactly as the flow ends — on every aspect ratio. */
   let cruise = 0;
   let slot = 0;
+  let first = 0;
 
   /* What the pinned bottom-right label reads as each card passes. */
   const CAPTIONS = {
@@ -59,60 +63,24 @@ const AD = (() => {
   const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
   const easeOutQuad = (u) => u * (2 - u);
   const easeOutCubic = (u) => 1 - Math.pow(1 - u, 3);
+  const easeInCubic = (u) => u * u * u;
   const span = (t, a, b) => clamp01((t - a) / (b - a));
 
-  let stage, marquee, conveyor, offer, capEl;
+  let stage, conveyor, offer, hook, capEl;
   let fmt, W, H;
   let cards = [];
-  let marqueeLoop = 0;
   let plate = { start: 0, end: 0 };
   let staggered = [];
   let bound = false;   // resize listeners are attached on the first init only
 
-  /* ---- display type field --------------------------------------------- */
+  /* ---- the hook -------------------------------------------------------- */
 
-  /* Both words are optically justified to the same over-width. Measuring the
-     natural width and solving for letter-spacing keeps the two lines bleeding
-     off the same edges even though "TU WEB" and "A 299 €" are different
-     lengths — and it means the treatment survives a copy change. */
-  function buildMarquee() {
-    const type = W * 0.300;
-    const lineH = type * 0.80;
-    const target = W * 1.14;
-
-    stage.style.setProperty('--type', type + 'px');
-
-    const words = ['TU WEB', 'A 299 €'];
-    const rows = Math.ceil(H / lineH) + 3;
-    marquee.innerHTML = '';
-
-    const probe = document.createElement('span');
-    probe.className = 'line';
-    probe.style.cssText = 'position:absolute;visibility:hidden;letter-spacing:0';
-    marquee.appendChild(probe);
-
-    const tracking = words.map((word) => {
-      probe.textContent = word;
-      const natural = probe.getBoundingClientRect().width;
-      return (target - natural) / word.length;
-    });
-    probe.remove();
-
-    for (let i = 0; i < rows; i++) {
-      const k = i % 2;
-      const el = document.createElement('span');
-      el.className = 'line' + (k === 1 ? ' price' : '');
-      el.textContent = words[k];
-      el.style.letterSpacing = tracking[k].toFixed(2) + 'px';
-      // Letter-spacing also trails the final glyph; pull it back so the line
-      // stays optically centred.
-      el.style.marginRight = (-tracking[k]).toFixed(2) + 'px';
-      marquee.appendChild(el);
-    }
-
-    // The pattern repeats every two lines, so that is the scroll modulus.
-    marqueeLoop = lineH * 2;
-    marquee.style.top = -marqueeLoop + 'px';
+  function buildHook() {
+    hook.innerHTML = `
+      <div class="l1"><span>Tu web profesional</span><span><i>por solo</i></span></div>
+      <div class="amount">299&thinsp;€</div>
+      <div class="rule"></div>
+      <div class="l3">Diseño a medida y en marcha en <b>7 días</b>.</div>`;
   }
 
   /* ---- conveyor -------------------------------------------------------- */
@@ -153,7 +121,10 @@ const AD = (() => {
 
     const cardH = cards[0].h;
     slot = cardH * OVERLAP;
-    cruise = (FIRST * H + (cards.length - 1) * slot - H * 0.5) / T.flowEnd;
+    // Card 0 waits just below the bottom edge so nothing sits behind the hook.
+    first = H + cardH * 0.92;
+    const distance = (first - H * 0.5) + (cards.length - 1) * slot;
+    cruise = distance / (T.flowEnd - T.beltStart);
 
     // Style tags for the mock sites. init() can be called again to switch
     // format in place, so this is injected once rather than once per call.
@@ -165,23 +136,15 @@ const AD = (() => {
     }
   }
 
-  /* Distance the belt has covered by time t: cruising, then accelerating away
-     so the last card is gone before the offer squares up. */
+  /* Distance the belt has covered by time t: still under the hook, then
+     cruising, then accelerating away so the last card is gone before the offer
+     squares up. */
   function beltDistance(t) {
-    if (t <= T.flowEnd) return cruise * t;
+    if (t <= T.beltStart) return 0;
+    if (t <= T.flowEnd) return cruise * (t - T.beltStart);
     const dt = t - T.flowEnd;
     const a = (SWEEP_TOP * H - cruise) / (T.sweepEnd - T.flowEnd);
-    return cruise * T.flowEnd + cruise * dt + 0.5 * a * dt * dt;
-  }
-
-  /* The type field runs slower than the belt and coasts to a standstill, so
-     the composition is locked by the time the offer lands. */
-  function marqueeDistance(t) {
-    const v = MARQ * H;
-    if (t <= T.flowEnd) return v * t;
-    const stop = T.plateSet;
-    const u = clamp01((t - T.flowEnd) / (stop - T.flowEnd));
-    return v * T.flowEnd + v * (stop - T.flowEnd) * (u - (u * u) / 2);
+    return cruise * (T.flowEnd - T.beltStart) + cruise * dt + 0.5 * a * dt * dt;
   }
 
   /* ---- the offer ------------------------------------------------------- */
@@ -189,16 +152,16 @@ const AD = (() => {
   function buildOffer() {
     offer.innerHTML = `
       <div class="eyebrow">Neris Studio · Diseño y desarrollo web</div>
-      <h2><span>Una web así,</span><span>lista en 7 días</span></h2>
+      <h2>Tu web, <i>lista en 7 días</i></h2>
       <div class="rule"></div>
       <div class="lock">
         <div class="amount">299&thinsp;€</div>
-        <div class="terms"><b>Pago único.</b><br>Sin cuotas ni permanencia.</div>
+        <div class="terms"><b>Pago único.</b><br><i>Sin cuotas ni permanencia.</i></div>
       </div>
       <ul>
-        <li class="stagger"><i>—</i><span>Diseño a medida, no una plantilla</span></li>
-        <li class="stagger"><i>—</i><span>Dominio y alojamiento del primer año</span></li>
-        <li class="stagger"><i>—</i><span>Textos, formulario y visible en Google</span></li>
+        <li class="stagger"><i>—</i><span>Diseño <b>a medida</b>, no una plantilla</span></li>
+        <li class="stagger"><i>—</i><span>Dominio y alojamiento <b>del primer año</b></span></li>
+        <li class="stagger"><i>—</i><span>Textos, formulario y <em>visible en Google</em></span></li>
       </ul>
       <div class="cta stagger"><span>Pide la tuya en neris.studio</span><span class="arrow">→</span></div>`;
 
@@ -210,11 +173,18 @@ const AD = (() => {
   function seek(t) {
     t = Math.max(0, Math.min(DURATION, t));
 
-    marquee.style.transform =
-      `translate3d(0, ${(marqueeLoop - (marqueeDistance(t) % marqueeLoop)).toFixed(2)}px, 0)`;
+    /* Hook: holds, then accelerates off the top so it reads as the first thing
+       on the belt rather than a title card bolted to the front. */
+    const hookGone = t >= T.hookGone;
+    hook.style.visibility = hookGone ? 'hidden' : 'visible';
+    if (!hookGone) {
+      const hu = span(t, T.hookOut, T.hookGone);
+      hook.style.transform = `translate3d(0, ${(-easeInCubic(hu) * H * 1.25).toFixed(1)}px, 0)`;
+      const r = hook.querySelector('.rule');
+      if (r) r.style.transform = `scaleX(${easeOutCubic(span(t, 0.18, 0.75)).toFixed(4)})`;
+    }
 
     const belt = beltDistance(t);
-    const first = FIRST * H;
 
     let nearest = null;
     let nearestDist = Infinity;
@@ -238,12 +208,12 @@ const AD = (() => {
       if (d < nearestDist) { nearestDist = d; nearest = c; }
     }
 
-    /* The offer brakes from belt speed to a standstill, and untilts as it
+    /* The offer brakes from belt speed to a standstill and untilts as it
        arrives — the last thing on the conveyor turns to face you. */
     const pu = span(t, T.plateIn, T.plateSet);
     const travel = easeOutQuad(pu);
     const top = plate.start + (plate.end - plate.start) * travel;
-    const tilt = 1 - easeOutCubic(span(t, T.plateIn + 0.5, T.plateSet));
+    const tilt = 1 - easeOutCubic(span(t, T.plateIn + 0.4, T.plateSet));
     const lift = 1 - 0.06 * (1 - travel);
 
     offer.style.visibility = t >= T.plateIn ? 'visible' : 'hidden';
@@ -255,20 +225,20 @@ const AD = (() => {
       ` rotateX(${(4.6 * tilt).toFixed(2)}deg)`;
 
     const rule = offer.querySelector('.rule');
-    if (rule) rule.style.transform = `scaleX(${easeOutCubic(span(t, T.ruleIn, T.ruleIn + 0.55)).toFixed(4)})`;
+    if (rule) rule.style.transform = `scaleX(${easeOutCubic(span(t, T.ruleIn, T.ruleIn + 0.5)).toFixed(4)})`;
 
     staggered.forEach((el, i) => {
       const isCta = el.classList.contains('cta');
-      const start = isCta ? T.ctaIn : T.listIn + i * 0.14;
-      const u = easeOutCubic(span(t, start, start + 0.5));
+      const start = isCta ? T.ctaIn : T.listIn + i * 0.13;
+      const u = easeOutCubic(span(t, start, start + 0.45));
       el.style.opacity = u.toFixed(3);
-      el.style.transform = `translateY(${((1 - u) * W * 0.022).toFixed(2)}px)`;
+      el.style.transform = `translateY(${((1 - u) * W * 0.020).toFixed(2)}px)`;
     });
 
     if (capEl) {
-      capEl.textContent = t >= T.plateSet - 0.6
+      capEl.textContent = t >= T.plateSet - 0.8
         ? 'neris.studio'
-        : (nearest ? nearest.caption : '');
+        : (t < T.hookOut ? '' : (nearest ? nearest.caption : ''));
     }
   }
 
@@ -277,8 +247,8 @@ const AD = (() => {
   function layout(key) {
     fmt = FORMATS[key] || FORMATS['4x5'];
     W = fmt.w; H = fmt.h;
-    // The offer plate scales off the smaller of the two axes so it stays
-    // inside a square frame as comfortably as it does inside a 9:16 one.
+    // The offer plate and the hook scale off the smaller of the two axes so
+    // they stay inside a square frame as comfortably as a 9:16 one.
     const u = Math.min(W, H * 0.75);
     for (const el of [stage, document.documentElement]) {
       el.style.setProperty('--W', W + 'px');
@@ -302,21 +272,49 @@ const AD = (() => {
 
   async function init(key) {
     stage = document.getElementById('stage');
-    marquee = document.getElementById('marquee');
     conveyor = document.getElementById('conveyor');
     offer = document.getElementById('offer');
+    hook = document.getElementById('hook');
 
     layout(key);
+
+    // `document.fonts.ready` alone is not enough: at this point nothing on the
+    // page uses these families yet, so nothing has been requested and it
+    // resolves immediately. Everything built below is then measured against
+    // fallback metrics — a first render that disagrees with every later one.
+    // Ask for the faces explicitly, then wait.
+    await Promise.all([
+      document.fonts.load("500 16px Montserrat"),
+      document.fonts.load("700 16px Montserrat"),
+      document.fonts.load("900 300px Montserrat"),
+      document.fonts.load("italic 700 16px Montserrat"),
+      document.fonts.load("400 16px 'Geist Mono'"),
+      document.fonts.load("400 16px 'Work Sans'"),
+      document.fonts.load("700 16px 'Work Sans'"),
+      document.fonts.load("400 16px 'Instrument Serif'"),
+      document.fonts.load("italic 400 16px 'Instrument Serif'"),
+      document.fonts.load("400 16px Outfit"),
+      document.fonts.load("700 16px Outfit"),
+      document.fonts.load("400 16px Lora"),
+      document.fonts.load("700 16px Lora"),
+    ].map((p) => p.catch(() => null)));
     await document.fonts.ready;
 
-    buildMarquee();
+    // init() runs again when the preview switches format, and by then fit()
+    // has left a scale on the stage. Measure at scale 1 and let fit() put the
+    // scale back afterwards.
+    stage.style.transform = 'none';
+
+    buildHook();
     buildCards();
     buildOffer();
 
     capEl = document.querySelector('.hud.br');
 
-    // Measured after layout so the plate travels a real distance on any format.
-    const ph = offer.getBoundingClientRect().height;
+    // offsetHeight, not getBoundingClientRect: on a re-init the plate still
+    // carries the tilt transform from the last frame drawn, and a rect is the
+    // bounding box of the *rotated* element — tens of pixels too tall.
+    const ph = offer.offsetHeight;
     plate.start = H + ph * 0.10;
     plate.end = (H - ph) / 2;
 

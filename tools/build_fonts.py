@@ -13,8 +13,11 @@ import pathlib
 import subprocess
 import sys
 
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = pathlib.Path("/mnt/skills/examples/canvas-design/canvas-fonts")
-OUT = pathlib.Path(__file__).resolve().parent.parent / "src" / "fonts.css"
+# Montserrat is vendored under src/fonts (SIL Open Font License).
+LOCAL = ROOT / "src" / "fonts"
+OUT = ROOT / "src" / "fonts.css"
 
 # Latin + the Spanish diacritics, inverted marks, euro sign and the punctuation
 # the mini-sites actually set.
@@ -27,7 +30,11 @@ GLYPHS = (
 
 FACES = [
     # (file, css family, weight, style)
-    ("BigShoulders-Bold.ttf", "Shoulders", 700, "normal"),
+    ("Montserrat-500.ttf", "Montserrat", 500, "normal"),
+    ("Montserrat-500Italic.ttf", "Montserrat", 500, "italic"),
+    ("Montserrat-700.ttf", "Montserrat", 700, "normal"),
+    ("Montserrat-700Italic.ttf", "Montserrat", 700, "italic"),
+    ("Montserrat-900.ttf", "Montserrat", 900, "normal"),
     ("GeistMono-Regular.ttf", "Geist Mono", 400, "normal"),
     ("GeistMono-Bold.ttf", "Geist Mono", 700, "normal"),
     ("InstrumentSerif-Regular.ttf", "Instrument Serif", 400, "normal"),
@@ -76,7 +83,9 @@ def main() -> int:
     ]
     total = 0
     for filename, family, weight, style in FACES:
-        path = SRC / filename
+        path = LOCAL / filename
+        if not path.exists():
+            path = SRC / filename
         if not path.exists():
             print(f"  skip (missing): {filename}", file=sys.stderr)
             continue

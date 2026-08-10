@@ -2,22 +2,22 @@
 
 <style>
 /* ---------------------------------------------------------------------------
-   Preview page for the ad. The ad itself is a fixed white-and-vermilion object,
-   so the page around it stays quiet and acts as a mount: a warm paper-grey
-   ground a shade off the ad's pure white, so the frame reads as a thing sitting
-   on a surface rather than bleeding into the page.
+   Preview page for the ad. The ad is a saturated blue object, so the page
+   around it stays neutral and acts as a mount — a cool paper-grey that lets
+   the blue read as the loudest thing on screen. The page borrows the ad's own
+   blue only for small marks (rules, timecodes), never for large areas.
 --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #eceae5;
+  --bg: #eceef2;
   --surface: #ffffff;
-  --sunk: #e2dfd9;
-  --ink: #16140f;
-  --muted: #6d675d;
-  --line: rgba(22, 20, 15, 0.13);
-  --signal: #d1360f;
-  --shadow: 0 1px 2px rgba(22, 20, 15, .06), 0 12px 28px rgba(22, 20, 15, .10),
-            0 40px 70px -30px rgba(22, 20, 15, .28);
+  --sunk: #e0e3ea;
+  --ink: #101322;
+  --muted: #626878;
+  --line: rgba(16, 19, 34, 0.13);
+  --signal: #0b1bc4;
+  --shadow: 0 1px 2px rgba(16, 19, 34, .06), 0 12px 28px rgba(16, 19, 34, .10),
+            0 40px 70px -30px rgba(16, 19, 34, .30);
 }
 
 :root:not([data-theme="light"]) {
@@ -26,15 +26,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #14130f;
-    --surface: #1d1b17;
-    --sunk: #100f0c;
-    --ink: #f0ede6;
-    --muted: #9c9486;
-    --line: rgba(240, 237, 230, 0.15);
-    --signal: #ff6a42;
-    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 16px 34px rgba(0, 0, 0, .42),
-              0 50px 80px -30px rgba(0, 0, 0, .6);
+    --bg: #0e1016;
+    --surface: #181b24;
+    --sunk: #0a0c11;
+    --ink: #eceef4;
+    --muted: #8f96a8;
+    --line: rgba(236, 238, 244, 0.15);
+    --signal: #7c92ff;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 16px 34px rgba(0, 0, 0, .45),
+              0 50px 80px -30px rgba(0, 0, 0, .65);
     color-scheme: dark;
   }
 }
@@ -58,7 +58,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Work Sans', system-ui, sans-serif;
+  font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -85,17 +85,16 @@ body {
 }
 
 h1 {
-  font-family: 'Shoulders', 'Arial Narrow', sans-serif;
+  font-family: 'Montserrat', system-ui, sans-serif;
   font-weight: 700;
-  font-size: clamp(56px, 11vw, 132px);
-  line-height: 0.86;
-  letter-spacing: 0.004em;
-  text-transform: uppercase;
+  font-size: clamp(40px, 7.2vw, 82px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
   margin: 0;
   text-wrap: balance;
 }
 
-h1 em { font-style: normal; color: var(--signal); }
+h1 em { font-style: italic; font-weight: 700; color: var(--signal); }
 
 .standfirst {
   margin: 22px 0 0;
@@ -252,20 +251,22 @@ pre {
     <div class="kicker">Neris Studio · anuncio de vídeo · 12 s · 30 fps</div>
     <h1>Webs como estas,<br><em>a 299 €</em></h1>
     <p class="standfirst">
-      Hecho en HTML, sin editor de vídeo. Nueve webs pasan inclinadas sobre un
-      muro de tipografía que repite el precio, y el cierre entra como una tarjeta
-      más de la cinta. Se exporta a MP4 en los cuatro formatos que sirve Meta.
+      Hecho en HTML, sin editor de vídeo. Arranca con el precio a pantalla
+      completa, nueve webs pasan inclinadas sobre azul eléctrico, y el cierre
+      entra como una tarjeta más de la cinta. Se exporta a MP4 en los cuatro
+      formatos que sirve Meta.
     </p>
   </header>
 
   <div class="player">
     <div class="screen ad-host" id="host">
       <div id="stage">
-        <div id="marquee" aria-hidden="true"></div>
+        <div id="ground" aria-hidden="true"></div>
         <div id="conveyor" aria-hidden="true"></div>
+        <div id="hook"></div>
         <div id="offer" style="visibility:hidden"></div>
         <div class="hud tl">Neris Studio</div>
-        <div class="hud tr">Webs desde 299&thinsp;€</div>
+        <div class="hud tr">Webs desde <b>299&nbsp;€</b></div>
         <div class="hud br"></div>
       </div>
     </div>
@@ -288,14 +289,14 @@ pre {
   <section>
     <h2>Cómo está montado</h2>
     <div class="beats">
-      <div class="beat"><span class="tc">0,0 – 7,0 s</span>
-        <div><b>La prueba</b><p>Nueve webs de sectores distintos pasan por la cinta. El precio ya está en el fondo desde el primer fotograma, para quien no llegue al final.</p></div></div>
-      <div class="beat"><span class="tc">7,0 – 8,3 s</span>
+      <div class="beat"><span class="tc">0,0 – 1,3 s</span>
+        <div><b>El gancho</b><p>El precio ocupa la pantalla entera desde el fotograma cero. En un feed que se pasa con el pulgar, esto es lo único que ve mucha gente.</p></div></div>
+      <div class="beat"><span class="tc">1,3 – 7,8 s</span>
+        <div><b>La prueba</b><p>Nueve webs de sectores distintos suben por la cinta: hotel, café, pádel, clínica, restaurante, tienda, arquitectura, fotografía y sala de conciertos.</p></div></div>
+      <div class="beat"><span class="tc">7,8 – 8,9 s</span>
         <div><b>Barrido</b><p>La cinta acelera y saca las tarjetas por arriba.</p></div></div>
-      <div class="beat"><span class="tc">7,0 – 8,9 s</span>
-        <div><b>Entra la oferta</b><p>Llega como una tarjeta más, frena y se endereza hasta mirar de frente.</p></div></div>
-      <div class="beat"><span class="tc">8,9 – 12,0 s</span>
-        <div><b>Cierre</b><p>299 €, qué incluye y la llamada a la acción, en pantalla tres segundos largos.</p></div></div>
+      <div class="beat"><span class="tc">7,8 – 12,0 s</span>
+        <div><b>Cierre</b><p>La oferta llega como una tarjeta más, frena y se endereza. 299 €, qué incluye y la llamada a la acción, en pantalla casi tres segundos.</p></div></div>
     </div>
   </section>
 
@@ -326,12 +327,14 @@ npm run render -- 9x16    # solo uno</pre>
   <section>
     <h2>Antes de publicarlo</h2>
     <p class="note">
-      Las nueve webs del vídeo (Casa Bruma, Nudo, Volta, Ferra…) son
-      <b>inventadas para el anuncio</b>, y las imágenes están generadas por
-      código, no son fotos. Si prefieres enseñar trabajos reales, hay que
-      cambiarlas en <span class="inline">src/sites.js</span> y pedir permiso a
-      cada cliente. Tal y como está, el anuncio dice «hacemos webs así», que es
-      cierto, sin atribuir ninguna de ellas a un cliente concreto.
+      Las nueve webs del vídeo (Casa Bruma, Volta, Ferra…) son
+      <b>inventadas para el anuncio</b>. Las imágenes están <b>dibujadas por
+      código</b>, no son fotos: en este entorno no hay acceso a bancos de
+      imágenes, así que cada escena — la taza, la pista de pádel, el escenario,
+      el atardecer — está pintada en canvas. Se ven bien y cada web es distinta,
+      pero no son fotografías. Si quieres fotos reales o trabajos tuyos, se
+      cambian en <span class="inline">src/sites.js</span>; en el caso de
+      trabajos reales, pide permiso a cada cliente antes de enseñarlos.
     </p>
   </section>
 

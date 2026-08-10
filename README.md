@@ -1,16 +1,16 @@
 # Anuncio de vídeo — Neris Studio, webs a 299 €
 
-Anuncio para Facebook hecho **en HTML**: una cinta de webs inclinadas en 3D
-subiendo sobre un muro de tipografía gigante que repite `TU WEB / A 299 €`, y
-un cierre con la oferta. Se exporta a MP4 listo para subir a Meta.
+Anuncio para Facebook hecho **en HTML** y exportado a MP4. Arranca con el precio
+a pantalla completa, pasa nueve webs inclinadas en 3D sobre azul eléctrico, y
+cierra con la oferta, que entra como una tarjeta más de la cinta y se endereza.
 
 Duración 12 s · 30 fps · sin audio.
 
 ```
-0,0 – 7,0 s   nueve webs pasan por la cinta (la prueba)
-7,0 – 8,3 s   la cinta acelera y las saca de cuadro
-7,0 – 8,9 s   la oferta entra como una tarjeta más y se endereza
-8,9 – 12,0 s  cierre: 299 €, qué incluye y llamada a la acción
+0,0 – 1,3 s   el gancho: 299 € a pantalla completa
+1,3 – 7,8 s   nueve webs suben por la cinta (la prueba)
+7,8 – 8,9 s   la cinta acelera y las saca de cuadro
+7,8 – 12,0 s  cierre: 299 €, qué incluye y llamada a la acción
 ```
 
 ## Qué hay aquí
@@ -21,11 +21,13 @@ Duración 12 s · 30 fps · sin audio.
 | `src/ad.css` | Diseño y sistema de tokens. Arriba del todo está el plan de diseño. |
 | `src/ad.js` | La línea de tiempo. Todo es función de `t`, no hay animaciones CSS. |
 | `src/sites.js` | Las nueve webs de muestra que salen en las tarjetas. |
-| `src/art.js` | Genera las imágenes en canvas (no hay ni una imagen externa). |
+| `src/art.js` | Dibuja las imágenes en canvas (no hay ni un archivo de imagen). |
 | `src/fonts.css` | Tipografías incrustadas en base64. Generado, no editar a mano. |
+| `src/fonts/` | Montserrat en TTF (SIL Open Font License). |
 | `tools/render.mjs` | Exporta los MP4. |
 | `tools/shots.mjs` | Saca fotogramas sueltos mientras diseñas. |
-| `tools/build.py` | Empaqueta todo en un único `dist/ad.html`. |
+| `tools/build_preview.py` | Genera `dist/preview.html`, una página con reproductor. |
+| `tools/build.py` | Empaqueta el anuncio solo en un único `dist/ad.html`. |
 | `tools/build_fonts.py` | Regenera `src/fonts.css`. |
 
 ## Previsualizar
@@ -60,28 +62,46 @@ cada ejecución y no depende de lo rápido que vaya la máquina.
 
 ffmpeg se busca solo; si tienes uno concreto: `FFMPEG=/ruta/a/ffmpeg npm run render`.
 
+## Diseño
+
+- **Color.** Azul eléctrico `#0B1BC4` como fondo de todo el vídeo, con caída a
+  `#061073` en las esquinas. Blanco para las tarjetas. Un único color chillón,
+  el lima `#D6FF3D`, y se gasta entero en el precio.
+- **Tipografía.** Montserrat en todo el anuncio: 900 para el precio, 700 para
+  los titulares, 700 cursiva para las frases que venden, 500 para el texto
+  corrido. Geist Mono solo en las etiquetas pequeñas de las esquinas.
+- **Movimiento.** Una sola cinta. El gancho, las webs y la oferta van todos
+  sobre ella; la oferta es el último objeto de la cinta y por eso frena y se
+  gira en vez de aparecer de la nada.
+
 ## Cambiar cosas
 
-**El texto de la oferta** está en `buildOffer()`, dentro de `src/ad.js`.
-
-**El precio del fondo** está en `buildMarquee()`, en la constante `words`. Las
-dos líneas se justifican solas al mismo ancho, así que puedes cambiar las
-palabras sin tocar nada más.
-
-**Los tiempos** están todos juntos en el objeto `T` al principio de `src/ad.js`.
+**El texto del gancho** está en `buildHook()`, dentro de `src/ad.js`.
+**El texto de la oferta**, en `buildOffer()`, justo debajo.
+**Los tiempos**, todos juntos en el objeto `T` al principio de `src/ad.js`.
+**Los colores**, en el bloque `:root` de `src/ad.css`.
 
 **Las webs de muestra** están en `src/sites.js`, una función por web. Si añades
 o quitas alguna, la velocidad de la cinta se recalcula sola para que la última
 llegue al centro justo al acabar la parte de muestra.
 
-> Los nombres de las nueve webs (Casa Bruma, Nudo, Volta…) son inventados para
-> el anuncio. Si las cambias por trabajos reales, revisa que tengas permiso del
-> cliente para enseñarlos.
+## Dos avisos antes de publicarlo
 
-## Sobre las imágenes
+**Las webs son inventadas.** Casa Bruma, Volta, Ferra y las demás no existen;
+están hechas para el anuncio. Así el vídeo dice «hacemos webs así» sin
+atribuir ninguna a un cliente concreto. Si las cambias por trabajos reales,
+pide permiso a cada cliente antes de enseñarlos.
 
-No hay ninguna imagen externa: todas se pintan con canvas a partir de una
-semilla fija. Eso mantiene el repo ligero, evita problemas de derechos de las
-fotos de stock y hace que el render funcione sin conexión. Son texturas
-abstractas, no fotos de personas — si quieres fotos reales en las webs de
-muestra, habría que meter archivos y volver a mirar el peso del HTML.
+**Las imágenes están dibujadas por código, no son fotos.** En el entorno donde
+se construyó esto no hay acceso a bancos de imágenes, así que cada escena —la
+taza de café, la pista de pádel, el escenario, el atardecer— está pintada en
+canvas con `src/art.js`. Quedan bien y hacen que cada web se distinga, pero son
+ilustraciones. Si quieres fotografías de verdad, hay que meter archivos en el
+proyecto y sustituir las llamadas a `ART.bg(...)` en `src/sites.js` por rutas a
+esas fotos, con su licencia comprobada.
+
+## Tipografías
+
+Montserrat (`src/fonts/`) se distribuye bajo la SIL Open Font License 1.1, que
+permite uso comercial. El resto de familias que usan las webs de muestra
+(Work Sans, Outfit, Lora, Instrument Serif, Geist Mono) también son OFL.

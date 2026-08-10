@@ -3,20 +3,18 @@
 
    Design plan
    -----------
-   Colour   paper #FFFFFF · ink #0A0A0A · signal #FF2E00 · ash #6E6A66 ·
-            hairline rgba(10,10,10,.10). One accent only, and it is spent
-            entirely on the price — which is the whole point of the ad.
-   Type     Big Shoulders Bold for the display field (an ultra-condensed
-            grotesque that can be set at 30% of the frame width and still fit
-            a whole word), Geist Mono for the pinned micro-labels, and a
-            different pairing inside every mock site so the nine cards read as
-            nine clients rather than one template.
-   Layout   Two planes. Behind: a justified wall of display type scrolling up,
-            reading TU WEB / A 299 € down the frame, cropped at both edges.
-            In front: a conveyor of site cards on a shared 3D tilt, travelling
-            bottom-to-top and overlapping heavily. The offer arrives as one
-            more card on that same conveyor, then straightens to face the
-            viewer — the pitch becomes the last thing on the belt.
+   Colour   ground #0B1BC4 (electric blue) falling off to #061073 at the
+            corners · paper #FFFFFF · ink #0A0D1F · lime #D6FF3D for the price
+            alone. The blue is the whole frame, not an accent: in a feed of
+            white cards a saturated blue block is what stops the thumb. The
+            lime is the single loud note and it is spent on the number.
+   Type     Montserrat throughout — 900 for the hook and the price, 700 for
+            headings, 700 italic for the phrases that do the selling, 500 for
+            running text. Geist Mono only for the pinned micro-labels.
+   Layout   Three beats on one plane. A hook card that owns the first second,
+            a conveyor of site cards on a shared 3D tilt travelling bottom to
+            top over the blue, and the offer arriving as one last card on that
+            same belt before it straightens to face the viewer.
 
    The piece is a single deterministic timeline: nothing animates on its own,
    every frame is a pure function of `t`. That is what lets tools/render.mjs
@@ -27,16 +25,16 @@
 
 :root {
   --paper: #ffffff;
-  --ink: #0a0a0a;
-  --signal: #ff2e00;
-  --ash: #6e6a66;
-  --hairline: rgba(10, 10, 10, 0.10);
+  --ink: #0a0d1f;
+  --blue: #0b1bc4;
+  --blue-deep: #061073;
+  --blue-lift: #2f4dff;
+  --lime: #d6ff3d;
 
   /* Overwritten by the format the page is loaded with. */
   --W: 1080px;
-  --H: 1440px;
-  /* Sizing unit for the offer plate — see #offer. */
-  --u: 1080px;
+  --H: 1350px;
+  --u: 1012px;
 }
 
 /* --- the frame ----------------------------------------------------------
@@ -57,40 +55,24 @@
   left: 0;
   width: var(--W);
   height: var(--H);
-  background: var(--paper);
   overflow: hidden;
   transform-origin: 0 0;
   isolation: isolate;
-  font-family: 'Work Sans', system-ui, sans-serif;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  background: var(--blue);
 }
 
-/* --- display type field ------------------------------------------------- */
-
-#marquee {
+/* Corner falloff keeps a flat fill from reading as a colour swatch, and gives
+   the white cards something to separate from. */
+#ground {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  will-change: transform;
+  z-index: 0;
+  background:
+    radial-gradient(120% 80% at 22% 10%, var(--blue-lift) 0%, rgba(47, 77, 255, 0) 58%),
+    radial-gradient(120% 90% at 82% 96%, var(--blue-deep) 0%, rgba(6, 16, 115, 0) 62%),
+    var(--blue);
 }
-
-#marquee .line {
-  /* Each line is optically justified to the same over-width by a per-line
-     letter-spacing measured at init, so both words bleed off the same edges
-     despite having different character counts. `width: max-content` plus auto
-     margins lets the overflow spill evenly past both edges. */
-  display: block;
-  width: max-content;
-  margin: 0 auto;
-  font-family: 'Shoulders', 'Arial Narrow', sans-serif;
-  font-weight: 700;
-  font-size: var(--type);
-  line-height: 0.80;
-  white-space: nowrap;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-#marquee .line.price { color: var(--signal); }
 
 /* --- conveyor ----------------------------------------------------------- */
 
@@ -111,20 +93,20 @@
   overflow: hidden;
   background: #fff;
   will-change: transform;
+  /* Tuned for the blue ground, not for white: a neutral grey shadow over
+     saturated blue goes muddy, so these are blue-black. */
   box-shadow:
-    0 2px 4px rgba(12, 10, 8, 0.05),
-    0 18px 32px rgba(12, 10, 8, 0.10),
-    0 64px 96px -24px rgba(12, 10, 8, 0.32);
+    0 2px 4px rgba(3, 8, 46, 0.22),
+    0 20px 36px rgba(3, 8, 46, 0.30),
+    0 70px 100px -26px rgba(2, 5, 32, 0.55);
 }
 
-/* Hairline that survives on both light and dark mock sites. */
 .ad-card::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 16px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10),
-              inset 0 0 0 1px var(--hairline);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
   pointer-events: none;
 }
 
@@ -138,64 +120,105 @@
   overflow: hidden;
 }
 
+/* --- the hook ------------------------------------------------------------
+   Autoplay in a feed means frame 0 has to carry the whole offer on its own.
+   This sits full-bleed for the first beat and then leaves upward with the
+   belt, so it reads as the first thing on the conveyor rather than a title
+   card bolted to the front. */
+
+#hook {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(var(--u) * 0.022);
+  padding: 0 calc(var(--u) * 0.075);
+  color: var(--paper);
+  will-change: transform;
+}
+
+#hook .l1 {
+  font-weight: 700;
+  font-size: calc(var(--u) * 0.070);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+#hook .l1 span { display: block; }
+#hook .l1 i { font-style: italic; }
+
+#hook .amount {
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.295);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  color: var(--lime);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+#hook .rule {
+  height: calc(var(--u) * 0.007);
+  background: var(--lime);
+  width: 100%;
+  transform-origin: 0 50%;
+}
+
+#hook .l3 {
+  font-weight: 500;
+  font-size: calc(var(--u) * 0.034);
+  line-height: 1.35;
+  max-width: 22ch;
+  opacity: 0.94;
+}
+
+#hook .l3 b { font-weight: 700; }
+
 /* --- pinned micro-labels ------------------------------------------------ */
 
-/* Pinned above the conveyor, so they cross both white and near-black cards.
-   Difference blending against white resolves to ink on paper and to paper on
-   ink, which keeps them readable everywhere without a plate behind them. */
 .hud {
   position: absolute;
-  z-index: 4;
+  z-index: 5;
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-size: calc(var(--W) * 0.0135);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #ffffff;
-  mix-blend-mode: difference;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 6px rgba(2, 5, 32, 0.55);
 }
 
-.hud.tl { top: calc(var(--W) * 0.022); left: calc(var(--W) * 0.026); }
-.hud.tr { top: calc(var(--W) * 0.022); right: calc(var(--W) * 0.026); }
+.hud.tl { top: calc(var(--W) * 0.024); left: calc(var(--W) * 0.028); }
+.hud.tr { top: calc(var(--W) * 0.024); right: calc(var(--W) * 0.028); }
+.hud.tr b { color: var(--lime); font-weight: 700; }
 .hud.br {
-  bottom: calc(var(--W) * 0.022);
-  right: calc(var(--W) * 0.026);
-  color: #9a9a9a;
+  bottom: calc(var(--W) * 0.024);
+  right: calc(var(--W) * 0.028);
+  color: rgba(255, 255, 255, 0.74);
   font-variant-numeric: tabular-nums;
 }
 
-/* One inverting label, no local accent: whatever passes behind it — paper,
-   a near-black card, or a vermilion glyph — it comes back as that colour's
-   opposite. Adding a second rule here would break that logic. */
+/* --- the offer, riding the same conveyor --------------------------------
+   Sized off `--u`, not `--W`: a 1:1 frame is as wide as a 9:16 one but has
+   barely half the height, so type scaled purely off width would push the
+   offer past the top and bottom edges. `--u` is min(W, H * 0.75). */
 
-/* --- the offer, riding the same conveyor -------------------------------- */
-
-/* The plate is sized off `--u`, not `--W`: a 1:1 frame is as wide as a 9:16
-   one but has barely half the height, so type scaled purely off width would
-   push the offer past the top and bottom edges. `--u` is set in JS to
-   min(W, H * 0.75) and keeps the whole lockup inside every placement. */
 #offer {
   position: absolute;
   top: 0;
   left: 50%;
-  z-index: 3;
-  width: calc(var(--W) * 0.855);
+  z-index: 4;
+  width: calc(var(--W) * 0.865);
   border-radius: 18px;
   background: var(--paper);
+  color: var(--ink);
   will-change: transform;
   box-shadow:
-    0 2px 4px rgba(12, 10, 8, 0.05),
-    0 20px 36px rgba(12, 10, 8, 0.12),
-    0 72px 110px -26px rgba(12, 10, 8, 0.38);
-  padding: calc(var(--u) * 0.058) calc(var(--u) * 0.055) calc(var(--u) * 0.050);
-}
-
-#offer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  box-shadow: inset 0 0 0 1px var(--hairline);
-  pointer-events: none;
+    0 2px 4px rgba(3, 8, 46, 0.22),
+    0 24px 44px rgba(3, 8, 46, 0.32),
+    0 80px 120px -26px rgba(2, 5, 32, 0.6);
+  padding: calc(var(--u) * 0.056) calc(var(--u) * 0.054) calc(var(--u) * 0.048);
 }
 
 #offer .eyebrow {
@@ -203,29 +226,30 @@
   font-size: calc(var(--u) * 0.0150);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ash);
-  margin-bottom: calc(var(--u) * 0.028);
+  color: var(--blue);
+  margin-bottom: calc(var(--u) * 0.026);
 }
 
 #offer h2 {
   margin: 0;
-  font-family: 'Shoulders', 'Arial Narrow', sans-serif;
   font-weight: 700;
-  font-size: calc(var(--u) * 0.108);
-  /* Big Shoulders sets its acute accents high; anything under ~0.86 and the
-     Í in DÍAS collides with the line above. */
-  line-height: 0.88;
-  letter-spacing: 0.004em;
-  text-transform: uppercase;
-  color: var(--ink);
+  font-size: calc(var(--u) * 0.068);
+  line-height: 1.08;
+  letter-spacing: -0.032em;
 }
 
-#offer h2 span { display: block; }
+/* Bold and italic played against each other: the italic carries the phrase
+   that sells, the roman carries the fact. */
+#offer h2 i {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--blue);
+}
 
 #offer .rule {
-  height: 2px;
-  background: var(--ink);
-  margin: calc(var(--u) * 0.038) 0 calc(var(--u) * 0.030);
+  height: 3px;
+  background: var(--blue);
+  margin: calc(var(--u) * 0.032) 0 calc(var(--u) * 0.026);
   transform-origin: 0 50%;
 }
 
@@ -237,11 +261,11 @@
 }
 
 #offer .amount {
-  font-family: 'Shoulders', 'Arial Narrow', sans-serif;
-  font-weight: 700;
-  font-size: calc(var(--u) * 0.195);
-  line-height: 0.80;
-  color: var(--signal);
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.180);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  color: var(--blue);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -250,53 +274,56 @@
   text-align: right;
   font-size: calc(var(--u) * 0.0210);
   line-height: 1.45;
-  color: var(--ash);
+  font-weight: 500;
+  color: #5b6072;
   padding-bottom: calc(var(--u) * 0.014);
-  text-wrap: balance;
 }
 
 #offer .terms b { color: var(--ink); font-weight: 700; }
+#offer .terms i { font-style: italic; font-weight: 700; color: var(--ink); }
 
 #offer ul {
   list-style: none;
-  margin: calc(var(--u) * 0.036) 0 0;
+  margin: calc(var(--u) * 0.032) 0 0;
   padding: 0;
   display: grid;
-  gap: calc(var(--u) * 0.015);
+  gap: calc(var(--u) * 0.013);
 }
 
 #offer li {
   display: grid;
-  grid-template-columns: calc(var(--u) * 0.028) 1fr;
+  grid-template-columns: calc(var(--u) * 0.024) 1fr;
   align-items: baseline;
   gap: calc(var(--u) * 0.013);
-  font-size: calc(var(--u) * 0.0235);
+  font-size: calc(var(--u) * 0.0240);
+  font-weight: 500;
   line-height: 1.35;
-  color: var(--ink);
 }
 
-#offer li i {
+#offer li i:first-child {
   font-style: normal;
-  color: var(--signal);
-  font-weight: 700;
+  color: var(--blue);
+  font-weight: 900;
 }
+
+#offer li b { font-weight: 700; }
+#offer li em { font-style: italic; font-weight: 700; }
 
 #offer .cta {
-  margin-top: calc(var(--u) * 0.040);
+  margin-top: calc(var(--u) * 0.036);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: calc(var(--u) * 0.02);
-  background: var(--ink);
+  background: var(--blue);
   color: var(--paper);
   border-radius: 999px;
   padding: calc(var(--u) * 0.026) calc(var(--u) * 0.036);
-  font-size: calc(var(--u) * 0.0275);
+  font-size: calc(var(--u) * 0.0280);
   font-weight: 700;
-  letter-spacing: 0.01em;
 }
 
-#offer .cta .arrow { color: var(--signal); }
+#offer .cta .arrow { color: var(--lime); font-weight: 900; }
 
 /* Staggered reveal inside the plate; driven from JS, not CSS animation, so it
    stays on the deterministic timeline. */

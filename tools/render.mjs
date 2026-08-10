@@ -68,7 +68,7 @@ async function renderFormat(browser, key) {
   const total = Math.round(duration * FPS);
   const stage = page.locator('#stage');
 
-  process.stdout.write(`  ${key} ${fmt.w}x${fmt.h} — ${total} frames `);
+  console.log(`  ${key} ${fmt.w}x${fmt.h} — capturing ${total} frames`);
 
   for (let i = 0; i < total; i++) {
     await page.evaluate((t) => window.__AD__.seek(t), i / FPS);
@@ -76,7 +76,7 @@ async function renderFormat(browser, key) {
       path: path.join(frameDir, String(i).padStart(4, '0') + '.png'),
       animations: 'disabled',
     });
-    if (i % 45 === 0) process.stdout.write('.');
+    if (i && i % 120 === 0) console.log(`  ${key} — ${i}/${total}`);
   }
   await page.close();
 
