@@ -13,8 +13,9 @@ el footer y los formularios; está resuelto en la guía de montaje.
 | Hoja de estilos del diseño (`blomstra.css`) | Portal, servicios y detalle |
 | Prototipo del portal | Listo y verificado contra el diseño |
 | Prototipo de servicios | Listo y verificado contra el diseño |
+| Prototipo de la home | Listo, 14 secciones con el copy real |
 | Plantilla de Elementor del portal | Generada |
-| Home | Contenido inventariado; **sin maquetar** |
+| Plantilla de Elementor de la home | **Pendiente** |
 | Formularios y cuestionario | **Sin maquetar** |
 | Imágenes y logotipos reales | **Faltan** |
 
