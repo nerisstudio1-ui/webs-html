@@ -10,28 +10,34 @@ el footer y los formularios; está resuelto en la guía de montaje.
 |---|---|
 | Tema hijo de Hello Elementor | Listo |
 | Paleta y tipografía del diseño → kit de Elementor | Listo |
-| Hoja de estilos del diseño (`blomstra.css`) | Portal, servicios y detalle |
+| Plantillas con widgets nativos (0 widgets HTML) | Portal y home |
 | Prototipo del portal | Listo y verificado contra el diseño |
 | Prototipo de servicios | Listo y verificado contra el diseño |
 | Prototipo de la home | Listo, 14 secciones con el copy real |
-| Plantilla de Elementor del portal | Generada |
-| Plantilla de Elementor de la home | **Pendiente** |
+| Plantilla de Elementor de la página de servicios | **Pendiente** |
 | Formularios y cuestionario | **Sin maquetar** |
 | Imágenes y logotipos reales | **Faltan** |
 
 ## Cómo está montado
 
-El diseño **no** vive en los ajustes de Elementor, sino en un CSS versionado:
+**Todo con widgets nativos de Elementor**, y los estilos puestos en los
+controles del editor. Las plantillas no llevan ni un widget HTML: textos,
+colores, tipografías y espaciados se cambian desde Elementor sin tocar código.
 
-```
-Elementor  →  estructura (contenedores flex) + una clase CSS por elemento
-blomstra.css  →  todo lo visual
-```
+En el CSS del tema hijo queda solo lo que Elementor no sabe hacer, y cada
+bloque de `blomstra.css` explica por qué está ahí:
 
-Se hace así por tres razones: no depende de controles de estilo que son de
-Elementor Pro, el diseño queda en git en vez de dentro de la base de datos, y
-los prototipos de `prototype/` enlazan ese mismo CSS, así que no pueden
-desincronizarse del sitio real.
+| Qué | Por qué no puede ir en Elementor |
+|---|---|
+| Proporciones de los huecos de imagen | Elementor solo da altura fija, no proporción |
+| Reparto a partes iguales en una fila | Evita tener que marcarlo hijo a hijo |
+| Rayas del manifiesto | Es un degradado repetido, no un fondo de los que admite |
+| Wordmark del pie | Va a sangre y no debe partirse en dos líneas |
+| Tema invertido del portal en móvil | Son dos temas del mismo bloque, no un ajuste responsive |
+
+Los HTML de `prototype/` **no son la entrega**: son la referencia visual con la
+que se contrastó el diseño contra el Figma antes de montarlo. Tienen su propia
+hoja de estilos en `prototype/assets/`.
 
 ## Estructura
 

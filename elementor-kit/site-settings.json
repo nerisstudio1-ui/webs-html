@@ -1,36 +1,112 @@
 {
   "settings": {
     "template": "elementor_canvas",
-    "container_width": { "unit": "px", "size": 1600, "sizes": [] },
-    "space_between_widgets": { "unit": "px", "size": 0, "sizes": [] },
+    "container_width": {
+      "unit": "px",
+      "size": 1180,
+      "sizes": []
+    },
+    "space_between_widgets": {
+      "unit": "px",
+      "size": 0,
+      "sizes": []
+    },
     "viewport_mobile": 767,
     "viewport_tablet": 1024,
-
     "system_colors": [
-      { "_id": "primary",   "title": "Ink",            "color": "#221C18" },
-      { "_id": "secondary", "title": "Terracotta",     "color": "#8B5C3D" },
-      { "_id": "text",      "title": "Ink",            "color": "#221C18" },
-      { "_id": "accent",    "title": "Natural Cotton", "color": "#D7CBB5" }
+      {
+        "_id": "primary",
+        "title": "Ink",
+        "color": "#221C18"
+      },
+      {
+        "_id": "secondary",
+        "title": "Terracotta",
+        "color": "#8B5C3D"
+      },
+      {
+        "_id": "text",
+        "title": "Ink",
+        "color": "#221C18"
+      },
+      {
+        "_id": "accent",
+        "title": "Natural Cotton",
+        "color": "#D7CBB5"
+      }
     ],
-
     "custom_colors": [
-      { "_id": "bl_antique", "title": "Antique",        "color": "#FAF3ED" },
-      { "_id": "bl_cotton",  "title": "Natural Cotton", "color": "#D7CBB5" },
-      { "_id": "bl_bone",    "title": "Bone",           "color": "#EFE9D8" },
-      { "_id": "bl_sage",    "title": "Dusky Green",    "color": "#A6A89A" },
-      { "_id": "bl_terra",   "title": "Terracotta",     "color": "#8B5C3D" },
-      { "_id": "bl_olive",   "title": "Olive",          "color": "#8A6B35" },
-      { "_id": "bl_esp",     "title": "Espresso",       "color": "#33261C" },
-      { "_id": "bl_white",   "title": "Blanco",         "color": "#FFFFFF" },
-
-      { "_id": "bl_mousse",  "title": "Vert mousse",    "color": "#796D3E" },
-      { "_id": "bl_sable",   "title": "Sable chaud",    "color": "#F4E4B8" },
-      { "_id": "bl_cuivree", "title": "Terre cuivrée",  "color": "#80562C" },
-      { "_id": "bl_verteau", "title": "Vert d'eau",     "color": "#D0D5BD" },
-      { "_id": "bl_ancre",   "title": "Marron ancré",   "color": "#523719" },
-      { "_id": "bl_horizon", "title": "Bleu horizon",   "color": "#C0C5D9" }
+      {
+        "_id": "bl_antique",
+        "title": "Antique",
+        "color": "#FAF3ED"
+      },
+      {
+        "_id": "bl_cotton",
+        "title": "Natural Cotton",
+        "color": "#D7CBB5"
+      },
+      {
+        "_id": "bl_bone",
+        "title": "Bone",
+        "color": "#EFE9D8"
+      },
+      {
+        "_id": "bl_sage",
+        "title": "Dusky Green",
+        "color": "#A6A89A"
+      },
+      {
+        "_id": "bl_terra",
+        "title": "Terracotta",
+        "color": "#8B5C3D"
+      },
+      {
+        "_id": "bl_olive",
+        "title": "Olive",
+        "color": "#8A6B35"
+      },
+      {
+        "_id": "bl_esp",
+        "title": "Espresso",
+        "color": "#33261C"
+      },
+      {
+        "_id": "bl_white",
+        "title": "Blanco",
+        "color": "#FFFFFF"
+      },
+      {
+        "_id": "bl_mousse",
+        "title": "Vert mousse",
+        "color": "#796D3E"
+      },
+      {
+        "_id": "bl_sable",
+        "title": "Sable chaud",
+        "color": "#F4E4B8"
+      },
+      {
+        "_id": "bl_cuivree",
+        "title": "Terre cuivrée",
+        "color": "#80562C"
+      },
+      {
+        "_id": "bl_verteau",
+        "title": "Vert d'eau",
+        "color": "#D0D5BD"
+      },
+      {
+        "_id": "bl_ancre",
+        "title": "Marron ancré",
+        "color": "#523719"
+      },
+      {
+        "_id": "bl_horizon",
+        "title": "Bleu horizon",
+        "color": "#C0C5D9"
+      }
     ],
-
     "system_typography": [
       {
         "_id": "primary",
@@ -38,10 +114,26 @@
         "typography_typography": "custom",
         "typography_font_family": "Playfair Display",
         "typography_font_weight": "400",
-        "typography_font_size": { "unit": "px", "size": 56, "sizes": [] },
-        "typography_font_size_tablet": { "unit": "px", "size": 40, "sizes": [] },
-        "typography_font_size_mobile": { "unit": "px", "size": 32, "sizes": [] },
-        "typography_line_height": { "unit": "em", "size": 1.1, "sizes": [] }
+        "typography_font_size": {
+          "unit": "px",
+          "size": 56,
+          "sizes": []
+        },
+        "typography_font_size_tablet": {
+          "unit": "px",
+          "size": 40,
+          "sizes": []
+        },
+        "typography_font_size_mobile": {
+          "unit": "px",
+          "size": 32,
+          "sizes": []
+        },
+        "typography_line_height": {
+          "unit": "em",
+          "size": 1.1,
+          "sizes": []
+        }
       },
       {
         "_id": "secondary",
@@ -49,9 +141,21 @@
         "typography_typography": "custom",
         "typography_font_family": "Pinyon Script",
         "typography_font_weight": "400",
-        "typography_font_size": { "unit": "px", "size": 40, "sizes": [] },
-        "typography_font_size_mobile": { "unit": "px", "size": 29, "sizes": [] },
-        "typography_line_height": { "unit": "em", "size": 1, "sizes": [] }
+        "typography_font_size": {
+          "unit": "px",
+          "size": 40,
+          "sizes": []
+        },
+        "typography_font_size_mobile": {
+          "unit": "px",
+          "size": 29,
+          "sizes": []
+        },
+        "typography_line_height": {
+          "unit": "em",
+          "size": 1,
+          "sizes": []
+        }
       },
       {
         "_id": "text",
@@ -59,9 +163,21 @@
         "typography_typography": "custom",
         "typography_font_family": "Montserrat",
         "typography_font_weight": "400",
-        "typography_font_size": { "unit": "px", "size": 19, "sizes": [] },
-        "typography_font_size_mobile": { "unit": "px", "size": 17, "sizes": [] },
-        "typography_line_height": { "unit": "em", "size": 1.55, "sizes": [] }
+        "typography_font_size": {
+          "unit": "px",
+          "size": 19,
+          "sizes": []
+        },
+        "typography_font_size_mobile": {
+          "unit": "px",
+          "size": 17,
+          "sizes": []
+        },
+        "typography_line_height": {
+          "unit": "em",
+          "size": 1.55,
+          "sizes": []
+        }
       },
       {
         "_id": "accent",
@@ -69,47 +185,94 @@
         "typography_typography": "custom",
         "typography_font_family": "Montserrat",
         "typography_font_weight": "400",
-        "typography_font_size": { "unit": "px", "size": 16, "sizes": [] },
-        "typography_letter_spacing": { "unit": "px", "size": 1.3, "sizes": [] },
+        "typography_font_size": {
+          "unit": "px",
+          "size": 16,
+          "sizes": []
+        },
+        "typography_letter_spacing": {
+          "unit": "px",
+          "size": 1.3,
+          "sizes": []
+        },
         "typography_text_transform": "uppercase"
       }
     ],
-
     "custom_typography": [],
-
     "body_typography_typography": "custom",
     "body_typography_font_family": "Montserrat",
-    "body_typography_font_size": { "unit": "px", "size": 19, "sizes": [] },
-    "body_typography_line_height": { "unit": "em", "size": 1.55, "sizes": [] },
+    "body_typography_font_size": {
+      "unit": "px",
+      "size": 19,
+      "sizes": []
+    },
+    "body_typography_line_height": {
+      "unit": "em",
+      "size": 1.55,
+      "sizes": []
+    },
     "body_color": "#221C18",
-
     "h1_typography_typography": "custom",
     "h1_typography_font_family": "Playfair Display",
     "h1_typography_font_weight": "400",
-    "h1_typography_font_size": { "unit": "px", "size": 56, "sizes": [] },
+    "h1_typography_font_size": {
+      "unit": "px",
+      "size": 56,
+      "sizes": []
+    },
     "h1_color": "#221C18",
-
     "h2_typography_typography": "custom",
     "h2_typography_font_family": "Playfair Display",
     "h2_typography_font_weight": "400",
-    "h2_typography_font_size": { "unit": "px", "size": 42, "sizes": [] },
+    "h2_typography_font_size": {
+      "unit": "px",
+      "size": 42,
+      "sizes": []
+    },
     "h2_color": "#221C18",
-
     "button_typography_typography": "custom",
     "button_typography_font_family": "Montserrat",
     "button_typography_font_weight": "500",
-    "button_typography_font_size": { "unit": "px", "size": 14, "sizes": [] },
-    "button_typography_letter_spacing": { "unit": "px", "size": 1.4, "sizes": [] },
+    "button_typography_font_size": {
+      "unit": "px",
+      "size": 14,
+      "sizes": []
+    },
+    "button_typography_letter_spacing": {
+      "unit": "px",
+      "size": 1.4,
+      "sizes": []
+    },
     "button_text_color": "#FFFFFF",
     "button_background_color": "#00000000",
     "button_border_border": "solid",
-    "button_border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1", "isLinked": true },
+    "button_border_width": {
+      "unit": "px",
+      "top": "1",
+      "right": "1",
+      "bottom": "1",
+      "left": "1",
+      "isLinked": true
+    },
     "button_border_color": "#FFFFFF",
-    "button_border_radius": { "unit": "px", "top": "999", "right": "999", "bottom": "999", "left": "999", "isLinked": true },
-    "button_padding": { "unit": "px", "top": "17", "right": "26", "bottom": "17", "left": "26", "isLinked": false },
+    "button_border_radius": {
+      "unit": "px",
+      "top": "999",
+      "right": "999",
+      "bottom": "999",
+      "left": "999",
+      "isLinked": true
+    },
+    "button_padding": {
+      "unit": "px",
+      "top": "17",
+      "right": "26",
+      "bottom": "17",
+      "left": "26",
+      "isLinked": false
+    },
     "button_hover_text_color": "#221C18",
     "button_background_hover_color": "#FFFFFF",
-
     "link_normal_color": "#221C18",
     "link_hover_color": "#8B5C3D"
   }
