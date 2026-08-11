@@ -5,17 +5,23 @@ Elementor.
 
 ## Estado
 
+Va con **Elementor gratuito**, sin Pro. Eso condiciona el header, el footer y
+los formularios; está resuelto en la guía de montaje.
+
 | Pieza | Estado |
 |---|---|
 | Tema hijo de Hello Elementor | Listo |
 | Kit de Elementor (estructura + empaquetado) | Listo, **con valores placeholder** |
-| Paleta y tipografía reales del diseño | **Bloqueado** — falta el export de Figma |
-| Maquetado de header, footer y páginas | **Bloqueado** — falta el export de Figma |
+| Ruta de montaje sin Elementor Pro | Resuelta y documentada |
+| Paleta y tipografía reales del diseño | **Bloqueado** — faltan los frames |
+| Maquetado de header, footer y páginas | **Bloqueado** — faltan los frames |
 
 **Por qué está bloqueado:** este entorno no tiene acceso de red a `figma.com`
 ni a `api.figma.com` (403 del proxy de egreso). El enlace al archivo no se puede
-abrir desde aquí. En [`docs/INTAKE-DISENO.md`](docs/INTAKE-DISENO.md) están las
-tres formas de hacerme llegar el diseño.
+abrir desde aquí, así que el diseño tiene que llegar como imágenes exportadas.
+La captura del canvas completo recibida hasta ahora sirve para entender la
+arquitectura, pero no tiene resolución para leer textos ni medir nada.
+En [`docs/INTAKE-DISENO.md`](docs/INTAKE-DISENO.md) está qué hace falta.
 
 ## Estructura
 

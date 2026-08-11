@@ -25,14 +25,18 @@ function blomstra_child_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'blomstra_child_enqueue_styles', 20 );
 
 /**
- * Declara soporte para las funciones de tema que usa Elementor Pro
- * (header/footer/single builder) y para los formatos habituales.
+ * Soportes de tema.
+ *
+ * 'header-footer-elementor' le dice al plugin Elementor Header & Footer Builder
+ * que puede sustituir el header y el footer de este tema. Es lo que usamos en
+ * lugar del Theme Builder, porque el proyecto va con Elementor gratuito.
  */
 function blomstra_child_setup() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script' ) );
 	add_theme_support( 'custom-logo' );
+	add_theme_support( 'header-footer-elementor' );
 }
 add_action( 'after_setup_theme', 'blomstra_child_setup' );
 
