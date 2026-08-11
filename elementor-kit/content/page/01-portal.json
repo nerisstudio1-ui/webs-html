@@ -233,8 +233,8 @@
           "elType": "widget",
           "widgetType": "html",
           "settings": {
-            "html": "<a href=\"#\">CONTACT US</a><a href=\"#\">BEHIND BLOMSTRA</a><a href=\"#\">NEWSLETTER</a>",
-            "_css_classes": "bl-portal__footer"
+            "html": "<footer class=\"bl-portal__footer\"><a href=\"#\">CONTACT US</a><a href=\"#\">BEHIND BLOMSTRA</a><a href=\"#\">NEWSLETTER</a></footer>",
+            "_css_classes": ""
           },
           "elements": []
         }

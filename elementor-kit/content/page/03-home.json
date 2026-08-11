@@ -1,0 +1,1296 @@
+{
+  "version": "0.4",
+  "title": "Blomstra — Home",
+  "type": "page",
+  "content": [
+    {
+      "id": "bl00075",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "container_type": "flex",
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+          "unit": "px",
+          "size": 0,
+          "column": "0",
+          "row": "0"
+        },
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_css_classes": "bl-home"
+      },
+      "elements": [
+        {
+          "id": "bl00001",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"bl-announce\">Texto de la barra de aviso pendiente</div>",
+            "_css_classes": ""
+          },
+          "elements": []
+        },
+        {
+          "id": "bl00005",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "row",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-header"
+          },
+          "elements": [
+            {
+              "id": "bl00002",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<button class=\"bl-burger\" type=\"button\" aria-label=\"Abrir menú\" aria-expanded=\"false\"><span></span><span></span><span></span></button>",
+                "_css_classes": ""
+              },
+              "elements": []
+            },
+            {
+              "id": "bl00003",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<a class=\"bl-brand\" href=\"/\"><span class=\"bl-brand__kicker\">This is</span><span class=\"bl-brand__name\">BLOMSTRA</span></a>",
+                "_css_classes": ""
+              },
+              "elements": []
+            },
+            {
+              "id": "bl00004",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div class=\"bl-tools\"><a class=\"bl-lang\" href=\"#\">EN<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></a><a class=\"bl-btn-ghost\" href=\"#\">WHATS</a></div>",
+                "_css_classes": ""
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "bl00006",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"bl-hero\">\n  <div class=\"bl-hero__media\" role=\"img\" aria-label=\"Fotografía de plató\"></div>\n  <a class=\"bl-hero__pill\" href=\"#universo\">WELCOME TO OUR UNIVERSE</a>\n</div>",
+            "_css_classes": ""
+          },
+          "elements": []
+        },
+        {
+          "id": "bl00012",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-section bl-section--cream"
+          },
+          "elements": [
+            {
+              "id": "bl00011",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-container bl-container--narrow bl-center"
+              },
+              "elements": [
+                {
+                  "id": "bl00007",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Romantiza tu vida.",
+                    "header_size": "h1",
+                    "_css_classes": "bl-script bl-center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00008",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Diseña un universo que se pueda ver, contar y vivir.",
+                    "header_size": "h2",
+                    "_css_classes": "bl-display bl-center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00009",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Blomstra es un <strong>estudio creativo</strong> donde transformamos ideas, proyectos y momentos importantes en <strong>universos estéticos con narrativa propia</strong>.</p><p>Algunos toman forma de marca. Otros se convierten en experiencias. Creemos que cuando algo se diseña con intención, la vida también puede romantizarse.</p>",
+                    "_css_classes": "bl-lead bl-center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00010",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "settings": {
+                    "text": "entrar en el universo",
+                    "link": {
+                      "url": "#",
+                      "is_external": "",
+                      "nofollow": ""
+                    },
+                    "_css_classes": "bl-btn-el"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00016",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-section bl-section--cream bl-section--tight"
+          },
+          "elements": [
+            {
+              "id": "bl00015",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-container"
+              },
+              "elements": [
+                {
+                  "id": "bl00013",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<div class=\"bl-collage\">\n  <p class=\"bl-collage__label\">Narrativas<br>que conectan</p>\n  <div class=\"bl-collage__img bl-collage__img--b\"></div>\n  <p class=\"bl-collage__label\">Marcas con<br>identidad clara</p>\n  <div class=\"bl-collage__img bl-collage__img--a\"></div>\n  <p class=\"bl-collage__label\">Experiencias<br>que se recuerdan</p>\n  <div class=\"bl-collage__img bl-collage__img--c\"></div>\n</div>",
+                    "_css_classes": ""
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00014",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Aquí no creemos en marcas vacías ni en eventos sin alma. Creemos en universos con intención.</p><p>Por eso trabajamos con proyectos que quieren ir más allá de lo funcional, proyectos que buscan construir algo con <strong>presencia, belleza y significado</strong>.</p>",
+                    "_css_classes": "bl-lead bl-center"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00017",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"bl-ticker\"><span>Diseño</span><span>Dirección de arte</span><span>Branding</span></div>",
+            "_css_classes": ""
+          },
+          "elements": []
+        },
+        {
+          "id": "bl00033",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-section bl-section--dark"
+          },
+          "elements": [
+            {
+              "id": "bl00032",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-container"
+              },
+              "elements": [
+                {
+                  "id": "bl00018",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Dos formas de habitar Blomstra",
+                    "header_size": "h2",
+                    "_css_classes": "bl-heading-lg bl-center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00031",
+                  "elType": "container",
+                  "isInner": false,
+                  "settings": {
+                    "container_type": "flex",
+                    "content_width": "full",
+                    "flex_direction": "row",
+                    "flex_gap": {
+                      "unit": "px",
+                      "size": 0,
+                      "column": "0",
+                      "row": "0"
+                    },
+                    "padding": {
+                      "unit": "px",
+                      "top": "0",
+                      "right": "0",
+                      "bottom": "0",
+                      "left": "0",
+                      "isLinked": true
+                    },
+                    "_css_classes": "bl-duo"
+                  },
+                  "elements": [
+                    {
+                      "id": "bl00024",
+                      "elType": "container",
+                      "isInner": false,
+                      "settings": {
+                        "container_type": "flex",
+                        "content_width": "full",
+                        "flex_direction": "column",
+                        "flex_gap": {
+                          "unit": "px",
+                          "size": 0,
+                          "column": "0",
+                          "row": "0"
+                        },
+                        "padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "0",
+                          "left": "0",
+                          "isLinked": true
+                        },
+                        "_css_classes": "bl-duo__card"
+                      },
+                      "elements": [
+                        {
+                          "id": "bl00019",
+                          "elType": "widget",
+                          "widgetType": "html",
+                          "settings": {
+                            "html": "<p class=\"bl-lockup\"><span class=\"bl-lockup__name\">BLOMSTRA</span><span class=\"bl-lockup__sub\">Brands</span></p>",
+                            "_css_classes": ""
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00020",
+                          "elType": "widget",
+                          "widgetType": "html",
+                          "settings": {
+                            "html": "<div class=\"bl-duo__media\"></div>",
+                            "_css_classes": ""
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00021",
+                          "elType": "widget",
+                          "widgetType": "heading",
+                          "settings": {
+                            "title": "Universos de marca",
+                            "header_size": "p",
+                            "_css_classes": "bl-duo__eyebrow"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00022",
+                          "elType": "widget",
+                          "widgetType": "text-editor",
+                          "settings": {
+                            "editor": "<p>Para emprendedoras y proyectos que quieren transformar una idea en una marca clara, coherente y magnética.</p>",
+                            "_css_classes": "bl-duo__text"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00023",
+                          "elType": "widget",
+                          "widgetType": "button",
+                          "settings": {
+                            "text": "descubre nuestros servicios",
+                            "link": {
+                              "url": "#",
+                              "is_external": "",
+                              "nofollow": ""
+                            },
+                            "_css_classes": "bl-btn-el"
+                          },
+                          "elements": []
+                        }
+                      ]
+                    },
+                    {
+                      "id": "bl00030",
+                      "elType": "container",
+                      "isInner": false,
+                      "settings": {
+                        "container_type": "flex",
+                        "content_width": "full",
+                        "flex_direction": "column",
+                        "flex_gap": {
+                          "unit": "px",
+                          "size": 0,
+                          "column": "0",
+                          "row": "0"
+                        },
+                        "padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "0",
+                          "left": "0",
+                          "isLinked": true
+                        },
+                        "_css_classes": "bl-duo__card"
+                      },
+                      "elements": [
+                        {
+                          "id": "bl00025",
+                          "elType": "widget",
+                          "widgetType": "html",
+                          "settings": {
+                            "html": "<p class=\"bl-lockup\"><span class=\"bl-lockup__name\">BLOMSTRA</span><span class=\"bl-lockup__sub\">Experiences</span></p>",
+                            "_css_classes": ""
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00026",
+                          "elType": "widget",
+                          "widgetType": "html",
+                          "settings": {
+                            "html": "<div class=\"bl-duo__media\"></div>",
+                            "_css_classes": ""
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00027",
+                          "elType": "widget",
+                          "widgetType": "heading",
+                          "settings": {
+                            "title": "Experiencias",
+                            "header_size": "p",
+                            "_css_classes": "bl-duo__eyebrow"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00028",
+                          "elType": "widget",
+                          "widgetType": "text-editor",
+                          "settings": {
+                            "editor": "<p>Para momentos que merecen convertirse en algo extraordinario. Diseñamos bodas y eventos como universos estéticos que se viven y se recuerdan.</p>",
+                            "_css_classes": "bl-duo__text"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00029",
+                          "elType": "widget",
+                          "widgetType": "button",
+                          "settings": {
+                            "text": "descubre nuestros servicios",
+                            "link": {
+                              "url": "#",
+                              "is_external": "",
+                              "nofollow": ""
+                            },
+                            "_css_classes": "bl-btn-el"
+                          },
+                          "elements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00034",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"bl-ticker\"><span>Diseño</span><span>Dirección de arte</span><span>Branding</span></div>",
+            "_css_classes": ""
+          },
+          "elements": []
+        },
+        {
+          "id": "bl00038",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-section bl-section--cream"
+          },
+          "elements": [
+            {
+              "id": "bl00037",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-container"
+              },
+              "elements": [
+                {
+                  "id": "bl00035",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Esta podría ser tu marca",
+                    "header_size": "h2",
+                    "_css_classes": "bl-heading-lg bl-center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00036",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<div class=\"bl-strip\"><div></div><div></div><div></div><div></div><div></div></div>",
+                    "_css_classes": ""
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00046",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-section bl-section--dark"
+          },
+          "elements": [
+            {
+              "id": "bl00045",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-container"
+              },
+              "elements": [
+                {
+                  "id": "bl00044",
+                  "elType": "container",
+                  "isInner": false,
+                  "settings": {
+                    "container_type": "flex",
+                    "content_width": "full",
+                    "flex_direction": "row",
+                    "flex_gap": {
+                      "unit": "px",
+                      "size": 0,
+                      "column": "0",
+                      "row": "0"
+                    },
+                    "padding": {
+                      "unit": "px",
+                      "top": "0",
+                      "right": "0",
+                      "bottom": "0",
+                      "left": "0",
+                      "isLinked": true
+                    },
+                    "_css_classes": "bl-split-text"
+                  },
+                  "elements": [
+                    {
+                      "id": "bl00042",
+                      "elType": "container",
+                      "isInner": false,
+                      "settings": {
+                        "container_type": "flex",
+                        "content_width": "full",
+                        "flex_direction": "column",
+                        "flex_gap": {
+                          "unit": "px",
+                          "size": 0,
+                          "column": "0",
+                          "row": "0"
+                        },
+                        "padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "0",
+                          "left": "0",
+                          "isLinked": true
+                        },
+                        "_css_classes": "bl-split-text__col"
+                      },
+                      "elements": [
+                        {
+                          "id": "bl00039",
+                          "elType": "widget",
+                          "widgetType": "heading",
+                          "settings": {
+                            "title": "Cómo trabajamos",
+                            "header_size": "h2",
+                            "_css_classes": "bl-heading-lg"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00040",
+                          "elType": "widget",
+                          "widgetType": "text-editor",
+                          "settings": {
+                            "editor": "<p>Cada proyecto en Blomstra comienza igual: escuchando.</p><p>Escuchamos la historia detrás del proyecto. La visión que la impulsa. La sensibilidad que la hace única.</p><p>A partir de ahí construimos un universo que puede expresarse de forma clara y coherente a través de la narrativa, el diseño gráfico y la dirección de arte.</p>",
+                            "_css_classes": "bl-lead"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00041",
+                          "elType": "widget",
+                          "widgetType": "button",
+                          "settings": {
+                            "text": "descubre nuestros servicios",
+                            "link": {
+                              "url": "#",
+                              "is_external": "",
+                              "nofollow": ""
+                            },
+                            "_css_classes": "bl-btn-el"
+                          },
+                          "elements": []
+                        }
+                      ]
+                    },
+                    {
+                      "id": "bl00043",
+                      "elType": "widget",
+                      "widgetType": "html",
+                      "settings": {
+                        "html": "<div class=\"bl-split-text__media\"></div>",
+                        "_css_classes": ""
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00050",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-stripes"
+          },
+          "elements": [
+            {
+              "id": "bl00049",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-manifesto"
+              },
+              "elements": [
+                {
+                  "id": "bl00047",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Manifiesto",
+                    "header_size": "h2",
+                    "_css_classes": "bl-heading-lg"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00048",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Romantizar la vida no significa idealizarla.</p><p>Significa prestar atención.</p><p>A los detalles que crean atmósfera.<br>A las historias que merecen ser contadas.<br>A los momentos que transforman lo cotidiano en algo especial.</p><p>En Blomstra creemos que una marca, una boda o un evento pueden convertirse en un universo propio cuando se diseñan con intención.</p><p>Nuestro trabajo consiste en dar forma a esos mundos para que puedan verse, contarse y vivirse.</p>",
+                    "_css_classes": ""
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00060",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-section bl-section--cream"
+          },
+          "elements": [
+            {
+              "id": "bl00059",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-container"
+              },
+              "elements": [
+                {
+                  "id": "bl00058",
+                  "elType": "container",
+                  "isInner": false,
+                  "settings": {
+                    "container_type": "flex",
+                    "content_width": "full",
+                    "flex_direction": "row",
+                    "flex_gap": {
+                      "unit": "px",
+                      "size": 0,
+                      "column": "0",
+                      "row": "0"
+                    },
+                    "padding": {
+                      "unit": "px",
+                      "top": "0",
+                      "right": "0",
+                      "bottom": "0",
+                      "left": "0",
+                      "isLinked": true
+                    },
+                    "_css_classes": "bl-founder"
+                  },
+                  "elements": [
+                    {
+                      "id": "bl00051",
+                      "elType": "widget",
+                      "widgetType": "html",
+                      "settings": {
+                        "html": "<div class=\"bl-founder__media\"></div>",
+                        "_css_classes": ""
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "bl00057",
+                      "elType": "container",
+                      "isInner": false,
+                      "settings": {
+                        "container_type": "flex",
+                        "content_width": "full",
+                        "flex_direction": "column",
+                        "flex_gap": {
+                          "unit": "px",
+                          "size": 0,
+                          "column": "0",
+                          "row": "0"
+                        },
+                        "padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "0",
+                          "left": "0",
+                          "isLinked": true
+                        },
+                        "_css_classes": "bl-founder__col"
+                      },
+                      "elements": [
+                        {
+                          "id": "bl00052",
+                          "elType": "widget",
+                          "widgetType": "heading",
+                          "settings": {
+                            "title": "Meet the founder",
+                            "header_size": "p",
+                            "_css_classes": "bl-script"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00053",
+                          "elType": "widget",
+                          "widgetType": "heading",
+                          "settings": {
+                            "title": "Anna Areas · The founder.",
+                            "header_size": "p",
+                            "_css_classes": "bl-founder__name"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00054",
+                          "elType": "widget",
+                          "widgetType": "heading",
+                          "settings": {
+                            "title": "Designer, Creative Director & Visual Storyteller",
+                            "header_size": "p",
+                            "_css_classes": "bl-founder__role"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00055",
+                          "elType": "widget",
+                          "widgetType": "text-editor",
+                          "settings": {
+                            "editor": "<p>Cada proyecto en Blomstra comienza igual: escuchando. Escuchamos la historia detrás del proyecto. La visión que la impulsa. La sensibilidad que la hace única.</p><p>A partir de ahí construimos un universo que puede expresarse de forma clara y coherente. Trabajamos con pocos proyectos a la vez para que cada proceso tenga el espacio que necesita.</p>",
+                            "_css_classes": "bl-lead"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00056",
+                          "elType": "widget",
+                          "widgetType": "button",
+                          "settings": {
+                            "text": "Café con la fundadora",
+                            "link": {
+                              "url": "#",
+                              "is_external": "",
+                              "nofollow": ""
+                            },
+                            "_css_classes": "bl-btn-el"
+                          },
+                          "elements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00064",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-section bl-section--cotton"
+          },
+          "elements": [
+            {
+              "id": "bl00063",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-container bl-container--narrow bl-center"
+              },
+              "elements": [
+                {
+                  "id": "bl00061",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Si sientes que tu proyecto o tu historia <em>tiene un universo propio</em>, pero todavía no sabes cómo darle forma, podemos trabajar juntas.</p>",
+                    "_css_classes": "bl-display bl-center"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00062",
+                  "elType": "widget",
+                  "widgetType": "button",
+                  "settings": {
+                    "text": "Trabajar con Blomstra",
+                    "link": {
+                      "url": "#",
+                      "is_external": "",
+                      "nofollow": ""
+                    },
+                    "_css_classes": "bl-btn-el"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00073",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-section bl-section--cream bl-section--tight"
+          },
+          "elements": [
+            {
+              "id": "bl00072",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-container"
+              },
+              "elements": [
+                {
+                  "id": "bl00071",
+                  "elType": "container",
+                  "isInner": false,
+                  "settings": {
+                    "container_type": "flex",
+                    "content_width": "full",
+                    "flex_direction": "row",
+                    "flex_gap": {
+                      "unit": "px",
+                      "size": 0,
+                      "column": "0",
+                      "row": "0"
+                    },
+                    "padding": {
+                      "unit": "px",
+                      "top": "0",
+                      "right": "0",
+                      "bottom": "0",
+                      "left": "0",
+                      "isLinked": true
+                    },
+                    "_css_classes": "bl-newsletter"
+                  },
+                  "elements": [
+                    {
+                      "id": "bl00069",
+                      "elType": "container",
+                      "isInner": false,
+                      "settings": {
+                        "container_type": "flex",
+                        "content_width": "full",
+                        "flex_direction": "column",
+                        "flex_gap": {
+                          "unit": "px",
+                          "size": 0,
+                          "column": "0",
+                          "row": "0"
+                        },
+                        "padding": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "0",
+                          "left": "0",
+                          "isLinked": true
+                        },
+                        "_css_classes": "bl-newsletter__col"
+                      },
+                      "elements": [
+                        {
+                          "id": "bl00065",
+                          "elType": "widget",
+                          "widgetType": "heading",
+                          "settings": {
+                            "title": "The Club",
+                            "header_size": "p",
+                            "_css_classes": "bl-script"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00066",
+                          "elType": "widget",
+                          "widgetType": "heading",
+                          "settings": {
+                            "title": "Sign up to our newsletter",
+                            "header_size": "p",
+                            "_css_classes": "bl-duo__eyebrow"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00067",
+                          "elType": "widget",
+                          "widgetType": "text-editor",
+                          "settings": {
+                            "editor": "<p>Sign up to be told about new services &amp; updates launches before anyone else. We promise not to flood your inbox.</p>",
+                            "_css_classes": "bl-lead"
+                          },
+                          "elements": []
+                        },
+                        {
+                          "id": "bl00068",
+                          "elType": "widget",
+                          "widgetType": "html",
+                          "settings": {
+                            "html": "<p><em>[Aquí va el shortcode del formulario de Fluent Forms]</em></p>",
+                            "_css_classes": ""
+                          },
+                          "elements": []
+                        }
+                      ]
+                    },
+                    {
+                      "id": "bl00070",
+                      "elType": "widget",
+                      "widgetType": "html",
+                      "settings": {
+                        "html": "<div class=\"bl-strip bl-strip--3\"><div></div><div></div><div></div></div>",
+                        "_css_classes": ""
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00074",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<p class=\"bl-wordmark\">BLOMSTRA</p>",
+            "_css_classes": "bl-section--cream"
+          },
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "page_settings": {
+    "template": "elementor_canvas"
+  }
+}

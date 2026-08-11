@@ -70,6 +70,19 @@ def html(markup, css_class=""):
     return widget("html", {"html": markup, "_css_classes": css_class})
 
 
+def text(markup, css_class="bl-lead"):
+    """Widget Editor de texto: el cliente puede editar el copy sin tocar codigo."""
+    return widget("text-editor", {"editor": markup, "_css_classes": css_class})
+
+
+def button(label, url="#", css_class="bl-btn-el"):
+    return widget("button", {
+        "text": label,
+        "link": {"url": url, "is_external": "", "nofollow": ""},
+        "_css_classes": css_class,
+    })
+
+
 # --- Trozos reutilizables ---------------------------------------------------
 
 BURGER = (
@@ -142,9 +155,187 @@ def template_portal():
                 ],
             ),
             html(
-                '<a href="#">CONTACT US</a><a href="#">BEHIND BLOMSTRA</a><a href="#">NEWSLETTER</a>',
-                "bl-portal__footer",
+                '<footer class="bl-portal__footer"><a href="#">CONTACT US</a>'
+                '<a href="#">BEHIND BLOMSTRA</a><a href="#">NEWSLETTER</a></footer>'
             ),
+        ],
+        direction="column",
+    )
+
+
+TICKER = (
+    '<div class="bl-ticker"><span>Diseño</span>'
+    '<span>Dirección de arte</span><span>Branding</span></div>'
+)
+
+COLLAGE = """
+<div class="bl-collage">
+  <p class="bl-collage__label">Narrativas<br>que conectan</p>
+  <div class="bl-collage__img bl-collage__img--b"></div>
+  <p class="bl-collage__label">Marcas con<br>identidad clara</p>
+  <div class="bl-collage__img bl-collage__img--a"></div>
+  <p class="bl-collage__label">Experiencias<br>que se recuerdan</p>
+  <div class="bl-collage__img bl-collage__img--c"></div>
+</div>
+""".strip()
+
+HERO = """
+<div class="bl-hero">
+  <div class="bl-hero__media" role="img" aria-label="Fotografía de plató"></div>
+  <a class="bl-hero__pill" href="#universo">WELCOME TO OUR UNIVERSE</a>
+</div>
+""".strip()
+
+
+def section(css_class, children, inner="bl-container"):
+    """Seccion a ancho completo con un contenedor interior centrado."""
+    return container(css_class, [container(inner, children, direction="column")],
+                     direction="column")
+
+
+def duo_card(sub, eyebrow, body):
+    return container(
+        "bl-duo__card",
+        [
+            html(f'<p class="bl-lockup"><span class="bl-lockup__name">BLOMSTRA</span>'
+                 f'<span class="bl-lockup__sub">{sub}</span></p>'),
+            html('<div class="bl-duo__media"></div>'),
+            heading(eyebrow, "bl-duo__eyebrow", tag="p"),
+            text(f"<p>{body}</p>", "bl-duo__text"),
+            button("descubre nuestros servicios"),
+        ],
+        direction="column",
+    )
+
+
+def template_home():
+    return container(
+        "bl-home",
+        [
+            html('<div class="bl-announce">Texto de la barra de aviso pendiente</div>'),
+            site_header(),
+            html(HERO),
+
+            section("bl-section bl-section--cream", [
+                heading("Romantiza tu vida.", "bl-script bl-center", tag="h1"),
+                heading("Diseña un universo que se pueda ver, contar y vivir.",
+                        "bl-display bl-center", tag="h2"),
+                text("<p>Blomstra es un <strong>estudio creativo</strong> donde transformamos "
+                     "ideas, proyectos y momentos importantes en <strong>universos estéticos "
+                     "con narrativa propia</strong>.</p>"
+                     "<p>Algunos toman forma de marca. Otros se convierten en experiencias. "
+                     "Creemos que cuando algo se diseña con intención, la vida también puede "
+                     "romantizarse.</p>", "bl-lead bl-center"),
+                button("entrar en el universo"),
+            ], inner="bl-container bl-container--narrow bl-center"),
+
+            section("bl-section bl-section--cream bl-section--tight", [
+                html(COLLAGE),
+                text("<p>Aquí no creemos en marcas vacías ni en eventos sin alma. Creemos en "
+                     "universos con intención.</p>"
+                     "<p>Por eso trabajamos con proyectos que quieren ir más allá de lo "
+                     "funcional, proyectos que buscan construir algo con <strong>presencia, "
+                     "belleza y significado</strong>.</p>", "bl-lead bl-center"),
+            ]),
+
+            html(TICKER),
+
+            section("bl-section bl-section--dark", [
+                heading("Dos formas de habitar Blomstra", "bl-heading-lg bl-center", tag="h2"),
+                container("bl-duo", [
+                    duo_card("Brands", "Universos de marca",
+                             "Para emprendedoras y proyectos que quieren transformar una idea "
+                             "en una marca clara, coherente y magnética."),
+                    duo_card("Experiences", "Experiencias",
+                             "Para momentos que merecen convertirse en algo extraordinario. "
+                             "Diseñamos bodas y eventos como universos estéticos que se viven "
+                             "y se recuerdan."),
+                ]),
+            ]),
+
+            html(TICKER),
+
+            section("bl-section bl-section--cream", [
+                heading("Esta podría ser tu marca", "bl-heading-lg bl-center", tag="h2"),
+                html('<div class="bl-strip"><div></div><div></div><div></div>'
+                     '<div></div><div></div></div>'),
+            ]),
+
+            section("bl-section bl-section--dark", [
+                container("bl-split-text", [
+                    container("bl-split-text__col", [
+                        heading("Cómo trabajamos", "bl-heading-lg", tag="h2"),
+                        text("<p>Cada proyecto en Blomstra comienza igual: escuchando.</p>"
+                             "<p>Escuchamos la historia detrás del proyecto. La visión que la "
+                             "impulsa. La sensibilidad que la hace única.</p>"
+                             "<p>A partir de ahí construimos un universo que puede expresarse de "
+                             "forma clara y coherente a través de la narrativa, el diseño "
+                             "gráfico y la dirección de arte.</p>", "bl-lead"),
+                        button("descubre nuestros servicios"),
+                    ], direction="column"),
+                    html('<div class="bl-split-text__media"></div>'),
+                ]),
+            ]),
+
+            container("bl-stripes", [
+                container("bl-manifesto", [
+                    heading("Manifiesto", "bl-heading-lg", tag="h2"),
+                    text("<p>Romantizar la vida no significa idealizarla.</p>"
+                         "<p>Significa prestar atención.</p>"
+                         "<p>A los detalles que crean atmósfera.<br>"
+                         "A las historias que merecen ser contadas.<br>"
+                         "A los momentos que transforman lo cotidiano en algo especial.</p>"
+                         "<p>En Blomstra creemos que una marca, una boda o un evento pueden "
+                         "convertirse en un universo propio cuando se diseñan con intención.</p>"
+                         "<p>Nuestro trabajo consiste en dar forma a esos mundos para que puedan "
+                         "verse, contarse y vivirse.</p>", ""),
+                ], direction="column"),
+            ], direction="column"),
+
+            section("bl-section bl-section--cream", [
+                container("bl-founder", [
+                    html('<div class="bl-founder__media"></div>'),
+                    container("bl-founder__col", [
+                        heading("Meet the founder", "bl-script", tag="p"),
+                        heading("Anna Areas · The founder.", "bl-founder__name", tag="p"),
+                        heading("Designer, Creative Director & Visual Storyteller",
+                                "bl-founder__role", tag="p"),
+                        # OJO: este copy repite casi literal el de "Cómo trabajamos".
+                        text("<p>Cada proyecto en Blomstra comienza igual: escuchando. "
+                             "Escuchamos la historia detrás del proyecto. La visión que la "
+                             "impulsa. La sensibilidad que la hace única.</p>"
+                             "<p>A partir de ahí construimos un universo que puede expresarse "
+                             "de forma clara y coherente. Trabajamos con pocos proyectos a la "
+                             "vez para que cada proceso tenga el espacio que necesita.</p>",
+                             "bl-lead"),
+                        button("Café con la fundadora"),
+                    ], direction="column"),
+                ]),
+            ]),
+
+            section("bl-section bl-section--cotton", [
+                text("<p>Si sientes que tu proyecto o tu historia <em>tiene un universo "
+                     "propio</em>, pero todavía no sabes cómo darle forma, podemos trabajar "
+                     "juntas.</p>", "bl-display bl-center"),
+                button("Trabajar con Blomstra"),
+            ], inner="bl-container bl-container--narrow bl-center"),
+
+            section("bl-section bl-section--cream bl-section--tight", [
+                container("bl-newsletter", [
+                    container("bl-newsletter__col", [
+                        heading("The Club", "bl-script", tag="p"),
+                        heading("Sign up to our newsletter", "bl-duo__eyebrow", tag="p"),
+                        text("<p>Sign up to be told about new services &amp; updates launches "
+                             "before anyone else. We promise not to flood your inbox.</p>",
+                             "bl-lead"),
+                        # En WordPress esto se sustituye por el shortcode de Fluent Forms.
+                        html('<p><em>[Aquí va el shortcode del formulario de Fluent Forms]</em></p>'),
+                    ], direction="column"),
+                    html('<div class="bl-strip bl-strip--3"><div></div><div></div><div></div></div>'),
+                ]),
+            ]),
+
+            html('<p class="bl-wordmark">BLOMSTRA</p>', "bl-section--cream"),
         ],
         direction="column",
     )
@@ -152,6 +343,7 @@ def template_portal():
 
 TEMPLATES = {
     "01-portal": ("Blomstra — Portal", template_portal),
+    "03-home": ("Blomstra — Home", template_home),
 }
 
 
