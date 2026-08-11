@@ -113,9 +113,26 @@ los `single.php` / `archive.php` del tema hijo.
 
 ---
 
+## 4.4 Importar una plantilla de página
+
+Las plantillas de `elementor-kit/content/page/*.json` **no** van dentro del zip
+del kit: se importan sueltas, que es la vía que funciona sin Pro.
+
+**Plantillas → Plantillas guardadas → Importar plantillas** y sube el `.json`.
+Después, en la página donde la quieras: editar con Elementor → icono de carpeta
+→ *Mis plantillas* → insertar.
+
+Para regenerarlas tras tocar `tools/build-templates.py`:
+
+```bash
+python3 tools/build-templates.py
+```
+
+---
+
 ## 5. Maquetado de las páginas
 
-Pendiente de los frames. El plan es:
+El plan es:
 
 1. **Traducir cada frame a contenedores.** Cada sección del diseño pasa a ser un
    contenedor flex de nivel raíz con su ancho, padding y fondo.

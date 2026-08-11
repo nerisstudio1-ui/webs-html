@@ -1,0 +1,247 @@
+{
+  "version": "0.4",
+  "title": "Blomstra — Portal",
+  "type": "page",
+  "content": [
+    {
+      "id": "bl00015",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "container_type": "flex",
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+          "unit": "px",
+          "size": 0,
+          "column": "0",
+          "row": "0"
+        },
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_css_classes": "bl-portal"
+      },
+      "elements": [
+        {
+          "id": "bl00004",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "row",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-header"
+          },
+          "elements": [
+            {
+              "id": "bl00001",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<button class=\"bl-burger\" type=\"button\" aria-label=\"Abrir menú\" aria-expanded=\"false\"><span></span><span></span><span></span></button>",
+                "_css_classes": ""
+              },
+              "elements": []
+            },
+            {
+              "id": "bl00002",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<a class=\"bl-brand\" href=\"/\"><span class=\"bl-brand__kicker\">This is</span><span class=\"bl-brand__name\">BLOMSTRA</span></a>",
+                "_css_classes": ""
+              },
+              "elements": []
+            },
+            {
+              "id": "bl00003",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div class=\"bl-tools\"><a class=\"bl-lang\" href=\"#\">EN<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></a><a class=\"bl-btn-ghost\" href=\"#\">WHATS</a></div>",
+                "_css_classes": ""
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "bl00013",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "full",
+            "flex_direction": "row",
+            "flex_gap": {
+              "unit": "px",
+              "size": 0,
+              "column": "0",
+              "row": "0"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "_css_classes": "bl-portal__body"
+          },
+          "elements": [
+            {
+              "id": "bl00008",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-panel"
+              },
+              "elements": [
+                {
+                  "id": "bl00005",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "01",
+                    "header_size": "span",
+                    "_css_classes": "bl-badge"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00006",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<p class=\"bl-lockup\"><span class=\"bl-lockup__name\">BLOMSTRA</span><span class=\"bl-lockup__sub\">Visual</span></p>",
+                    "_css_classes": ""
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00007",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<nav class=\"bl-panel__nav\" aria-label=\"BLOMSTRA Visual\"><a href=\"#\" aria-current=\"page\">ABOUT</a><a href=\"#\">SERVICES</a><a href=\"#\">LOOKBOOK</a><a href=\"#\">CONTACT US</a></nav>",
+                    "_css_classes": ""
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            {
+              "id": "bl00012",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "column",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 0,
+                  "column": "0",
+                  "row": "0"
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
+                "_css_classes": "bl-panel"
+              },
+              "elements": [
+                {
+                  "id": "bl00009",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "03",
+                    "header_size": "span",
+                    "_css_classes": "bl-badge"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00010",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<p class=\"bl-lockup\"><span class=\"bl-lockup__name\">BLOMSTRA</span><span class=\"bl-lockup__sub\">Experiences</span></p>",
+                    "_css_classes": ""
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "bl00011",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<nav class=\"bl-panel__nav\" aria-label=\"BLOMSTRA Experiences\"><a href=\"#\">ABOUT</a><a href=\"#\">SERVICES</a><a href=\"#\">LOOKBOOK</a></nav>",
+                    "_css_classes": ""
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bl00014",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<a href=\"#\">CONTACT US</a><a href=\"#\">BEHIND BLOMSTRA</a><a href=\"#\">NEWSLETTER</a>",
+            "_css_classes": "bl-portal__footer"
+          },
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "page_settings": {
+    "template": "elementor_canvas"
+  }
+}

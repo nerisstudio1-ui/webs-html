@@ -1,0 +1,434 @@
+/* ==========================================================================
+   BLOMSTRA — hoja de estilos del sitio
+   ==========================================================================
+   Fuente unica de estilos: la usan tanto WordPress (via el tema hijo) como los
+   prototipos de /prototype, que enlazan este mismo archivo. Asi el prototipo y
+   el sitio no se pueden desincronizar.
+
+   El maquetado estructural lo pone Elementor (contenedores flex). Aqui va todo
+   lo visual, enganchado por las clases CSS que cada elemento lleva en el campo
+   "Avanzado > Clases CSS". Se hace asi porque el proyecto va con Elementor
+   gratuito: es la via que no depende de controles de estilo de Pro y que
+   ademas deja el diseno versionado en git.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. TOKENS
+   ========================================================================== */
+:root {
+  /* --- Paleta de marca (leida del swatch del diseno) --- */
+  --c-antique:    #FAF3ED; /* ANTIQUE — crema claro */
+  --c-cotton:     #D7CBB5; /* NATURAL COTTON — greige, fondo dominante */
+  --c-sage:       #A6A89A; /* DUSKY GREEN */
+  --c-terracotta: #8B5C3D; /* TERRACOTTA */
+
+  /* Los dos tonos inferiores del swatch tenian la etiqueta cortada en la
+     captura. Valores aproximados hasta confirmar. */
+  --c-olive:      #8A6B35; /* TODO confirmar hex */
+  --c-espresso:   #33261C; /* TODO confirmar hex — fondo de secciones oscuras */
+
+  /* Crema mas calido observado en la pagina de servicios. Puede ser un token
+     propio o ANTIQUE renderizado distinto. TODO confirmar. */
+  --c-bone:       #EFE9D8;
+
+  /* --- Paleta secundaria ---
+     Aparece etiquetada en frances en el diseno. Al principio parecia material
+     de contenido (un ejemplo de paleta dentro del sitio), pero BLEU HORIZON se
+     usa como fondo de panel en una de las paginas de servicio, asi que forma
+     parte del sistema. Los RGB del diseno cuadran con los hex. */
+  --c-vert-mousse:   #796D3E;
+  --c-sable-chaud:   #F4E4B8;
+  --c-terre-cuivree: #80562C;
+  --c-vert-eau:      #D0D5BD;
+  --c-marron-ancre:  #523719;
+  --c-bleu-horizon:  #C0C5D9;
+
+  --c-ink:        #221C18; /* texto oscuro */
+  --c-white:      #FFFFFF;
+
+  /* --- Tipografia ---
+     PROVISIONAL. El display real del diseno es una didone con B ornamentada y
+     una italica caligrafica que no son Google Fonts. Playfair y Pinyon Script
+     son sustitutos de trabajo. Ver docs/TIPOGRAFIA.md. */
+  --f-display: "Playfair Display", Didot, Georgia, serif;
+  --f-script:  "Pinyon Script", "Playfair Display", cursive;
+  --f-sans:    "Montserrat", system-ui, sans-serif;
+
+  /* --- Medidas --- */
+  --header-h: 124px;
+  --gutter: 44px;
+  --rule: 1px solid var(--c-white);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--c-cotton);
+  color: var(--c-ink);
+  font-family: var(--f-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+/* ==========================================================================
+   2. HEADER (comun a todas las pantallas)
+   ========================================================================== */
+.bl-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: var(--header-h);
+  padding-inline: var(--gutter);
+  border-bottom: var(--rule);
+}
+
+.bl-burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 42px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.bl-burger span { display: block; height: 2px; background: var(--c-white); }
+
+.bl-brand {
+  text-align: center;
+  line-height: 1;
+  color: var(--c-white);
+  text-decoration: none;
+}
+.bl-brand__kicker {
+  display: block;
+  font-family: var(--f-script);
+  font-size: 18px;
+  transform: translateX(-12px);
+}
+.bl-brand__name {
+  display: block;
+  font-family: var(--f-display);
+  font-size: 34px;
+  letter-spacing: 0.02em;
+  margin-top: -2px;
+}
+
+.bl-tools { display: flex; align-items: center; gap: 30px; }
+
+.bl-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--c-white);
+  text-decoration: none;
+}
+.bl-lang svg { width: 13px; height: 13px; }
+
+.bl-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 124px;
+  padding: 17px 26px;
+  border: var(--rule);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-white);
+  text-decoration: none;
+  transition: background-color .25s ease, color .25s ease;
+}
+.bl-btn-ghost:hover,
+.bl-btn-ghost:focus-visible { background: var(--c-white); color: var(--c-ink); }
+
+/* ==========================================================================
+   3. PANTALLA PORTAL (01)
+   ========================================================================== */
+.bl-portal { display: flex; flex-direction: column; min-height: 100vh; }
+.bl-portal__body { display: flex; flex: 1; }
+
+.bl-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 12vh 24px 40px;
+}
+.bl-panel + .bl-panel { border-left: var(--rule); }
+
+.bl-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 124px;
+  height: 68px;
+  border: 1px solid var(--c-ink);
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* Lockup de marca.
+   PROVISIONAL: reconstruido con webfonts. El lockup definitivo debe llegar
+   como SVG desde Figma y sustituir el interior por un <img>. */
+.bl-lockup { margin: 62px 0 0; text-align: center; line-height: 1; }
+.bl-lockup__name {
+  display: block;
+  font-family: var(--f-display);
+  font-size: 46px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.bl-lockup__sub {
+  display: block;
+  font-family: var(--f-script);
+  font-size: 34px;
+  margin-top: -2px;
+}
+
+.bl-panel__nav {
+  margin-top: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+}
+.bl-panel__nav a {
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  color: var(--c-ink);
+  text-decoration: none;
+  text-underline-offset: 5px;
+}
+.bl-panel__nav a:hover,
+.bl-panel__nav a:focus-visible,
+.bl-panel__nav a[aria-current="page"] { text-decoration: underline; }
+
+.bl-portal__footer {
+  display: flex;
+  align-items: center;
+  min-height: 188px;
+  padding: 40px var(--gutter);
+  border-top: var(--rule);
+}
+.bl-portal__footer a {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.09em;
+  color: var(--c-ink);
+  text-decoration: none;
+  text-underline-offset: 5px;
+}
+.bl-portal__footer a:hover,
+.bl-portal__footer a:focus-visible { text-decoration: underline; }
+
+/* ==========================================================================
+   4. PANTALLA DE SERVICIOS (02)
+   ========================================================================== */
+.bl-split { display: flex; flex-direction: column; min-height: 100vh; }
+.bl-split__body { display: flex; flex: 1; }
+
+.bl-split__aside,
+.bl-split__main { flex: 1; padding: 128px 5.5% 80px; }
+
+/* El divisor entre paneles es de puntos en unas pantallas y continuo en otras.
+   Se elige con la clase del panel izquierdo. */
+.bl-split__aside { border-right: 1px solid var(--c-ink); }
+.bl-split__aside--dashed { border-right-style: dashed; }
+
+/* Utilidades de fondo. Cada pagina combina dos, y la combinacion cambia segun
+   la submarca: Visual lleva el claro a la izquierda, Experiences lo invierte. */
+.bl-bg--cotton  { background: var(--c-cotton); }
+.bl-bg--antique { background: var(--c-antique); }
+.bl-bg--bone    { background: var(--c-bone); }
+.bl-bg--horizon { background: var(--c-bleu-horizon); }
+
+.bl-split__aside .bl-lockup { margin: 0 0 84px; }
+.bl-split__aside .bl-lockup__name { font-size: 58px; }
+.bl-split__aside .bl-lockup__sub  { font-size: 46px; }
+
+/* Fila "02  Identidad visual" */
+.bl-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 42px;
+  margin-bottom: 26px;
+  font-weight: 700;
+}
+.bl-eyebrow__num { font-size: 13px; letter-spacing: 0.06em; }
+.bl-eyebrow__label { font-size: 20px; }
+
+/* Hueco de imagen. Se sustituye por la foto real cuando llegue. */
+.bl-media {
+  aspect-ratio: 16 / 11;
+  background:
+    repeating-conic-gradient(#f2f2f2 0 25%, #fafafa 0 50%) 0 0 / 44px 44px;
+}
+
+.bl-copy {
+  margin: 34px 0 0;
+  max-width: 34ch;
+  font-size: 19px;
+  line-height: 1.55;
+  text-align: justify;
+}
+
+.bl-split__title {
+  margin: 0 0 40px;
+  font-family: var(--f-display);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+/* Lista de servicios: hairline arriba y entre filas */
+.bl-services { border-top: 1px solid var(--c-ink); }
+.bl-services__item {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  padding: 26px 4px;
+  border-bottom: 1px solid var(--c-ink);
+  color: var(--c-ink);
+  text-decoration: none;
+}
+.bl-services__num {
+  flex: none;
+  width: 26px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.bl-services__label { flex: 1; font-size: 22px; }
+.bl-services__item[aria-current="true"] .bl-services__label { font-weight: 700; }
+.bl-services__chev { flex: none; width: 20px; height: 20px; }
+.bl-services__item:hover .bl-services__chev,
+.bl-services__item:focus-visible .bl-services__chev { transform: translateX(5px); }
+.bl-services__chev { transition: transform .25s ease; }
+
+/* ==========================================================================
+   5. PANTALLA DE DETALLE DE SERVICIO (03)
+   En el diseno esta a medio hacer: solo el lockup, el numero, el titulo y una
+   fila de enlaces al pie. Se maqueta lo que hay; el cuerpo se anadira cuando
+   el diseno lo defina.
+   ========================================================================== */
+.bl-detail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--c-cotton);
+}
+.bl-detail__body { flex: 1; padding: 60px 12% 40px; }
+
+.bl-detail .bl-lockup { margin: 0 0 70px; text-align: left; }
+.bl-detail .bl-lockup__name { font-size: 34px; }
+.bl-detail .bl-lockup__sub  { font-size: 27px; }
+
+.bl-detail__num {
+  margin: 0;
+  font-size: 108px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--c-espresso);
+}
+.bl-detail__title {
+  margin: 18px 0 0;
+  font-size: 58px;
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--c-espresso);
+}
+
+.bl-detail__pager {
+  display: flex;
+  gap: 24px;
+  padding: 0 12% 90px;
+}
+.bl-detail__pager a {
+  flex: 1;
+  font-size: 20px;
+  color: var(--c-ink);
+  text-decoration: none;
+  text-underline-offset: 6px;
+}
+.bl-detail__pager a:hover,
+.bl-detail__pager a:focus-visible,
+.bl-detail__pager a[aria-current="page"] { text-decoration: underline; }
+
+/* ==========================================================================
+   6. RESPONSIVE — breakpoints del kit (1024 / 767)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  :root { --gutter: 28px; --header-h: 96px; }
+  .bl-brand__name { font-size: 28px; }
+  .bl-lockup__name { font-size: 38px; }
+  .bl-lockup__sub  { font-size: 29px; }
+  .bl-panel { padding-top: 9vh; }
+  .bl-panel__nav { margin-top: 56px; }
+  .bl-split__aside .bl-lockup__name { font-size: 44px; }
+  .bl-split__aside .bl-lockup__sub  { font-size: 35px; }
+  .bl-split__title { font-size: 40px; }
+  .bl-services__label { font-size: 19px; }
+  .bl-copy { font-size: 17px; }
+  .bl-detail__num { font-size: 80px; }
+  .bl-detail__title { font-size: 42px; }
+  .bl-detail__body, .bl-detail__pager { padding-inline: 7%; }
+}
+
+@media (max-width: 767px) {
+  /* OJO: en movil el diseno invierte el tema del portal. Fondo crema en vez de
+     greige, y las lineas y el logotipo pasan de blancos a oscuros. Ademas
+     desaparece el boton de WhatsApp. Esta reproducido tal cual aparece en el
+     diseno; ver docs/INCONSISTENCIAS.md, porque conviene confirmarlo. */
+  .bl-portal { background: var(--c-antique); }
+  .bl-portal .bl-header { border-bottom: 3px solid var(--c-ink); }
+  .bl-portal .bl-brand,
+  .bl-portal .bl-lang { color: var(--c-ink); }
+  .bl-portal .bl-burger span { background: var(--c-ink); }
+  .bl-portal .bl-tools .bl-btn-ghost { display: none; }
+
+  .bl-portal__body,
+  .bl-split__body { flex-direction: column; }
+
+  .bl-panel { padding: 56px 20px; }
+  .bl-panel + .bl-panel { border-left: 0; border-top: 1px solid var(--c-ink); }
+  .bl-panel__nav { margin-top: 48px; }
+  .bl-portal__footer { border-top: 1px solid var(--c-ink); }
+
+  .bl-split__aside {
+    border-right: 0;
+    border-bottom: 1px dashed var(--c-ink);
+    padding: 56px 24px;
+  }
+  .bl-split__main { padding: 56px 24px; }
+  .bl-copy { max-width: none; text-align: left; }
+
+  .bl-tools .bl-lang { display: none; }
+  .bl-btn-ghost { min-width: 0; padding: 13px 20px; font-size: 12px; }
+
+  .bl-portal__footer { flex-direction: column; gap: 20px; min-height: 0; }
+
+  .bl-detail__body, .bl-detail__pager { padding-inline: 24px; }
+  .bl-detail__num { font-size: 62px; }
+  .bl-detail__title { font-size: 32px; }
+  .bl-detail__pager { flex-direction: column; gap: 14px; padding-bottom: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

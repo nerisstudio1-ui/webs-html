@@ -12,7 +12,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'BLOMSTRA_CHILD_VERSION', '1.0.0' );
 
 /**
- * Carga la hoja de estilos del tema padre y luego la del hijo.
+ * Carga la hoja del tema hijo y, despues, la hoja del diseno.
+ *
+ * blomstra.css es el mismo archivo que usan los prototipos de /prototype. Ahi
+ * vive todo el diseno; Elementor solo aporta la estructura y las clases CSS.
+ * Se versiona con filemtime para que el navegador no sirva una cache vieja
+ * mientras se esta maquetando.
  */
 function blomstra_child_enqueue_styles() {
 	wp_enqueue_style(
@@ -21,8 +26,32 @@ function blomstra_child_enqueue_styles() {
 		array( 'hello-elementor', 'hello-elementor-theme-style' ),
 		BLOMSTRA_CHILD_VERSION
 	);
+
+	$design_path = get_stylesheet_directory() . '/assets/css/blomstra.css';
+
+	wp_enqueue_style(
+		'blomstra-design',
+		get_stylesheet_directory_uri() . '/assets/css/blomstra.css',
+		array( 'hello-elementor-child' ),
+		file_exists( $design_path ) ? (string) filemtime( $design_path ) : BLOMSTRA_CHILD_VERSION
+	);
 }
 add_action( 'wp_enqueue_scripts', 'blomstra_child_enqueue_styles', 20 );
+
+/**
+ * Carga la hoja del diseno tambien dentro del editor de Elementor, para que lo
+ * que se ve al maquetar coincida con el resultado final.
+ */
+function blomstra_child_enqueue_editor_styles() {
+	wp_enqueue_style(
+		'blomstra-design',
+		get_stylesheet_directory_uri() . '/assets/css/blomstra.css',
+		array(),
+		BLOMSTRA_CHILD_VERSION
+	);
+}
+add_action( 'elementor/editor/after_enqueue_styles', 'blomstra_child_enqueue_editor_styles' );
+add_action( 'elementor/preview/enqueue_styles', 'blomstra_child_enqueue_editor_styles' );
 
 /**
  * Soportes de tema.
