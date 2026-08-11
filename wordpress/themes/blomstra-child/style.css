@@ -1,0 +1,81 @@
+/*
+Theme Name:   Blomstra Child
+Theme URI:    https://example.com/blomstra
+Description:  Tema hijo de Hello Elementor para el sitio Blomstra. Todo el maquetado se
+              hace con Elementor; aqui solo van los ajustes de CSS que Elementor no
+              cubre bien (resets, detalles de tipografia, animaciones puntuales).
+Author:       Neris Studio
+Template:     hello-elementor
+Version:      1.0.0
+Text Domain:  blomstra-child
+*/
+
+/* ==========================================================================
+   1. Tokens de marca
+   Estos valores se rellenan a partir del archivo de Figma. Mientras tanto son
+   placeholders neutros: NO son los colores definitivos del diseno.
+   La fuente de verdad para Elementor es elementor-kit/site-settings.json; estas
+   variables solo existen para el CSS suelto que se escriba a mano.
+   ========================================================================== */
+:root {
+  --blomstra-primary:   #2f4f3e; /* TODO: color primario real del Figma */
+  --blomstra-secondary: #c8a97e; /* TODO */
+  --blomstra-text:      #1c1c1c; /* TODO */
+  --blomstra-accent:    #f4f1ea; /* TODO */
+
+  --blomstra-font-heading: "Playfair Display", Georgia, serif; /* TODO */
+  --blomstra-font-body:    "Inter", system-ui, sans-serif;     /* TODO */
+
+  --blomstra-container: 1200px; /* TODO: ancho del frame de Figma */
+}
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Evita el salto de las anclas por debajo del header sticky de Elementor. */
+:target {
+  scroll-margin-top: 100px;
+}
+
+/* Imagenes dentro de widgets: nunca desbordan en movil. */
+.elementor-widget-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   3. Accesibilidad
+   ========================================================================== */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 10000;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  color: var(--blomstra-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--blomstra-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

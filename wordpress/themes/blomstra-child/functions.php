@@ -1,0 +1,61 @@
+<?php
+/**
+ * Blomstra Child - funciones del tema.
+ *
+ * @package blomstra-child
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+define( 'BLOMSTRA_CHILD_VERSION', '1.0.0' );
+
+/**
+ * Carga la hoja de estilos del tema padre y luego la del hijo.
+ */
+function blomstra_child_enqueue_styles() {
+	wp_enqueue_style(
+		'hello-elementor-child',
+		get_stylesheet_directory_uri() . '/style.css',
+		array( 'hello-elementor', 'hello-elementor-theme-style' ),
+		BLOMSTRA_CHILD_VERSION
+	);
+}
+add_action( 'wp_enqueue_scripts', 'blomstra_child_enqueue_styles', 20 );
+
+/**
+ * Declara soporte para las funciones de tema que usa Elementor Pro
+ * (header/footer/single builder) y para los formatos habituales.
+ */
+function blomstra_child_setup() {
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'title-tag' );
+	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script' ) );
+	add_theme_support( 'custom-logo' );
+}
+add_action( 'after_setup_theme', 'blomstra_child_setup' );
+
+/**
+ * Registra los menus que usara el header construido en Elementor.
+ */
+function blomstra_child_register_menus() {
+	register_nav_menus(
+		array(
+			'main'   => __( 'Menu principal', 'blomstra-child' ),
+			'footer' => __( 'Menu del pie', 'blomstra-child' ),
+		)
+	);
+}
+add_action( 'init', 'blomstra_child_register_menus' );
+
+/**
+ * Enlace "saltar al contenido" para accesibilidad.
+ */
+function blomstra_child_skip_link() {
+	printf(
+		'<a class="skip-link screen-reader-text" href="#content">%s</a>',
+		esc_html__( 'Saltar al contenido', 'blomstra-child' )
+	);
+}
+add_action( 'wp_body_open', 'blomstra_child_skip_link' );
