@@ -16,7 +16,8 @@ el footer y los formularios; está resuelto en la guía de montaje.
 | Prototipo de la home | Listo, 14 secciones con el copy real |
 | Plantilla de Elementor de la página de servicios | **Pendiente** |
 | Formularios y cuestionario | **Sin maquetar** |
-| Imágenes y logotipos reales | **Faltan** |
+| Carga de tipografías propias (sin Pro) | Resuelta en el tema hijo |
+| Imágenes, logotipos y fuentes reales | **Faltan** |
 
 ## Cómo está montado
 
@@ -72,6 +73,7 @@ Los prototipos se abren directamente en el navegador desde `prototype/`.
 - [`docs/INCONSISTENCIAS.md`](docs/INCONSISTENCIAS.md) — **léelo**: decisiones de diseño pendientes que bloquean
 - [`docs/CONTENIDO-HOME.md`](docs/CONTENIDO-HOME.md) — todo el copy de la home transcrito
 - [`docs/ARQUITECTURA-OBSERVADA.md`](docs/ARQUITECTURA-OBSERVADA.md) — mapa de pantallas
+- [`docs/LOGO-TIPOGRAFIA-MENU.md`](docs/LOGO-TIPOGRAFIA-MENU.md) — cambiar el logo por el SVG, instalar las tipografías reales y enlazar el menú
 - [`docs/INTAKE-DISENO.md`](docs/INTAKE-DISENO.md) — qué falta por recibir
 
 ## Nota sobre las tipografías
