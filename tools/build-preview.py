@@ -47,15 +47,31 @@ def ascii_js(text):
     return "".join(c if ord(c) < 128 else "\\u%04x" % ord(c) for c in text)
 
 
-# --- ilustraciones como data URI -----------------------------------------
+# --- imágenes como data URI ----------------------------------------------
+# Para la vista previa se usan copias reducidas de las fotos (carpeta previmg)
+# y los originales para lo demás; así el archivo pesa un tercio.
+PREV = os.environ.get("PREVIEW_IMG", "")  # carpeta opcional con copias ligeras
+MIME = {".svg": "image/svg+xml", ".jpg": "image/jpeg", ".png": "image/png"}
+
 images = {}
-for name in os.listdir(os.path.join(ROOT, "assets/img")):
-    if not name.endswith(".svg"):
-        continue
-    raw = open(os.path.join(ROOT, "assets/img", name), "rb").read()
-    images["assets/img/" + name] = (
-        "data:image/svg+xml;base64," + base64.b64encode(raw).decode()
-    )
+
+
+def add(ref, path):
+    ext = os.path.splitext(path)[1].lower()
+    with open(path, "rb") as fh:
+        images[ref] = "data:%s;base64,%s" % (
+            MIME[ext], base64.b64encode(fh.read()).decode())
+
+
+for folder in ("assets/img", "assets/brand"):
+    for name in os.listdir(os.path.join(ROOT, folder)):
+        ext = os.path.splitext(name)[1].lower()
+        if ext not in MIME:
+            continue
+        ref = folder + "/" + name
+        light = os.path.join(PREV, os.path.splitext(name)[0] + ".jpg") if PREV else ""
+        add(ref, light if (light and ext == ".jpg" and os.path.exists(light))
+                 else os.path.join(ROOT, folder, name))
 
 font_b64 = base64.b64encode(open(FONT, "rb").read()).decode() if FONT and os.path.exists(FONT) else ""
 
