@@ -58,9 +58,11 @@ python3 -m http.server 8000
 1. **Fotografías definitivas.** Las de ahora son las que envió el estudio,
    redimensionadas a 1400 px de ancho y comprimidas. Tras la sesión
    fotográfica profesional se sustituyen manteniendo los mismos nombres.
-   Quedan dos ilustraciones vectoriales donde todavía no hay foto:
-   `srv-capilar.svg` (micropigmentación capilar) y `srv-powder.svg` (labios),
-   más `cta-wide.svg`, que es decorativa a propósito.
+   Cada hueco de la web tiene su propia fotografía, sin repetir: los nombres
+   dicen dónde va cada una (`hero-*`, `card-*`, `cat-*`, `collage-*`, `srv-*`,
+   `met-*`, `about-*`, `gal-*`). Quedan dos ilustraciones vectoriales donde
+   todavía no hay foto: `srv-capilar.svg` (micropigmentación capilar) y
+   `srv-powder.svg` (labios), más `cta-wide.svg`, decorativa a propósito.
 1b. **Consentimiento de imagen.** Varias fotos muestran rostros de clientas
    reconocibles, incluidas comparativas de antes y después. Antes de publicar
    hace falta su autorización por escrito.
@@ -108,9 +110,7 @@ Colores y tipografías salen de variables CSS en `:root`
 --burgundy: #741c2d;   /* granate tomado del logotipo */
 --cream:    #f6f1ec;   /* fondo general */
 --gold:     #a98a63;   /* acento sutil */
---sans:     "Bricolage Grotesque";      /* todo el texto */
---serif:    "Instrument Serif";         /* cursiva de los acentos */
---tight:    76%;                        /* ancho de los titulares */
+--sans:     "Montserrat";   /* todo el texto */
 ```
 
 Las tipografías están alojadas en el propio proyecto (`assets/fonts/`, con sus
@@ -122,10 +122,10 @@ una familia:
 python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
 ```
 
-Bricolage Grotesque es una fuente variable: admite peso (200-800) y **ancho**
-(75-100 %). Los titulares la usan condensada mediante `font-stretch: var(--tight)`
-y el texto corrido va a ancho normal, que se lee mejor. Cambiar el carácter de
-toda la web es mover ese único valor.
+Toda la web usa Montserrat. El carácter no lo pone una segunda familia, sino el
+**contraste de pesos**: los titulares van en la fina (300) y en mayúsculas, y la
+palabra que se destaca en cada uno va en negrita cursiva (800). Se cargan los
+pesos 300 a 800 con sus cursivas.
 
 ### Crecer sin rehacer la web
 
