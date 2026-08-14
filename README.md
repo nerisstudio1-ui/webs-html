@@ -144,6 +144,23 @@ La estructura está pensada para ampliarse:
   quitarle la clase `tcard--soon`.
 - Los bloques de categoría (`.cats`) admiten más columnas sin tocar el CSS.
 
+## Movimiento
+
+El movimiento sigue un mismo criterio en toda la web: entradas largas y
+suaves, nada de rebotes ni desplazamientos bruscos.
+
+- `.reveal` — el bloque aparece subiendo al entrar en pantalla.
+- `.reveal--curtain` — los titulares se descubren de arriba abajo.
+- `.media-in` — las fotografías entran con un ligero cambio de escala.
+- `data-parallax="26"` — la imagen se desplaza más despacio que la página;
+  el número son los píxeles de recorrido, y en negativo va al revés.
+- La cabecera se aparta al bajar y vuelve al subir.
+- La fotografía fija de la portada respira muy lentamente.
+- Los botones se rellenan de granate desde abajo.
+
+Todo se desactiva con `prefers-reduced-motion`, la preferencia del sistema
+para quien marea el movimiento.
+
 ## Notas técnicas
 
 - Sin frameworks: se publica tal cual en cualquier hosting estático.

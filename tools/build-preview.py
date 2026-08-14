@@ -68,9 +68,12 @@ for folder in ("assets/img", "assets/brand"):
         if ext not in MIME:
             continue
         ref = folder + "/" + name
+        original = os.path.join(ROOT, folder, name)
         light = os.path.join(PREV, os.path.splitext(name)[0] + ".jpg") if PREV else ""
-        add(ref, light if (light and ext == ".jpg" and os.path.exists(light))
-                 else os.path.join(ROOT, folder, name))
+        # la copia ligera solo vale si es más reciente que el original
+        usable = (light and ext == ".jpg" and os.path.exists(light)
+                  and os.path.getmtime(light) >= os.path.getmtime(original))
+        add(ref, light if usable else original)
 
 
 # la hoja de fuentes, con los woff2 convertidos a data URI
@@ -139,8 +142,18 @@ EXTRA_CSS = """
 .js .page.is-active .reveal[data-delay="2"] { animation-delay: .18s; }
 .js .page.is-active .reveal[data-delay="3"] { animation-delay: .27s; }
 @keyframes revealin { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* los titulares con efecto cortina necesitan animar su recorte, no la opacidad */
+.js .page.is-active .reveal--curtain { animation: curtainin 1.1s var(--ease) both; }
+@keyframes curtainin { from { clip-path: inset(0 0 105% 0); } to { clip-path: inset(0 0 -12% 0); } }
+
+/* las fotografías con entrada de escala */
+.js .page.is-active .media-in img { animation: mediain 1.5s var(--ease) both; }
+@keyframes mediain { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) {
   .js .page.is-active .reveal { animation: none; opacity: 1; transform: none; }
+  .js .page.is-active .reveal--curtain { animation: none; clip-path: none; }
+  .js .page.is-active .media-in img { animation: none; opacity: 1; transform: none; }
 }
 .preview-note {
   position: fixed; left: 50%; bottom: clamp(1rem, 2.5vw, 2rem);

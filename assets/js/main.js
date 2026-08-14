@@ -4,11 +4,19 @@
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* --- Header sólido al hacer scroll ---------------------------------- */
+  /* --- Cabecera: sólida al bajar, oculta al alejarse, vuelve al subir --- */
   var header = document.querySelector('.header');
   if (header) {
+    var lastY = window.scrollY;
     var onScroll = function () {
-      header.classList.toggle('is-solid', window.scrollY > 24);
+      var y = window.scrollY;
+      header.classList.toggle('is-solid', y > 24);
+      if (!reduced) {
+        var bajando = y > lastY && y > 320;
+        var menuAbierto = document.querySelector('.mobile-nav.is-open');
+        header.classList.toggle('is-hidden', bajando && !menuAbierto);
+      }
+      lastY = y;
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -98,28 +106,9 @@
           var panel = document.getElementById(b.getAttribute('aria-controls'));
           if (panel) panel.hidden = !on;
         });
-        var active = document.getElementById(btn.getAttribute('aria-controls'));
-        if (active) updateProgress(active);
       });
     });
   }
-
-  function updateProgress(rail) {
-    var bar = rail.parentElement && rail.parentElement.querySelector('.progress span');
-    if (!bar) return;
-    var max = rail.scrollWidth - rail.clientWidth;
-    var ratio = rail.clientWidth / rail.scrollWidth;
-    var width = Math.max(ratio, 0.15) * 100;
-    var pos = max > 0 ? (rail.scrollLeft / max) * (100 - width) : 0;
-    bar.style.width = width + '%';
-    bar.style.transform = 'translateX(' + (pos / width) * 100 + '%)';
-  }
-
-  document.querySelectorAll('.rail').forEach(function (rail) {
-    updateProgress(rail);
-    rail.addEventListener('scroll', function () { updateProgress(rail); }, { passive: true });
-    window.addEventListener('resize', function () { updateProgress(rail); });
-  });
 
   /* --- FAQ (acordeón accesible) ---------------------------------------- */
   document.querySelectorAll('.faq__q').forEach(function (q) {
@@ -148,6 +137,33 @@
       }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
       revealables.forEach(function (el) { io.observe(el); });
     }
+  }
+
+  /* --- Profundidad al desplazar ----------------------------------------
+     Las imágenes marcadas se mueven algo más despacio que la página. Es un
+     efecto sutil: como mucho unas decenas de píxeles. */
+  var capas = [].slice.call(document.querySelectorAll('[data-parallax]'));
+  if (capas.length && !reduced) {
+    var pendiente = false;
+    var pintar = function () {
+      pendiente = false;
+      var alto = window.innerHeight;
+      capas.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > alto + 200) return;
+        var avance = (r.top + r.height / 2 - alto / 2) / alto;   // -1 … 1
+        var fuerza = parseFloat(el.dataset.parallax) || 18;
+        el.style.transform = 'translate3d(0,' + (avance * -fuerza).toFixed(1) + 'px,0)';
+      });
+    };
+    var pedir = function () {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(pintar);
+    };
+    window.addEventListener('scroll', pedir, { passive: true });
+    window.addEventListener('resize', pedir);
+    pintar();
   }
 
   /* --- Newsletter (demostración, sin backend) --------------------------- */

@@ -748,13 +748,59 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .is-soon .card__media, .is-soon .service-row__media { opacity: .8; }
 .rule-gold { width: 44px; height: 1px; background: var(--gold); margin-bottom: 1.5rem; }
 
-/* --- 19. Animación de entrada ------------------------------------------ */
-/* Solo se oculta si el JS está activo: sin JS el contenido se ve siempre. */
-.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+/* --- 19. Movimiento ----------------------------------------------------
+   Todo el movimiento parte de un mismo criterio: entradas largas y suaves,
+   nunca rebotes ni desplazamientos bruscos. Solo se oculta si el JS está
+   activo: sin JS el contenido se ve siempre. */
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .reveal.is-in { opacity: 1; transform: none; }
 .reveal[data-delay="1"] { transition-delay: .08s; }
 .reveal[data-delay="2"] { transition-delay: .16s; }
 .reveal[data-delay="3"] { transition-delay: .24s; }
+.reveal[data-delay="4"] { transition-delay: .32s; }
+
+/* los titulares se descubren como una cortina */
+.js .reveal--curtain { opacity: 1; transform: none; clip-path: inset(0 0 105% 0); transition: clip-path 1.1s var(--ease); }
+.js .reveal--curtain.is-in { clip-path: inset(0 0 -12% 0); }
+
+/* las fotografías entran con un ligero desplazamiento de escala */
+.media-in { overflow: hidden; }
+.js .media-in img { transform: scale(1.12); transition: transform 1.6s var(--ease), opacity 1.2s var(--ease); opacity: 0; }
+.js .media-in.is-in img { transform: scale(1); opacity: 1; }
+
+/* profundidad al desplazar: las imágenes marcadas se mueven algo más lento */
+[data-parallax] { will-change: transform; }
+
+/* el fondo fijo de la portada respira muy lentamente */
+@keyframes breathe { from { transform: scale(1); } to { transform: scale(1.07); } }
+.js .hero__panel--pale > img { animation: breathe 24s var(--ease) infinite alternate; }
+
+/* los botones se rellenan desde abajo */
+.btn { position: relative; overflow: hidden; z-index: 0; }
+.btn::before {
+  content: "";
+  position: absolute; inset: 0;
+  z-index: -1;
+  background: var(--burgundy-deep);
+  transform: translateY(101%);
+  transition: transform .5s var(--ease);
+}
+.btn--dark::before { background: var(--burgundy-deep); }
+.btn:not(.btn--dark)::before { background: var(--burgundy); }
+.btn:hover::before { transform: translateY(0); }
+.btn:not(.btn--dark):hover { color: var(--cream); }
+
+/* la cabecera se aparta al bajar y vuelve al subir */
+.header { transform: translateY(0); transition: background .45s var(--ease), color .45s var(--ease),
+  box-shadow .45s var(--ease), transform .5s var(--ease); }
+.header.is-hidden { transform: translateY(-101%); }
+
+/* las tarjetas de tratamiento levantan un poco el nombre al pasar por encima */
+.tcard__body h3 { transition: transform .45s var(--ease); }
+.tcard a:hover .tcard__body h3 { transform: translateX(4px); }
+
+/* el acordeón y las pestañas ya animan; aquí, el subrayado del enlace activo */
+.tabs button { position: relative; transition: color .45s var(--ease); }
 
 /* --- 20. Responsive ---------------------------------------------------- */
 @media (max-width: 1100px) {
@@ -805,4 +851,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .reveal, .js .reveal { opacity: 1; transform: none; }
+  .js .reveal--curtain { clip-path: none; }
+  .js .media-in img { transform: none; opacity: 1; }
+  .js .hero__panel--pale > img { animation: none; }
+  .header.is-hidden { transform: none; }
 }
