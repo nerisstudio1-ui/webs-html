@@ -44,28 +44,33 @@ def fetch(spec):
             continue
         if subset not in SUBSETS:
             continue
-        style = re.search(r"font-style:\s*(\w+)", block).group(1)
-        weight = re.search(r"font-weight:\s*(\d+)", block).group(1)
+        style = re.search(r"font-style:\s*([\w ]+);", block).group(1).strip()
+        # en las fuentes variables el peso y el ancho son rangos ("200 800")
+        weight = re.search(r"font-weight:\s*([\d ]+);", block).group(1).strip()
+        stretch = re.search(r"font-stretch:\s*([\d%. ]+);", block)
+        stretch = stretch.group(1).strip() if stretch else ""
         src = re.search(r"url\((https://[^)]+\.woff2)\)", block).group(1)
-        name = "%s-%s-%s-%s.woff2" % (slug(family), subset, weight, style)
+        name = "%s-%s-%s-%s.woff2" % (slug(family), subset, slug(weight), slug(style))
         path = os.path.join(OUT, name)
         if not os.path.exists(path):
             open(path, "wb").write(get(src))
-        faces.append((family, style, weight, name))
+        faces.append((family, style, weight, name, stretch))
     return faces
 
 
 def css_for(faces):
     out = []
-    for family, style, weight, name in faces:
+    for family, style, weight, name, stretch in faces:
         out.append(
             '@font-face {\n'
             '  font-family: "%s";\n'
             '  font-style: %s;\n'
             '  font-weight: %s;\n'
+            '%s'
             '  font-display: swap;\n'
             '  src: url("../fonts/%s") format("woff2");\n'
-            '}' % (family, style, weight, name))
+            '}' % (family, style, weight,
+                   ('  font-stretch: %s;\n' % stretch) if stretch else '', name))
     return "\n".join(out)
 
 
