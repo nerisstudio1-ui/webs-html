@@ -7,9 +7,9 @@ WordPress (o de cualquier gestor).
 
 Escribe en `wordpress/`:
 
-    widget-ca.html                 catalán, con los archivos por URL (158 KB)
+    widget-ca.html                 catalán, con los archivos por URL (130 KB)
     widget-es.html                 castellano, ídem
-    widget-ca-copiar-pegar.html    catalán, con todo dentro menos los .mp4 (6 MB)
+    widget-ca-copiar-pegar.html    catalán, con todo dentro menos los .mp4 (3 MB)
     widget-es-copiar-pegar.html    castellano, ídem
 
 El problema de pegar una web entera en un tema es que las dos hojas de estilo se
@@ -152,24 +152,13 @@ def scope_css(css):
   width: 100%;
   z-index: 1000;''')
 
-    # El escenario del hero se queda pegado justo debajo
-    css = css.replace('''.hero__stage {
-  position: sticky;
-  top: 0;
-  height: 100svh;''', '''.hero__stage {
-  position: sticky;
-  top: var(--lac-top, 0px);
+    # La primera pantalla descuenta la cabecera del tema, para que el logotipo
+    # quede centrado en lo que se ve y no detrás de la barra de arriba.
+    css = css.replace('''.hero {
+  position: relative;
+  height: 100svh;''', '''.hero {
+  position: relative;
   height: calc(100svh - var(--lac-top, 0px));''')
-    css = css.replace('''.svc__media {
-    position: sticky;
-    top: 15vh;''', '''.svc__media {
-    position: sticky;
-    top: calc(15vh + var(--lac-top, 0px));''')
-    css = css.replace('''  .process__head {
-    position: sticky;
-    top: 20vh;''', '''  .process__head {
-    position: sticky;
-    top: calc(20vh + var(--lac-top, 0px));''')
 
     # 4. El grano cubre el contenedor, no toda la ventana
     css = css.replace(APP + ''' .grain {

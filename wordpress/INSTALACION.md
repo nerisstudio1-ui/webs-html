@@ -4,9 +4,9 @@ Hay dos caminos. Los dos dan la misma web; cambia dónde viven las fotos.
 
 ## A. Copiar y pegar, sin FTP
 
-**`widget-ca-copiar-pegar.html` · `widget-es-copiar-pegar.html` — 6 MB**
+**`widget-ca-copiar-pegar.html` · `widget-es-copiar-pegar.html` — 3 MB**
 
-Las tipografías, las 31 fotos y las imágenes de espera de los vídeos van **dentro
+Las tipografías, las 16 fotos y las imágenes de espera de los vídeos van **dentro
 del archivo**. Se abre, se copia todo y se pega. No hay que subir ninguna carpeta.
 
 Lo único que queda fuera son los cuatro `.mp4`, porque 34 MB de vídeo dentro de
@@ -16,13 +16,13 @@ que están subidos en la Biblioteca de medios, en
 vuelven a subir y cambian de nombre, sus direcciones están en
 `VIDEOS_WORDPRESS`, en `build/build_widget.py`.
 
-**Lo que cuesta:** esos 6 MB se guardan en la base de datos, así que el editor
+**Lo que cuesta:** esos 3 MB se guardan en la base de datos, así que el editor
 de WordPress va lento al abrir y guardar esa página. Y el navegador no puede
 cachear las fotos por separado: cada visita se las baja otra vez.
 
 ## B. Con la carpeta subida, mucho más ligero
 
-**`widget-ca.html` · `widget-es.html` — 158 KB**
+**`widget-ca.html` · `widget-es.html` — 130 KB**
 
 Lo mismo, pero las fotos y las tipografías se cargan como archivos aparte. Pesa
 40 veces menos en la base de datos y el navegador las cachea, así que la segunda
@@ -44,7 +44,6 @@ FTP.** Cambiar de uno a otro es sustituir el contenido del bloque.
 4. Publica. Ya se ve la web.
 5. Haz el paso de **«Confirma el correo del formulario»**, aquí abajo. Es una vez
    y sin él los mensajes no llegan.
-
 6. **Vacía la caché.** Ver «Si en el editor se ve y en la web no» más abajo. Sin
    esto la web pública puede seguir mostrando la versión anterior durante horas.
 
@@ -116,14 +115,18 @@ está sirviendo. Si no coincide con la del archivo que pegaste, es caché.
 
 # Confirma el correo del formulario (una sola vez)
 
-Los mensajes del formulario llegan a **itslaconicstudio@gmail.com** a través de
+Los mensajes del formulario llegan a **hello@laconicstudio.es** a través de
 FormSubmit, que no necesita cuenta, clave ni plugin. Solo pide confirmar, una vez,
 que esa dirección acepta recibirlos. Y solo se puede hacer con la web publicada.
+
+> La dirección cambió en agosto de 2026: antes era `itslaconicstudio@gmail.com`.
+> Si ya habíais confirmado la vieja, **hay que repetir la confirmación** con la
+> nueva, y el buzón `hello@laconicstudio.es` tiene que existir y recibir correo.
 
 1. Abre la página publicada y ve a **Contacto**.
 2. Rellena el formulario con cualquier cosa —«prueba» en todos los campos vale— y
    envíalo.
-3. En la bandeja de **itslaconicstudio@gmail.com** llega un correo de FormSubmit
+3. En la bandeja de **hello@laconicstudio.es** llega un correo de FormSubmit
    con un enlace de activación. Púlsalo. Si no aparece, mira en **Spam**.
 4. Envía el formulario otra vez. Ese segundo mensaje ya tiene que llegar a la
    bandeja, con el asunto *Nuevo mensaje desde la web*.
@@ -172,7 +175,7 @@ del ZIP solo hace falta `assets/`.
 Abre `widget-ca.html` en un editor de texto y sustituye:
 
 - `__BASE__` → `https://TUDOMINIO.com/wp-content/uploads/laconic/`
-  (sale 94 veces; usa **reemplazar todo**. Ojo: **con la barra final.**)
+  (usa **reemplazar todo**. Ojo: **con la barra final.**)
 - `__URL_ES__` → la URL de la página en castellano, por ejemplo
   `https://TUDOMINIO.com/es/`
 

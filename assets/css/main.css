@@ -508,13 +508,15 @@ ul {
 .brand:hover .brand__mark {
   transform: rotate(-12deg);
 }
-.brand__word {
-  height: clamp(20px, 2vw, 26px);
+/* El cero solo, que es lo que va en la cabecera */
+.brand__zero {
+  height: clamp(22px, 2.2vw, 28px);
   width: auto;
-  transition: transform 0.6s var(--ease-out);
+  color: var(--terra);
+  transition: transform 0.7s var(--ease-out);
 }
-.brand:hover .brand__word {
-  transform: translateY(-2px);
+.brand:hover .brand__zero {
+  transform: rotate(-14deg);
 }
 
 .nav {
@@ -670,50 +672,20 @@ body.menu-open .mobile-menu {
    es el recorrido que usan las fotos para subir (--p va de 0 a 1). Acaban
    arriba del todo, saliendo por el borde superior. */
 .hero {
-  --p: 0;
   position: relative;
-  height: 260svh;
+  height: 100svh;
+  min-height: 34rem;
   background: var(--cream);
   color: var(--text);
 }
 .hero__stage {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  overflow: hidden;
+  position: relative;
+  height: 100%;
   display: grid;
   align-content: center;
   justify-items: center;
   padding-inline: var(--gutter);
 }
-
-/* Las piezas suben desde debajo del pliegue hasta salir por arriba, por detrás
-   del logotipo. */
-.hero__tiles {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-.tile {
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  transform: translate3d(0, calc(var(--rise, 150svh) * (1 - var(--p))), 0)
-    rotate(var(--rot, 0deg));
-  will-change: transform;
-  box-shadow: 0 30px 60px -44px rgba(var(--ink-rgb), 0.55);
-}
-.tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.tile--1 { left: 3%;  top: -8%;  width: 17vw; height: 42svh; --rise: 156svh; --rot: -3deg; }
-.tile--2 { left: 71%; top: -16%; width: 19vw; height: 44svh; --rise: 182svh; --rot: 2.5deg; }
-.tile--3 { left: 38%; top: 1%;   width: 15vw; height: 36svh; --rise: 204svh; --rot: 3.5deg; }
-.tile--4 { left: 17%; top: 14%;  width: 14vw; height: 34svh; --rise: 138svh; --rot: 2deg; }
-.tile--5 { left: 55%; top: -22%; width: 18vw; height: 40svh; --rise: 226svh; --rot: -2.5deg; }
 
 /* El logotipo, centrado y en teja */
 .hero__logo {
@@ -788,44 +760,33 @@ body.menu-open .mobile-menu {
   background: currentColor;
   opacity: 0.35;
 }
-/* Aviso de scroll, centrado justo encima del filete */
-.hero__scroll {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(clamp(1.6rem, 5vh, 3.2rem) + 2.6rem);
-  font-family: var(--hand);
-  font-size: 1.3rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--terra);
-  opacity: 0;
-  transition: opacity 1s var(--ease) 1.3s;
+/* ---------- Las dos fotos del inicio ----------
+   A sangre y a toda la altura de la pantalla, una al lado de la otra. En un
+   móvil no caben dos columnas: pasan a una sobre otra, media pantalla cada una,
+   que es lo que mantiene el formato vertical de las fotos. */
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100svh;
+  min-height: 30rem;
+  background: var(--cream);
 }
-.is-loaded .hero__scroll {
-  opacity: 0.9;
+.duo__half {
+  margin: 0;
+  overflow: hidden;
 }
-.hero__scroll::after {
-  content: "";
-  width: 36px;
-  height: 1px;
-  background: currentColor;
-  animation: slide 2s var(--ease) infinite;
+.duo__half img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-@keyframes slide {
-  0%,
-  100% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scaleX(0.35);
-    opacity: 0.5;
+@media (max-width: 700px) {
+  .duo {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
   }
 }
-
 
 /* ---------- Declaración: bloque de color, centrado ---------- */
 .decl {
@@ -843,10 +804,17 @@ body.menu-open .mobile-menu {
 .decl__text .hand {
   font-size: 0.98em;
 }
+/* Sin botón debajo, el bloque no necesita tanto aire */
+.decl--tight {
+  padding-block: clamp(3rem, 6vw, 5.5rem) clamp(2.4rem, 5vw, 4.5rem);
+}
+.decl--tight .decl__text {
+  margin-bottom: 0;
+}
 
-/* ---------- Tira de fotos que pasa en bucle, con el rótulo grande debajo ----
+/* ---------- Tira de fotos que pasa en bucle ----------
    Las fotos van pegadas, sin hueco, y el carril se duplica en el JS para que el
-   bucle no tenga costura. El rótulo queda entero debajo, no tapado. */
+   bucle no tenga costura. */
 .strip {
   position: relative;
   overflow: hidden;
@@ -902,51 +870,18 @@ body.menu-open .mobile-menu {
   font-weight: 800;
 }
 
-/* ---------- Marcas con las que ha trabajado el estudio ---------- */
-.clients {
-  margin-top: clamp(2.5rem, 6vw, 4rem);
-  padding-top: clamp(2rem, 4vw, 3rem);
-  border-top: 1px solid var(--line);
-}
-.clients__label {
-  font-size: var(--step--2);
-  text-transform: uppercase;
-  letter-spacing: 0.26em;
-  font-weight: 600;
-  color: var(--muted);
-  margin: 0 0 clamp(1.2rem, 3vw, 2rem);
-}
-.clients__list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.2em 0.9em;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(1.15rem, 2.4vw, 1.85rem);
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-/* Un punto en terracota entre marca y marca, menos después de la última */
-.clients__list li {
-  display: flex;
-  align-items: center;
-  gap: 0.9em;
-}
-.clients__list li::after {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--terra);
-  flex: none;
-}
-.clients__list li:last-child::after {
-  display: none;
-}
-
-
 /* ---------- Manifiesto ---------- */
+/* Una sola columna de texto: el «less noise» va alineado con el párrafo, no
+   enfrentado a él, y el cierre va en Raleway como pidió el estudio. */
+.manifesto__grid--simple {
+  display: block;
+}
+.body-col__cierre {
+  margin-top: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
 .manifesto__grid {
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
@@ -956,18 +891,6 @@ body.menu-open .mobile-menu {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: start;
   }
-}
-.hand-note {
-  font-family: var(--hand);
-  font-weight: 400;
-  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
-  line-height: 1.25;
-  color: var(--terra);
-  margin: 1.8rem 0 0;
-}
-[data-theme="terra"] .hand-note,
-[data-theme="ink"] .hand-note {
-  color: var(--cream);
 }
 
 
@@ -1015,547 +938,202 @@ body.menu-open .mobile-menu {
   letter-spacing: 0;
   color: var(--terra-soft);
 }
+/* La línea de servicios: Raleway fina, pequeña, y la banda más estrecha */
+.marquee--fina {
+  padding-top: clamp(0.9rem, 1.8vw, 1.4rem);
+  padding-bottom: calc(clamp(0.9rem, 1.8vw, 1.4rem) + var(--radius-slab));
+}
+.marquee--fina span {
+  font-size: clamp(0.78rem, 1.1vw, 1rem);
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.marquee--fina span::after {
+  width: 4px;
+  height: 4px;
+}
+
 @keyframes marquee {
   to {
     transform: translateX(-50%);
   }
 }
 
-/* ---------- Servicios: panel de foto pegado + lista ---------- */
+/* ---------- Servicios: los nombres grandes y escalonados ----------
+   Como la referencia que pasó el estudio: los cinco nombres sueltos por el
+   ancho, numerados, y debajo la definición del que está activo. Sin foto y sin
+   frase de entrada: los nombres son el titular. */
 .svc {
   display: grid;
-  gap: clamp(2rem, 4vw, 3.5rem);
+  gap: clamp(2.4rem, 5vw, 4rem);
 }
-.svc__media {
-  position: relative;
-  overflow: hidden;
-  height: 34svh;
-  background: rgba(var(--ink-rgb), 0.15);
-}
-@media (min-width: 940px) {
-  .svc {
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    align-items: start;
-  }
-  /* La lista ocupa toda la columna derecha; la foto se pega arriba en la
-     izquierda y el botón cierra la columna, así no queda hueco muerto. */
-  .svc__media {
-    grid-column: 1;
-    grid-row: 1;
-    position: sticky;
-    top: 14vh;
-    height: 72svh;
-  }
-  .svc__list {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-  .svc__cta {
-    grid-column: 1;
-    grid-row: 2;
-    align-self: end;
-  }
-}
-.svc__cta {
-  margin: 0;
-}
-.svc__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.08);
-  transition: opacity 0.8s var(--ease), transform 1.4s var(--ease-out);
-}
-.svc__media img.is-on {
-  opacity: 1;
-  transform: none;
-}
-
-.svc__list {
-  border-top: 1px solid var(--line-cream);
-}
-.svc__item {
-  border-bottom: 1px solid var(--line-cream);
-  padding-block: clamp(1.4rem, 3vw, 2.1rem);
+.svc__noms {
   display: grid;
-  gap: 0.4rem;
-  transition: opacity 0.5s var(--ease);
+  justify-items: start;
+  gap: clamp(0.1rem, 0.6vw, 0.5rem);
 }
-@media (min-width: 940px) {
-  .svc__item {
-    opacity: 0.55;
-  }
-  .svc__item.is-active {
-    opacity: 1;
-  }
-}
-.svc__head {
-  display: flex;
+.svc__nom button {
+  display: inline-flex;
   align-items: baseline;
-  gap: 0.85rem;
+  gap: 0.7rem;
+  padding: 0.1em 0;
+  border: 0;
+  background: none;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 6vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: var(--ink);
+  opacity: 0.42;
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease-out);
+}
+.svc__nom.is-active button {
+  opacity: 1;
+}
+.svc__nom button:hover {
+  opacity: 1;
+}
+.svc__nom sup {
+  font-size: 0.28em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+  top: -0.9em;
 }
 /* Icono del servicio, el mismo que usa el estudio en su flyer */
 .svc__icon {
-  width: clamp(15px, 1.5vw, 19px);
+  width: clamp(14px, 1.4vw, 18px);
   height: auto;
   flex: none;
   align-self: center;
   color: var(--cream);
-  opacity: 0.9;
+  opacity: 0.85;
 }
-.svc__num {
-  font-size: var(--step--2);
-  letter-spacing: 0.18em;
-  font-variant-numeric: tabular-nums;
-  opacity: 0.75;
-  flex: none;
+/* El escalonado: cada nombre entra un poco más que el anterior, y el tercero
+   vuelve, para que la columna no sea una lista alineada. */
+.svc__nom:nth-child(2) { margin-left: clamp(1rem, 12vw, 9rem); }
+.svc__nom:nth-child(3) { margin-left: clamp(1.6rem, 20vw, 15rem); }
+.svc__nom:nth-child(4) { margin-left: clamp(0.5rem, 6vw, 4rem); }
+.svc__nom:nth-child(5) { margin-left: clamp(0.2rem, 3vw, 2rem); }
+@media (max-width: 700px) {
+  .svc__nom:nth-child(n) {
+    margin-left: 0;
+  }
 }
-.svc__name {
-  font-family: var(--hand);
-  font-weight: 400;
-  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
-  line-height: 1.05;
-  color: var(--cream);
+
+/* La definición del servicio activo. Las cinco están en el HTML, así que sin
+   JavaScript se leen todas seguidas, cada una con su nombre encima; con
+   JavaScript solo se ve la del servicio elegido y el nombre sobra, porque ya
+   está escrito en grande ahí arriba. */
+.svc__defs {
+  max-width: 62ch;
 }
-.svc__tag {
+.has-js .svc__defs {
+  min-height: 9.5em;
+}
+.svc__def + .svc__def {
+  margin-top: 1.6rem;
+}
+.svc__def-nom {
+  font-size: var(--step-1);
+  margin: 0 0 0.3rem;
+}
+.has-js .svc__def {
+  display: none;
+}
+.has-js .svc__def.is-on {
+  display: block;
+}
+.has-js .svc__def-nom {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.has-js .svc__def.is-on {
+  animation: svc-entra 0.5s var(--ease-out) both;
+}
+@keyframes svc-entra {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.svc__def p {
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+}
+.svc__cta {
+  margin: 0;
+}
+
+/* ---------- Proyectos: la retícula de fichas ----------
+   Dos columnas, foto (o el reel del proyecto, recortado igual) y debajo el
+   nombre y el sector. La ficha entera es el enlace: abre Instagram. */
+.obras {
+  display: grid;
+  gap: clamp(1.6rem, 3.4vw, 3rem) clamp(1rem, 2.4vw, 2rem);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .obras {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.obra {
+  display: block;
+}
+.obra__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: rgba(var(--ink-rgb), 0.08);
+}
+.obra__media img,
+.obra__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: none;
+  transition: transform 1.1s var(--ease-out);
+}
+.obra:hover .obra__media img,
+.obra:hover .obra__media video {
+  transform: scale(1.035);
+}
+.obra__nom {
+  font-size: var(--step-1);
   font-weight: 600;
-  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0.9rem 0 0.15rem;
+}
+.obra__sector {
   margin: 0;
-}
-.svc__items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.4rem;
-  margin-top: 0.6rem;
-  font-size: var(--step--1);
-  color: var(--cream);
-}
-.svc__items li {
-  display: flex;
-  gap: 0.5rem;
-}
-.svc__items li::before {
-  content: "—";
-  opacity: 0.55;
-}
-
-/* ---------- Trabajo: bandas alternas con paralaje ---------- */
-.slab {
-  display: grid;
-  gap: clamp(1.4rem, 4vw, 3.5rem);
-  align-items: center;
-  padding-block: clamp(2rem, 5vw, 4rem);
-}
-@media (min-width: 900px) {
-  .slab {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  }
-  .slab--flip .slab__media {
-    order: 2;
-  }
-  .slab--flip .slab__text {
-    padding-right: clamp(1rem, 4vw, 3rem);
-  }
-}
-/* Las fotos del estudio son verticales (4:5): el marco respeta su formato en
-   lugar de recortarlas a un apaisado. */
-.slab__media {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  max-height: 78svh;
-}
-.slab__media img {
-  width: 100%;
-  height: 118%;
-  object-fit: cover;
-  transform: translate3d(0, calc(var(--py, 0) * -9%), 0) scale(1.01);
-  will-change: transform;
-  transition: filter 0.6s var(--ease);
-}
-.slab__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(var(--ink-rgb), 0.22), transparent 55%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s var(--ease);
-}
-.slab:hover .slab__media::after {
-  opacity: 1;
-}
-.slab__index {
   font-size: var(--step--2);
-  letter-spacing: 0.2em;
-  opacity: 0.6;
-  display: block;
-  margin-bottom: 0.9rem;
-}
-.slab__title {
-  font-size: var(--display-2);
-  letter-spacing: -0.045em;
-  margin-bottom: 0.8rem;
-  transition: color 0.4s var(--ease);
-}
-.slab:hover .slab__title {
-  color: var(--terra);
-}
-.slab__text p {
-  color: var(--muted);
-  max-width: 42ch;
-}
-[data-theme="ink"] .slab__text p {
-  color: rgba(var(--cream-rgb), 0.82);
-}
-.slab__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.4rem;
-  margin-top: 1.4rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
-  font-size: var(--step--1);
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
 }
-[data-theme="ink"] .slab__meta {
-  border-color: var(--line-cream);
-}
-/* Las demás fotos del proyecto, pequeñas, debajo del texto */
-.slab__extra {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(0.6rem, 1.4vw, 1rem);
-  margin-top: clamp(1.4rem, 3vw, 2.2rem);
-}
-.slab__extra figure {
-  margin: 0;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-}
-.slab__extra img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s var(--ease-out);
-}
-.slab__extra figure:hover img {
-  transform: scale(1.05);
-}
-
-/* ---------- Reels: los vídeos del proyecto en marco vertical ----------
-   Los archivos van en assets/video/<proyecto>-1.mp4. El generador los detecta
-   solos: si están, la columna de la izquierda deja de ser una foto y pasa a ser
-   el vídeo (con la foto como póster). Si no están, se queda la foto. */
-.slab__media--reels {
-  aspect-ratio: auto;
-  max-height: none;
-  overflow: visible;
-  display: flex;
-  gap: clamp(0.8rem, 2vw, 1.4rem);
-  justify-content: center;
-  align-items: flex-start;
-}
-/* El velo de hover que llevan las fotos aquí no pinta nada y taparía el vídeo */
-.slab__media--reels::after {
-  content: none;
-}
-.reel {
-  position: relative;
-  flex: 1 1 0;
-  max-width: 250px;
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  background: rgba(var(--ink-rgb), 0.14);
-  box-shadow: 0 40px 70px -50px rgba(var(--ink-rgb), 0.65);
-}
-/* Cuando solo hay un vídeo se le da algo más de presencia */
-.slab__media--reels > .reel:only-child {
-  max-width: 300px;
-}
-/* La segunda pieza baja un poco, como un contacto de dos tomas */
-.reel:nth-child(2) {
-  margin-top: clamp(1.5rem, 5vw, 3.5rem);
-}
-/* Un velo abajo para que la etiqueta y el botón se lean sobre cualquier plano */
-.reel::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 30%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-.reel video,
-.reel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-/* Aviso de «toca para ver». Solo se ve mientras el vídeo está parado: si el
-   navegador no deja que arranque solo —un móvil en ahorro de batería o de
-   datos— el reel no se queda como una foto muda sin explicación. No intercepta
-   el clic: el toque llega al vídeo, que es quien lo escucha.
-   Sin JavaScript no aparece: ahí el vídeo arranca por el atributo autoplay y
-   nadie puede tocarlo para nada, así que el aviso solo estorbaría. */
-.reel__play {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
+/* La flecha solo en las que llevan a alguna parte */
+a.obra .obra__nom::after {
+  content: " \2197";
+  font-size: 0.7em;
   opacity: 0;
-  background: rgba(var(--ink-rgb), 0.18);
   transition: opacity 0.4s var(--ease);
 }
-.has-js .reel__play {
-  opacity: 1;
-}
-.reel__play span {
-  display: block;
-  width: 3.6rem;
-  height: 3.6rem;
-  border: 1px solid rgba(var(--cream-rgb), 0.75);
-  border-radius: 50%;
-  background: rgba(var(--ink-rgb), 0.4);
-  backdrop-filter: blur(6px);
-  position: relative;
-}
-/* El triángulo, hecho con bordes para no cargar ningún icono */
-.reel__play span::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 54%;
-  transform: translate(-50%, -50%);
-  border-style: solid;
-  border-width: 0.5rem 0 0.5rem 0.85rem;
-  border-color: transparent transparent transparent var(--cream);
-}
-.has-js .reel.is-playing .reel__play {
-  opacity: 0;
-}
-.reel__sound {
-  position: absolute;
-  right: 0.7rem;
-  bottom: 0.7rem;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  padding: 0;
-  border: 1px solid rgba(var(--cream-rgb), 0.5);
-  border-radius: 50%;
-  background: rgba(var(--ink-rgb), 0.45);
-  color: var(--cream);
-  backdrop-filter: blur(6px);
-  font-size: 0.9rem;
-  line-height: 1;
-  transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease),
-    transform 0.35s var(--ease-out);
-}
-.reel__sound:hover {
-  background: var(--terra);
-  border-color: var(--terra);
-  transform: scale(1.08);
-}
-.reel__sound .is-off {
-  display: none;
-}
-.reel.is-audible .reel__sound .is-off {
-  display: block;
-}
-.reel.is-audible .reel__sound .is-on {
-  display: none;
-}
-/* Etiqueta discreta con el número de pieza */
-.reel__tag {
-  position: absolute;
-  left: 0.7rem;
-  bottom: 0.8rem;
-  z-index: 2;
-  font-size: var(--step--2);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--cream);
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
-}
-
-/* ---------- Cita grande ---------- */
-.quote {
-  position: relative;
-  overflow: hidden;
-}
-.quote__mark {
-  position: absolute;
-  right: -6vw;
-  top: 50%;
-  height: 78%;
-  width: auto;
-  transform: translateY(-50%) rotate(var(--spin, 0deg));
-  opacity: 0.12;
-  color: var(--cream);
-  pointer-events: none;
-}
-.quote__text {
-  position: relative;
-  font-family: var(--display);
-  font-size: clamp(1.8rem, 4.4vw, 3.4rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.06;
-  max-width: 26ch;
-  margin: 0;
-}
-/* Igual que en los titulares: la manuscrita va dentro de la frase */
-.quote__text .hand {
-  display: inline;
-  font-size: 1.04em;
-  font-weight: 400;
-  color: var(--sand);
-}
-.quote cite {
-  display: block;
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
-  font-style: normal;
-  font-size: var(--step--2);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+a.obra:hover .obra__nom::after {
   opacity: 0.7;
 }
 
-/* ---------- Proceso ---------- */
-.process {
-  display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
-}
-@media (min-width: 900px) {
-  .process {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    align-items: start;
-  }
-  .process__head {
-    position: sticky;
-    top: 20vh;
-  }
-}
-.rail {
-  position: relative;
-  padding-left: 2.6rem;
-}
-.rail::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 0.6rem;
-  bottom: 0.6rem;
-  width: 1px;
-  background: var(--line);
-}
-.rail__fill {
-  position: absolute;
-  left: 7px;
-  top: 0.6rem;
-  width: 1px;
-  background: var(--terra);
-  height: calc(var(--fill, 0) * (100% - 1.2rem));
-  transition: height 0.25s linear;
-}
-.step {
-  position: relative;
-  padding-block: clamp(1.2rem, 3vw, 1.8rem);
-}
-.step::before {
-  content: "";
-  position: absolute;
-  left: -2.6rem;
-  top: calc(clamp(1.2rem, 3vw, 1.8rem) + 0.45em);
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--cream);
-  transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease),
-    transform 0.4s var(--ease-out);
-}
-.step.is-on::before {
-  background: var(--terra);
-  border-color: var(--terra);
-  transform: scale(1.15);
-}
-.step h3 {
-  font-size: var(--step-2);
-  margin-bottom: 0.4rem;
-}
-.step p {
-  color: var(--muted);
-  max-width: 52ch;
-  margin: 0;
-}
-.step__n {
-  font-family: var(--hand);
-  font-size: 1.5rem;
-  color: var(--terra);
-  display: block;
-  line-height: 1;
-  margin-bottom: 0.2rem;
-}
-
-/* ---------- Recursos ---------- */
-.cards {
-  display: grid;
-  gap: clamp(1.2rem, 2.5vw, 2rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
-  margin-top: clamp(2rem, 5vw, 3rem);
-}
-.card {
-  border: 1px solid var(--line);
-  padding: clamp(1.5rem, 3vw, 2.2rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  background: var(--cream);
-  transition: transform 0.5s var(--ease-out), border-color 0.4s var(--ease),
-    box-shadow 0.5s var(--ease);
-}
-.card:hover {
-  transform: translateY(-6px);
-  border-color: var(--terra);
-  box-shadow: 0 30px 60px -45px rgba(var(--ink-rgb), 0.5);
-}
-.card > :last-child {
-  margin-top: auto;
-  padding-top: 0.8rem;
-  margin-bottom: 0;
-}
-.card__tag {
-  font-size: var(--step--2);
-  color: var(--terra);
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-.card h3 {
-  font-size: var(--step-2);
-}
-.card p {
-  color: var(--muted);
-  margin: 0;
-}
-.card__price {
-  font-family: var(--hand);
-  font-weight: 400;
-  font-size: 1.7rem;
-  color: var(--ink);
-}
+/* ---------- Nota al pie de un bloque ---------- */
 .note {
   font-size: var(--step--1);
   color: var(--muted);
@@ -1564,138 +1142,6 @@ body.menu-open .mobile-menu {
 [data-theme="terra"] .note,
 [data-theme="ink"] .note {
   color: rgba(var(--cream-rgb), 0.75);
-}
-
-/* ---------- Preguntas frecuentes: acordeón sin JavaScript ---------- */
-.faq {
-  border-top: 1px solid var(--line);
-}
-.faq__item {
-  border-bottom: 1px solid var(--line);
-}
-.faq__item summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding-block: clamp(1.1rem, 2.4vw, 1.6rem);
-  cursor: pointer;
-  list-style: none;
-  font-size: var(--step-1);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  transition: color 0.35s var(--ease);
-}
-.faq__item summary::-webkit-details-marker {
-  display: none;
-}
-.faq__item summary:hover {
-  color: var(--terra);
-}
-/* El signo pasa de + a — al abrir, con dos barras cruzadas */
-.faq__sign {
-  position: relative;
-  flex: none;
-  width: 16px;
-  height: 16px;
-}
-.faq__sign::before,
-.faq__sign::after {
-  content: "";
-  position: absolute;
-  inset: 50% 0 auto 0;
-  height: 1.5px;
-  background: var(--terra);
-  transition: transform 0.4s var(--ease-out);
-}
-.faq__sign::after {
-  transform: rotate(90deg);
-}
-.faq__item[open] .faq__sign::after {
-  transform: rotate(0deg);
-}
-.faq__body {
-  padding-bottom: clamp(1.1rem, 2.4vw, 1.7rem);
-}
-.faq__body p {
-  margin: 0;
-  color: var(--muted);
-  max-width: 62ch;
-}
-
-/* ---------- Reseñas: sin cajas, separadas por un filete ----------
-   Van sobre el terracota, en crema y a cuerpo grande: se leen como tres voces
-   seguidas, no como tres tarjetas de plantilla. */
-.quotes {
-  display: grid;
-  gap: clamp(2rem, 4vw, 3rem);
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
-}
-@media (min-width: 860px) {
-  .quotes {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-  }
-  /* El filete va entre columna y columna, no en los extremos */
-  .quotes__item + .quotes__item {
-    border-left: 1px solid var(--line-cream);
-  }
-  .quotes__item {
-    padding-inline: clamp(1.5rem, 3vw, 2.6rem);
-  }
-  .quotes__item:first-child {
-    padding-left: 0;
-  }
-  .quotes__item:last-child {
-    padding-right: 0;
-  }
-}
-.quotes__item {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.2rem, 2.5vw, 1.8rem);
-}
-.quotes__item blockquote {
-  margin: 0;
-  flex: 1;
-}
-.quotes__item blockquote p {
-  margin: 0;
-  font-size: var(--step-1);
-  line-height: 1.45;
-  letter-spacing: -0.015em;
-  color: var(--cream);
-}
-/* La cita abre con el cero de la marca. Va como <svg> del sprite y no como
-   máscara con url(): dentro del bloque de WordPress el CSS vive en la propia
-   página, así que una ruta relativa a la carpeta del CSS no resuelve. */
-.quotes__zero {
-  /* align-self, o como hijo de un flex en columna se estira y el cero sale
-     centrado en vez de a la izquierda */
-  align-self: flex-start;
-  width: 16px;
-  height: auto;
-  color: var(--cream);
-  opacity: 0.55;
-}
-.quotes__item figcaption {
-  display: grid;
-  gap: 0.2rem;
-  padding-top: clamp(0.9rem, 2vw, 1.3rem);
-  border-top: 1px solid var(--line-cream);
-}
-.quotes__item figcaption strong {
-  font-weight: 600;
-  font-size: var(--step--1);
-  color: var(--cream);
-}
-.quotes__item figcaption span {
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: var(--step--2);
-  color: var(--cream);
-  opacity: 0.7;
 }
 
 /* ---------- Contacto ---------- */
@@ -1941,22 +1387,14 @@ body.cursor-on .cursor {
     opacity: 1;
     transform: none;
   }
-  .hero {
-    height: auto;
-    min-height: 100svh;
-  }
   .hero__word {
     clip-path: none;
   }
   .hero__name,
   .hero__claim,
-  .hero__rule,
-  .hero__scroll {
+  .hero__rule {
     opacity: 1;
     transform: none;
-  }
-  .tile {
-    transform: rotate(var(--rot, 0deg));
   }
   .strip__track {
     animation: none;

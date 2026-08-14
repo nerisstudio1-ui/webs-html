@@ -24,82 +24,61 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Inicio: fondo beige, el **logotipo en terracota** centrado y las piezas de proyecto subiendo hasta salir por arriba |
-| — | Declaración sobre terracota, centrada, con la manuscrita dentro de la frase |
-| — | Tira de fotos que pasa en bucle, con **Designed to speak quietly** grande debajo |
-| `#estudio` | Manifiesto, equipo y las siete marcas con las que ha trabajado el estudio |
-| `#servicios` | Los cinco servicios con su subtítulo y entregables |
-| `#trabajo` | Los siete proyectos, con su vídeo si lo hay y si no la fotografía |
-| — | Frase «Haz match con lo que vibre contigo» sobre verde profundo |
-| `#proceso` | Los cuatro pasos de trabajo |
-| `#faq` | Seis preguntas frecuentes, en acordeón |
-| `#resenyes` | Reseñas sobre terracota, sin cajas, separadas por un filete |
-| `#contacto` | Formulario y contacto directo |
+| — | Inicio: fondo beige, el **logotipo en terracota** centrado, el claim y el filete «Based in Girona. Working beyond.» |
+| — | Las **dos fotos a pantalla completa**, a sangre, una al lado de la otra |
+| — | Declaración sobre terracota, centrada, sin botón |
+| — | Tira de fotos que pasa en bucle |
+| `#about` | Manifiesto, «Less noise. More meaning.» y las dos socias |
+| — | La línea de servicios que pasa, fina y pequeña |
+| `#serveis` / `#servicios` | Los cinco servicios: los nombres grandes y escalonados, y la definición del que está activo |
+| `#projectes` / `#proyectos` | Los siete proyectos en retícula; cada ficha abre Instagram |
+| `#contacte` / `#contacto` | Formulario y contacto directo |
 
-## Reseñas
-
-`RESENAS` en `build/build.py` lleva tres reseñas escritas con el tono de la marca.
-Van **firmadas por sector** («Client · Licors artesans»), no con el nombre de
-ningún cliente.
-
-Esa es la línea que no conviene cruzar: una cita sin firmar es texto provisional,
-pero la misma cita con nombre y apellido ya es una reseña falsa, y en España eso
-es publicidad engañosa (Ley de Competencia Desleal, arts. 5 y 26), con la sanción
-a cargo del anunciante. Los nombres se ponen cuando lleguen las frases de verdad.
-
-Al recibirlas: se sustituyen en `RESENAS` con nombre, marca y la cita en los dos
-idiomas. Si la lista se deja vacía, la sección entera no se dibuja.
-`RESENAS_EJEMPLO = True` añade un aviso visible en la página (ahora está en
-`False`).
-
-Las respuestas del FAQ sí están escritas, pero solo dicen cosas que ya están en
-la web (servicios, proceso, equipo, idiomas, Barcelona y remoto). Conviene que
-las repase el estudio antes de publicar.
+Fuera desde la revisión de agosto de 2026: la FAQ, «com treballem», «el que
+diuen» (reseñas), la cita «Menys soroll. Més sentit», el rótulo «Designed to
+speak quietly» y la lista de marcas con las que ha trabajado el estudio.
 
 ## Material de marca
 
 `assets/img/marca/flyer-cotxe-*.jpg` es la foto del flyer del estudio sobre un
 coche. Ya no se usa en el inicio, pero se conserva por si sirve en otra sección.
 
-Los cinco servicios y sus subtítulos son **los del flyer**, con sus cinco iconos
-redibujados como SVG en `ICONOS`: el sol, la pausa, el asterisco, la flecha y el
-cero. El reclamo del inicio también sale de ahí.
+Los cinco iconos del flyer siguen redibujados como SVG en `ICONOS` —el sol, la
+pausa, el asterisco, la flecha y el cero— y acompañan a cada nombre de servicio.
+Los textos de los servicios son los que escribió el estudio en la revisión de
+agosto de 2026; la versión castellana es su traducción.
 
 ## Vídeos de los proyectos
 
-Cuatro proyectos ya tienen su reel en `assets/video`: **Quality Training**,
-**Ratafia Malhivern**, **Jordi Coll** y **Comercial Puig**. El generador los
-detecta solos: si un proyecto tiene vídeo, su columna deja de ser una foto y pasa
-a ser el reel en marco vertical; si no lo tiene, se queda la foto. El póster es un
-fotograma del propio vídeo.
+Cuatro proyectos tienen reel en `assets/video`: **Quality Training**, **Ratafia
+Malhivern**, **Jordi Coll** y **Comercial Puig**. Desde la revisión de agosto de
+2026 los proyectos se enseñan en retícula, así que el reel ya no ocupa media
+sección: es el medio de la ficha, recortado igual que las fotos, en bucle y sin
+sonido. La retícula no cambia, y el material grabado no se pierde.
 
-Arrancan sin sonido al entrar en pantalla, se paran al salir, y el botón redondo
-activa el audio de uno (solo puede sonar uno a la vez). Con `preload="metadata"`
-no se descargan hasta que hacen falta.
+`PROYECTOS_CON_VIDEO = False` en `build/build.py` hace que todas las fichas
+enseñen su foto y los vídeos se queden fuera. Es una línea.
 
 El arranque **no depende de nuestro JavaScript**: el `<video>` lleva `autoplay
-muted playsinline`, así que si un plugin de caché aplaza o rompe el guion, el reel
-se reproduce igual. Los navegadores no empiezan un vídeo silenciado hasta que está
-en pantalla, así que no se descarga de más. Además lleva `class="skip-lazy"` y
+muted playsinline`, así que si un plugin de caché aplaza o rompe el guion, se
+reproduce igual. Los navegadores no empiezan un vídeo silenciado hasta que está en
+pantalla, así que no se descarga de más. Además lleva `class="skip-lazy"` y
 `data-no-lazy` para que los plugins de carga diferida no le quiten el `src`, que es
-lo que los deja en negro.
-
-Cuando el navegador **no** permite arrancar solo —un móvil en ahorro de batería o
-de datos— aparece un círculo de play sobre el reel y basta con tocarlo. Ese aviso
-sigue al estado real del vídeo (eventos `play`/`pause`), no a lo que le pedimos, y
-solo se muestra si hay JavaScript: sin él, tocar no serviría de nada. Quien pide
-`prefers-reduced-motion` no ve ningún vídeo arrancar solo.
+lo que los deja en negro. El JavaScript solo los para al salir de pantalla, y quien
+pide `prefers-reduced-motion` no ve ninguno arrancar solo.
 
 Los detalles de formato y nombres están en `assets/video/LEEME.md`.
 
 ## Formulario de contacto
 
-Los mensajes **llegan por correo** a `itslaconicstudio@gmail.com` a través de
+Los mensajes **llegan por correo** a `hello@laconicstudio.es` a través de
 [FormSubmit](https://formsubmit.co), que no pide cuenta, clave ni plugin: basta
 con que la dirección esté en el `action` del formulario.
 
 Falta **confirmar la dirección una sola vez**, y solo se puede hacer desde la web
-ya publicada: se envía el formulario, FormSubmit manda un correo a la bandeja del
+ya publicada. Ojo: la dirección cambió en agosto de 2026 de `itslaconicstudio@gmail.com`
+a `hello@laconicstudio.es`, así que la confirmación hay que **rehacerla** con la
+nueva: se envía el formulario, FormSubmit manda un correo a la bandeja del
 estudio con un enlace, se pulsa, y desde ese momento entran todos los mensajes.
 El paso está detallado en [`wordpress/INSTALACION.md`](wordpress/INSTALACION.md).
 
@@ -126,11 +105,11 @@ En `wordpress/` hay la web preparada para pegarla en un bloque de **HTML
 personalizado**, con todo aislado para que el tema y la web no se pisen, en dos
 versiones:
 
-- `widget-*-copiar-pegar.html` (6 MB) — tipografías, fotos y pósters dentro del
+- `widget-*-copiar-pegar.html` (3 MB) — tipografías, fotos y pósters dentro del
   archivo, y los cuatro vídeos apuntando a la Biblioteca de medios. Se pega y ya
   está: nada que subir, nada que sustituir. Las URL de los vídeos están en
   `VIDEOS_WORDPRESS` (`build/build_widget.py`).
-- `widget-*.html` (158 KB) — lo mismo con los archivos aparte. Mucho más ligero en
+- `widget-*.html` (130 KB) — lo mismo con los archivos aparte. Mucho más ligero en
   la base de datos y cacheable, pero hay que subir `assets/` por FTP.
 
 Los cuatro llevan la fecha y hora de generación en el comentario de cabecera
@@ -160,7 +139,7 @@ assets/
   css/main.css             sistema de diseño completo (tokens, componentes, responsive)
   css/fonts.css            @font-face de las tipografías autoalojadas
   fonts/*.woff2            Biro Script Plus + Raleway 300–800 (subsets latin y latin-ext)
-  js/main.js               cabecera, menú, collage, reveals, reels, marquesina, formulario
+  js/main.js               cabecera, menú, reveals, servicios, vídeos, marquesina, formulario
   img/proyectos/*.jpg      fotos de los proyectos, en 700 y 1100 px
   img/logo-laconic.svg     logotipo vectorizado
   img/logo-zero.svg        el 0 (hereda color con currentColor)
@@ -168,7 +147,7 @@ assets/
   img/favicon.svg          favicon
   video/                   los reels; ver LEEME.md
 wordpress/                 los cuatro archivos para pegar + INSTALACION.md
-                           (dos por idioma: 158 KB y copiar-pegar)
+                           (dos por idioma: 130 KB y copiar-pegar)
 ```
 
 Para probar en local:
@@ -284,9 +263,25 @@ estén, el enlace es la única forma de ver la pieza y el visitante sale del sit
   Si quieren vender recursos, hay que decidir qué y a qué precio.
 - **Formulario**: queda **confirmar la dirección en FormSubmit** enviando el
   formulario una vez desde la web publicada y pulsando el enlace del correo que
-  llega. Hasta que se haga, los mensajes no entran en la bandeja.
+  llega. Hay que rehacerlo con `hello@laconicstudio.es`, y ese buzón tiene que
+  existir. Hasta que se haga, los mensajes no entran en la bandeja.
 - **Dominio y metadatos**: revisar `<link rel="canonical">` y las etiquetas Open
   Graph con la URL definitiva.
+
+Pendiente de la revisión de agosto de 2026, todo por material que no llegó con
+el PDF de cambios:
+
+- **Las dos fotos del inicio**: el estudio dijo que adjuntaba las escogidas. Van
+  dos de las que hay; se cambian en `HERO_DUO` (`build/build.py`).
+- **La selección de fotos del about**: igual. Van siete en `TIRA`.
+- **La foto de cada proyecto**: la retícula usa la portada que ya tenía cada uno
+  (`portada` en `PROYECTOS`).
+- **El enlace de Instagram de tres proyectos**: Football 4 Stars, Maitasuna y F45
+  Training no tienen ninguno en `piezas`, así que su ficha se dibuja sin enlace.
+  En cuanto lleguen, la ficha pasa a ser enlace sola.
+- **La frase del claim**: el PDF pide «Contingut que connecta.» y añade «(tot
+  seguit, una frase)». Está puesta la primera parte; si esperaban una segunda
+  frase, falta el texto.
 
 ## Accesibilidad y rendimiento
 

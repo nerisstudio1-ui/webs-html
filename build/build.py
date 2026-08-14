@@ -229,27 +229,24 @@ T = {
         descripcion='Laconic Studio: creació de contingut, social media i estratègia digital. '
                     'Less noise. More meaning.',
         saltar='Salta al contingut',
-        nav=[('#estudi', 'Estudi'), ('#serveis', 'Serveis'),
-             ('#treball', 'Treball'), ('#faq', 'FAQ'), ('#contacte', 'Contacte')],
-        nav_movil=[('#estudi', 'Estudi', 'qui som'), ('#serveis', 'Serveis', 'què fem'),
-                   ('#treball', 'Treball', 'projectes'),
-                   ('#faq', 'FAQ', 'dubtes'),
+        nav=[('#about', 'About'), ('#serveis', 'Serveis'),
+             ('#projectes', 'Projectes'), ('#contacte', 'Contacte')],
+        nav_movil=[('#about', 'About', 'qui som'), ('#serveis', 'Serveis', 'què fem'),
+                   ('#projectes', 'Projectes', 'què hem fet'),
                    ('#contacte', 'Contacte', 'escriu-nos')],
         cta='Parlem', menu_abrir='Obre el menú',
-        hero_nota='Estudi creatiu · Barcelona i remot',
-        hero_izq='Estudi creatiu', hero_der='Barcelona i remot',
-        reclamo="L'agència de RRSS que connecta, crea i converteix",
-        k_sobre='Sobre Laconic',
+        hero_nota='Estudi creatiu · Girona',
+        # Las dos mitades del filete del inicio, en inglés en los dos idiomas
+        hero_izq='Based in Girona.', hero_der='Working beyond.',
+        reclamo='Contingut que connecta.',
+        k_sobre='About',
         # La manuscrita va dentro de la frase, como la cursiva de la referencia
-        declaracion='Ajudem marques a <span class="hand">travessar el soroll</span> '
-                    'i a deixar una <span class="hand">empremta que duri</span>.',
-        btn_saber='Saber-ne més',
-        tira_fantasma='Designed to speak <strong>quietly</strong>',
-        id_estudio='estudi', id_servicios='serveis', id_trabajo='treball',
-        id_proceso='proces', id_faq='faq', id_contacto='contacte',
+        declaracion='Ajudem a marques a deixar empremta '
+                    '<span class="hand">(de la de veritat)</span>.',
+        id_estudio='about', id_servicios='serveis', id_trabajo='projectes',
+        id_contacto='contacte',
         k_estudio='L\'estudi',
         h_estudio='Cada marca comunica, <span class="hand">però no totes connecten</span>.',
-        lead_estudio='Una bona comunicació no consisteix a publicar més, sinó a explicar millor.',
         cuerpo_estudio=[
             'Som un estudi creatiu especialitzat en xarxes socials, creació de contingut i '
             'estratègia digital. Treballem amb marques que volen construir una presència '
@@ -258,81 +255,48 @@ T = {
             'Ens impliquem en cada projecte com si fos nostre: analitzem, planifiquem, '
             'gravem, editem i pensem cada detall perquè cada publicació sumi i tingui '
             'sentit dins d\'una estratègia.'],
-        nota_estudio='No busquem omplir un calendari. Busquem marques que deixin empremta.',
+        # Cierre del párrafo del about: en Raleway, no en manuscrita
+        nota_estudio='Busquem marques que vulguin deixar empremta.',
         equipo=[('Núria', 'Creative &amp; Founder'), ('Júlia', 'Strategist &amp; Founder')],
-        equipo_nota='Som dues. Això vol dir que parles sempre amb qui fa la feina, i que '
-                    'diem no a allò que no podem fer bé.',
-        k_clientes='Marques amb qui hem treballat',
+        equipo_nota='Som dues, i ens agrada que sigui així. Parles directament amb qui '
+                    'pensa, crea i executa. I si no podem fer-ho bé, preferim dir que no.',
         k_servicios='Serveis',
-        h_servicios='Això és el que fem <span class="hand">i què te\'n queda</span>.',
-        # Los cinco del flyer del estudio, con su subtítulo tal cual
+        # (número, nombre, nombre corto para la línea que pasa, definición)
         servicios=[
-            ('01', 'Content creation', 'Contingut amb aquell no-sé-què',
-             ['Concepte i guió', 'Foto i vídeo', 'Reels i verticals', 'Edició i subtítols']),
-            ('02', 'Social media', 'Scroll i pausa, això busquem',
-             ['Línia editorial', 'Calendari', 'Community management', 'Informe mensual']),
-            ('03', 'Graphic design', 'Intenció i actitud',
-             ['Identitat visual', 'Sistema de plantilles', 'Peces per a xarxes', 'Presentacions']),
-            ('04', 'Ads &amp; campaigns', 'Ni soroll ni sort, impacte',
-             ['Meta i TikTok Ads', 'Segmentació i públics', 'Creativitats per provar', 'Informe de resultats']),
-            ('05', 'UGC', 'Real i amb propòsit',
-             ['Selecció de creadors', 'Briefing', 'Producció', 'Drets d\'ús']),
+            ('01', 'Content creation', 'Content creation',
+             'Creem contingut que expliqui qui ets, què fas i per què t\'haurien de mirar. '
+             'Pensem la idea, gravem i editem perquè cada peça tingui un motiu i una raó de '
+             'ser. Volem apropar-vos al vostre públic objectiu de la manera en la qual '
+             'estigueu més còmodes.'),
+            ('02', 'Social Media', 'Social Media',
+             'Ens encarreguem de les teves xarxes perquè tu puguis centrar-te en el teu '
+             'negoci. Planifiquem, publiquem i gestionem el dia a dia del perfil.'),
+            ('03', 'Ads &amp; Campaigns', 'Ads &amp; campaigns',
+             'Fem que el contingut arribi més lluny. Creem i gestionem campanyes pensades '
+             'per arribar a les persones adequades i aconseguir un objectiu concret a '
+             'través de Meta Ads.'),
+            ('04', 'UGC', 'UGC',
+             'Creem contingut com ho faria una persona real. Vídeos naturals, propers i '
+             'pensats per connectar amb el públic sense que sembli un anunci.'),
+            ('05', 'Graphic Design &amp; Brand Identity', 'Graphic Design',
+             'Donem forma visual a les idees que hi ha darrere de la teva marca. Treballem '
+             'la teva identitat i creem les peces gràfiques necessàries perquè sigui '
+             'coherent, reconeixible i tingui personalitat.'),
         ],
         btn_presupuesto='Demana pressupost',
-        k_trabajo='Treball · Set marques',
+        k_trabajo='Projectes',
         h_trabajo='Get people <span class="hand">talking</span> about your brand.',
         pieza='Peça', reel_sonido='Activa el so', reel_silencio='Silencia el so',
         ver_instagram='Mira-ho a Instagram',
-        cita='Menys soroll. <span class="hand">Més sentit</span>.',
-        k_proceso='Com treballem',
-        h_proceso='Sense misteri, <span class="hand">amb mètode</span>.',
-        pasos=[('Escoltem', 'Una trucada de vint minuts per entendre el negoci, no només el '
-                            'feed. Què venes, a qui i què t\'està frenant.'),
-               ('Definim', 'Una proposta curta: objectiu, entregables, terminis i preu. Si '
-                           'alguna cosa no aporta, la traiem abans de començar.'),
-               ('Creem', 'Producció en cicles curts amb revisions acotades. Veus el material '
-                         'en un tauler compartit, no en cadenes de correu.'),
-               ('Mesurem', 'Publiquem, llegim les dades i ajustem. Cada mes t\'expliquem què '
-                           'ha funcionat, què no i què provarem.')],
-        k_faq='Preguntes freqüents',
-        h_faq='El que ens pregunten <span class="hand">abans de començar</span>.',
-        faq=[
-            ('Amb quines marques treballeu?',
-             'Amb marques petites i mitjanes que volen una presència amb criteri: '
-             'formació esportiva, alimentació, licors artesans, distribució i marca '
-             'personal. A la secció de treball hi són totes les que hem acompanyat.'),
-            ('Què inclou exactament cada servei?',
-             'A la secció de serveis hi ha els entregables d\'un en un. Si el que '
-             'necessites no hi és o va a mig camí entre dos, ens ho expliques i ho '
-             'muntem a mida: no venem paquets tancats.'),
-            ('Cal que us contractem tots els serveis?',
-             'No. Hi ha marques amb qui fem només contingut i altres amb qui portem '
-             'social media, direcció creativa i campanyes. Es pot començar per un i '
-             'ampliar quan tingui sentit.'),
-            ('Com és treballar amb vosaltres?',
-             'Som dues, així que parles sempre amb qui fa la feina. El procés està '
-             'explicat a la secció de com treballem: escoltem, definim, creem i '
-             'mesurem, amb revisions acotades i el material en un tauler compartit.'),
-            ('Veniu a gravar o ho feu tot en remot?',
-             'Som de Barcelona i ens movem per gravar quan el projecte ho demana. La '
-             'resta —estratègia, edició, calendari, informes— la portem en remot.'),
-            ('En quins idiomes treballeu?',
-             'Català, castellà i anglès. El contingut es pensa en l\'idioma en què '
-             'parla la marca als seus clients, no en el nostre.'),
-        ],
-        nota_resenas='Text de mostra. Aquestes ressenyes encara no són de clients '
-                     'reals: quan arribin les seves, se substitueixen i aquest avís marxa.',
-        k_resenas='El que diuen',
-        h_resenas='Marques que <span class="hand">ho han provat</span>.',
+        proyecto_ver='Obre el perfil a Instagram',
         k_contacto='Contacte',
         h_contacto='Això comença <span class="hand">amb un missatge</span>.',
-        lead_contacto='Explica\'ns quina marca ets i què t\'està frenant. Responem en menys '
-                      'de 48 hores laborables, sempre una persona.',
+        lead_contacto='Explica\'ns qui ets i què t\'està frenant. Et respondrem en menys de '
+                      '48 hores. O la Núria o la Júlia &#128578;',
         dm='DM a @laconicstudio_',
-        nota_contacto_hand='Fes match amb allò que vibri amb tu',
         f_nombre='El teu nom', f_marca='Marca o projecte', f_email='Email',
         f_necesitas='Què necessites', f_cuentanos='Explica\'ns',
-        f_placeholder='Què venes, a qui i què t\'agradaria canviar.',
+        f_placeholder='Explica\'ns el que vulguis i en parlem.',
         f_enviar='Envia el missatge',
         f_asunto='Nou missatge des de la web',
         f_nota_envio='Et responem al correu que ens deixis. No el fem servir per a res més.',
@@ -341,10 +305,10 @@ T = {
         f_error='No hem pogut enviar-ho. Escriu-nos directament a ',
         f_nota='En enviar s\'obre el teu client de correu amb el missatge ja redactat.',
         f_ok='Obrim el teu client de correu amb el missatge llest. Si no s\'obre, escriu-nos a ',
-        pie_ubicacion='Barcelona, treballem en remot.',
+        pie_ubicacion='Based in Girona. Working beyond.',
         pie_credito='Web feta per', pie_credito_quien='Neris Studio',
-        pie_nav=[('#estudi', 'Estudi'), ('#serveis', 'Serveis'), ('#treball', 'Treball'),
-                 ('#faq', 'FAQ'), ('#contacte', 'Contacte')],
+        pie_nav=[('#about', 'About'), ('#serveis', 'Serveis'),
+                 ('#projectes', 'Projectes'), ('#contacte', 'Contacte')],
     ),
     'es': dict(
         lang='es', otra='ca', otra_nombre='CA', propia_nombre='ES',
@@ -352,26 +316,23 @@ T = {
         descripcion='Laconic Studio: creación de contenido, social media y estrategia digital. '
                     'Less noise. More meaning.',
         saltar='Saltar al contenido',
-        nav=[('#estudio', 'Estudio'), ('#servicios', 'Servicios'),
-             ('#trabajo', 'Trabajo'), ('#faq', 'FAQ'), ('#contacto', 'Contacto')],
-        nav_movil=[('#estudio', 'Estudio', 'quiénes somos'), ('#servicios', 'Servicios', 'qué hacemos'),
-                   ('#trabajo', 'Trabajo', 'proyectos'),
-                   ('#faq', 'FAQ', 'dudas'),
+        nav=[('#about', 'About'), ('#servicios', 'Servicios'),
+             ('#proyectos', 'Proyectos'), ('#contacto', 'Contacto')],
+        nav_movil=[('#about', 'About', 'quiénes somos'), ('#servicios', 'Servicios', 'qué hacemos'),
+                   ('#proyectos', 'Proyectos', 'qué hemos hecho'),
                    ('#contacto', 'Contacto', 'escríbenos')],
         cta='Hablemos', menu_abrir='Abrir el menú',
-        hero_nota='Estudio creativo · Barcelona y remoto',
-        hero_izq='Estudio creativo', hero_der='Barcelona y remoto',
-        reclamo='La agencia de RRSS que conecta, crea y convierte',
-        k_sobre='Sobre Laconic',
-        declaracion='Ayudamos a marcas a <span class="hand">atravesar el ruido</span> '
-                    'y a dejar una <span class="hand">huella que dure</span>.',
-        btn_saber='Saber más',
-        tira_fantasma='Designed to speak <strong>quietly</strong>',
-        id_estudio='estudio', id_servicios='servicios', id_trabajo='trabajo',
-        id_proceso='proceso', id_faq='faq', id_contacto='contacto',
+        hero_nota='Estudio creativo · Girona',
+        hero_izq='Based in Girona.', hero_der='Working beyond.',
+        reclamo='Contenido que conecta.',
+        k_sobre='About',
+        # El claim traducido: en la web catalana va «Contingut que connecta.»
+        declaracion='Ayudamos a marcas a dejar huella '
+                    '<span class="hand">(de la de verdad)</span>.',
+        id_estudio='about', id_servicios='servicios', id_trabajo='proyectos',
+        id_contacto='contacto',
         k_estudio='El estudio',
         h_estudio='Cada marca comunica, <span class="hand">pero no todas conectan</span>.',
-        lead_estudio='Una buena comunicación no consiste en publicar más, sino en explicar mejor.',
         cuerpo_estudio=[
             'Somos un estudio creativo especializado en redes sociales, creación de contenido '
             'y estrategia digital. Trabajamos con marcas que quieren construir una presencia '
@@ -380,84 +341,46 @@ T = {
             'Nos implicamos en cada proyecto como si fuera nuestro: analizamos, planificamos, '
             'grabamos, editamos y pensamos cada detalle para que cada publicación sume y '
             'tenga sentido dentro de una estrategia.'],
-        nota_estudio='No buscamos llenar un calendario. Buscamos marcas que dejen huella.',
+        nota_estudio='Buscamos marcas que quieran dejar huella.',
         equipo=[('Núria', 'Creative &amp; Founder'), ('Júlia', 'Strategist &amp; Founder')],
-        equipo_nota='Somos dos. Eso significa que hablas siempre con quien hace el trabajo, y '
-                    'que decimos no a lo que no podemos hacer bien.',
-        k_clientes='Marcas con las que hemos trabajado',
+        equipo_nota='Somos dos, y nos gusta que sea así. Hablas directamente con quien '
+                    'piensa, crea y ejecuta. Y si no podemos hacerlo bien, preferimos decir que no.',
         k_servicios='Servicios',
-        h_servicios='Esto es lo que hacemos <span class="hand">y qué te llevas</span>.',
-        # Los cinco del flyer del estudio, con su subtítulo tal cual
         servicios=[
-            ('01', 'Content creation', 'Contenido con ese no-sé-qué',
-             ['Concepto y guion', 'Foto y vídeo', 'Reels y verticales', 'Edición y subtítulos']),
-            ('02', 'Social media', 'Scroll y pausa, eso buscamos',
-             ['Línea editorial', 'Calendario', 'Community management', 'Informe mensual']),
-            ('03', 'Graphic design', 'Intención y actitud',
-             ['Identidad visual', 'Sistema de plantillas', 'Piezas para redes', 'Presentaciones']),
-            ('04', 'Ads &amp; campaigns', 'Ni ruido ni suerte, impacto',
-             ['Meta y TikTok Ads', 'Segmentación y públicos', 'Creatividades para testar', 'Informe de resultados']),
-            ('05', 'UGC', 'Real y con propósito',
-             ['Selección de creadores', 'Briefing', 'Producción', 'Derechos de uso']),
+            ('01', 'Content creation', 'Content creation',
+             'Creamos contenido que explique quién eres, qué haces y por qué deberían '
+             'mirarte. Pensamos la idea, grabamos y editamos para que cada pieza tenga un '
+             'motivo y una razón de ser. Queremos acercaros a vuestro público objetivo de '
+             'la manera en la que estéis más cómodos.'),
+            ('02', 'Social Media', 'Social Media',
+             'Nos encargamos de tus redes para que tú puedas centrarte en tu negocio. '
+             'Planificamos, publicamos y gestionamos el día a día del perfil.'),
+            ('03', 'Ads &amp; Campaigns', 'Ads &amp; campaigns',
+             'Hacemos que el contenido llegue más lejos. Creamos y gestionamos campañas '
+             'pensadas para llegar a las personas adecuadas y conseguir un objetivo '
+             'concreto a través de Meta Ads.'),
+            ('04', 'UGC', 'UGC',
+             'Creamos contenido como lo haría una persona real. Vídeos naturales, cercanos '
+             'y pensados para conectar con el público sin que parezca un anuncio.'),
+            ('05', 'Graphic Design &amp; Brand Identity', 'Graphic Design',
+             'Damos forma visual a las ideas que hay detrás de tu marca. Trabajamos tu '
+             'identidad y creamos las piezas gráficas necesarias para que sea coherente, '
+             'reconocible y tenga personalidad.'),
         ],
         btn_presupuesto='Pedir presupuesto',
-        k_trabajo='Trabajo · Siete marcas',
+        k_trabajo='Proyectos',
         h_trabajo='Get people <span class="hand">talking</span> about your brand.',
         pieza='Pieza', reel_sonido='Activar el sonido', reel_silencio='Silenciar',
         ver_instagram='Verlo en Instagram',
-        cita='Menos ruido. <span class="hand">Más sentido</span>.',
-        k_proceso='Cómo trabajamos',
-        h_proceso='Sin misterio, <span class="hand">con método</span>.',
-        pasos=[('Escuchamos', 'Una llamada de veinte minutos para entender el negocio, no solo '
-                              'el feed. Qué vendes, a quién y qué te está frenando.'),
-               ('Definimos', 'Una propuesta corta: objetivo, entregables, plazos y precio. Si '
-                             'algo no aporta, lo quitamos antes de empezar.'),
-               ('Creamos', 'Producción en ciclos cortos con revisiones acotadas. Ves el '
-                           'material en un tablero compartido, no en cadenas de correo.'),
-               ('Medimos', 'Publicamos, leemos los datos y ajustamos. Cada mes te contamos qué '
-                           'funcionó, qué no y qué vamos a probar.')],
-        k_faq='Preguntas frecuentes',
-        h_faq='Lo que nos preguntan <span class="hand">antes de empezar</span>.',
-        faq=[
-            ('¿Con qué marcas trabajáis?',
-             'Con marcas pequeñas y medianas que quieren una presencia con criterio: '
-             'formación deportiva, alimentación, licores artesanos, distribución y '
-             'marca personal. En la sección de trabajo están todas las que hemos '
-             'acompañado.'),
-            ('¿Qué incluye exactamente cada servicio?',
-             'En la sección de servicios están los entregables uno por uno. Si lo que '
-             'necesitas no está o va a medio camino entre dos, nos lo cuentas y lo '
-             'montamos a medida: no vendemos paquetes cerrados.'),
-            ('¿Hay que contrataros todos los servicios?',
-             'No. Hay marcas con las que hacemos solo contenido y otras con las que '
-             'llevamos social media, dirección creativa y campañas. Se puede empezar '
-             'por uno y ampliar cuando tenga sentido.'),
-            ('¿Cómo es trabajar con vosotras?',
-             'Somos dos, así que hablas siempre con quien hace el trabajo. El proceso '
-             'está explicado en la sección de cómo trabajamos: escuchamos, definimos, '
-             'creamos y medimos, con revisiones acotadas y el material en un tablero '
-             'compartido.'),
-            ('¿Vais a grabar o lo hacéis todo en remoto?',
-             'Somos de Barcelona y nos movemos para grabar cuando el proyecto lo pide. '
-             'El resto —estrategia, edición, calendario, informes— lo llevamos en '
-             'remoto.'),
-            ('¿En qué idiomas trabajáis?',
-             'Catalán, castellano e inglés. El contenido se piensa en el idioma en que '
-             'la marca habla a sus clientes, no en el nuestro.'),
-        ],
-        nota_resenas='Texto de muestra. Estas reseñas todavía no son de clientes '
-                     'reales: cuando lleguen las suyas, se sustituyen y este aviso se va.',
-        k_resenas='Lo que dicen',
-        h_resenas='Marcas que <span class="hand">lo han probado</span>.',
+        proyecto_ver='Abre el perfil en Instagram',
         k_contacto='Contacto',
         h_contacto='Esto empieza <span class="hand">con un mensaje</span>.',
-        lead_contacto='Cuéntanos qué marca eres y qué te está frenando. Respondemos en menos '
-                      'de 48 horas laborables, siempre una persona.',
+        lead_contacto='Cuéntanos quién eres y qué te está frenando. Te responderemos en menos '
+                      'de 48 horas. O Núria o Júlia &#128578;',
         dm='DM a @laconicstudio_',
-        nota_contacto_hand='Haz match con lo que vibre contigo',
         f_nombre='Tu nombre', f_marca='Marca o proyecto', f_email='Email',
         f_necesitas='Qué necesitas', f_cuentanos='Cuéntanos',
-        f_placeholder='Qué vendes, a quién y qué te gustaría cambiar.',
+        f_placeholder='Cuéntanos lo que quieras y hablamos.',
         f_enviar='Enviar mensaje',
         f_asunto='Nuevo mensaje desde la web',
         f_nota_envio='Te respondemos al correo que nos dejes. No lo usamos para nada más.',
@@ -466,56 +389,14 @@ T = {
         f_error='No hemos podido enviarlo. Escríbenos directamente a ',
         f_nota='Al enviar se abre tu cliente de correo con el mensaje ya redactado.',
         f_ok='Abrimos tu cliente de correo con el mensaje listo. Si no se abre, escríbenos a ',
-        pie_ubicacion='Barcelona, trabajamos en remoto.',
+        pie_ubicacion='Based in Girona. Working beyond.',
         pie_credito='Web hecha por', pie_credito_quien='Neris Studio',
-        pie_nav=[('#estudio', 'Estudio'), ('#servicios', 'Servicios'), ('#trabajo', 'Trabajo'),
-                 ('#faq', 'FAQ'), ('#contacto', 'Contacto')],
+        pie_nav=[('#about', 'About'), ('#servicios', 'Servicios'),
+                 ('#proyectos', 'Proyectos'), ('#contacto', 'Contacto')],
     ),
 }
 
-# Reseñas.
-#
-# Estas son de muestra: el texto está escrito para ver la sección montada, pero
-# NO va firmado con el nombre de ningún cliente real. Atribuir una frase a
-# Quality Training, a Malhivern o a Jordi Coll sin que la hayan dicho es
-# inventarles palabras, y una reseña falsa con nombre y apellido es además
-# publicidad engañosa (Ley de Competencia Desleal, art. 5 y 26). Por eso van
-# firmadas por sector y no por nombre: una cita sin firmar es texto provisional,
-# la misma cita con nombre y apellido ya es una reseña falsa. Mientras no lleguen
-# las de verdad, el nombre se queda fuera.
-#
-# Al recibir las de verdad: se sustituyen aquí, se pone RESENAS_EJEMPLO = False
-# y desaparece el aviso. Formato:
-#   ('Nom Cognom', 'Marca', {'ca': 'La cita…', 'es': 'La cita…'})
-RESENAS_EJEMPLO = False
-RESENAS = [
-    (dict(ca='Client', es='Cliente'),
-     dict(ca='Entrenament esportiu', es='Entrenamiento deportivo'),
-     dict(ca='Sabíem explicar el que fem, però no en xarxes. Ens van muntar una '
-             'manera de dir-ho que sona a nosaltres, i per fi entra gent que ja '
-             've sabent què oferim.',
-          es='Sabíamos explicar lo que hacemos, pero no en redes. Nos montaron una '
-             'manera de contarlo que suena a nosotros, y por fin entra gente que '
-             'ya viene sabiendo qué ofrecemos.')),
-    (dict(ca='Client', es='Cliente'),
-     dict(ca='Licors artesans', es='Licores artesanos'),
-     dict(ca='El producte és artesà i el compte no ho semblava. Van entendre la '
-             'història que hi ha darrere abans de gravar res, i això es nota a '
-             'cada peça.',
-          es='El producto es artesano y la cuenta no lo parecía. Entendieron la '
-             'historia que hay detrás antes de grabar nada, y eso se nota en cada '
-             'pieza.')),
-    (dict(ca='Client', es='Cliente'),
-     dict(ca='Marca personal', es='Marca personal'),
-     dict(ca='Vaig arribar amb una data de llançament i poc més. Van fer la feina '
-             'de pensar-ho, no només la de gravar-ho, i jo només vaig haver de '
-             'presentar-me.',
-          es='Llegué con una fecha de lanzamiento y poco más. Hicieron el trabajo '
-             'de pensarlo, no solo el de grabarlo, y yo solo tuve que '
-             'presentarme.')),
-]
-
-EMAIL = 'itslaconicstudio@gmail.com'
+EMAIL = 'hello@laconicstudio.es'
 INSTAGRAM = 'https://www.instagram.com/laconicstudio_/'
 NERIS = 'https://www.nerisstudio.com'
 
@@ -567,8 +448,20 @@ COLLAGE = [('malhivern', 3), ('quality', 1), ('maitasuna', 1), ('puig', 3), ('f4
 # Foto de marca del estudio (el flyer sobre el coche), no una foto de proyecto
 HERO_FOTO = 'marca/flyer-cotxe'
 HERO_ANCHOS = (900, 1600)
-HERO_TILES = [('malhivern', 2), ('quality', 1), ('maitasuna', 1), ('puig', 3), ('jordi-coll', 3)]
-TIRA = [('quality', 1), ('f45', 1), ('maitasuna', 1), ('f4s', 1), ('malhivern', 2)]
+
+# Las DOS fotos del inicio, a sangre y a toda la altura de la pantalla.
+#
+# PENDIENTE: el estudio dijo que adjuntaba las dos escogidas y no llegaron con el
+# PDF. Mientras tanto van dos de una sola toma (nunca collages: a este tamaño se
+# les vería la costura) y verticales, que es lo que pide el formato. Al recibir
+# las suyas, se dejan en assets/img/proyectos con el nombre que toque y se cambia
+# esta línea; no hay nada más que tocar.
+HERO_DUO = [('maitasuna', 1), ('puig', 3)]
+
+# La tira que pasa en bucle en el about. PENDIENTE: aquí también dijeron que
+# adjuntaban «una selección de las más top» y no llegó; van siete de una sola toma.
+TIRA = [('quality', 1), ('f45', 1), ('maitasuna', 1), ('f4s', 1), ('malhivern', 2),
+        ('jordi-coll', 2), ('malhivern', 3)]
 
 # --------------------------------------------------------------------------- #
 # Vídeos. Se detectan solos: basta dejar los archivos en assets/video con el
@@ -597,6 +490,11 @@ def extras_de(slug, portada, cuantas=2):
 VIDEO_DIR = ROOT / 'assets/video'
 FORMATOS = ('.mp4', '.webm')   # si están los dos del mismo clip, gana el mp4
 MAX_REELS = 2
+
+# Las fichas de proyecto de los cuatro que tienen reel enseñan el vídeo en bucle
+# y sin sonido, recortado igual que las fotos: la retícula no cambia, y el
+# material que grabó el estudio no se pierde. En False, todas enseñan su foto.
+PROYECTOS_CON_VIDEO = True
 
 
 def poster_de(nombre_video):
@@ -713,7 +611,7 @@ def render(lang):
 <header class="header">
   <div class="wrap header__inner">
     <a class="brand" href="#top" aria-label="Laconic Studio">
-      <svg class="brand__word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
+      <svg class="brand__zero" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
     </a>
 
     <nav class="nav" aria-label="{t['k_estudio']}">''')
@@ -750,17 +648,9 @@ def render(lang):
 
 <main id="top">
 
-  <!-- Inici: fons beix, el logotip al mig i les peces que pugen fins a dalt -->
-  <section class="hero" data-theme="cream" data-collage>
+  <!-- Inici: el logotip sobre beix i, tot seguit, dues fotos a pantalla completa -->
+  <section class="hero" data-theme="cream">
     <div class="hero__stage">
-      <div class="hero__tiles" aria-hidden="true">
-        <figure class="tile tile--1">{foto(prefix, HERO_TILES[0][0], HERO_TILES[0][1], '24vw', lang, 'eager')}</figure>
-        <figure class="tile tile--2">{foto(prefix, HERO_TILES[1][0], HERO_TILES[1][1], '24vw', lang, 'eager')}</figure>
-        <figure class="tile tile--3">{foto(prefix, HERO_TILES[2][0], HERO_TILES[2][1], '24vw', lang, 'lazy')}</figure>
-        <figure class="tile tile--4">{foto(prefix, HERO_TILES[3][0], HERO_TILES[3][1], '24vw', lang, 'lazy')}</figure>
-        <figure class="tile tile--5">{foto(prefix, HERO_TILES[4][0], HERO_TILES[4][1], '24vw', lang, 'lazy')}</figure>
-      </div>
-
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
         <svg class="hero__word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
@@ -773,33 +663,31 @@ def render(lang):
         <i aria-hidden="true"></i>
         <span>{t['hero_der']}</span>
       </div>
-      <span class="hero__scroll" aria-hidden="true">scroll</span>
     </div>
   </section>
 
-  <!-- Declaració: bloc de color, centrat, amb la manuscrita dins de la frase -->
-  <section class="decl slab-top" data-theme="terra">
+  <!-- Les dues fotos del començament, a sang i a tota l'alçada de la pantalla -->
+  <div class="duo" data-theme="cream">
+    <figure class="duo__half">{foto(prefix, HERO_DUO[0][0], HERO_DUO[0][1], '50vw', lang, 'eager')}</figure>
+    <figure class="duo__half">{foto(prefix, HERO_DUO[1][0], HERO_DUO[1][1], '50vw', lang, 'eager')}</figure>
+  </div>
+
+  <!-- Declaració: bloc de color, centrat, sense botó i amb menys aire -->
+  <section class="decl decl--tight slab-top" data-theme="terra">
     <div class="wrap wrap--narrow center">
       <p class="kicker kicker--center fade">{t['k_sobre']}</p>
       <p class="decl__text display rl">{t['declaracion']}</p>
-      <p class="fade" data-delay="1">
-        <a class="btn btn--line" href="#{t['id_estudio']}"><span>{t['btn_saber']}</span></a>
-      </p>
     </div>
   </section>
 
-  <!-- Tira de fotos que passa en bucle, amb el rètol gran a sota -->
+  <!-- Tira de fotos que passa en bucle -->
   <div class="strip" data-theme="terra">
     <div class="strip__band">
-      <div class="strip__track">
-        <figure class="strip__cell">{foto(prefix, TIRA[0][0], TIRA[0][1], '22vw', lang)}</figure>
-        <figure class="strip__cell">{foto(prefix, TIRA[1][0], TIRA[1][1], '22vw', lang)}</figure>
-        <figure class="strip__cell">{foto(prefix, TIRA[2][0], TIRA[2][1], '22vw', lang)}</figure>
-        <figure class="strip__cell">{foto(prefix, TIRA[3][0], TIRA[3][1], '22vw', lang)}</figure>
-        <figure class="strip__cell">{foto(prefix, TIRA[4][0], TIRA[4][1], '22vw', lang)}</figure>
-      </div>
+      <div class="strip__track">''')
+    for slug, n in TIRA:
+        w(f'        <figure class="strip__cell">{foto(prefix, slug, n, "22vw", lang)}</figure>')
+    w(f'''      </div>
     </div>
-    <span class="strip__ghost" aria-hidden="true">{t['tira_fantasma']}</span>
   </div>
 
   <!-- Estudi -->
@@ -810,15 +698,12 @@ def render(lang):
         {t['h_estudio']}
       </h2>
 
-      <div class="manifesto__grid">
-        <div class="fade">
-          <p class="lead">{t['lead_estudio']}</p>
-          <p class="claim">Less noise. <em>More meaning.</em></p>
-        </div>
-        <div class="body-col fade" data-delay="1">''')
+      <div class="manifesto__grid manifesto__grid--simple">
+        <div class="body-col fade">
+          <p class="claim">Less noise. <em>More meaning.</em></p>''')
     for parrafo in t['cuerpo_estudio']:
         w(f'          <p>{parrafo}</p>')
-    w(f'''          <p class="hand-note">{t['nota_estudio']}</p>
+    w(f'''          <p class="body-col__cierre">{t['nota_estudio']}</p>
         </div>
       </div>
 
@@ -834,61 +719,39 @@ def render(lang):
         </div>
       </div>
 
-      <div class="clients fade" data-delay="2">
-        <p class="clients__label">{t['k_clientes']}</p>
-        <ul class="clients__list">
-          <li>{PROYECTOS[0]["nombre"]}</li>
-          <li>{PROYECTOS[1]["nombre"]}</li>
-          <li>{PROYECTOS[2]["nombre"]}</li>
-          <li>{PROYECTOS[3]["nombre"]}</li>
-          <li>{PROYECTOS[4]["nombre"]}</li>
-          <li>{PROYECTOS[5]["nombre"]}</li>
-          <li>{PROYECTOS[6]["nombre"]}</li>
-        </ul>
-      </div>
     </div>
   </section>
 
-  <div class="marquee" data-theme="ink" aria-hidden="true">
+  <!-- La línia de serveis, fina i petita -->
+  <div class="marquee marquee--fina" data-theme="ink" aria-hidden="true">
     <div class="marquee__track">''')
-    for i, (_, nombre, _, _) in enumerate(t['servicios']):
-        clase = ' class="hand"' if i % 2 == 0 else ''
-        w(f'      <span{clase}>{nombre}</span>')
+    for _, _, corto, _ in t['servicios']:
+        w(f'      <span>{corto}</span>')
     w(f'''    </div>
   </div>
 
-  <!-- Serveis: la foto segueix el servei actiu -->
+  <!-- Serveis: els noms grans i escalonats, i a sota la definició del que està actiu -->
   <section class="section slab-top" data-theme="terra" id="{t['id_servicios']}">
     <div class="wrap">
       <p class="kicker fade">{t['k_servicios']}</p>
-      <h2 class="display rl">
-        {t['h_servicios']}
-      </h2>
+      <h2 class="visually-hidden">{t['k_servicios']}</h2>
 
-      <div class="svc">
-        <div class="svc__media fade" aria-hidden="true">''')
-    for i, (slug, n) in enumerate(COLLAGE):
-        clases = 'is-on' if i == 0 else ''
-        img = foto(prefix, slug, n, '(min-width: 940px) 42vw, 100vw', lang, 'lazy', clases)
-        w('          ' + img.replace('<img', f'<img data-svc-img="{slug}"', 1))
-    w('''        </div>
-
-        <ol class="svc__list" data-svc-list>''')
-    for i, (num, nombre, tag, items) in enumerate(t['servicios']):
-        slug = COLLAGE[i][0]
-        w(f'''          <li class="svc__item" data-svc="{slug}">
-            <div class="svc__head">
+      <div class="svc" data-svc-list>
+        <ol class="svc__noms">''')
+    for i, (num, nombre, _, _) in enumerate(t['servicios']):
+        w(f'''          <li class="svc__nom{' is-active' if i == 0 else ''}" data-svc="{i}">
+            <button type="button" aria-controls="svc-def-{i}" aria-expanded="{'true' if i == 0 else 'false'}">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#{ICONO_SERVICIO[i]}"/></svg>
-              <span class="svc__num">{num}</span>
-              <span class="svc__name hand">{nombre}</span>
-            </div>
-            <p class="svc__tag">{tag}</p>
-            <ul class="svc__items">''')
-        for it in items:
-            w(f'              <li>{it}</li>')
-        w('''            </ul>
+              <span class="svc__etiqueta">{nombre}</span><sup>{num}</sup>
+            </button>
           </li>''')
-    w(f'''        </ol>
+    w('        </ol>\n\n        <div class="svc__defs">')
+    for i, (_, nombre, _, definicion) in enumerate(t['servicios']):
+        w(f'''          <div class="svc__def{' is-on' if i == 0 else ''}" id="svc-def-{i}" data-svc-def="{i}">
+            <h3 class="svc__def-nom">{nombre}</h3>
+            <p>{definicion}</p>
+          </div>''')
+    w(f'''        </div>
 
         <p class="svc__cta fade">
           <a class="btn btn--cream btn--lg" href="#{t['id_contacto']}"><span>{t['btn_presupuesto']}</span><span class="arrow" aria-hidden="true">&rarr;</span></a>
@@ -897,199 +760,44 @@ def render(lang):
     </div>
   </section>
 
-  <!-- Treball -->
+  <!-- Projectes: una graella de fitxes; cada una obre l'Instagram -->
   <section class="section section--tight slab-top" data-theme="cream" id="{t['id_trabajo']}">
     <div class="wrap">
       <p class="kicker fade">{t['k_trabajo']}</p>
       <h2 class="display rl">
         {t['h_trabajo']}
       </h2>
-    </div>
-    <div class="wrap">''')
-    for i, pr in enumerate(PROYECTOS):
-        flip = ' slab--flip' if i % 2 else ''
-        vids = videos_de(pr['slug'])
+
+      <div class="obras">''')
+    for pr in PROYECTOS:
+        vids = videos_de(pr['slug']) if PROYECTOS_CON_VIDEO else []
+        url = pr['piezas'][0] if pr['piezas'] else ''
+        # Sin enlace no hay <a>: una ficha que no lleva a ninguna parte no debe
+        # anunciarse como enlace.
+        abre = (f'<a class="obra fade" href="{url}" target="_blank" rel="noopener" '
+                f'aria-label="{pr["nombre"]} &mdash; {t["proyecto_ver"]}">' if url
+                else '<article class="obra obra--sense-enllac fade">')
+        cierra = '</a>' if url else '</article>'
+        w(f'        {abre}')
+        w('          <div class="obra__media">')
         if vids:
-            # Reels: se reproducen solos y sin sonido al entrar en pantalla,
-            # y el botón activa el audio. La foto hace de póster.
-            w(f'''      <article class="slab{flip} fade">
-        <div class="slab__media slab__media--reels">''')
-            for j, nombre_video in enumerate(vids, 1):
-                n_foto = pr['portada'] if j == 1 else min(j, pr['fotos'])
-                poster = poster_de(nombre_video)
-                ruta_poster = (f'{prefix}assets/video/{poster}' if poster else
-                               f'{prefix}assets/img/proyectos/{pr["slug"]}-{n_foto}-700.jpg')
-                w(f'''          <div class="reel" data-reel>
-            <!-- autoplay + muted + playsinline hace que arranque sin depender de
-                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
-                 se reproduce igual. Los navegadores no lo empiezan hasta que
-                 entra en pantalla, así que no se descarga de más. skip-lazy y
-                 data-no-lazy piden a los plugins de carga diferida que no toquen
-                 el src, que es lo que los deja en negro. -->
-            <video class="reel__video skip-lazy" src="{prefix}assets/video/{nombre_video}"
-              poster="{ruta_poster}"
-              autoplay muted loop playsinline preload="metadata"
-              data-no-lazy="1" data-skip-lazy="true"
-              aria-label="{t['pieza']} {j:02d} &mdash; {pr['nombre']}"></video>
-            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
-                 batería, modo de ahorro de datos), queda este aviso y basta
-                 con tocar el vídeo. -->
-            <span class="reel__play" aria-hidden="true"><span></span></span>
-            <span class="reel__tag" aria-hidden="true">{t['pieza']} {j:02d}</span>
-            <button class="reel__sound" type="button" data-sound
-              data-on="{t['reel_sonido']}" data-off="{t['reel_silencio']}"
-              aria-label="{t['reel_sonido']}">
-              <span class="is-on" aria-hidden="true">&#9834;</span>
-              <span class="is-off" aria-hidden="true">&times;</span>
-            </button>
-          </div>''')
-            w('        </div>')
+            poster = poster_de(vids[0])
+            ruta_poster = (f'{prefix}assets/video/{poster}' if poster else
+                           f'{prefix}assets/img/proyectos/{pr["slug"]}-{pr["portada"]}-700.jpg')
+            w(f'''            <video class="obra__video skip-lazy" src="{prefix}assets/video/{vids[0]}"
+              poster="{ruta_poster}" autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>''')
         else:
-            w(f'''      <article class="slab{flip} fade">
-        <div class="slab__media" data-parallax>
-          {foto(prefix, pr['slug'], pr['portada'], '(min-width: 900px) 52vw, 100vw', lang)}
-        </div>''')
-        w(f'''        <div class="slab__text">
-          <span class="slab__index">{i + 1:02d} / {len(PROYECTOS):02d} &middot; {pr['sector'][lang]}</span>
-          <h3 class="slab__title">{pr['nombre']}</h3>
-          <p>{pr['texto'][lang]}</p>''')
-        if pr['piezas']:
-            w('          <div class="slab__links">')
-            if vids:
-                # El vídeo ya se ve en la web: el enlace solo lleva al original.
-                w(f'            <a href="{pr["piezas"][0]}" target="_blank" rel="noopener">'
-                  f'{t["ver_instagram"]} <span aria-hidden="true">&#8599;</span></a>')
-            else:
-                for j, url in enumerate(pr['piezas'], 1):
-                    w(f'            <a href="{url}" target="_blank" rel="noopener">'
-                      f'{t["pieza"]} {j:02d} <span aria-hidden="true">&#8599;</span></a>')
-            w('          </div>')
-        w('          <div class="slab__meta">')
-        for s in pr['servicios'][lang]:
-            w(f'            <span>{s}</span>')
-        w('          </div>')
-        extras = extras_de(pr['slug'], pr['portada'])
-        if extras:
-            w('          <div class="slab__extra">')
-            for n in extras:
-                w('            <figure>'
-                  + foto(prefix, pr['slug'], n, '(min-width: 900px) 22vw, 46vw', lang)
-                  + '</figure>')
-            w('          </div>')
-        w('''        </div>
-      </article>''')
-    w(f'''    </div>
-  </section>
-
-  <!-- Cita -->
-  <section class="section slab-top quote" data-theme="deep">
-    <svg class="quote__mark" viewBox="{VB_ZERO}" aria-hidden="true" data-spin><use href="#lg-zero"/></svg>
-    <div class="wrap">
-      <blockquote class="quote__text rl">
-        {t['cita']}
-      </blockquote>
-      <cite class="fade">Laconic Studio</cite>
+            w('            ' + foto(prefix, pr['slug'], pr['portada'],
+                                    '(min-width: 900px) 46vw, 100vw', lang))
+        w(f'''          </div>
+          <h3 class="obra__nom">{pr['nombre']}</h3>
+          <p class="obra__sector">{pr['sector'][lang]}</p>
+        {cierra}''')
+    w(f'''      </div>
     </div>
   </section>
 
-  <!-- Procés -->
-  <section class="section slab-top" data-theme="cream" id="{t['id_proceso']}">
-    <div class="wrap">
-      <div class="process">
-        <div class="process__head">
-          <p class="kicker fade">{t['k_proceso']}</p>
-          <h2 class="display display--sm rl">
-            {t['h_proceso']}
-          </h2>
-        </div>
-        <div class="rail" data-rail>
-          <span class="rail__fill" aria-hidden="true"></span>''')
-    for i, (titulo, texto) in enumerate(t['pasos'], 1):
-        w(f'''          <div class="step">
-            <span class="step__n">{i:02d}</span>
-            <h3>{titulo}</h3>
-            <p>{texto}</p>
-          </div>''')
-    w(f'''        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Preguntes freqüents -->
-  <section class="section slab-top" data-theme="cream-2" id="{t['id_faq']}">
-    <div class="wrap wrap--narrow">
-      <p class="kicker fade">{t['k_faq']}</p>
-      <h2 class="display display--sm rl">{t['h_faq']}</h2>
-      <div class="faq">
-        <details class="faq__item fade">
-          <summary>
-            <span>{t['faq'][0][0]}</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>{t['faq'][0][1]}</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>{t['faq'][1][0]}</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>{t['faq'][1][1]}</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>{t['faq'][2][0]}</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>{t['faq'][2][1]}</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>{t['faq'][3][0]}</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>{t['faq'][3][1]}</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>{t['faq'][4][0]}</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>{t['faq'][4][1]}</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>{t['faq'][5][0]}</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>{t['faq'][5][1]}</p></div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- El que diuen. Només es dibuixa si hi ha cites a RESENAS -->''')
-    if RESENAS:
-        w(f'''  <section class="section slab-top" data-theme="terra" id="ressenyes">
-    <div class="wrap">
-      <p class="kicker fade">{t['k_resenas']}</p>
-      <h2 class="display display--sm rl">{t['h_resenas']}</h2>
-      <div class="quotes">''')
-        for i, (nombre, sector, cita) in enumerate(RESENAS):
-            retardo = f' data-delay="{min(i, 3)}"' if i else ''
-            quien = nombre[lang] if isinstance(nombre, dict) else nombre
-            donde = sector[lang] if isinstance(sector, dict) else sector
-            w(f'''        <figure class="quotes__item fade"{retardo}>
-          <svg class="quotes__zero" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
-          <blockquote><p>{cita[lang]}</p></blockquote>
-          <figcaption><strong>{quien}</strong><span>{donde}</span></figcaption>
-        </figure>''')
-        w('      </div>')
-        if RESENAS_EJEMPLO:
-            w(f'      <p class="quotes__aviso fade" data-delay="3">{t["nota_resenas"]}</p>')
-        w('''    </div>
-  </section>''')
-    w(f'''
   <!-- Contacte -->
   <section class="section slab-top" data-theme="ink" id="{t['id_contacto']}">
     <div class="wrap">
@@ -1105,7 +813,6 @@ def render(lang):
             <li><a class="link-line" href="mailto:{EMAIL}">{EMAIL}</a></li>
             <li><a class="link-line" href="{INSTAGRAM}" target="_blank" rel="noopener">{t['dm']}</a></li>
           </ul>
-          <p class="hand-note">{t['nota_contacto_hand']}</p>
         </div>
 
         <div class="fade" data-delay="1">
@@ -1130,9 +837,9 @@ def render(lang):
             <div class="field">
               <span id="servicios-label" class="field__label">{t['f_necesitas']}</span>
               <div class="chips" role="group" aria-labelledby="servicios-label">''')
-    for _, nombre, _, _ in t['servicios']:
+    for _, _, corto, _ in t['servicios']:
         w(f'                <label class="chip"><input type="checkbox" name="servicio" '
-          f'value="{nombre}"><span>{nombre}</span></label>')
+          f'value="{corto}"><span>{corto}</span></label>')
     w(f'''              </div>
             </div>
             <div class="field">

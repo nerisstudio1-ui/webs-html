@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (CA).
-     Generado: 2026-08-09 15:57 UTC
+     Generado: 2026-08-14 16:10 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -628,13 +628,15 @@
 #laconic-app .brand:hover .brand__mark {
   transform: rotate(-12deg);
 }
-#laconic-app .brand__word {
-  height: clamp(20px, 2vw, 26px);
+/* El cero solo, que es lo que va en la cabecera */
+#laconic-app .brand__zero {
+  height: clamp(22px, 2.2vw, 28px);
   width: auto;
-  transition: transform 0.6s var(--ease-out);
+  color: var(--terra);
+  transition: transform 0.7s var(--ease-out);
 }
-#laconic-app .brand:hover .brand__word {
-  transform: translateY(-2px);
+#laconic-app .brand:hover .brand__zero {
+  transform: rotate(-14deg);
 }
 
 #laconic-app .nav {
@@ -790,50 +792,20 @@
    es el recorrido que usan las fotos para subir (--p va de 0 a 1). Acaban
    arriba del todo, saliendo por el borde superior. */
 #laconic-app .hero {
-  --p: 0;
   position: relative;
-  height: 260svh;
+  height: calc(100svh - var(--lac-top, 0px));
+  min-height: 34rem;
   background: var(--cream);
   color: var(--text);
 }
 #laconic-app .hero__stage {
-  position: sticky;
-  top: var(--lac-top, 0px);
-  height: calc(100svh - var(--lac-top, 0px));
-  overflow: hidden;
+  position: relative;
+  height: 100%;
   display: grid;
   align-content: center;
   justify-items: center;
   padding-inline: var(--gutter);
 }
-
-/* Las piezas suben desde debajo del pliegue hasta salir por arriba, por detrás
-   del logotipo. */
-#laconic-app .hero__tiles {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-#laconic-app .tile {
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  transform: translate3d(0, calc(var(--rise, 150svh) * (1 - var(--p))), 0)
-    rotate(var(--rot, 0deg));
-  will-change: transform;
-  box-shadow: 0 30px 60px -44px rgba(var(--ink-rgb), 0.55);
-}
-#laconic-app .tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.tile--1 { left: 3%;  top: -8%;  width: 17vw; height: 42svh; --rise: 156svh; --rot: -3deg; }
-.tile--2 { left: 71%; top: -16%; width: 19vw; height: 44svh; --rise: 182svh; --rot: 2.5deg; }
-.tile--3 { left: 38%; top: 1%;   width: 15vw; height: 36svh; --rise: 204svh; --rot: 3.5deg; }
-.tile--4 { left: 17%; top: 14%;  width: 14vw; height: 34svh; --rise: 138svh; --rot: 2deg; }
-.tile--5 { left: 55%; top: -22%; width: 18vw; height: 40svh; --rise: 226svh; --rot: -2.5deg; }
 
 /* El logotipo, centrado y en teja */
 #laconic-app .hero__logo {
@@ -908,44 +880,34 @@
   background: currentColor;
   opacity: 0.35;
 }
-/* Aviso de scroll, centrado justo encima del filete */
-#laconic-app .hero__scroll {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(clamp(1.6rem, 5vh, 3.2rem) + 2.6rem);
-  font-family: var(--hand);
-  font-size: 1.3rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--terra);
-  opacity: 0;
-  transition: opacity 1s var(--ease) 1.3s;
+/* ---------- Las dos fotos del inicio ----------
+   A sangre y a toda la altura de la pantalla, una al lado de la otra. En un
+   #laconic-app móvil no caben dos columnas: pasan a una sobre otra,
+#laconic-app media pantalla cada una,
+   que es lo que mantiene el formato vertical de las fotos. */
+#laconic-app .duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100svh;
+  min-height: 30rem;
+  background: var(--cream);
 }
-#laconic-app.is-loaded .hero__scroll {
-  opacity: 0.9;
+#laconic-app .duo__half {
+  margin: 0;
+  overflow: hidden;
 }
-#laconic-app .hero__scroll::after {
-  content: "";
-  width: 36px;
-  height: 1px;
-  background: currentColor;
-  animation: slide 2s var(--ease) infinite;
+#laconic-app .duo__half img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-@keyframes slide {
-  0%,
-  100% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scaleX(0.35);
-    opacity: 0.5;
+@media (max-width: 700px) {
+  #laconic-app .duo {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
   }
 }
-
 
 /* ---------- Declaración: bloque de color, centrado ---------- */
 #laconic-app .decl {
@@ -963,10 +925,17 @@
 #laconic-app .decl__text .hand {
   font-size: 0.98em;
 }
+/* Sin botón debajo, el bloque no necesita tanto aire */
+#laconic-app .decl--tight {
+  padding-block: clamp(3rem, 6vw, 5.5rem) clamp(2.4rem, 5vw, 4.5rem);
+}
+#laconic-app .decl--tight .decl__text {
+  margin-bottom: 0;
+}
 
-/* ---------- Tira de fotos que pasa en bucle, con el rótulo grande debajo ----
+/* ---------- Tira de fotos que pasa en bucle ----------
    Las fotos van pegadas, sin hueco, y el carril se duplica en el JS para que el
-   bucle no tenga costura. El rótulo queda entero debajo, no tapado. */
+   bucle no tenga costura. */
 #laconic-app .strip {
   position: relative;
   overflow: hidden;
@@ -1022,51 +991,18 @@
   font-weight: 800;
 }
 
-/* ---------- Marcas con las que ha trabajado el estudio ---------- */
-#laconic-app .clients {
-  margin-top: clamp(2.5rem, 6vw, 4rem);
-  padding-top: clamp(2rem, 4vw, 3rem);
-  border-top: 1px solid var(--line);
-}
-#laconic-app .clients__label {
-  font-size: var(--step--2);
-  text-transform: uppercase;
-  letter-spacing: 0.26em;
-  font-weight: 600;
-  color: var(--muted);
-  margin: 0 0 clamp(1.2rem, 3vw, 2rem);
-}
-#laconic-app .clients__list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.2em 0.9em;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(1.15rem, 2.4vw, 1.85rem);
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-/* Un punto en terracota entre marca y marca, menos después de la última */
-#laconic-app .clients__list li {
-  display: flex;
-  align-items: center;
-  gap: 0.9em;
-}
-#laconic-app .clients__list li::after {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--terra);
-  flex: none;
-}
-#laconic-app .clients__list li:last-child::after {
-  display: none;
-}
-
-
 /* ---------- Manifiesto ---------- */
+/* Una sola columna de texto: el «less noise» va alineado con el párrafo, no
+   enfrentado a él, y el cierre va en Raleway como pidió el estudio. */
+#laconic-app .manifesto__grid--simple {
+  display: block;
+}
+#laconic-app .body-col__cierre {
+  margin-top: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
 #laconic-app .manifesto__grid {
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
@@ -1076,18 +1012,6 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: start;
   }
-}
-#laconic-app .hand-note {
-  font-family: var(--hand);
-  font-weight: 400;
-  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
-  line-height: 1.25;
-  color: var(--terra);
-  margin: 1.8rem 0 0;
-}
-#laconic-app [data-theme="terra"] .hand-note,
-#laconic-app [data-theme="ink"] .hand-note {
-  color: var(--cream);
 }
 
 
@@ -1135,550 +1059,202 @@
   letter-spacing: 0;
   color: var(--terra-soft);
 }
+/* La línea de servicios: Raleway fina, pequeña, y la banda más estrecha */
+#laconic-app .marquee--fina {
+  padding-top: clamp(0.9rem, 1.8vw, 1.4rem);
+  padding-bottom: calc(clamp(0.9rem, 1.8vw, 1.4rem) + var(--radius-slab));
+}
+#laconic-app .marquee--fina span {
+  font-size: clamp(0.78rem, 1.1vw, 1rem);
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+#laconic-app .marquee--fina span::after {
+  width: 4px;
+  height: 4px;
+}
+
 @keyframes marquee {
   to {
     transform: translateX(-50%);
   }
 }
 
-/* ---------- Servicios: panel de foto pegado + lista ---------- */
+/* ---------- Servicios: los nombres grandes y escalonados ----------
+   Como la referencia que pasó el estudio: los cinco nombres sueltos por el
+   ancho, numerados, y debajo la definición del que está activo. Sin foto y sin
+   frase de entrada: los nombres son el titular. */
 #laconic-app .svc {
   display: grid;
-  gap: clamp(2rem, 4vw, 3.5rem);
+  gap: clamp(2.4rem, 5vw, 4rem);
 }
-#laconic-app .svc__media {
-  position: relative;
-  overflow: hidden;
-  height: 34svh;
-  background: rgba(var(--ink-rgb), 0.15);
-}
-@media (min-width: 940px) {
-  #laconic-app .svc {
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    align-items: start;
-  }
-  /* La lista ocupa toda la columna derecha; la foto se pega arriba en la
-     izquierda y el botón cierra la columna, así no queda hueco muerto. */
-  #laconic-app .svc__media {
-    grid-column: 1;
-    grid-row: 1;
-    position: sticky;
-    top: 14vh;
-    height: 72svh;
-  }
-  #laconic-app .svc__list {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-  #laconic-app .svc__cta {
-    grid-column: 1;
-    grid-row: 2;
-    align-self: end;
-  }
-}
-#laconic-app .svc__cta {
-  margin: 0;
-}
-#laconic-app .svc__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.08);
-  transition: opacity 0.8s var(--ease), transform 1.4s var(--ease-out);
-}
-#laconic-app .svc__media img.is-on {
-  opacity: 1;
-  transform: none;
-}
-
-#laconic-app .svc__list {
-  border-top: 1px solid var(--line-cream);
-}
-#laconic-app .svc__item {
-  border-bottom: 1px solid var(--line-cream);
-  padding-block: clamp(1.4rem, 3vw, 2.1rem);
+#laconic-app .svc__noms {
   display: grid;
-  gap: 0.4rem;
-  transition: opacity 0.5s var(--ease);
+  justify-items: start;
+  gap: clamp(0.1rem, 0.6vw, 0.5rem);
 }
-@media (min-width: 940px) {
-  #laconic-app .svc__item {
-    opacity: 0.55;
-  }
-  #laconic-app .svc__item.is-active {
-    opacity: 1;
-  }
-}
-#laconic-app .svc__head {
-  display: flex;
+#laconic-app .svc__nom button {
+  display: inline-flex;
   align-items: baseline;
-  gap: 0.85rem;
+  gap: 0.7rem;
+  padding: 0.1em 0;
+  border: 0;
+  background: none;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 6vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: var(--ink);
+  opacity: 0.42;
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease-out);
+}
+#laconic-app .svc__nom.is-active button {
+  opacity: 1;
+}
+#laconic-app .svc__nom button:hover {
+  opacity: 1;
+}
+#laconic-app .svc__nom sup {
+  font-size: 0.28em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+  top: -0.9em;
 }
 /* Icono del servicio, el mismo que usa el estudio en su flyer */
 #laconic-app .svc__icon {
-  width: clamp(15px, 1.5vw, 19px);
+  width: clamp(14px, 1.4vw, 18px);
   height: auto;
   flex: none;
   align-self: center;
   color: var(--cream);
-  opacity: 0.9;
+  opacity: 0.85;
 }
-#laconic-app .svc__num {
-  font-size: var(--step--2);
-  letter-spacing: 0.18em;
-  font-variant-numeric: tabular-nums;
-  opacity: 0.75;
-  flex: none;
+/* El escalonado: cada nombre entra un poco más que el anterior, y el tercero
+   vuelve, para que la columna no sea una lista alineada. */
+.svc__nom:nth-child(2) { margin-left: clamp(1rem, 12vw, 9rem); }
+.svc__nom:nth-child(3) { margin-left: clamp(1.6rem, 20vw, 15rem); }
+.svc__nom:nth-child(4) { margin-left: clamp(0.5rem, 6vw, 4rem); }
+.svc__nom:nth-child(5) { margin-left: clamp(0.2rem, 3vw, 2rem); }
+@media (max-width: 700px) {
+  #laconic-app .svc__nom:nth-child(n) {
+    margin-left: 0;
+  }
 }
-#laconic-app .svc__name {
-  font-family: var(--hand);
-  font-weight: 400;
-  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
-  line-height: 1.05;
-  color: var(--cream);
+
+/* La definición del servicio activo. Las cinco están en el HTML, así que sin
+   JavaScript se leen todas seguidas, cada una con su nombre encima; con
+   JavaScript solo se ve la del servicio elegido y el nombre sobra, porque ya
+   está escrito en grande ahí arriba. */
+#laconic-app .svc__defs {
+  max-width: 62ch;
 }
-#laconic-app .svc__tag {
+#laconic-app.has-js .svc__defs {
+  min-height: 9.5em;
+}
+#laconic-app .svc__def + .svc__def {
+  margin-top: 1.6rem;
+}
+#laconic-app .svc__def-nom {
+  font-size: var(--step-1);
+  margin: 0 0 0.3rem;
+}
+#laconic-app.has-js .svc__def {
+  display: none;
+}
+#laconic-app.has-js .svc__def.is-on {
+  display: block;
+}
+#laconic-app.has-js .svc__def-nom {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+#laconic-app.has-js .svc__def.is-on {
+  animation: svc-entra 0.5s var(--ease-out) both;
+}
+@keyframes svc-entra {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+#laconic-app .svc__def p {
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+}
+#laconic-app .svc__cta {
+  margin: 0;
+}
+
+/* ---------- Proyectos: la retícula de fichas ----------
+   Dos columnas, foto (o el reel del proyecto, recortado igual) y debajo el
+   nombre y el sector. La ficha entera es el enlace: abre Instagram. */
+#laconic-app .obras {
+  display: grid;
+  gap: clamp(1.6rem, 3.4vw, 3rem) clamp(1rem, 2.4vw, 2rem);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  #laconic-app .obras {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+#laconic-app .obra {
+  display: block;
+}
+#laconic-app .obra__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: rgba(var(--ink-rgb), 0.08);
+}
+#laconic-app .obra__media img,
+#laconic-app .obra__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: none;
+  transition: transform 1.1s var(--ease-out);
+}
+#laconic-app .obra:hover .obra__media img,
+#laconic-app .obra:hover .obra__media video {
+  transform: scale(1.035);
+}
+#laconic-app .obra__nom {
+  font-size: var(--step-1);
   font-weight: 600;
-  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0.9rem 0 0.15rem;
+}
+#laconic-app .obra__sector {
   margin: 0;
-}
-#laconic-app .svc__items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.4rem;
-  margin-top: 0.6rem;
-  font-size: var(--step--1);
-  color: var(--cream);
-}
-#laconic-app .svc__items li {
-  display: flex;
-  gap: 0.5rem;
-}
-#laconic-app .svc__items li::before {
-  content: "—";
-  opacity: 0.55;
-}
-
-/* ---------- Trabajo: bandas alternas con paralaje ---------- */
-#laconic-app .slab {
-  display: grid;
-  gap: clamp(1.4rem, 4vw, 3.5rem);
-  align-items: center;
-  padding-block: clamp(2rem, 5vw, 4rem);
-}
-@media (min-width: 900px) {
-  #laconic-app .slab {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  }
-  #laconic-app .slab--flip .slab__media {
-    order: 2;
-  }
-  #laconic-app .slab--flip .slab__text {
-    padding-right: clamp(1rem, 4vw, 3rem);
-  }
-}
-/* Las fotos del estudio son verticales (4:5): el marco respeta su formato en
-   lugar de recortarlas a un apaisado. */
-#laconic-app .slab__media {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  max-height: 78svh;
-}
-#laconic-app .slab__media img {
-  width: 100%;
-  height: 118%;
-  object-fit: cover;
-  transform: translate3d(0, calc(var(--py, 0) * -9%), 0) scale(1.01);
-  will-change: transform;
-  transition: filter 0.6s var(--ease);
-}
-#laconic-app .slab__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(var(--ink-rgb), 0.22), transparent 55%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s var(--ease);
-}
-#laconic-app .slab:hover .slab__media::after {
-  opacity: 1;
-}
-#laconic-app .slab__index {
   font-size: var(--step--2);
-  letter-spacing: 0.2em;
-  opacity: 0.6;
-  display: block;
-  margin-bottom: 0.9rem;
-}
-#laconic-app .slab__title {
-  font-size: var(--display-2);
-  letter-spacing: -0.045em;
-  margin-bottom: 0.8rem;
-  transition: color 0.4s var(--ease);
-}
-#laconic-app .slab:hover .slab__title {
-  color: var(--terra);
-}
-#laconic-app .slab__text p {
-  color: var(--muted);
-  max-width: 42ch;
-}
-#laconic-app [data-theme="ink"] .slab__text p {
-  color: rgba(var(--cream-rgb), 0.82);
-}
-#laconic-app .slab__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.4rem;
-  margin-top: 1.4rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
-  font-size: var(--step--1);
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
 }
-#laconic-app [data-theme="ink"] .slab__meta {
-  border-color: var(--line-cream);
-}
-/* Las demás fotos del proyecto, pequeñas, debajo del texto */
-#laconic-app .slab__extra {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(0.6rem, 1.4vw, 1rem);
-  margin-top: clamp(1.4rem, 3vw, 2.2rem);
-}
-#laconic-app .slab__extra figure {
-  margin: 0;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-}
-#laconic-app .slab__extra img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s var(--ease-out);
-}
-#laconic-app .slab__extra figure:hover img {
-  transform: scale(1.05);
-}
-
-/* ---------- Reels: los vídeos del proyecto en marco vertical ----------
-   Los archivos van en assets/video/<proyecto>-1.mp4. El generador los detecta
-   solos: si están, la columna de la izquierda deja de ser una foto y pasa a ser
-   el vídeo (con la foto como póster). Si no están, se queda la foto. */
-#laconic-app .slab__media--reels {
-  aspect-ratio: auto;
-  max-height: none;
-  overflow: visible;
-  display: flex;
-  gap: clamp(0.8rem, 2vw, 1.4rem);
-  justify-content: center;
-  align-items: flex-start;
-}
-/* El velo de hover que llevan las fotos aquí no pinta nada y taparía el vídeo */
-#laconic-app .slab__media--reels::after {
-  content: none;
-}
-#laconic-app .reel {
-  position: relative;
-  flex: 1 1 0;
-  max-width: 250px;
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  background: rgba(var(--ink-rgb), 0.14);
-  box-shadow: 0 40px 70px -50px rgba(var(--ink-rgb), 0.65);
-}
-/* Cuando solo hay un vídeo se le da algo más de presencia */
-#laconic-app .slab__media--reels > .reel:only-child {
-  max-width: 300px;
-}
-/* La segunda pieza baja un poco, como un contacto de dos tomas */
-#laconic-app .reel:nth-child(2) {
-  margin-top: clamp(1.5rem, 5vw, 3.5rem);
-}
-/* Un velo abajo para que la etiqueta y el botón se lean sobre cualquier plano */
-#laconic-app .reel::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 30%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-#laconic-app .reel video,
-#laconic-app .reel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-/* Aviso de «toca para ver». Solo se ve mientras el vídeo está parado: si el
-   navegador no deja que arranque solo —un móvil en ahorro de batería o de
-   datos— el reel no se queda como una foto muda sin explicación. No intercepta
-   el clic: el toque llega al vídeo, que es quien lo escucha.
-   Sin JavaScript no aparece: ahí el vídeo arranca por el atributo autoplay y
-   nadie puede tocarlo para nada, así que el aviso solo estorbaría. */
-#laconic-app .reel__play {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
+/* La flecha solo en las que llevan a alguna parte */
+#laconic-app a.obra .obra__nom::after {
+  content: " \2197";
+  font-size: 0.7em;
   opacity: 0;
-  background: rgba(var(--ink-rgb), 0.18);
   transition: opacity 0.4s var(--ease);
 }
-#laconic-app.has-js .reel__play {
-  opacity: 1;
-}
-#laconic-app .reel__play span {
-  display: block;
-  width: 3.6rem;
-  height: 3.6rem;
-  border: 1px solid rgba(var(--cream-rgb), 0.75);
-  border-radius: 50%;
-  background: rgba(var(--ink-rgb), 0.4);
-  backdrop-filter: blur(6px);
-  position: relative;
-}
-/* El triángulo, hecho con bordes para no cargar ningún icono */
-#laconic-app .reel__play span::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 54%;
-  transform: translate(-50%, -50%);
-  border-style: solid;
-  border-width: 0.5rem 0 0.5rem 0.85rem;
-  border-color: transparent transparent transparent var(--cream);
-}
-#laconic-app.has-js .reel.is-playing .reel__play {
-  opacity: 0;
-}
-#laconic-app .reel__sound {
-  position: absolute;
-  right: 0.7rem;
-  bottom: 0.7rem;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  padding: 0;
-  border: 1px solid rgba(var(--cream-rgb), 0.5);
-  border-radius: 50%;
-  background: rgba(var(--ink-rgb), 0.45);
-  color: var(--cream);
-  backdrop-filter: blur(6px);
-  font-size: 0.9rem;
-  line-height: 1;
-  #laconic-app transition: background-color 0.35s var(--ease),
-#laconic-app border-color 0.35s var(--ease),
-    transform 0.35s var(--ease-out);
-}
-#laconic-app .reel__sound:hover {
-  background: var(--terra);
-  border-color: var(--terra);
-  transform: scale(1.08);
-}
-#laconic-app .reel__sound .is-off {
-  display: none;
-}
-#laconic-app .reel.is-audible .reel__sound .is-off {
-  display: block;
-}
-#laconic-app .reel.is-audible .reel__sound .is-on {
-  display: none;
-}
-/* Etiqueta discreta con el número de pieza */
-#laconic-app .reel__tag {
-  position: absolute;
-  left: 0.7rem;
-  bottom: 0.8rem;
-  z-index: 2;
-  font-size: var(--step--2);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--cream);
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
-}
-
-/* ---------- Cita grande ---------- */
-#laconic-app .quote {
-  position: relative;
-  overflow: hidden;
-}
-#laconic-app .quote__mark {
-  position: absolute;
-  right: -6vw;
-  top: 50%;
-  height: 78%;
-  width: auto;
-  transform: translateY(-50%) rotate(var(--spin, 0deg));
-  opacity: 0.12;
-  color: var(--cream);
-  pointer-events: none;
-}
-#laconic-app .quote__text {
-  position: relative;
-  font-family: var(--display);
-  font-size: clamp(1.8rem, 4.4vw, 3.4rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.06;
-  max-width: 26ch;
-  margin: 0;
-}
-/* Igual que en los titulares: la manuscrita va dentro de la frase */
-#laconic-app .quote__text .hand {
-  display: inline;
-  font-size: 1.04em;
-  font-weight: 400;
-  color: var(--sand);
-}
-#laconic-app .quote cite {
-  display: block;
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
-  font-style: normal;
-  font-size: var(--step--2);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+#laconic-app a.obra:hover .obra__nom::after {
   opacity: 0.7;
 }
 
-/* ---------- Proceso ---------- */
-#laconic-app .process {
-  display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
-}
-@media (min-width: 900px) {
-  #laconic-app .process {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    align-items: start;
-  }
-  #laconic-app .process__head {
-    position: sticky;
-    top: 20vh;
-  }
-}
-#laconic-app .rail {
-  position: relative;
-  padding-left: 2.6rem;
-}
-#laconic-app .rail::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 0.6rem;
-  bottom: 0.6rem;
-  width: 1px;
-  background: var(--line);
-}
-#laconic-app .rail__fill {
-  position: absolute;
-  left: 7px;
-  top: 0.6rem;
-  width: 1px;
-  background: var(--terra);
-  height: calc(var(--fill, 0) * (100% - 1.2rem));
-  transition: height 0.25s linear;
-}
-#laconic-app .step {
-  position: relative;
-  padding-block: clamp(1.2rem, 3vw, 1.8rem);
-}
-#laconic-app .step::before {
-  content: "";
-  position: absolute;
-  left: -2.6rem;
-  top: calc(clamp(1.2rem, 3vw, 1.8rem) + 0.45em);
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--cream);
-  #laconic-app transition: background-color 0.4s var(--ease),
-#laconic-app border-color 0.4s var(--ease),
-    transform 0.4s var(--ease-out);
-}
-#laconic-app .step.is-on::before {
-  background: var(--terra);
-  border-color: var(--terra);
-  transform: scale(1.15);
-}
-#laconic-app .step h3 {
-  font-size: var(--step-2);
-  margin-bottom: 0.4rem;
-}
-#laconic-app .step p {
-  color: var(--muted);
-  max-width: 52ch;
-  margin: 0;
-}
-#laconic-app .step__n {
-  font-family: var(--hand);
-  font-size: 1.5rem;
-  color: var(--terra);
-  display: block;
-  line-height: 1;
-  margin-bottom: 0.2rem;
-}
-
-/* ---------- Recursos ---------- */
-#laconic-app .cards {
-  display: grid;
-  gap: clamp(1.2rem, 2.5vw, 2rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
-  margin-top: clamp(2rem, 5vw, 3rem);
-}
-#laconic-app .card {
-  border: 1px solid var(--line);
-  padding: clamp(1.5rem, 3vw, 2.2rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  background: var(--cream);
-  #laconic-app transition: transform 0.5s var(--ease-out),
-#laconic-app border-color 0.4s var(--ease),
-    box-shadow 0.5s var(--ease);
-}
-#laconic-app .card:hover {
-  transform: translateY(-6px);
-  border-color: var(--terra);
-  box-shadow: 0 30px 60px -45px rgba(var(--ink-rgb), 0.5);
-}
-#laconic-app .card > :last-child {
-  margin-top: auto;
-  padding-top: 0.8rem;
-  margin-bottom: 0;
-}
-#laconic-app .card__tag {
-  font-size: var(--step--2);
-  color: var(--terra);
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-#laconic-app .card h3 {
-  font-size: var(--step-2);
-}
-#laconic-app .card p {
-  color: var(--muted);
-  margin: 0;
-}
-#laconic-app .card__price {
-  font-family: var(--hand);
-  font-weight: 400;
-  font-size: 1.7rem;
-  color: var(--ink);
-}
+/* ---------- Nota al pie de un bloque ---------- */
 #laconic-app .note {
   font-size: var(--step--1);
   color: var(--muted);
@@ -1687,138 +1263,6 @@
 #laconic-app [data-theme="terra"] .note,
 #laconic-app [data-theme="ink"] .note {
   color: rgba(var(--cream-rgb), 0.75);
-}
-
-/* ---------- Preguntas frecuentes: acordeón sin JavaScript ---------- */
-#laconic-app .faq {
-  border-top: 1px solid var(--line);
-}
-#laconic-app .faq__item {
-  border-bottom: 1px solid var(--line);
-}
-#laconic-app .faq__item summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding-block: clamp(1.1rem, 2.4vw, 1.6rem);
-  cursor: pointer;
-  list-style: none;
-  font-size: var(--step-1);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  transition: color 0.35s var(--ease);
-}
-#laconic-app .faq__item summary::-webkit-details-marker {
-  display: none;
-}
-#laconic-app .faq__item summary:hover {
-  color: var(--terra);
-}
-/* El signo pasa de + a — al abrir, con dos barras cruzadas */
-#laconic-app .faq__sign {
-  position: relative;
-  flex: none;
-  width: 16px;
-  height: 16px;
-}
-#laconic-app .faq__sign::before,
-#laconic-app .faq__sign::after {
-  content: "";
-  position: absolute;
-  inset: 50% 0 auto 0;
-  height: 1.5px;
-  background: var(--terra);
-  transition: transform 0.4s var(--ease-out);
-}
-#laconic-app .faq__sign::after {
-  transform: rotate(90deg);
-}
-#laconic-app .faq__item[open] .faq__sign::after {
-  transform: rotate(0deg);
-}
-#laconic-app .faq__body {
-  padding-bottom: clamp(1.1rem, 2.4vw, 1.7rem);
-}
-#laconic-app .faq__body p {
-  margin: 0;
-  color: var(--muted);
-  max-width: 62ch;
-}
-
-/* ---------- Reseñas: sin cajas, separadas por un filete ----------
-   Van sobre el terracota, en crema y a cuerpo grande: se leen como tres voces
-   seguidas, no como tres tarjetas de plantilla. */
-#laconic-app .quotes {
-  display: grid;
-  gap: clamp(2rem, 4vw, 3rem);
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
-}
-@media (min-width: 860px) {
-  #laconic-app .quotes {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-  }
-  /* El filete va entre columna y columna, no en los extremos */
-  #laconic-app .quotes__item + .quotes__item {
-    border-left: 1px solid var(--line-cream);
-  }
-  #laconic-app .quotes__item {
-    padding-inline: clamp(1.5rem, 3vw, 2.6rem);
-  }
-  #laconic-app .quotes__item:first-child {
-    padding-left: 0;
-  }
-  #laconic-app .quotes__item:last-child {
-    padding-right: 0;
-  }
-}
-#laconic-app .quotes__item {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.2rem, 2.5vw, 1.8rem);
-}
-#laconic-app .quotes__item blockquote {
-  margin: 0;
-  flex: 1;
-}
-#laconic-app .quotes__item blockquote p {
-  margin: 0;
-  font-size: var(--step-1);
-  line-height: 1.45;
-  letter-spacing: -0.015em;
-  color: var(--cream);
-}
-/* La cita abre con el cero de la marca. Va como <svg> del sprite y no como
-   máscara con url(): dentro del bloque de WordPress el CSS vive en la propia
-   página, así que una ruta relativa a la carpeta del CSS no resuelve. */
-#laconic-app .quotes__zero {
-  /* align-self, o como hijo de un flex en columna se estira y el cero sale
-     centrado en vez de a la izquierda */
-  align-self: flex-start;
-  width: 16px;
-  height: auto;
-  color: var(--cream);
-  opacity: 0.55;
-}
-#laconic-app .quotes__item figcaption {
-  display: grid;
-  gap: 0.2rem;
-  padding-top: clamp(0.9rem, 2vw, 1.3rem);
-  border-top: 1px solid var(--line-cream);
-}
-#laconic-app .quotes__item figcaption strong {
-  font-weight: 600;
-  font-size: var(--step--1);
-  color: var(--cream);
-}
-#laconic-app .quotes__item figcaption span {
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: var(--step--2);
-  color: var(--cream);
-  opacity: 0.7;
 }
 
 /* ---------- Contacto ---------- */
@@ -2065,22 +1509,14 @@
     opacity: 1;
     transform: none;
   }
-  #laconic-app .hero {
-    height: auto;
-    min-height: 100svh;
-  }
   #laconic-app .hero__word {
     clip-path: none;
   }
   #laconic-app .hero__name,
   #laconic-app .hero__claim,
-  #laconic-app .hero__rule,
-  #laconic-app .hero__scroll {
+  #laconic-app .hero__rule {
     opacity: 1;
     transform: none;
-  }
-  #laconic-app .tile {
-    transform: rotate(var(--rot, 0deg));
   }
   #laconic-app .strip__track {
     animation: none;
@@ -2222,19 +1658,18 @@
 
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>
-<a class="skip" href="#lac-estudi">Salta al contingut</a>
+<a class="skip" href="#about">Salta al contingut</a>
 
 <header class="header">
   <div class="wrap header__inner">
     <a class="brand" href="#lac-top" aria-label="Laconic Studio">
-      <svg class="brand__word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lac-lg-word"/></svg>
+      <svg class="brand__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
     </a>
 
     <nav class="nav" aria-label="L'estudi">
-      <a href="#lac-estudi">Estudi</a>
+      <a href="#about">About</a>
       <a href="#lac-serveis">Serveis</a>
-      <a href="#lac-treball">Treball</a>
-      <a href="#faq">FAQ</a>
+      <a href="#projectes">Projectes</a>
       <a href="#lac-contacte">Contacte</a>
     </nav>
 
@@ -2255,14 +1690,13 @@
 
 <div class="mobile-menu" id="lac-mobile-menu" aria-hidden="true">
   <nav>
-    <a href="#lac-estudi">Estudi <span>qui som</span></a>
+    <a href="#about">About <span>qui som</span></a>
     <a href="#lac-serveis">Serveis <span>què fem</span></a>
-    <a href="#lac-treball">Treball <span>projectes</span></a>
-    <a href="#faq">FAQ <span>dubtes</span></a>
+    <a href="#projectes">Projectes <span>què hem fet</span></a>
     <a href="#lac-contacte">Contacte <span>escriu-nos</span></a>
   </nav>
   <div class="mobile-menu__foot">
-    <a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a>
+    <a href="mailto:hello@laconicstudio.es">hello@laconicstudio.es</a>
     <a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">@laconicstudio_</a>
     <a href="__URL_ES__" hreflang="es">ES</a>
   </div>
@@ -2270,45 +1704,39 @@
 
 <main id="lac-top">
 
-  <!-- Inici: fons beix, el logotip al mig i les peces que pugen fins a dalt -->
-  <section class="hero" data-theme="cream" data-collage>
+  <!-- Inici: el logotip sobre beix i, tot seguit, dues fotos a pantalla completa -->
+  <section class="hero" data-theme="cream">
     <div class="hero__stage">
-      <div class="hero__tiles" aria-hidden="true">
-        <figure class="tile tile--1"><img src="__BASE__assets/img/proyectos/malhivern-2-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-2-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="24vw" width="1100" height="1375" alt="Ampolla de ratafia sobre pedra amb plantes aromàtiques" loading="eager" decoding="async"></figure>
-        <figure class="tile tile--2"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="24vw" width="1100" height="1375" alt="Corredor en un camí amb un pi al fons" loading="eager" decoding="async"></figure>
-        <figure class="tile tile--3"><img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="24vw" width="1100" height="1375" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async"></figure>
-        <figure class="tile tile--4"><img src="__BASE__assets/img/proyectos/puig-3-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-3-700.jpg 700w, __BASE__assets/img/proyectos/puig-3-1100.jpg 1100w" sizes="24vw" width="1100" height="1441" alt="Retrat en blanc i negre a la botiga" loading="lazy" decoding="async"></figure>
-        <figure class="tile tile--5"><img src="__BASE__assets/img/proyectos/jordi-coll-3-1100.jpg" srcset="__BASE__assets/img/proyectos/jordi-coll-3-700.jpg 700w, __BASE__assets/img/proyectos/jordi-coll-3-1100.jpg 1100w" sizes="24vw" width="1100" height="1446" alt="Lector amb el llibre signat a la llibreria" loading="lazy" decoding="async"></figure>
-      </div>
-
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
         <svg class="hero__word" viewBox="0 0 366.0 100" aria-hidden="true"><use href="#lac-lg-word"/></svg>
         <span class="hero__name" aria-hidden="true">studio</span>
       </h1>
-      <p class="hero__claim">L'agència de RRSS que connecta, crea i converteix</p>
+      <p class="hero__claim">Contingut que connecta.</p>
 
       <div class="hero__rule">
-        <span>Estudi creatiu</span>
+        <span>Based in Girona.</span>
         <i aria-hidden="true"></i>
-        <span>Barcelona i remot</span>
+        <span>Working beyond.</span>
       </div>
-      <span class="hero__scroll" aria-hidden="true">scroll</span>
     </div>
   </section>
 
-  <!-- Declaració: bloc de color, centrat, amb la manuscrita dins de la frase -->
-  <section class="decl slab-top" data-theme="terra">
+  <!-- Les dues fotos del començament, a sang i a tota l'alçada de la pantalla -->
+  <div class="duo" data-theme="cream">
+    <figure class="duo__half"><img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Pizza artesana acabada de sortir del forn" loading="eager" decoding="async"></figure>
+    <figure class="duo__half"><img src="__BASE__assets/img/proyectos/puig-3-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-3-700.jpg 700w, __BASE__assets/img/proyectos/puig-3-1100.jpg 1100w" sizes="50vw" width="1100" height="1441" alt="Retrat en blanc i negre a la botiga" loading="eager" decoding="async"></figure>
+  </div>
+
+  <!-- Declaració: bloc de color, centrat, sense botó i amb menys aire -->
+  <section class="decl decl--tight slab-top" data-theme="terra">
     <div class="wrap wrap--narrow center">
-      <p class="kicker kicker--center fade">Sobre Laconic</p>
-      <p class="decl__text display rl">Ajudem marques a <span class="hand">travessar el soroll</span> i a deixar una <span class="hand">empremta que duri</span>.</p>
-      <p class="fade" data-delay="1">
-        <a class="btn btn--line" href="#lac-estudi"><span>Saber-ne més</span></a>
-      </p>
+      <p class="kicker kicker--center fade">About</p>
+      <p class="decl__text display rl">Ajudem a marques a deixar empremta <span class="hand">(de la de veritat)</span>.</p>
     </div>
   </section>
 
-  <!-- Tira de fotos que passa en bucle, amb el rètol gran a sota -->
+  <!-- Tira de fotos que passa en bucle -->
   <div class="strip" data-theme="terra">
     <div class="strip__band">
       <div class="strip__track">
@@ -2317,28 +1745,26 @@
         <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async"></figure>
         <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async"></figure>
         <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/malhivern-2-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-2-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-2-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Ampolla de ratafia sobre pedra amb plantes aromàtiques" loading="lazy" decoding="async"></figure>
+        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/jordi-coll-2-1100.jpg" srcset="__BASE__assets/img/proyectos/jordi-coll-2-700.jpg 700w, __BASE__assets/img/proyectos/jordi-coll-2-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Públic assistint a la presentació del llibre" loading="lazy" decoding="async"></figure>
+        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/malhivern-3-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-3-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-3-1100.jpg 1100w" sizes="22vw" width="1100" height="1429" alt="Ampolles de licor artesà en una lleixa de pedra" loading="lazy" decoding="async"></figure>
       </div>
     </div>
-    <span class="strip__ghost" aria-hidden="true">Designed to speak <strong>quietly</strong></span>
   </div>
 
   <!-- Estudi -->
-  <section class="section slab-top" data-theme="cream" id="lac-estudi">
+  <section class="section slab-top" data-theme="cream" id="about">
     <div class="wrap">
       <p class="kicker fade">L'estudi</p>
       <h2 class="display rl">
         Cada marca comunica, <span class="hand">però no totes connecten</span>.
       </h2>
 
-      <div class="manifesto__grid">
-        <div class="fade">
-          <p class="lead">Una bona comunicació no consisteix a publicar més, sinó a explicar millor.</p>
+      <div class="manifesto__grid manifesto__grid--simple">
+        <div class="body-col fade">
           <p class="claim">Less noise. <em>More meaning.</em></p>
-        </div>
-        <div class="body-col fade" data-delay="1">
           <p>Som un estudi creatiu especialitzat en xarxes socials, creació de contingut i estratègia digital. Treballem amb marques que volen construir una presència coherent, autèntica i amb criteri, creant contingut que connecti amb les persones i tingui un objectiu darrere.</p>
           <p>Ens impliquem en cada projecte com si fos nostre: analitzem, planifiquem, gravem, editem i pensem cada detall perquè cada publicació sumi i tingui sentit dins d'una estratègia.</p>
-          <p class="hand-note">No busquem omplir un calendari. Busquem marques que deixin empremta.</p>
+          <p class="body-col__cierre">Busquem marques que vulguin deixar empremta.</p>
         </div>
       </div>
 
@@ -2354,124 +1780,86 @@
           <span class="person__role">Strategist &amp; Founder</span>
         </div>
         <div class="person">
-          <p class="person__note">Som dues. Això vol dir que parles sempre amb qui fa la feina, i que diem no a allò que no podem fer bé.</p>
+          <p class="person__note">Som dues, i ens agrada que sigui així. Parles directament amb qui pensa, crea i executa. I si no podem fer-ho bé, preferim dir que no.</p>
         </div>
       </div>
 
-      <div class="clients fade" data-delay="2">
-        <p class="clients__label">Marques amb qui hem treballat</p>
-        <ul class="clients__list">
-          <li>Quality Training</li>
-          <li>Ratafia Malhivern</li>
-          <li>Football 4 Stars</li>
-          <li>Maitasuna</li>
-          <li>Jordi Coll</li>
-          <li>F45 Training</li>
-          <li>Comercial Puig</li>
-        </ul>
-      </div>
     </div>
   </section>
 
-  <div class="marquee" data-theme="ink" aria-hidden="true">
+  <!-- La línia de serveis, fina i petita -->
+  <div class="marquee marquee--fina" data-theme="ink" aria-hidden="true">
     <div class="marquee__track">
-      <span class="hand">Content creation</span>
-      <span>Social media</span>
-      <span class="hand">Graphic design</span>
+      <span>Content creation</span>
+      <span>Social Media</span>
       <span>Ads &amp; campaigns</span>
-      <span class="hand">UGC</span>
+      <span>UGC</span>
+      <span>Graphic Design</span>
     </div>
   </div>
 
-  <!-- Serveis: la foto segueix el servei actiu -->
+  <!-- Serveis: els noms grans i escalonats, i a sota la definició del que està actiu -->
   <section class="section slab-top" data-theme="terra" id="lac-serveis">
     <div class="wrap">
       <p class="kicker fade">Serveis</p>
-      <h2 class="display rl">
-        Això és el que fem <span class="hand">i què te'n queda</span>.
-      </h2>
+      <h2 class="visually-hidden">Serveis</h2>
 
-      <div class="svc">
-        <div class="svc__media fade" aria-hidden="true">
-          <img data-svc-img="malhivern" class="is-on" src="__BASE__assets/img/proyectos/malhivern-3-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-3-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-3-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1429" alt="Ampolles de licor artesà en una lleixa de pedra" loading="lazy" decoding="async">
-          <img data-svc-img="quality" src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1375" alt="Corredor en un camí amb un pi al fons" loading="lazy" decoding="async">
-          <img data-svc-img="maitasuna" src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1375" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async">
-          <img data-svc-img="puig" src="__BASE__assets/img/proyectos/puig-3-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-3-700.jpg 700w, __BASE__assets/img/proyectos/puig-3-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1441" alt="Retrat en blanc i negre a la botiga" loading="lazy" decoding="async">
-          <img data-svc-img="f4s" src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 940px) 42vw, 100vw" width="1100" height="1375" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async">
-        </div>
-
-        <ol class="svc__list" data-svc-list>
-          <li class="svc__item" data-svc="malhivern">
-            <div class="svc__head">
+      <div class="svc" data-svc-list>
+        <ol class="svc__noms">
+          <li class="svc__nom is-active" data-svc="0">
+            <button type="button" aria-controls="svc-def-0" aria-expanded="true">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-sol"/></svg>
-              <span class="svc__num">01</span>
-              <span class="svc__name hand">Content creation</span>
-            </div>
-            <p class="svc__tag">Contingut amb aquell no-sé-què</p>
-            <ul class="svc__items">
-              <li>Concepte i guió</li>
-              <li>Foto i vídeo</li>
-              <li>Reels i verticals</li>
-              <li>Edició i subtítols</li>
-            </ul>
+              <span class="svc__etiqueta">Content creation</span><sup>01</sup>
+            </button>
           </li>
-          <li class="svc__item" data-svc="quality">
-            <div class="svc__head">
+          <li class="svc__nom" data-svc="1">
+            <button type="button" aria-controls="svc-def-1" aria-expanded="false">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-pausa"/></svg>
-              <span class="svc__num">02</span>
-              <span class="svc__name hand">Social media</span>
-            </div>
-            <p class="svc__tag">Scroll i pausa, això busquem</p>
-            <ul class="svc__items">
-              <li>Línia editorial</li>
-              <li>Calendari</li>
-              <li>Community management</li>
-              <li>Informe mensual</li>
-            </ul>
+              <span class="svc__etiqueta">Social Media</span><sup>02</sup>
+            </button>
           </li>
-          <li class="svc__item" data-svc="maitasuna">
-            <div class="svc__head">
+          <li class="svc__nom" data-svc="2">
+            <button type="button" aria-controls="svc-def-2" aria-expanded="false">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-asterisc"/></svg>
-              <span class="svc__num">03</span>
-              <span class="svc__name hand">Graphic design</span>
-            </div>
-            <p class="svc__tag">Intenció i actitud</p>
-            <ul class="svc__items">
-              <li>Identitat visual</li>
-              <li>Sistema de plantilles</li>
-              <li>Peces per a xarxes</li>
-              <li>Presentacions</li>
-            </ul>
+              <span class="svc__etiqueta">Ads &amp; Campaigns</span><sup>03</sup>
+            </button>
           </li>
-          <li class="svc__item" data-svc="puig">
-            <div class="svc__head">
+          <li class="svc__nom" data-svc="3">
+            <button type="button" aria-controls="svc-def-3" aria-expanded="false">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-fletxa"/></svg>
-              <span class="svc__num">04</span>
-              <span class="svc__name hand">Ads &amp; campaigns</span>
-            </div>
-            <p class="svc__tag">Ni soroll ni sort, impacte</p>
-            <ul class="svc__items">
-              <li>Meta i TikTok Ads</li>
-              <li>Segmentació i públics</li>
-              <li>Creativitats per provar</li>
-              <li>Informe de resultats</li>
-            </ul>
+              <span class="svc__etiqueta">UGC</span><sup>04</sup>
+            </button>
           </li>
-          <li class="svc__item" data-svc="f4s">
-            <div class="svc__head">
+          <li class="svc__nom" data-svc="4">
+            <button type="button" aria-controls="svc-def-4" aria-expanded="false">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-cercle"/></svg>
-              <span class="svc__num">05</span>
-              <span class="svc__name hand">UGC</span>
-            </div>
-            <p class="svc__tag">Real i amb propòsit</p>
-            <ul class="svc__items">
-              <li>Selecció de creadors</li>
-              <li>Briefing</li>
-              <li>Producció</li>
-              <li>Drets d'ús</li>
-            </ul>
+              <span class="svc__etiqueta">Graphic Design &amp; Brand Identity</span><sup>05</sup>
+            </button>
           </li>
         </ol>
+
+        <div class="svc__defs">
+          <div class="svc__def is-on" id="svc-def-0" data-svc-def="0">
+            <h3 class="svc__def-nom">Content creation</h3>
+            <p>Creem contingut que expliqui qui ets, què fas i per què t'haurien de mirar. Pensem la idea, gravem i editem perquè cada peça tingui un motiu i una raó de ser. Volem apropar-vos al vostre públic objectiu de la manera en la qual estigueu més còmodes.</p>
+          </div>
+          <div class="svc__def" id="svc-def-1" data-svc-def="1">
+            <h3 class="svc__def-nom">Social Media</h3>
+            <p>Ens encarreguem de les teves xarxes perquè tu puguis centrar-te en el teu negoci. Planifiquem, publiquem i gestionem el dia a dia del perfil.</p>
+          </div>
+          <div class="svc__def" id="svc-def-2" data-svc-def="2">
+            <h3 class="svc__def-nom">Ads &amp; Campaigns</h3>
+            <p>Fem que el contingut arribi més lluny. Creem i gestionem campanyes pensades per arribar a les persones adequades i aconseguir un objectiu concret a través de Meta Ads.</p>
+          </div>
+          <div class="svc__def" id="svc-def-3" data-svc-def="3">
+            <h3 class="svc__def-nom">UGC</h3>
+            <p>Creem contingut com ho faria una persona real. Vídeos naturals, propers i pensats per connectar amb el públic sense que sembli un anunci.</p>
+          </div>
+          <div class="svc__def" id="svc-def-4" data-svc-def="4">
+            <h3 class="svc__def-nom">Graphic Design &amp; Brand Identity</h3>
+            <p>Donem forma visual a les idees que hi ha darrere de la teva marca. Treballem la teva identitat i creem les peces gràfiques necessàries perquè sigui coherent, reconeixible i tingui personalitat.</p>
+          </div>
+        </div>
 
         <p class="svc__cta fade">
           <a class="btn btn--cream btn--lg" href="#lac-contacte"><span>Demana pressupost</span><span class="arrow" aria-hidden="true">&rarr;</span></a>
@@ -2480,361 +1868,72 @@
     </div>
   </section>
 
-  <!-- Treball -->
-  <section class="section section--tight slab-top" data-theme="cream" id="lac-treball">
+  <!-- Projectes: una graella de fitxes; cada una obre l'Instagram -->
+  <section class="section section--tight slab-top" data-theme="cream" id="projectes">
     <div class="wrap">
-      <p class="kicker fade">Treball · Set marques</p>
+      <p class="kicker fade">Projectes</p>
       <h2 class="display rl">
         Get people <span class="hand">talking</span> about your brand.
       </h2>
-    </div>
-    <div class="wrap">
-      <article class="slab fade">
-        <div class="slab__media slab__media--reels">
-          <div class="reel" data-reel>
-            <!-- autoplay + muted + playsinline hace que arranque sin depender de
-                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
-                 se reproduce igual. Los navegadores no lo empiezan hasta que
-                 entra en pantalla, así que no se descarga de más. skip-lazy y
-                 data-no-lazy piden a los plugins de carga diferida que no toquen
-                 el src, que es lo que los deja en negro. -->
-            <video class="reel__video skip-lazy" src="__BASE__assets/video/quality-1.mp4"
-              poster="__BASE__assets/video/quality-1-poster.jpg"
-              autoplay muted loop playsinline preload="metadata"
-              data-no-lazy="1" data-skip-lazy="true"
-              aria-label="Peça 01 &mdash; Quality Training"></video>
-            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
-                 batería, modo de ahorro de datos), queda este aviso y basta
-                 con tocar el vídeo. -->
-            <span class="reel__play" aria-hidden="true"><span></span></span>
-            <span class="reel__tag" aria-hidden="true">Peça 01</span>
-            <button class="reel__sound" type="button" data-sound
-              data-on="Activa el so" data-off="Silencia el so"
-              aria-label="Activa el so">
-              <span class="is-on" aria-hidden="true">&#9834;</span>
-              <span class="is-off" aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-        <div class="slab__text">
-          <span class="slab__index">01 / 07 &middot; Entrenament</span>
-          <h3 class="slab__title">Quality Training</h3>
-          <p>Hem transformat el coneixement tècnic de Quality Training en contingut atractiu per a xarxes socials, reforçant la seva imatge de marca, la connexió amb la comunitat i la captació de nous clients.</p>
-          <div class="slab__links">
-            <a href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener">Mira-ho a Instagram <span aria-hidden="true">&#8599;</span></a>
-          </div>
-          <div class="slab__meta">
-            <span>Creació de contingut</span>
-            <span>Social media</span>
-          </div>
-          <div class="slab__extra">
-            <figure><img src="__BASE__assets/img/proyectos/quality-3-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-3-700.jpg 700w, __BASE__assets/img/proyectos/quality-3-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1100" height="1375" alt="Entrenador amb la samarreta de Quality Training parlant amb un client" loading="lazy" decoding="async"></figure>
-          </div>
-        </div>
-      </article>
-      <article class="slab slab--flip fade">
-        <div class="slab__media slab__media--reels">
-          <div class="reel" data-reel>
-            <!-- autoplay + muted + playsinline hace que arranque sin depender de
-                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
-                 se reproduce igual. Los navegadores no lo empiezan hasta que
-                 entra en pantalla, así que no se descarga de más. skip-lazy y
-                 data-no-lazy piden a los plugins de carga diferida que no toquen
-                 el src, que es lo que los deja en negro. -->
-            <video class="reel__video skip-lazy" src="__BASE__assets/video/malhivern-1.mp4"
-              poster="__BASE__assets/video/malhivern-1-poster.jpg"
-              autoplay muted loop playsinline preload="metadata"
-              data-no-lazy="1" data-skip-lazy="true"
-              aria-label="Peça 01 &mdash; Ratafia Malhivern"></video>
-            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
-                 batería, modo de ahorro de datos), queda este aviso y basta
-                 con tocar el vídeo. -->
-            <span class="reel__play" aria-hidden="true"><span></span></span>
-            <span class="reel__tag" aria-hidden="true">Peça 01</span>
-            <button class="reel__sound" type="button" data-sound
-              data-on="Activa el so" data-off="Silencia el so"
-              aria-label="Activa el so">
-              <span class="is-on" aria-hidden="true">&#9834;</span>
-              <span class="is-off" aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-        <div class="slab__text">
-          <span class="slab__index">02 / 07 &middot; Licors artesans</span>
-          <h3 class="slab__title">Ratafia Malhivern</h3>
-          <p>Estratègia de continguts, direcció creativa i gestió de xarxes socials per construir una marca propera, autèntica i amb una identitat pròpia.</p>
-          <div class="slab__links">
-            <a href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener">Mira-ho a Instagram <span aria-hidden="true">&#8599;</span></a>
-          </div>
-          <div class="slab__meta">
-            <span>Estratègia</span>
-            <span>Direcció creativa</span>
-            <span>Social media</span>
-          </div>
-          <div class="slab__extra">
-            <figure><img src="__BASE__assets/img/proyectos/malhivern-3-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-3-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-3-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1100" height="1429" alt="Ampolles de licor artesà en una lleixa de pedra" loading="lazy" decoding="async"></figure>
-            <figure><img src="__BASE__assets/img/proyectos/malhivern-4-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-4-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-4-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1100" height="1375" alt="Prestatge amb la gamma de licors Sol i Serena" loading="lazy" decoding="async"></figure>
-          </div>
-        </div>
-      </article>
-      <article class="slab fade">
-        <div class="slab__media" data-parallax>
-          <img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1100" height="1375" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async">
-        </div>
-        <div class="slab__text">
-          <span class="slab__index">03 / 07 &middot; Futbol formatiu</span>
-          <h3 class="slab__title">Football 4 Stars</h3>
-          <p>Hem impulsat la presència digital de Football 4 Stars amb contingut aspiracional, estratègic i orientat a la captació.</p>
-          <div class="slab__meta">
-            <span>Social media</span>
-            <span>Creació de contingut</span>
-          </div>
-          <div class="slab__extra">
-            <figure><img src="__BASE__assets/img/proyectos/f4s-2-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-2-700.jpg 700w, __BASE__assets/img/proyectos/f4s-2-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1100" height="1375" alt="Jugador conduint la pilota entre cons" loading="lazy" decoding="async"></figure>
-            <figure><img src="__BASE__assets/img/proyectos/f4s-4-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-4-700.jpg 700w, __BASE__assets/img/proyectos/f4s-4-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1100" height="1375" alt="" loading="lazy" decoding="async"></figure>
-          </div>
-        </div>
-      </article>
-      <article class="slab slab--flip fade">
-        <div class="slab__media" data-parallax>
-          <img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1100" height="1375" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async">
-        </div>
-        <div class="slab__text">
-          <span class="slab__index">04 / 07 &middot; Pizza artesana</span>
-          <h3 class="slab__title">Maitasuna</h3>
-          <p>Hem treballat una estratègia de contingut centrada en humanitzar la marca i potenciar la figura de l'Alain, transmetent l'essència artesana i propera de Maitasuna.</p>
-          <div class="slab__meta">
-            <span>Creació de contingut</span>
-            <span>Social media</span>
-          </div>
-          <div class="slab__extra">
-            <figure><img src="__BASE__assets/img/proyectos/maitasuna-2-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-2-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-2-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1100" height="1507" alt="Mans pastant massa amb la jaqueta de l'obrador" loading="lazy" decoding="async"></figure>
-            <figure><img src="__BASE__assets/img/proyectos/maitasuna-4-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-4-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-4-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1100" height="1375" alt="" loading="lazy" decoding="async"></figure>
-          </div>
-        </div>
-      </article>
-      <article class="slab fade">
-        <div class="slab__media slab__media--reels">
-          <div class="reel" data-reel>
-            <!-- autoplay + muted + playsinline hace que arranque sin depender de
-                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
-                 se reproduce igual. Los navegadores no lo empiezan hasta que
-                 entra en pantalla, así que no se descarga de más. skip-lazy y
-                 data-no-lazy piden a los plugins de carga diferida que no toquen
-                 el src, que es lo que los deja en negro. -->
-            <video class="reel__video skip-lazy" src="__BASE__assets/video/jordi-coll-1.mp4"
-              poster="__BASE__assets/video/jordi-coll-1-poster.jpg"
-              autoplay muted loop playsinline preload="metadata"
-              data-no-lazy="1" data-skip-lazy="true"
-              aria-label="Peça 01 &mdash; Jordi Coll"></video>
-            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
-                 batería, modo de ahorro de datos), queda este aviso y basta
-                 con tocar el vídeo. -->
-            <span class="reel__play" aria-hidden="true"><span></span></span>
-            <span class="reel__tag" aria-hidden="true">Peça 01</span>
-            <button class="reel__sound" type="button" data-sound
-              data-on="Activa el so" data-off="Silencia el so"
-              aria-label="Activa el so">
-              <span class="is-on" aria-hidden="true">&#9834;</span>
-              <span class="is-off" aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-        <div class="slab__text">
-          <span class="slab__index">05 / 07 &middot; Marca personal</span>
-          <h3 class="slab__title">Jordi Coll</h3>
-          <p>Hem treballat l'estratègia de continguts de Jordi Coll, creant reels per potenciar la seva marca personal i promocionar el llançament d'<em>El pont de les mentides</em>.</p>
-          <div class="slab__links">
-            <a href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener">Mira-ho a Instagram <span aria-hidden="true">&#8599;</span></a>
-          </div>
-          <div class="slab__meta">
-            <span>Estratègia</span>
-            <span>Reels</span>
-          </div>
-          <div class="slab__extra">
-            <figure><img src="__BASE__assets/img/proyectos/jordi-coll-3-1100.jpg" srcset="__BASE__assets/img/proyectos/jordi-coll-3-700.jpg 700w, __BASE__assets/img/proyectos/jordi-coll-3-1100.jpg 1100w" sizes="(min-width: 900px) 22vw, 46vw" width="1100" height="1446" alt="Lector amb el llibre signat a la llibreria" loading="lazy" decoding="async"></figure>
-          </div>
-        </div>
-      </article>
-      <article class="slab slab--flip fade">
-        <div class="slab__media" data-parallax>
-          <img src="__BASE__assets/img/proyectos/f45-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f45-1-700.jpg 700w, __BASE__assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="(min-width: 900px) 52vw, 100vw" width="1100" height="1375" alt="Assistent a la inauguració de F45" loading="lazy" decoding="async">
-        </div>
-        <div class="slab__text">
-          <span class="slab__index">06 / 07 &middot; Esdeveniment</span>
-          <h3 class="slab__title">F45 Training</h3>
-          <p>Vam crear contingut audiovisual per a la inauguració de F45, capturant l'energia de l'esdeveniment i reforçant la imatge de marca amb peces pensades per a xarxes socials.</p>
-          <div class="slab__meta">
-            <span>Creació de contingut</span>
-            <span>Vídeo</span>
-          </div>
-        </div>
-      </article>
-      <article class="slab fade">
-        <div class="slab__media slab__media--reels">
-          <div class="reel" data-reel>
-            <!-- autoplay + muted + playsinline hace que arranque sin depender de
-                 nuestro JS: si un plugin de caché lo aplaza o lo rompe, el vídeo
-                 se reproduce igual. Los navegadores no lo empiezan hasta que
-                 entra en pantalla, así que no se descarga de más. skip-lazy y
-                 data-no-lazy piden a los plugins de carga diferida que no toquen
-                 el src, que es lo que los deja en negro. -->
-            <video class="reel__video skip-lazy" src="__BASE__assets/video/puig-1.mp4"
-              poster="__BASE__assets/video/puig-1-poster.jpg"
-              autoplay muted loop playsinline preload="metadata"
-              data-no-lazy="1" data-skip-lazy="true"
-              aria-label="Peça 01 &mdash; Comercial Puig"></video>
-            <!-- Si el navegador no deja arrancar solo (móvil en ahorro de
-                 batería, modo de ahorro de datos), queda este aviso y basta
-                 con tocar el vídeo. -->
-            <span class="reel__play" aria-hidden="true"><span></span></span>
-            <span class="reel__tag" aria-hidden="true">Peça 01</span>
-            <button class="reel__sound" type="button" data-sound
-              data-on="Activa el so" data-off="Silencia el so"
-              aria-label="Activa el so">
-              <span class="is-on" aria-hidden="true">&#9834;</span>
-              <span class="is-off" aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-        <div class="slab__text">
-          <span class="slab__index">07 / 07 &middot; Distribució</span>
-          <h3 class="slab__title">Comercial Puig</h3>
-          <p>Creem contingut que apropa Comercial Puig als seus clients, mostrant el valor dels seus productes, l'assessorament personalitzat i el dia a dia d'un negoci familiar.</p>
-          <div class="slab__links">
-            <a href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener">Mira-ho a Instagram <span aria-hidden="true">&#8599;</span></a>
-          </div>
-          <div class="slab__meta">
-            <span>Creació de contingut</span>
-            <span>Social media</span>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
 
-  <!-- Cita -->
-  <section class="section slab-top quote" data-theme="deep">
-    <svg class="quote__mark" viewBox="0 0 71.7 100" aria-hidden="true" data-spin><use href="#lac-lg-zero"/></svg>
-    <div class="wrap">
-      <blockquote class="quote__text rl">
-        Menys soroll. <span class="hand">Més sentit</span>.
-      </blockquote>
-      <cite class="fade">Laconic Studio</cite>
-    </div>
-  </section>
-
-  <!-- Procés -->
-  <section class="section slab-top" data-theme="cream" id="lac-proces">
-    <div class="wrap">
-      <div class="process">
-        <div class="process__head">
-          <p class="kicker fade">Com treballem</p>
-          <h2 class="display display--sm rl">
-            Sense misteri, <span class="hand">amb mètode</span>.
-          </h2>
-        </div>
-        <div class="rail" data-rail>
-          <span class="rail__fill" aria-hidden="true"></span>
-          <div class="step">
-            <span class="step__n">01</span>
-            <h3>Escoltem</h3>
-            <p>Una trucada de vint minuts per entendre el negoci, no només el feed. Què venes, a qui i què t'està frenant.</p>
+      <div class="obras">
+        <a class="obra fade" href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener" aria-label="Quality Training &mdash; Obre el perfil a Instagram">
+          <div class="obra__media">
+            <video class="obra__video skip-lazy" src="__BASE__assets/video/quality-1.mp4"
+              poster="__BASE__assets/video/quality-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>
           </div>
-          <div class="step">
-            <span class="step__n">02</span>
-            <h3>Definim</h3>
-            <p>Una proposta curta: objectiu, entregables, terminis i preu. Si alguna cosa no aporta, la traiem abans de començar.</p>
+          <h3 class="obra__nom">Quality Training</h3>
+          <p class="obra__sector">Entrenament</p>
+        </a>
+        <a class="obra fade" href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener" aria-label="Ratafia Malhivern &mdash; Obre el perfil a Instagram">
+          <div class="obra__media">
+            <video class="obra__video skip-lazy" src="__BASE__assets/video/malhivern-1.mp4"
+              poster="__BASE__assets/video/malhivern-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>
           </div>
-          <div class="step">
-            <span class="step__n">03</span>
-            <h3>Creem</h3>
-            <p>Producció en cicles curts amb revisions acotades. Veus el material en un tauler compartit, no en cadenes de correu.</p>
+          <h3 class="obra__nom">Ratafia Malhivern</h3>
+          <p class="obra__sector">Licors artesans</p>
+        </a>
+        <article class="obra obra--sense-enllac fade">
+          <div class="obra__media">
+            <img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Entrenament de futbol formatiu al camp" loading="lazy" decoding="async">
           </div>
-          <div class="step">
-            <span class="step__n">04</span>
-            <h3>Mesurem</h3>
-            <p>Publiquem, llegim les dades i ajustem. Cada mes t'expliquem què ha funcionat, què no i què provarem.</p>
+          <h3 class="obra__nom">Football 4 Stars</h3>
+          <p class="obra__sector">Futbol formatiu</p>
+        </article>
+        <article class="obra obra--sense-enllac fade">
+          <div class="obra__media">
+            <img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Pizza artesana acabada de sortir del forn" loading="lazy" decoding="async">
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Preguntes freqüents -->
-  <section class="section slab-top" data-theme="cream-2" id="faq">
-    <div class="wrap wrap--narrow">
-      <p class="kicker fade">Preguntes freqüents</p>
-      <h2 class="display display--sm rl">El que ens pregunten <span class="hand">abans de començar</span>.</h2>
-      <div class="faq">
-        <details class="faq__item fade">
-          <summary>
-            <span>Amb quines marques treballeu?</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>Amb marques petites i mitjanes que volen una presència amb criteri: formació esportiva, alimentació, licors artesans, distribució i marca personal. A la secció de treball hi són totes les que hem acompanyat.</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>Què inclou exactament cada servei?</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>A la secció de serveis hi ha els entregables d'un en un. Si el que necessites no hi és o va a mig camí entre dos, ens ho expliques i ho muntem a mida: no venem paquets tancats.</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>Cal que us contractem tots els serveis?</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>No. Hi ha marques amb qui fem només contingut i altres amb qui portem social media, direcció creativa i campanyes. Es pot començar per un i ampliar quan tingui sentit.</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>Com és treballar amb vosaltres?</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>Som dues, així que parles sempre amb qui fa la feina. El procés està explicat a la secció de com treballem: escoltem, definim, creem i mesurem, amb revisions acotades i el material en un tauler compartit.</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>Veniu a gravar o ho feu tot en remot?</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>Som de Barcelona i ens movem per gravar quan el projecte ho demana. La resta —estratègia, edició, calendari, informes— la portem en remot.</p></div>
-        </details>
-        <details class="faq__item fade" data-delay="1">
-          <summary>
-            <span>En quins idiomes treballeu?</span>
-            <span class="faq__sign" aria-hidden="true"></span>
-          </summary>
-          <div class="faq__body"><p>Català, castellà i anglès. El contingut es pensa en l'idioma en què parla la marca als seus clients, no en el nostre.</p></div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- El que diuen. Només es dibuixa si hi ha cites a RESENAS -->
-  <section class="section slab-top" data-theme="terra" id="ressenyes">
-    <div class="wrap">
-      <p class="kicker fade">El que diuen</p>
-      <h2 class="display display--sm rl">Marques que <span class="hand">ho han provat</span>.</h2>
-      <div class="quotes">
-        <figure class="quotes__item fade">
-          <svg class="quotes__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
-          <blockquote><p>Sabíem explicar el que fem, però no en xarxes. Ens van muntar una manera de dir-ho que sona a nosaltres, i per fi entra gent que ja ve sabent què oferim.</p></blockquote>
-          <figcaption><strong>Client</strong><span>Entrenament esportiu</span></figcaption>
-        </figure>
-        <figure class="quotes__item fade" data-delay="1">
-          <svg class="quotes__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
-          <blockquote><p>El producte és artesà i el compte no ho semblava. Van entendre la història que hi ha darrere abans de gravar res, i això es nota a cada peça.</p></blockquote>
-          <figcaption><strong>Client</strong><span>Licors artesans</span></figcaption>
-        </figure>
-        <figure class="quotes__item fade" data-delay="2">
-          <svg class="quotes__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
-          <blockquote><p>Vaig arribar amb una data de llançament i poc més. Van fer la feina de pensar-ho, no només la de gravar-ho, i jo només vaig haver de presentar-me.</p></blockquote>
-          <figcaption><strong>Client</strong><span>Marca personal</span></figcaption>
-        </figure>
+          <h3 class="obra__nom">Maitasuna</h3>
+          <p class="obra__sector">Pizza artesana</p>
+        </article>
+        <a class="obra fade" href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener" aria-label="Jordi Coll &mdash; Obre el perfil a Instagram">
+          <div class="obra__media">
+            <video class="obra__video skip-lazy" src="__BASE__assets/video/jordi-coll-1.mp4"
+              poster="__BASE__assets/video/jordi-coll-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>
+          </div>
+          <h3 class="obra__nom">Jordi Coll</h3>
+          <p class="obra__sector">Marca personal</p>
+        </a>
+        <article class="obra obra--sense-enllac fade">
+          <div class="obra__media">
+            <img src="__BASE__assets/img/proyectos/f45-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f45-1-700.jpg 700w, __BASE__assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Assistent a la inauguració de F45" loading="lazy" decoding="async">
+          </div>
+          <h3 class="obra__nom">F45 Training</h3>
+          <p class="obra__sector">Esdeveniment</p>
+        </article>
+        <a class="obra fade" href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener" aria-label="Comercial Puig &mdash; Obre el perfil a Instagram">
+          <div class="obra__media">
+            <video class="obra__video skip-lazy" src="__BASE__assets/video/puig-1.mp4"
+              poster="__BASE__assets/video/puig-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>
+          </div>
+          <h3 class="obra__nom">Comercial Puig</h3>
+          <p class="obra__sector">Distribució</p>
+        </a>
       </div>
     </div>
   </section>
@@ -2849,19 +1948,18 @@
 
       <div class="contact">
         <div class="fade">
-          <p class="lead">Explica'ns quina marca ets i què t'està frenant. Responem en menys de 48 hores laborables, sempre una persona.</p>
+          <p class="lead">Explica'ns qui ets i què t'està frenant. Et respondrem en menys de 48 hores. O la Núria o la Júlia &#128578;</p>
           <ul class="contact__direct">
-            <li><a class="link-line" href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
+            <li><a class="link-line" href="mailto:hello@laconicstudio.es">hello@laconicstudio.es</a></li>
             <li><a class="link-line" href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">DM a @laconicstudio_</a></li>
           </ul>
-          <p class="hand-note">Fes match amb allò que vibri amb tu</p>
         </div>
 
         <div class="fade" data-delay="1">
           <!-- El mensaje llega por correo a través del servicio de FORM_ACTION.
                Si esa casilla se deja vacía en build/build.py, el formulario pasa
                al modo de reserva: abre el cliente de email del visitante. -->
-          <form class="form" action="https://formsubmit.co/itslaconicstudio@gmail.com" method="POST" data-envia="https://formsubmit.co/ajax/itslaconicstudio@gmail.com" data-correo="itslaconicstudio@gmail.com" data-enviando="Enviant…" data-hecho="Rebut. Et responem en menys de 48 hores laborables." data-error="No hem pogut enviar-ho. Escriu-nos directament a ">
+          <form class="form" action="https://formsubmit.co/hello@laconicstudio.es" method="POST" data-envia="https://formsubmit.co/ajax/hello@laconicstudio.es" data-correo="hello@laconicstudio.es" data-enviando="Enviant…" data-hecho="Rebut. Et responem en menys de 48 hores laborables." data-error="No hem pogut enviar-ho. Escriu-nos directament a ">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_honey" value="">
@@ -2884,15 +1982,15 @@
               <span id="lac-servicios-label" class="field__label">Què necessites</span>
               <div class="chips" role="group" aria-labelledby="lac-servicios-label">
                 <label class="chip"><input type="checkbox" name="servicio" value="Content creation"><span>Content creation</span></label>
-                <label class="chip"><input type="checkbox" name="servicio" value="Social media"><span>Social media</span></label>
-                <label class="chip"><input type="checkbox" name="servicio" value="Graphic design"><span>Graphic design</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Social Media"><span>Social Media</span></label>
                 <label class="chip"><input type="checkbox" name="servicio" value="Ads &amp; campaigns"><span>Ads &amp; campaigns</span></label>
                 <label class="chip"><input type="checkbox" name="servicio" value="UGC"><span>UGC</span></label>
+                <label class="chip"><input type="checkbox" name="servicio" value="Graphic Design"><span>Graphic Design</span></label>
               </div>
             </div>
             <div class="field">
               <label for="lac-mensaje">Explica'ns</label>
-              <textarea id="lac-mensaje" name="mensaje" rows="4" placeholder="Què venes, a qui i què t'agradaria canviar."></textarea>
+              <textarea id="lac-mensaje" name="mensaje" rows="4" placeholder="Explica'ns el que vulguis i en parlem."></textarea>
             </div>
             <div>
               <button class="btn btn--cream btn--lg" type="submit"><span>Envia el missatge</span><span class="arrow" aria-hidden="true">&rarr;</span></button>
@@ -2910,14 +2008,13 @@
   <div class="wrap">
     <svg class="footer__word" viewBox="0 0 288.0 100" aria-hidden="true"><use href="#lac-lg-lockup"/></svg>
     <ul class="footer__rows">
-      <li><a href="mailto:itslaconicstudio@gmail.com">itslaconicstudio@gmail.com</a></li>
+      <li><a href="mailto:hello@laconicstudio.es">hello@laconicstudio.es</a></li>
       <li><a href="https://www.instagram.com/laconicstudio_/" target="_blank" rel="noopener">Instagram</a></li>
-      <li>Barcelona, treballem en remot.</li>
+      <li>Based in Girona. Working beyond.</li>
       <li class="footer__nav">
-        <a href="#lac-estudi">Estudi</a>
+        <a href="#about">About</a>
         <a href="#lac-serveis">Serveis</a>
-        <a href="#lac-treball">Treball</a>
-        <a href="#faq">FAQ</a>
+        <a href="#projectes">Projectes</a>
         <a href="#lac-contacte">Contacte</a>
         <a href="__URL_ES__" hreflang="es">ES</a>
       </li>
@@ -3091,212 +2188,72 @@
     });
   }
 
-  /* ---- Servicios: la foto sigue al servicio activo ---- */
-  var svcList = APP.querySelector("[data-svc-list]");
-  if (svcList) {
-    var items = svcList.querySelectorAll(".svc__item");
-    var imgs = APP.querySelectorAll("[data-svc-img]");
-    var activar = function (clave) {
-      imgs.forEach(function (im) {
-        im.classList.toggle("is-on", im.dataset.svcImg === clave);
+  /* ---- Servicios: el nombre elegido enseña su definición ----
+         Las cinco definiciones están en el HTML: sin JavaScript se ven todas,
+         una detrás de otra, que es la manera de que se lean igual. ---- */
+  var svc = APP.querySelector("[data-svc-list]");
+  if (svc) {
+    var nombres = svc.querySelectorAll(".svc__nom");
+    var defs = svc.querySelectorAll("[data-svc-def]");
+    var activarSvc = function (clave) {
+      nombres.forEach(function (n) {
+        var suyo = n.dataset.svc === clave;
+        n.classList.toggle("is-active", suyo);
+        var b = n.querySelector("button");
+        if (b) b.setAttribute("aria-expanded", String(suyo));
       });
-      items.forEach(function (it) {
-        it.classList.toggle("is-active", it.dataset.svc === clave);
+      defs.forEach(function (d) {
+        d.classList.toggle("is-on", d.dataset.svcDef === clave);
       });
     };
-    activar(items[0] ? items[0].dataset.svc : null);
+    activarSvc(nombres[0] ? nombres[0].dataset.svc : null);
 
-    items.forEach(function (item) {
-      item.addEventListener("mouseenter", function () {
-        activar(item.dataset.svc);
+    nombres.forEach(function (n) {
+      var boton = n.querySelector("button");
+      if (!boton) return;
+      // Con el ratón basta pasar por encima; con el teclado, el foco; y el
+      // clic vale para el móvil, que no tiene ninguna de las dos cosas.
+      ["mouseenter", "focus", "click"].forEach(function (ev) {
+        (ev === "mouseenter" ? n : boton).addEventListener(ev, function () {
+          activarSvc(n.dataset.svc);
+        });
       });
     });
-
-    if ("IntersectionObserver" in window) {
-      var ioSvc = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) activar(entry.target.dataset.svc);
-          });
-        },
-        { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-      );
-      items.forEach(function (it) {
-        ioSvc.observe(it);
-      });
-    }
   }
 
-  /* ---- Reels: se reproducen solos al entrar en pantalla y se paran al salir.
-         El botón activa el audio de uno y silencia el resto. ---- */
-  var reels = APP.querySelectorAll("[data-reel]");
-  if (reels.length) {
-    var videos = [];
-    reels.forEach(function (reel) {
-      var v = reel.querySelector("video");
-      if (!v) return;
-      videos.push(v);
+  /* ---- Los vídeos de las fichas de proyecto ----
+         Arrancan por el atributo autoplay del HTML, sin depender de esto. Aquí
+         solo se paran al salir de pantalla, para no gastar batería con cuatro
+         vídeos en marcha a la vez, y se respeta a quien pide menos movimiento. */
+  var videosFicha = APP.querySelectorAll(".obra__video");
+  if (videosFicha.length) {
+    videosFicha.forEach(function (v) {
       v.muted = true;
-
-      // Quien pide menos movimiento no quiere cuatro vídeos arrancando solos.
-      // El atributo autoplay del HTML está para que funcione sin JS; aquí, que
-      // sí lo hay, se retira y el reel espera un toque.
       if (reduced) {
         v.autoplay = false;
         v.removeAttribute("autoplay");
         v.pause();
       }
-
-      var boton = reel.querySelector("[data-sound]");
-      if (boton) {
-        boton.addEventListener("click", function () {
-          var encender = v.muted;
-          // Solo puede sonar uno a la vez
-          videos.forEach(function (otro) {
-            otro.muted = true;
-            var suyo = otro.closest("[data-reel]");
-            if (suyo) suyo.classList.remove("is-audible");
-            var b = suyo && suyo.querySelector("[data-sound]");
-            if (b) b.setAttribute("aria-label", b.getAttribute("data-on") || "");
-          });
-          v.muted = !encender;
-          reel.classList.toggle("is-audible", encender);
-          boton.setAttribute(
-            "aria-label",
-            boton.getAttribute(encender ? "data-off" : "data-on") || ""
-          );
-          if (encender) v.play().catch(function () {});
-        });
-      }
-
-      // Al hacer clic en el vídeo, pausa o sigue. En un móvil que no deja
-      // arrancar solo (ahorro de batería o de datos) este toque es la única
-      // manera de verlo, y el aviso de play está para que se sepa.
-      v.addEventListener("click", function () {
-        if (v.paused) {
-          v.play().catch(function () {});
-        } else {
-          v.pause();
-        }
-      });
-
-      // El aviso de play sigue al estado real del vídeo, no a lo que le
-      // pedimos: si el navegador rechaza el play, se queda visible.
-      var estado = function () {
-        reel.classList.toggle("is-playing", !v.paused && !v.ended);
-      };
-      ["play", "playing", "pause", "ended", "waiting", "stalled"].forEach(function (ev) {
-        v.addEventListener(ev, estado);
-      });
-      estado();
     });
 
-    if ("IntersectionObserver" in window) {
-      var ioReel = new IntersectionObserver(
+    if (!reduced && "IntersectionObserver" in window) {
+      var ioVideo = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            var v = entry.target.querySelector("video");
-            if (!v) return;
+            var v = entry.target;
             if (entry.isIntersecting) {
-              if (!reduced) v.play().catch(function () {});
+              v.play().catch(function () {});
             } else {
               v.pause();
-              v.muted = true;
-              entry.target.classList.remove("is-audible");
             }
           });
         },
-        { threshold: 0.35 }
+        { threshold: 0.25 }
       );
-      reels.forEach(function (reel) {
-        ioReel.observe(reel);
+      videosFicha.forEach(function (v) {
+        ioVideo.observe(v);
       });
     }
-  }
-
-  /* ---- Bucle de scroll: tira, paralaje, raíl del proceso, giro del cero ---- */
-  var collage = APP.querySelector("[data-collage]");
-  var parallax = APP.querySelectorAll("[data-parallax]");
-  var rail = APP.querySelector("[data-rail]");
-  var spin = APP.querySelector("[data-spin]");
-  var pasos = rail ? rail.querySelectorAll(".step") : [];
-
-  var clamp01 = function (v) {
-    return v < 0 ? 0 : v > 1 ? 1 : v;
-  };
-
-  // Las piezas del inicio no siguen el scroll uno a uno: el valor que las mueve
-  // persigue al del scroll acercándose un 9 % cada fotograma. Con la rueda del
-  // ratón, que llega a saltos de decenas de píxeles, la diferencia entre las dos
-  // cosas es lo que se nota: sin esto el movimiento va a tirones.
-  var pSuave = null;
-  var SEGUIMIENTO = 0.09;
-
-  var frame = function () {
-    var vh = window.innerHeight;
-    var sigue = false;
-
-    if (collage) {
-      var travel = collage.offsetHeight - vh;
-      var objetivo = clamp01(travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1);
-      if (pSuave === null) pSuave = objetivo;   // el primer fotograma, sin arrastre
-      var salto = objetivo - pSuave;
-      if (Math.abs(salto) < 0.0004) {
-        pSuave = objetivo;
-      } else {
-        pSuave += salto * SEGUIMIENTO;
-        sigue = true;                            // aún no ha llegado: otro fotograma
-      }
-      collage.style.setProperty("--p", pSuave.toFixed(4));
-    }
-
-    parallax.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 200) return;
-      // -1 al entrar por abajo, +1 al salir por arriba
-      var centro = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
-      el.style.setProperty("--py", (-clamp01((centro + 1) / 2) * 2 + 1).toFixed(3));
-    });
-
-    if (rail) {
-      var rr = rail.getBoundingClientRect();
-      var avance = clamp01((vh * 0.62 - rr.top) / rr.height);
-      rail.style.setProperty("--fill", avance.toFixed(3));
-      pasos.forEach(function (paso, i) {
-        var pr = paso.getBoundingClientRect();
-        paso.classList.toggle("is-on", pr.top < vh * 0.66);
-      });
-    }
-
-    if (spin) {
-      var sr = spin.getBoundingClientRect();
-      if (sr.bottom > 0 && sr.top < vh) {
-        var giro = ((vh - sr.top) / (vh + sr.height)) * 40 - 12;
-        spin.style.setProperty("--spin", giro.toFixed(2) + "deg");
-      }
-    }
-
-    ticking = false;
-    if (sigue) pedir();   // sigue habiendo movimiento pendiente
-  };
-
-  var ticking = false;
-  var pedir = function () {
-    if (!ticking) {
-      ticking = true;
-      window.requestAnimationFrame(frame);
-    }
-  };
-
-  if (reduced) {
-    if (collage) collage.style.setProperty("--p", "1");
-    pasos.forEach(function (p) {
-      p.classList.add("is-on");
-    });
-  } else {
-    window.addEventListener("scroll", pedir, { passive: true });
-    window.addEventListener("resize", pedir);
-    frame();
   }
 
   /* ---- Carriles en bucle: duplicar para que no se vea la costura ---- */

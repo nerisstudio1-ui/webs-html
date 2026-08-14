@@ -148,212 +148,72 @@
     });
   }
 
-  /* ---- Servicios: la foto sigue al servicio activo ---- */
-  var svcList = document.querySelector("[data-svc-list]");
-  if (svcList) {
-    var items = svcList.querySelectorAll(".svc__item");
-    var imgs = document.querySelectorAll("[data-svc-img]");
-    var activar = function (clave) {
-      imgs.forEach(function (im) {
-        im.classList.toggle("is-on", im.dataset.svcImg === clave);
+  /* ---- Servicios: el nombre elegido enseña su definición ----
+         Las cinco definiciones están en el HTML: sin JavaScript se ven todas,
+         una detrás de otra, que es la manera de que se lean igual. ---- */
+  var svc = document.querySelector("[data-svc-list]");
+  if (svc) {
+    var nombres = svc.querySelectorAll(".svc__nom");
+    var defs = svc.querySelectorAll("[data-svc-def]");
+    var activarSvc = function (clave) {
+      nombres.forEach(function (n) {
+        var suyo = n.dataset.svc === clave;
+        n.classList.toggle("is-active", suyo);
+        var b = n.querySelector("button");
+        if (b) b.setAttribute("aria-expanded", String(suyo));
       });
-      items.forEach(function (it) {
-        it.classList.toggle("is-active", it.dataset.svc === clave);
+      defs.forEach(function (d) {
+        d.classList.toggle("is-on", d.dataset.svcDef === clave);
       });
     };
-    activar(items[0] ? items[0].dataset.svc : null);
+    activarSvc(nombres[0] ? nombres[0].dataset.svc : null);
 
-    items.forEach(function (item) {
-      item.addEventListener("mouseenter", function () {
-        activar(item.dataset.svc);
+    nombres.forEach(function (n) {
+      var boton = n.querySelector("button");
+      if (!boton) return;
+      // Con el ratón basta pasar por encima; con el teclado, el foco; y el
+      // clic vale para el móvil, que no tiene ninguna de las dos cosas.
+      ["mouseenter", "focus", "click"].forEach(function (ev) {
+        (ev === "mouseenter" ? n : boton).addEventListener(ev, function () {
+          activarSvc(n.dataset.svc);
+        });
       });
     });
-
-    if ("IntersectionObserver" in window) {
-      var ioSvc = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) activar(entry.target.dataset.svc);
-          });
-        },
-        { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-      );
-      items.forEach(function (it) {
-        ioSvc.observe(it);
-      });
-    }
   }
 
-  /* ---- Reels: se reproducen solos al entrar en pantalla y se paran al salir.
-         El botón activa el audio de uno y silencia el resto. ---- */
-  var reels = document.querySelectorAll("[data-reel]");
-  if (reels.length) {
-    var videos = [];
-    reels.forEach(function (reel) {
-      var v = reel.querySelector("video");
-      if (!v) return;
-      videos.push(v);
+  /* ---- Los vídeos de las fichas de proyecto ----
+         Arrancan por el atributo autoplay del HTML, sin depender de esto. Aquí
+         solo se paran al salir de pantalla, para no gastar batería con cuatro
+         vídeos en marcha a la vez, y se respeta a quien pide menos movimiento. */
+  var videosFicha = document.querySelectorAll(".obra__video");
+  if (videosFicha.length) {
+    videosFicha.forEach(function (v) {
       v.muted = true;
-
-      // Quien pide menos movimiento no quiere cuatro vídeos arrancando solos.
-      // El atributo autoplay del HTML está para que funcione sin JS; aquí, que
-      // sí lo hay, se retira y el reel espera un toque.
       if (reduced) {
         v.autoplay = false;
         v.removeAttribute("autoplay");
         v.pause();
       }
-
-      var boton = reel.querySelector("[data-sound]");
-      if (boton) {
-        boton.addEventListener("click", function () {
-          var encender = v.muted;
-          // Solo puede sonar uno a la vez
-          videos.forEach(function (otro) {
-            otro.muted = true;
-            var suyo = otro.closest("[data-reel]");
-            if (suyo) suyo.classList.remove("is-audible");
-            var b = suyo && suyo.querySelector("[data-sound]");
-            if (b) b.setAttribute("aria-label", b.getAttribute("data-on") || "");
-          });
-          v.muted = !encender;
-          reel.classList.toggle("is-audible", encender);
-          boton.setAttribute(
-            "aria-label",
-            boton.getAttribute(encender ? "data-off" : "data-on") || ""
-          );
-          if (encender) v.play().catch(function () {});
-        });
-      }
-
-      // Al hacer clic en el vídeo, pausa o sigue. En un móvil que no deja
-      // arrancar solo (ahorro de batería o de datos) este toque es la única
-      // manera de verlo, y el aviso de play está para que se sepa.
-      v.addEventListener("click", function () {
-        if (v.paused) {
-          v.play().catch(function () {});
-        } else {
-          v.pause();
-        }
-      });
-
-      // El aviso de play sigue al estado real del vídeo, no a lo que le
-      // pedimos: si el navegador rechaza el play, se queda visible.
-      var estado = function () {
-        reel.classList.toggle("is-playing", !v.paused && !v.ended);
-      };
-      ["play", "playing", "pause", "ended", "waiting", "stalled"].forEach(function (ev) {
-        v.addEventListener(ev, estado);
-      });
-      estado();
     });
 
-    if ("IntersectionObserver" in window) {
-      var ioReel = new IntersectionObserver(
+    if (!reduced && "IntersectionObserver" in window) {
+      var ioVideo = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            var v = entry.target.querySelector("video");
-            if (!v) return;
+            var v = entry.target;
             if (entry.isIntersecting) {
-              if (!reduced) v.play().catch(function () {});
+              v.play().catch(function () {});
             } else {
               v.pause();
-              v.muted = true;
-              entry.target.classList.remove("is-audible");
             }
           });
         },
-        { threshold: 0.35 }
+        { threshold: 0.25 }
       );
-      reels.forEach(function (reel) {
-        ioReel.observe(reel);
+      videosFicha.forEach(function (v) {
+        ioVideo.observe(v);
       });
     }
-  }
-
-  /* ---- Bucle de scroll: tira, paralaje, raíl del proceso, giro del cero ---- */
-  var collage = document.querySelector("[data-collage]");
-  var parallax = document.querySelectorAll("[data-parallax]");
-  var rail = document.querySelector("[data-rail]");
-  var spin = document.querySelector("[data-spin]");
-  var pasos = rail ? rail.querySelectorAll(".step") : [];
-
-  var clamp01 = function (v) {
-    return v < 0 ? 0 : v > 1 ? 1 : v;
-  };
-
-  // Las piezas del inicio no siguen el scroll uno a uno: el valor que las mueve
-  // persigue al del scroll acercándose un 9 % cada fotograma. Con la rueda del
-  // ratón, que llega a saltos de decenas de píxeles, la diferencia entre las dos
-  // cosas es lo que se nota: sin esto el movimiento va a tirones.
-  var pSuave = null;
-  var SEGUIMIENTO = 0.09;
-
-  var frame = function () {
-    var vh = window.innerHeight;
-    var sigue = false;
-
-    if (collage) {
-      var travel = collage.offsetHeight - vh;
-      var objetivo = clamp01(travel > 0 ? (window.scrollY - collage.offsetTop) / travel : 1);
-      if (pSuave === null) pSuave = objetivo;   // el primer fotograma, sin arrastre
-      var salto = objetivo - pSuave;
-      if (Math.abs(salto) < 0.0004) {
-        pSuave = objetivo;
-      } else {
-        pSuave += salto * SEGUIMIENTO;
-        sigue = true;                            // aún no ha llegado: otro fotograma
-      }
-      collage.style.setProperty("--p", pSuave.toFixed(4));
-    }
-
-    parallax.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 200) return;
-      // -1 al entrar por abajo, +1 al salir por arriba
-      var centro = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
-      el.style.setProperty("--py", (-clamp01((centro + 1) / 2) * 2 + 1).toFixed(3));
-    });
-
-    if (rail) {
-      var rr = rail.getBoundingClientRect();
-      var avance = clamp01((vh * 0.62 - rr.top) / rr.height);
-      rail.style.setProperty("--fill", avance.toFixed(3));
-      pasos.forEach(function (paso, i) {
-        var pr = paso.getBoundingClientRect();
-        paso.classList.toggle("is-on", pr.top < vh * 0.66);
-      });
-    }
-
-    if (spin) {
-      var sr = spin.getBoundingClientRect();
-      if (sr.bottom > 0 && sr.top < vh) {
-        var giro = ((vh - sr.top) / (vh + sr.height)) * 40 - 12;
-        spin.style.setProperty("--spin", giro.toFixed(2) + "deg");
-      }
-    }
-
-    ticking = false;
-    if (sigue) pedir();   // sigue habiendo movimiento pendiente
-  };
-
-  var ticking = false;
-  var pedir = function () {
-    if (!ticking) {
-      ticking = true;
-      window.requestAnimationFrame(frame);
-    }
-  };
-
-  if (reduced) {
-    if (collage) collage.style.setProperty("--p", "1");
-    pasos.forEach(function (p) {
-      p.classList.add("is-on");
-    });
-  } else {
-    window.addEventListener("scroll", pedir, { passive: true });
-    window.addEventListener("resize", pedir);
-    frame();
   }
 
   /* ---- Carriles en bucle: duplicar para que no se vea la costura ---- */
