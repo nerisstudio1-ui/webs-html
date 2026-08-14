@@ -110,7 +110,8 @@ Colores y tipografías salen de variables CSS en `:root`
 --burgundy: #741c2d;   /* granate tomado del logotipo */
 --cream:    #f6f1ec;   /* fondo general */
 --gold:     #a98a63;   /* acento sutil */
---sans:     "Montserrat";   /* todo el texto */
+--serif:    "Instrument Serif";  /* titulares */
+--sans:     "Montserrat";        /* menú, botones y texto */
 ```
 
 Las tipografías están alojadas en el propio proyecto (`assets/fonts/`, con sus
@@ -122,10 +123,10 @@ una familia:
 python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
 ```
 
-Toda la web usa Montserrat. El carácter no lo pone una segunda familia, sino el
-**contraste de pesos**: los titulares van en la fina (300) y en mayúsculas, y la
-palabra que se destaca en cada uno va en negrita cursiva (800). Se cargan los
-pesos 300 a 800 con sus cursivas.
+Los titulares van en **Instrument Serif**, una serif de display estrecha y de
+alto contraste, en minúsculas, con la palabra destacada en su cursiva.
+**Montserrat** sostiene el menú (en mayúsculas y con espaciado), los botones y
+el texto corrido.
 
 ### Crecer sin rehacer la web
 
