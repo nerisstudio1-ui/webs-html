@@ -236,9 +236,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .logo--img { display: inline-flex; align-items: center; }
 .logo--img img { height: 30px; width: auto; }
 .footer .logo--img img, .mobile-nav .logo--img img { height: 38px; }
-.header .logo--img .logo-dark { display: none; }
-.header.is-solid .logo--img .logo-light { display: none; }
-.header.is-solid .logo--img .logo-dark { display: block; }
+.header--over .logo--img .logo-dark { display: none; }
+.header--over.is-solid .logo--img .logo-light { display: none; }
+.header--over.is-solid .logo--img .logo-dark { display: block; }
 @media (max-width: 900px) { .logo--img img { height: 24px; } }
 
 .nav { display: flex; gap: clamp(1rem, 2.2vw, 2.2rem); margin-inline: auto; }
@@ -298,13 +298,23 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* --- 8. Hero ----------------------------------------------------------- */
 .hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: min(88vh, 900px); margin-top: calc(var(--header-h) * -1); }
+/* Cuando la portada es clara, la cabecera no se superpone: se apoya encima. */
+.hero--flow { margin-top: 0; min-height: min(78vh, 820px); }
+.header--plain { background: var(--cream); box-shadow: 0 1px 0 var(--line); }
 .hero__panel { position: relative; overflow: hidden; }
-.hero__panel img { width: 100%; height: 100%; object-fit: cover; }
+.hero__panel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero__panel::after {
   content: "";
   position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(46,15,19,.45) 0%, rgba(46,15,19,.15) 38%, rgba(46,15,19,.78) 100%);
 }
+/* Sobre una fotografía clara el texto va en granate, con un velo crema que
+   solo levanta el contraste en la parte baja. */
+.hero__panel--pale::after {
+  background: linear-gradient(180deg, rgba(246,241,236,0) 35%, rgba(246,241,236,.72) 78%, rgba(246,241,236,.95) 100%);
+}
+.hero__panel--pale .hero__content { color: var(--burgundy); }
+.hero__panel--pale .hero__content p { color: #4a3934; opacity: 1; }
 .hero__content {
   position: absolute;
   z-index: 2;
