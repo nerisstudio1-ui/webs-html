@@ -12,7 +12,7 @@ y tipografía elegante. Las imágenes son las protagonistas de cada bloque.
 
 | Archivo | Contenido |
 |---|---|
-| `index.html` | Home: hero, tratamientos (actuales y próximos), bloques de categoría, el método, para quién es, FAQ, crecimiento del estudio y llamada a la acción |
+| `index.html` | Home: hero, bienvenida, tratamientos (actuales y próximos), bloques de categoría, el método, para quién es, FAQ, presentación del estudio y llamada a la acción |
 | `servicios.html` | Cejas realistas (Hair Stroke), estudio previo y diseño, laminado y henna; sección «próximamente» y criterio de tarifas |
 | `metodo.html` | Las 4 fases del método, cuidados durante la cicatrización y tipos de piel |
 | `estudio.html` | La historia de las dos hermanas, filosofía, especialización, galería y hacia dónde va el estudio |
@@ -108,8 +108,9 @@ Colores y tipografías salen de variables CSS en `:root`
 --burgundy: #741c2d;   /* granate tomado del logotipo */
 --cream:    #f6f1ec;   /* fondo general */
 --gold:     #a98a63;   /* acento sutil */
---serif:    "Playfair Display", serif;  /* titulares y logotipo */
---sans:     "Jost", sans-serif;         /* texto y navegación */
+--sans:     "Bricolage Grotesque";      /* todo el texto */
+--serif:    "Instrument Serif";         /* cursiva de los acentos */
+--tight:    76%;                        /* ancho de los titulares */
 ```
 
 Las tipografías están alojadas en el propio proyecto (`assets/fonts/`, con sus
@@ -121,9 +122,10 @@ una familia:
 python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
 ```
 
-En `assets/fonts/` hay ahora más familias de las que usa la web: son las
-candidatas de la comparativa tipográfica. Al decidir cuál se queda, conviene
-borrar las descartadas.
+Bricolage Grotesque es una fuente variable: admite peso (200-800) y **ancho**
+(75-100 %). Los titulares la usan condensada mediante `font-stretch: var(--tight)`
+y el texto corrido va a ancho normal, que se lee mejor. Cambiar el carácter de
+toda la web es mover ese único valor.
 
 ### Crecer sin rehacer la web
 
