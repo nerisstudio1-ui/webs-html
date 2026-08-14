@@ -24,10 +24,10 @@
 
   /* tipografía */
   /* Los titulares van en Instrument Serif: una serif de display estrecha y de
-     alto contraste, en minúsculas. Montserrat sostiene menú, botones y texto,
-     y aporta la negrita cursiva de los acentos. */
+     alto contraste, en minúsculas. Poppins sostiene menú, botones y texto, y
+     marca los acentos con sus negritas y sus cursivas. */
   --serif: "Instrument Serif", "Didot", "Bodoni MT", Georgia, serif;
-  --sans:  "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --sans:  "Poppins", "Helvetica Neue", Arial, sans-serif;
 
   /* medidas */
   --gutter: clamp(1.25rem, 4vw, 4.5rem);
@@ -47,10 +47,9 @@ body {
   background: var(--cream);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 400;
-  font-stretch: normal;
-  line-height: 1.6;
+  line-height: 1.72;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -64,10 +63,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* --- 3. Utilidades tipográficas ---------------------------------------- */
 .eyebrow {
-  font-size: .68rem;
-  letter-spacing: .22em;
+  font-size: .66rem;
+  letter-spacing: .24em;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--muted);
 }
 .display {
@@ -89,12 +88,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .h2 em { font-style: italic; }
 .h3 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(1.3rem, 2vw, 1.7rem);
-  line-height: 1.2;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  letter-spacing: .01em;
+  line-height: 1.35;
 }
-.lead { font-size: clamp(.95rem, 1.1vw, 1.075rem); color: #3d2c27; max-width: 46ch; }
+.lead { font-size: clamp(.92rem, 1.05vw, 1.02rem); color: #3d2c27; max-width: 46ch; }
+.lead strong { font-weight: 600; }
+.lead em { font-style: italic; font-weight: 500; }
 .small { font-size: .82rem; color: var(--muted); }
 .underline-brush { position: relative; white-space: nowrap; }
 .underline-brush::after {
@@ -137,10 +139,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: 100px;
   background: var(--btn-bg);
   color: var(--btn-fg);
-  font-size: .78rem;
-  letter-spacing: .12em;
+  font-size: .72rem;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 600;
   border: 1px solid transparent;
   transition: transform .4s var(--ease), background .4s var(--ease), color .4s var(--ease);
   will-change: transform;
@@ -156,8 +158,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   display: inline-flex;
   align-items: center;
   gap: .55em;
-  font-size: .76rem;
-  letter-spacing: .14em;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .16em;
   text-transform: uppercase;
   border-bottom: 1px solid var(--line);
   padding-bottom: .35em;
@@ -170,8 +173,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .announce {
   background: var(--burgundy);
   color: var(--cream);
-  font-size: .68rem;
-  letter-spacing: .16em;
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .18em;
   text-transform: uppercase;
 }
 .announce .wrap {
@@ -239,8 +243,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .nav { display: flex; gap: clamp(1rem, 2.2vw, 2.2rem); margin-inline: auto; }
 .nav a {
-  font-size: .74rem;
-  letter-spacing: .16em;
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .18em;
   text-transform: uppercase;
   position: relative;
   padding-block: .3em;
@@ -255,6 +260,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   transition: transform .45s var(--ease);
 }
 .nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+.nav a[aria-current="page"] { font-weight: 600; }
 
 .header-actions { display: flex; align-items: center; gap: 1rem; flex: 0 0 auto; }
 .header-actions .icon { line-height: 0; opacity: .85; transition: opacity .3s; }
@@ -377,12 +383,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .card:last-child { border-right: 0; }
 .card:hover { background: var(--cream-warm); }
 .card__tags { display: flex; flex-direction: column; gap: .15rem; margin-bottom: 1rem; min-height: 2.4em; }
-.card__tags span { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.card__tags span { font-size: .58rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
 .card__media { aspect-ratio: 4 / 5; overflow: hidden; margin-bottom: 1.4rem; }
 .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
 .card:hover .card__media img { transform: scale(1.05); }
-.card__title { font-size: .95rem; text-align: center; margin-bottom: .35rem; }
-.card__price { text-align: center; font-size: .88rem; color: var(--muted); }
+.card__title { font-size: .92rem; font-weight: 600; text-align: center; margin-bottom: .35rem; }
+.card__price { text-align: center; font-size: .85rem; font-style: italic; color: var(--muted); }
 .card__price del { margin-right: .5em; opacity: .6; }
 .card__price ins { text-decoration: none; color: var(--burgundy); }
 
@@ -471,7 +477,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); margin-top: clamp(2.5rem, 6vw, 5rem); }
 .step { border-top: 1px solid var(--line); padding-top: 1.1rem; }
 .step b { display: block; font-family: var(--serif); font-weight: 400; font-size: 2.2rem; font-weight: 400; color: var(--burgundy); margin-bottom: .5rem; }
-.step h3 { font-size: .95rem; font-weight: 400; margin-bottom: .4rem; }
+.step h3 { font-size: .92rem; font-weight: 600; margin-bottom: .4rem; }
 .step p { font-size: .85rem; color: var(--muted); }
 
 /* --- 12. Franja de marca (marquee) ------------------------------------- */
@@ -562,7 +568,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .newsletter button { padding: .5rem; line-height: 0; }
 .newsletter svg { width: 18px; height: 11px; }
 .footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.footer__cols h4 { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-bottom: 1rem; font-weight: 400; }
+.footer__cols h4 { font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-bottom: 1rem; font-weight: 600; }
 .footer__cols li { margin-bottom: .55rem; font-size: .88rem; }
 .footer__bottom {
   display: flex; flex-wrap: wrap; gap: 1rem 2rem;
@@ -594,14 +600,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .service-row__body .lead { margin-bottom: 1.75rem; }
 .spec { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-bottom: 2rem; }
 .spec div b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.5rem; }
-.spec div span { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.spec div span { font-size: .64rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .checklist li { position: relative; padding-left: 1.5rem; margin-bottom: .5rem; font-size: .9rem; }
 /* el guion hereda el color del bloque: legible sobre crema y sobre burdeos */
 .checklist li::before { content: "—"; position: absolute; left: 0; color: currentColor; opacity: .45; }
 
 .price-table { width: 100%; border-collapse: collapse; }
 .price-table th, .price-table td { text-align: left; padding: 1rem 0; border-bottom: 1px solid var(--line); font-weight: 300; }
-.price-table th { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.price-table th { font-size: .64rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
 .price-table td:last-child, .price-table th:last-child { text-align: right; white-space: nowrap; }
 .price-table td strong { font-weight: 700; font-size: 1rem; }
 
@@ -609,13 +615,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 4vw, 4rem); }
 .value { border-top: 1px solid var(--line); padding-top: 1.2rem; }
-.value h3 { font-size: 1rem; font-weight: 400; margin-bottom: .5rem; }
+.value h3 { font-size: .95rem; font-weight: 600; margin-bottom: .5rem; }
 .value p { font-size: .88rem; color: var(--muted); }
 
 /* formulario */
 .form { display: grid; gap: 1.4rem; }
 .field { display: grid; gap: .45rem; }
-.field label { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.field label { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .field input, .field select, .field textarea {
   font: inherit; font-size: .95rem;
   padding: .75rem .9rem;
@@ -645,6 +651,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* --- 18b. Botón flotante de WhatsApp ------------------------------------ */
 .wa-float {
+  font-weight: 600;
   position: fixed;
   right: clamp(1rem, 2.5vw, 2rem);
   bottom: clamp(1rem, 2.5vw, 2rem);
@@ -667,6 +674,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* --- 18c. Etiqueta «próximamente» --------------------------------------- */
 .tag-soon {
+  font-weight: 600;
   display: inline-block;
   padding: .3em .8em;
   border: 1px solid var(--gold);

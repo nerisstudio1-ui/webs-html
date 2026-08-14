@@ -111,7 +111,7 @@ Colores y tipografías salen de variables CSS en `:root`
 --cream:    #f6f1ec;   /* fondo general */
 --gold:     #a98a63;   /* acento sutil */
 --serif:    "Instrument Serif";  /* titulares */
---sans:     "Montserrat";        /* menú, botones y texto */
+--sans:     "Poppins";           /* menú, botones y texto */
 ```
 
 Las tipografías están alojadas en el propio proyecto (`assets/fonts/`, con sus
@@ -125,8 +125,10 @@ python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
 
 Los titulares van en **Instrument Serif**, una serif de display estrecha y de
 alto contraste, en minúsculas, con la palabra destacada en su cursiva.
-**Montserrat** sostiene el menú (en mayúsculas y con espaciado), los botones y
-el texto corrido.
+**Poppins** sostiene el menú (en mayúsculas y con espaciado), los botones y el
+texto corrido, jugando con sus pesos: 400 para leer, 500 y 600 para menú,
+botones, epígrafes y subtítulos, y la cursiva para precios y palabras
+destacadas.
 
 ### Crecer sin rehacer la web
 
