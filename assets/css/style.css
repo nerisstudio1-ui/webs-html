@@ -228,6 +228,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   opacity: .75;
 }
 
+/* variante con el logotipo original en imagen (ver assets/brand/README.md) */
+.logo--img img { height: 34px; width: auto; }
+.footer .logo--img img, .mobile-nav .logo--img img { height: 40px; }
+@media (max-width: 900px) { .logo--img img { height: 28px; } }
+
 .nav { display: flex; gap: clamp(1rem, 2.2vw, 2.2rem); margin-inline: auto; }
 .nav a {
   font-size: .82rem;

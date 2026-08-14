@@ -13,9 +13,9 @@ y tipografía elegante. Las imágenes son las protagonistas de cada bloque.
 | Archivo | Contenido |
 |---|---|
 | `index.html` | Home: hero, tratamientos (actuales y próximos), bloques de categoría, el método, para quién es, FAQ, crecimiento del estudio y llamada a la acción |
-| `servicios.html` | Hair Stroke, estudio previo y diseño, retoque, corrección y densidad; sección «próximamente» y criterio de tarifas |
+| `servicios.html` | Cejas realistas (Hair Stroke), estudio previo y diseño, laminado y henna; sección «próximamente» y criterio de tarifas |
 | `metodo.html` | Las 4 fases del método, cuidados durante la cicatrización y tipos de piel |
-| `estudio.html` | Sobre Bela, forma de trabajar, galería y hacia dónde va el estudio |
+| `estudio.html` | La historia de las dos hermanas, filosofía, especialización, galería y hacia dónde va el estudio |
 | `contacto.html` | Formulario de cita, contacto directo, hueco para la reserva online e indicaciones previas |
 
 ## Ver la web
@@ -50,7 +50,8 @@ python3 -m http.server 8000
   solicitud con todos los campos y la abre en WhatsApp o en el gestor de correo
   ya escrita. Al contratar hosting basta con sustituir ese bloque de
   `assets/js/main.js` por el envío real.
-- Enlaces a Instagram (`@micropigmentacionbela`), teléfono y email.
+- Enlaces a Instagram (`@micropigmentacionbela`) y teléfono.
+- Horario de atención: L-V 9:00–20:00 y sábados 10:00–14:00.
 
 ## Qué falta por decidir o sustituir
 
@@ -63,8 +64,11 @@ python3 -m http.server 8000
    - `srv-*`, `cat-*` → vertical 4:5
    - `journal-*`, `studio-2` → horizontal 4:3
    - `cta-wide` → panorámica 2:1
-2. **Dirección del estudio y mapa.** Ahora la web dice que se confirma al
-   reservar; hay un bloque preparado en `contacto.html`.
+2. **Dirección del estudio y mapa.** Sin determinar. Ahora la web dice que se
+   confirma al reservar; hay un bloque preparado en `contacto.html`.
+2b. **Correo profesional.** Pendiente de crear junto con el dominio. Hasta
+   entonces la web no muestra ningún email y el formulario envía por WhatsApp
+   (`EMAIL` en `assets/js/main.js` activa el envío por correo al rellenarse).
 3. **Tarifas.** No hay precios publicados: la web explica que se presupuesta
    tras el estudio previo. Cuando estén cerradas, la sección «tarifas» de
    `servicios.html` está lista para recibirlas.
@@ -79,8 +83,10 @@ python3 -m http.server 8000
 7. **Dominio y hosting.** No hay ninguno contratado. Al ser una web estática
    se puede publicar en GitHub Pages, Netlify o cualquier hosting básico.
 8. **Logo original.** El logotipo de la cabecera está recreado con tipografía.
-   Con el archivo original (SVG o PNG en alta) quedaría idéntico al de
-   Instagram.
+   Los archivos originales van en `assets/brand/` (ver el README de esa
+   carpeta); al añadirlos hay que ajustar `--burgundy` al granate real.
+9. **Confirmar el teléfono.** El 611 599 132 viene del formulario inicial;
+   falta confirmar que es el número de contacto del estudio.
 
 ## Estructura
 

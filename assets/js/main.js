@@ -165,7 +165,9 @@
      gestor de correo con todo escrito. Al contratar hosting basta con
      sustituir este bloque por el envío real al backend.                    */
   var WHATSAPP = '34611599132';
-  var EMAIL = 'nerea.lapcampos@gmail.com';
+  /* Cuando exista el correo profesional del estudio, ponerlo aquí: el botón
+     «enviar por email» del formulario aparece solo si esta constante existe. */
+  var EMAIL = '';
 
   document.querySelectorAll('[data-contact-form]').forEach(function (form) {
     var status = form.querySelector('.form-status');
@@ -200,7 +202,9 @@
     });
 
     var mailBtn = form.querySelector('[data-send-email]');
-    if (mailBtn) {
+    if (mailBtn && !EMAIL) {
+      mailBtn.hidden = true;
+    } else if (mailBtn) {
       mailBtn.addEventListener('click', function () {
         if (!ready()) return;
         window.location.href = 'mailto:' + EMAIL +
