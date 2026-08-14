@@ -75,7 +75,16 @@ for folder in ("assets/img", "assets/brand"):
 
 font_b64 = base64.b64encode(open(FONT, "rb").read()).decode() if FONT and os.path.exists(FONT) else ""
 
-css = read("assets/css/style.css")
+# la hoja de fuentes, con los woff2 convertidos a data URI
+fonts_css = read("assets/css/fonts.css")
+for name in os.listdir(os.path.join(ROOT, "assets", "fonts")):
+    if not name.endswith(".woff2"):
+        continue
+    with open(os.path.join(ROOT, "assets", "fonts", name), "rb") as fh:
+        uri = "data:font/woff2;base64," + base64.b64encode(fh.read()).decode()
+    fonts_css = fonts_css.replace('url("../fonts/%s")' % name, "url(%s)" % uri)
+
+css = fonts_css + "\n" + read("assets/css/style.css")
 js = read("assets/js/main.js")
 
 index = read("index.html")
@@ -207,7 +216,7 @@ ROUTER_JS = """
 })();
 """
 
-NOTE = ('<div class="preview-note"><span>Vista previa · imágenes de muestra</span>'
+NOTE = ('<div class="preview-note"><span>Vista previa</span>'
         '<button type="button" aria-label="Ocultar aviso">&#10005;</button></div>')
 
 html = (

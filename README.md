@@ -112,9 +112,18 @@ Colores y tipografías salen de variables CSS en `:root`
 --sans:     "Jost", sans-serif;         /* texto y navegación */
 ```
 
-Las tipografías se cargan desde Google Fonts. Si prefieres no depender de un
-servicio externo, descarga los `.woff2` a `assets/fonts/` y sustituye el
-`<link>` de las cabeceras por reglas `@font-face`.
+Las tipografías están alojadas en el propio proyecto (`assets/fonts/`, con sus
+`@font-face` en `assets/css/fonts.css`): cargan antes que desde un servicio
+externo y no envían datos de las visitantes a terceros. Para añadir o cambiar
+una familia:
+
+```bash
+python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
+```
+
+En `assets/fonts/` hay ahora más familias de las que usa la web: son las
+candidatas de la comparativa tipográfica. Al decidir cuál se queda, conviene
+borrar las descartadas.
 
 ### Crecer sin rehacer la web
 
