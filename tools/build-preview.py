@@ -18,7 +18,7 @@ FILE_TO_SLUG = {f: s for s, f in PAGES}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "bela-preview.html")
-FONT = os.environ.get("PREVIEW_FONT", "")  # woff2 opcional para incrustar como serif
+FONT = ""
 
 
 def read(p):
@@ -73,7 +73,7 @@ for folder in ("assets/img", "assets/brand"):
         add(ref, light if (light and ext == ".jpg" and os.path.exists(light))
                  else os.path.join(ROOT, folder, name))
 
-font_b64 = base64.b64encode(open(FONT, "rb").read()).decode() if FONT and os.path.exists(FONT) else ""
+font_b64 = ""  # las tipografías reales ya vienen de assets/css/fonts.css if FONT and os.path.exists(FONT) else ""
 
 # la hoja de fuentes, con los woff2 convertidos a data URI
 fonts_css = read("assets/css/fonts.css")
@@ -131,12 +131,7 @@ body = swap_images(rewrite_links(body))
 body = body.replace('href="index.html"', 'href="#/inicio"')
 
 EXTRA_CSS = """
-/* --- Empaquetado para vista previa ------------------------------------ */
-%s:root {
-  --serif: "Playfair Display", "Fraunces", "Didot", "Bodoni MT", Georgia, serif;
-  --sans: "Jost", "Futura", "Avenir Next", "Century Gothic", "Trebuchet MS", system-ui, sans-serif;
-}
-.page { display: none; }
+/* --- Empaquetado para vista previa ------------------------------------ */.page { display: none; }
 .page.is-active { display: block; }
 
 /* En la vista previa el contenido de cada página aparece al entrar en ella:
@@ -150,8 +145,8 @@ EXTRA_CSS = """
   .js .page.is-active .reveal { animation: none; opacity: 1; transform: none; }
 }
 .preview-note {
-  position: fixed; left: 50%%; bottom: clamp(1rem, 2.5vw, 2rem);
-  transform: translateX(-50%%);
+  position: fixed; left: 50%; bottom: clamp(1rem, 2.5vw, 2rem);
+  transform: translateX(-50%);
   z-index: 54;
   background: rgba(46,15,19,.92); color: var(--cream);
   padding: .55rem 1.1rem; border-radius: 100px;
@@ -162,11 +157,7 @@ EXTRA_CSS = """
 .preview-note button { color: inherit; opacity: .6; font-size: 1rem; line-height: 1; }
 .preview-note button:hover { opacity: 1; }
 @media (max-width: 720px) { .preview-note { display: none; } }
-""" % (
-    '@font-face{font-family:"Fraunces";src:url(data:font/woff2;base64,'
-    + font_b64 + ');font-weight:600;font-style:normal;font-display:swap}'
-    if font_b64 else ""
-)
+"""
 
 ROUTER_JS = """
 /* --- Enrutador de la vista previa -------------------------------------- */
