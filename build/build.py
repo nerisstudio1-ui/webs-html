@@ -66,7 +66,7 @@ ICONO_SERVICIO = ['ic-sol', 'ic-pausa', 'ic-asterisc', 'ic-fletxa', 'ic-cercle']
 
 PROYECTOS = [
     dict(
-        slug='quality', portada=1, fotos=3,
+        slug='quality', portada=1, fotos=5,
         nombre='Quality Training',
         sector=dict(ca='Entrenament', es='Entrenamiento'),
         texto=dict(
@@ -82,7 +82,7 @@ PROYECTOS = [
                 'https://www.instagram.com/p/DZIkSk0s2Yc/'],
     ),
     dict(
-        slug='malhivern', portada=2, fotos=4,
+        slug='malhivern', portada=1, fotos=3,
         nombre='Ratafia Malhivern',
         sector=dict(ca='Licors artesans', es='Licores artesanos'),
         texto=dict(
@@ -95,7 +95,7 @@ PROYECTOS = [
         piezas=['https://www.instagram.com/p/DZKUPZXNnqz/'],
     ),
     dict(
-        slug='f4s', portada=1, fotos=4,
+        slug='f4s', portada=1, fotos=2,
         nombre='Football 4 Stars',
         sector=dict(ca='Futbol formatiu', es='Fútbol formativo'),
         texto=dict(
@@ -108,7 +108,7 @@ PROYECTOS = [
         piezas=[],
     ),
     dict(
-        slug='maitasuna', portada=1, fotos=4,
+        slug='maitasuna', portada=1, fotos=3,
         nombre='Maitasuna',
         sector=dict(ca='Pizza artesana', es='Pizza artesana'),
         texto=dict(
@@ -123,7 +123,7 @@ PROYECTOS = [
         piezas=[],
     ),
     dict(
-        slug='jordi-coll', portada=2, fotos=3,
+        slug='jordi-coll', portada=1, fotos=3,
         nombre='Jordi Coll',
         sector=dict(ca='Marca personal', es='Marca personal'),
         texto=dict(
@@ -138,7 +138,7 @@ PROYECTOS = [
                 'https://www.instagram.com/p/DVxsEDcjHw5/'],
     ),
     dict(
-        slug='f45', portada=1, fotos=3,
+        slug='f45', portada=1, fotos=2,
         nombre='F45 Training',
         sector=dict(ca='Esdeveniment', es='Evento'),
         texto=dict(
@@ -153,7 +153,7 @@ PROYECTOS = [
         piezas=[],
     ),
     dict(
-        slug='puig', portada=3, fotos=3,
+        slug='puig', portada=1, fotos=4,
         nombre='Comercial Puig',
         sector=dict(ca='Distribució', es='Distribución'),
         texto=dict(
@@ -172,50 +172,51 @@ PROYECTOS = [
 
 # Descripción de cada foto para el atributo alt
 ALT = {
-    'quality-1': dict(ca='Corredor en un camí amb un pi al fons',
-                      es='Corredor en un camino con un pino al fondo'),
-    'quality-2': dict(ca='Entrenament de força amb manuelles al gimnàs',
-                      es='Entrenamiento de fuerza con mancuernas en el gimnasio'),
-    'quality-3': dict(ca="Entrenador amb la samarreta de Quality Training parlant amb un client",
-                      es='Entrenador con la camiseta de Quality Training hablando con un cliente'),
-    'malhivern-1': dict(ca='Ampolla de ratafia Malhivern amb llum càlida',
-                        es='Botella de ratafía Malhivern con luz cálida'),
-    'malhivern-2': dict(ca='Ampolla de ratafia sobre pedra amb plantes aromàtiques',
-                        es='Botella de ratafía sobre piedra con plantas aromáticas'),
-    'malhivern-3': dict(ca='Ampolles de licor artesà en una lleixa de pedra',
-                        es='Botellas de licor artesano en una estantería de piedra'),
-    'malhivern-4': dict(ca='Prestatge amb la gamma de licors Sol i Serena',
-                        es='Estantería con la gama de licores Sol i Serena'),
-    'f4s-1': dict(ca='Entrenament de futbol formatiu al camp',
-                  es='Entrenamiento de fútbol formativo en el campo'),
-    'f4s-2': dict(ca='Jugador conduint la pilota entre cons',
-                  es='Jugador conduciendo el balón entre conos'),
-    'f4s-3': dict(ca='Partit d\'entrenament en un camp de gespa artificial',
-                  es='Partido de entrenamiento en un campo de césped artificial'),
-    'maitasuna-1': dict(ca='Pizza artesana acabada de sortir del forn',
-                        es='Pizza artesana recién salida del horno'),
-    'maitasuna-2': dict(ca="Mans pastant massa amb la jaqueta de l'obrador",
-                        es='Manos amasando con la chaquetilla del obrador'),
+    # Las 22 fotos que envió el estudio en agosto de 2026, todas 1080x1350.
+    'quality-1': dict(ca='Corredor en un camí de terra amb un pi al fons',
+                      es='Corredor en un camino de tierra con un pino al fondo'),
+    'quality-2': dict(ca='Tres esportistes abraçats al box de Quality Training',
+                      es='Tres deportistas abrazados en el box de Quality Training'),
+    'quality-3': dict(ca='Esportista amb la samarreta de Quality Training fent una llançada',
+                      es='Deportista con la camiseta de Quality Training haciendo una zancada'),
+    'quality-4': dict(ca='Atleta corrent en una pista',
+                      es='Atleta corriendo en una pista'),
+    'quality-5': dict(ca='Retrat somrient al gimnàs',
+                      es='Retrato sonriente en el gimnasio'),
+    'malhivern-1': dict(ca='Ampolla de ratafia Malhivern entre pots de plantes',
+                        es='Botella de ratafía Malhivern entre tarros de plantas'),
+    'malhivern-2': dict(ca='Caixa de fusta amb la gamma de licors artesans',
+                        es='Caja de madera con la gama de licores artesanos'),
+    'malhivern-3': dict(ca='Bótes de fusta de Sol i Serena productes',
+                        es='Barricas de madera de Sol i Serena productes'),
+    'f4s-1': dict(ca='Jugadors disputant la pilota en un partit de formació',
+                  es='Jugadores disputando el balón en un partido de formación'),
+    'f4s-2': dict(ca='Entrenament al camp de gespa artificial',
+                  es='Entrenamiento en el campo de césped artificial'),
+    'maitasuna-1': dict(ca='Pizza artesana sobre una pala, amb llum baixa',
+                        es='Pizza artesana sobre una pala, con luz baja'),
+    'maitasuna-2': dict(ca="Jaqueta de l'obrador de Maitasuna brodada amb el nom del pizzer",
+                        es='Chaquetilla del obrador de Maitasuna bordada con el nombre del pizzero'),
     'maitasuna-3': dict(ca='Pizzes en caixes preparades per servir',
                         es='Pizzas en cajas preparadas para servir'),
     'jordi-coll-1': dict(ca="Exemplar d'El pont de les mentides en una presentació",
                          es='Ejemplar de El pont de les mentides en una presentación'),
-    'jordi-coll-2': dict(ca='Públic assistint a la presentació del llibre',
+    'jordi-coll-2': dict(ca='Mà signant un llibre amb una ploma',
+                         es='Mano firmando un libro con una pluma'),
+    'jordi-coll-3': dict(ca='Públic assistint a la presentació del llibre',
                          es='Público asistiendo a la presentación del libro'),
-    'jordi-coll-3': dict(ca='Lector amb el llibre signat a la llibreria',
-                         es='Lector con el libro firmado en la librería'),
-    'f45-1': dict(ca='Assistent a la inauguració de F45',
+    'f45-1': dict(ca='Entrenament amb cordes davant del rètol de F45 Training',
+                  es='Entrenamiento con cuerdas delante del rótulo de F45 Training'),
+    'f45-2': dict(ca='Assistent a la inauguració de F45',
                   es='Asistente a la inauguración de F45'),
-    'f45-2': dict(ca='Detall d\'un entrenament en parella a F45',
-                  es='Detalle de un entrenamiento en pareja en F45'),
-    'f45-3': dict(ca='Rètol de F45 Training al box',
-                  es='Rótulo de F45 Training en el box'),
-    'puig-1': dict(ca='Ampolla de vi a la mà en el punt de venda',
+    'puig-1': dict(ca='Repartint gènere entre les prestatgeries de la botiga',
+                   es='Repartiendo género entre las estanterías de la tienda'),
+    'puig-2': dict(ca='Cistelles de pa apilades a l\'obrador',
+                   es='Cestas de pan apiladas en el obrador'),
+    'puig-3': dict(ca='Garrafa de producte a la mà en el punt de venda',
+                   es='Garrafa de producto en la mano en el punto de venta'),
+    'puig-4': dict(ca='Ampolla de vi a la mà en el punt de venda',
                    es='Botella de vino en la mano en el punto de venta'),
-    'puig-2': dict(ca='Productes de Comercial Puig al taulell',
-                   es='Productos de Comercial Puig en el mostrador'),
-    'puig-3': dict(ca='Retrat en blanc i negre a la botiga',
-                   es='Retrato en blanco y negro en la tienda'),
 }
 
 # --------------------------------------------------------------------------- #
@@ -436,32 +437,14 @@ FORM_AJAX = f'https://formsubmit.co/ajax/{EMAIL}'
 FORM_OCULTOS = {'_captcha': 'false', '_template': 'table', '_honey': ''}
 DOMINIO = 'https://laconicstudio.com'
 
-# Fotos del collage: proyecto y número de foto. COLLAGE alimenta el panel de
-# servicios; HERO_FONDO es la foto a sangre del inicio, HERO_CHIP la pieza
-# pequeña que se cruza con el logotipo, y TIRA la banda de cinco fotos que sube
-# con el scroll por delante del titular gigante.
-COLLAGE = [('malhivern', 3), ('quality', 1), ('maitasuna', 1), ('puig', 3), ('f4s', 1)]
-# Ojo: varias fotos del estudio son collages de dos o tres imágenes montadas, y
-# a sangre se les ve la costura. Las que se usan grandes son de una sola toma:
-# collages detectados y descartados aquí: f45-2, f45-3, jordi-coll-1, puig-2,
-# quality-2 y maitasuna-3.
-# Foto de marca del estudio (el flyer sobre el coche), no una foto de proyecto
-HERO_FOTO = 'marca/flyer-cotxe'
-HERO_ANCHOS = (900, 1600)
-
 # Las DOS fotos del inicio, a sangre y a toda la altura de la pantalla.
-#
-# PENDIENTE: el estudio dijo que adjuntaba las dos escogidas y no llegaron con el
-# PDF. Mientras tanto van dos de una sola toma (nunca collages: a este tamaño se
-# les vería la costura) y verticales, que es lo que pide el formato. Al recibir
-# las suyas, se dejan en assets/img/proyectos con el nombre que toque y se cambia
-# esta línea; no hay nada más que tocar.
-HERO_DUO = [('maitasuna', 1), ('puig', 3)]
+# A 1440x900 cada mitad queda en 4:5, que es justo el formato de las fotos, así
+# que apenas se recortan.
+HERO_DUO = [('quality', 1), ('malhivern', 1)]
 
-# La tira que pasa en bucle en el about. PENDIENTE: aquí también dijeron que
-# adjuntaban «una selección de las más top» y no llegó; van siete de una sola toma.
-TIRA = [('quality', 1), ('f45', 1), ('maitasuna', 1), ('f4s', 1), ('malhivern', 2),
-        ('jordi-coll', 2), ('malhivern', 3)]
+# La tira que pasa en bucle en el about: siete, variadas, de siete proyectos.
+TIRA = [('maitasuna', 1), ('f4s', 1), ('malhivern', 2), ('quality', 3),
+        ('jordi-coll', 3), ('puig', 2), ('f45', 1)]
 
 # --------------------------------------------------------------------------- #
 # Vídeos. Se detectan solos: basta dejar los archivos en assets/video con el
@@ -470,21 +453,7 @@ TIRA = [('quality', 1), ('f45', 1), ('maitasuna', 1), ('f4s', 1), ('malhivern', 
 # póster). Si no los tiene, se queda la foto. No hay nada que tocar aquí.
 # --------------------------------------------------------------------------- #
 
-# Fotos que son collages de dos o tres imágenes montadas, o que tienen una
-# costura visible. No se usan en ningún sitio donde se vean grandes.
-COLAJES = {'f45-2', 'f45-3', 'jordi-coll-1', 'puig-2', 'quality-2', 'maitasuna-3',
-           'malhivern-1', 'puig-1', 'f4s-3', 'quality-4'}
 IMG_DIR = ROOT / 'assets/img/proyectos'
-
-
-def extras_de(slug, portada, cuantas=2):
-    """Las demás fotos sueltas del proyecto, para la galería de su bloque."""
-    numeros = []
-    for ruta in IMG_DIR.glob(f'{slug}-*-700.jpg'):
-        resto = ruta.stem[len(slug) + 1:-4]   # quita el slug y el '-700'
-        if resto.isdigit() and int(resto) != portada and f'{slug}-{resto}' not in COLAJES:
-            numeros.append(int(resto))
-    return sorted(numeros)[:cuantas]
 
 
 VIDEO_DIR = ROOT / 'assets/video'

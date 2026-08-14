@@ -40,8 +40,16 @@ speak quietly» y la lista de marcas con las que ha trabajado el estudio.
 
 ## Material de marca
 
+Las **22 fotos de `assets/img/proyectos`** son las que envió el estudio en agosto
+de 2026, ya recortadas a 1080×1350 en origen. Sustituyen al set anterior, que
+tenía collages con la costura a la vista y varias con marco blanco impreso: por
+eso ya no hace falta la lista de fotos a evitar que había aquí.
+
+De cada una se generan dos anchos, 700 y 1100 px. El reparto por proyecto está en
+los nombres (`quality-1`, `puig-3`…) y su texto alternativo en `ALT`.
+
 `assets/img/marca/flyer-cotxe-*.jpg` es la foto del flyer del estudio sobre un
-coche. Ya no se usa en el inicio, pero se conserva por si sirve en otra sección.
+coche. No se usa en la web, pero se conserva por si sirve en otra sección.
 
 Los cinco iconos del flyer siguen redibujados como SVG en `ICONOS` —el sol, la
 pausa, el asterisco, la flecha y el cero— y acompañan a cada nombre de servicio.
@@ -188,37 +196,32 @@ connecten</span>.</h2>`). Es el papel que en las webs editoriales hace la cursiv
 de una serif: cambia la voz sin cambiar de tamaño ni de línea. La clase `rl`
 activa el revelado palabra a palabra.
 
-**Aviso sobre las fotos**: seis de las que envió el estudio son collages de dos o
-tres imágenes montadas (`f45-2`, `f45-3`, `jordi-coll-1`, `puig-2`, `quality-2` y
-`maitasuna-3`). A tamaño grande se les ve la costura, así que la portada de cada
-proyecto y las fotos a sangre usan solo tomas sueltas; está anotado en
-`build/build.py`.
-
-Otras cinco traían un marco blanco dentro del propio archivo (`jordi-coll-3`,
-`maitasuna-2`, `malhivern-1`, `malhivern-3` y `puig-3`). Están recortadas, así que
-ya no son 4:5 y el generador lee el tamaño real de cada archivo con `medidas()` en
-lugar de darlo por hecho.
+**Sobre las fotos**: el set de agosto de 2026 viene ya en 1080×1350, sin collages
+ni marcos blancos, así que todas valen a cualquier tamaño. El generador sigue
+leyendo el tamaño real de cada archivo con `medidas()` en lugar de darlo por
+hecho, que es lo que hay que mantener si algún día entra una foto con otra
+proporción.
 
 ## Movimiento
 
-Todo con IntersectionObserver y un único bucle de `requestAnimationFrame`, sin
-librerías, y desactivado con `prefers-reduced-motion`:
+Todo con IntersectionObserver, sin librerías, y desactivado con
+`prefers-reduced-motion`:
 
 - **Inicio**: el logotipo entra recortándose de arriba abajo, y el nombre, el
   reclamo y el filete después, escalonados.
-- **Piezas del inicio**: suben a velocidades distintas (`--rise` por pieza)
-  mientras el escenario queda pegado, pasan por detrás del logotipo y salen por
-  el borde de arriba.
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.
 - **Cabecera**: siempre clara; se le pone sombra al despegarse y se esconde al
   bajar. El enlace de la sección visible se subraya.
-- **Servicios**: la foto pegada al scroll cambia con el servicio activo, por
-  ratón o por posición.
-- **Trabajo**: cada foto se mueve en paralaje dentro de su marco.
-- **Proceso**: el raíl se rellena y los puntos se encienden al pasar.
+- **Servicios**: el nombre elegido enseña su definición, por ratón, foco o clic.
+- **Proyectos**: la foto o el vídeo de la ficha crece un punto al pasar por
+  encima, y los vídeos se paran al salir de pantalla.
 - **Cursor**: punto que crece sobre elementos interactivos (solo ratón).
+
+Desde la revisión de agosto de 2026 no queda ningún bucle de
+`requestAnimationFrame` ligado al scroll: se fue con el collage del inicio, el
+paralaje, el raíl del proceso y el giro del cero.
 
 ## Cómo se cambian las cosas
 
@@ -288,5 +291,5 @@ el PDF de cambios:
 - Sin peticiones externas: tipografías autoalojadas, símbolo en SVG.
 - Navegación por teclado con `:focus-visible`, enlace de salto al contenido y menú
   móvil con `aria-hidden`.
-- Las animaciones de entrada solo se aplican si hay JavaScript, y el collage se
-  muestra ya colocado con `prefers-reduced-motion`.
+- Las animaciones de entrada solo se aplican si hay JavaScript, y con
+  `prefers-reduced-motion` no arranca ningún vídeo solo.
