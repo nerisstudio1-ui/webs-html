@@ -23,11 +23,11 @@
   --white:         #fff;
 
   /* tipografía */
-  /* Los titulares van en Instrument Serif: una serif de display estrecha y de
-     alto contraste, en minúsculas. Poppins sostiene menú, botones y texto, y
-     marca los acentos con sus negritas y sus cursivas. */
-  --serif: "Instrument Serif", "Didot", "Bodoni MT", Georgia, serif;
-  --sans:  "Poppins", "Helvetica Neue", Arial, sans-serif;
+  /* Montserrat es la única tipografía de la web. El carácter lo pone el juego
+     de pesos —la fina sostiene los titulares, la negrita cursiva destaca— y no
+     una segunda familia. */
+  --sans:  "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 
   /* medidas */
   --gutter: clamp(1.25rem, 4vw, 4.5rem);
@@ -47,9 +47,9 @@ body {
   background: var(--cream);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 15.5px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.72;
+  line-height: 1.68;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -70,27 +70,27 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--muted);
 }
 .display {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(2.6rem, 6.4vw, 5.6rem);
-  line-height: .96;
-  letter-spacing: -.025em;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.6vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -.015em;
   text-transform: none;
 }
-.display em { font-style: italic; }
+.display em { font-weight: 800; font-style: italic; }
 .h2 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(1.9rem, 4vw, 3.2rem);
-  line-height: 1.02;
-  letter-spacing: -.02em;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.9vw, 2.4rem);
+  line-height: 1.18;
+  letter-spacing: -.01em;
   text-transform: none;
 }
-.h2 em { font-style: italic; }
+.h2 em { font-weight: 800; font-style: italic; }
 .h3 {
   font-family: var(--sans);
-  font-weight: 600;
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
   letter-spacing: .01em;
   line-height: 1.35;
 }
@@ -288,11 +288,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .mobile-nav__top { display: flex; align-items: center; justify-content: space-between; }
 .mobile-nav__links { display: flex; flex-direction: column; gap: .35rem; margin-top: auto; }
 .mobile-nav__links a {
-  font-family: var(--serif);
-  font-size: clamp(2.2rem, 11vw, 3.4rem);
-  font-weight: 400;
-  letter-spacing: -.015em;
-  text-transform: none;
+  font-size: clamp(1.6rem, 8vw, 2.4rem);
+  font-weight: 300;
+  letter-spacing: .02em;
+  text-transform: uppercase;
   line-height: 1.15;
 }
 .mobile-nav__foot { margin-top: auto; border-top: 1px solid var(--line-light); padding-top: 1.25rem; }
@@ -348,15 +347,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* --- 9. Carrusel de tratamientos --------------------------------------- */
 .tabs { display: flex; gap: 1.4rem; align-items: baseline; }
 .tabs button {
-  font-family: var(--serif);
-  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
-  font-weight: 400;
-  letter-spacing: -.015em;
+  font-size: clamp(1.1rem, 1.9vw, 1.55rem);
+  font-weight: 300;
+  letter-spacing: -.005em;
   text-transform: none;
   color: var(--sand);
   transition: color .4s var(--ease);
 }
-.tabs button[aria-selected="true"] { color: var(--ink); }
+.tabs button[aria-selected="true"] { color: var(--ink); font-weight: 800; font-style: italic; }
 
 .rail {
   display: grid;
@@ -409,17 +407,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   background: linear-gradient(180deg, rgba(28,18,16,.28), rgba(28,18,16,.05) 45%, rgba(28,18,16,.4));
 }
 .cat__label {
-  font-family: var(--serif);
-  letter-spacing: -.01em;
+  font-weight: 300;
+  letter-spacing: .04em;
   position: absolute;
   top: clamp(1.25rem, 3vw, 2.5rem);
   left: clamp(1.25rem, 3vw, 2.5rem);
   z-index: 2;
   writing-mode: vertical-rl;
   color: var(--white);
-  font-size: clamp(1.9rem, 3.6vw, 3.4rem);
-  font-weight: 400;
-  text-transform: none;
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  font-weight: 300;
+  text-transform: uppercase;
   letter-spacing: -.01em;
 }
 .cat .btn {
@@ -444,18 +442,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 .welcome p {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  line-height: 1.2;
-  letter-spacing: -.015em;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 2.2vw, 1.85rem);
+  line-height: 1.38;
+  letter-spacing: -.005em;
   letter-spacing: -.02em;
   color: var(--burgundy);
   margin-inline: auto;
   max-width: 34ch;
   text-wrap: balance;
 }
-.welcome p em { font-style: italic; }
+.welcome p em { font-weight: 800; font-style: italic; }
 
 /* --- 11. Método / collage ---------------------------------------------- */
 .method { background: linear-gradient(160deg, var(--cream-warm), var(--cream) 55%); }
@@ -476,7 +473,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); margin-top: clamp(2.5rem, 6vw, 5rem); }
 .step { border-top: 1px solid var(--line); padding-top: 1.1rem; }
-.step b { display: block; font-family: var(--serif); font-weight: 400; font-size: 2.2rem; font-weight: 400; color: var(--burgundy); margin-bottom: .5rem; }
+.step b { display: block; font-weight: 800; font-style: italic; font-size: 1.8rem; font-weight: 400; color: var(--burgundy); margin-bottom: .5rem; }
 .step h3 { font-size: .92rem; font-weight: 600; margin-bottom: .4rem; }
 .step p { font-size: .85rem; color: var(--muted); }
 
@@ -489,10 +486,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .marquee__track { display: flex; gap: 3rem; width: max-content; animation: slide 38s linear infinite; }
 .marquee span {
-  font-family: var(--serif);
-  font-size: clamp(1.2rem, 2.2vw, 1.9rem);
+  font-size: clamp(.92rem, 1.6vw, 1.25rem);
+  font-weight: 300;
   font-style: italic;
-  letter-spacing: 0;
+  letter-spacing: .12em;
+  text-transform: uppercase;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -505,7 +503,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); }
 .quote { border-top: 1px solid var(--line); padding-top: 1.5rem; }
 .quote .stars { color: var(--burgundy); letter-spacing: .2em; font-size: .8rem; margin-bottom: .9rem; }
-.quote blockquote { font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.55; margin-bottom: 1rem; }
+.quote blockquote { font-weight: 300; font-style: italic; font-size: 1.1rem; line-height: 1.55; margin-bottom: 1rem; }
 .quote figcaption { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 
 /* --- 14. FAQ ----------------------------------------------------------- */
@@ -599,7 +597,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .service-row__body .h2 { margin-bottom: 1rem; }
 .service-row__body .lead { margin-bottom: 1.75rem; }
 .spec { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-bottom: 2rem; }
-.spec div b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.5rem; }
+.spec div b { display: block; font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em; }
 .spec div span { font-size: .64rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 .checklist li { position: relative; padding-left: 1.5rem; margin-bottom: .5rem; font-size: .9rem; }
 /* el guion hereda el color del bloque: legible sobre crema y sobre burdeos */
@@ -719,8 +717,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .cats { grid-template-columns: 1fr; }
   .cat { aspect-ratio: 16 / 11; }
   .cat__label {
-  font-family: var(--serif);
-  letter-spacing: -.01em; writing-mode: horizontal-tb; }
+  font-weight: 300;
+  letter-spacing: .04em; writing-mode: horizontal-tb; }
   .collage { grid-template-columns: 1fr; }
   .collage__text, .collage__a, .collage__b, .collage__c { grid-column: 1 / -1; margin-top: 0; padding-top: 0; }
   .collage__a { max-width: 78%; }

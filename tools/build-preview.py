@@ -18,7 +18,6 @@ FILE_TO_SLUG = {f: s for s, f in PAGES}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "bela-preview.html")
-FONT = ""
 
 
 def read(p):
@@ -73,7 +72,6 @@ for folder in ("assets/img", "assets/brand"):
         add(ref, light if (light and ext == ".jpg" and os.path.exists(light))
                  else os.path.join(ROOT, folder, name))
 
-font_b64 = ""  # las tipografías reales ya vienen de assets/css/fonts.css if FONT and os.path.exists(FONT) else ""
 
 # la hoja de fuentes, con los woff2 convertidos a data URI
 fonts_css = read("assets/css/fonts.css")

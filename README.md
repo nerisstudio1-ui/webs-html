@@ -110,8 +110,7 @@ Colores y tipografías salen de variables CSS en `:root`
 --burgundy: #741c2d;   /* granate tomado del logotipo */
 --cream:    #f6f1ec;   /* fondo general */
 --gold:     #a98a63;   /* acento sutil */
---serif:    "Instrument Serif";  /* titulares */
---sans:     "Poppins";           /* menú, botones y texto */
+--sans:     "Montserrat";   /* toda la web */
 ```
 
 Las tipografías están alojadas en el propio proyecto (`assets/fonts/`, con sus
@@ -123,12 +122,16 @@ una familia:
 python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
 ```
 
-Los titulares van en **Instrument Serif**, una serif de display estrecha y de
-alto contraste, en minúsculas, con la palabra destacada en su cursiva.
-**Poppins** sostiene el menú (en mayúsculas y con espaciado), los botones y el
-texto corrido, jugando con sus pesos: 400 para leer, 500 y 600 para menú,
-botones, epígrafes y subtítulos, y la cursiva para precios y palabras
-destacadas.
+Montserrat es la única tipografía de la web. El carácter lo pone el juego de
+pesos y cursivas, no una segunda familia:
+
+- **300** en los titulares, en el bloque de bienvenida y en las etiquetas de
+  categoría.
+- **800 cursiva** en la palabra destacada de cada titular, en la pestaña activa
+  del carrusel y en los números del método.
+- **400** en el texto corrido; **500** en menú y epígrafes; **600 y 700** en
+  botones, enlaces y subtítulos.
+- Menú, anuncio superior y menú móvil van en mayúsculas con espaciado.
 
 ### Crecer sin rehacer la web
 
