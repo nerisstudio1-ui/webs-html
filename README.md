@@ -139,9 +139,9 @@ La estructura está pensada para ampliarse:
 
 - Los tratamientos son bloques `.service-row` en `servicios.html`: añadir uno
   nuevo es copiar un bloque y cambiar texto e imagen.
-- La home tiene un carrusel con dos pestañas (`tratamientos` /
+- La home tiene una retícula con dos pestañas (`tratamientos` /
   `próximamente`); mover un servicio de una a otra es cambiarlo de panel y
-  quitarle la etiqueta `tag-soon`.
+  quitarle la clase `tcard--soon`.
 - Los bloques de categoría (`.cats`) admiten más columnas sin tocar el CSS.
 
 ## Notas técnicas
