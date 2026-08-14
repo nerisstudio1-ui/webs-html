@@ -55,15 +55,15 @@ python3 -m http.server 8000
 
 ## Qué falta por decidir o sustituir
 
-1. **Fotografías.** Las imágenes de `assets/img/*.svg` son ilustraciones
-   vectoriales de cejas generadas a medida, pensadas como muestra hasta la
-   sesión fotográfica. Sustituye cada archivo por la foto real con el mismo
-   nombre (`hero-left.jpg`, `srv-hairstroke.jpg`, …) y cambia la extensión en
-   el `src` de los HTML. Proporciones usadas:
-   - `hero-*` → vertical 6:7
-   - `srv-*`, `cat-*` → vertical 4:5
-   - `journal-*`, `studio-2` → horizontal 4:3
-   - `cta-wide` → panorámica 2:1
+1. **Fotografías definitivas.** Las de ahora son las que envió el estudio,
+   redimensionadas a 1400 px de ancho y comprimidas. Tras la sesión
+   fotográfica profesional se sustituyen manteniendo los mismos nombres.
+   Quedan dos ilustraciones vectoriales donde todavía no hay foto:
+   `srv-capilar.svg` (micropigmentación capilar) y `srv-powder.svg` (labios),
+   más `cta-wide.svg`, que es decorativa a propósito.
+1b. **Consentimiento de imagen.** Varias fotos muestran rostros de clientas
+   reconocibles, incluidas comparativas de antes y después. Antes de publicar
+   hace falta su autorización por escrito.
 2. **Dirección del estudio y mapa.** Sin determinar. Ahora la web dice que se
    confirma al reservar; hay un bloque preparado en `contacto.html`.
 2b. **Correo profesional.** Pendiente de crear junto con el dominio. Hasta
@@ -82,9 +82,10 @@ python3 -m http.server 8000
    sobre todo porque el formulario recoge datos personales.
 7. **Dominio y hosting.** No hay ninguno contratado. Al ser una web estática
    se puede publicar en GitHub Pages, Netlify o cualquier hosting básico.
-8. **Logo original.** El logotipo de la cabecera está recreado con tipografía.
-   Los archivos originales van en `assets/brand/` (ver el README de esa
-   carpeta); al añadirlos hay que ajustar `--burgundy` al granate real.
+8. **Logotipo.** Ya está el original en `assets/brand/`, recortado y con
+   fondo transparente, en versión granate y crema. La cabecera alterna entre
+   las dos según el fondo. Si el estudio envía el archivo vectorial (SVG),
+   conviene sustituirlo: se verá más nítido en pantallas grandes.
 9. **Confirmar el teléfono.** El 611 599 132 viene del formulario inicial;
    falta confirmar que es el número de contacto del estudio.
 
@@ -104,7 +105,7 @@ Colores y tipografías salen de variables CSS en `:root`
 (`assets/css/style.css`). Cambiar la marca entera es cambiar esas variables:
 
 ```css
---burgundy: #4a171c;   /* granate protagonista */
+--burgundy: #741c2d;   /* granate tomado del logotipo */
 --cream:    #f6f1ec;   /* fondo general */
 --gold:     #a98a63;   /* acento sutil */
 --serif:    "Playfair Display", serif;  /* titulares y logotipo */
@@ -133,6 +134,6 @@ La estructura está pensada para ampliarse:
 - Accesibilidad: navegación por teclado, `aria` en pestañas, acordeón y
   carrusel, y respeto de `prefers-reduced-motion`.
 - Si el JavaScript no carga, el contenido sigue siendo visible y navegable.
-- Las ilustraciones de muestra son SVG con miles de trazos: pesan poco pero
-  dan trabajo de pintado al navegador. Al sustituirlas por fotografías reales
-  (JPG/WebP) la web irá más ligera todavía.
+- Las fotografías van a 1400 px de ancho y calidad 82: entre 80 y 350 KB
+  cada una. Si más adelante se busca afinar la velocidad, el siguiente paso
+  sería servirlas en WebP.

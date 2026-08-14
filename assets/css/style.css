@@ -7,9 +7,10 @@
 /* --- 1. Tokens --------------------------------------------------------- */
 :root {
   /* color */
-  --burgundy:      #4a171c;
-  --burgundy-deep: #2e0f13;
-  --burgundy-soft: #71322f;
+  /* granate tomado del logotipo original */
+  --burgundy:      #741c2d;
+  --burgundy-deep: #4e0f1e;
+  --burgundy-soft: #9a3345;
   --cream:         #f6f1ec;
   --cream-warm:    #efe6de;
   --sand:          #e2d3c6;
@@ -228,10 +229,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   opacity: .75;
 }
 
-/* variante con el logotipo original en imagen (ver assets/brand/README.md) */
-.logo--img img { height: 34px; width: auto; }
-.footer .logo--img img, .mobile-nav .logo--img img { height: 40px; }
-@media (max-width: 900px) { .logo--img img { height: 28px; } }
+/* logotipo original: versión clara sobre foto o burdeos, granate sobre crema */
+.logo--img { display: inline-flex; align-items: center; }
+.logo--img img { height: 30px; width: auto; }
+.footer .logo--img img, .mobile-nav .logo--img img { height: 38px; }
+.header .logo--img .logo-dark { display: none; }
+.header.is-solid .logo--img .logo-light { display: none; }
+.header.is-solid .logo--img .logo-dark { display: block; }
+@media (max-width: 900px) { .logo--img img { height: 24px; } }
 
 .nav { display: flex; gap: clamp(1rem, 2.2vw, 2.2rem); margin-inline: auto; }
 .nav a {
