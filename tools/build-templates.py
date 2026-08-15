@@ -22,6 +22,7 @@ Uso:  python3 tools/build-templates.py
 
 import json
 import pathlib
+import zipfile
 
 OUT_DIR = pathlib.Path(__file__).resolve().parent.parent / "elementor-kit" / "content" / "page"
 
@@ -575,22 +576,84 @@ TEMPLATES = {
 }
 
 
+# --- Secciones sueltas de la home -------------------------------------------
+#
+# La home se entrega ademas troceada, una plantilla por seccion, para poder
+# montarla poco a poco e insertar solo la que toque.
+#
+# El orden es el de los hijos de template_home(). Los dos primeros (barra de
+# aviso y header) se omiten a proposito: viven en la plantilla del header, que
+# es comun a todo el sitio. La segunda cinta de servicios tambien se omite, por
+# ser identica a la primera.
+
+HOME_SECTIONS = [
+    (2,  "10-hero",             "Blomstra — Hero"),
+    (3,  "11-intro",            "Blomstra — Romantiza tu vida"),
+    (4,  "12-collage",          "Blomstra — Collage"),
+    (5,  "13-cinta",            "Blomstra — Cinta de servicios"),
+    (6,  "14-dos-formas",       "Blomstra — Dos formas de habitar Blomstra"),
+    (8,  "15-tu-marca",         "Blomstra — Esta podría ser tu marca"),
+    (9,  "16-como-trabajamos",  "Blomstra — Cómo trabajamos"),
+    (10, "17-manifiesto",       "Blomstra — Manifiesto"),
+    (11, "18-fundadora",        "Blomstra — Meet the founder"),
+    (12, "19-cierre",           "Blomstra — Cierre"),
+    (13, "20-newsletter",       "Blomstra — Newsletter"),
+    (14, "21-wordmark",         "Blomstra — Wordmark del pie"),
+]
+
+
+def write_template(path, title, kind, content):
+    doc = {"version": "0.4", "title": title, "type": kind, "content": content}
+    if kind == "page":
+        doc["page_settings"] = {"template": "elementor_canvas"}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n")
+
+
+def build_home_sections():
+    """Trocea la home en plantillas de seccion.
+
+    Se construye la home UNA vez y se reparten sus hijos, en lugar de generar
+    cada seccion por separado: asi los ids no se repiten entre secciones y se
+    pueden insertar varias en la misma pagina sin que choquen.
+    """
+    global _counter
+    _counter = 0
+    children = template_home()["elements"]
+    out = OUT_DIR.parent / "section"
+
+    for index, slug, title in HOME_SECTIONS:
+        write_template(out / f"{slug}.json", title, "section", [children[index]])
+        print(f"Generada section/{slug}.json")
+
+
+def bundle_sections():
+    """Empaqueta las secciones en un zip.
+
+    El importador de plantillas de Elementor acepta un zip con varias
+    plantillas dentro, asi que se pueden subir todas de una vez en vez de una
+    por una."""
+    src = OUT_DIR.parent / "section"
+    out = OUT_DIR.parents[2] / "dist" / "blomstra-secciones.zip"
+    out.parent.mkdir(parents=True, exist_ok=True)
+
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+        for path in sorted(src.glob("*.json")):
+            z.write(path, path.name)
+
+    print(f"Empaquetadas en {out.relative_to(OUT_DIR.parents[2])}")
+
+
 def main():
     global _counter
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for slug, (title, builder, kind) in TEMPLATES.items():
         _counter = 0
-        doc = {
-            "version": "0.4",
-            "title": title,
-            "type": kind,
-            "content": [builder()],
-        }
-        if kind == "page":
-            doc["page_settings"] = {"template": "elementor_canvas"}
-        (OUT_DIR / f"{slug}.json").write_text(
-            json.dumps(doc, ensure_ascii=False, indent=2) + "\n")
+        write_template(OUT_DIR / f"{slug}.json", title, kind, [builder()])
         print(f"Generada {slug}.json")
+
+    build_home_sections()
+    bundle_sections()
 
 
 if __name__ == "__main__":

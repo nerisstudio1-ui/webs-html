@@ -50,11 +50,13 @@ wordpress/themes/blomstra-child/
 elementor-kit/
   manifest.json              Metadatos del kit
   site-settings.json         Colores y tipografía globales
-  content/page/*.json        Plantillas de página
+  content/page/*.json        Header y páginas completas
+  content/section/*.json     La home troceada, una plantilla por sección
 prototype/                   Prototipos HTML para validar contra el Figma
 tools/
   build-kit.sh               Empaqueta el kit en dist/*.zip
-  build-templates.py         Genera las plantillas de Elementor
+  build-theme.sh             Empaqueta el tema hijo
+  build-templates.py         Genera las plantillas y el zip de secciones
 docs/                        Guía de montaje, contenido e incidencias
 ```
 

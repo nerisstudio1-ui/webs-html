@@ -1,0 +1,101 @@
+{
+  "version": "0.4",
+  "title": "Blomstra — Hero",
+  "type": "section",
+  "content": [
+    {
+      "id": "bl00012",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "container_type": "flex",
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+          "unit": "px",
+          "size": 0,
+          "column": "0",
+          "row": "0",
+          "isLinked": true
+        },
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "24",
+          "bottom": "52",
+          "left": "24",
+          "isLinked": false
+        },
+        "flex_justify_content": "flex-end",
+        "flex_align_items": "center",
+        "background_background": "classic",
+        "background_color": "#33261C",
+        "min_height": {
+          "unit": "px",
+          "size": 620,
+          "sizes": []
+        },
+        "_css_classes": "bl-hero"
+      },
+      "elements": [
+        {
+          "id": "bl00011",
+          "elType": "widget",
+          "widgetType": "button",
+          "settings": {
+            "text": "WELCOME TO OUR UNIVERSE",
+            "link": {
+              "url": "#",
+              "is_external": "",
+              "nofollow": ""
+            },
+            "align": "center",
+            "button_text_color": "#FFFFFF",
+            "background_color": "#00000000",
+            "hover_color": "#221C18",
+            "button_background_hover_color": "#FFFFFF",
+            "border_border": "solid",
+            "border_width": {
+              "unit": "px",
+              "top": "1",
+              "right": "1",
+              "bottom": "1",
+              "left": "1",
+              "isLinked": false
+            },
+            "border_color": "#FFFFFF",
+            "border_radius": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            },
+            "text_padding": {
+              "unit": "px",
+              "top": "15",
+              "right": "34",
+              "bottom": "15",
+              "left": "34",
+              "isLinked": false
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "Montserrat",
+            "typography_font_size": {
+              "unit": "px",
+              "size": 12,
+              "sizes": []
+            },
+            "typography_letter_spacing": {
+              "unit": "px",
+              "size": 1.9,
+              "sizes": []
+            }
+          },
+          "elements": []
+        }
+      ]
+    }
+  ]
+}

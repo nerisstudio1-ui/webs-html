@@ -1,0 +1,66 @@
+{
+  "version": "0.4",
+  "title": "Blomstra — Wordmark del pie",
+  "type": "section",
+  "content": [
+    {
+      "id": "bl00111",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "container_type": "flex",
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+          "unit": "px",
+          "size": 0,
+          "column": "0",
+          "row": "0",
+          "isLinked": true
+        },
+        "padding": {
+          "unit": "px",
+          "top": "40",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#FAF3ED",
+        "_css_classes": "bl-wordmark"
+      },
+      "elements": [
+        {
+          "id": "bl00110",
+          "elType": "widget",
+          "widgetType": "heading",
+          "settings": {
+            "title": "BLOMSTRA",
+            "header_size": "div",
+            "align": "center",
+            "title_color": "#221C18",
+            "typography_typography": "custom",
+            "typography_font_family": "Playfair Display",
+            "typography_font_size": {
+              "unit": "vw",
+              "size": 15,
+              "sizes": []
+            },
+            "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 22,
+              "sizes": []
+            },
+            "typography_line_height": {
+              "unit": "em",
+              "size": 0.78,
+              "sizes": []
+            }
+          },
+          "elements": []
+        }
+      ]
+    }
+  ]
+}

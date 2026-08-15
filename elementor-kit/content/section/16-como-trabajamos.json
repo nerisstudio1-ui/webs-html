@@ -1,0 +1,283 @@
+{
+  "version": "0.4",
+  "title": "Blomstra — Cómo trabajamos",
+  "type": "section",
+  "content": [
+    {
+      "id": "bl00079",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "container_type": "flex",
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+          "unit": "px",
+          "size": 0,
+          "column": "0",
+          "row": "0",
+          "isLinked": true
+        },
+        "padding": {
+          "unit": "px",
+          "top": "120",
+          "right": "24",
+          "bottom": "120",
+          "left": "24",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#33261C"
+      },
+      "elements": [
+        {
+          "id": "bl00078",
+          "elType": "container",
+          "isInner": false,
+          "settings": {
+            "container_type": "flex",
+            "content_width": "boxed",
+            "flex_direction": "column",
+            "flex_gap": {
+              "unit": "px",
+              "size": 26,
+              "column": "26",
+              "row": "26",
+              "isLinked": true
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            },
+            "flex_align_items": "center"
+          },
+          "elements": [
+            {
+              "id": "bl00077",
+              "elType": "container",
+              "isInner": false,
+              "settings": {
+                "container_type": "flex",
+                "content_width": "full",
+                "flex_direction": "row",
+                "flex_gap": {
+                  "unit": "px",
+                  "size": 70,
+                  "column": "70",
+                  "row": "70",
+                  "isLinked": true
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": false
+                },
+                "flex_direction_mobile": "column",
+                "flex_gap_mobile": {
+                  "unit": "px",
+                  "size": 35,
+                  "column": "35",
+                  "row": "35",
+                  "isLinked": true
+                },
+                "flex_align_items": "center",
+                "_css_classes": "bl-duo"
+              },
+              "elements": [
+                {
+                  "id": "bl00075",
+                  "elType": "container",
+                  "isInner": false,
+                  "settings": {
+                    "container_type": "flex",
+                    "content_width": "full",
+                    "flex_direction": "column",
+                    "flex_gap": {
+                      "unit": "px",
+                      "size": 24,
+                      "column": "24",
+                      "row": "24",
+                      "isLinked": true
+                    },
+                    "padding": {
+                      "unit": "px",
+                      "top": "0",
+                      "right": "0",
+                      "bottom": "0",
+                      "left": "0",
+                      "isLinked": false
+                    },
+                    "_flex_size": "custom",
+                    "_flex_grow": 1,
+                    "_flex_shrink": 1
+                  },
+                  "elements": [
+                    {
+                      "id": "bl00072",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Cómo trabajamos",
+                        "header_size": "h2",
+                        "title_color": "#FAF3ED",
+                        "typography_typography": "custom",
+                        "typography_font_family": "Playfair Display",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 52,
+                          "sizes": []
+                        },
+                        "typography_font_size_mobile": {
+                          "unit": "px",
+                          "size": 27,
+                          "sizes": []
+                        },
+                        "typography_letter_spacing": {
+                          "unit": "px",
+                          "size": 3,
+                          "sizes": []
+                        },
+                        "typography_line_height": {
+                          "unit": "em",
+                          "size": 1.15,
+                          "sizes": []
+                        },
+                        "typography_text_transform": "uppercase"
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "bl00073",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "<p>Cada proyecto en Blomstra comienza igual: escuchando.</p><p>Escuchamos la historia detrás del proyecto. La visión que la impulsa. La sensibilidad que la hace única.</p><p>A partir de ahí construimos un universo que puede expresarse de forma clara y coherente a través de la narrativa, el diseño gráfico y la dirección de arte.</p>",
+                        "text_color": "#FAF3ED",
+                        "typography_typography": "custom",
+                        "typography_font_family": "Montserrat",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 19,
+                          "sizes": []
+                        },
+                        "typography_line_height": {
+                          "unit": "em",
+                          "size": 1.7,
+                          "sizes": []
+                        }
+                      },
+                      "elements": []
+                    },
+                    {
+                      "id": "bl00074",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "descubre nuestros servicios",
+                        "link": {
+                          "url": "#",
+                          "is_external": "",
+                          "nofollow": ""
+                        },
+                        "align": "left",
+                        "button_text_color": "#FAF3ED",
+                        "background_color": "#00000000",
+                        "hover_color": "#33261C",
+                        "button_background_hover_color": "#FAF3ED",
+                        "border_border": "solid",
+                        "border_width": {
+                          "unit": "px",
+                          "top": "1",
+                          "right": "1",
+                          "bottom": "1",
+                          "left": "1",
+                          "isLinked": false
+                        },
+                        "border_color": "#FAF3ED",
+                        "border_radius": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "0",
+                          "left": "0",
+                          "isLinked": false
+                        },
+                        "text_padding": {
+                          "unit": "px",
+                          "top": "16",
+                          "right": "30",
+                          "bottom": "16",
+                          "left": "30",
+                          "isLinked": false
+                        },
+                        "typography_typography": "custom",
+                        "typography_font_family": "Montserrat",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 13,
+                          "sizes": []
+                        },
+                        "typography_letter_spacing": {
+                          "unit": "px",
+                          "size": 1.6,
+                          "sizes": []
+                        }
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "bl00076",
+                  "elType": "container",
+                  "isInner": false,
+                  "settings": {
+                    "container_type": "flex",
+                    "content_width": "full",
+                    "flex_direction": "column",
+                    "flex_gap": {
+                      "unit": "px",
+                      "size": 0,
+                      "column": "0",
+                      "row": "0",
+                      "isLinked": true
+                    },
+                    "padding": {
+                      "unit": "px",
+                      "top": "0",
+                      "right": "0",
+                      "bottom": "0",
+                      "left": "0",
+                      "isLinked": false
+                    },
+                    "background_background": "classic",
+                    "background_color": "#D9D9D9",
+                    "min_height": {
+                      "unit": "px",
+                      "size": 240,
+                      "sizes": []
+                    },
+                    "width": {
+                      "unit": "%",
+                      "size": 100,
+                      "sizes": []
+                    },
+                    "_css_classes": "bl-ratio-45"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
