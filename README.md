@@ -24,8 +24,7 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Inicio: fondo beige, el **logotipo en terracota** centrado, el claim y el filete «Based in Girona. Working beyond.» |
-| — | Las **dos fotos a pantalla completa**, a sangre, una al lado de la otra |
+| — | Inicio: las **dos fotos ocupan la pantalla** y encima van el logotipo en crema, el claim y el filete «Based in Girona. Working beyond.» |
 | — | Declaración sobre terracota, centrada, sin botón |
 | — | Tira de fotos que pasa en bucle |
 | `#about` | Manifiesto, «Less noise. More meaning.» y las dos socias |
@@ -196,6 +195,13 @@ connecten</span>.</h2>`). Es el papel que en las webs editoriales hace la cursiv
 de una serif: cambia la voz sin cambiar de tamaño ni de línea. La clase `rl`
 activa el revelado palabra a palabra.
 
+**El logotipo del inicio va en crema, no en terracota**: sobre fotografía la teja
+de la marca se apaga contra los medios tonos. Las fotos llevan dos velos, uno
+general de arriba abajo y otro elíptico solo detrás del bloque de texto, para que
+los bordes de la imagen se mantengan vivos. Medido con el texto oculto y
+luminancia linealizada, el contraste del claim con la crema es de 5,1:1 en
+escritorio y 6,2:1 en móvil; el resto de los rótulos, por encima.
+
 **Sobre las fotos**: el set de agosto de 2026 viene ya en 1080×1350, sin collages
 ni marcos blancos, así que todas valen a cualquier tamaño. El generador sigue
 leyendo el tamaño real de cada archivo con `medidas()` en lugar de darlo por
@@ -208,7 +214,7 @@ Todo con IntersectionObserver, sin librerías, y desactivado con
 `prefers-reduced-motion`:
 
 - **Inicio**: el logotipo entra recortándose de arriba abajo, y el nombre, el
-  reclamo y el filete después, escalonados.
+  reclamo y el filete después, escalonados, sobre las dos fotos.
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.

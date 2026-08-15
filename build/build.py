@@ -617,8 +617,13 @@ def render(lang):
 
 <main id="top">
 
-  <!-- Inici: el logotip sobre beix i, tot seguit, dues fotos a pantalla completa -->
-  <section class="hero" data-theme="cream">
+  <!-- Inici: les dues fotos ocupen la pantalla i el logotip va a sobre -->
+  <section class="hero" data-theme="ink">
+    <div class="hero__fotos">
+      <figure class="hero__foto">{foto(prefix, HERO_DUO[0][0], HERO_DUO[0][1], '50vw', lang, 'eager')}</figure>
+      <figure class="hero__foto">{foto(prefix, HERO_DUO[1][0], HERO_DUO[1][1], '50vw', lang, 'eager')}</figure>
+    </div>
+
     <div class="hero__stage">
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
@@ -634,12 +639,6 @@ def render(lang):
       </div>
     </div>
   </section>
-
-  <!-- Les dues fotos del començament, a sang i a tota l'alçada de la pantalla -->
-  <div class="duo" data-theme="cream">
-    <figure class="duo__half">{foto(prefix, HERO_DUO[0][0], HERO_DUO[0][1], '50vw', lang, 'eager')}</figure>
-    <figure class="duo__half">{foto(prefix, HERO_DUO[1][0], HERO_DUO[1][1], '50vw', lang, 'eager')}</figure>
-  </div>
 
   <!-- Declaració: bloc de color, centrat, sense botó i amb menys aire -->
   <section class="decl decl--tight slab-top" data-theme="terra">

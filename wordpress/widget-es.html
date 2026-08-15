@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (ES).
-     Generado: 2026-08-14 16:24 UTC
+     Generado: 2026-08-15 06:50 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -795,11 +795,56 @@
   position: relative;
   height: calc(100svh - var(--lac-top, 0px));
   min-height: 34rem;
-  background: var(--cream);
-  color: var(--text);
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
 }
+
+/* Las dos fotos ocupan la pantalla entera, una al lado de la otra. En un móvil
+   no caben dos columnas: pasan a una sobre otra, media pantalla cada una, que es
+   lo que mantiene el formato vertical de las fotos. */
+#laconic-app .hero__fotos {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#laconic-app .hero__foto {
+  margin: 0;
+  overflow: hidden;
+}
+#laconic-app .hero__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Un velo por encima: sin él, el logotipo se pierde en cuanto una foto tiene una
+   zona clara, y aquí hay dos fotos distintas y cada visita ve la que le toque.
+   Va más denso arriba y abajo, que es donde caen la cabecera y el filete. */
+#laconic-app .hero__fotos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #laconic-app rgba(var(--ink-rgb),
+#laconic-app 0.42),
+    #laconic-app rgba(var(--ink-rgb),
+0.2) 42%,
+    rgba(var(--ink-rgb), 0.52)
+  );
+}
+@media (max-width: 700px) {
+  #laconic-app .hero__fotos {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
 #laconic-app .hero__stage {
   position: relative;
+  z-index: 2;
   height: 100%;
   display: grid;
   align-content: center;
@@ -807,7 +852,31 @@
   padding-inline: var(--gutter);
 }
 
-/* El logotipo, centrado y en teja */
+/* Una sombra suave detrás del bloque de texto, y solo ahí. El velo general no
+   puede oscurecerse más sin apagar las fotos, pero el claim es letra pequeña en
+   versalitas y necesita fondo: medido sobre la mitad en blanco y negro, sin esto
+   se queda por debajo de 2:1. Así la foto se mantiene viva por los bordes. */
+#laconic-app .hero__stage::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(80ch, 96vw);
+  height: min(58svh, 38rem);
+  background: radial-gradient(
+    ellipse farthest-side at 50% 50%,
+    #laconic-app rgba(var(--ink-rgb),
+#laconic-app 0.5),
+    #laconic-app rgba(var(--ink-rgb),
+0.38) 45%,
+    rgba(var(--ink-rgb), 0) 80%
+  );
+  pointer-events: none;
+}
+
+/* El logotipo, centrado y en crema: sobre fotografía, la teja de la marca se
+   apaga contra los medios tonos y deja de leerse. */
 #laconic-app .hero__logo {
   position: relative;
   z-index: 3;
@@ -819,7 +888,8 @@
 #laconic-app .hero__word {
   width: min(48vw, 520px);
   height: auto;
-  color: var(--terra);
+  color: var(--cream);
+  filter: drop-shadow(0 2px 24px rgba(var(--ink-rgb), 0.45));
   clip-path: inset(0 0 105% 0);
   transition: clip-path 1.5s var(--ease-out) 0.15s;
 }
@@ -831,12 +901,13 @@
   text-transform: uppercase;
   letter-spacing: 0.62em;
   text-indent: 0.62em;
-  color: var(--terra);
+  color: var(--cream);
+  text-shadow: 0 1px 16px rgba(var(--ink-rgb), 0.6);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 0.85s;
 }
 #laconic-app.is-loaded .hero__name {
-  opacity: 0.9;
+  opacity: 0.92;
 }
 #laconic-app .hero__claim {
   position: relative;
@@ -848,12 +919,13 @@
   text-transform: uppercase;
   letter-spacing: 0.22em;
   line-height: 1.9;
-  color: var(--text);
+  color: var(--cream);
+  text-shadow: 0 1px 16px rgba(var(--ink-rgb), 0.6);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.05s;
 }
 #laconic-app.is-loaded .hero__claim {
-  opacity: 0.72;
+  opacity: 0.88;
 }
 /* Filete de abajo con los dos rótulos */
 #laconic-app .hero__rule {
@@ -868,45 +940,19 @@
   font-size: var(--step--2);
   text-transform: uppercase;
   letter-spacing: 0.24em;
+  color: var(--cream);
+  text-shadow: 0 1px 16px rgba(var(--ink-rgb), 0.6);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.15s;
 }
 #laconic-app.is-loaded .hero__rule {
-  opacity: 0.75;
+  opacity: 0.85;
 }
 #laconic-app .hero__rule i {
   flex: 1;
   height: 1px;
   background: currentColor;
-  opacity: 0.35;
-}
-/* ---------- Las dos fotos del inicio ----------
-   A sangre y a toda la altura de la pantalla, una al lado de la otra. En un
-   #laconic-app móvil no caben dos columnas: pasan a una sobre otra,
-#laconic-app media pantalla cada una,
-   que es lo que mantiene el formato vertical de las fotos. */
-#laconic-app .duo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100svh;
-  min-height: 30rem;
-  background: var(--cream);
-}
-#laconic-app .duo__half {
-  margin: 0;
-  overflow: hidden;
-}
-#laconic-app .duo__half img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-@media (max-width: 700px) {
-  #laconic-app .duo {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
+  opacity: 0.45;
 }
 
 /* ---------- Declaración: bloque de color, centrado ---------- */
@@ -1704,8 +1750,13 @@
 
 <main id="lac-top">
 
-  <!-- Inici: el logotip sobre beix i, tot seguit, dues fotos a pantalla completa -->
-  <section class="hero" data-theme="cream">
+  <!-- Inici: les dues fotos ocupen la pantalla i el logotip va a sobre -->
+  <section class="hero" data-theme="ink">
+    <div class="hero__fotos">
+      <figure class="hero__foto"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Corredor en un camino de tierra con un pino al fondo" loading="eager" decoding="async"></figure>
+      <figure class="hero__foto"><img src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Botella de ratafía Malhivern entre tarros de plantas" loading="eager" decoding="async"></figure>
+    </div>
+
     <div class="hero__stage">
       <h1 class="hero__logo">
         <span class="visually-hidden">Laconic Studio</span>
@@ -1721,12 +1772,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Les dues fotos del començament, a sang i a tota l'alçada de la pantalla -->
-  <div class="duo" data-theme="cream">
-    <figure class="duo__half"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Corredor en un camino de tierra con un pino al fondo" loading="eager" decoding="async"></figure>
-    <figure class="duo__half"><img src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Botella de ratafía Malhivern entre tarros de plantas" loading="eager" decoding="async"></figure>
-  </div>
 
   <!-- Declaració: bloc de color, centrat, sense botó i amb menys aire -->
   <section class="decl decl--tight slab-top" data-theme="terra">
