@@ -110,22 +110,63 @@ Brainstorm Force) → Instalar → Activar.
 
 ### Paso 3 — Montar el header
 
-1. **Apariencia → Header Footer Builder → Añadir nuevo**.
-2. Tipo de plantilla: **Header**. Mostrar en: **Todo el sitio**. Publica.
-3. Edita con Elementor y monta el header: el logo (widget Imagen), y el widget
-   **Navigation Menu** que aporta este plugin.
-4. En ese widget, Layout → **Dropdown**, para que salga como hamburguesa igual
-   que en tu diseño. Ahí eliges también el menú `Principal` y el color y la
-   tipografía.
+Tienes el header ya hecho en `00-header.json`. No hay que maquetarlo.
+
+1. **Plantillas → Plantillas guardadas → Importar plantillas** → sube
+   `00-header.json`.
+2. **Apariencia → Header Footer Builder → Añadir nuevo**.
+   - Tipo de plantilla: **Header**
+   - Mostrar en: **Todo el sitio**
+   - Publica.
+3. **Editar con Elementor** → icono de carpeta (Añadir plantilla) →
+   *Mis plantillas* → inserta **Blomstra — Header**.
+
+Trae la barra de aviso, el logotipo centrado, el selector de idioma y el botón
+de WhatsApp, con los colores y la tipografía del diseño ya puestos.
+
+### Paso 3 bis — Meter el menú de verdad
+
+En el hueco de la izquierda hay un **icono de hamburguesa decorativo**. Va ahí
+de relleno: el widget del menú pertenece al plugin, así que no puedo dejarlo
+puesto desde fuera — si lo hiciera, la plantilla fallaría al importarla en una
+instalación que no tenga el plugin activo.
+
+Cambiarlo es un minuto:
+
+1. Selecciona el icono de hamburguesa y **bórralo**.
+2. En ese mismo contenedor (el de la izquierda, `bl-header__menu-slot`),
+   arrastra el widget **Navigation Menu**.
+3. Ajustes del widget:
+   - **Menu**: `Principal`
+   - **Layout**: `Dropdown` — así sale como hamburguesa, igual que el diseño
+   - **Breakpoint**: `All devices`, para que sea hamburguesa también en escritorio
+4. Estilo → Toggle Button → color **blanco**, para que case con el header.
+
+### Cosas que querrás retocar
+
+| Qué | Dónde |
+|---|---|
+| El número de WhatsApp | Botón WHATS → Enlace. Ahora apunta a `wa.me/34600000000` |
+| El texto de la barra de aviso | Primer contenedor. Si no la quieres, bórralo |
+| El logotipo | Los dos textos del centro, cuando tengas el SVG (ver arriba) |
+
+> El header va sobre greige con el logotipo en blanco, que es como aparece en
+> escritorio. En el portal en móvil tu diseño lo invierte a fondo crema con todo
+> en oscuro; eso está pendiente de que confirmes si es intencionado
+> (`docs/INCONSISTENCIAS.md`).
 
 ### Paso 4 — Quitar el header duplicado de la home
 
-La plantilla de la home lleva un header dentro, que puse solo para poder
-previsualizarla suelta. Una vez tengas el header del sitio funcionando, **abre
-la home en Elementor y borra ese contenedor**, o te saldrán dos.
+La plantilla de la home lleva dentro su propia barra de aviso y su propio
+header, que puse solo para poder previsualizarla suelta. Una vez tengas el
+header del sitio funcionando, **abre la home en Elementor y borra los dos
+primeros contenedores**, o los verás repetidos:
 
-Es el primer contenedor de la página: el que tiene el icono de hamburguesa, el
-logotipo y el botón WHATS.
+1. El de la barra de aviso (la franja fina de arriba).
+2. El del header (hamburguesa + logotipo + botón WHATS).
+
+Se borran desde el **Navegador de Elementor** (`Ctrl/Cmd + I`), que es lo más
+cómodo para no equivocarse de contenedor.
 
 ---
 

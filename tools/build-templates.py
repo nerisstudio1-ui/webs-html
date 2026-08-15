@@ -168,6 +168,11 @@ def button(label, url="#", color=INK, border_color=None, hover_bg=INK,
     return widget("button", s)
 
 
+def hide_on(*devices):
+    """Visibilidad por dispositivo (pestana Avanzado > Responsive)."""
+    return {f"hide_{d}": f"hidden-{d}" for d in devices}
+
+
 def icon(name, library, color=INK, px=22, url=None):
     s = {
         "selected_icon": {"value": name, "library": library},
@@ -501,24 +506,88 @@ def template_home():
     ], bg=ANTIQUE)
 
 
+# --- Plantilla: header del sitio -------------------------------------------
+
+def template_header():
+    """Header comun a todo el sitio.
+
+    Va en Apariencia > Header Footer Builder, no dentro de una pagina.
+
+    El hueco de la izquierda lleva de momento un icono de hamburguesa
+    decorativo. Se sustituye por el widget "Navigation Menu" que aporta el
+    plugin Header & Footer Builder, que es el que trae el menu de verdad: ese
+    widget no se puede dejar puesto desde aqui porque solo existe cuando el
+    plugin esta activo, y la plantilla fallaria al importarla sin el.
+    """
+    return container([
+        # Barra de aviso. Si no la quieres, borra este contenedor.
+        container([
+            heading("Texto de la barra de aviso pendiente", tag="div",
+                    align="center", color=INK,
+                    family=SANS, fsize=11, ls=1.6, transform="uppercase"),
+        ], bg=COTTON, padding=dim(11, 16, 11, 16), css_class="bl-announce"),
+
+        container([
+            # Izquierda: aqui va el menu
+            container([
+                icon("fas fa-bars", "fa-solid", color=WHITE, px=26, url="#"),
+            ], direction="row", justify="flex-start", align="center",
+                width=size(30, "%"), stack_mobile=False,
+                css_class="bl-header__menu-slot"),
+
+            # Centro: logotipo. Sustituir por un widget Imagen con el SVG.
+            container([
+                heading("This is", tag="div", align="center", color=WHITE,
+                        family=SCRIPT, fsize=18, fsize_mobile=14, lh=1),
+                heading("BLOMSTRA", tag="div", align="center", color=WHITE,
+                        family=DISPLAY, fsize=34, fsize_mobile=24, ls=0.7, lh=1,
+                        url="/"),
+            ], align="center", width=size(40, "%"), css_class="bl-header__brand"),
+
+            # Derecha: idioma y WhatsApp
+            container([
+                heading("EN", tag="div", color=WHITE, url="#",
+                        family=SANS, fsize=14, ls=1.1),
+                icon("fas fa-chevron-down", "fa-solid", color=WHITE, px=12),
+                button("WHATS", url="https://wa.me/34600000000",
+                       color=WHITE, hover_bg=WHITE, hover_color=INK,
+                       radius_px=999, pad=dim(17, 26, 17, 26),
+                       family=SANS, fsize=14, weight="500", ls=1.4),
+            ], direction="row", justify="flex-end", align="center", gap_px=14,
+                width=size(30, "%"), stack_mobile=False,
+                css_class="bl-header__tools"),
+        ], direction="row", justify="space-between", align="center",
+            stack_mobile=False, bg=COTTON,
+            padding=dim(0, 44, 0, 44), min_h=size(124),
+            border={"width": dim(0, 0, 1, 0), "color": WHITE},
+            css_class="bl-site-header",
+            extra={
+                "min_height_mobile": size(88),
+                "padding_mobile": dim(0, 20, 0, 20),
+            }),
+    ])
+
+
 TEMPLATES = {
-    "01-portal": ("Blomstra — Portal", template_portal),
-    "03-home": ("Blomstra — Home", template_home),
+    "00-header": ("Blomstra — Header", template_header, "section"),
+    "01-portal": ("Blomstra — Portal", template_portal, "page"),
+    "03-home": ("Blomstra — Home", template_home, "page"),
 }
 
 
 def main():
     global _counter
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for slug, (title, builder) in TEMPLATES.items():
+    for slug, (title, builder, kind) in TEMPLATES.items():
         _counter = 0
         doc = {
             "version": "0.4",
             "title": title,
-            "type": "page",
+            "type": kind,
             "content": [builder()],
-            "page_settings": {"template": "elementor_canvas"},
         }
+        if kind == "page":
+            doc["page_settings"] = {"template": "elementor_canvas"}
         (OUT_DIR / f"{slug}.json").write_text(
             json.dumps(doc, ensure_ascii=False, indent=2) + "\n")
         print(f"Generada {slug}.json")

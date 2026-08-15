@@ -10,7 +10,7 @@ el footer y los formularios; está resuelto en la guía de montaje.
 |---|---|
 | Tema hijo de Hello Elementor | Listo |
 | Paleta y tipografía del diseño → kit de Elementor | Listo |
-| Plantillas con widgets nativos (0 widgets HTML) | Portal y home |
+| Plantillas con widgets nativos (0 widgets HTML) | Header, portal y home |
 | Prototipo del portal | Listo y verificado contra el diseño |
 | Prototipo de servicios | Listo y verificado contra el diseño |
 | Prototipo de la home | Listo, 14 secciones con el copy real |
