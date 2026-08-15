@@ -625,12 +625,16 @@ def render(lang):
     </div>
 
     <div class="hero__stage">
-      <h1 class="hero__logo">
-        <span class="visually-hidden">Laconic Studio</span>
-        <svg class="hero__word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
-        <span class="hero__name" aria-hidden="true">studio</span>
-      </h1>
-      <p class="hero__claim">{t['reclamo']}</p>
+      <!-- El logotip i el claim van dins d'un mateix bloc: l'ombra que els fa
+           llegibles és seva, així que els segueix mesuri el que mesuri la finestra. -->
+      <div class="hero__bloc">
+        <h1 class="hero__logo">
+          <span class="visually-hidden">Laconic Studio</span>
+          <svg class="hero__word" viewBox="{VB_WORD}" aria-hidden="true"><use href="#lg-word"/></svg>
+          <span class="hero__name" aria-hidden="true">studio</span>
+        </h1>
+        <p class="hero__claim">{t['reclamo']}</p>
+      </div>
 
       <div class="hero__rule">
         <span>{t['hero_izq']}</span>

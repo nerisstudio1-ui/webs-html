@@ -198,9 +198,19 @@ activa el revelado palabra a palabra.
 **El logotipo del inicio va en crema, no en terracota**: sobre fotografía la teja
 de la marca se apaga contra los medios tonos. Las fotos llevan dos velos, uno
 general de arriba abajo y otro elíptico solo detrás del bloque de texto, para que
-los bordes de la imagen se mantengan vivos. Medido con el texto oculto y
-luminancia linealizada, el contraste del claim con la crema es de 5,1:1 en
-escritorio y 6,2:1 en móvil; el resto de los rótulos, por encima.
+los bordes de la imagen se mantengan vivos. La sombra que hace legible el texto es del propio bloque (`.hero__bloc`), no del
+escenario: así lo acompaña mida lo que mida la ventana. Con una elipse de tamaño
+fijo, en una pantalla ancha y baja el claim se salía por el lado y se quedaba
+sobre la mitad clara de la foto.
+
+Medido en el navegador —ocultando el texto para leer el fondo real de cada caja,
+con la luminancia linealizada y en siete tamaños de ventana, de 360×640 a
+1920×1080— el peor caso es **5,9:1**, sobre el mínimo de 4,5:1.
+
+El filete de abajo va levantado el alto del radio con el que monta la sección
+siguiente. Si no, en una pantalla ancha y baja cae justo sobre la curva de
+terracota, y ahí el contraste se queda clavado en 3,6:1 por mucho que se oscurezca
+la fotografía: el fondo ya no es la foto.
 
 **Sobre las fotos**: el set de agosto de 2026 viene ya en 1080×1350, sin collages
 ni marcos blancos, así que todas valen a cualquier tamaño. El generador sigue

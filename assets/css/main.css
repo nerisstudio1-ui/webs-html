@@ -706,12 +706,18 @@ body.menu-open .mobile-menu {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(var(--ink-rgb), 0.42),
-    rgba(var(--ink-rgb), 0.2) 42%,
-    rgba(var(--ink-rgb), 0.52)
-  );
+  /* Dos capas: una banda al pie, donde va el filete —es la línea que peor lo
+     pasa en una pantalla ancha y baja, porque queda sobre el campo claro de la
+     foto— y el velo general de arriba abajo. */
+  background:
+    linear-gradient(to top, rgba(var(--ink-rgb), 0.72), rgba(var(--ink-rgb), 0) 34%),
+    linear-gradient(
+      to bottom,
+      rgba(var(--ink-rgb), 0.44),
+      rgba(var(--ink-rgb), 0.3) 40%,
+      rgba(var(--ink-rgb), 0.42) 78%,
+      rgba(var(--ink-rgb), 0.5)
+    );
 }
 @media (max-width: 700px) {
   .hero__fotos {
@@ -734,21 +740,32 @@ body.menu-open .mobile-menu {
    puede oscurecerse más sin apagar las fotos, pero el claim es letra pequeña en
    versalitas y necesita fondo: medido sobre la mitad en blanco y negro, sin esto
    se queda por debajo de 2:1. Así la foto se mantiene viva por los bordes. */
-.hero__stage::before {
+/* La sombra que hace legible el texto es del propio bloque de texto, no del
+   escenario: así lo acompaña mida lo que mida la ventana. Con una elipse de
+   tamaño fijo, en una pantalla ancha y baja el claim se salía por el lado y se
+   quedaba sobre la mitad clara de la foto, sin nada detrás. */
+.hero__bloc {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  padding: clamp(2.2rem, 7vw, 5rem) clamp(2rem, 8vw, 6rem);
+}
+.hero__bloc::before {
   content: "";
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(80ch, 96vw);
-  height: min(58svh, 38rem);
+  inset: 0;
+  z-index: 0;
   background: radial-gradient(
     ellipse farthest-side at 50% 50%,
-    rgba(var(--ink-rgb), 0.5),
-    rgba(var(--ink-rgb), 0.38) 45%,
-    rgba(var(--ink-rgb), 0) 80%
+    rgba(var(--ink-rgb), 0.62),
+    rgba(var(--ink-rgb), 0.5) 55%,
+    rgba(var(--ink-rgb), 0) 100%
   );
   pointer-events: none;
+}
+.hero__bloc > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* El logotipo, centrado y en crema: sobre fotografía, la teja de la marca se
@@ -778,12 +795,12 @@ body.menu-open .mobile-menu {
   letter-spacing: 0.62em;
   text-indent: 0.62em;
   color: var(--cream);
-  text-shadow: 0 1px 16px rgba(var(--ink-rgb), 0.6);
+  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 0.85s;
 }
 .is-loaded .hero__name {
-  opacity: 0.92;
+  opacity: 1;
 }
 .hero__claim {
   position: relative;
@@ -796,20 +813,23 @@ body.menu-open .mobile-menu {
   letter-spacing: 0.22em;
   line-height: 1.9;
   color: var(--cream);
-  text-shadow: 0 1px 16px rgba(var(--ink-rgb), 0.6);
+  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.05s;
 }
 .is-loaded .hero__claim {
-  opacity: 0.88;
+  opacity: 1;
 }
-/* Filete de abajo con los dos rótulos */
+/* Filete de abajo con los dos rótulos.
+   Va por encima del radio con el que monta la sección siguiente: si no, en una
+   pantalla ancha y baja cae justo sobre la curva de terracota y ahí el contraste
+   se queda en 3,6:1 por mucho que se oscurezca la foto. */
 .hero__rule {
   position: absolute;
   z-index: 3;
   left: var(--gutter);
   right: var(--gutter);
-  bottom: clamp(1.6rem, 5vh, 3.2rem);
+  bottom: calc(clamp(1.6rem, 5vh, 3.2rem) + var(--radius-slab));
   display: flex;
   align-items: center;
   gap: clamp(1rem, 3vw, 2.4rem);
@@ -817,12 +837,12 @@ body.menu-open .mobile-menu {
   text-transform: uppercase;
   letter-spacing: 0.24em;
   color: var(--cream);
-  text-shadow: 0 1px 16px rgba(var(--ink-rgb), 0.6);
+  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.15s;
 }
 .is-loaded .hero__rule {
-  opacity: 0.85;
+  opacity: 1;
 }
 .hero__rule i {
   flex: 1;
