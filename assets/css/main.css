@@ -699,25 +699,16 @@ body.menu-open .mobile-menu {
   object-fit: cover;
   display: block;
 }
-/* Un velo por encima: sin él, el logotipo se pierde en cuanto una foto tiene una
-   zona clara, y aquí hay dos fotos distintas y cada visita ve la que le toque.
-   Va más denso arriba y abajo, que es donde caen la cabecera y el filete. */
+/* Una sola capa por encima de las dos fotos, pareja de arriba abajo. Es lo que
+   hace legible el logotipo y los rótulos: sin ella, la mitad en blanco y negro
+   es demasiado clara para la crema. Una sola capa y no una sombra pegada al
+   texto porque así se comporta igual en cualquier proporción de pantalla, que
+   es justo donde fallaba lo anterior. */
 .hero__fotos::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* Dos capas: una banda al pie, donde va el filete —es la línea que peor lo
-     pasa en una pantalla ancha y baja, porque queda sobre el campo claro de la
-     foto— y el velo general de arriba abajo. */
-  background:
-    linear-gradient(to top, rgba(var(--ink-rgb), 0.72), rgba(var(--ink-rgb), 0) 34%),
-    linear-gradient(
-      to bottom,
-      rgba(var(--ink-rgb), 0.44),
-      rgba(var(--ink-rgb), 0.3) 40%,
-      rgba(var(--ink-rgb), 0.42) 78%,
-      rgba(var(--ink-rgb), 0.5)
-    );
+  background: rgba(var(--ink-rgb), 0.58);
 }
 @media (max-width: 700px) {
   .hero__fotos {
@@ -740,28 +731,12 @@ body.menu-open .mobile-menu {
    puede oscurecerse más sin apagar las fotos, pero el claim es letra pequeña en
    versalitas y necesita fondo: medido sobre la mitad en blanco y negro, sin esto
    se queda por debajo de 2:1. Así la foto se mantiene viva por los bordes. */
-/* La sombra que hace legible el texto es del propio bloque de texto, no del
-   escenario: así lo acompaña mida lo que mida la ventana. Con una elipse de
-   tamaño fijo, en una pantalla ancha y baja el claim se salía por el lado y se
-   quedaba sobre la mitad clara de la foto, sin nada detrás. */
+/* El bloque del logotipo y el claim, juntos y centrados. */
 .hero__bloc {
   position: relative;
   display: grid;
   justify-items: center;
   padding: clamp(2.2rem, 7vw, 5rem) clamp(2rem, 8vw, 6rem);
-}
-.hero__bloc::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: radial-gradient(
-    ellipse farthest-side at 50% 50%,
-    rgba(var(--ink-rgb), 0.62),
-    rgba(var(--ink-rgb), 0.5) 55%,
-    rgba(var(--ink-rgb), 0) 100%
-  );
-  pointer-events: none;
 }
 .hero__bloc > * {
   position: relative;

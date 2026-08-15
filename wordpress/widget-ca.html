@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (CA).
-     Generado: 2026-08-15 07:22 UTC
+     Generado: 2026-08-15 07:34 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -493,8 +493,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  #laconic-app transition: transform 0.4s var(--ease-out),
-#laconic-app background-color 0.4s var(--ease),
+  transition: transform 0.4s var(--ease-out), background-color 0.4s var(--ease),
     color 0.4s var(--ease);
 }
 #laconic-app .btn:hover {
@@ -819,32 +818,16 @@
   object-fit: cover;
   display: block;
 }
-/* Un velo por encima: sin él, el logotipo se pierde en cuanto una foto tiene una
-   zona clara, y aquí hay dos fotos distintas y cada visita ve la que le toque.
-   Va más denso arriba y abajo, que es donde caen la cabecera y el filete. */
+/* Una sola capa por encima de las dos fotos, pareja de arriba abajo. Es lo que
+   hace legible el logotipo y los rótulos: sin ella, la mitad en blanco y negro
+   es demasiado clara para la crema. Una sola capa y no una sombra pegada al
+   texto porque así se comporta igual en cualquier proporción de pantalla, que
+   es justo donde fallaba lo anterior. */
 #laconic-app .hero__fotos::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* Dos capas: una banda al pie, donde va el filete —es la línea que peor lo
-     pasa en una pantalla ancha y baja, porque queda sobre el campo claro de la
-     foto— y el velo general de arriba abajo. */
-  background:
-    #laconic-app linear-gradient(to top,
-#laconic-app rgba(var(--ink-rgb),
-#laconic-app 0.72),
-#laconic-app rgba(var(--ink-rgb),
-#laconic-app 0) 34%),
-    linear-gradient(
-      to bottom,
-      #laconic-app rgba(var(--ink-rgb),
-#laconic-app 0.44),
-      #laconic-app rgba(var(--ink-rgb),
-0.3) 40%,
-      #laconic-app rgba(var(--ink-rgb),
-0.42) 78%,
-      rgba(var(--ink-rgb), 0.5)
-    );
+  background: rgba(var(--ink-rgb), 0.58);
 }
 @media (max-width: 700px) {
   #laconic-app .hero__fotos {
@@ -867,30 +850,12 @@
    puede oscurecerse más sin apagar las fotos, pero el claim es letra pequeña en
    versalitas y necesita fondo: medido sobre la mitad en blanco y negro, sin esto
    se queda por debajo de 2:1. Así la foto se mantiene viva por los bordes. */
-/* La sombra que hace legible el texto es del propio bloque de texto, no del
-   escenario: así lo acompaña mida lo que mida la ventana. Con una elipse de
-   tamaño fijo, en una pantalla ancha y baja el claim se salía por el lado y se
-   quedaba sobre la mitad clara de la foto, sin nada detrás. */
+/* El bloque del logotipo y el claim, juntos y centrados. */
 #laconic-app .hero__bloc {
   position: relative;
   display: grid;
   justify-items: center;
   padding: clamp(2.2rem, 7vw, 5rem) clamp(2rem, 8vw, 6rem);
-}
-#laconic-app .hero__bloc::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: radial-gradient(
-    ellipse farthest-side at 50% 50%,
-    #laconic-app rgba(var(--ink-rgb),
-#laconic-app 0.62),
-    #laconic-app rgba(var(--ink-rgb),
-0.5) 55%,
-    rgba(var(--ink-rgb), 0) 100%
-  );
-  pointer-events: none;
 }
 #laconic-app .hero__bloc > * {
   position: relative;
@@ -1521,8 +1486,7 @@
   background: var(--cur, var(--cream));
   pointer-events: none;
   transform: translate3d(-100px, -100px, 0);
-  #laconic-app transition: width 0.35s var(--ease-out),
-#laconic-app height 0.35s var(--ease-out),
+  transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out),
     opacity 0.3s var(--ease), background-color 0.4s var(--ease);
   will-change: transform;
 }

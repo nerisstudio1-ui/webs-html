@@ -100,9 +100,16 @@ def scope_css(css):
     css = re.sub(r'\nhtml \{[^}]*\}', '', css)  # por si queda alguno en media queries
 
     # 2. Prefijar el resto de selectores
+    #
+    # Ojo con lo que cuenta como selector. La regla «acaba en coma o en llave» no
+    # basta: un degradado escrito en varias líneas también tiene líneas que acaban
+    # en coma, y prefijarlas mete el id dentro del valor y lo invalida —así se
+    # quedó el inicio de WordPress sin la sombra que hace legible el logotipo—.
+    # Por eso se lleva la cuenta de las llaves: dentro del cuerpo de una regla no
+    # se toca nada.
     fuera = ('@', '}', '/*', '*/')
     salida = []
-    dentro_de_arroba = 0
+    pila = []            # qué abrió cada llave: 'arroba' o 'regla'
     saltar_bloque = False
     for linea in css.split('\n'):
         strip = linea.strip()
@@ -114,17 +121,23 @@ def scope_css(css):
             if strip == '}':
                 saltar_bloque = False
             continue
+
         if strip.startswith('@media') or strip.startswith('@supports'):
-            dentro_de_arroba += 1
-            salida.append(linea)
-            continue
-        if strip == '}' and dentro_de_arroba and not linea.startswith('  '):
-            dentro_de_arroba -= 1
+            pila.append('arroba')
             salida.append(linea)
             continue
 
-        # ¿Es una línea de selector? Termina en , o en {
-        if strip and not strip.startswith(fuera) and (strip.endswith(',') or strip.endswith('{')):
+        if strip.startswith('}'):
+            if pila:
+                pila.pop()
+            salida.append(linea)
+            continue
+
+        # Solo se prefija en el nivel de los selectores: nunca dentro de una regla
+        nivel_selector = 'regla' not in pila
+
+        if (nivel_selector and strip and not strip.startswith(fuera)
+                and (strip.endswith(',') or strip.endswith('{'))):
             partes = []
             for sel in strip.rstrip('{').rstrip().split(','):
                 sel = sel.strip()
@@ -137,8 +150,12 @@ def scope_css(css):
             indent = linea[:len(linea) - len(linea.lstrip())]
             cierre = ' {' if strip.endswith('{') else ','
             salida.append(indent + ',\n'.join(partes) + cierre)
+            if strip.endswith('{'):
+                pila.append('regla')
         else:
             salida.append(linea)
+            if strip.endswith('{'):
+                pila.append('regla')
     css = '\n'.join(salida)
 
     # 3. La cabecera no puede ser fixed dentro de un tema: pasa a sticky, por

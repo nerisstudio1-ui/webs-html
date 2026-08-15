@@ -198,14 +198,15 @@ activa el revelado palabra a palabra.
 **El logotipo del inicio va en crema, no en terracota**: sobre fotografía la teja
 de la marca se apaga contra los medios tonos. Las fotos llevan dos velos, uno
 general de arriba abajo y otro elíptico solo detrás del bloque de texto, para que
-los bordes de la imagen se mantengan vivos. La sombra que hace legible el texto es del propio bloque (`.hero__bloc`), no del
-escenario: así lo acompaña mida lo que mida la ventana. Con una elipse de tamaño
-fijo, en una pantalla ancha y baja el claim se salía por el lado y se quedaba
-sobre la mitad clara de la foto.
+los bordes de la imagen se mantengan vivos. Las dos fotos llevan **una sola capa oscura por encima, pareja de arriba abajo**.
+Una capa entera y no una sombra pegada al texto: así se comporta igual en
+cualquier proporción de pantalla, que es justo donde falló el primer intento —una
+elipse de tamaño fijo, que en una pantalla ancha y baja dejaba el claim fuera—.
 
 Medido en el navegador —ocultando el texto para leer el fondo real de cada caja,
-con la luminancia linealizada y en siete tamaños de ventana, de 360×640 a
-1920×1080— el peor caso es **5,9:1**, sobre el mínimo de 4,5:1.
+con la luminancia linealizada, en siete tamaños de ventana de 360×640 a 1920×1080
+y **en las dos versiones, la suelta y la de WordPress**— el peor caso es
+**5,1:1**, sobre el mínimo de 4,5:1.
 
 El filete de abajo va levantado el alto del radio con el que monta la sección
 siguiente. Si no, en una pantalla ancha y baja cae justo sobre la curva de
