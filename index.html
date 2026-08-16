@@ -115,27 +115,29 @@
   </div>
 
   <!-- ===== Declaraci&oacute;n ===== -->
-  <section class="section statement">
+  <section class="claim">
     <div class="wrap">
-      <p class="reveal">Bela es un estudio
-        <span class="pill"><img src="assets/img/about-trabajo.jpg" alt="" loading="lazy"></span>
-        de micropigmentaci&oacute;n de cejas
-        <span class="pill"><img src="assets/img/hero-4.jpg" alt="" loading="lazy"></span>
-        donde cuidar tu mirada
-        <span class="pill"><img src="assets/img/collage-1.jpg" alt="" loading="lazy"></span>
-        con <em>calma</em>.</p>
-      <a class="btn btn--dark reveal" data-delay="1" href="estudio.html">conocer el estudio</a>
+      <p class="claim__text reveal">Cejas que
+        <span class="pill" data-parallax="-14"><img src="assets/img/about-trabajo.jpg" alt="" loading="lazy"></span>
+        parecen tuyas, no
+        <span class="pill" data-parallax="12"><img src="assets/img/hero-4.jpg" alt="" loading="lazy"></span>
+        <em>puestas</em>.</p>
+      <div class="claim__foot reveal" data-delay="1">
+        <a class="btn btn--dark" href="servicios.html">ver tratamientos</a>
+        <p class="small">Micropigmentaci&oacute;n pelo a pelo con t&eacute;cnica Hair Stroke, en un estudio de dos hermanas donde solo hay una clienta cada vez.</p>
+      </div>
     </div>
   </section>
 
   <!-- ===== Tres pilares ===== -->
   <section class="section section--tight">
     <div class="wrap">
-      <div class="cycle__head" style="margin-bottom:clamp(2rem,4vw,3rem)">
-        <span class="eyebrow">qu&eacute; hacemos</span>
-        <h2 class="h2 reveal reveal--curtain" style="margin-top:.9rem">Un cuidado <em>completo</em> de la mirada</h2>
+      <div class="head reveal">
+        <span class="head__n">01</span>
+        <h2 class="h2 head__t">Un cuidado <em>completo</em> de la mirada</h2>
+        <p class="head__d">Tres formas de trabajar la ceja. Cu&aacute;l te toca no se decide por cat&aacute;logo: se decide mirando tu vello, tu piel y lo que quieres conseguir.</p>
       </div>
-      <div class="pillars">
+      <div class="pillars pillars--stagger">
         <a class="pillar reveal media-in" href="servicios.html#cejas">
           <img src="assets/img/cat-cejas.jpg" alt="Micropigmentaci&oacute;n de cejas" loading="lazy">
           <span class="pillar__label">Micropigmentaci&oacute;n</span>
@@ -173,17 +175,19 @@
   <!-- ===== Antes y despu&eacute;s ===== -->
   <section class="section" id="antes-despues">
     <div class="wrap" data-tabs>
-      <div class="ba__head">
-        <span class="eyebrow">resultados</span>
-        <h2 class="h2 reveal reveal--curtain" style="margin-top:.9rem">Antes / <em>despu&eacute;s</em></h2>
+      <div class="head reveal">
+        <span class="head__n">02</span>
+        <h2 class="h2 head__t">Antes / <em>despu&eacute;s</em></h2>
+        <p class="head__d">Arrastra la fotograf&iacute;a para ver el cambio. Cada caso es distinto: el resultado depende de tu piel y de tu vello de partida.</p>
       </div>
 
-      <div class="ba__cases" role="tablist" aria-label="Casos de antes y despu&eacute;s">
-        <button type="button" role="tab" id="ba-tab-1" aria-controls="ba-panel-1" aria-selected="true">recuperar la forma</button>
-        <button type="button" role="tab" id="ba-tab-2" aria-controls="ba-panel-2" aria-selected="false">ganar densidad</button>
-        <button type="button" role="tab" id="ba-tab-3" aria-controls="ba-panel-3" aria-selected="false">corregir asimetr&iacute;as</button>
-      </div>
-
+      <div class="ba--wide">
+        <div class="ba__cases" role="tablist" aria-label="Casos de antes y despu&eacute;s">
+          <button type="button" role="tab" id="ba-tab-1" aria-controls="ba-panel-1" aria-selected="true">Recuperar la forma</button>
+          <button type="button" role="tab" id="ba-tab-2" aria-controls="ba-panel-2" aria-selected="false">Ganar densidad</button>
+          <button type="button" role="tab" id="ba-tab-3" aria-controls="ba-panel-3" aria-selected="false">Corregir asimetr&iacute;as</button>
+        </div>
+        <div>
       <div id="ba-panel-1" role="tabpanel" aria-labelledby="ba-tab-1">
         <div class="ba__frame reveal" data-ba>
           <img src="assets/img/gal-1.jpg" alt="Cejas antes del tratamiento">
@@ -195,7 +199,7 @@
         </div>
       </div>
       <div id="ba-panel-2" role="tabpanel" aria-labelledby="ba-tab-2" hidden>
-        <div class="ba__frame" data-ba>
+        <div class="ba__frame reveal" data-ba>
           <img src="assets/img/gal-4.jpg" alt="Cejas antes del tratamiento">
           <div class="ba__after"><img src="assets/img/gal-5.jpg" alt="Cejas despu&eacute;s del tratamiento"></div>
           <span class="ba__handle" aria-hidden="true"></span>
@@ -205,7 +209,7 @@
         </div>
       </div>
       <div id="ba-panel-3" role="tabpanel" aria-labelledby="ba-tab-3" hidden>
-        <div class="ba__frame" data-ba>
+        <div class="ba__frame reveal" data-ba>
           <img src="assets/img/met-1.jpg" alt="Cejas antes del tratamiento">
           <div class="ba__after"><img src="assets/img/met-3.jpg" alt="Cejas despu&eacute;s del tratamiento"></div>
           <span class="ba__handle" aria-hidden="true"></span>
@@ -214,47 +218,58 @@
           <span class="ba__tag ba__tag--b">despu&eacute;s</span>
         </div>
       </div>
-
-      <p class="small ba__note">Arrastra para comparar. Cada caso es distinto: el resultado depende de tu piel y de tu vello de partida.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ===== El ciclo del m&eacute;todo ===== -->
+  <!-- ===== El m&eacute;todo ===== -->
   <section class="section cycle" id="metodo">
     <div class="wrap">
-      <div class="cycle__head">
-        <span class="eyebrow">el m&eacute;todo bela</span>
-        <h2 class="h2 reveal reveal--curtain">Cuatro pasos, <em>sin prisa</em></h2>
-        <p class="lead reveal" data-delay="1" style="margin-top:1rem">Ninguna cita empieza por el derm&oacute;grafo. Primero se mira, se escucha y se dibuja.</p>
+      <div class="head reveal">
+        <span class="head__n">03</span>
+        <h2 class="h2 head__t">Cuatro pasos, <em>sin prisa</em></h2>
+        <p class="head__d">Ninguna cita empieza por el derm&oacute;grafo. Primero se mira, se escucha y se dibuja.</p>
       </div>
-      <ol class="cycle__ring">
-        <li class="cycle__step reveal"><h3><em>Valoraci&oacute;n</em></h3><p>Escuchamos qu&eacute; te gustar&iacute;a conseguir y valoramos tu piel, tu vello y la forma de partida.</p></li>
-        <li class="cycle__step reveal" data-delay="1"><h3><em>Dise&ntilde;o</em></h3><p>Dibujamos la ceja sobre tu rostro, a partir de tus facciones, hasta que la sientas tuya.</p></li>
-        <li class="cycle__step reveal" data-delay="2"><h3><em>Tratamiento</em></h3><p>Pelo a pelo en el Hair Stroke, con la precisi&oacute;n que pide una t&eacute;cnica que busca pasar desapercibida.</p></li>
-        <li class="cycle__step reveal" data-delay="3"><h3><em>Seguimiento</em></h3><p>Te damos la pauta de cuidados y estamos pendientes de c&oacute;mo evoluciona el resultado.</p></li>
-      </ol>
+
+      <div class="pin" data-pin>
+        <div class="pin__side">
+          <figure class="media-in reveal"><img src="assets/img/met-2.jpg" alt="Dise&ntilde;o de la ceja antes de pigmentar" loading="lazy"></figure>
+          <p class="small" style="color:rgba(246,241,236,.6);margin-top:1rem">El estudio previo y el dise&ntilde;o ocupan lo que tengan que ocupar.</p>
+        </div>
+        <ol class="pin__list">
+          <li class="pin__step"><b>01</b>
+            <div><h3><em>Valoraci&oacute;n</em></h3><p>Escuchamos qu&eacute; te gustar&iacute;a conseguir y valoramos tu piel, tu vello y la forma de partida. De ah&iacute; sale si el Hair Stroke es lo tuyo o no.</p></div>
+          </li>
+          <li class="pin__step"><b>02</b>
+            <div><h3><em>Dise&ntilde;o</em></h3><p>Dibujamos la ceja sobre tu rostro, a partir de tus facciones y proporciones. No se pigmenta nada hasta que la sientas tuya.</p></div>
+          </li>
+          <li class="pin__step"><b>03</b>
+            <div><h3><em>Tratamiento</em></h3><p>Pelo a pelo, siguiendo la direcci&oacute;n de tu vello, con la precisi&oacute;n que pide una t&eacute;cnica que busca pasar desapercibida.</p></div>
+          </li>
+          <li class="pin__step"><b>04</b>
+            <div><h3><em>Seguimiento</em></h3><p>Te damos la pauta de cuidados por escrito y estamos pendientes de c&oacute;mo cicatriza. El retoque se valora cuando toca, no antes.</p></div>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <!-- ===== Tratamientos ===== -->
   <section class="section" id="tratamientos">
-    <div class="wrap" data-tabs>
-      <div class="section-head">
-        <span class="dot"></span>
-        <div class="tabs" role="tablist" aria-label="Categor&iacute;as de tratamientos">
-          <button type="button" role="tab" id="tab-ahora" aria-controls="panel-ahora" aria-selected="true">tratamientos</button>
-          <button type="button" role="tab" id="tab-soon" aria-controls="panel-soon" aria-selected="false">pr&oacute;ximamente</button>
-        </div>
-        <span class="spacer"></span>
-        <a class="link-arrow" href="servicios.html">ver la carta completa <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg></a>
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="head__n">04</span>
+        <h2 class="h2 head__t">La carta, <em>de un vistazo</em></h2>
+        <p class="head__d">Arrastra la fila. No hay precios cerrados: cada presupuesto sale del estudio previo, porque no todas las cejas piden el mismo trabajo. <a href="servicios.html">Ver la carta completa</a></p>
       </div>
 
-      <div class="tgrid" id="panel-ahora" role="tabpanel" aria-labelledby="tab-ahora">
+      <div class="rail" data-rail>
         <article class="tcard">
           <a href="servicios.html#cejas">
             <div class="tcard__media media-in reveal">
               <span class="tcard__tag">Micropigmentaci&oacute;n</span>
-              <img src="assets/img/card-hairstroke.jpg" alt="Cejas realistas con t&eacute;cnica Hair Stroke" loading="lazy">
+              <img src="assets/img/card-hairstroke.jpg" alt="Cejas realistas &middot; Hair Stroke" loading="lazy">
             </div>
             <div class="tcard__body">
               <h3>Cejas realistas &middot; Hair Stroke</h3>
@@ -278,7 +293,7 @@
           <a href="servicios.html#diseno">
             <div class="tcard__media media-in reveal" data-delay="2">
               <span class="tcard__tag">Dise&ntilde;o y color</span>
-              <img src="assets/img/card-henna.jpg" alt="Dise&ntilde;o y tinte de cejas con henna" loading="lazy">
+              <img src="assets/img/card-henna.jpg" alt="Dise&ntilde;o y tinte con henna" loading="lazy">
             </div>
             <div class="tcard__body">
               <h3>Dise&ntilde;o y tinte con henna</h3>
@@ -290,7 +305,7 @@
           <a href="metodo.html">
             <div class="tcard__media media-in reveal" data-delay="3">
               <span class="tcard__tag">En cada cita</span>
-              <img src="assets/img/card-diseno.jpg" alt="Estudio previo y dise&ntilde;o de la ceja" loading="lazy">
+              <img src="assets/img/card-diseno.jpg" alt="Estudio previo y dise&ntilde;o" loading="lazy">
             </div>
             <div class="tcard__body">
               <h3>Estudio previo y dise&ntilde;o</h3>
@@ -298,12 +313,9 @@
             </div>
           </a>
         </article>
-      </div>
-
-      <div class="tgrid" id="panel-soon" role="tabpanel" aria-labelledby="tab-soon" hidden>
         <article class="tcard tcard--soon">
           <a href="servicios.html#proximamente">
-            <div class="tcard__media media-in reveal">
+            <div class="tcard__media media-in reveal" data-delay="3">
               <span class="tcard__tag">Densidad capilar</span>
               <img src="assets/img/srv-capilar.svg" alt="Micropigmentaci&oacute;n capilar" loading="lazy">
             </div>
@@ -315,9 +327,9 @@
         </article>
         <article class="tcard tcard--soon">
           <a href="servicios.html#proximamente">
-            <div class="tcard__media media-in reveal" data-delay="1">
+            <div class="tcard__media media-in reveal" data-delay="3">
               <span class="tcard__tag">Micropigmentaci&oacute;n</span>
-              <img src="assets/img/srv-powder.svg" alt="Micropigmentaci&oacute;n de labios" loading="lazy">
+              <img src="assets/img/srv-powder.svg" alt="Labios" loading="lazy">
             </div>
             <div class="tcard__body">
               <h3>Labios</h3>
@@ -327,9 +339,9 @@
         </article>
         <article class="tcard tcard--soon">
           <a href="servicios.html#proximamente">
-            <div class="tcard__media media-in reveal" data-delay="2">
-              <span class="tcard__tag">Profesionales invitadas</span>
-              <img src="assets/img/srv-colab.jpg" alt="Servicios de belleza complementarios" loading="lazy">
+            <div class="tcard__media media-in reveal" data-delay="3">
+              <span class="tcard__tag">Invitadas</span>
+              <img src="assets/img/srv-colab.jpg" alt="Otros servicios de belleza" loading="lazy">
             </div>
             <div class="tcard__body">
               <h3>Otros servicios de belleza</h3>
@@ -337,16 +349,23 @@
             </div>
           </a>
         </article>
+        <div class="rail__end">
+          <a class="link-arrow" href="servicios.html">ver la carta completa
+            <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+          </a>
+        </div>
       </div>
+      <div class="rail-bar" aria-hidden="true"><span></span></div>
     </div>
   </section>
 
   <!-- ===== Ventajas ===== -->
   <section class="section section--tight">
     <div class="wrap">
-      <div class="cycle__head" style="margin-bottom:clamp(2rem,4vw,3rem)">
-        <span class="eyebrow">por qu&eacute; bela</span>
-        <h2 class="h2 reveal reveal--curtain" style="margin-top:.9rem">Nuestras <em>ventajas</em></h2>
+      <div class="head reveal">
+        <span class="head__n">05</span>
+        <h2 class="h2 head__t">Por qu&eacute; <em>aqu&iacute;</em></h2>
+        <p class="head__d">Tres cosas que no negociamos, y que explican por qu&eacute; una cita dura lo que dura.</p>
       </div>
       <div class="perks">
         <div class="perk reveal">
@@ -403,9 +422,10 @@
   <!-- ===== Para quién es ===== -->
   <section class="section" id="para-quien">
     <div class="wrap">
-      <div class="section-head">
-        <span class="dot"></span>
-        <h2 class="h2 reveal reveal--curtain">Para <em>quién</em> es</h2>
+      <div class="head reveal">
+        <span class="head__n">06</span>
+        <h2 class="h2 head__t">Para <em>qui&eacute;n</em> es</h2>
+        <p class="head__d">Si te reconoces en alguno de estos casos, el Hair Stroke probablemente sea para ti.</p>
         <span class="spacer"></span>
         <a class="link-arrow" href="contacto.html">resolver mis dudas
           <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
@@ -449,9 +469,10 @@
   <!-- ===== FAQ ===== -->
   <section class="section section--tight" id="faq">
     <div class="wrap">
-      <div class="section-head">
-        <span class="dot"></span>
-        <h2 class="h2 reveal reveal--curtain">¿Tienes dudas? <em>Te las resolvemos</em></h2>
+      <div class="head reveal">
+        <span class="head__n">07</span>
+        <h2 class="h2 head__t">&iquest;Tienes dudas? <em>Te las resolvemos</em></h2>
+        <p class="head__d">Y si te queda alguna, mand&aacute;nosla por WhatsApp con una foto de tus cejas con luz natural.</p>
       </div>
       <div class="faq">
         <div class="faq__item">

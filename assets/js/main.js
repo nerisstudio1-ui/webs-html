@@ -176,6 +176,99 @@
     pintar();
   }
 
+  /* --- Fila de tratamientos: se arrastra con el ratón --------------------
+     En táctil el navegador ya lo hace solo; esto es para el escritorio, más
+     la barra de abajo que dice por dónde vas. */
+  document.querySelectorAll('[data-rail]').forEach(function (rail) {
+    var barra = rail.parentNode.querySelector('.rail-bar span');
+
+    var pintarBarra = function () {
+      if (!barra) return;
+      var recorrido = rail.scrollWidth - rail.clientWidth;
+      var visible = rail.clientWidth / rail.scrollWidth;
+      barra.style.width = (visible * 100).toFixed(1) + '%';
+      var avance = recorrido > 0 ? rail.scrollLeft / recorrido : 0;
+      barra.style.transform = 'translateX(' + (avance * (1 / visible - 1) * 100).toFixed(1) + '%)';
+    };
+    rail.addEventListener('scroll', pintarBarra, { passive: true });
+    window.addEventListener('resize', pintarBarra);
+    pintarBarra();
+
+    var arrastrando = false, desdeX = 0, desdeScroll = 0, movido = 0;
+    rail.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'touch') return;
+      arrastrando = true; movido = 0;
+      desdeX = e.clientX; desdeScroll = rail.scrollLeft;
+      rail.setPointerCapture(e.pointerId);
+    });
+    rail.addEventListener('pointermove', function (e) {
+      if (!arrastrando) return;
+      var dx = e.clientX - desdeX;
+      movido = Math.max(movido, Math.abs(dx));
+      if (movido > 4) rail.classList.add('is-dragging');
+      rail.scrollLeft = desdeScroll - dx;
+    });
+    var soltar = function () {
+      arrastrando = false;
+      /* el clic se rehabilita después, para que arrastrar no abra el enlace */
+      setTimeout(function () { rail.classList.remove('is-dragging'); }, 0);
+    };
+    rail.addEventListener('pointerup', soltar);
+    rail.addEventListener('pointercancel', soltar);
+  });
+
+  /* --- El método: se enciende el paso que estás leyendo ------------------- */
+  var pin = document.querySelector('[data-pin]');
+  if (pin) {
+    var pasos = [].slice.call(pin.querySelectorAll('.pin__step'));
+    if (pasos.length) {
+      if (reduced || !('IntersectionObserver' in window)) {
+        pasos.forEach(function (el) { el.classList.add('is-on'); });
+      } else {
+        var ioPasos = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle('is-on', entry.isIntersecting);
+          });
+        }, { rootMargin: '-35% 0px -35% 0px' });
+        pasos.forEach(function (el) { ioPasos.observe(el); });
+      }
+    }
+  }
+
+  /* --- La franja de marca sigue al desplazamiento -------------------------
+     Al bajar acelera y va hacia la izquierda; al subir, al revés. Parada, se
+     queda a su velocidad de crucero. */
+  var franja = document.querySelector('.marquee__track');
+  if (franja && !reduced) {
+    var ultimaY = window.scrollY, empuje = 0, velocidad = 0, x = 0, previo = 0;
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY;
+      empuje = Math.max(-28, Math.min(28, (y - ultimaY) * .55));
+      ultimaY = y;
+    }, { passive: true });
+
+    var mitad = 0;
+    var medir = function () { mitad = franja.scrollWidth / 2; };
+    medir();
+    window.addEventListener('resize', medir);
+
+    var animar = function (ahora) {
+      var dt = previo ? Math.min(64, ahora - previo) : 16;
+      previo = ahora;
+      velocidad += (empuje - velocidad) * .08;
+      empuje *= .9;
+      x -= (1.1 + velocidad) * (dt / 16);
+      if (mitad) {
+        if (x <= -mitad) x += mitad;
+        if (x > 0) x -= mitad;
+      }
+      franja.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
+      requestAnimationFrame(animar);
+    };
+    franja.style.animation = 'none';
+    requestAnimationFrame(animar);
+  }
+
   /* --- Newsletter (demostración, sin backend) --------------------------- */
   document.querySelectorAll('[data-demo-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {

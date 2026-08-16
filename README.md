@@ -155,6 +155,23 @@ El espaciado entre letras es una escala con nombre, no un número suelto:
 La palabra destacada toma su color de `--accent`: granate sobre crema y moka
 en los bloques de fondo oscuro, donde el granate se perdería.
 
+### El criterio de la portada
+
+La portada no es una sucesión de bloques centrados: es lo que la haría
+parecer una plantilla. Cada sección entra por un sitio distinto.
+
+- **Nada va centrado.** Los encabezados son asimétricos: número al margen,
+  titular a la izquierda, descripción a la derecha, y una línea fina arriba.
+  La clase es `.head`, con `.head__n`, `.head__t` y `.head__d`.
+- **Las secciones van numeradas** (01 a 07), en cursiva serif. Es lo que le da
+  el aire de índice de revista.
+- **Un solo momento de letra grande.** El bloque `.claim` es el único sitio
+  donde la tipografía grita, con las fotografías engarzadas dentro de la
+  frase. El resto de la página es discreto a propósito: si todo grita, no
+  destaca nada.
+- **Las tarjetas no miden todas igual.** Los tres pilares van escalonados
+  (`.pillars--stagger`) y las de la fila alternan altura.
+
 ### Crecer sin rehacer la web
 
 La estructura está pensada para ampliarse:
@@ -171,6 +188,15 @@ La estructura está pensada para ampliarse:
 El movimiento sigue un mismo criterio en toda la web: entradas largas y
 suaves, nada de rebotes ni desplazamientos bruscos.
 
+- **La fila de tratamientos se arrastra** con el ratón (en táctil ya lo hace
+  el navegador) y una barra debajo dice por dónde vas. Se sale del contenedor
+  por los dos lados a propósito: la fila muere en el borde de la pantalla.
+- **En el método, la columna izquierda se queda quieta** mientras los cuatro
+  pasos suben, y se enciende el que estás leyendo.
+- **La franja de marca sigue al desplazamiento**: al bajar acelera, al subir
+  va hacia el otro lado, y parada vuelve a su velocidad de crucero.
+- **El comparador de antes y después** es un `input` de rango invisible sobre
+  la fotografía, así que funciona con ratón, con el dedo y con el teclado.
 - `.reveal` — el bloque aparece subiendo al entrar en pantalla.
 - `.reveal--curtain` — los titulares se descubren de arriba abajo.
 - `.media-in` — las fotografías entran con un ligero cambio de escala.
