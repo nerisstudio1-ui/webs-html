@@ -1155,32 +1155,39 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    sitio distinto: un numero al margen, un titular enorme desbordado, una fila
    que se arrastra, una columna que se queda quieta mientras el resto sube.  */
 
-/* Encabezado asimetrico, con su numero de orden ------------------------- */
+/* Encabezado de seccion --------------------------------------------------
+   Centrado, con el numero de orden encima como un folio de revista y el
+   titular en grande. Debajo, una linea que explica de que va la seccion. */
 .head {
-  display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, .85fr);
-  gap: clamp(1rem, 3vw, 3rem);
-  align-items: end;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-  margin-bottom: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  margin-bottom: clamp(2.25rem, 5vw, 4rem);
 }
 .head__n {
+  display: block;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
-  color: var(--burgundy);
+  font-size: .95rem;
+  color: var(--mocha);
   line-height: 1;
+  margin-bottom: 1rem;
 }
-.head__t { margin: 0; }
-.head__d { color: var(--muted); font-size: .88rem; max-width: 40ch; }
+.head__t {
+  margin: 0 auto;
+  font-size: clamp(1.6rem, 3.2vw, 2.7rem);
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.head__d {
+  color: var(--muted);
+  font-size: .92rem;
+  max-width: 52ch;
+  margin: 1.1rem auto 0;
+  text-wrap: balance;
+}
 .head__d a { border-bottom: 1px solid var(--line); }
-/* el enlace suelto de algunos encabezados baja a la tercera columna */
+/* el enlace suelto de algunos encabezados va debajo, centrado */
 .head .spacer { display: none; }
-.head .link-arrow { grid-column: 3; justify-self: start; margin-top: .9rem; }
-@media (max-width: 900px) { .head .link-arrow { grid-column: 2; } }
-.cycle .head { border-color: rgba(246,241,236,.24); }
-.cycle .head__n { color: var(--mocha); }
+.head .link-arrow { margin-top: 1.25rem; }
 .cycle .head__d { color: rgba(246,241,236,.72); }
 
 /* La declaracion, a tamano de cartel ------------------------------------- */
@@ -1213,11 +1220,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .claim__foot .small { max-width: 32ch; }
 
-/* Tres pilares, escalonados --------------------------------------------- */
-.pillars--stagger { align-items: start; }
-.pillars--stagger .pillar:nth-child(1) { margin-top: clamp(1.5rem, 5vw, 5rem); }
-.pillars--stagger .pillar:nth-child(2) { aspect-ratio: 3 / 4; }
-.pillars--stagger .pillar:nth-child(3) { margin-top: clamp(3rem, 9vw, 9rem); }
+/* Los tres pilares van alineados y a la misma altura, como en la referencia */
+.pillars--stagger { align-items: stretch; }
 
 /* Fila que se arrastra --------------------------------------------------- */
 .rail {
@@ -1281,10 +1285,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .pin__step p { font-size: .88rem; opacity: .78; max-width: 42ch; }
 
 /* Antes y despues, a sangre ----------------------------------------------- */
-.ba--wide { display: grid; grid-template-columns: minmax(0, .28fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
-.ba--wide .ba__cases { flex-direction: column; align-items: flex-start; justify-content: flex-start; margin: 0; }
-.ba--wide .ba__cases button { width: 100%; text-align: left; border-radius: 0; border: 0; border-bottom: 1px solid var(--line); padding: 1em 0; }
-.ba--wide .ba__cases button[aria-selected="true"] { background: none; color: var(--burgundy); border-color: var(--burgundy); }
 .ba--wide .ba__frame { max-width: none; aspect-ratio: 16 / 10; }
 
 /* --- 19d. Acabado --------------------------------------------------------
@@ -1574,10 +1574,7 @@ body::after {
   .collage__b { max-width: 60%; margin-left: auto; }
   .collage__c { max-width: 68%; }
   .posts, .grid-3 { grid-template-columns: 1fr; }
-  .head { grid-template-columns: 2.5rem minmax(0, 1fr); }
-  .head__d { grid-column: 2; }
   .claim__text { font-size: clamp(1.9rem, 10vw, 3rem); max-width: none; }
-  .pillars--stagger .pillar { margin-top: 0 !important; aspect-ratio: 16 / 10 !important; }
   .pin { grid-template-columns: 1fr; }
   .pin__side { position: static; }
   .pin__step { opacity: 1; grid-template-columns: 2.5rem minmax(0, 1fr); padding-block: 2rem; }
@@ -1588,7 +1585,6 @@ body::after {
   .founders__img img { min-height: 0; aspect-ratio: 4 / 3; }
   .about-hero__portrait { width: min(72%, 300px); margin-top: clamp(-160px, -20vh, -110px); }
   .booking { grid-template-columns: 1fr; }
-  .ba--wide { grid-template-columns: 1fr; }
   .ba--wide .ba__frame { aspect-ratio: 4 / 3; }
   .pillars { grid-template-columns: 1fr; }
   .pillar { aspect-ratio: 16 / 10; }

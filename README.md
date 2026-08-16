@@ -202,17 +202,19 @@ objetivo**. Aquí, pedir cita. De ahí tres decisiones:
 La portada no es una sucesión de bloques centrados: es lo que la haría
 parecer una plantilla. Cada sección entra por un sitio distinto.
 
-- **Nada va centrado.** Los encabezados son asimétricos: número al margen,
-  titular a la izquierda, descripción a la derecha, y una línea fina arriba.
-  La clase es `.head`, con `.head__n`, `.head__t` y `.head__d`.
+- **Los encabezados van centrados**, como en la web de referencia: el número
+  de orden encima en cursiva serif, el titular en grande y debajo una línea
+  que explica de qué va la sección. La clase es `.head`, con `.head__n`,
+  `.head__t` y `.head__d`.
 - **Las secciones van numeradas** (01 a 07), en cursiva serif. Es lo que le da
   el aire de índice de revista.
 - **Un solo momento de letra grande.** El bloque `.claim` es el único sitio
   donde la tipografía grita, con las fotografías engarzadas dentro de la
   frase. El resto de la página es discreto a propósito: si todo grita, no
   destaca nada.
-- **Las tarjetas no miden todas igual.** Los tres pilares van escalonados
-  (`.pillars--stagger`) y las de la fila alternan altura.
+- **La fila de tratamientos alterna altura**, para que no parezca una
+  plantilla. Los tres pilares, en cambio, van alineados: así están en la
+  referencia.
 
 ### El trato de las fotografías
 
