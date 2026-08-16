@@ -139,6 +139,11 @@ El espaciado entre letras es una escala con nombre, no un número suelto:
 | `--track-lg` | `.22em` | titulares (`.display`, `.h2`) |
 | `--track-xl` | `.34em` | menú, anuncio, rótulos pequeños y etiquetas |
 
+El cuerpo es deliberadamente pequeño: el titular apenas es mayor que el texto
+corrido y lo que los separa son las mayúsculas y el espaciado, no el tamaño.
+Es lo que da el aire discreto de las webs de estudio de referencia, donde
+manda la fotografía y la letra acompaña.
+
 Y el reparto de pesos:
 
 - **400** en titulares y texto corrido.

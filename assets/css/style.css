@@ -35,7 +35,7 @@
   /* espaciado entre letras: la escala que da el aire de revista */
   --track-sm: .10em;   /* botones, pies de foto */
   --track-md: .16em;   /* menú, epígrafes */
-  --track-lg: .22em;   /* titulares */
+  --track-lg: .24em;   /* titulares */
   --track-xl: .34em;   /* rótulos pequeños y marcas */
 
   /* medidas */
@@ -84,8 +84,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .display {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(1.5rem, 3.4vw, 2.9rem);
-  line-height: 1.16;
+  font-size: clamp(1rem, 1.7vw, 1.45rem);
+  line-height: 1.55;
   letter-spacing: var(--track-lg);
   text-transform: uppercase;
 }
@@ -93,8 +93,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .h2 {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
-  line-height: 1.35;
+  font-size: clamp(.85rem, 1.2vw, 1rem);
+  line-height: 1.5;
   letter-spacing: var(--track-lg);
   text-transform: uppercase;
 }
@@ -312,7 +312,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .mobile-nav__top { display: flex; align-items: center; justify-content: space-between; }
 .mobile-nav__links { display: flex; flex-direction: column; gap: .35rem; margin-top: auto; }
 .mobile-nav__links a {
-  font-size: clamp(1.3rem, 6.5vw, 2rem);
+  font-size: clamp(.95rem, 4vw, 1.25rem);
   font-weight: 400;
   letter-spacing: var(--track-lg);
   text-transform: uppercase;
@@ -353,7 +353,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--white);
   max-width: 34ch;
 }
-.hero__content .display { margin-bottom: .8rem; }
+.hero__content .display { margin-bottom: 1.2rem; }
 .hero__content p { font-size: .92rem; max-width: 40ch; margin-bottom: 1.6rem; opacity: .92; }
 .hero__slides { position: absolute; inset: 0; }
 .hero__slide {
@@ -507,10 +507,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   z-index: 2;
   writing-mode: vertical-rl;
   color: var(--white);
-  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-size: clamp(.7rem, .95vw, .85rem);
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: var(--track-lg);
+  letter-spacing: var(--track-xl);
 }
 .cat .btn {
   position: absolute;
@@ -537,8 +537,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   /* El unico texto largo que no va en mayusculas de la portada: un parrafo
      entero espaciado se vuelve ilegible. Aqui manda el tamano, no el track. */
   font-weight: 400;
-  font-size: clamp(1.05rem, 1.9vw, 1.6rem);
-  line-height: 1.55;
+  font-size: clamp(.95rem, 1.35vw, 1.15rem);
+  line-height: 1.75;
   letter-spacing: .005em;
   color: var(--burgundy);
   margin-inline: auto;
@@ -566,7 +566,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); margin-top: clamp(2.5rem, 6vw, 5rem); }
 .step { border-top: 1px solid var(--line); padding-top: 1.1rem; }
-.step b { display: block; font-weight: 400; font-size: 1.4rem; letter-spacing: var(--track-lg); color: var(--burgundy); margin-bottom: .6rem; }
+.step b { display: block; font-weight: 400; font-size: .95rem; letter-spacing: var(--track-xl); color: var(--burgundy); margin-bottom: .8rem; }
 .step h3 { font-size: .74rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; margin-bottom: .6rem; }
 .step p { font-size: .85rem; color: var(--muted); }
 
@@ -595,7 +595,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); }
 .quote { border-top: 1px solid var(--line); padding-top: 1.5rem; }
 .quote .stars { color: var(--burgundy); letter-spacing: .2em; font-size: .8rem; margin-bottom: .9rem; }
-.quote blockquote { font-weight: 400; font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
+.quote blockquote { font-weight: 400; font-size: .95rem; line-height: 1.7; margin-bottom: 1rem; }
 .quote figcaption { font-size: .62rem; letter-spacing: var(--track-md); text-transform: uppercase; color: var(--muted); }
 
 /* --- 14. FAQ ----------------------------------------------------------- */
@@ -880,7 +880,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .tabs button { font-size: .82rem; }
   .announce .wrap { gap: .75rem; }
   .announce-track { min-width: 0; flex: 1; font-size: .54rem; letter-spacing: var(--track-md); }
-  /* con tanto espaciado entre letras, los titulares largos necesitan aire */
   .display { letter-spacing: var(--track-md); }
 }
 
