@@ -10,10 +10,24 @@ y tipografía elegante. Las imágenes son las protagonistas de cada bloque.
 
 ## Páginas
 
+### Landing y páginas, las dos cosas
+
 `index.html` es una **landing**: una sola página que lleva a un sitio, pedir
 cita. El menú no salta de archivo, salta de sección, y el formulario está
-dentro. Las otras cuatro páginas siguen existiendo como detalle ampliado y se
-enlazan desde el pie.
+dentro.
+
+Las otras cuatro páginas **siguen existiendo** como detalle ampliado. No es
+indecisión, es que cada una sirve para un tráfico distinto:
+
+- **Instagram** manda gente al enlace de la bio. Ahí gana la landing: una
+  pantalla, un objetivo, sin menú donde perderse.
+- **Google** necesita páginas. Con una sola se compite por una palabra; con
+  cinco, por «micropigmentación de cejas», «laminado», «hair stroke» y el
+  nombre de la ciudad cuando haya dirección.
+
+Desde la landing se llega a ellas solo por dos sitios, los que amplían de
+verdad: «ver la carta completa» y «nuestra historia». Y desde el pie. Su menú
+devuelve siempre a la landing, a la sección que toca.
 
 | Archivo | Contenido |
 |---|---|
