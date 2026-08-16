@@ -34,7 +34,7 @@ devuelve siempre a la landing, a la sección que toca.
 | `index.html` | **Landing.** Hero, franja de marca, declaración, 01 pilares, 02 antes/después, llamada intermedia, 03 el método, 04 la carta, 05 por qué aquí, el estudio por dentro, 06 para quién es, 07 dudas, las hermanas, 08 pedir cita y cierre |
 | `servicios.html` | Cejas realistas (Hair Stroke), estudio previo y diseño, laminado y henna; sección «próximamente» y criterio de tarifas |
 | `metodo.html` | Las 4 fases del método, cuidados durante la cicatrización y tipos de piel |
-| `estudio.html` | La historia de las dos hermanas, filosofía, especialización, galería y hacia dónde va el estudio |
+| `estudio.html` | **Sobre nosotras**, con cabecera de revista: la fotografía del estudio a sangre en blanco y negro, el rótulo grande encima y el retrato de las dos hermanas montado sobre las dos cosas. Después el relato a dos columnas con su cita, la especialización, la galería y el cierre con el nombre del estudio |
 | `contacto.html` | Formulario de cita, contacto directo, hueco para la reserva online e indicaciones previas |
 
 ## Ver la web

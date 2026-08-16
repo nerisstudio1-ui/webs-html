@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<header class="header header--over">
+<header class="header header--plain">
   <div class="wrap">
     <a class="logo logo--img" href="index.html" aria-label="Bela Brow Studio and Beauty — inicio">
       <img class="logo-light" src="assets/brand/logo-cream.png" alt="Bela Brow Studio and Beauty" width="768" height="313">
@@ -73,44 +73,54 @@
 
 <main>
 
-  <section class="page-head">
+  <!-- ===== Cabecera ===== -->
+  <section class="about-hero">
+    <div class="about-hero__media">
+      <img class="about-hero__bg tone" src="assets/img/hero-4.jpg" alt="El estudio de Bela" fetchpriority="high">
+    </div>
+    <h1 class="about-hero__t">Sobre <em>nosotras</em></h1>
+    <figure class="about-hero__portrait media-in reveal">
+      <img src="assets/img/about-hermanas.jpg" alt="Las dos hermanas que fundaron Bela">
+    </figure>
+  </section>
+
+  <!-- ===== La frase que abre ===== -->
+  <section class="section section--tight about-claim">
     <div class="wrap">
-      <p class="breadcrumb"><a href="index.html">inicio</a> / sobre bela</p>
-      <span class="eyebrow">quiénes somos</span>
-      <h1 class="display reveal reveal--curtain">Bela nace<br>de <em>nosotras</em>.</h1>
-      <p class="lead" style="margin-top:1.25rem">Dos hermanas con una pasión en común y muchas ganas de crear algo juntas.</p>
+      <span class="eyebrow">micropigmentaci&oacute;n de cejas</span>
+      <p class="reveal">Somos dos hermanas con una pasi&oacute;n en com&uacute;n y muchas ganas de <em>crear algo juntas</em>.</p>
     </div>
   </section>
 
-  <!-- ===== La historia ===== -->
+  <!-- ===== El relato ===== -->
   <section class="section">
-    <div class="wrap">
-      <div class="split">
-        <figure class="reveal media-in" data-parallax="22"><img src="assets/img/about-hermanas.jpg" alt="Las fundadoras de Bela" loading="lazy"></figure>
-        <div class="reveal" data-delay="1">
-          <div class="rule-gold"></div>
-          <span class="eyebrow">nuestra historia</span>
-          <h2 class="h2 reveal reveal--curtain" style="margin:.75rem 0 1rem">Un proyecto de <em>hermanas</em></h2>
-          <p class="lead">Lo que empezó como una ilusión compartida fue tomando forma hasta convertirse en un proyecto con el que hoy nos sentimos totalmente identificadas.</p>
-          <p class="lead" style="margin-top:1rem">Desde el principio sabíamos que queríamos hacer las cosas de una manera muy concreta: con tiempo, dedicación y poniendo especial atención en cada persona y en cada detalle.</p>
-          <p class="lead" style="margin-top:1rem">Para nosotras, Bela es mucho más que trabajar juntas. Es un proyecto que compartimos como hermanas y que estamos construyendo con muchísima ilusión, sin perder la cercanía y el cuidado con los que empezó todo.</p>
-        </div>
+    <div class="wrap about-cols">
+      <div class="about-cols__text reveal">
+        <p>Lo que empez&oacute; como una ilusi&oacute;n compartida fue tomando forma hasta convertirse en un proyecto con el que hoy nos sentimos totalmente identificadas. Bela no naci&oacute; de un plan de negocio: naci&oacute; de querer hacer las cosas de una manera concreta.</p>
+        <p>Desde el principio sab&iacute;amos que quer&iacute;amos trabajar con tiempo, con dedicaci&oacute;n y poniendo especial atenci&oacute;n en cada persona y en cada detalle. Por eso atendemos a una clienta cada vez, sin solapar citas, y el estudio previo ocupa lo que tenga que ocupar.</p>
+
+        <blockquote>Nos apasiona el mundo de la belleza, pero sobre todo creemos en una belleza natural, cuidada y personalizada.</blockquote>
+
+        <p>Estamos especializadas en micropigmentaci&oacute;n de cejas con t&eacute;cnica Hair Stroke, la que reproduce el vello pelo a pelo. No buscamos que se note el trabajo: buscamos que la ceja parezca tuya, que se integre con tus facciones y que siga siendo la misma al salir del gimnasio.</p>
+        <p>A esa especializaci&oacute;n sumamos el cuidado y el dise&ntilde;o de la ceja natural &mdash;laminado y henna&mdash; y seguimos form&aacute;ndonos para ampliar lo que podemos ofrecer sin renunciar a hacerlo bien.</p>
+      </div>
+
+      <div class="about-cols__aside reveal" data-delay="1">
+        <figure class="media-in"><img class="tone" src="assets/img/about-trabajo.jpg" alt="Una de las fundadoras trabajando" loading="lazy"></figure>
+        <span class="eyebrow">lo que nos importa</span>
+        <p>El tiempo sin prisa, el dise&ntilde;o antes que la t&eacute;cnica, el material de un solo uso y que salgas sabiendo exactamente c&oacute;mo cuidarte.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Filosofía ===== -->
-  <section class="section" style="background:var(--burgundy);color:var(--cream)">
-    <div class="wrap">
-      <div class="split" style="align-items:center">
-        <div class="reveal">
-          <div class="rule-gold"></div>
-          <span class="eyebrow" style="color:rgba(246,241,236,.6)">nuestra forma de entender la belleza</span>
-          <h2 class="h2 reveal reveal--curtain" style="margin:.75rem 0 1rem">Realzar, no <em>cambiar</em></h2>
-          <p class="lead" style="color:rgba(246,241,236,.85)">Nos apasiona el mundo de la belleza, pero sobre todo creemos en una belleza natural, cuidada y personalizada. No buscamos cambiar unos rasgos, sino trabajar sobre ellos para realzarlos y conseguir resultados que se integren de forma armoniosa en cada rostro.</p>
-        </div>
-        <figure class="reveal media-in" data-delay="1"><img class="tone" src="assets/img/about-trabajo.jpg" alt="Retrato de una de las fundadoras" loading="lazy"></figure>
-      </div>
+  <!-- ===== El estudio ===== -->
+  <section class="founders">
+    <div class="founders__img">
+      <img class="tone" src="assets/img/srv-estudio.jpg" alt="El estudio por dentro" loading="lazy">
+    </div>
+    <div class="founders__name">
+      <small>el estudio</small>
+      <b>Bela</b>
     </div>
   </section>
 
@@ -200,14 +210,6 @@
     </div>
   </section>
 
-  <section class="cta">
-    <img src="assets/img/cta-wide.svg" alt="" loading="lazy">
-    <div class="wrap">
-      <h2 class="display">Ven a <em>conocernos</em>.</h2>
-      <p>Escríbenos por WhatsApp y resolvemos tus dudas antes de que decidas nada.</p>
-      <a class="btn" href="contacto.html">reservar cita</a>
-    </div>
-  </section>
 
   <!-- ===== Llamada ===== -->
   <section class="band">

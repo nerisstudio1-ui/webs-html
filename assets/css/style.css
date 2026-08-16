@@ -1398,6 +1398,131 @@ body::after {
 .nav a[aria-current="true"]::after { transform: scaleX(1); transform-origin: left; }
 .nav a[aria-current="true"] { font-weight: 500; }
 
+/* --- 19f. Pagina «sobre nosotras» -----------------------------------------
+   Portada de revista: la fotografia del estudio a sangre en blanco y negro,
+   el rotulo grande encima y el retrato de las dos hermanas montado sobre las
+   dos cosas, tapando el pie del rotulo. Ese solape es lo que hace que parezca
+   maquetado y no apilado.                                                   */
+.about-hero {
+  position: relative;
+  /* el retrato sobresale por abajo: el bloque siguiente le deja sitio */
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+.about-hero__media { position: relative; }
+/* velo sobre la fotografia: sin el, el rotulo en crema no se lee sobre una
+   imagen clara */
+.about-hero__media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(28,18,16,.5) 0%, rgba(28,18,16,.34) 55%, rgba(28,18,16,.5) 100%);
+}
+.about-hero__bg {
+  width: 100%;
+  height: clamp(300px, 46vh, 520px);
+  object-fit: cover;
+}
+.about-hero__t {
+  position: absolute;
+  top: clamp(2rem, 7vw, 5.5rem);
+  left: 0; right: 0;
+  z-index: 2;
+  text-align: center;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 8vw, 6rem);
+  line-height: 1;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-shadow: 0 2px 30px rgba(28, 18, 16, .35);
+}
+.about-hero__t em { font-style: italic; text-transform: none; letter-spacing: 0; }
+.about-hero__portrait {
+  position: relative;
+  z-index: 3;
+  width: min(78%, 380px);
+  /* sube sobre la fotografia y le roba altura al bloque siguiente */
+  margin-top: clamp(-220px, -26vh, -140px);
+  margin-inline: auto;
+  margin-bottom: -3.5rem;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--cream-warm);
+  box-shadow: 0 24px 60px rgba(28, 18, 16, .22);
+}
+.about-hero__portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+/* La frase que abre, centrada y a dos voces */
+.about-claim { text-align: center; }
+.about-claim .eyebrow { display: block; margin-bottom: 1.25rem; }
+.about-claim p {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 3vw, 2.5rem);
+  line-height: 1.3;
+  max-width: 22ch;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+.about-claim p em { font-style: italic; }
+
+/* Dos columnas: el relato a la izquierda, la foto y su nota a la derecha */
+.about-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+.about-cols__text p { font-size: .92rem; line-height: 1.75; color: #4a3934; margin-bottom: 1.25rem; max-width: 46ch; }
+.about-cols__text blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.45;
+  color: var(--burgundy);
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0;
+  max-width: 30ch;
+}
+.about-cols__aside figure { margin-bottom: 1.5rem; }
+.about-cols__aside img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.about-cols__aside .eyebrow { display: block; margin-bottom: .75rem; }
+.about-cols__aside p {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.5;
+  max-width: 30ch;
+}
+
+/* Cierre a dos mitades: una fotografia y el nombre del estudio */
+/* min-width: 0 para que las dos mitades puedan encogerse; sin el, el bloque
+   del nombre calculaba su ancho a partir del alto de la fila y desbordaba */
+.founders { display: grid; grid-template-columns: 1fr 1fr; }
+.founders > * { min-width: 0; }
+.founders__img img {
+  width: 100%; height: 100%; display: block;
+  min-height: clamp(260px, 32vw, 460px);
+  object-fit: cover;
+}
+.founders__name {
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 4vw, 3rem);
+}
+.founders__name small {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(.95rem, 1.4vw, 1.2rem);
+  opacity: .8;
+  margin-bottom: .35rem;
+}
+.founders__name b {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
 /* --- 20. Responsive ---------------------------------------------------- */
 @media (max-width: 1100px) {
   .cycle__ring { flex-wrap: wrap; }
@@ -1450,6 +1575,10 @@ body::after {
   .pin__step { opacity: 1; grid-template-columns: 2.5rem minmax(0, 1fr); padding-block: 2rem; }
   .case { grid-template-columns: 2.5rem minmax(0, 1fr); }
   .case p { grid-column: 2; }
+  .about-cols { grid-template-columns: 1fr; }
+  .founders { grid-template-columns: 1fr; }
+  .founders__img img { min-height: 0; aspect-ratio: 4 / 3; }
+  .about-hero__portrait { width: min(72%, 300px); margin-top: clamp(-160px, -20vh, -110px); }
   .booking { grid-template-columns: 1fr; }
   .ba--wide { grid-template-columns: 1fr; }
   .ba--wide .ba__frame { aspect-ratio: 4 / 3; }
