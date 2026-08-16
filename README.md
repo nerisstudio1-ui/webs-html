@@ -110,7 +110,8 @@ Colores y tipografías salen de variables CSS en `:root`
 --burgundy: #741c2d;   /* granate tomado del logotipo */
 --cream:    #f6f1ec;   /* fondo general */
 --gold:     #a98a63;   /* acento sutil */
---sans:     "Montserrat";   /* toda la web */
+--sans:     "Instrument Sans";   /* toda la web */
+--track-lg: .22em;             /* el espaciado de los titulares */
 ```
 
 Las tipografías están alojadas en el propio proyecto (`assets/fonts/`, con sus
@@ -122,16 +123,37 @@ una familia:
 python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
 ```
 
-Montserrat es la única tipografía de la web. El carácter lo pone el juego de
-pesos y cursivas, no una segunda familia:
+Instrument Sans es la única tipografía de la web: una grotesca de trazo
+uniforme y formas abiertas. Todo el carácter sale de **usarla en mayúsculas
+con mucho aire entre letras**, no de mezclar familias ni de pesos extremos.
+Al ser variable, un solo archivo por alfabeto cubre de la 400 a la 700 (92 KB
+las cuatro caras).
 
-- **300** en los titulares, en el bloque de bienvenida y en las etiquetas de
-  categoría.
-- **800 cursiva** en la palabra destacada de cada titular, en la pestaña activa
-  del carrusel y en los números del método.
-- **400** en el texto corrido; **500** en menú y epígrafes; **600 y 700** en
-  botones, enlaces y subtítulos.
-- Menú, anuncio superior y menú móvil van en mayúsculas con espaciado.
+El espaciado entre letras es una escala con nombre, no un número suelto:
+
+| Token | Valor | Dónde |
+|---|---|---|
+| `--track-sm` | `.10em` | pies de foto, cifras |
+| `--track-md` | `.16em` | botones, enlaces, epígrafes, subtítulos |
+| `--track-lg` | `.22em` | titulares (`.display`, `.h2`) |
+| `--track-xl` | `.34em` | menú, anuncio, rótulos pequeños y etiquetas |
+
+Y el reparto de pesos:
+
+- **400** en titulares y texto corrido.
+- **500** en menú activo, botones, epígrafes y subtítulos.
+- Nada por encima de la 500 salvo un `strong` puntual: el contraste lo dan el
+  espaciado y el tamaño.
+
+Van en mayúsculas el menú, el anuncio superior, el menú móvil, los titulares,
+los subtítulos, las etiquetas, los pies de foto, las preguntas del FAQ y el
+pie de página. **No** van en mayúsculas los textos largos: el párrafo de
+bienvenida, los `.lead` y los cuerpos de texto, porque un párrafo entero
+espaciado deja de leerse.
+
+La palabra destacada de cada titular (`<em>`) no es cursiva ni negrita: es un
+cambio de color. Sale de `--accent`, que vale granate sobre crema y moka en
+los bloques de fondo oscuro, donde el granate se perdería.
 
 ### Crecer sin rehacer la web
 

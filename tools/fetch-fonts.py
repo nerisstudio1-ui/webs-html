@@ -36,12 +36,14 @@ def fetch(spec):
         spec.replace(" ", "+"))
     css = get(url).decode("utf-8")
 
-    faces, subset = [], None
-    for block in css.split("@font-face")[0:]:
-        for m in re.finditer(r"/\*\s*([\w-]+)\s*\*/", block):
-            subset = m.group(1)
-        if "src:" not in block:
-            continue
+    # Google antepone a cada bloque el comentario con el alfabeto:
+    #   /* latin-ext */  @font-face { ... }
+    # De ahí sale el nombre del archivo, así que hay que leer el comentario
+    # que va DELANTE del bloque, no el que le sigue.
+    faces = []
+    for m in re.finditer(r"/\*\s*([\w-]+)\s*\*/\s*@font-face\s*\{(.*?)\}",
+                         css, re.S):
+        subset, block = m.group(1), m.group(2)
         if subset not in SUBSETS:
             continue
         style = re.search(r"font-style:\s*([\w ]+);", block).group(1).strip()
@@ -49,18 +51,20 @@ def fetch(spec):
         weight = re.search(r"font-weight:\s*([\d ]+);", block).group(1).strip()
         stretch = re.search(r"font-stretch:\s*([\d%. ]+);", block)
         stretch = stretch.group(1).strip() if stretch else ""
+        rango = re.search(r"unicode-range:\s*([^;]+);", block)
+        rango = rango.group(1).strip() if rango else ""
         src = re.search(r"url\((https://[^)]+\.woff2)\)", block).group(1)
         name = "%s-%s-%s-%s.woff2" % (slug(family), subset, slug(weight), slug(style))
         path = os.path.join(OUT, name)
         if not os.path.exists(path):
             open(path, "wb").write(get(src))
-        faces.append((family, style, weight, name, stretch))
+        faces.append((family, style, weight, name, stretch, rango))
     return faces
 
 
 def css_for(faces):
     out = []
-    for family, style, weight, name, stretch in faces:
+    for family, style, weight, name, stretch, rango in faces:
         out.append(
             '@font-face {\n'
             '  font-family: "%s";\n'
@@ -69,8 +73,10 @@ def css_for(faces):
             '%s'
             '  font-display: swap;\n'
             '  src: url("../fonts/%s") format("woff2");\n'
+            '%s'
             '}' % (family, style, weight,
-                   ('  font-stretch: %s;\n' % stretch) if stretch else '', name))
+                   ('  font-stretch: %s;\n' % stretch) if stretch else '', name,
+                   ('  unicode-range: %s;\n' % rango) if rango else ''))
     return "\n".join(out)
 
 

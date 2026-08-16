@@ -18,16 +18,25 @@
   --gold:          #a98a63;
   --ink:           #1c1210;
   --muted:         #8a7a72;
+  /* la palabra destacada de cada titular: granate sobre crema y, en los
+     bloques oscuros, el tono moka del logotipo (ver mas abajo) */
+  --accent:        var(--burgundy);
   --line:          rgba(28, 18, 16, .14);
   --line-light:    rgba(246, 241, 236, .22);
   --white:         #fff;
 
   /* tipografía */
-  /* Montserrat es la única tipografía de la web. El carácter lo pone el juego
-     de pesos —la fina sostiene los titulares, la negrita cursiva destaca— y no
-     una segunda familia. */
-  --sans:  "Montserrat", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  /* Instrument Sans es la única tipografía de la web: una grotesca de trazo
+     uniforme. Todo el carácter sale de usarla en mayúsculas con mucho aire
+     entre letras, no de mezclar familias ni de pesos extremos. */
+  --sans:  "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+
+  /* espaciado entre letras: la escala que da el aire de revista */
+  --track-sm: .10em;   /* botones, pies de foto */
+  --track-md: .16em;   /* menú, epígrafes */
+  --track-lg: .22em;   /* titulares */
+  --track-xl: .34em;   /* rótulos pequeños y marcas */
 
   /* medidas */
   --gutter: clamp(1.25rem, 4vw, 4.5rem);
@@ -61,42 +70,46 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; }
 ::selection { background: var(--burgundy); color: var(--cream); }
 
-/* --- 3. Utilidades tipográficas ---------------------------------------- */
+/* --- 3. Utilidades tipográficas ----------------------------------------
+   Un solo criterio en toda la web: las mayúsculas muy espaciadas son la voz
+   del estudio y el texto corrido en minúscula es la voz que explica. Nada de
+   pesos extremos: el contraste lo dan el espaciado y el tamaño. */
 .eyebrow {
-  font-size: .66rem;
-  letter-spacing: .24em;
+  font-size: .62rem;
+  letter-spacing: var(--track-xl);
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--muted);
 }
 .display {
   font-family: var(--sans);
-  font-weight: 300;
-  font-size: clamp(2rem, 4.6vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -.015em;
-  text-transform: none;
-}
-.display em { font-weight: 800; font-style: italic; }
-.h2 {
-  font-family: var(--sans);
-  font-weight: 300;
-  font-size: clamp(1.15rem, 2vw, 1.7rem);
-  line-height: 1.25;
-  letter-spacing: .12em;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.4vw, 2.9rem);
+  line-height: 1.16;
+  letter-spacing: var(--track-lg);
   text-transform: uppercase;
 }
-.h2 em { font-weight: 800; font-style: italic; }
+.display em { font-weight: 400; font-style: normal; color: var(--accent); }
+.h2 {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  line-height: 1.35;
+  letter-spacing: var(--track-lg);
+  text-transform: uppercase;
+}
+.h2 em { font-weight: 400; font-style: normal; color: var(--accent); }
 .h3 {
   font-family: var(--sans);
-  font-weight: 700;
-  font-size: clamp(1rem, 1.35vw, 1.15rem);
-  letter-spacing: .01em;
-  line-height: 1.35;
+  font-weight: 500;
+  font-size: clamp(.8rem, 1vw, .92rem);
+  letter-spacing: var(--track-md);
+  text-transform: uppercase;
+  line-height: 1.45;
 }
 .lead { font-size: clamp(.92rem, 1.05vw, 1.02rem); color: #3d2c27; max-width: 46ch; }
 .lead strong { font-weight: 600; }
-.lead em { font-style: italic; font-weight: 500; }
+.lead em { font-style: normal; font-weight: 500; color: var(--accent); }
 .small { font-size: .82rem; color: var(--muted); }
 .underline-brush { position: relative; white-space: nowrap; }
 .underline-brush::after {
@@ -108,6 +121,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   opacity: .55;
   transform: skewY(-.4deg);
 }
+
+/* Sobre fondo oscuro el granate se pierde: ahi la palabra destacada toma el
+   moka del logotipo, que si se lee. La portada clara mantiene el granate. */
+.page-head, .cta, .footer, .marquee, .mobile-nav, .announce,
+.hero__panel { --accent: var(--mocha); }
+.hero__panel--pale { --accent: var(--burgundy); }
 
 /* --- 4. Layout --------------------------------------------------------- */
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
@@ -139,10 +158,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: 100px;
   background: var(--btn-bg);
   color: var(--btn-fg);
-  font-size: .72rem;
-  letter-spacing: .14em;
+  font-size: .66rem;
+  letter-spacing: var(--track-md);
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   border: 1px solid transparent;
   transition: transform .4s var(--ease), background .4s var(--ease), color .4s var(--ease);
   will-change: transform;
@@ -158,9 +177,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   display: inline-flex;
   align-items: center;
   gap: .55em;
-  font-size: .7rem;
-  font-weight: 600;
-  letter-spacing: .16em;
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: var(--track-md);
   text-transform: uppercase;
   border-bottom: 1px solid var(--line);
   padding-bottom: .35em;
@@ -173,9 +192,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .announce {
   background: var(--burgundy);
   color: var(--cream);
-  font-size: .64rem;
+  font-size: .58rem;
   font-weight: 500;
-  letter-spacing: .18em;
+  letter-spacing: var(--track-xl);
   text-transform: uppercase;
 }
 .announce .wrap {
@@ -188,9 +207,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .announce button { opacity: .7; padding: .35rem; line-height: 0; transition: opacity .3s; }
 .announce button:hover { opacity: 1; }
 .announce svg { width: 16px; height: 10px; }
-.announce-track { position: relative; min-width: min(60vw, 480px); text-align: center; height: 1.2em; }
+.announce-track { position: relative; min-width: min(70vw, 640px); text-align: center; height: 1.4em; }
 .announce-item {
   position: absolute; inset: 0;
+  /* centrado en la caja: asi el anuncio puede ocupar dos lineas en movil
+     sin salirse de la barra */
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1.4;
   opacity: 0; transform: translateY(6px);
   transition: opacity .5s var(--ease), transform .5s var(--ease);
   pointer-events: none;
@@ -219,14 +242,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .logo { display: inline-flex; flex-direction: column; line-height: 1; flex: 0 0 auto; }
 .logo b {
   font-family: var(--sans);
-  font-weight: 700;
-  font-size: 1.42rem;
-  letter-spacing: .02em;
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: var(--track-lg);
+  text-transform: uppercase;
 }
-.logo b i { font-style: italic; font-weight: 400; }
+.logo b i { font-style: normal; font-weight: 400; }
 .logo span {
   font-size: .5rem;
-  letter-spacing: .38em;
+  letter-spacing: var(--track-xl);
   text-transform: uppercase;
   margin-top: .32em;
   opacity: .75;
@@ -243,9 +267,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .nav { display: flex; gap: clamp(1rem, 2.2vw, 2.2rem); margin-inline: auto; }
 .nav a {
-  font-size: .7rem;
-  font-weight: 500;
-  letter-spacing: .18em;
+  font-size: .62rem;
+  font-weight: 400;
+  letter-spacing: var(--track-xl);
   text-transform: uppercase;
   position: relative;
   padding-block: .3em;
@@ -260,7 +284,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   transition: transform .45s var(--ease);
 }
 .nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
-.nav a[aria-current="page"] { font-weight: 600; }
+.nav a[aria-current="page"] { font-weight: 500; }
 
 .header-actions { display: flex; align-items: center; gap: 1rem; flex: 0 0 auto; }
 .header-actions .icon { line-height: 0; opacity: .85; transition: opacity .3s; }
@@ -288,11 +312,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .mobile-nav__top { display: flex; align-items: center; justify-content: space-between; }
 .mobile-nav__links { display: flex; flex-direction: column; gap: .35rem; margin-top: auto; }
 .mobile-nav__links a {
-  font-size: clamp(1.6rem, 8vw, 2.4rem);
-  font-weight: 300;
-  letter-spacing: .02em;
+  font-size: clamp(1.3rem, 6.5vw, 2rem);
+  font-weight: 400;
+  letter-spacing: var(--track-lg);
   text-transform: uppercase;
-  line-height: 1.15;
+  line-height: 1.5;
 }
 .mobile-nav__foot { margin-top: auto; border-top: 1px solid var(--line-light); padding-top: 1.25rem; }
 
@@ -373,9 +397,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   z-index: 2;
   background: rgba(246, 241, 236, .92);
   color: var(--burgundy);
-  font-size: .56rem;
-  font-weight: 600;
-  letter-spacing: .18em;
+  font-size: .54rem;
+  font-weight: 500;
+  letter-spacing: var(--track-xl);
   text-transform: uppercase;
   padding: .45em .85em;
   border-radius: 100px;
@@ -389,15 +413,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   margin-top: 1.1rem;
 }
 .tcard__body h3 {
-  font-size: .95rem;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: .01em;
+  font-size: .78rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: var(--track-md);
+  text-transform: uppercase;
 }
 .tcard__price {
   margin-left: auto;
-  font-size: .82rem;
-  font-style: italic;
+  font-size: .62rem;
+  font-weight: 400;
+  letter-spacing: var(--track-md);
+  text-transform: uppercase;
   color: var(--muted);
   white-space: nowrap;
 }
@@ -409,14 +436,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* --- 9b. Carrusel (otras páginas) -------------------------------------- */
 .tabs { display: flex; gap: 1.4rem; align-items: baseline; }
 .tabs button {
-  font-size: clamp(.9rem, 1.4vw, 1.15rem);
+  font-size: clamp(.78rem, 1.1vw, .95rem);
   font-weight: 400;
-  letter-spacing: .14em;
+  letter-spacing: var(--track-lg);
   text-transform: uppercase;
   color: var(--sand);
   transition: color .4s var(--ease);
 }
-.tabs button[aria-selected="true"] { color: var(--ink); font-weight: 800; font-style: italic; }
+.tabs button[aria-selected="true"] { color: var(--ink); font-weight: 500; }
 
 .rail {
   display: grid;
@@ -443,12 +470,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .card:last-child { border-right: 0; }
 .card:hover { background: var(--cream-warm); }
 .card__tags { display: flex; flex-direction: column; gap: .15rem; margin-bottom: 1rem; min-height: 2.4em; }
-.card__tags span { font-size: .58rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.card__tags span { font-size: .56rem; font-weight: 500; letter-spacing: var(--track-xl); text-transform: uppercase; color: var(--muted); }
 .card__media { aspect-ratio: 4 / 5; overflow: hidden; margin-bottom: 1.4rem; }
 .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
 .card:hover .card__media img { transform: scale(1.05); }
-.card__title { font-size: .92rem; font-weight: 600; text-align: center; margin-bottom: .35rem; }
-.card__price { text-align: center; font-size: .85rem; font-style: italic; color: var(--muted); }
+.card__title { font-size: .8rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; text-align: center; margin-bottom: .35rem; }
+.card__price { text-align: center; font-size: .64rem; letter-spacing: var(--track-md); text-transform: uppercase; color: var(--muted); }
 .card__price del { margin-right: .5em; opacity: .6; }
 .card__price ins { text-decoration: none; color: var(--burgundy); }
 
@@ -469,18 +496,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   background: linear-gradient(180deg, rgba(28,18,16,.28), rgba(28,18,16,.05) 45%, rgba(28,18,16,.4));
 }
 .cat__label {
-  font-weight: 300;
-  letter-spacing: .04em;
   position: absolute;
   top: clamp(1.25rem, 3vw, 2.5rem);
   left: clamp(1.25rem, 3vw, 2.5rem);
   z-index: 2;
   writing-mode: vertical-rl;
   color: var(--white);
-  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
-  font-weight: 300;
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: -.01em;
+  letter-spacing: var(--track-lg);
 }
 .cat .btn {
   position: absolute;
@@ -500,21 +525,22 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .welcome .eyebrow {
   display: block;
   color: var(--burgundy);
-  letter-spacing: .42em;
+  letter-spacing: var(--track-xl);
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 .welcome p {
-  font-weight: 300;
-  font-size: clamp(1.2rem, 2.2vw, 1.85rem);
-  line-height: 1.38;
-  letter-spacing: -.005em;
-  letter-spacing: -.02em;
+  /* El unico texto largo que no va en mayusculas de la portada: un parrafo
+     entero espaciado se vuelve ilegible. Aqui manda el tamano, no el track. */
+  font-weight: 400;
+  font-size: clamp(1.05rem, 1.9vw, 1.6rem);
+  line-height: 1.55;
+  letter-spacing: .005em;
   color: var(--burgundy);
   margin-inline: auto;
-  max-width: 34ch;
+  max-width: 40ch;
   text-wrap: balance;
 }
-.welcome p em { font-weight: 800; font-style: italic; }
+.welcome p em { font-weight: 500; font-style: normal; }
 
 /* --- 11. Método / collage ---------------------------------------------- */
 .method { background: linear-gradient(160deg, var(--cream-warm), var(--cream) 55%); }
@@ -530,13 +556,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .collage__a { grid-column: 6 / span 4; }
 .collage__b { grid-column: 10 / span 3; margin-top: clamp(3rem, 9vw, 8rem); }
 .collage__c { grid-column: 3 / span 3; margin-top: -2rem; }
-.collage figure figcaption { font-size: .72rem; color: var(--muted); margin-top: .6rem; letter-spacing: .04em; }
+.collage figure figcaption { font-size: .6rem; color: var(--muted); margin-top: .8rem; letter-spacing: var(--track-md); text-transform: uppercase; }
 .collage img { width: 100%; }
 
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); margin-top: clamp(2.5rem, 6vw, 5rem); }
 .step { border-top: 1px solid var(--line); padding-top: 1.1rem; }
-.step b { display: block; font-weight: 800; font-style: italic; font-size: 1.8rem; font-weight: 400; color: var(--burgundy); margin-bottom: .5rem; }
-.step h3 { font-size: .92rem; font-weight: 600; margin-bottom: .4rem; }
+.step b { display: block; font-weight: 400; font-size: 1.4rem; letter-spacing: var(--track-lg); color: var(--burgundy); margin-bottom: .6rem; }
+.step h3 { font-size: .74rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; margin-bottom: .6rem; }
 .step p { font-size: .85rem; color: var(--muted); }
 
 /* --- 12. Franja de marca (marquee) ------------------------------------- */
@@ -548,10 +574,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .marquee__track { display: flex; gap: 3rem; width: max-content; animation: slide 38s linear infinite; }
 .marquee span {
-  font-size: clamp(.92rem, 1.6vw, 1.25rem);
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: .12em;
+  font-size: clamp(.68rem, 1vw, .82rem);
+  font-weight: 400;
+  letter-spacing: var(--track-xl);
   text-transform: uppercase;
   white-space: nowrap;
   display: flex;
@@ -565,8 +590,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); }
 .quote { border-top: 1px solid var(--line); padding-top: 1.5rem; }
 .quote .stars { color: var(--burgundy); letter-spacing: .2em; font-size: .8rem; margin-bottom: .9rem; }
-.quote blockquote { font-weight: 300; font-style: italic; font-size: 1.1rem; line-height: 1.55; margin-bottom: 1rem; }
-.quote figcaption { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.quote blockquote { font-weight: 400; font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
+.quote figcaption { font-size: .62rem; letter-spacing: var(--track-md); text-transform: uppercase; color: var(--muted); }
 
 /* --- 14. FAQ ----------------------------------------------------------- */
 .faq { border-top: 1px solid var(--line); }
@@ -579,8 +604,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   gap: 2rem;
   padding: 1.4rem 0;
   text-align: left;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  font-weight: 300;
+  font-size: clamp(.78rem, 1.1vw, .92rem);
+  font-weight: 400;
+  letter-spacing: var(--track-md);
+  text-transform: uppercase;
+  line-height: 1.5;
 }
 .faq__q .plus { position: relative; width: 14px; height: 14px; flex: 0 0 auto; }
 .faq__q .plus::before, .faq__q .plus::after {
@@ -597,7 +625,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 2.5vw, 2.5rem); }
 .post img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; margin-bottom: 1rem; }
 .post .eyebrow { margin-bottom: .5rem; display: block; }
-.post h3 { font-size: 1.05rem; font-weight: 400; line-height: 1.3; }
+.post h3 { font-size: .82rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; line-height: 1.5; }
 
 /* --- 16. CTA ----------------------------------------------------------- */
 .cta { position: relative; overflow: hidden; color: var(--white); text-align: center; }
@@ -628,13 +656,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .newsletter button { padding: .5rem; line-height: 0; }
 .newsletter svg { width: 18px; height: 11px; }
 .footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.footer__cols h4 { font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; opacity: .6; margin-bottom: 1rem; font-weight: 600; }
+.footer__cols h4 { font-size: .58rem; letter-spacing: var(--track-xl); text-transform: uppercase; opacity: .6; margin-bottom: 1.25rem; font-weight: 500; }
 .footer__cols li { margin-bottom: .55rem; font-size: .88rem; }
 .footer__bottom {
   display: flex; flex-wrap: wrap; gap: 1rem 2rem;
   justify-content: space-between;
   padding-block: 1.5rem 2rem;
-  font-size: .74rem;
+  font-size: .58rem;
+  letter-spacing: var(--track-md);
+  text-transform: uppercase;
   opacity: .65;
 }
 .footer .logo { margin-bottom: 1rem; }
@@ -643,7 +673,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .page-head { background: var(--burgundy); color: var(--cream); padding-top: calc(var(--header-h) + clamp(2rem, 6vw, 5rem)); padding-bottom: clamp(2.5rem, 6vw, 5rem); margin-top: calc(var(--header-h) * -1); }
 .page-head .eyebrow { color: rgba(246,241,236,.6); margin-bottom: 1rem; display: block; }
 .page-head .lead { color: rgba(246,241,236,.85); }
-.breadcrumb { font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: 2rem; }
+.breadcrumb { font-size: .6rem; letter-spacing: var(--track-xl); text-transform: uppercase; opacity: .6; margin-bottom: 2rem; }
 
 .service-row {
   display: grid;
@@ -659,29 +689,29 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .service-row__body .h2 { margin-bottom: 1rem; }
 .service-row__body .lead { margin-bottom: 1.75rem; }
 .spec { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-bottom: 2rem; }
-.spec div b { display: block; font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em; }
-.spec div span { font-size: .64rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.spec div b { display: block; font-weight: 500; font-size: .95rem; letter-spacing: var(--track-sm); }
+.spec div span { font-size: .58rem; font-weight: 400; letter-spacing: var(--track-xl); text-transform: uppercase; color: var(--muted); }
 .checklist li { position: relative; padding-left: 1.5rem; margin-bottom: .5rem; font-size: .9rem; }
 /* el guion hereda el color del bloque: legible sobre crema y sobre burdeos */
 .checklist li::before { content: "—"; position: absolute; left: 0; color: currentColor; opacity: .45; }
 
 .price-table { width: 100%; border-collapse: collapse; }
-.price-table th, .price-table td { text-align: left; padding: 1rem 0; border-bottom: 1px solid var(--line); font-weight: 300; }
-.price-table th { font-size: .64rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.price-table th, .price-table td { text-align: left; padding: 1rem 0; border-bottom: 1px solid var(--line); font-weight: 400; }
+.price-table th { font-size: .58rem; font-weight: 500; letter-spacing: var(--track-xl); text-transform: uppercase; color: var(--muted); }
 .price-table td:last-child, .price-table th:last-child { text-align: right; white-space: nowrap; }
-.price-table td strong { font-weight: 700; font-size: 1rem; }
+.price-table td strong { font-weight: 500; font-size: .95rem; letter-spacing: var(--track-sm); }
 
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 5vw, 5rem); align-items: center; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 4vw, 4rem); }
 .value { border-top: 1px solid var(--line); padding-top: 1.2rem; }
-.value h3 { font-size: .95rem; font-weight: 600; margin-bottom: .5rem; }
+.value h3 { font-size: .74rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; margin-bottom: .7rem; }
 .value p { font-size: .88rem; color: var(--muted); }
 
 /* formulario */
 .form { display: grid; gap: 1.4rem; }
 .field { display: grid; gap: .45rem; }
-.field label { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.field label { font-size: .58rem; font-weight: 500; letter-spacing: var(--track-xl); text-transform: uppercase; color: var(--muted); }
 .field input, .field select, .field textarea {
   font: inherit; font-size: .95rem;
   padding: .75rem .9rem;
@@ -711,7 +741,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* --- 18b. Botón flotante de WhatsApp ------------------------------------ */
 .wa-float {
-  font-weight: 600;
+  font-weight: 500;
   position: fixed;
   right: clamp(1rem, 2.5vw, 2rem);
   bottom: clamp(1rem, 2.5vw, 2rem);
@@ -723,8 +753,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: 100px;
   background: var(--burgundy);
   color: var(--cream);
-  font-size: .78rem;
-  letter-spacing: .1em;
+  font-size: .62rem;
+  letter-spacing: var(--track-md);
   text-transform: uppercase;
   box-shadow: 0 10px 30px rgba(46, 15, 19, .28);
   transition: transform .4s var(--ease), background .4s var(--ease);
@@ -734,14 +764,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* --- 18c. Etiqueta «próximamente» --------------------------------------- */
 .tag-soon {
-  font-weight: 600;
+  font-weight: 500;
   display: inline-block;
   padding: .3em .8em;
   border: 1px solid var(--gold);
   border-radius: 100px;
   color: var(--gold);
-  font-size: .6rem;
-  letter-spacing: .2em;
+  font-size: .54rem;
+  letter-spacing: var(--track-xl);
   text-transform: uppercase;
   vertical-align: middle;
 }
@@ -824,9 +854,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .hero__content { max-width: none; }
   .cats { grid-template-columns: 1fr; }
   .cat { aspect-ratio: 16 / 11; }
-  .cat__label {
-  font-weight: 300;
-  letter-spacing: .04em; writing-mode: horizontal-tb; }
+  .cat__label { writing-mode: horizontal-tb; }
   .collage { grid-template-columns: 1fr; }
   .collage__text, .collage__a, .collage__b, .collage__c { grid-column: 1 / -1; margin-top: 0; padding-top: 0; }
   .collage__a { max-width: 78%; }
@@ -837,15 +865,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .service-row:nth-child(even) .service-row__media { order: 0; }
   .gallery { columns: 2; }
   .footer__cols { grid-template-columns: repeat(2, 1fr); }
+  .announce .wrap { min-height: 52px; }
+  .announce-track { height: 2.8em; }
 }
 
 @media (max-width: 560px) {
   .field-row { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .gallery { columns: 1; }
-  .tabs button { font-size: 1.5rem; }
+  .tabs button { font-size: .82rem; }
   .announce .wrap { gap: .75rem; }
-  .announce-track { min-width: 0; flex: 1; font-size: .68rem; }
+  .announce-track { min-width: 0; flex: 1; font-size: .54rem; letter-spacing: var(--track-md); }
+  /* con tanto espaciado entre letras, los titulares largos necesitan aire */
+  .display { letter-spacing: var(--track-md); }
 }
 
 @media (prefers-reduced-motion: reduce) {
