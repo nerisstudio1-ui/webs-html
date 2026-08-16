@@ -123,12 +123,19 @@ assets/
 
 ### Tokens de diseño
 
+**El granate es la marca; el marrón, el fondo.** Las masas oscuras —el pie,
+la barra de anuncios, el bloque del método, las cabeceras de las páginas de
+detalle— van en un marrón cálido, no en granate. Es lo que hace que la página
+se lea cálida y no severa, y deja el granate del logotipo para donde se tiene
+que ver: botones, la palabra destacada de cada titular y los detalles.
+
 Colores y tipografías salen de variables CSS en `:root`
 (`assets/css/style.css`). Cambiar la marca entera es cambiar esas variables:
 
 ```css
---burgundy: #741c2d;   /* granate tomado del logotipo */
---cream:    #f6f1ec;   /* fondo general */
+--burgundy: #741c2d;   /* granate del logotipo: marca y acentos */
+--brown:    #4a3529;   /* las masas oscuras: pie, anuncio, cabeceras */
+--cream:    #f7f2ec;   /* fondo general */
 --gold:     #a98a63;   /* acento sutil */
 --sans:     "Instrument Sans";   /* toda la web */
 --track-lg: .22em;             /* el espaciado de los titulares */
