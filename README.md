@@ -60,7 +60,8 @@ python3 -m http.server 8000
    fotográfica profesional se sustituyen manteniendo los mismos nombres.
    Cada hueco de la web tiene su propia fotografía, sin repetir: los nombres
    dicen dónde va cada una (`hero-*`, `card-*`, `cat-*`, `collage-*`, `srv-*`,
-   `met-*`, `about-*`, `gal-*`). Quedan dos ilustraciones vectoriales donde
+   `met-*`, `about-*`, `gal-*`). `hero-portada.jpg` es la imagen de marca de
+   la portada: lleva el logotipo incrustado, así que va sin texto encima. Quedan dos ilustraciones vectoriales donde
    todavía no hay foto: `srv-capilar.svg` (micropigmentación capilar) y
    `srv-powder.svg` (labios), más `cta-wide.svg`, decorativa a propósito.
 1b. **Consentimiento de imagen.** Varias fotos muestran rostros de clientas

@@ -330,15 +330,20 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hero__panel::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(46,15,19,.45) 0%, rgba(46,15,19,.15) 38%, rgba(46,15,19,.78) 100%);
+  background: linear-gradient(180deg, rgba(46,15,19,.38) 0%, rgba(46,15,19,.12) 30%, rgba(46,15,19,.58) 62%, rgba(46,15,19,.88) 100%);
 }
-/* Sobre una fotografía clara el texto va en granate, con un velo crema que
-   solo levanta el contraste en la parte baja. */
+/* Sobre una fotografía clara el velo es crema, no burdeos. */
 .hero__panel--pale::after {
   background: linear-gradient(180deg, rgba(246,241,236,0) 35%, rgba(246,241,236,.72) 78%, rgba(246,241,236,.95) 100%);
 }
 .hero__panel--pale .hero__content { color: var(--burgundy); }
 .hero__panel--pale .hero__content p { color: #4a3934; opacity: 1; }
+/* La fotografía de marca ya lleva el logotipo dentro: va limpia, sin titular
+   encima, que se le montaría justo encima. El texto vive en el otro panel.
+   Solo un velo muy leve abajo, para fundirla con el crema de la página. */
+.hero__panel--marca::after {
+  background: linear-gradient(180deg, rgba(246,241,236,0) 74%, rgba(246,241,236,.5) 100%);
+}
 .hero__content {
   position: absolute;
   z-index: 2;
@@ -850,7 +855,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .header-actions .desk-only { display: none; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero__panel { aspect-ratio: 4 / 5; }
-  .hero__panel:last-child { aspect-ratio: 16 / 11; }
   .hero__content { max-width: none; }
   .cats { grid-template-columns: 1fr; }
   .cat { aspect-ratio: 16 / 11; }
