@@ -12,7 +12,7 @@ y tipografía elegante. Las imágenes son las protagonistas de cada bloque.
 
 | Archivo | Contenido |
 |---|---|
-| `index.html` | Home: hero, bienvenida, tratamientos (actuales y próximos), bloques de categoría, el método, para quién es, FAQ, presentación del estudio y llamada a la acción |
+| `index.html` | Home: hero partido, franja de marca, declaración, tres pilares, antes/después, el ciclo del método, tratamientos, ventajas, el estudio por dentro, para quién es, FAQ, las hermanas y cierre con el logotipo |
 | `servicios.html` | Cejas realistas (Hair Stroke), estudio previo y diseño, laminado y henna; sección «próximamente» y criterio de tarifas |
 | `metodo.html` | Las 4 fases del método, cuidados durante la cicatrización y tipos de piel |
 | `estudio.html` | La historia de las dos hermanas, filosofía, especialización, galería y hacia dónde va el estudio |
@@ -124,42 +124,36 @@ una familia:
 python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
 ```
 
-Instrument Sans es la única tipografía de la web: una grotesca de trazo
-uniforme y formas abiertas. Todo el carácter sale de **usarla en mayúsculas
-con mucho aire entre letras**, no de mezclar familias ni de pesos extremos.
-Al ser variable, un solo archivo por alfabeto cubre de la 400 a la 700 (92 KB
-las cuatro caras).
+Dos familias con papeles muy distintos:
+
+- **Instrument Sans** — grotesca de trazo uniforme. Es la voz que explica:
+  texto corrido, menú, botones y rótulos.
+- **Playfair Display** — serif de alto contraste. Aparece **solo en cursiva**,
+  en la palabra destacada de cada titular. Es la que pone el carácter, en la
+  línea del propio logotipo.
+
+Las dos son variables: un archivo por alfabeto cubre todo el rango de pesos.
+
+El patrón de cada titular es siempre el mismo: sans en caja baja con una
+palabra en cursiva serif. «Un cuidado *completo* de la mirada», «Antes /
+*después*», «Cuatro pasos, *sin prisa*». En el HTML basta con envolver esa
+palabra en `<em>`.
+
+Van en mayúsculas con espaciado solo los rótulos: menú, anuncio superior,
+epígrafes, botones, etiquetas y pies de foto. Los titulares y los textos van
+en caja baja.
 
 El espaciado entre letras es una escala con nombre, no un número suelto:
 
 | Token | Valor | Dónde |
 |---|---|---|
 | `--track-sm` | `.10em` | pies de foto, cifras |
-| `--track-md` | `.16em` | botones, enlaces, epígrafes, subtítulos |
-| `--track-lg` | `.22em` | titulares (`.display`, `.h2`) |
-| `--track-xl` | `.34em` | menú, anuncio, rótulos pequeños y etiquetas |
+| `--track-md` | `.16em` | botones, enlaces, epígrafes |
+| `--track-lg` | `.24em` | rótulos medianos |
+| `--track-xl` | `.34em` | menú, anuncio, etiquetas |
 
-El cuerpo es deliberadamente pequeño: el titular apenas es mayor que el texto
-corrido y lo que los separa son las mayúsculas y el espaciado, no el tamaño.
-Es lo que da el aire discreto de las webs de estudio de referencia, donde
-manda la fotografía y la letra acompaña.
-
-Y el reparto de pesos:
-
-- **400** en titulares y texto corrido.
-- **500** en menú activo, botones, epígrafes y subtítulos.
-- Nada por encima de la 500 salvo un `strong` puntual: el contraste lo dan el
-  espaciado y el tamaño.
-
-Van en mayúsculas el menú, el anuncio superior, el menú móvil, los titulares,
-los subtítulos, las etiquetas, los pies de foto, las preguntas del FAQ y el
-pie de página. **No** van en mayúsculas los textos largos: el párrafo de
-bienvenida, los `.lead` y los cuerpos de texto, porque un párrafo entero
-espaciado deja de leerse.
-
-La palabra destacada de cada titular (`<em>`) no es cursiva ni negrita: es un
-cambio de color. Sale de `--accent`, que vale granate sobre crema y moka en
-los bloques de fondo oscuro, donde el granate se perdería.
+La palabra destacada toma su color de `--accent`: granate sobre crema y moka
+en los bloques de fondo oscuro, donde el granate se perdería.
 
 ### Crecer sin rehacer la web
 

@@ -26,11 +26,12 @@
   --white:         #fff;
 
   /* tipografía */
-  /* Instrument Sans es la única tipografía de la web: una grotesca de trazo
-     uniforme. Todo el carácter sale de usarla en mayúsculas con mucho aire
-     entre letras, no de mezclar familias ni de pesos extremos. */
+  /* Dos familias con papeles muy distintos. La sans es la voz que explica:
+     texto, menú, botones y rótulos. La serif solo aparece en cursiva, en la
+     palabra destacada de cada titular, y es la que pone el carácter, en la
+     línea del propio logotipo. */
   --sans:  "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
 
   /* espaciado entre letras: la escala que da el aire de revista */
   --track-sm: .10em;   /* botones, pies de foto */
@@ -84,32 +85,44 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .display {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(1rem, 1.7vw, 1.45rem);
-  line-height: 1.55;
-  letter-spacing: var(--track-lg);
-  text-transform: uppercase;
+  font-size: clamp(1.6rem, 3.2vw, 2.7rem);
+  line-height: 1.22;
+  letter-spacing: -.01em;
+  text-transform: none;
 }
-.display em { font-weight: 400; font-style: normal; color: var(--accent); }
+/* La palabra destacada cambia de familia, no de peso: serif en cursiva. */
+.display em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
 .h2 {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(.85rem, 1.2vw, 1rem);
-  line-height: 1.5;
-  letter-spacing: var(--track-lg);
-  text-transform: uppercase;
+  font-size: clamp(1.35rem, 2.4vw, 2.05rem);
+  line-height: 1.28;
+  letter-spacing: -.01em;
+  text-transform: none;
 }
-.h2 em { font-weight: 400; font-style: normal; color: var(--accent); }
+.h2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
 .h3 {
   font-family: var(--sans);
   font-weight: 500;
-  font-size: clamp(.8rem, 1vw, .92rem);
-  letter-spacing: var(--track-md);
-  text-transform: uppercase;
-  line-height: 1.45;
+  font-size: clamp(.95rem, 1.15vw, 1.08rem);
+  letter-spacing: -.005em;
+  text-transform: none;
+  line-height: 1.4;
 }
+.h3 em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 .lead { font-size: clamp(.92rem, 1.05vw, 1.02rem); color: #3d2c27; max-width: 46ch; }
 .lead strong { font-weight: 600; }
-.lead em { font-style: normal; font-weight: 500; color: var(--accent); }
+.lead em { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.1em; }
 .small { font-size: .82rem; color: var(--muted); }
 /* Visible solo para lectores de pantalla y buscadores. */
 .sr-only {
@@ -136,8 +149,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* --- 4. Layout --------------------------------------------------------- */
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
-.section { padding-block: clamp(3.5rem, 8vw, 7.5rem); }
-.section--tight { padding-block: clamp(2.5rem, 5vw, 4.5rem); }
+.section { padding-block: clamp(3rem, 6vw, 5.5rem); }
+.section--tight { padding-block: clamp(2rem, 4vw, 3.5rem); }
 .section-head {
   display: flex;
   align-items: baseline;
@@ -326,6 +339,51 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .mobile-nav__foot { margin-top: auto; border-top: 1px solid var(--line-light); padding-top: 1.25rem; }
 
+/* --- 8. Hero -----------------------------------------------------------
+   Dos columnas: el texto a la izquierda sobre crema y la fotografia de marca
+   a la derecha. El carrusel no ocupa media pantalla: vive en la miniatura que
+   acompana al titular, como una muestra. */
+.hero--split {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  min-height: min(80vh, 860px);
+  margin-top: 0;
+}
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vw, 4.5rem) var(--gutter);
+}
+.hero__thumb {
+  position: relative;
+  width: clamp(88px, 9vw, 120px);
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--cream-warm);
+}
+.hero__thumb .hero__slide img { width: 100%; height: 100%; object-fit: cover; }
+.hero__title { max-width: 17ch; }
+.hero__title em { display: inline; }
+.hero__foot {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  flex-wrap: wrap;
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+.hero__foot .small { max-width: 22ch; }
+/* los puntos del carrusel, junto a la miniatura */
+.hero__dots--mini { display: flex; gap: .4rem; margin-top: -.75rem; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.hero__dots--mini button {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--sand);
+  transition: background .3s, transform .3s;
+}
+.hero__dots--mini button[aria-selected="true"] { background: var(--burgundy); transform: scale(1.3); }
+
 /* --- 8. Hero ----------------------------------------------------------- */
 .hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: min(88vh, 900px); margin-top: calc(var(--header-h) * -1); }
 /* Cuando la portada es clara, la cabecera no se superpone: se apoya encima. */
@@ -424,18 +482,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   margin-top: 1.1rem;
 }
 .tcard__body h3 {
-  font-size: .78rem;
+  font-size: .95rem;
   font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: var(--track-md);
-  text-transform: uppercase;
+  line-height: 1.4;
+  letter-spacing: -.005em;
 }
 .tcard__price {
   margin-left: auto;
-  font-size: .62rem;
+  font-size: .82rem;
   font-weight: 400;
-  letter-spacing: var(--track-md);
-  text-transform: uppercase;
   color: var(--muted);
   white-space: nowrap;
 }
@@ -485,8 +540,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .card__media { aspect-ratio: 4 / 5; overflow: hidden; margin-bottom: 1.4rem; }
 .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
 .card:hover .card__media img { transform: scale(1.05); }
-.card__title { font-size: .8rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; text-align: center; margin-bottom: .35rem; }
-.card__price { text-align: center; font-size: .64rem; letter-spacing: var(--track-md); text-transform: uppercase; color: var(--muted); }
+.card__title { font-size: .95rem; font-weight: 500; text-align: center; margin-bottom: .35rem; }
+.card__price { text-align: center; font-size: .85rem; color: var(--muted); }
 .card__price del { margin-right: .5em; opacity: .6; }
 .card__price ins { text-decoration: none; color: var(--burgundy); }
 
@@ -513,8 +568,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   z-index: 2;
   writing-mode: vertical-rl;
   color: var(--white);
-  font-size: clamp(.7rem, .95vw, .85rem);
-  font-weight: 400;
+  font-size: clamp(.72rem, .95vw, .86rem);
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: var(--track-xl);
 }
@@ -543,15 +598,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   /* El unico texto largo que no va en mayusculas de la portada: un parrafo
      entero espaciado se vuelve ilegible. Aqui manda el tamano, no el track. */
   font-weight: 400;
-  font-size: clamp(.95rem, 1.35vw, 1.15rem);
-  line-height: 1.75;
+  font-size: clamp(1.15rem, 2vw, 1.7rem);
+  line-height: 1.5;
   letter-spacing: .005em;
   color: var(--burgundy);
   margin-inline: auto;
   max-width: 40ch;
   text-wrap: balance;
 }
-.welcome p em { font-weight: 500; font-style: normal; }
+.welcome p em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 
 /* --- 11. Método / collage ---------------------------------------------- */
 .method { background: linear-gradient(160deg, var(--cream-warm), var(--cream) 55%); }
@@ -573,7 +628,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); margin-top: clamp(2.5rem, 6vw, 5rem); }
 .step { border-top: 1px solid var(--line); padding-top: 1.1rem; }
 .step b { display: block; font-weight: 400; font-size: .95rem; letter-spacing: var(--track-xl); color: var(--burgundy); margin-bottom: .8rem; }
-.step h3 { font-size: .74rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; margin-bottom: .6rem; }
+.step h3 { font-size: 1rem; font-weight: 500; margin-bottom: .6rem; }
 .step p { font-size: .85rem; color: var(--muted); }
 
 /* --- 12. Franja de marca (marquee) ------------------------------------- */
@@ -615,11 +670,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   gap: 2rem;
   padding: 1.4rem 0;
   text-align: left;
-  font-size: clamp(.78rem, 1.1vw, .92rem);
+  font-size: clamp(.95rem, 1.2vw, 1.08rem);
   font-weight: 400;
-  letter-spacing: var(--track-md);
-  text-transform: uppercase;
-  line-height: 1.5;
+  letter-spacing: -.005em;
+  line-height: 1.45;
 }
 .faq__q .plus { position: relative; width: 14px; height: 14px; flex: 0 0 auto; }
 .faq__q .plus::before, .faq__q .plus::after {
@@ -636,7 +690,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 2.5vw, 2.5rem); }
 .post img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; margin-bottom: 1rem; }
 .post .eyebrow { margin-bottom: .5rem; display: block; }
-.post h3 { font-size: .82rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; line-height: 1.5; }
+.post h3 { font-size: 1.02rem; font-weight: 500; line-height: 1.4; }
 
 /* --- 16. CTA ----------------------------------------------------------- */
 .cta { position: relative; overflow: hidden; color: var(--white); text-align: center; }
@@ -716,7 +770,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 3vw, 2.5rem); }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 4vw, 4rem); }
 .value { border-top: 1px solid var(--line); padding-top: 1.2rem; }
-.value h3 { font-size: .74rem; font-weight: 500; letter-spacing: var(--track-md); text-transform: uppercase; margin-bottom: .7rem; }
+.value h3 { font-size: 1rem; font-weight: 500; margin-bottom: .7rem; }
 .value p { font-size: .88rem; color: var(--muted); }
 
 /* formulario */
@@ -843,8 +897,249 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* el acordeón y las pestañas ya animan; aquí, el subrayado del enlace activo */
 .tabs button { position: relative; transition: color .45s var(--ease); }
 
+/* --- 19b. Bloques de la portada -----------------------------------------
+   La retícula de la portada sigue un mismo patrón: un rótulo pequeño en
+   mayúsculas, un titular en caja baja con la palabra destacada en cursiva
+   serif, y debajo el contenido. Nada de titulares a pantalla completa.    */
+
+/* Declaración de la casa, con las fotografías engarzadas en el texto ------
+   Los óvalos dentro del párrafo son lo que le da el aire de revista: se leen
+   como parte de la frase, no como un bloque de imágenes aparte. */
+.statement { text-align: center; }
+.statement p {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 2.2vw, 1.9rem);
+  line-height: 1.55;
+  letter-spacing: -.012em;
+  max-width: 24ch;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+.statement p em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.statement .pill {
+  display: inline-block;
+  vertical-align: middle;
+  width: clamp(2.6rem, 5vw, 4.2rem);
+  aspect-ratio: 5 / 3;
+  border-radius: 100px;
+  overflow: hidden;
+  margin: 0 .18em;
+  transform: translateY(-.08em);
+}
+.statement .pill img { width: 100%; height: 100%; object-fit: cover; }
+.statement .btn { margin-top: clamp(1.75rem, 3.5vw, 2.75rem); }
+
+/* Tres pilares con botón de «+» ------------------------------------------ */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.75rem, 1.5vw, 1.25rem); }
+.pillar {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  color: var(--white);
+}
+.pillar img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.pillar:hover img { transform: scale(1.05); }
+.pillar::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(28,18,16,.5) 0%, rgba(28,18,16,.08) 38%, rgba(28,18,16,.55) 74%, rgba(28,18,16,.86) 100%);
+}
+.pillar__label {
+  position: absolute; z-index: 2;
+  top: clamp(1rem, 2vw, 1.5rem); left: clamp(1rem, 2vw, 1.5rem);
+  font-size: .95rem; font-weight: 500;
+}
+.pillar__foot {
+  position: absolute; z-index: 2;
+  left: clamp(1rem, 2vw, 1.5rem); right: clamp(1rem, 2vw, 1.5rem);
+  bottom: clamp(1rem, 2vw, 1.5rem);
+  display: flex; align-items: flex-end; gap: 1rem;
+}
+.pillar__foot p { font-size: .8rem; line-height: 1.45; opacity: .9; max-width: 26ch; }
+.pillar__plus {
+  margin-left: auto; flex: 0 0 auto;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.55);
+  display: grid; place-items: center;
+  transition: background .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease);
+}
+.pillar:hover .pillar__plus { background: var(--white); color: var(--ink); border-color: var(--white); }
+.pillar__plus svg { width: 12px; height: 12px; }
+
+/* El ciclo del método, sobre burdeos ------------------------------------- */
+.cycle { background: var(--burgundy-deep); color: var(--cream); }
+.cycle .h2 { color: var(--cream); }
+.cycle .lead { color: var(--cream); opacity: .82; margin-inline: auto; text-align: center; }
+.cycle__head { text-align: center; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+.cycle__head .eyebrow { color: var(--mocha); display: block; margin-bottom: .9rem; }
+/* En flex los margenes negativos si encogen la fila y los circulos vuelven a
+   crecer para llenarla: se solapan sin desbordar el ancho de la pagina. */
+.cycle__ring { display: flex; justify-content: center; max-width: 1080px; margin-inline: auto; }
+.cycle__step {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  border: 1px solid rgba(246,241,236,.28);
+  border-radius: 50%;
+  display: flex; flex-direction: column; justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  /* los círculos se solapan, como los eslabones de un ciclo */
+  margin-right: -7%;
+}
+.cycle__step:last-child { margin-right: 0; }
+/* El texto se queda en el centro del circulo: los laterales son la zona que
+   se solapa con el vecino. El porcentaje va sobre el ancho del circulo. */
+.cycle__step h3, .cycle__step p { max-width: 66%; margin-inline: auto; }
+.cycle__step h3 { font-size: clamp(.9rem, 1.3vw, 1.15rem); font-weight: 400; margin-bottom: .5rem; }
+.cycle__step h3 em { font-family: var(--serif); font-style: italic; }
+.cycle__step p { font-size: .74rem; line-height: 1.5; opacity: .72; }
+/* el punto de luz que marca el paso de un eslabón al siguiente */
+.cycle__step::before {
+  content: "";
+  position: absolute; top: 50%; right: -3px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--mocha);
+  box-shadow: 0 0 12px 2px rgba(185,145,119,.65);
+}
+.cycle__step:last-child::before { display: none; }
+
+/* Antes y después --------------------------------------------------------
+   Dos fotografías superpuestas y un tirador que descubre la de debajo. El
+   control es un input de rango: así funciona también con el teclado. */
+.ba__head { text-align: center; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.ba__cases {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: .5rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+.ba__cases button {
+  padding: .6em 1.3em;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  font-size: .62rem;
+  letter-spacing: var(--track-md);
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
+}
+.ba__cases button:hover { border-color: var(--burgundy); color: var(--burgundy); }
+.ba__cases button[aria-selected="true"] {
+  background: var(--burgundy); color: var(--cream); border-color: var(--burgundy);
+}
+.ba__frame {
+  --pos: 50%;
+  position: relative;
+  max-width: 860px;
+  margin-inline: auto;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--cream-warm);
+  touch-action: pan-y;
+}
+.ba__frame > img,
+.ba__after img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ba__after {
+  position: absolute; inset: 0;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+.ba__handle {
+  position: absolute; top: 0; bottom: 0;
+  left: var(--pos);
+  width: 1px;
+  background: rgba(246,241,236,.9);
+  transform: translateX(-.5px);
+  pointer-events: none;
+  z-index: 3;
+}
+.ba__handle::after {
+  content: "\2194";
+  position: absolute; top: 50%; left: 50%;
+  width: 44px; height: 44px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--burgundy);
+  font-size: 1rem;
+  line-height: 44px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(28,18,16,.28);
+}
+.ba__range {
+  position: absolute; inset: 0;
+  z-index: 4;
+  width: 100%; height: 100%;
+  margin: 0; opacity: 0;
+  cursor: ew-resize;
+  -webkit-appearance: none; appearance: none;
+  background: none;
+}
+.ba__range::-webkit-slider-thumb { -webkit-appearance: none; width: 44px; height: 100%; }
+.ba__range::-moz-range-thumb { width: 44px; height: 100%; border: 0; }
+.ba__range:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; }
+.ba__tag {
+  position: absolute; z-index: 3;
+  top: 1rem;
+  background: rgba(246,241,236,.92);
+  color: var(--burgundy);
+  font-size: .56rem;
+  font-weight: 500;
+  letter-spacing: var(--track-xl);
+  text-transform: uppercase;
+  padding: .45em .9em;
+  border-radius: 100px;
+}
+.ba__tag--a { left: 1rem; }
+.ba__tag--b { right: 1rem; }
+.ba__note { text-align: center; margin-top: 1.25rem; }
+
+/* Ventajas, con su símbolo ------------------------------------------------ */
+.perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); text-align: center; }
+.perk__icon {
+  width: 52px; height: 52px;
+  margin: 0 auto 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--burgundy);
+}
+.perk__icon svg { width: 22px; height: 22px; }
+.perk h3 { font-size: 1rem; font-weight: 500; margin-bottom: .6rem; }
+.perk h3 em { font-family: var(--serif); font-style: italic; }
+.perk p { font-size: .85rem; color: var(--muted); max-width: 34ch; margin-inline: auto; }
+
+/* Cierre con el logotipo a tamaño de cartel ------------------------------- */
+.signoff { position: relative; overflow: hidden; color: var(--white); text-align: center; }
+.signoff__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.signoff::after { content: ""; position: absolute; inset: 0; background: rgba(46,15,19,.62); }
+.signoff .wrap { position: relative; z-index: 2; padding-top: clamp(3.5rem, 8vw, 6.5rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
+.signoff .h2 { color: var(--white); margin-bottom: 1rem; }
+.signoff p { max-width: 46ch; margin: 0 auto 2rem; opacity: .88; }
+/* El logotipo se apoya en el borde inferior, cortado, como en una portada.
+   El tope de 760 px es el ancho real del archivo: mas grande se veria
+   pixelado. Con el logotipo en SVG se puede llevar a todo el ancho. */
+.signoff__mark {
+  position: relative; z-index: 2;
+  display: block;
+  width: min(88%, 760px);
+  margin: clamp(2rem, 5vw, 3.5rem) auto -2%;
+}
+.footer__mark {
+  display: block;
+  width: min(90%, 760px);
+  margin: clamp(2rem, 4vw, 3rem) auto -2.5%;
+  opacity: .96;
+}
+
 /* --- 20. Responsive ---------------------------------------------------- */
 @media (max-width: 1100px) {
+  .cycle__ring { flex-wrap: wrap; }
+  .cycle__step { flex: 1 1 44%; margin-right: -5%; }
+  .cycle__step:nth-child(2n) { margin-right: 0; }
+  .cycle__step:nth-child(2n)::before { display: none; }
   .collage__text { grid-column: 1 / span 6; }
   .collage__a { grid-column: 7 / span 6; }
   .collage__b { grid-column: 1 / span 5; margin-top: 2rem; }
@@ -868,6 +1163,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero__panel { aspect-ratio: 1 / 1; }
   .hero__panel--marca { aspect-ratio: 4 / 5; }
+  /* en movil la fotografia de marca va primero y el texto debajo */
+  .hero--split { min-height: auto; }
+  .hero--split .hero__text { order: 2; padding-block: clamp(2rem, 7vw, 3rem); }
+  .hero--split .hero__panel { order: 1; }
+  .hero__title { max-width: none; }
   .cats { grid-template-columns: 1fr; }
   .cat { aspect-ratio: 16 / 11; }
   .cat__label { writing-mode: horizontal-tb; }
@@ -877,6 +1177,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .collage__b { max-width: 60%; margin-left: auto; }
   .collage__c { max-width: 68%; }
   .posts, .grid-3 { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr; }
+  .pillar { aspect-ratio: 16 / 10; }
+  .perks { grid-template-columns: 1fr; }
+  .ba__frame { aspect-ratio: 4 / 3; }
+  .cycle__ring { flex-direction: column; gap: .75rem; }
+  .cycle__step { flex: 0 0 auto; margin-right: 0; aspect-ratio: auto; border-radius: 24px; padding: 1.5rem; }
+  /* apilados ya no se solapan: el texto recupera todo el ancho */
+  .cycle__step h3, .cycle__step p { max-width: none; }
+  .cycle__step::before { display: none; }
   .grid-2, .split, .footer__top, .service-row { grid-template-columns: 1fr; }
   .service-row:nth-child(even) .service-row__media { order: 0; }
   .gallery { columns: 2; }

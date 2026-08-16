@@ -94,9 +94,8 @@
     start();
   }
 
-  /* --- Pestañas + carrusel de tratamientos ----------------------------- */
-  var tabsRoot = document.querySelector('[data-tabs]');
-  if (tabsRoot) {
+  /* --- Pestañas -------------------------------------------------------- */
+  document.querySelectorAll('[data-tabs]').forEach(function (tabsRoot) {
     var tabButtons = tabsRoot.querySelectorAll('[role="tab"]');
     tabButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -108,7 +107,18 @@
         });
       });
     });
-  }
+  });
+
+  /* --- Antes y después --------------------------------------------------
+     El tirador es un input de rango invisible sobre la fotografía: así el
+     arrastre, el táctil y el teclado funcionan sin escribir nada de eso. */
+  document.querySelectorAll('[data-ba]').forEach(function (frame) {
+    var range = frame.querySelector('.ba__range');
+    if (!range) return;
+    var pintar = function () { frame.style.setProperty('--pos', range.value + '%'); };
+    range.addEventListener('input', pintar);
+    pintar();
+  });
 
   /* --- FAQ (acordeón accesible) ---------------------------------------- */
   document.querySelectorAll('.faq__q').forEach(function (q) {
