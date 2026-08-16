@@ -1159,6 +1159,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .head__t { margin: 0; }
 .head__d { color: var(--muted); font-size: .88rem; max-width: 40ch; }
 .head__d a { border-bottom: 1px solid var(--line); }
+/* el enlace suelto de algunos encabezados baja a la tercera columna */
+.head .spacer { display: none; }
+.head .link-arrow { grid-column: 3; justify-self: start; margin-top: .9rem; }
+@media (max-width: 900px) { .head .link-arrow { grid-column: 2; } }
 .cycle .head { border-color: rgba(246,241,236,.24); }
 .cycle .head__n { color: var(--mocha); }
 .cycle .head__d { color: rgba(246,241,236,.72); }
@@ -1267,6 +1271,91 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .ba--wide .ba__cases button[aria-selected="true"] { background: none; color: var(--burgundy); border-color: var(--burgundy); }
 .ba--wide .ba__frame { max-width: none; aspect-ratio: 16 / 10; }
 
+/* --- 19d. Acabado --------------------------------------------------------
+
+   1. LAS FOTOGRAFIAS TIENEN DOS PAPELES.
+   Las del trabajo van a color: son la prueba. Las de ambiente —el estudio, el
+   material, las manos— van en un monocromo calido. Asi el color deja de ser
+   ruido y pasa a significar algo: donde hay color, hay resultado.
+
+   2. EL FONDO NO ES PLANO.
+   Un grano muy fino sobre toda la pagina. No se ve, se nota: quita el aire de
+   pantalla y acerca al papel.
+
+   3. EL MOVIMIENTO ES CONTINUO, NO A SALTOS.
+   La portada se aleja al bajar, el titular entra palabra a palabra y una
+   linea fina arriba dice cuanto queda.                                      */
+
+.tone img, img.tone {
+  filter: grayscale(1) sepia(.34) saturate(1.5) contrast(1.03) brightness(1.03);
+  transition: filter 1.2s var(--ease);
+}
+/* al pasar por encima recupera el color: la foto se «enciende» */
+.tone:hover img, a:hover .tone img { filter: none; }
+
+/* grano */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: .055;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* linea de avance de lectura */
+.progress-read {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 95;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--burgundy);
+  pointer-events: none;
+}
+
+/* El titular grande entra palabra a palabra ------------------------------ */
+.w { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.w > i {
+  display: inline-block;
+  font-style: inherit;
+  transform: translateY(105%);
+  transition: transform 1s var(--ease);
+}
+.js .claim__text.is-in .w > i { transform: none; }
+.js .claim__text .w:nth-child(2) > i  { transition-delay: .05s; }
+.js .claim__text .w:nth-child(3) > i  { transition-delay: .10s; }
+.js .claim__text .w:nth-child(4) > i  { transition-delay: .15s; }
+.js .claim__text .w:nth-child(5) > i  { transition-delay: .20s; }
+.js .claim__text .w:nth-child(6) > i  { transition-delay: .25s; }
+.js .claim__text .w:nth-child(7) > i  { transition-delay: .30s; }
+.js .claim__text .w:nth-child(8) > i  { transition-delay: .35s; }
+.js .claim__text .w:nth-child(n+9) > i { transition-delay: .4s; }
+
+/* Casos de «para quien es»: filas, no tarjetas --------------------------- */
+.cases { border-top: 1px solid var(--line); }
+.case {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: baseline;
+  padding-block: clamp(1.25rem, 2.5vw, 1.9rem);
+  border-bottom: 1px solid var(--line);
+  transition: background .5s var(--ease), padding-inline .5s var(--ease);
+}
+.case:hover { background: var(--cream-warm); padding-inline: 1.25rem; }
+.case__n { font-family: var(--serif); font-style: italic; color: var(--mocha); font-size: .95rem; }
+.case h3 { font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 400; letter-spacing: -.01em; }
+.case p { font-size: .88rem; color: var(--muted); max-width: 52ch; }
+
+/* La cabecera se desliza sobre la portada -------------------------------- */
+.hero__panel--marca img { will-change: transform; }
+
 /* --- 20. Responsive ---------------------------------------------------- */
 @media (max-width: 1100px) {
   .cycle__ring { flex-wrap: wrap; }
@@ -1317,6 +1406,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .pin { grid-template-columns: 1fr; }
   .pin__side { position: static; }
   .pin__step { opacity: 1; grid-template-columns: 2.5rem minmax(0, 1fr); padding-block: 2rem; }
+  .case { grid-template-columns: 2.5rem minmax(0, 1fr); }
+  .case p { grid-column: 2; }
   .ba--wide { grid-template-columns: 1fr; }
   .ba--wide .ba__frame { aspect-ratio: 4 / 3; }
   .pillars { grid-template-columns: 1fr; }
@@ -1353,4 +1444,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .js .media-in img { transform: none; opacity: 1; }
   .js .hero__panel--pale > img { animation: none; }
   .header.is-hidden { transform: none; }
+  .js .claim__text .w > i { transform: none; }
+  .progress-read { display: none; }
 }

@@ -172,6 +172,23 @@ parecer una plantilla. Cada sección entra por un sitio distinto.
 - **Las tarjetas no miden todas igual.** Los tres pilares van escalonados
   (`.pillars--stagger`) y las de la fila alternan altura.
 
+### El trato de las fotografías
+
+Las fotografías tienen dos papeles y se distinguen a simple vista:
+
+- **A color** las que enseñan el trabajo: los tres pilares, la carta de
+  tratamientos y el antes/después. Son la prueba.
+- **En monocromo cálido** las de ambiente: el estudio, el material, las manos,
+  los óvalos del titular y el fondo del cierre. Llevan la clase `.tone`, y al
+  pasar el ratón por encima recuperan el color.
+
+Así el color deja de ser ruido y pasa a significar algo: donde hay color, hay
+resultado. Es lo que unifica un material fotográfico desigual mientras no
+llegue la sesión profesional.
+
+El fondo tampoco es plano: hay un grano muy fino sobre toda la página
+(`body::after`). No se ve, se nota — quita el aire de pantalla.
+
 ### Crecer sin rehacer la web
 
 La estructura está pensada para ampliarse:
@@ -197,6 +214,11 @@ suaves, nada de rebotes ni desplazamientos bruscos.
   va hacia el otro lado, y parada vuelve a su velocidad de crucero.
 - **El comparador de antes y después** es un `input` de rango invisible sobre
   la fotografía, así que funciona con ratón, con el dedo y con el teclado.
+- **El titular grande entra palabra a palabra**, subiendo desde su propia
+  línea. El JavaScript parte solo los nodos de texto, así que las fotografías
+  engarzadas en la frase y la cursiva se quedan como están.
+- **Una línea fina arriba** dice cuánto queda de página.
+- **La fotografía de portada se aleja** despacio mientras se baja.
 - `.reveal` — el bloque aparece subiendo al entrar en pantalla.
 - `.reveal--curtain` — los titulares se descubren de arriba abajo.
 - `.media-in` — las fotografías entran con un ligero cambio de escala.

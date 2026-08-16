@@ -155,9 +155,19 @@
   var capas = [].slice.call(document.querySelectorAll('[data-parallax]'));
   if (capas.length && !reduced) {
     var pendiente = false;
+    var portada = document.querySelector('.hero__panel--marca img');
     var pintar = function () {
       pendiente = false;
       var alto = window.innerHeight;
+
+      /* la fotografía de portada se aleja despacio mientras se baja */
+      if (portada) {
+        var avanceHero = Math.min(1, Math.max(0, window.scrollY / alto));
+        portada.style.transform =
+          'scale(' + (1 + avanceHero * .09).toFixed(3) + ') translate3d(0,' +
+          (avanceHero * 26).toFixed(1) + 'px,0)';
+      }
+
       capas.forEach(function (el) {
         var r = el.getBoundingClientRect();
         if (r.bottom < -200 || r.top > alto + 200) return;
@@ -174,6 +184,50 @@
     window.addEventListener('scroll', pedir, { passive: true });
     window.addEventListener('resize', pedir);
     pintar();
+  }
+
+  /* --- El titular grande entra palabra a palabra -------------------------
+     Se parten solo los nodos de texto: las fotografías engarzadas y la
+     cursiva del final se quedan como están. */
+  document.querySelectorAll('.claim__text').forEach(function (bloque) {
+    if (reduced) return;
+    var partir = function (nodo) {
+      [].slice.call(nodo.childNodes).forEach(function (hijo) {
+        if (hijo.nodeType === 3) {
+          var trozos = hijo.nodeValue.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          trozos.forEach(function (t) {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(t)); return; }
+            var caja = document.createElement('span');
+            caja.className = 'w';
+            var dentro = document.createElement('i');
+            dentro.textContent = t;
+            caja.appendChild(dentro);
+            frag.appendChild(caja);
+          });
+          nodo.replaceChild(frag, hijo);
+        } else if (hijo.nodeType === 1 && hijo.tagName === 'EM') {
+          partir(hijo);
+        }
+      });
+    };
+    partir(bloque);
+  });
+
+  /* --- Línea de avance de lectura ---------------------------------------- */
+  if (!reduced) {
+    var linea = document.createElement('div');
+    linea.className = 'progress-read';
+    document.body.appendChild(linea);
+    var pintarLinea = function () {
+      var alto = document.documentElement.scrollHeight - window.innerHeight;
+      var avance = alto > 0 ? window.scrollY / alto : 0;
+      linea.style.transform = 'scaleX(' + Math.min(1, Math.max(0, avance)).toFixed(4) + ')';
+    };
+    window.addEventListener('scroll', pintarLinea, { passive: true });
+    window.addEventListener('resize', pintarLinea);
+    pintarLinea();
   }
 
   /* --- Fila de tratamientos: se arrastra con el ratón --------------------
