@@ -1015,6 +1015,10 @@ body.menu-open .mobile-menu {
   display: inline-flex;
   align-items: baseline;
   gap: 0.7rem;
+  /* Los navegadores centran el texto de los <button>. Con un nombre largo que
+     parte en dos líneas —«Graphic Design & Brand Identity» en un móvil— eso lo
+     dejaba centrado mientras los otros cuatro van a la izquierda. */
+  text-align: left;
   padding: 0.1em 0;
   border: 0;
   background: none;
@@ -1033,6 +1037,8 @@ body.menu-open .mobile-menu {
 .svc__nom button:hover {
   opacity: 1;
 }
+/* El número va dentro del nombre, no al lado: así, cuando el nombre parte en dos
+   líneas, se queda pegado a la última palabra en vez de irse al otro extremo. */
 .svc__nom sup {
   font-size: 0.28em;
   font-weight: 600;

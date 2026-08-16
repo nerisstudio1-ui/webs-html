@@ -714,7 +714,7 @@ def render(lang):
         w(f'''          <li class="svc__nom{' is-active' if i == 0 else ''}" data-svc="{i}">
             <button type="button" aria-controls="svc-def-{i}" aria-expanded="{'true' if i == 0 else 'false'}">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#{ICONO_SERVICIO[i]}"/></svg>
-              <span class="svc__etiqueta">{nombre}</span><sup>{num}</sup>
+              <span class="svc__etiqueta">{nombre}<sup>{num}</sup></span>
             </button>
           </li>''')
     w('        </ol>\n\n        <div class="svc__defs">')

@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (ES).
-     Generado: 2026-08-15 07:34 UTC
+     Generado: 2026-08-16 06:35 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -1134,6 +1134,10 @@
   display: inline-flex;
   align-items: baseline;
   gap: 0.7rem;
+  /* Los navegadores centran el texto de los <button>. Con un nombre largo que
+     parte en dos líneas —«Graphic Design & Brand Identity» en un móvil— eso lo
+     dejaba centrado mientras los otros cuatro van a la izquierda. */
+  text-align: left;
   padding: 0.1em 0;
   border: 0;
   background: none;
@@ -1152,6 +1156,8 @@
 #laconic-app .svc__nom button:hover {
   opacity: 1;
 }
+/* El número va dentro del nombre, no al lado: así, cuando el nombre parte en dos
+   líneas, se queda pegado a la última palabra en vez de irse al otro extremo. */
 #laconic-app .svc__nom sup {
   font-size: 0.28em;
   font-weight: 600;
@@ -1847,31 +1853,31 @@
           <li class="svc__nom is-active" data-svc="0">
             <button type="button" aria-controls="svc-def-0" aria-expanded="true">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-sol"/></svg>
-              <span class="svc__etiqueta">Content creation</span><sup>01</sup>
+              <span class="svc__etiqueta">Content creation<sup>01</sup></span>
             </button>
           </li>
           <li class="svc__nom" data-svc="1">
             <button type="button" aria-controls="svc-def-1" aria-expanded="false">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-pausa"/></svg>
-              <span class="svc__etiqueta">Social Media</span><sup>02</sup>
+              <span class="svc__etiqueta">Social Media<sup>02</sup></span>
             </button>
           </li>
           <li class="svc__nom" data-svc="2">
             <button type="button" aria-controls="svc-def-2" aria-expanded="false">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-asterisc"/></svg>
-              <span class="svc__etiqueta">Ads &amp; Campaigns</span><sup>03</sup>
+              <span class="svc__etiqueta">Ads &amp; Campaigns<sup>03</sup></span>
             </button>
           </li>
           <li class="svc__nom" data-svc="3">
             <button type="button" aria-controls="svc-def-3" aria-expanded="false">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-fletxa"/></svg>
-              <span class="svc__etiqueta">UGC</span><sup>04</sup>
+              <span class="svc__etiqueta">UGC<sup>04</sup></span>
             </button>
           </li>
           <li class="svc__nom" data-svc="4">
             <button type="button" aria-controls="svc-def-4" aria-expanded="false">
               <svg class="svc__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-cercle"/></svg>
-              <span class="svc__etiqueta">Graphic Design &amp; Brand Identity</span><sup>05</sup>
+              <span class="svc__etiqueta">Graphic Design &amp; Brand Identity<sup>05</sup></span>
             </button>
           </li>
         </ol>
