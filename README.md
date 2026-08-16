@@ -10,9 +10,14 @@ y tipografía elegante. Las imágenes son las protagonistas de cada bloque.
 
 ## Páginas
 
+`index.html` es una **landing**: una sola página que lleva a un sitio, pedir
+cita. El menú no salta de archivo, salta de sección, y el formulario está
+dentro. Las otras cuatro páginas siguen existiendo como detalle ampliado y se
+enlazan desde el pie.
+
 | Archivo | Contenido |
 |---|---|
-| `index.html` | Home: hero partido, franja de marca, declaración, tres pilares, antes/después, el ciclo del método, tratamientos, ventajas, el estudio por dentro, para quién es, FAQ, las hermanas y cierre con el logotipo |
+| `index.html` | **Landing.** Hero, franja de marca, declaración, 01 pilares, 02 antes/después, llamada intermedia, 03 el método, 04 la carta, 05 por qué aquí, el estudio por dentro, 06 para quién es, 07 dudas, las hermanas, 08 pedir cita y cierre |
 | `servicios.html` | Cejas realistas (Hair Stroke), estudio previo y diseño, laminado y henna; sección «próximamente» y criterio de tarifas |
 | `metodo.html` | Las 4 fases del método, cuidados durante la cicatrización y tipos de piel |
 | `estudio.html` | La historia de las dos hermanas, filosofía, especialización, galería y hacia dónde va el estudio |
@@ -155,7 +160,23 @@ El espaciado entre letras es una escala con nombre, no un número suelto:
 La palabra destacada toma su color de `--accent`: granate sobre crema y moka
 en los bloques de fondo oscuro, donde el granate se perdería.
 
-### El criterio de la portada
+### El criterio de la landing
+
+Una landing no es una web con menos páginas: es una página con **un solo
+objetivo**. Aquí, pedir cita. De ahí tres decisiones:
+
+- **El recorrido persuade en orden.** Gancho (portada) → promesa
+  (declaración) → qué hacemos (01) → **prueba** (02, el antes/después) →
+  cómo lo hacemos, que quita el miedo (03) → qué puedes reservar (04) → por
+  qué nosotras (05) → es para ti (06) → objeciones (07) → **reservar** (08).
+- **La llamada aparece tres veces**: al entrar, justo después de la prueba
+  (la franja `.band`) y al final, con el formulario. Más el botón fijo de la
+  cabecera y el de WhatsApp.
+- **El menú no te saca de la página.** Son anclas, y se resalta la sección en
+  la que estás (`[data-spy]` en el JavaScript). `scroll-padding-top` evita
+  que la cabecera pegajosa tape el destino.
+
+### El criterio de las secciones
 
 La portada no es una sucesión de bloques centrados: es lo que la haría
 parecer una plantilla. Cada sección entra por un sitio distinto.

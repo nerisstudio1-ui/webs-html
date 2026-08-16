@@ -51,7 +51,12 @@
 
 /* --- 2. Reset ---------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* al saltar a una seccion, que no quede tapada por la cabecera */
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
 body {
   margin: 0;
   background: var(--cream);
@@ -64,6 +69,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 img, svg, video { display: block; max-width: 100%; }
+/* el atributo hidden lo pisaba el display de .btn: sin esto el boton de
+   enviar por email se veia aunque el JavaScript lo ocultase */
+[hidden] { display: none !important; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
@@ -1356,6 +1364,40 @@ body::after {
 /* La cabecera se desliza sobre la portada -------------------------------- */
 .hero__panel--marca img { will-change: transform; }
 
+/* --- 19e. Piezas de landing ----------------------------------------------
+   Una landing es una sola pagina que lleva a un sitio: reservar. Por eso la
+   llamada aparece tres veces en el recorrido —al entrar, despues de ver la
+   prueba y al final— y el formulario esta aqui dentro, no en otra pagina. */
+
+/* La llamada del medio, entre la prueba y el metodo */
+.band { background: var(--cream-warm); }
+.band__in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  flex-wrap: wrap;
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+.band__t {
+  font-size: clamp(1.3rem, 2.6vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  max-width: 18ch;
+  color: var(--burgundy);
+}
+.band__t em { font-family: var(--serif); font-style: italic; }
+.band__cta { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2rem); flex-wrap: wrap; }
+
+/* El formulario y su columna de datos */
+.booking { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
+.booking__side .info-card { background: var(--cream-warm); }
+.booking__side dl { margin-top: .5rem; }
+
+/* El menu marca la seccion en la que estas */
+.nav a[aria-current="true"]::after { transform: scaleX(1); transform-origin: left; }
+.nav a[aria-current="true"] { font-weight: 500; }
+
 /* --- 20. Responsive ---------------------------------------------------- */
 @media (max-width: 1100px) {
   .cycle__ring { flex-wrap: wrap; }
@@ -1408,6 +1450,7 @@ body::after {
   .pin__step { opacity: 1; grid-template-columns: 2.5rem minmax(0, 1fr); padding-block: 2rem; }
   .case { grid-template-columns: 2.5rem minmax(0, 1fr); }
   .case p { grid-column: 2; }
+  .booking { grid-template-columns: 1fr; }
   .ba--wide { grid-template-columns: 1fr; }
   .ba--wide .ba__frame { aspect-ratio: 4 / 3; }
   .pillars { grid-template-columns: 1fr; }

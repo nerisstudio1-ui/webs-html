@@ -215,6 +215,34 @@
     partir(bloque);
   });
 
+  /* --- El menú marca la sección en la que estás -------------------------
+     Es una landing: los enlaces del menú no llevan a otra página, señalan
+     dónde estás dentro de esta. */
+  var spy = document.querySelector('[data-spy]');
+  if (spy && 'IntersectionObserver' in window) {
+    var enlaces = [].slice.call(spy.querySelectorAll('a[href^="#"]'));
+    var secciones = enlaces
+      .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
+      .filter(Boolean);
+
+    if (secciones.length) {
+      var marcar = function (id) {
+        enlaces.forEach(function (a) {
+          if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
+      };
+      var visibles = {};
+      var ioSpy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { visibles[e.target.id] = e.isIntersecting; });
+        /* si hay varias a la vista, manda la primera en orden de página */
+        var actual = secciones.filter(function (sec) { return visibles[sec.id]; })[0];
+        if (actual) marcar(actual.id);
+      }, { rootMargin: '-45% 0px -45% 0px' });
+      secciones.forEach(function (sec) { ioSpy.observe(sec); });
+    }
+  }
+
   /* --- Línea de avance de lectura ---------------------------------------- */
   if (!reduced) {
     var linea = document.createElement('div');
