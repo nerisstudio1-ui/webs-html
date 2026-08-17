@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (CA).
-     Generado: 2026-08-16 06:35 UTC
+     Generado: 2026-08-17 19:06 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -166,7 +166,6 @@
   /* Layout */
   --wrap: 1280px;
   --gutter: clamp(1.25rem, 4vw, 4rem);
-  --radius-slab: clamp(22px, 3.5vw, 56px);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -315,25 +314,10 @@
   color: var(--cream);
 }
 #laconic-app [data-theme="deep"] .display,
-#laconic-app [data-theme="deep"] .quote__text {
-  color: var(--cream);
-}
-#laconic-app [data-theme="deep"] .display .hand,
-#laconic-app [data-theme="deep"] .quote__text .hand {
-  color: var(--sand);
-}
-#laconic-app [data-theme="terra"] p,
+#laconic-app [data-theme="deep"] [data-theme="deep"] .display .hand,
+#laconic-app [data-theme="deep"] [data-theme="terra"] p,
 #laconic-app [data-theme="ink"] p {
   color: var(--cream);
-}
-
-/* Bloque que monta sobre el anterior con la esquina redondeada */
-#laconic-app .slab-top {
-  border-start-start-radius: var(--radius-slab);
-  border-start-end-radius: var(--radius-slab);
-  margin-top: calc(-1 * var(--radius-slab));
-  z-index: 2;
-  overflow: hidden;
 }
 
 #laconic-app .center {
@@ -409,10 +393,12 @@
 #laconic-app [data-theme="ink"] .display .hand {
   color: var(--terra-soft);
 }
-#laconic-app .display--sm {
-  font-size: var(--display-2);
+/* El granate de la paleta (Clay Heat) para la manuscrita del contacto, como
+   pidió el estudio. Sobre el verde noche da 3,0:1: cumple justo el mínimo de
+   texto grande, que es lo que es este titular, pero no da para letra pequeña. */
+#laconic-app [data-theme="ink"] .display--granate .hand {
+  color: var(--clay);
 }
-
 #laconic-app .lead {
   font-size: var(--step-1);
   line-height: 1.35;
@@ -519,31 +505,7 @@
   text-transform: none;
   letter-spacing: 0;
 }
-/* Botón de contorno, pequeño y muy espaciado: el de la referencia */
-#laconic-app .btn--line {
-  --btn-bg: transparent;
-  --btn-fg: currentColor;
-  border-color: currentColor;
-  border-radius: 2px;
-  padding: 1rem 2.1rem;
-  font-size: var(--step--2);
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-indent: 0.24em;
-}
-#laconic-app .btn--line:hover {
-  background: var(--cream);
-  color: var(--terra);
-  border-color: var(--cream);
-}
-#laconic-app [data-theme="cream"] .btn--line:hover,
-#laconic-app [data-theme="cream-2"] .btn--line:hover {
-  background: var(--ink);
-  color: var(--cream);
-  border-color: var(--ink);
-}
-
-#laconic-app .link-line {
+#laconic-app [data-theme="cream"] .link-line {
   position: relative;
   font-weight: 500;
   display: inline-flex;
@@ -618,16 +580,7 @@
   align-items: center;
   gap: 0.6rem;
 }
-#laconic-app .brand__mark {
-  height: 21px;
-  width: auto;
-  flex: none;
-  transition: transform 0.6s var(--ease-out);
-}
-#laconic-app .brand:hover .brand__mark {
-  transform: rotate(-12deg);
-}
-/* El cero solo, que es lo que va en la cabecera */
+.brand:hover /* El cero solo, que es lo que va en la cabecera */
 #laconic-app .brand__zero {
   height: clamp(22px, 2.2vw, 28px);
   width: auto;
@@ -791,79 +744,65 @@
    es el recorrido que usan las fotos para subir (--p va de 0 a 1). Acaban
    arriba del todo, saliendo por el borde superior. */
 #laconic-app .hero {
+  --p: 0;
   position: relative;
-  height: calc(100svh - var(--lac-top, 0px));
-  min-height: 34rem;
-  background: var(--ink);
-  color: var(--cream);
-  overflow: hidden;
+  height: 240svh;
+  background: var(--cream);
+  color: var(--text);
 }
-
-/* Las dos fotos ocupan la pantalla entera, una al lado de la otra. En un móvil
-   no caben dos columnas: pasan a una sobre otra, media pantalla cada una, que es
-   lo que mantiene el formato vertical de las fotos. */
-#laconic-app .hero__fotos {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-#laconic-app .hero__foto {
-  margin: 0;
-  overflow: hidden;
-}
-#laconic-app .hero__foto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-/* Una sola capa por encima de las dos fotos, pareja de arriba abajo. Es lo que
-   hace legible el logotipo y los rótulos: sin ella, la mitad en blanco y negro
-   es demasiado clara para la crema. Una sola capa y no una sombra pegada al
-   texto porque así se comporta igual en cualquier proporción de pantalla, que
-   es justo donde fallaba lo anterior. */
-#laconic-app .hero__fotos::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(var(--ink-rgb), 0.58);
-}
-@media (max-width: 700px) {
-  #laconic-app .hero__fotos {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-}
-
+/* El escenario se queda quieto mientras la sección pasa por debajo: es lo que
+   deja las fotos subiendo detrás del logotipo sin que este se mueva. */
 #laconic-app .hero__stage {
-  position: relative;
-  z-index: 2;
-  height: 100%;
+  position: sticky;
+  top: var(--lac-top, 0px);
+  height: calc(100svh - var(--lac-top, 0px));
+  overflow: hidden;
   display: grid;
   align-content: center;
   justify-items: center;
   padding-inline: var(--gutter);
 }
 
-/* Una sombra suave detrás del bloque de texto, y solo ahí. El velo general no
-   puede oscurecerse más sin apagar las fotos, pero el claim es letra pequeña en
-   versalitas y necesita fondo: medido sobre la mitad en blanco y negro, sin esto
-   se queda por debajo de 2:1. Así la foto se mantiene viva por los bordes. */
-/* El bloque del logotipo y el claim, juntos y centrados. */
-#laconic-app .hero__bloc {
-  position: relative;
-  display: grid;
-  justify-items: center;
-  padding: clamp(2.2rem, 7vw, 5rem) clamp(2rem, 8vw, 6rem);
-}
-#laconic-app .hero__bloc > * {
-  position: relative;
+/* Las dos fotos suben desde debajo del pliegue hasta salir por arriba, por
+   detrás del logotipo, y a plena opacidad: sin velo, que es como las quiere el
+   estudio. Cada una a su ritmo (--rise), que es lo que da la sensación de
+   profundidad. */
+#laconic-app .hero__fotos {
+  position: absolute;
+  inset: 0;
   z-index: 1;
+  pointer-events: none;
+}
+#laconic-app .tile {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  transform: translate3d(0, calc(var(--rise, 150svh) * (1 - var(--p))), 0)
+    rotate(var(--rot, 0deg));
+  will-change: transform;
+  box-shadow: 0 30px 60px -44px rgba(var(--ink-rgb), 0.5);
+}
+#laconic-app .tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tile--1 { left: 4%;  top: -6%;  width: 26vw; height: 54svh; --rise: 150svh; --rot: -2.5deg; }
+.tile--2 { left: 66%; top: -14%; width: 28vw; height: 58svh; --rise: 182svh; --rot: 2deg; }
+@media (max-width: 700px) {
+  .tile--1 { left: -4%; width: 46vw; height: 40svh; --rise: 150svh; }
+  .tile--2 { left: 58%; width: 48vw; height: 44svh; --rise: 188svh; }
 }
 
-/* El logotipo, centrado y en crema: sobre fotografía, la teja de la marca se
-   apaga contra los medios tonos y deja de leerse. */
+/* El bloque del logotipo y el claim, centrado y por delante de las fotos */
+#laconic-app .hero__bloc {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+}
+
+/* El logotipo, centrado y en teja */
 #laconic-app .hero__logo {
   position: relative;
   z-index: 3;
@@ -875,8 +814,7 @@
 #laconic-app .hero__word {
   width: min(48vw, 520px);
   height: auto;
-  color: var(--cream);
-  filter: drop-shadow(0 2px 24px rgba(var(--ink-rgb), 0.45));
+  color: var(--terra);
   clip-path: inset(0 0 105% 0);
   transition: clip-path 1.5s var(--ease-out) 0.15s;
 }
@@ -888,13 +826,12 @@
   text-transform: uppercase;
   letter-spacing: 0.62em;
   text-indent: 0.62em;
-  color: var(--cream);
-  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
+  color: var(--terra);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 0.85s;
 }
 #laconic-app.is-loaded .hero__name {
-  opacity: 1;
+  opacity: 0.9;
 }
 #laconic-app .hero__claim {
   position: relative;
@@ -906,43 +843,37 @@
   text-transform: uppercase;
   letter-spacing: 0.22em;
   line-height: 1.9;
-  color: var(--cream);
-  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
+  color: var(--text);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.05s;
 }
 #laconic-app.is-loaded .hero__claim {
-  opacity: 1;
+  opacity: 0.72;
 }
-/* Filete de abajo con los dos rótulos.
-   Va por encima del radio con el que monta la sección siguiente: si no, en una
-   pantalla ancha y baja cae justo sobre la curva de terracota y ahí el contraste
-   se queda en 3,6:1 por mucho que se oscurezca la foto. */
+/* Filete de abajo con los dos rótulos */
 #laconic-app .hero__rule {
   position: absolute;
   z-index: 3;
   left: var(--gutter);
   right: var(--gutter);
-  bottom: calc(clamp(1.6rem, 5vh, 3.2rem) + var(--radius-slab));
+  bottom: clamp(1.6rem, 5vh, 3.2rem);
   display: flex;
   align-items: center;
   gap: clamp(1rem, 3vw, 2.4rem);
   font-size: var(--step--2);
   text-transform: uppercase;
   letter-spacing: 0.24em;
-  color: var(--cream);
-  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.15s;
 }
 #laconic-app.is-loaded .hero__rule {
-  opacity: 1;
+  opacity: 0.75;
 }
 #laconic-app .hero__rule i {
   flex: 1;
   height: 1px;
   background: currentColor;
-  opacity: 0.45;
+  opacity: 0.35;
 }
 
 /* ---------- Declaración: bloque de color, centrado ---------- */
@@ -976,8 +907,9 @@
   position: relative;
   overflow: hidden;
   padding-bottom: clamp(2.5rem, 6vw, 6rem);
-  background: var(--terra);
-  color: var(--cream);
+  /* El fondo lo pone data-theme: la tira va sobre crema, encadenada con la
+     presentación del inicio. Antes tenía el suyo propio, en terracota, y
+     asomaba como una franja de color justo debajo de las fotos. */
 }
 #laconic-app .strip__band {
   overflow: hidden;
@@ -1007,26 +939,6 @@
   height: 100%;
   object-fit: cover;
 }
-/* El rótulo, ahora sí legible: verde sobre el terracota, y entero */
-#laconic-app .strip__ghost {
-  display: block;
-  margin-top: clamp(0.6rem, 2vw, 1.6rem);
-  text-align: center;
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 4.6vw, 4.4rem);
-  line-height: 0.96;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: rgba(var(--ink-rgb), 0.55);
-  user-select: none;
-}
-/* La palabra que lleva el peso de la frase */
-#laconic-app .strip__ghost strong {
-  font-weight: 800;
-}
-
 /* ---------- Manifiesto ---------- */
 /* Una sola columna de texto: el «less noise» va alineado con el párrafo, no
    enfrentado a él, y el cierre va en Raleway como pidió el estudio. */
@@ -1057,7 +969,7 @@
 #laconic-app .marquee {
   overflow: hidden;
   padding-top: clamp(1.6rem, 3.4vw, 2.6rem);
-  padding-bottom: calc(clamp(1.6rem, 3.4vw, 2.6rem) + var(--radius-slab));
+  padding-bottom: clamp(1.6rem, 3.4vw, 2.6rem);
   background: var(--ink);
   color: var(--cream);
 }
@@ -1098,7 +1010,7 @@
 /* La línea de servicios: Raleway fina, pequeña, y la banda más estrecha */
 #laconic-app .marquee--fina {
   padding-top: clamp(0.9rem, 1.8vw, 1.4rem);
-  padding-bottom: calc(clamp(0.9rem, 1.8vw, 1.4rem) + var(--radius-slab));
+  padding-bottom: clamp(0.9rem, 1.8vw, 1.4rem);
 }
 #laconic-app .marquee--fina span {
   font-size: clamp(0.78rem, 1.1vw, 1rem);
@@ -1512,10 +1424,7 @@
   /* En estrecho las piezas del inicio se ensanchan y se separan del logotipo */
   .tile--1 { left: -3%; top: -6%;  width: 40vw; height: 30svh; }
   .tile--2 { left: 62%; top: -12%; width: 42vw; height: 32svh; }
-  .tile--3 { left: 26%; top: 6%;   width: 36vw; height: 27svh; --rise: 190svh; }
-  .tile--4 { display: none; }
-  .tile--5 { left: 55%; top: 22%;  width: 38vw; height: 29svh; }
-  #laconic-app .hero__claim {
+        #laconic-app .hero__claim {
     max-width: 26ch;
   }
 }
@@ -1528,11 +1437,7 @@
   #laconic-app .burger {
     display: block;
   }
-  #laconic-app .quote__mark {
-    right: -18vw;
-    height: 60%;
   }
-}
 
 @media (prefers-reduced-motion: reduce) {
   #laconic-app html {
@@ -1589,12 +1494,6 @@
   gap: 0.4rem;
   align-content: start;
 }
-#laconic-app .person__mark {
-  height: 30px;
-  width: auto;
-  color: var(--sand);
-  margin-bottom: 0.6rem;
-}
 #laconic-app .person__name {
   font-family: var(--hand);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
@@ -1615,46 +1514,7 @@
   line-height: 1.6;
   margin: 0;
 }
-
-/* Reclamo de marca */
-#laconic-app .claim {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(1.6rem, 4.2vw, 3rem);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin: 0;
-}
-#laconic-app .claim em {
-  font-style: normal;
-  color: var(--terra);
-}
-#laconic-app [data-theme="terra"] .claim em,
-#laconic-app [data-theme="ink"] .claim em,
-#laconic-app [data-theme="deep"] .claim em {
-  color: var(--sand);
-}
-
-/* Enlaces a las piezas publicadas de cada proyecto */
-#laconic-app .slab__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem 1.2rem;
-  margin-top: 1.2rem;
-}
-#laconic-app .slab__links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: var(--step--1);
-  font-weight: 500;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
-  transition: color 0.35s var(--ease);
-}
-#laconic-app .slab__links a:hover {
-  color: var(--terra);
-}
+ 
 
 
 /* ---------- Ajustes para vivir dentro de un tema ---------- */
@@ -1670,11 +1530,19 @@
   --lac-top: 0px;
   /* El tema mete el contenido en una columna estrecha. El contenedor sale a todo
      el ancho de la ventana una sola vez y dentro todo funciona igual que en la
-     web suelta; clip evita que aparezca barra horizontal. */
-  width: 100vw;
-  max-width: 100vw;
-  margin-inline: calc(50% - 50vw);
-  overflow-x: clip;
+     web suelta.
+     Ojo con el ancho: 100vw incluye la barra de desplazamiento, así que a secas
+     desborda unos píxeles y sale barra horizontal. Antes se tapaba con
+     `overflow-x: clip`, y eso rompía el `position: sticky` del inicio —las fotos
+     dejaban de subir por detrás del logotipo en WordPress, aunque en la web
+     suelta funcionara—. Así que en lugar de tapar el desborde se descuenta el
+     ancho real de la barra, que mide el guion de arriba en --lac-barra.
+     `overflow-x: visible` va explícito porque la regla que sale de nuestro body
+     lo pone en hidden, y hidden rompe el sticky igual que clip. */
+  width: calc(100vw - var(--lac-barra, 0px));
+  max-width: calc(100vw - var(--lac-barra, 0px));
+  margin-inline: calc(50% - (100vw - var(--lac-barra, 0px)) / 2);
+  overflow-x: visible;
 }
 #laconic-app .wrap {
   box-sizing: border-box;
@@ -1683,7 +1551,7 @@
 </style>
 
 <div id="laconic-app">
-<script>(function(){var a=document.getElementById("laconic-app");if(!a)return;a.classList.add("has-js");var r=function(){if(!a.classList.contains("lac-ok"))a.classList.remove("has-js");};if(document.readyState==="complete"){setTimeout(r,300);}else{window.addEventListener("load",function(){setTimeout(r,300);});}setTimeout(r,6000);})();</script>
+<script>(function(){var a=document.getElementById("laconic-app");if(!a)return;a.classList.add("has-js");var m=function(){a.style.setProperty("--lac-barra",(window.innerWidth-document.documentElement.clientWidth)+"px");};m();window.addEventListener("resize",m);var r=function(){if(!a.classList.contains("lac-ok"))a.classList.remove("has-js");};if(document.readyState==="complete"){setTimeout(r,300);}else{window.addEventListener("load",function(){setTimeout(r,300);});}setTimeout(r,6000);})();</script>
 <!-- Logo oficial de la marca vectorizado: el cero, el logotipo y el lockup,
      más los iconos de los servicios. Todos heredan color con currentColor. -->
 <svg class="sprite" aria-hidden="true" focusable="false">
@@ -1707,7 +1575,7 @@
       <svg class="brand__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
     </a>
 
-    <nav class="nav" aria-label="L'estudi">
+    <nav class="nav" aria-label="Navegació principal">
       <a href="#about">About</a>
       <a href="#lac-serveis">Serveis</a>
       <a href="#projectes">Projectes</a>
@@ -1745,16 +1613,15 @@
 
 <main id="lac-top">
 
-  <!-- Inici: les dues fotos ocupen la pantalla i el logotip va a sobre -->
-  <section class="hero" data-theme="ink">
-    <div class="hero__fotos">
-      <figure class="hero__foto"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Corredor en un camí de terra amb un pi al fons" loading="eager" decoding="async"></figure>
-      <figure class="hero__foto"><img src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Ampolla de ratafia Malhivern entre pots de plantes" loading="eager" decoding="async"></figure>
-    </div>
-
+  <!-- Inici: fons crema amb el logotip, i les dues fotos que van pujant amb el
+       scroll per darrere, a plena opacitat -->
+  <section class="hero" data-theme="cream" data-collage>
     <div class="hero__stage">
-      <!-- El logotip i el claim van dins d'un mateix bloc: l'ombra que els fa
-           llegibles és seva, així que els segueix mesuri el que mesuri la finestra. -->
+      <div class="hero__fotos" aria-hidden="true">
+        <figure class="tile tile--1"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="42vw" width="1100" height="1375" alt="Corredor en un camí de terra amb un pi al fons" loading="eager" decoding="async"></figure>
+        <figure class="tile tile--2"><img src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="42vw" width="1100" height="1375" alt="Ampolla de ratafia Malhivern entre pots de plantes" loading="eager" decoding="async"></figure>
+      </div>
+
       <div class="hero__bloc">
         <h1 class="hero__logo">
           <span class="visually-hidden">Laconic Studio</span>
@@ -1772,16 +1639,17 @@
     </div>
   </section>
 
-  <!-- Declaració: bloc de color, centrat, sense botó i amb menys aire -->
-  <section class="decl decl--tight slab-top" data-theme="terra">
+  <!-- Declaració: la frase segueix la presentació de l'inici, sobre crema i
+       sense cantonades: la separació la fan les fotos, no els blocs -->
+  <section class="decl decl--tight" data-theme="cream">
     <div class="wrap wrap--narrow center">
-      <p class="kicker kicker--center fade">About</p>
       <p class="decl__text display rl">Ajudem a marques a deixar empremta <span class="hand">(de la de veritat)</span>.</p>
     </div>
   </section>
 
-  <!-- Tira de fotos que passa en bucle -->
-  <div class="strip" data-theme="terra">
+  <!-- Tira de fotos que passa en bucle. És el que separa la presentació de
+       l'apartat about: la separació són les fotos -->
+  <div class="strip" data-theme="cream">
     <div class="strip__band">
       <div class="strip__track">
         <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Pizza artesana sobre una pala, amb llum baixa" loading="lazy" decoding="async"></figure>
@@ -1790,22 +1658,21 @@
         <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/quality-3-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-3-700.jpg 700w, __BASE__assets/img/proyectos/quality-3-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Esportista amb la samarreta de Quality Training fent una llançada" loading="lazy" decoding="async"></figure>
         <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/jordi-coll-3-1100.jpg" srcset="__BASE__assets/img/proyectos/jordi-coll-3-700.jpg 700w, __BASE__assets/img/proyectos/jordi-coll-3-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Públic assistint a la presentació del llibre" loading="lazy" decoding="async"></figure>
         <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/puig-2-1100.jpg" srcset="__BASE__assets/img/proyectos/puig-2-700.jpg 700w, __BASE__assets/img/proyectos/puig-2-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Cistelles de pa apilades a l'obrador" loading="lazy" decoding="async"></figure>
-        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/f45-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f45-1-700.jpg 700w, __BASE__assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Entrenament amb cordes davant del rètol de F45 Training" loading="lazy" decoding="async"></figure>
+        <figure class="strip__cell"><img src="__BASE__assets/img/proyectos/maitasuna-2-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-2-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-2-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Jaqueta de l'obrador de Maitasuna brodada amb el nom del pizzer" loading="lazy" decoding="async"></figure>
       </div>
     </div>
   </div>
 
-  <!-- Estudi -->
-  <section class="section slab-top" data-theme="cream" id="about">
+  <!-- About: comença directament, sense cantonada i sense rètol -->
+  <section class="section" data-theme="cream" id="about">
     <div class="wrap">
-      <p class="kicker fade">L'estudi</p>
+      <p class="kicker fade">About</p>
       <h2 class="display rl">
         Cada marca comunica, <span class="hand">però no totes connecten</span>.
       </h2>
 
       <div class="manifesto__grid manifesto__grid--simple">
         <div class="body-col fade">
-          <p class="claim">Less noise. <em>More meaning.</em></p>
           <p>Som un estudi creatiu especialitzat en xarxes socials, creació de contingut i estratègia digital. Treballem amb marques que volen construir una presència coherent, autèntica i amb criteri, creant contingut que connecti amb les persones i tingui un objectiu darrere.</p>
           <p>Ens impliquem en cada projecte com si fos nostre: analitzem, planifiquem, gravem, editem i pensem cada detall perquè cada publicació sumi i tingui sentit dins d'una estratègia.</p>
           <p class="body-col__cierre">Busquem marques que vulguin deixar empremta.</p>
@@ -1814,12 +1681,10 @@
 
       <div class="team fade" data-delay="2">
         <div class="person">
-          <svg class="person__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
           <span class="person__name">Núria</span>
           <span class="person__role">Creative &amp; Founder</span>
         </div>
         <div class="person">
-          <svg class="person__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lac-lg-zero"/></svg>
           <span class="person__name">Júlia</span>
           <span class="person__role">Strategist &amp; Founder</span>
         </div>
@@ -1843,7 +1708,7 @@
   </div>
 
   <!-- Serveis: els noms grans i escalonats, i a sota la definició del que està actiu -->
-  <section class="section slab-top" data-theme="terra" id="lac-serveis">
+  <section class="section" data-theme="terra" id="lac-serveis">
     <div class="wrap">
       <p class="kicker fade">Serveis</p>
       <h2 class="visually-hidden">Serveis</h2>
@@ -1913,7 +1778,7 @@
   </section>
 
   <!-- Projectes: una graella de fitxes; cada una obre l'Instagram -->
-  <section class="section section--tight slab-top" data-theme="cream" id="projectes">
+  <section class="section section--tight" data-theme="cream" id="projectes">
     <div class="wrap">
       <p class="kicker fade">Projectes</p>
       <h2 class="display rl">
@@ -1921,7 +1786,7 @@
       </h2>
 
       <div class="obras">
-        <a class="obra fade" href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener" aria-label="Quality Training &mdash; Obre el perfil a Instagram">
+        <a class="obra fade" href="https://www.instagram.com/qualitytrainingrr/" target="_blank" rel="noopener" aria-label="Quality Training &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
             <video class="obra__video skip-lazy" src="__BASE__assets/video/quality-1.mp4"
               poster="__BASE__assets/video/quality-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
@@ -1930,7 +1795,7 @@
           <h3 class="obra__nom">Quality Training</h3>
           <p class="obra__sector">Entrenament</p>
         </a>
-        <a class="obra fade" href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener" aria-label="Ratafia Malhivern &mdash; Obre el perfil a Instagram">
+        <a class="obra fade" href="https://www.instagram.com/ratafiamalhivern/" target="_blank" rel="noopener" aria-label="Ratafia Malhivern &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
             <video class="obra__video skip-lazy" src="__BASE__assets/video/malhivern-1.mp4"
               poster="__BASE__assets/video/malhivern-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
@@ -1939,20 +1804,22 @@
           <h3 class="obra__nom">Ratafia Malhivern</h3>
           <p class="obra__sector">Licors artesans</p>
         </a>
-        <article class="obra obra--sense-enllac fade">
+        <a class="obra fade" href="https://www.instagram.com/comercialpuig/" target="_blank" rel="noopener" aria-label="Comercial Puig &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
-            <img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Jugadors disputant la pilota en un partit de formació" loading="lazy" decoding="async">
+            <video class="obra__video skip-lazy" src="__BASE__assets/video/puig-1.mp4"
+              poster="__BASE__assets/video/puig-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>
           </div>
-          <h3 class="obra__nom">Football 4 Stars</h3>
-          <p class="obra__sector">Futbol formatiu</p>
-        </article>
-        <article class="obra obra--sense-enllac fade">
+          <h3 class="obra__nom">Comercial Puig</h3>
+          <p class="obra__sector">Distribució</p>
+        </a>
+        <a class="obra fade" href="https://www.instagram.com/maitasunapizzeria/" target="_blank" rel="noopener" aria-label="Maitasuna &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
             <img src="__BASE__assets/img/proyectos/maitasuna-1-1100.jpg" srcset="__BASE__assets/img/proyectos/maitasuna-1-700.jpg 700w, __BASE__assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Pizza artesana sobre una pala, amb llum baixa" loading="lazy" decoding="async">
           </div>
           <h3 class="obra__nom">Maitasuna</h3>
           <p class="obra__sector">Pizza artesana</p>
-        </article>
+        </a>
         <a class="obra fade" href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener" aria-label="Jordi Coll &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
             <video class="obra__video skip-lazy" src="__BASE__assets/video/jordi-coll-1.mp4"
@@ -1962,31 +1829,22 @@
           <h3 class="obra__nom">Jordi Coll</h3>
           <p class="obra__sector">Marca personal</p>
         </a>
-        <article class="obra obra--sense-enllac fade">
+        <a class="obra fade" href="https://www.instagram.com/football4stars_/" target="_blank" rel="noopener" aria-label="Football 4 Stars &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
-            <img src="__BASE__assets/img/proyectos/f45-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f45-1-700.jpg 700w, __BASE__assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Entrenament amb cordes davant del rètol de F45 Training" loading="lazy" decoding="async">
+            <img src="__BASE__assets/img/proyectos/f4s-1-1100.jpg" srcset="__BASE__assets/img/proyectos/f4s-1-700.jpg 700w, __BASE__assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Jugadors disputant la pilota en un partit de formació" loading="lazy" decoding="async">
           </div>
-          <h3 class="obra__nom">F45 Training</h3>
-          <p class="obra__sector">Esdeveniment</p>
-        </article>
-        <a class="obra fade" href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener" aria-label="Comercial Puig &mdash; Obre el perfil a Instagram">
-          <div class="obra__media">
-            <video class="obra__video skip-lazy" src="__BASE__assets/video/puig-1.mp4"
-              poster="__BASE__assets/video/puig-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
-              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>
-          </div>
-          <h3 class="obra__nom">Comercial Puig</h3>
-          <p class="obra__sector">Distribució</p>
+          <h3 class="obra__nom">Football 4 Stars</h3>
+          <p class="obra__sector">Futbol formatiu</p>
         </a>
       </div>
     </div>
   </section>
 
   <!-- Contacte -->
-  <section class="section slab-top" data-theme="ink" id="lac-contacte">
+  <section class="section" data-theme="ink" id="lac-contacte">
     <div class="wrap">
       <p class="kicker fade">Contacte</p>
-      <h2 class="display rl">
+      <h2 class="display display--granate rl">
         Això comença <span class="hand">amb un missatge</span>.
       </h2>
 
@@ -2297,6 +2155,60 @@
       videosFicha.forEach(function (v) {
         ioVideo.observe(v);
       });
+    }
+  }
+
+  /* ---- Las dos fotos del inicio, subiendo con el scroll ---- */
+  var collage = APP.querySelector("[data-collage]");
+  if (collage) {
+    var clamp01 = function (v) {
+      return v < 0 ? 0 : v > 1 ? 1 : v;
+    };
+
+    // Las fotos no siguen el scroll uno a uno: el valor que las mueve persigue al
+    // del scroll acercándose un 9 % cada fotograma. Con la rueda del ratón, que
+    // llega a saltos de decenas de píxeles, la diferencia entre las dos cosas es
+    // lo que se nota: sin esto el movimiento va a tirones.
+    var pSuave = null;
+    var SEGUIMIENTO = 0.09;
+    var ticking = false;
+
+    var frame = function () {
+      var vh = window.innerHeight;
+      var recorrido = collage.offsetHeight - vh;
+      // Se mide con getBoundingClientRect, no con offsetTop y scrollY: dentro de
+      // WordPress el contenedor del widget está posicionado, así que offsetTop
+      // deja de contar desde el documento y el cálculo se descuadra.
+      var avance = -collage.getBoundingClientRect().top;
+      var objetivo = clamp01(recorrido > 0 ? avance / recorrido : 1);
+      if (pSuave === null) pSuave = objetivo;   // el primer fotograma, sin arrastre
+      var salto = objetivo - pSuave;
+      var sigue = false;
+      if (Math.abs(salto) < 0.0004) {
+        pSuave = objetivo;
+      } else {
+        pSuave += salto * SEGUIMIENTO;
+        sigue = true;                          // aún no ha llegado: otro fotograma
+      }
+      collage.style.setProperty("--p", pSuave.toFixed(4));
+      ticking = false;
+      if (sigue) pedir();
+    };
+
+    var pedir = function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(frame);
+      }
+    };
+
+    if (reduced) {
+      // Sin movimiento: las fotos ya colocadas arriba
+      collage.style.setProperty("--p", "1");
+    } else {
+      window.addEventListener("scroll", pedir, { passive: true });
+      window.addEventListener("resize", pedir);
+      frame();
     }
   }
 

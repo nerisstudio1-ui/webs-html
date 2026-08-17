@@ -44,7 +44,6 @@
   /* Layout */
   --wrap: 1280px;
   --gutter: clamp(1.25rem, 4vw, 4rem);
-  --radius-slab: clamp(22px, 3.5vw, 56px);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -197,25 +196,10 @@ ul {
   color: var(--cream);
 }
 [data-theme="deep"] .display,
-[data-theme="deep"] .quote__text {
-  color: var(--cream);
-}
-[data-theme="deep"] .display .hand,
-[data-theme="deep"] .quote__text .hand {
-  color: var(--sand);
-}
-[data-theme="terra"] p,
+[data-theme="deep"] [data-theme="deep"] .display .hand,
+[data-theme="deep"] [data-theme="terra"] p,
 [data-theme="ink"] p {
   color: var(--cream);
-}
-
-/* Bloque que monta sobre el anterior con la esquina redondeada */
-.slab-top {
-  border-start-start-radius: var(--radius-slab);
-  border-start-end-radius: var(--radius-slab);
-  margin-top: calc(-1 * var(--radius-slab));
-  z-index: 2;
-  overflow: hidden;
 }
 
 .center {
@@ -291,10 +275,12 @@ ul {
 [data-theme="ink"] .display .hand {
   color: var(--terra-soft);
 }
-.display--sm {
-  font-size: var(--display-2);
+/* El granate de la paleta (Clay Heat) para la manuscrita del contacto, como
+   pidió el estudio. Sobre el verde noche da 3,0:1: cumple justo el mínimo de
+   texto grande, que es lo que es este titular, pero no da para letra pequeña. */
+[data-theme="ink"] .display--granate .hand {
+  color: var(--clay);
 }
-
 .lead {
   font-size: var(--step-1);
   line-height: 1.35;
@@ -401,31 +387,7 @@ ul {
   text-transform: none;
   letter-spacing: 0;
 }
-/* Botón de contorno, pequeño y muy espaciado: el de la referencia */
-.btn--line {
-  --btn-bg: transparent;
-  --btn-fg: currentColor;
-  border-color: currentColor;
-  border-radius: 2px;
-  padding: 1rem 2.1rem;
-  font-size: var(--step--2);
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-indent: 0.24em;
-}
-.btn--line:hover {
-  background: var(--cream);
-  color: var(--terra);
-  border-color: var(--cream);
-}
-[data-theme="cream"] .btn--line:hover,
-[data-theme="cream-2"] .btn--line:hover {
-  background: var(--ink);
-  color: var(--cream);
-  border-color: var(--ink);
-}
-
-.link-line {
+[data-theme="cream"] .link-line {
   position: relative;
   font-weight: 500;
   display: inline-flex;
@@ -499,16 +461,7 @@ ul {
   align-items: center;
   gap: 0.6rem;
 }
-.brand__mark {
-  height: 21px;
-  width: auto;
-  flex: none;
-  transition: transform 0.6s var(--ease-out);
-}
-.brand:hover .brand__mark {
-  transform: rotate(-12deg);
-}
-/* El cero solo, que es lo que va en la cabecera */
+.brand:hover /* El cero solo, que es lo que va en la cabecera */
 .brand__zero {
   height: clamp(22px, 2.2vw, 28px);
   width: auto;
@@ -672,79 +625,65 @@ body.menu-open .mobile-menu {
    es el recorrido que usan las fotos para subir (--p va de 0 a 1). Acaban
    arriba del todo, saliendo por el borde superior. */
 .hero {
+  --p: 0;
   position: relative;
-  height: 100svh;
-  min-height: 34rem;
-  background: var(--ink);
-  color: var(--cream);
-  overflow: hidden;
+  height: 240svh;
+  background: var(--cream);
+  color: var(--text);
 }
-
-/* Las dos fotos ocupan la pantalla entera, una al lado de la otra. En un móvil
-   no caben dos columnas: pasan a una sobre otra, media pantalla cada una, que es
-   lo que mantiene el formato vertical de las fotos. */
-.hero__fotos {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.hero__foto {
-  margin: 0;
-  overflow: hidden;
-}
-.hero__foto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-/* Una sola capa por encima de las dos fotos, pareja de arriba abajo. Es lo que
-   hace legible el logotipo y los rótulos: sin ella, la mitad en blanco y negro
-   es demasiado clara para la crema. Una sola capa y no una sombra pegada al
-   texto porque así se comporta igual en cualquier proporción de pantalla, que
-   es justo donde fallaba lo anterior. */
-.hero__fotos::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(var(--ink-rgb), 0.58);
-}
-@media (max-width: 700px) {
-  .hero__fotos {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-}
-
+/* El escenario se queda quieto mientras la sección pasa por debajo: es lo que
+   deja las fotos subiendo detrás del logotipo sin que este se mueva. */
 .hero__stage {
-  position: relative;
-  z-index: 2;
-  height: 100%;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
   display: grid;
   align-content: center;
   justify-items: center;
   padding-inline: var(--gutter);
 }
 
-/* Una sombra suave detrás del bloque de texto, y solo ahí. El velo general no
-   puede oscurecerse más sin apagar las fotos, pero el claim es letra pequeña en
-   versalitas y necesita fondo: medido sobre la mitad en blanco y negro, sin esto
-   se queda por debajo de 2:1. Así la foto se mantiene viva por los bordes. */
-/* El bloque del logotipo y el claim, juntos y centrados. */
-.hero__bloc {
-  position: relative;
-  display: grid;
-  justify-items: center;
-  padding: clamp(2.2rem, 7vw, 5rem) clamp(2rem, 8vw, 6rem);
-}
-.hero__bloc > * {
-  position: relative;
+/* Las dos fotos suben desde debajo del pliegue hasta salir por arriba, por
+   detrás del logotipo, y a plena opacidad: sin velo, que es como las quiere el
+   estudio. Cada una a su ritmo (--rise), que es lo que da la sensación de
+   profundidad. */
+.hero__fotos {
+  position: absolute;
+  inset: 0;
   z-index: 1;
+  pointer-events: none;
+}
+.tile {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  transform: translate3d(0, calc(var(--rise, 150svh) * (1 - var(--p))), 0)
+    rotate(var(--rot, 0deg));
+  will-change: transform;
+  box-shadow: 0 30px 60px -44px rgba(var(--ink-rgb), 0.5);
+}
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tile--1 { left: 4%;  top: -6%;  width: 26vw; height: 54svh; --rise: 150svh; --rot: -2.5deg; }
+.tile--2 { left: 66%; top: -14%; width: 28vw; height: 58svh; --rise: 182svh; --rot: 2deg; }
+@media (max-width: 700px) {
+  .tile--1 { left: -4%; width: 46vw; height: 40svh; --rise: 150svh; }
+  .tile--2 { left: 58%; width: 48vw; height: 44svh; --rise: 188svh; }
 }
 
-/* El logotipo, centrado y en crema: sobre fotografía, la teja de la marca se
-   apaga contra los medios tonos y deja de leerse. */
+/* El bloque del logotipo y el claim, centrado y por delante de las fotos */
+.hero__bloc {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+}
+
+/* El logotipo, centrado y en teja */
 .hero__logo {
   position: relative;
   z-index: 3;
@@ -756,8 +695,7 @@ body.menu-open .mobile-menu {
 .hero__word {
   width: min(48vw, 520px);
   height: auto;
-  color: var(--cream);
-  filter: drop-shadow(0 2px 24px rgba(var(--ink-rgb), 0.45));
+  color: var(--terra);
   clip-path: inset(0 0 105% 0);
   transition: clip-path 1.5s var(--ease-out) 0.15s;
 }
@@ -769,13 +707,12 @@ body.menu-open .mobile-menu {
   text-transform: uppercase;
   letter-spacing: 0.62em;
   text-indent: 0.62em;
-  color: var(--cream);
-  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
+  color: var(--terra);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 0.85s;
 }
 .is-loaded .hero__name {
-  opacity: 1;
+  opacity: 0.9;
 }
 .hero__claim {
   position: relative;
@@ -787,43 +724,37 @@ body.menu-open .mobile-menu {
   text-transform: uppercase;
   letter-spacing: 0.22em;
   line-height: 1.9;
-  color: var(--cream);
-  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
+  color: var(--text);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.05s;
 }
 .is-loaded .hero__claim {
-  opacity: 1;
+  opacity: 0.72;
 }
-/* Filete de abajo con los dos rótulos.
-   Va por encima del radio con el que monta la sección siguiente: si no, en una
-   pantalla ancha y baja cae justo sobre la curva de terracota y ahí el contraste
-   se queda en 3,6:1 por mucho que se oscurezca la foto. */
+/* Filete de abajo con los dos rótulos */
 .hero__rule {
   position: absolute;
   z-index: 3;
   left: var(--gutter);
   right: var(--gutter);
-  bottom: calc(clamp(1.6rem, 5vh, 3.2rem) + var(--radius-slab));
+  bottom: clamp(1.6rem, 5vh, 3.2rem);
   display: flex;
   align-items: center;
   gap: clamp(1rem, 3vw, 2.4rem);
   font-size: var(--step--2);
   text-transform: uppercase;
   letter-spacing: 0.24em;
-  color: var(--cream);
-  text-shadow: 0 1px 3px rgba(var(--ink-rgb), 0.55), 0 2px 22px rgba(var(--ink-rgb), 0.75);
   opacity: 0;
   transition: opacity 1.2s var(--ease) 1.15s;
 }
 .is-loaded .hero__rule {
-  opacity: 1;
+  opacity: 0.75;
 }
 .hero__rule i {
   flex: 1;
   height: 1px;
   background: currentColor;
-  opacity: 0.45;
+  opacity: 0.35;
 }
 
 /* ---------- Declaración: bloque de color, centrado ---------- */
@@ -857,8 +788,9 @@ body.menu-open .mobile-menu {
   position: relative;
   overflow: hidden;
   padding-bottom: clamp(2.5rem, 6vw, 6rem);
-  background: var(--terra);
-  color: var(--cream);
+  /* El fondo lo pone data-theme: la tira va sobre crema, encadenada con la
+     presentación del inicio. Antes tenía el suyo propio, en terracota, y
+     asomaba como una franja de color justo debajo de las fotos. */
 }
 .strip__band {
   overflow: hidden;
@@ -888,26 +820,6 @@ body.menu-open .mobile-menu {
   height: 100%;
   object-fit: cover;
 }
-/* El rótulo, ahora sí legible: verde sobre el terracota, y entero */
-.strip__ghost {
-  display: block;
-  margin-top: clamp(0.6rem, 2vw, 1.6rem);
-  text-align: center;
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 4.6vw, 4.4rem);
-  line-height: 0.96;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: rgba(var(--ink-rgb), 0.55);
-  user-select: none;
-}
-/* La palabra que lleva el peso de la frase */
-.strip__ghost strong {
-  font-weight: 800;
-}
-
 /* ---------- Manifiesto ---------- */
 /* Una sola columna de texto: el «less noise» va alineado con el párrafo, no
    enfrentado a él, y el cierre va en Raleway como pidió el estudio. */
@@ -938,7 +850,7 @@ body.menu-open .mobile-menu {
 .marquee {
   overflow: hidden;
   padding-top: clamp(1.6rem, 3.4vw, 2.6rem);
-  padding-bottom: calc(clamp(1.6rem, 3.4vw, 2.6rem) + var(--radius-slab));
+  padding-bottom: clamp(1.6rem, 3.4vw, 2.6rem);
   background: var(--ink);
   color: var(--cream);
 }
@@ -979,7 +891,7 @@ body.menu-open .mobile-menu {
 /* La línea de servicios: Raleway fina, pequeña, y la banda más estrecha */
 .marquee--fina {
   padding-top: clamp(0.9rem, 1.8vw, 1.4rem);
-  padding-bottom: calc(clamp(0.9rem, 1.8vw, 1.4rem) + var(--radius-slab));
+  padding-bottom: clamp(0.9rem, 1.8vw, 1.4rem);
 }
 .marquee--fina span {
   font-size: clamp(0.78rem, 1.1vw, 1rem);
@@ -1393,10 +1305,7 @@ body.cursor-on .cursor {
   /* En estrecho las piezas del inicio se ensanchan y se separan del logotipo */
   .tile--1 { left: -3%; top: -6%;  width: 40vw; height: 30svh; }
   .tile--2 { left: 62%; top: -12%; width: 42vw; height: 32svh; }
-  .tile--3 { left: 26%; top: 6%;   width: 36vw; height: 27svh; --rise: 190svh; }
-  .tile--4 { display: none; }
-  .tile--5 { left: 55%; top: 22%;  width: 38vw; height: 29svh; }
-  .hero__claim {
+        .hero__claim {
     max-width: 26ch;
   }
 }
@@ -1409,11 +1318,7 @@ body.cursor-on .cursor {
   .burger {
     display: block;
   }
-  .quote__mark {
-    right: -18vw;
-    height: 60%;
   }
-}
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1470,12 +1375,6 @@ body.cursor-on .cursor {
   gap: 0.4rem;
   align-content: start;
 }
-.person__mark {
-  height: 30px;
-  width: auto;
-  color: var(--sand);
-  margin-bottom: 0.6rem;
-}
 .person__name {
   font-family: var(--hand);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
@@ -1496,43 +1395,4 @@ body.cursor-on .cursor {
   line-height: 1.6;
   margin: 0;
 }
-
-/* Reclamo de marca */
-.claim {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(1.6rem, 4.2vw, 3rem);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin: 0;
-}
-.claim em {
-  font-style: normal;
-  color: var(--terra);
-}
-[data-theme="terra"] .claim em,
-[data-theme="ink"] .claim em,
-[data-theme="deep"] .claim em {
-  color: var(--sand);
-}
-
-/* Enlaces a las piezas publicadas de cada proyecto */
-.slab__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem 1.2rem;
-  margin-top: 1.2rem;
-}
-.slab__links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: var(--step--1);
-  font-weight: 500;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
-  transition: color 0.35s var(--ease);
-}
-.slab__links a:hover {
-  color: var(--terra);
-}
+ 

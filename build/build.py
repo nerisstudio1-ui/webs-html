@@ -78,8 +78,7 @@ PROYECTOS = [
                'conexión con la comunidad y la captación de nuevos clientes.'),
         servicios=dict(ca=['Creació de contingut', 'Social media'],
                        es=['Creación de contenido', 'Social media']),
-        piezas=['https://www.instagram.com/p/DYzzgzto1uT/',
-                'https://www.instagram.com/p/DZIkSk0s2Yc/'],
+        piezas=['https://www.instagram.com/qualitytrainingrr/'],
     ),
     dict(
         slug='malhivern', portada=1, fotos=3,
@@ -92,20 +91,22 @@ PROYECTOS = [
                'para construir una marca cercana, auténtica y con identidad propia.'),
         servicios=dict(ca=['Estratègia', 'Direcció creativa', 'Social media'],
                        es=['Estrategia', 'Dirección creativa', 'Social media']),
-        piezas=['https://www.instagram.com/p/DZKUPZXNnqz/'],
+        piezas=['https://www.instagram.com/ratafiamalhivern/'],
     ),
     dict(
-        slug='f4s', portada=1, fotos=2,
-        nombre='Football 4 Stars',
-        sector=dict(ca='Futbol formatiu', es='Fútbol formativo'),
+        slug='puig', portada=1, fotos=4,
+        nombre='Comercial Puig',
+        sector=dict(ca='Distribució', es='Distribución'),
         texto=dict(
-            ca='Hem impulsat la presència digital de Football 4 Stars amb contingut '
-               'aspiracional, estratègic i orientat a la captació.',
-            es='Impulsamos la presencia digital de Football 4 Stars con contenido '
-               'aspiracional, estratégico y orientado a la captación.'),
-        servicios=dict(ca=['Social media', 'Creació de contingut'],
-                       es=['Social media', 'Creación de contenido']),
-        piezas=[],
+            ca='Creem contingut que apropa Comercial Puig als seus clients, mostrant el '
+               "valor dels seus productes, l'assessorament personalitzat i el dia a dia "
+               "d'un negoci familiar.",
+            es='Creamos contenido que acerca Comercial Puig a sus clientes, mostrando el '
+               'valor de sus productos, el asesoramiento personalizado y el día a día de '
+               'un negocio familiar.'),
+        servicios=dict(ca=['Creació de contingut', 'Social media'],
+                       es=['Creación de contenido', 'Social media']),
+        piezas=['https://www.instagram.com/comercialpuig/'],
     ),
     dict(
         slug='maitasuna', portada=1, fotos=3,
@@ -120,7 +121,7 @@ PROYECTOS = [
                'cercana de Maitasuna.'),
         servicios=dict(ca=['Creació de contingut', 'Social media'],
                        es=['Creación de contenido', 'Social media']),
-        piezas=[],
+        piezas=['https://www.instagram.com/maitasunapizzeria/'],
     ),
     dict(
         slug='jordi-coll', portada=1, fotos=3,
@@ -138,35 +139,17 @@ PROYECTOS = [
                 'https://www.instagram.com/p/DVxsEDcjHw5/'],
     ),
     dict(
-        slug='f45', portada=1, fotos=2,
-        nombre='F45 Training',
-        sector=dict(ca='Esdeveniment', es='Evento'),
+        slug='f4s', portada=1, fotos=2,
+        nombre='Football 4 Stars',
+        sector=dict(ca='Futbol formatiu', es='Fútbol formativo'),
         texto=dict(
-            ca="Vam crear contingut audiovisual per a la inauguració de F45, capturant "
-               "l'energia de l'esdeveniment i reforçant la imatge de marca amb peces "
-               "pensades per a xarxes socials.",
-            es='Creamos contenido audiovisual para la inauguración de F45, capturando la '
-               'energía del evento y reforzando la imagen de marca con piezas pensadas '
-               'para redes sociales.'),
-        servicios=dict(ca=['Creació de contingut', 'Vídeo'],
-                       es=['Creación de contenido', 'Vídeo']),
-        piezas=[],
-    ),
-    dict(
-        slug='puig', portada=1, fotos=4,
-        nombre='Comercial Puig',
-        sector=dict(ca='Distribució', es='Distribución'),
-        texto=dict(
-            ca='Creem contingut que apropa Comercial Puig als seus clients, mostrant el '
-               "valor dels seus productes, l'assessorament personalitzat i el dia a dia "
-               "d'un negoci familiar.",
-            es='Creamos contenido que acerca Comercial Puig a sus clientes, mostrando el '
-               'valor de sus productos, el asesoramiento personalizado y el día a día de '
-               'un negocio familiar.'),
-        servicios=dict(ca=['Creació de contingut', 'Social media'],
-                       es=['Creación de contenido', 'Social media']),
-        piezas=['https://www.instagram.com/p/Daiq_1ztSC-/',
-                'https://www.instagram.com/p/DT24wj7iAJN/'],
+            ca='Hem impulsat la presència digital de Football 4 Stars amb contingut '
+               'aspiracional, estratègic i orientat a la captació.',
+            es='Impulsamos la presencia digital de Football 4 Stars con contenido '
+               'aspiracional, estratégico y orientado a la captación.'),
+        servicios=dict(ca=['Social media', 'Creació de contingut'],
+                       es=['Social media', 'Creación de contenido']),
+        piezas=['https://www.instagram.com/football4stars_/'],
     ),
 ]
 
@@ -227,8 +210,8 @@ T = {
     'ca': dict(
         lang='ca', otra='es', otra_nombre='ES', propia_nombre='CA',
         titulo='Laconic Studio | Estudi creatiu de contingut, social media i estratègia',
-        descripcion='Laconic Studio: creació de contingut, social media i estratègia digital. '
-                    'Less noise. More meaning.',
+        descripcion='Laconic Studio: creació de contingut, social media i estratègia '
+                    'digital. Contingut que connecta.',
         saltar='Salta al contingut',
         nav=[('#about', 'About'), ('#serveis', 'Serveis'),
              ('#projectes', 'Projectes'), ('#contacte', 'Contacte')],
@@ -246,7 +229,7 @@ T = {
                     '<span class="hand">(de la de veritat)</span>.',
         id_estudio='about', id_servicios='serveis', id_trabajo='projectes',
         id_contacto='contacte',
-        k_estudio='L\'estudi',
+        nav_etiqueta='Navegació principal',
         h_estudio='Cada marca comunica, <span class="hand">però no totes connecten</span>.',
         cuerpo_estudio=[
             'Som un estudi creatiu especialitzat en xarxes socials, creació de contingut i '
@@ -314,8 +297,8 @@ T = {
     'es': dict(
         lang='es', otra='ca', otra_nombre='CA', propia_nombre='ES',
         titulo='Laconic Studio | Estudio creativo de contenido, social media y estrategia',
-        descripcion='Laconic Studio: creación de contenido, social media y estrategia digital. '
-                    'Less noise. More meaning.',
+        descripcion='Laconic Studio: creación de contenido, social media y estrategia '
+                    'digital. Contenido que conecta.',
         saltar='Saltar al contenido',
         nav=[('#about', 'About'), ('#servicios', 'Servicios'),
              ('#proyectos', 'Proyectos'), ('#contacto', 'Contacto')],
@@ -332,7 +315,7 @@ T = {
                     '<span class="hand">(de la de verdad)</span>.',
         id_estudio='about', id_servicios='servicios', id_trabajo='proyectos',
         id_contacto='contacto',
-        k_estudio='El estudio',
+        nav_etiqueta='Navegación principal',
         h_estudio='Cada marca comunica, <span class="hand">pero no todas conectan</span>.',
         cuerpo_estudio=[
             'Somos un estudio creativo especializado en redes sociales, creación de contenido '
@@ -444,7 +427,7 @@ HERO_DUO = [('quality', 1), ('malhivern', 1)]
 
 # La tira que pasa en bucle en el about: siete, variadas, de siete proyectos.
 TIRA = [('maitasuna', 1), ('f4s', 1), ('malhivern', 2), ('quality', 3),
-        ('jordi-coll', 3), ('puig', 2), ('f45', 1)]
+        ('jordi-coll', 3), ('puig', 2), ('maitasuna', 2)]
 
 # --------------------------------------------------------------------------- #
 # Vídeos. Se detectan solos: basta dejar los archivos en assets/video con el
@@ -583,7 +566,7 @@ def render(lang):
       <svg class="brand__zero" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
     </a>
 
-    <nav class="nav" aria-label="{t['k_estudio']}">''')
+    <nav class="nav" aria-label="{t['nav_etiqueta']}">''')
     for href, texto in t['nav']:
         w(f'      <a href="{href}">{texto}</a>')
     w(f'''    </nav>
@@ -617,16 +600,15 @@ def render(lang):
 
 <main id="top">
 
-  <!-- Inici: les dues fotos ocupen la pantalla i el logotip va a sobre -->
-  <section class="hero" data-theme="ink">
-    <div class="hero__fotos">
-      <figure class="hero__foto">{foto(prefix, HERO_DUO[0][0], HERO_DUO[0][1], '50vw', lang, 'eager')}</figure>
-      <figure class="hero__foto">{foto(prefix, HERO_DUO[1][0], HERO_DUO[1][1], '50vw', lang, 'eager')}</figure>
-    </div>
-
+  <!-- Inici: fons crema amb el logotip, i les dues fotos que van pujant amb el
+       scroll per darrere, a plena opacitat -->
+  <section class="hero" data-theme="cream" data-collage>
     <div class="hero__stage">
-      <!-- El logotip i el claim van dins d'un mateix bloc: l'ombra que els fa
-           llegibles és seva, així que els segueix mesuri el que mesuri la finestra. -->
+      <div class="hero__fotos" aria-hidden="true">
+        <figure class="tile tile--1">{foto(prefix, HERO_DUO[0][0], HERO_DUO[0][1], '42vw', lang, 'eager')}</figure>
+        <figure class="tile tile--2">{foto(prefix, HERO_DUO[1][0], HERO_DUO[1][1], '42vw', lang, 'eager')}</figure>
+      </div>
+
       <div class="hero__bloc">
         <h1 class="hero__logo">
           <span class="visually-hidden">Laconic Studio</span>
@@ -644,16 +626,17 @@ def render(lang):
     </div>
   </section>
 
-  <!-- Declaració: bloc de color, centrat, sense botó i amb menys aire -->
-  <section class="decl decl--tight slab-top" data-theme="terra">
+  <!-- Declaració: la frase segueix la presentació de l'inici, sobre crema i
+       sense cantonades: la separació la fan les fotos, no els blocs -->
+  <section class="decl decl--tight" data-theme="cream">
     <div class="wrap wrap--narrow center">
-      <p class="kicker kicker--center fade">{t['k_sobre']}</p>
       <p class="decl__text display rl">{t['declaracion']}</p>
     </div>
   </section>
 
-  <!-- Tira de fotos que passa en bucle -->
-  <div class="strip" data-theme="terra">
+  <!-- Tira de fotos que passa en bucle. És el que separa la presentació de
+       l'apartat about: la separació són les fotos -->
+  <div class="strip" data-theme="cream">
     <div class="strip__band">
       <div class="strip__track">''')
     for slug, n in TIRA:
@@ -662,17 +645,16 @@ def render(lang):
     </div>
   </div>
 
-  <!-- Estudi -->
-  <section class="section slab-top" data-theme="cream" id="{t['id_estudio']}">
+  <!-- About: comença directament, sense cantonada i sense rètol -->
+  <section class="section" data-theme="cream" id="{t['id_estudio']}">
     <div class="wrap">
-      <p class="kicker fade">{t['k_estudio']}</p>
+      <p class="kicker fade">{t['k_sobre']}</p>
       <h2 class="display rl">
         {t['h_estudio']}
       </h2>
 
       <div class="manifesto__grid manifesto__grid--simple">
-        <div class="body-col fade">
-          <p class="claim">Less noise. <em>More meaning.</em></p>''')
+        <div class="body-col fade">''')
     for parrafo in t['cuerpo_estudio']:
         w(f'          <p>{parrafo}</p>')
     w(f'''          <p class="body-col__cierre">{t['nota_estudio']}</p>
@@ -682,7 +664,6 @@ def render(lang):
       <div class="team fade" data-delay="2">''')
     for nombre, rol in t['equipo']:
         w(f'''        <div class="person">
-          <svg class="person__mark" viewBox="{VB_ZERO}" aria-hidden="true"><use href="#lg-zero"/></svg>
           <span class="person__name">{nombre}</span>
           <span class="person__role">{rol}</span>
         </div>''')
@@ -703,7 +684,7 @@ def render(lang):
   </div>
 
   <!-- Serveis: els noms grans i escalonats, i a sota la definició del que està actiu -->
-  <section class="section slab-top" data-theme="terra" id="{t['id_servicios']}">
+  <section class="section" data-theme="terra" id="{t['id_servicios']}">
     <div class="wrap">
       <p class="kicker fade">{t['k_servicios']}</p>
       <h2 class="visually-hidden">{t['k_servicios']}</h2>
@@ -733,7 +714,7 @@ def render(lang):
   </section>
 
   <!-- Projectes: una graella de fitxes; cada una obre l'Instagram -->
-  <section class="section section--tight slab-top" data-theme="cream" id="{t['id_trabajo']}">
+  <section class="section section--tight" data-theme="cream" id="{t['id_trabajo']}">
     <div class="wrap">
       <p class="kicker fade">{t['k_trabajo']}</p>
       <h2 class="display rl">
@@ -771,10 +752,10 @@ def render(lang):
   </section>
 
   <!-- Contacte -->
-  <section class="section slab-top" data-theme="ink" id="{t['id_contacto']}">
+  <section class="section" data-theme="ink" id="{t['id_contacto']}">
     <div class="wrap">
       <p class="kicker fade">{t['k_contacto']}</p>
-      <h2 class="display rl">
+      <h2 class="display display--granate rl">
         {t['h_contacto']}
       </h2>
 

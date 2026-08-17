@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Laconic Studio | Estudi creatiu de contingut, social media i estratègia</title>
-<meta name="description" content="Laconic Studio: creació de contingut, social media i estratègia digital. Less noise. More meaning.">
+<meta name="description" content="Laconic Studio: creació de contingut, social media i estratègia digital. Contingut que connecta.">
 <meta name="theme-color" content="#c95948">
 <link rel="canonical" href="https://laconicstudio.com/">
 <link rel="alternate" hreflang="ca" href="https://laconicstudio.com/">
@@ -13,7 +13,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Laconic Studio | Estudi creatiu de contingut, social media i estratègia">
-<meta property="og:description" content="Laconic Studio: creació de contingut, social media i estratègia digital. Less noise. More meaning.">
+<meta property="og:description" content="Laconic Studio: creació de contingut, social media i estratègia digital. Contingut que connecta.">
 <link rel="preload" href="assets/fonts/raleway-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/raleway-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/biro-script-plus.woff2" as="font" type="font/woff2" crossorigin>
@@ -25,7 +25,7 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Laconic Studio",
-  "description": "Laconic Studio: creació de contingut, social media i estratègia digital. Less noise. More meaning.",
+  "description": "Laconic Studio: creació de contingut, social media i estratègia digital. Contingut que connecta.",
   "email": "hello@laconicstudio.es",
   "areaServed": "ES",
   "sameAs": ["https://www.instagram.com/laconicstudio_/"]
@@ -56,7 +56,7 @@
       <svg class="brand__zero" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lg-zero"/></svg>
     </a>
 
-    <nav class="nav" aria-label="L'estudi">
+    <nav class="nav" aria-label="Navegació principal">
       <a href="#about">About</a>
       <a href="#serveis">Serveis</a>
       <a href="#projectes">Projectes</a>
@@ -94,16 +94,15 @@
 
 <main id="top">
 
-  <!-- Inici: les dues fotos ocupen la pantalla i el logotip va a sobre -->
-  <section class="hero" data-theme="ink">
-    <div class="hero__fotos">
-      <figure class="hero__foto"><img src="assets/img/proyectos/quality-1-1100.jpg" srcset="assets/img/proyectos/quality-1-700.jpg 700w, assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Corredor en un camí de terra amb un pi al fons" loading="eager" decoding="async"></figure>
-      <figure class="hero__foto"><img src="assets/img/proyectos/malhivern-1-1100.jpg" srcset="assets/img/proyectos/malhivern-1-700.jpg 700w, assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="50vw" width="1100" height="1375" alt="Ampolla de ratafia Malhivern entre pots de plantes" loading="eager" decoding="async"></figure>
-    </div>
-
+  <!-- Inici: fons crema amb el logotip, i les dues fotos que van pujant amb el
+       scroll per darrere, a plena opacitat -->
+  <section class="hero" data-theme="cream" data-collage>
     <div class="hero__stage">
-      <!-- El logotip i el claim van dins d'un mateix bloc: l'ombra que els fa
-           llegibles és seva, així que els segueix mesuri el que mesuri la finestra. -->
+      <div class="hero__fotos" aria-hidden="true">
+        <figure class="tile tile--1"><img src="assets/img/proyectos/quality-1-1100.jpg" srcset="assets/img/proyectos/quality-1-700.jpg 700w, assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="42vw" width="1100" height="1375" alt="Corredor en un camí de terra amb un pi al fons" loading="eager" decoding="async"></figure>
+        <figure class="tile tile--2"><img src="assets/img/proyectos/malhivern-1-1100.jpg" srcset="assets/img/proyectos/malhivern-1-700.jpg 700w, assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="42vw" width="1100" height="1375" alt="Ampolla de ratafia Malhivern entre pots de plantes" loading="eager" decoding="async"></figure>
+      </div>
+
       <div class="hero__bloc">
         <h1 class="hero__logo">
           <span class="visually-hidden">Laconic Studio</span>
@@ -121,16 +120,17 @@
     </div>
   </section>
 
-  <!-- Declaració: bloc de color, centrat, sense botó i amb menys aire -->
-  <section class="decl decl--tight slab-top" data-theme="terra">
+  <!-- Declaració: la frase segueix la presentació de l'inici, sobre crema i
+       sense cantonades: la separació la fan les fotos, no els blocs -->
+  <section class="decl decl--tight" data-theme="cream">
     <div class="wrap wrap--narrow center">
-      <p class="kicker kicker--center fade">About</p>
       <p class="decl__text display rl">Ajudem a marques a deixar empremta <span class="hand">(de la de veritat)</span>.</p>
     </div>
   </section>
 
-  <!-- Tira de fotos que passa en bucle -->
-  <div class="strip" data-theme="terra">
+  <!-- Tira de fotos que passa en bucle. És el que separa la presentació de
+       l'apartat about: la separació són les fotos -->
+  <div class="strip" data-theme="cream">
     <div class="strip__band">
       <div class="strip__track">
         <figure class="strip__cell"><img src="assets/img/proyectos/maitasuna-1-1100.jpg" srcset="assets/img/proyectos/maitasuna-1-700.jpg 700w, assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Pizza artesana sobre una pala, amb llum baixa" loading="lazy" decoding="async"></figure>
@@ -139,22 +139,21 @@
         <figure class="strip__cell"><img src="assets/img/proyectos/quality-3-1100.jpg" srcset="assets/img/proyectos/quality-3-700.jpg 700w, assets/img/proyectos/quality-3-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Esportista amb la samarreta de Quality Training fent una llançada" loading="lazy" decoding="async"></figure>
         <figure class="strip__cell"><img src="assets/img/proyectos/jordi-coll-3-1100.jpg" srcset="assets/img/proyectos/jordi-coll-3-700.jpg 700w, assets/img/proyectos/jordi-coll-3-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Públic assistint a la presentació del llibre" loading="lazy" decoding="async"></figure>
         <figure class="strip__cell"><img src="assets/img/proyectos/puig-2-1100.jpg" srcset="assets/img/proyectos/puig-2-700.jpg 700w, assets/img/proyectos/puig-2-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Cistelles de pa apilades a l'obrador" loading="lazy" decoding="async"></figure>
-        <figure class="strip__cell"><img src="assets/img/proyectos/f45-1-1100.jpg" srcset="assets/img/proyectos/f45-1-700.jpg 700w, assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Entrenament amb cordes davant del rètol de F45 Training" loading="lazy" decoding="async"></figure>
+        <figure class="strip__cell"><img src="assets/img/proyectos/maitasuna-2-1100.jpg" srcset="assets/img/proyectos/maitasuna-2-700.jpg 700w, assets/img/proyectos/maitasuna-2-1100.jpg 1100w" sizes="22vw" width="1100" height="1375" alt="Jaqueta de l'obrador de Maitasuna brodada amb el nom del pizzer" loading="lazy" decoding="async"></figure>
       </div>
     </div>
   </div>
 
-  <!-- Estudi -->
-  <section class="section slab-top" data-theme="cream" id="about">
+  <!-- About: comença directament, sense cantonada i sense rètol -->
+  <section class="section" data-theme="cream" id="about">
     <div class="wrap">
-      <p class="kicker fade">L'estudi</p>
+      <p class="kicker fade">About</p>
       <h2 class="display rl">
         Cada marca comunica, <span class="hand">però no totes connecten</span>.
       </h2>
 
       <div class="manifesto__grid manifesto__grid--simple">
         <div class="body-col fade">
-          <p class="claim">Less noise. <em>More meaning.</em></p>
           <p>Som un estudi creatiu especialitzat en xarxes socials, creació de contingut i estratègia digital. Treballem amb marques que volen construir una presència coherent, autèntica i amb criteri, creant contingut que connecti amb les persones i tingui un objectiu darrere.</p>
           <p>Ens impliquem en cada projecte com si fos nostre: analitzem, planifiquem, gravem, editem i pensem cada detall perquè cada publicació sumi i tingui sentit dins d'una estratègia.</p>
           <p class="body-col__cierre">Busquem marques que vulguin deixar empremta.</p>
@@ -163,12 +162,10 @@
 
       <div class="team fade" data-delay="2">
         <div class="person">
-          <svg class="person__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lg-zero"/></svg>
           <span class="person__name">Núria</span>
           <span class="person__role">Creative &amp; Founder</span>
         </div>
         <div class="person">
-          <svg class="person__mark" viewBox="0 0 71.7 100" aria-hidden="true"><use href="#lg-zero"/></svg>
           <span class="person__name">Júlia</span>
           <span class="person__role">Strategist &amp; Founder</span>
         </div>
@@ -192,7 +189,7 @@
   </div>
 
   <!-- Serveis: els noms grans i escalonats, i a sota la definició del que està actiu -->
-  <section class="section slab-top" data-theme="terra" id="serveis">
+  <section class="section" data-theme="terra" id="serveis">
     <div class="wrap">
       <p class="kicker fade">Serveis</p>
       <h2 class="visually-hidden">Serveis</h2>
@@ -262,7 +259,7 @@
   </section>
 
   <!-- Projectes: una graella de fitxes; cada una obre l'Instagram -->
-  <section class="section section--tight slab-top" data-theme="cream" id="projectes">
+  <section class="section section--tight" data-theme="cream" id="projectes">
     <div class="wrap">
       <p class="kicker fade">Projectes</p>
       <h2 class="display rl">
@@ -270,7 +267,7 @@
       </h2>
 
       <div class="obras">
-        <a class="obra fade" href="https://www.instagram.com/p/DYzzgzto1uT/" target="_blank" rel="noopener" aria-label="Quality Training &mdash; Obre el perfil a Instagram">
+        <a class="obra fade" href="https://www.instagram.com/qualitytrainingrr/" target="_blank" rel="noopener" aria-label="Quality Training &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
             <video class="obra__video skip-lazy" src="assets/video/quality-1.mp4"
               poster="assets/video/quality-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
@@ -279,7 +276,7 @@
           <h3 class="obra__nom">Quality Training</h3>
           <p class="obra__sector">Entrenament</p>
         </a>
-        <a class="obra fade" href="https://www.instagram.com/p/DZKUPZXNnqz/" target="_blank" rel="noopener" aria-label="Ratafia Malhivern &mdash; Obre el perfil a Instagram">
+        <a class="obra fade" href="https://www.instagram.com/ratafiamalhivern/" target="_blank" rel="noopener" aria-label="Ratafia Malhivern &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
             <video class="obra__video skip-lazy" src="assets/video/malhivern-1.mp4"
               poster="assets/video/malhivern-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
@@ -288,20 +285,22 @@
           <h3 class="obra__nom">Ratafia Malhivern</h3>
           <p class="obra__sector">Licors artesans</p>
         </a>
-        <article class="obra obra--sense-enllac fade">
+        <a class="obra fade" href="https://www.instagram.com/comercialpuig/" target="_blank" rel="noopener" aria-label="Comercial Puig &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
-            <img src="assets/img/proyectos/f4s-1-1100.jpg" srcset="assets/img/proyectos/f4s-1-700.jpg 700w, assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Jugadors disputant la pilota en un partit de formació" loading="lazy" decoding="async">
+            <video class="obra__video skip-lazy" src="assets/video/puig-1.mp4"
+              poster="assets/video/puig-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
+              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>
           </div>
-          <h3 class="obra__nom">Football 4 Stars</h3>
-          <p class="obra__sector">Futbol formatiu</p>
-        </article>
-        <article class="obra obra--sense-enllac fade">
+          <h3 class="obra__nom">Comercial Puig</h3>
+          <p class="obra__sector">Distribució</p>
+        </a>
+        <a class="obra fade" href="https://www.instagram.com/maitasunapizzeria/" target="_blank" rel="noopener" aria-label="Maitasuna &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
             <img src="assets/img/proyectos/maitasuna-1-1100.jpg" srcset="assets/img/proyectos/maitasuna-1-700.jpg 700w, assets/img/proyectos/maitasuna-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Pizza artesana sobre una pala, amb llum baixa" loading="lazy" decoding="async">
           </div>
           <h3 class="obra__nom">Maitasuna</h3>
           <p class="obra__sector">Pizza artesana</p>
-        </article>
+        </a>
         <a class="obra fade" href="https://www.instagram.com/p/DVgLjIqjHTp/" target="_blank" rel="noopener" aria-label="Jordi Coll &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
             <video class="obra__video skip-lazy" src="assets/video/jordi-coll-1.mp4"
@@ -311,31 +310,22 @@
           <h3 class="obra__nom">Jordi Coll</h3>
           <p class="obra__sector">Marca personal</p>
         </a>
-        <article class="obra obra--sense-enllac fade">
+        <a class="obra fade" href="https://www.instagram.com/football4stars_/" target="_blank" rel="noopener" aria-label="Football 4 Stars &mdash; Obre el perfil a Instagram">
           <div class="obra__media">
-            <img src="assets/img/proyectos/f45-1-1100.jpg" srcset="assets/img/proyectos/f45-1-700.jpg 700w, assets/img/proyectos/f45-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Entrenament amb cordes davant del rètol de F45 Training" loading="lazy" decoding="async">
+            <img src="assets/img/proyectos/f4s-1-1100.jpg" srcset="assets/img/proyectos/f4s-1-700.jpg 700w, assets/img/proyectos/f4s-1-1100.jpg 1100w" sizes="(min-width: 900px) 46vw, 100vw" width="1100" height="1375" alt="Jugadors disputant la pilota en un partit de formació" loading="lazy" decoding="async">
           </div>
-          <h3 class="obra__nom">F45 Training</h3>
-          <p class="obra__sector">Esdeveniment</p>
-        </article>
-        <a class="obra fade" href="https://www.instagram.com/p/Daiq_1ztSC-/" target="_blank" rel="noopener" aria-label="Comercial Puig &mdash; Obre el perfil a Instagram">
-          <div class="obra__media">
-            <video class="obra__video skip-lazy" src="assets/video/puig-1.mp4"
-              poster="assets/video/puig-1-poster.jpg" autoplay muted loop playsinline preload="metadata"
-              data-no-lazy="1" data-skip-lazy="true" aria-hidden="true" tabindex="-1"></video>
-          </div>
-          <h3 class="obra__nom">Comercial Puig</h3>
-          <p class="obra__sector">Distribució</p>
+          <h3 class="obra__nom">Football 4 Stars</h3>
+          <p class="obra__sector">Futbol formatiu</p>
         </a>
       </div>
     </div>
   </section>
 
   <!-- Contacte -->
-  <section class="section slab-top" data-theme="ink" id="contacte">
+  <section class="section" data-theme="ink" id="contacte">
     <div class="wrap">
       <p class="kicker fade">Contacte</p>
-      <h2 class="display rl">
+      <h2 class="display display--granate rl">
         Això comença <span class="hand">amb un missatge</span>.
       </h2>
 

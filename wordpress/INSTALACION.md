@@ -235,7 +235,7 @@ Un tema y una web entera usan los mismos nombres (`.card`, `.section`, `.btn`,
 | Síntoma | Causa y arreglo |
 | --- | --- |
 | No se ven las tipografías ni las fotos | `__BASE__` mal puesto. Comprueba que abre en el navegador `TUDOMINIO/wp-content/uploads/laconic/assets/css/main.css`. |
-| El logo del hero no se queda quieto al bajar | Algún contenedor del tema tiene `overflow: hidden`, y eso rompe el `position: sticky`. Usa una plantilla a ancho completo o quita ese `overflow` para esa página. |
+| El logo del inicio no se queda quieto y las fotos no suben por detrás | Algún contenedor del tema tiene `overflow: hidden` o `overflow: clip`, y las dos cosas rompen el `position: sticky` de dentro. Usa una plantilla a ancho completo, o quita ese `overflow` para esa página. (En nuestro propio bloque ya está resuelto: el ancho a sangre descuenta la barra de desplazamiento en lugar de recortar.) |
 | La cabecera del tema tapa la nuestra | Pon la altura en `--lac-top`, como se explica arriba. |
 | Aparece barra de scroll horizontal | Añade al final del `<style>`: `#laconic-app { overflow-x: clip; }` (ya viene puesto; si tu tema lo pisa, repítelo con `!important`). |
 | Sale el título de la página encima | Cambia la plantilla de la página a una a ancho completo o sin título. |

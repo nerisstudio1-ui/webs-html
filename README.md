@@ -24,18 +24,23 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Inicio: las **dos fotos ocupan la pantalla** y encima van el logotipo en crema, el claim y el filete «Based in Girona. Working beyond.» |
-| — | Declaración sobre terracota, centrada, sin botón |
-| — | Tira de fotos que pasa en bucle |
-| `#about` | Manifiesto, «Less noise. More meaning.» y las dos socias |
+| — | Inicio: fondo crema con el **logotipo en terracota**, y las **dos fotos subiendo** por detrás con el scroll, a plena opacidad |
+| — | La frase «Ajudem a marques a deixar empremta», sobre crema y encadenada con el inicio |
+| — | La tira de fotos que pasa en bucle: **es la separación** entre la presentación y el resto |
+| `#about` | Manifiesto y las dos socias |
 | — | La línea de servicios que pasa, fina y pequeña |
 | `#serveis` / `#servicios` | Los cinco servicios: los nombres grandes y escalonados, y la definición del que está activo |
-| `#projectes` / `#proyectos` | Los siete proyectos en retícula; cada ficha abre Instagram |
+| `#projectes` / `#proyectos` | Los seis proyectos en retícula; cada ficha abre el perfil de Instagram de la marca |
 | `#contacte` / `#contacto` | Formulario y contacto directo |
 
-Fuera desde la revisión de agosto de 2026: la FAQ, «com treballem», «el que
-diuen» (reseñas), la cita «Menys soroll. Més sentit», el rótulo «Designed to
-speak quietly» y la lista de marcas con las que ha trabajado el estudio.
+Las secciones ya no se separan con rectángulos de esquinas redondas: la separación
+son las fotos, como pidió el estudio. El inicio, la frase, la tira y el about van
+todos sobre crema y se leen como una sola presentación.
+
+Fuera en las dos revisiones de agosto de 2026: la FAQ, «com treballem», «el que
+diuen» (reseñas), la cita «Menys soroll. Més sentit», «Designed to speak quietly»,
+«Less noise. More meaning.», la lista de marcas, el rótulo «El estudio», el
+isotipo del cero sobre los nombres de las socias y el proyecto de F45.
 
 ## Material de marca
 
@@ -195,23 +200,23 @@ connecten</span>.</h2>`). Es el papel que en las webs editoriales hace la cursiv
 de una serif: cambia la voz sin cambiar de tamaño ni de línea. La clase `rl`
 activa el revelado palabra a palabra.
 
-**El logotipo del inicio va en crema, no en terracota**: sobre fotografía la teja
-de la marca se apaga contra los medios tonos. Las fotos llevan dos velos, uno
-general de arriba abajo y otro elíptico solo detrás del bloque de texto, para que
-los bordes de la imagen se mantengan vivos. Las dos fotos llevan **una sola capa oscura por encima, pareja de arriba abajo**.
-Una capa entera y no una sombra pegada al texto: así se comporta igual en
-cualquier proporción de pantalla, que es justo donde falló el primer intento —una
-elipse de tamaño fijo, que en una pantalla ancha y baja dejaba el claim fuera—.
+**El inicio**: el logotipo va en **terracota sobre crema**, y las dos fotos suben
+por detrás con el scroll hasta salir por arriba, a plena opacidad y sin ningún
+velo. La sección mide 240svh y el escenario se queda pegado con `position: sticky`
+mientras pasa por debajo; el valor que mueve las fotos (`--p`) persigue al del
+scroll acercándose un 9 % cada fotograma, que es lo que evita que el movimiento
+vaya a tirones con la rueda del ratón.
 
-Medido en el navegador —ocultando el texto para leer el fondo real de cada caja,
-con la luminancia linealizada, en siete tamaños de ventana de 360×640 a 1920×1080
-y **en las dos versiones, la suelta y la de WordPress**— el peor caso es
-**5,1:1**, sobre el mínimo de 4,5:1.
+Ojo con dos cosas si se toca esto:
 
-El filete de abajo va levantado el alto del radio con el que monta la sección
-siguiente. Si no, en una pantalla ancha y baja cae justo sobre la curva de
-terracota, y ahí el contraste se queda clavado en 3,6:1 por mucho que se oscurezca
-la fotografía: el fondo ya no es la foto.
+- El avance se mide con `getBoundingClientRect()`, no con `offsetTop` y `scrollY`.
+  Dentro de WordPress el contenedor del widget está posicionado, así que
+  `offsetTop` deja de contar desde el documento y el cálculo se descuadra.
+- El contenedor del widget **no puede llevar `overflow-x: hidden` ni `clip`**: las
+  dos cosas rompen el `position: sticky` de dentro, así que las fotos dejarían de
+  subir por detrás del logotipo solo en WordPress. Para que no haga falta, el
+  ancho a sangre descuenta la barra de desplazamiento (`--lac-barra`, que mide el
+  guion de la cabecera del bloque) en lugar de tapar el desborde recortando.
 
 **Sobre las fotos**: el set de agosto de 2026 viene ya en 1080×1350, sin collages
 ni marcos blancos, así que todas valen a cualquier tamaño. El generador sigue
@@ -221,11 +226,12 @@ proporción.
 
 ## Movimiento
 
-Todo con IntersectionObserver, sin librerías, y desactivado con
-`prefers-reduced-motion`:
+Todo con IntersectionObserver y un único bucle de `requestAnimationFrame` para el
+inicio, sin librerías, y desactivado con `prefers-reduced-motion`:
 
 - **Inicio**: el logotipo entra recortándose de arriba abajo, y el nombre, el
-  reclamo y el filete después, escalonados, sobre las dos fotos.
+  reclamo y el filete después, escalonados. Las dos fotos suben con el scroll por
+  detrás, cada una a su ritmo, hasta salir por arriba.
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.
@@ -236,9 +242,9 @@ Todo con IntersectionObserver, sin librerías, y desactivado con
   encima, y los vídeos se paran al salir de pantalla.
 - **Cursor**: punto que crece sobre elementos interactivos (solo ratón).
 
-Desde la revisión de agosto de 2026 no queda ningún bucle de
-`requestAnimationFrame` ligado al scroll: se fue con el collage del inicio, el
-paralaje, el raíl del proceso y el giro del cero.
+El único movimiento atado al scroll es el de las dos fotos del inicio. El
+paralaje de los proyectos, el raíl del proceso y el giro del cero se fueron con
+las secciones que los usaban.
 
 ## Cómo se cambian las cosas
 
@@ -287,18 +293,23 @@ estén, el enlace es la única forma de ver la pieza y el visitante sale del sit
   existir. Hasta que se haga, los mensajes no entran en la bandeja.
 - **Dominio y metadatos**: revisar `<link rel="canonical">` y las etiquetas Open
   Graph con la URL definitiva.
+- **El granate del contacto**: la manuscrita de «amb un missatge» va en Clay Heat
+  (`--clay`), que es el granate de la paleta. Sobre el verde noche del contacto da
+  3,0:1: cumple justo el mínimo de texto grande, pero con un trazo tan fino queda
+  apagado. Si se quiere que se lea mejor, o se sube a Burnt Coral (3,6:1) o el
+  apartado pasa a crema, donde el mismo granate da 4,5:1.
 
 Pendiente de la revisión de agosto de 2026, todo por material que no llegó con
 el PDF de cambios:
 
-- **Las dos fotos del inicio**: el estudio dijo que adjuntaba las escogidas. Van
-  dos de las que hay; se cambian en `HERO_DUO` (`build/build.py`).
-- **La selección de fotos del about**: igual. Van siete en `TIRA`.
-- **La foto de cada proyecto**: la retícula usa la portada que ya tenía cada uno
-  (`portada` en `PROYECTOS`).
-- **El enlace de Instagram de tres proyectos**: Football 4 Stars, Maitasuna y F45
-  Training no tienen ninguno en `piezas`, así que su ficha se dibuja sin enlace.
-  En cuanto lleguen, la ficha pasa a ser enlace sola.
+- **Qué dos fotos van en el inicio**: van el corredor y la ratafia, elegidas aquí.
+  Se cambian en `HERO_DUO` (`build/build.py`).
+- **Qué fotos van en la tira**: van siete, una por proyecto, elegidas aquí. Se
+  cambian en `TIRA`.
+- **La foto de portada de cada proyecto**: la retícula usa `portada` de
+  `PROYECTOS`.
+- **El enlace de Jordi Coll**: es el único que sigue apuntando a una publicación
+  y no a un perfil, porque el estudio no lo envió con los otros cinco.
 - **La frase del claim**: el PDF pide «Contingut que connecta.» y añade «(tot
   seguit, una frase)». Está puesta la primera parte; si esperaban una segunda
   frase, falta el texto.

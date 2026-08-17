@@ -79,6 +79,27 @@ VIDEOS_WORDPRESS = {
 # CSS
 # --------------------------------------------------------------------------- #
 
+def revisar_css(css, de_donde):
+    """Comprueba que el CSS cierra bien y que no queda nada colgando al final.
+
+    Un selector sin su bloque —lo que queda si se borra una regla a medias— no
+    da error en la web suelta: al final del archivo no se come nada. Pero el
+    generador del widget añade sus reglas detrás, y entonces ese selector suelto
+    se las traga en silencio. Así se perdió el ajuste que hace que el inicio se
+    quede pegado en WordPress. Mejor que salte aquí.
+    """
+    limpio = re.sub(r'/\*.*?\*/', '', css, flags=re.S)
+    abiertas, cerradas = limpio.count('{'), limpio.count('}')
+    if abiertas != cerradas:
+        raise SystemExit(f'CSS de {de_donde}: {abiertas} llaves abiertas y {cerradas} '
+                         f'cerradas. Hay una regla sin cerrar.')
+    cola = limpio.rstrip()
+    if cola and not cola.endswith('}'):
+        raise SystemExit(f'CSS de {de_donde}: acaba en algo que no es el cierre de una '
+                         f'regla, así que hay un selector colgando:\n  ...{cola[-90:]!r}')
+    return css
+
+
 def scope_css(css):
     # 1. Reglas globales -> el contenedor
     css = css.replace(':root {', APP + ' {', 1)
@@ -169,12 +190,14 @@ def scope_css(css):
   width: 100%;
   z-index: 1000;''')
 
-    # La primera pantalla descuenta la cabecera del tema, para que el logotipo
-    # quede centrado en lo que se ve y no detrás de la barra de arriba.
-    css = css.replace('''.hero {
-  position: relative;
-  height: 100svh;''', '''.hero {
-  position: relative;
+    # El escenario del inicio se queda pegado justo debajo de la cabecera del
+    # tema, no en la parte alta de la ventana, y descuenta su altura.
+    css = css.replace('''.hero__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;''', '''.hero__stage {
+  position: sticky;
+  top: var(--lac-top, 0px);
   height: calc(100svh - var(--lac-top, 0px));''')
 
     # 4. El grano cubre el contenedor, no toda la ventana
@@ -261,11 +284,19 @@ def scope_css(css):
   --lac-top: 0px;
   /* El tema mete el contenido en una columna estrecha. El contenedor sale a todo
      el ancho de la ventana una sola vez y dentro todo funciona igual que en la
-     web suelta; clip evita que aparezca barra horizontal. */
-  width: 100vw;
-  max-width: 100vw;
-  margin-inline: calc(50% - 50vw);
-  overflow-x: clip;
+     web suelta.
+     Ojo con el ancho: 100vw incluye la barra de desplazamiento, así que a secas
+     desborda unos píxeles y sale barra horizontal. Antes se tapaba con
+     `overflow-x: clip`, y eso rompía el `position: sticky` del inicio —las fotos
+     dejaban de subir por detrás del logotipo en WordPress, aunque en la web
+     suelta funcionara—. Así que en lugar de tapar el desborde se descuenta el
+     ancho real de la barra, que mide el guion de arriba en --lac-barra.
+     `overflow-x: visible` va explícito porque la regla que sale de nuestro body
+     lo pone en hidden, y hidden rompe el sticky igual que clip. */
+  width: calc(100vw - var(--lac-barra, 0px));
+  max-width: calc(100vw - var(--lac-barra, 0px));
+  margin-inline: calc(50% - (100vw - var(--lac-barra, 0px)) / 2);
+  overflow-x: visible;
 }
 ''' + APP + ''' .wrap {
   box-sizing: border-box;
@@ -400,6 +431,11 @@ def scope_js(js):
 GUARDIA = (
     '<script>(function(){var a=document.getElementById("laconic-app");if(!a)return;'
     'a.classList.add("has-js");'
+    # El ancho de la barra, para que el contenedor salga a todo el ancho sin
+    # desbordar. Se vuelve a medir al cambiar el tamaño de la ventana.
+    'var m=function(){a.style.setProperty("--lac-barra",'
+    '(window.innerWidth-document.documentElement.clientWidth)+"px");};'
+    'm();window.addEventListener("resize",m);'
     'var r=function(){if(!a.classList.contains("lac-ok"))a.classList.remove("has-js");};'
     'if(document.readyState==="complete"){setTimeout(r,300);}'
     'else{window.addEventListener("load",function(){setTimeout(r,300);});}'
@@ -443,7 +479,9 @@ def inline_imagenes(html):
 def construir(lang, autocontenido):
     src = ROOT / ('index.html' if lang == 'ca' else 'es/index.html')
     html = src.read_text(encoding='utf-8')
-    css = scope_css((ROOT / 'assets/css/main.css').read_text(encoding='utf-8'))
+    css = scope_css(revisar_css((ROOT / 'assets/css/main.css').read_text(encoding='utf-8'),
+                                'assets/css/main.css'))
+    revisar_css(css, 'el widget, ya con el prefijo')
     js = scope_js((ROOT / 'assets/js/main.js').read_text(encoding='utf-8'))
     cuerpo = scope_html(html, lang, '' if autocontenido else BASE)
     if autocontenido:
