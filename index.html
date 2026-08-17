@@ -15,72 +15,64 @@
 </head>
 <body>
 
-<!-- ===== Barra de anuncios ===== -->
-<div class="announce" data-announce>
+<!-- ===== 01. Cabecera: logotipo centrado y menú debajo ===== -->
+<header class="header header--stack">
   <div class="wrap">
-    <button type="button" data-announce-step="-1" aria-label="Anterior">
-      <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 1 1 5l4 4M1 5h15"/></svg>
-    </button>
-    <div class="announce-track">
-      <span class="announce-item is-active">estudio previo y diseño personalizado en cada tratamiento</span>
-      <span class="announce-item">técnica hair stroke · acabado natural y a medida</span>
-      <span class="announce-item">citas por WhatsApp · +34 611 599 132</span>
-    </div>
-    <button type="button" data-announce-step="1" aria-label="Siguiente">
-      <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
-    </button>
-  </div>
-</div>
+    <div class="header__row">
+      <div class="header__side">
+        <a class="icon desk-only" href="https://www.instagram.com/micropigmentacionbela/" target="_blank" rel="noopener" aria-label="Instagram de Bela">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
 
-<!-- ===== Header ===== -->
-<header class="header header--plain">
-  <div class="wrap">
-    <a class="logo logo--img" href="index.html" aria-label="Bela Brow Studio and Beauty — inicio">
-      <img class="logo-dark" src="assets/brand/logo-burgundy.png" alt="Bela Brow Studio and Beauty" width="768" height="313">
-    </a>
-
-    <nav class="nav" aria-label="Principal" data-spy>
-      <a href="#resultados">resultados</a>
-      <a href="#metodo">el m&eacute;todo</a>
-      <a href="#tratamientos">tratamientos</a>
-      <a href="#estudio">sobre bela</a>
-      <a href="#reservar">reservar</a>
-    </nav>
-
-    <div class="header-actions">
-      <a class="icon desk-only" href="https://www.instagram.com/micropigmentacionbela/" target="_blank" rel="noopener" aria-label="Instagram de Bela">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <a class="logo logo--img" href="index.html" aria-label="Bela Brow Studio and Beauty — inicio">
+        <img class="logo-dark" src="assets/brand/logo-burgundy.png" alt="Bela Brow Studio and Beauty" width="768" height="313">
       </a>
-      <a class="btn btn--sm btn--dark desk-only" href="contacto.html">reservar cita</a>
-      <button class="burger" type="button" data-burger aria-expanded="false" aria-label="Abrir menú">
-        <svg viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h22M0 7h22M0 13h14"/></svg>
-      </button>
+
+      <div class="header__side header__side--r">
+        <a class="btn btn--sm btn--dark desk-only" href="#reservar">reservar cita</a>
+        <button class="burger" type="button" data-burger aria-expanded="false" aria-label="Abrir menú">
+          <svg viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h22M0 7h22M0 13h14"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="header__nav">
+      <nav class="nav" aria-label="Principal" data-spy>
+        <a href="#tratamientos">tratamientos</a>
+        <a href="#metodo">el m&eacute;todo</a>
+        <a href="#resultados">resultados</a>
+        <a href="#estudio">sobre bela</a>
+        <a href="#reservar">contacto</a>
+      </nav>
     </div>
   </div>
 </header>
 
 <!-- ===== Menú móvil ===== -->
-<div class="mobile-nav" role="dialog" aria-modal="true" aria-label="Menú">
+<div class="mobile-nav">
   <div class="mobile-nav__top">
-    <span class="logo logo--img"><img class="logo-light" src="assets/brand/logo-cream.png" alt="Bela Brow Studio and Beauty" width="768" height="313"></span>
-    <button type="button" data-close aria-label="Cerrar menú" style="font-size:1.6rem;line-height:1">✕</button>
+    <a class="logo logo--img" href="index.html" aria-label="Bela Brow Studio and Beauty">
+      <img src="assets/brand/logo-cream.png" alt="Bela Brow Studio and Beauty" width="768" height="313">
+    </a>
+    <button type="button" data-close aria-label="Cerrar menú" style="font-size:1.6rem;line-height:1">&#10005;</button>
   </div>
-  <nav class="mobile-nav__links" aria-label="Móvil">
-    <a href="index.html">inicio</a>
-    <a href="servicios.html">tratamientos</a>
-    <a href="metodo.html">el método</a>
-    <a href="estudio.html">sobre bela</a>
-    <a href="contacto.html">contacto</a>
+  <nav class="mobile-nav__links" aria-label="Men&uacute; m&oacute;vil">
+    <a href="#tratamientos">tratamientos</a>
+    <a href="#metodo">el m&eacute;todo</a>
+    <a href="#resultados">resultados</a>
+    <a href="#estudio">sobre bela</a>
+    <a href="#reservar">reservar</a>
   </nav>
   <div class="mobile-nav__foot">
-    <p class="small" style="color:inherit;opacity:.7">Bela Brow Studio &amp; Beauty · solo con cita previa</p>
+    <p class="small" style="color:inherit;opacity:.7">Bela Brow Studio &amp; Beauty &middot; solo con cita previa</p>
     <p class="small" style="color:inherit;opacity:.7"><a href="https://wa.me/34611599132" target="_blank" rel="noopener">WhatsApp +34 611 599 132</a></p>
   </div>
 </div>
 
 <main>
 
-  <!-- ===== Hero ===== -->
+  <!-- ===== 02. Portada ===== -->
   <section class="hero hero--split" data-hero>
     <div class="hero__text">
       <div class="hero__thumb">
@@ -94,11 +86,11 @@
         <button type="button" role="tab" aria-selected="false" aria-label="Imagen 2"></button>
       </div>
 
-      <h1 class="display hero__title reveal">Bela es <em>micropigmentaci&oacute;n</em> de cejas: estudio previo, dise&ntilde;o y Hair Stroke.</h1>
+      <h1 class="display hero__title reveal"><em>Bela</em> es micropigmentaci&oacute;n de cejas: estudio previo, dise&ntilde;o y Hair Stroke.</h1>
 
       <div class="hero__foot reveal" data-delay="1">
         <a class="btn btn--dark" href="#reservar">reservar cita</a>
-        <span class="small">Belleza natural, cuidada. No cambiamos tus rasgos: trabajamos sobre ellos.</span>
+        <span class="small">Tu estudio de cejas de confianza</span>
       </div>
     </div>
 
@@ -107,38 +99,36 @@
     </div>
   </section>
 
-  <!-- ===== Franja de marca ===== -->
-  <div class="marquee" aria-hidden="true">
+  <!-- ===== 03. Franja oscura ===== -->
+  <div class="marquee marquee--dark" aria-hidden="true">
     <div class="marquee__track">
-      <span>hair stroke</span><span>laminado de cejas</span><span>dise&ntilde;o con henna</span><span>belleza natural</span><span>cejas a medida</span>
-      <span>hair stroke</span><span>laminado de cejas</span><span>dise&ntilde;o con henna</span><span>belleza natural</span><span>cejas a medida</span>
+      <span>hair stroke</span><span>laminado de cejas</span><span>dise&ntilde;o con henna</span><span>estudio previo</span><span>cejas a medida</span>
+      <span>hair stroke</span><span>laminado de cejas</span><span>dise&ntilde;o con henna</span><span>estudio previo</span><span>cejas a medida</span>
     </div>
   </div>
 
-  <!-- ===== Declaraci&oacute;n ===== -->
-  <section class="claim">
+  <!-- ===== 04. Declaración con fotografías engarzadas ===== -->
+  <section class="section statement">
     <div class="wrap">
-      <p class="claim__text reveal">Cejas que
-        <span class="pill tone" data-parallax="-14"><img src="assets/img/about-trabajo.jpg" alt="" loading="lazy"></span>
-        parecen tuyas, no
-        <span class="pill tone" data-parallax="12"><img src="assets/img/hero-4.jpg" alt="" loading="lazy"></span>
-        <em>puestas</em>.</p>
-      <div class="claim__foot reveal" data-delay="1">
-        <a class="btn btn--dark" href="servicios.html">ver tratamientos</a>
-        <p class="small">Micropigmentaci&oacute;n pelo a pelo con t&eacute;cnica Hair Stroke, en un estudio de dos hermanas donde solo hay una clienta cada vez.</p>
-      </div>
+      <p class="reveal">Bela es un estudio
+        <span class="pill tone"><img src="assets/img/about-trabajo.jpg" alt="" loading="lazy"></span>
+        de micropigmentaci&oacute;n de cejas
+        <span class="pill tone"><img src="assets/img/hero-4.jpg" alt="" loading="lazy"></span>
+        basado en el principio de la belleza
+        <span class="pill tone"><img src="assets/img/collage-1.jpg" alt="" loading="lazy"></span>
+        <em>natural</em></p>
+      <a class="btn btn--dark reveal" data-delay="1" href="#estudio">nuestra historia</a>
     </div>
   </section>
 
-  <!-- ===== Tres pilares ===== -->
+  <!-- ===== 05. Bela es un cuidado completo ===== -->
   <section class="section section--tight">
     <div class="wrap">
       <div class="head reveal">
         <span class="head__n">01</span>
-        <h2 class="h2 head__t">Un cuidado <em>completo</em> de la mirada</h2>
-        <p class="head__d">Tres formas de trabajar la ceja. Cu&aacute;l te toca no se decide por cat&aacute;logo: se decide mirando tu vello, tu piel y lo que quieres conseguir.</p>
+        <h2 class="h2 head__t"><em>Bela</em> es un cuidado completo de la mirada</h2>
       </div>
-      <div class="pillars pillars--stagger">
+      <div class="pillars">
         <a class="pillar reveal media-in" href="#tratamientos">
           <img src="assets/img/cat-cejas.jpg" alt="Micropigmentaci&oacute;n de cejas" loading="lazy">
           <span class="pillar__label">Micropigmentaci&oacute;n</span>
@@ -173,211 +163,109 @@
     </div>
   </section>
 
-  <!-- ===== Antes y despu&eacute;s ===== -->
-  <section class="section" id="resultados">
-    <div class="wrap" data-tabs>
-      <div class="head reveal">
-        <span class="head__n">02</span>
-        <h2 class="h2 head__t">Antes / <em>despu&eacute;s</em></h2>
-        <p class="head__d">Arrastra la fotograf&iacute;a para ver el cambio. Cada caso es distinto: el resultado depende de tu piel y de tu vello de partida.</p>
-      </div>
-
-      <div class="ba--wide">
-        <div class="ba__cases" role="tablist" aria-label="Casos de antes y despu&eacute;s">
-          <button type="button" role="tab" id="ba-tab-1" aria-controls="ba-panel-1" aria-selected="true">Recuperar la forma</button>
-          <button type="button" role="tab" id="ba-tab-2" aria-controls="ba-panel-2" aria-selected="false">Ganar densidad</button>
-          <button type="button" role="tab" id="ba-tab-3" aria-controls="ba-panel-3" aria-selected="false">Corregir asimetr&iacute;as</button>
-        </div>
-
-      <div id="ba-panel-1" role="tabpanel" aria-labelledby="ba-tab-1">
-        <div class="ba__frame reveal" data-ba>
-          <img src="assets/img/gal-1.jpg" alt="Cejas antes del tratamiento">
-          <div class="ba__after"><img src="assets/img/gal-3.jpg" alt="Cejas despu&eacute;s del tratamiento"></div>
-          <span class="ba__handle" aria-hidden="true"></span>
-          <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y despu&eacute;s">
-          <span class="ba__tag ba__tag--a">antes</span>
-          <span class="ba__tag ba__tag--b">despu&eacute;s</span>
-        </div>
-      </div>
-      <div id="ba-panel-2" role="tabpanel" aria-labelledby="ba-tab-2" hidden>
-        <div class="ba__frame reveal" data-ba>
-          <img src="assets/img/gal-4.jpg" alt="Cejas antes del tratamiento">
-          <div class="ba__after"><img src="assets/img/gal-5.jpg" alt="Cejas despu&eacute;s del tratamiento"></div>
-          <span class="ba__handle" aria-hidden="true"></span>
-          <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y despu&eacute;s">
-          <span class="ba__tag ba__tag--a">antes</span>
-          <span class="ba__tag ba__tag--b">despu&eacute;s</span>
-        </div>
-      </div>
-      <div id="ba-panel-3" role="tabpanel" aria-labelledby="ba-tab-3" hidden>
-        <div class="ba__frame reveal" data-ba>
-          <img src="assets/img/met-1.jpg" alt="Cejas antes del tratamiento">
-          <div class="ba__after"><img src="assets/img/met-3.jpg" alt="Cejas despu&eacute;s del tratamiento"></div>
-          <span class="ba__handle" aria-hidden="true"></span>
-          <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y despu&eacute;s">
-          <span class="ba__tag ba__tag--a">antes</span>
-          <span class="ba__tag ba__tag--b">despu&eacute;s</span>
-        </div>
-      </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===== Llamada intermedia ===== -->
-  <section class="band">
-    <div class="wrap band__in">
-      <p class="band__t reveal">&iquest;Te reconoces en alguno? La <em>valoraci&oacute;n</em> no cuesta nada.</p>
-      <div class="band__cta reveal" data-delay="1">
-        <a class="btn btn--dark" href="#reservar">pedir mi valoraci&oacute;n</a>
-        <a class="link-arrow" href="https://wa.me/34611599132" target="_blank" rel="noopener">o escr&iacute;benos por WhatsApp <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== El m&eacute;todo ===== -->
+  <!-- ===== 06. El ciclo del método, sobre oscuro ===== -->
   <section class="section cycle" id="metodo">
     <div class="wrap">
       <div class="head reveal">
-        <span class="head__n">03</span>
-        <h2 class="h2 head__t">Cuatro pasos, <em>sin prisa</em></h2>
+        <span class="head__n">02</span>
+        <h2 class="h2 head__t">El m&eacute;todo <em>Bela</em></h2>
         <p class="head__d">Ninguna cita empieza por el derm&oacute;grafo. Primero se mira, se escucha y se dibuja.</p>
       </div>
-
-      <div class="pin" data-pin>
-        <div class="pin__side">
-          <figure class="media-in reveal tone"><img src="assets/img/met-2.jpg" alt="Dise&ntilde;o de la ceja antes de pigmentar" loading="lazy"></figure>
-          <p class="small" style="color:rgba(246,241,236,.6);margin-top:1rem">El estudio previo y el dise&ntilde;o ocupan lo que tengan que ocupar.</p>
-        </div>
-        <ol class="pin__list">
-          <li class="pin__step"><b>01</b>
-            <div><h3><em>Valoraci&oacute;n</em></h3><p>Escuchamos qu&eacute; te gustar&iacute;a conseguir y valoramos tu piel, tu vello y la forma de partida. De ah&iacute; sale si el Hair Stroke es lo tuyo o no.</p></div>
-          </li>
-          <li class="pin__step"><b>02</b>
-            <div><h3><em>Dise&ntilde;o</em></h3><p>Dibujamos la ceja sobre tu rostro, a partir de tus facciones y proporciones. No se pigmenta nada hasta que la sientas tuya.</p></div>
-          </li>
-          <li class="pin__step"><b>03</b>
-            <div><h3><em>Tratamiento</em></h3><p>Pelo a pelo, siguiendo la direcci&oacute;n de tu vello, con la precisi&oacute;n que pide una t&eacute;cnica que busca pasar desapercibida.</p></div>
-          </li>
-          <li class="pin__step"><b>04</b>
-            <div><h3><em>Seguimiento</em></h3><p>Te damos la pauta de cuidados por escrito y estamos pendientes de c&oacute;mo cicatriza. El retoque se valora cuando toca, no antes.</p></div>
-          </li>
-        </ol>
-      </div>
+      <ol class="cycle__ring">
+        <li class="cycle__step reveal"><h3><em>Valoraci&oacute;n</em></h3><p>Valoramos tu piel, tu vello y la forma de partida.</p></li>
+        <li class="cycle__step reveal" data-delay="1"><h3><em>Dise&ntilde;o</em></h3><p>Dibujamos la ceja sobre tu rostro hasta que la sientas tuya.</p></li>
+        <li class="cycle__step reveal" data-delay="2"><h3><em>Tratamiento</em></h3><p>Pelo a pelo, siguiendo la direcci&oacute;n de tu propio vello.</p></li>
+        <li class="cycle__step reveal" data-delay="3"><h3><em>Seguimiento</em></h3><p>Pauta de cuidados por escrito y control de la cicatrizaci&oacute;n.</p></li>
+      </ol>
     </div>
   </section>
 
-  <!-- ===== Tratamientos ===== -->
+  <!-- ===== 07. La carta de tratamientos ===== -->
   <section class="section" id="tratamientos">
     <div class="wrap">
       <div class="head reveal">
-        <span class="head__n">04</span>
-        <h2 class="h2 head__t">La carta, <em>de un vistazo</em></h2>
-        <p class="head__d">Arrastra la fila. No hay precios cerrados: cada presupuesto sale del estudio previo, porque no todas las cejas piden el mismo trabajo. <a href="servicios.html">Ver la carta completa</a></p>
+        <span class="head__n">03</span>
+        <h2 class="h2 head__t">Tratamientos <em>Bela</em></h2>
       </div>
 
-      <div class="rail" data-rail>
+      <div class="subhead">
+        <h3>Lo que puedes reservar</h3>
+        <a class="link-arrow" href="servicios.html">ver la carta completa
+          <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+        </a>
+      </div>
+
+      <div class="tgrid">
         <article class="tcard">
-          <a href="servicios.html">
+          <a href="servicios.html#cejas">
             <div class="tcard__media media-in reveal">
-              <span class="tcard__tag">Micropigmentaci&oacute;n</span>
-              <img src="assets/img/card-hairstroke.jpg" alt="Cejas realistas &middot; Hair Stroke" loading="lazy">
+              <img src="assets/img/card-hairstroke.jpg" alt="Cejas realistas con t&eacute;cnica Hair Stroke" loading="lazy">
             </div>
             <div class="tcard__body">
+              <span class="tcard__cat">Micropigmentaci&oacute;n</span>
               <h3>Cejas realistas &middot; Hair Stroke</h3>
+              <span class="tcard__plus" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 0v12M0 6h12"/></svg>
+              </span>
               <span class="tcard__price">Consultar</span>
             </div>
           </a>
         </article>
         <article class="tcard">
-          <a href="servicios.html">
+          <a href="servicios.html#diseno">
             <div class="tcard__media media-in reveal" data-delay="1">
-              <span class="tcard__tag">Sin pigmento</span>
               <img src="assets/img/card-laminado.jpg" alt="Laminado de cejas" loading="lazy">
             </div>
             <div class="tcard__body">
+              <span class="tcard__cat">Sin pigmento</span>
               <h3>Laminado de cejas</h3>
+              <span class="tcard__plus" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 0v12M0 6h12"/></svg>
+              </span>
               <span class="tcard__price">Consultar</span>
             </div>
           </a>
         </article>
         <article class="tcard">
-          <a href="servicios.html">
+          <a href="servicios.html#diseno">
             <div class="tcard__media media-in reveal" data-delay="2">
-              <span class="tcard__tag">Dise&ntilde;o y color</span>
-              <img src="assets/img/card-henna.jpg" alt="Dise&ntilde;o y tinte con henna" loading="lazy">
+              <img src="assets/img/card-henna.jpg" alt="Dise&ntilde;o y tinte de cejas con henna" loading="lazy">
             </div>
             <div class="tcard__body">
+              <span class="tcard__cat">Dise&ntilde;o y color</span>
               <h3>Dise&ntilde;o y tinte con henna</h3>
+              <span class="tcard__plus" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 0v12M0 6h12"/></svg>
+              </span>
               <span class="tcard__price">Consultar</span>
             </div>
           </a>
         </article>
         <article class="tcard">
-          <a href="#metodo">
+          <a href="metodo.html">
             <div class="tcard__media media-in reveal" data-delay="3">
-              <span class="tcard__tag">En cada cita</span>
-              <img src="assets/img/card-diseno.jpg" alt="Estudio previo y dise&ntilde;o" loading="lazy">
+              <img src="assets/img/card-diseno.jpg" alt="Estudio previo y dise&ntilde;o de la ceja" loading="lazy">
             </div>
             <div class="tcard__body">
+              <span class="tcard__cat">En cada cita</span>
               <h3>Estudio previo y dise&ntilde;o</h3>
+              <span class="tcard__plus" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 0v12M0 6h12"/></svg>
+              </span>
               <span class="tcard__price">Incluido</span>
             </div>
           </a>
         </article>
-        <article class="tcard tcard--soon">
-          <a href="servicios.html">
-            <div class="tcard__media media-in reveal" data-delay="3">
-              <span class="tcard__tag">Densidad capilar</span>
-              <img src="assets/img/srv-capilar.svg" alt="Micropigmentaci&oacute;n capilar" loading="lazy">
-            </div>
-            <div class="tcard__body">
-              <h3>Micropigmentaci&oacute;n capilar</h3>
-              <span class="tcard__price">Pr&oacute;ximamente</span>
-            </div>
-          </a>
-        </article>
-        <article class="tcard tcard--soon">
-          <a href="servicios.html">
-            <div class="tcard__media media-in reveal" data-delay="3">
-              <span class="tcard__tag">Micropigmentaci&oacute;n</span>
-              <img src="assets/img/srv-powder.svg" alt="Labios" loading="lazy">
-            </div>
-            <div class="tcard__body">
-              <h3>Labios</h3>
-              <span class="tcard__price">M&aacute;s adelante</span>
-            </div>
-          </a>
-        </article>
-        <article class="tcard tcard--soon">
-          <a href="servicios.html">
-            <div class="tcard__media media-in reveal" data-delay="3">
-              <span class="tcard__tag">Invitadas</span>
-              <img src="assets/img/srv-colab.jpg" alt="Otros servicios de belleza" loading="lazy">
-            </div>
-            <div class="tcard__body">
-              <h3>Otros servicios de belleza</h3>
-              <span class="tcard__price">Pr&oacute;ximamente</span>
-            </div>
-          </a>
-        </article>
-        <div class="rail__end">
-          <a class="link-arrow" href="servicios.html">ver la carta completa
-            <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
-          </a>
-        </div>
       </div>
-      <div class="rail-bar" aria-hidden="true"><span></span></div>
     </div>
   </section>
 
-  <!-- ===== Ventajas ===== -->
+  <!-- ===== 08. Nuestras ventajas ===== -->
   <section class="section section--tight">
     <div class="wrap">
       <div class="head reveal">
-        <span class="head__n">05</span>
-        <h2 class="h2 head__t">Por qu&eacute; <em>aqu&iacute;</em></h2>
-        <p class="head__d">Tres cosas que no negociamos, y que explican por qu&eacute; una cita dura lo que dura.</p>
+        <span class="head__n">04</span>
+        <h2 class="h2 head__t">Nuestras <em>ventajas</em></h2>
       </div>
       <div class="perks">
         <div class="perk reveal">
@@ -405,141 +293,186 @@
     </div>
   </section>
 
-  <!-- ===== El estudio por dentro ===== -->
-  <section class="section method">
-    <div class="wrap">
-      <div class="collage">
-        <div class="collage__text reveal">
-          <span class="eyebrow">el estudio por dentro</span>
-          <h2 class="h2" style="margin-top:.9rem">Con tiempo y <em>dedicaci&oacute;n</em></h2>
-          <p class="lead">Desde el principio sab&iacute;amos que quer&iacute;amos hacer las cosas de una manera muy concreta: con tiempo, dedicaci&oacute;n y poniendo especial atenci&oacute;n en cada persona y en cada detalle. Por eso el dise&ntilde;o ocupa tanto como la propia t&eacute;cnica.</p>
-          <a class="link-arrow" href="#metodo">c&oacute;mo trabajamos <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg></a>
-        </div>
-        <figure class="collage__a reveal media-in tone" data-delay="1" data-parallax="26">
-          <img src="assets/img/collage-2.jpg" alt="Material de trabajo" loading="lazy">
-          <figcaption>Material de un solo uso</figcaption>
-        </figure>
-        <figure class="collage__b reveal media-in tone" data-delay="2" data-parallax="-18">
-          <img src="assets/img/collage-3.jpg" alt="Detalle del trazo Hair Stroke" loading="lazy">
-          <figcaption>T&eacute;cnica Hair Stroke</figcaption>
-        </figure>
-        <figure class="collage__c reveal media-in tone" data-delay="3" data-parallax="14">
-          <img src="assets/img/srv-estudio.jpg" alt="El estudio" loading="lazy">
-          <figcaption>Solo con cita previa</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Para quién es ===== -->
-  <section class="section" id="para-quien">
+  <!-- ===== 09. El estudio por dentro, sobre oscuro ===== -->
+  <section class="section showcase" id="estudio">
     <div class="wrap">
       <div class="head reveal">
-        <span class="head__n">06</span>
-        <h2 class="h2 head__t">Para <em>qui&eacute;n</em> es</h2>
-        <p class="head__d">Si te reconoces en alguno de estos casos, el Hair Stroke probablemente sea para ti.</p>
-        <span class="spacer"></span>
-        <a class="link-arrow" href="#reservar">resolver mis dudas
-          <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
-        </a>
+        <span class="head__n">05</span>
+        <h2 class="h2 head__t">El estudio <em>por dentro</em></h2>
+        <p class="head__d">Un espacio de dos hermanas, con una clienta cada vez y sin prisa.</p>
       </div>
-      <div class="cases">
-        <div class="case reveal">
-          <span class="case__n">01</span>
-          <h3>Quieres mejorar la forma</h3>
-          <p>Cejas sin una forma clara o con la cola desdibujada. Dise&ntilde;amos un contorno equilibrado que respeta tus facciones y se mantiene todos los d&iacute;as.</p>
+      <div class="showcase__grid">
+        <figure class="reveal media-in">
+          <img class="tone" src="assets/img/srv-estudio.jpg" alt="El estudio" loading="lazy">
+          <figcaption>El espacio</figcaption>
+        </figure>
+        <figure class="reveal media-in" data-delay="1">
+          <img class="tone" src="assets/img/collage-2.jpg" alt="Material de trabajo" loading="lazy">
+          <figcaption>Material de un solo uso</figcaption>
+        </figure>
+        <figure class="reveal media-in" data-delay="2">
+          <img class="tone" src="assets/img/collage-3.jpg" alt="Detalle del trazo Hair Stroke" loading="lazy">
+          <figcaption>T&eacute;cnica Hair Stroke</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10. Antes / después ===== -->
+  <section class="section" id="resultados">
+    <div class="wrap" data-tabs>
+      <div class="head reveal">
+        <span class="head__n">06</span>
+        <h2 class="h2 head__t">Antes / <em>despu&eacute;s</em></h2>
+        <p class="head__d">Arrastra la fotograf&iacute;a para ver el cambio. Cada caso es distinto: el resultado depende de tu piel y de tu vello de partida.</p>
+      </div>
+
+      <div class="ba__cases" role="tablist" aria-label="Casos de antes y despu&eacute;s">
+        <button type="button" role="tab" id="ba-tab-1" aria-controls="ba-panel-1" aria-selected="true">Recuperar la forma</button>
+        <button type="button" role="tab" id="ba-tab-2" aria-controls="ba-panel-2" aria-selected="false">Ganar densidad</button>
+        <button type="button" role="tab" id="ba-tab-3" aria-controls="ba-panel-3" aria-selected="false">Corregir asimetr&iacute;as</button>
+      </div>
+
+      <div class="ba--wide">
+        <div id="ba-panel-1" role="tabpanel" aria-labelledby="ba-tab-1">
+          <div class="ba__frame reveal" data-ba>
+            <img src="assets/img/gal-1.jpg" alt="Cejas antes del tratamiento">
+            <div class="ba__after"><img src="assets/img/gal-3.jpg" alt="Cejas despu&eacute;s del tratamiento"></div>
+            <span class="ba__handle" aria-hidden="true"></span>
+            <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y despu&eacute;s">
+            <span class="ba__tag ba__tag--a">antes</span>
+            <span class="ba__tag ba__tag--b">despu&eacute;s</span>
+          </div>
         </div>
-        <div class="case reveal" data-delay="1">
-          <span class="case__n">02</span>
-          <h3>Te falta densidad</h3>
-          <p>Por depilaci&oacute;n excesiva, por el paso del tiempo o simplemente porque siempre tuviste poco vello. Recuperamos volumen pelo a pelo.</p>
+        <div id="ba-panel-2" role="tabpanel" aria-labelledby="ba-tab-2" hidden>
+          <div class="ba__frame" data-ba>
+            <img src="assets/img/gal-4.jpg" alt="Cejas antes del tratamiento">
+            <div class="ba__after"><img src="assets/img/gal-5.jpg" alt="Cejas despu&eacute;s del tratamiento"></div>
+            <span class="ba__handle" aria-hidden="true"></span>
+            <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y despu&eacute;s">
+            <span class="ba__tag ba__tag--a">antes</span>
+            <span class="ba__tag ba__tag--b">despu&eacute;s</span>
+          </div>
         </div>
-        <div class="case reveal" data-delay="2">
-          <span class="case__n">03</span>
-          <h3>Tienes zonas despobladas</h3>
-          <p>Huecos, cicatrices o p&eacute;rdida de pelo por distintas circunstancias. El Hair Stroke rellena esas zonas sin que se note d&oacute;nde empieza lo tuyo.</p>
-        </div>
-        <div class="case reveal" data-delay="3">
-          <span class="case__n">04</span>
-          <h3>Notas asimetr&iacute;as</h3>
-          <p>Ninguna cara es sim&eacute;trica. Trabajamos la forma para compensar diferencias de altura, grosor o direcci&oacute;n entre una ceja y otra.</p>
-        </div>
-        <div class="case reveal" data-delay="3">
-          <span class="case__n">05</span>
-          <h3>Buscas un resultado natural</h3>
-          <p>Si te da miedo que se note artificial, esta es exactamente nuestra forma de trabajar: que el resultado se integre de forma armoniosa en tu rostro.</p>
-        </div>
-        <div class="case reveal" data-delay="3">
-          <span class="case__n">06</span>
-          <h3>Quieres ganar tiempo</h3>
-          <p>Dejar de maquillarte las cejas cada ma&ntilde;ana y que el resultado siga siendo el mismo al salir del gimnasio o de la piscina.</p>
+        <div id="ba-panel-3" role="tabpanel" aria-labelledby="ba-tab-3" hidden>
+          <div class="ba__frame" data-ba>
+            <img src="assets/img/met-1.jpg" alt="Cejas antes del tratamiento">
+            <div class="ba__after"><img src="assets/img/met-3.jpg" alt="Cejas despu&eacute;s del tratamiento"></div>
+            <span class="ba__handle" aria-hidden="true"></span>
+            <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y despu&eacute;s">
+            <span class="ba__tag ba__tag--a">antes</span>
+            <span class="ba__tag ba__tag--b">despu&eacute;s</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
-  <section class="section section--tight" id="faq">
+  <!-- ===== 11. Franja clara ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>belleza natural</span><span>cuidada</span><span>personalizada</span><span>hecho con calma</span>
+      <span>belleza natural</span><span>cuidada</span><span>personalizada</span><span>hecho con calma</span>
+    </div>
+  </div>
+
+  <!-- ===== 12. Cierre con el logotipo a tamaño de cartel ===== -->
+  <section class="signoff">
+    <img class="signoff__bg tone" src="assets/img/about-futuro.jpg" alt="" loading="lazy">
+    <div class="wrap">
+      <h2 class="h2">Empieza por tu <em>valoraci&oacute;n</em></h2>
+      <p>Cu&eacute;ntanos qu&eacute; te gustar&iacute;a conseguir y te decimos qu&eacute; tratamiento encaja mejor contigo. Sin compromiso.</p>
+      <a class="btn" href="#reservar">pedir cita</a>
+    </div>
+    <img class="signoff__mark" src="assets/brand/logo-cream.png" alt="Bela Brow Studio and Beauty" loading="lazy">
+  </section>
+
+  <!-- ===== 13. Dónde estamos ===== -->
+  <section class="section section--tight where">
     <div class="wrap">
       <div class="head reveal">
         <span class="head__n">07</span>
+        <h2 class="h2 head__t">D&oacute;nde <em>estamos</em></h2>
+      </div>
+      <div class="where__grid reveal">
+        <div>
+          <h3>Estudio</h3>
+          <p>Te confirmamos la direcci&oacute;n exacta y c&oacute;mo llegar al reservar. Atendemos solo con cita previa.</p>
+        </div>
+        <div>
+          <h3>Horario</h3>
+          <p>Lunes a viernes, 9:00&ndash;20:00<br>S&aacute;bados, 10:00&ndash;14:00</p>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <p><a href="https://wa.me/34611599132" target="_blank" rel="noopener">WhatsApp +34 611 599 132</a><br><a href="https://www.instagram.com/micropigmentacionbela/" target="_blank" rel="noopener">@micropigmentacionbela</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 14. Las hermanas ===== -->
+  <section class="section" style="background:var(--cream-warm)">
+    <div class="wrap">
+      <div class="split" style="align-items:center">
+        <div class="reveal">
+          <span class="eyebrow">qui&eacute;nes somos</span>
+          <h2 class="h2" style="margin:.9rem 0 1rem">Bela nace de <em>nosotras</em></h2>
+          <p class="lead">Somos dos hermanas con una pasi&oacute;n en com&uacute;n y muchas ganas de crear algo juntas. Lo que empez&oacute; como una ilusi&oacute;n compartida fue tomando forma hasta convertirse en un proyecto con el que hoy nos sentimos totalmente identificadas.</p>
+          <p class="lead" style="margin-top:1rem">Nos apasiona el mundo de la belleza, pero sobre todo creemos en una belleza natural, cuidada y personalizada.</p>
+          <a class="btn btn--ghost" href="estudio.html" style="margin-top:1.75rem">nuestra historia</a>
+        </div>
+        <figure class="reveal media-in" data-delay="1" data-parallax="20">
+          <img src="assets/img/about-hermanas.jpg" alt="Las dos hermanas que fundaron Bela" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 15. Preguntas frecuentes ===== -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="head__n">08</span>
         <h2 class="h2 head__t">&iquest;Tienes dudas? <em>Te las resolvemos</em></h2>
         <p class="head__d">Y si te queda alguna, mand&aacute;nosla por WhatsApp con una foto de tus cejas con luz natural.</p>
       </div>
       <div class="faq">
         <div class="faq__item">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-1">¿Qué es exactamente el Hair Stroke?<span class="plus"></span></button>
-          <div class="faq__a" id="faq-1"><p>Es una técnica de micropigmentación avanzada con la que se recrean pelos de forma individual. En lugar de rellenar la ceja con color, se dibujan trazos que imitan el pelo real y se integran con el tuyo, de manera que el resultado es natural y definido a la vez.</p></div>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-1">&iquest;Duele?<span class="plus" aria-hidden="true"></span></button>
+          <div class="faq__a" id="faq-1"><p>Se trabaja con anest&eacute;sico t&oacute;pico y la mayor&iacute;a de las clientas lo describe como una molestia leve, tipo ara&ntilde;azo. La sensibilidad var&iacute;a de una persona a otra y tambi&eacute;n seg&uacute;n el momento del ciclo.</p></div>
         </div>
         <div class="faq__item">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-2">¿Se va a notar que están pigmentadas?<span class="plus"></span></button>
-          <div class="faq__a" id="faq-2"><p>Ese es precisamente el objetivo: que no se note. No buscamos cambiar tus rasgos, sino trabajar sobre ellos para realzarlos, de forma que el resultado se integre de manera armoniosa en tu rostro.</p></div>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-2">&iquest;Cu&aacute;nto dura el resultado?<span class="plus" aria-hidden="true"></span></button>
+          <div class="faq__a" id="faq-2"><p>Depende de tu tipo de piel, de tu ritmo de vida y de la exposici&oacute;n al sol. Es un pigmento que se va aclarando poco a poco, y en la valoraci&oacute;n te damos una previsi&oacute;n realista para tu caso.</p></div>
         </div>
         <div class="faq__item">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-3">¿Cuánto cuesta?<span class="plus"></span></button>
-          <div class="faq__a" id="faq-3"><p>Cada tratamiento se presupuesta después de la valoración, porque el trabajo no es el mismo en todos los casos. Escríbenos por WhatsApp contándonos qué te gustaría conseguir y te damos un precio cerrado, sin compromiso.</p></div>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-3">&iquest;Cu&aacute;nto tiempo tarda la cita?<span class="plus" aria-hidden="true"></span></button>
+          <div class="faq__a" id="faq-3"><p>Cuenta con una ma&ntilde;ana o una tarde. El estudio previo y el dise&ntilde;o ocupan buena parte de la cita, y no se pigmenta nada hasta que la forma te convence.</p></div>
         </div>
         <div class="faq__item">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-4">¿En qué se diferencia el laminado de la micropigmentación?<span class="plus"></span></button>
-          <div class="faq__a" id="faq-4"><p>El laminado trabaja tu propio vello: lo ordena y fija la dirección del pelo para conseguir un aspecto más uniforme y con efecto lifting, sin pigmento ni agujas. La micropigmentación añade trazos donde no hay pelo. Son tratamientos distintos y compatibles entre sí.</p></div>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-4">Tengo micropigmentaci&oacute;n de otro centro, &iquest;pod&eacute;is trabajar encima?<span class="plus" aria-hidden="true"></span></button>
+          <div class="faq__a" id="faq-4"><p>A veces s&iacute; y a veces hay que esperar o eliminar antes. Mand&aacute;nos una foto con luz natural por WhatsApp y te decimos con sinceridad qu&eacute; se puede hacer.</p></div>
         </div>
         <div class="faq__item">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-5">Ya tengo micropigmentación de otro sitio, ¿se puede trabajar encima?<span class="plus"></span></button>
-          <div class="faq__a" id="faq-5"><p>En muchos casos sí, pero hay que ver el trabajo previo antes de comprometerse. Mándanos una foto con luz natural y sin maquillaje por WhatsApp y te decimos con sinceridad qué se puede hacer.</p></div>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-5">&iquest;C&oacute;mo son los d&iacute;as despu&eacute;s?<span class="plus" aria-hidden="true"></span></button>
+          <div class="faq__a" id="faq-5"><p>Los primeros d&iacute;as el color se ve m&aacute;s intenso y luego baja. Aparecen peque&ntilde;as costras que no hay que tocar. Te damos la pauta por escrito y estamos pendientes de c&oacute;mo evoluciona.</p></div>
         </div>
         <div class="faq__item">
-          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-6">¿Hay casos en los que no se puede hacer?<span class="plus"></span></button>
-          <div class="faq__a" id="faq-6"><p>Sí. Embarazo y lactancia, piel con lesiones o dermatitis activa en la zona, tendencia a queloides y algunos tratamientos o medicaciones. Lo revisamos siempre en la valoración previa, antes de reservar la sesión.</p></div>
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-6">&iquest;Hay alg&uacute;n caso en el que no se pueda?<span class="plus" aria-hidden="true"></span></button>
+          <div class="faq__a" id="faq-6"><p>S&iacute;: embarazo y lactancia, algunos tratamientos dermatol&oacute;gicos, ciertas medicaciones y determinadas afecciones de la piel. Por eso preguntamos antes, y si hay dudas preferimos esperar.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Sobre nosotras ===== -->
-  <section id="estudio" class="section" style="background:var(--cream-warm)">
-    <div class="wrap">
-      <div class="split">
-        <div class="reveal">
-          <div class="rule-gold"></div>
-          <span class="eyebrow">quiénes somos</span>
-          <h2 class="h2 reveal reveal--curtain" style="margin:.75rem 0 1rem">Bela nace de <em>nosotras</em></h2>
-          <p class="lead">Somos dos hermanas con una pasión en común y muchas ganas de crear algo juntas. Lo que empezó como una ilusión compartida fue tomando forma hasta convertirse en un proyecto con el que hoy nos sentimos totalmente identificadas.</p>
-          <p class="lead" style="margin-top:1rem">Nos apasiona el mundo de la belleza, pero sobre todo creemos en una belleza natural, cuidada y personalizada.</p>
-          <p style="margin-top:1.75rem"><a class="btn btn--ghost" href="estudio.html">nuestra historia</a></p>
-        </div>
-        <figure class="reveal media-in" data-delay="1"><img src="assets/img/about-hermanas.jpg" alt="Las dos hermanas que fundaron Bela" loading="lazy"></figure>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===== Reservar ===== -->
-  <section class="section" id="reservar">
+  <!-- ===== 16. Reservar ===== -->
+  <section class="section" id="reservar" style="background:var(--cream-warm)">
     <div class="wrap">
       <div class="head reveal">
-        <span class="head__n">08</span>
+        <span class="head__n">09</span>
         <h2 class="h2 head__t">Pedir <em>cita</em></h2>
-        <p class="head__d">Cu&eacute;ntanos qu&eacute; te gustar&iacute;a conseguir y te decimos qu&eacute; tratamiento encaja mejor contigo. Atendemos solo con cita previa, de lunes a viernes de 9:00 a 20:00 y s&aacute;bados de 10:00 a 14:00.</p>
+        <p class="head__d">Cu&eacute;ntanos qu&eacute; te gustar&iacute;a conseguir y te decimos qu&eacute; tratamiento encaja mejor contigo.</p>
       </div>
 
       <div class="booking">
@@ -598,16 +531,6 @@
 
         <aside class="booking__side reveal" data-delay="1">
           <div class="info-card">
-            <h3 class="h3">Contacto directo</h3>
-            <dl>
-              <dt>WhatsApp</dt><dd><a href="https://wa.me/34611599132" target="_blank" rel="noopener">+34 611 599 132</a></dd>
-              <dt>Tel&eacute;fono</dt><dd><a href="tel:+34611599132">611 599 132</a></dd>
-              <dt>Instagram</dt><dd><a href="https://www.instagram.com/micropigmentacionbela/" target="_blank" rel="noopener">@micropigmentacionbela</a></dd>
-              <dt>Horario</dt><dd>L&ndash;V 9:00&ndash;20:00<br>S&aacute;bados 10:00&ndash;14:00</dd>
-              <dt>D&oacute;nde</dt><dd>Te confirmamos la direcci&oacute;n exacta al reservar</dd>
-            </dl>
-          </div>
-          <div class="info-card" style="margin-top:1rem">
             <h3 class="h3">Antes de venir</h3>
             <ul class="checklist" style="margin-top:1rem">
               <li>Ven sin maquillaje en la zona de las cejas.</li>
@@ -621,34 +544,24 @@
     </div>
   </section>
 
-  <!-- ===== Cierre ===== -->
-  <section class="signoff">
-    <img class="signoff__bg tone" src="assets/img/about-futuro.jpg" alt="" loading="lazy">
-    <div class="wrap">
-      <h2 class="h2">Empecemos por tu <em>valoraci&oacute;n</em></h2>
-      <p>Cu&eacute;ntanos qu&eacute; te gustar&iacute;a conseguir y te decimos qu&eacute; tratamiento encaja mejor contigo. Sin compromiso.</p>
-      <a class="btn" href="#reservar">pedir cita</a>
-    </div>
-    <img class="signoff__mark" src="assets/brand/logo-cream.png" alt="Bela Brow Studio and Beauty" loading="lazy">
-  </section>
-
 </main>
 
-<!-- ===== Footer ===== -->
+<!-- ===== 17. Pie ===== -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer__top">
       <div>
-        <span class="logo logo--img"><img class="logo-light" src="assets/brand/logo-cream.png" alt="Bela Brow Studio and Beauty" width="768" height="313"></span>
-        <p class="lead" style="color:rgba(246,241,236,.8)">Avisos de huecos libres por cancelación y consejos de cuidado de tus cejas.</p>
-        <form class="newsletter" data-demo-form="newsletter">
-          <label for="nl-email" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email</label>
-          <input id="nl-email" type="email" required placeholder="tu email">
+        <a class="logo logo--img" href="index.html" aria-label="Bela Brow Studio and Beauty">
+          <img src="assets/brand/logo-cream.png" alt="Bela Brow Studio and Beauty" width="768" height="313">
+        </a>
+        <p class="small" style="color:inherit;opacity:.75;margin-top:1rem">Avisos de huecos libres por cancelaci&oacute;n y consejos de cuidado de tus cejas.</p>
+        <form class="newsletter" data-demo-form>
+          <input type="email" placeholder="tu email" aria-label="Tu email" required>
           <button type="submit" aria-label="Suscribirse">
-            <svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M11 1l4 4-4 4M15 5H0"/></svg>
+            <svg viewBox="0 0 18 11" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 1l5 4.5-5 4.5M17 5.5H0"/></svg>
           </button>
         </form>
-        <p class="form-status" style="color:var(--mocha)"></p>
+        <p class="form-status"></p>
       </div>
 
       <div class="footer__cols">
@@ -656,18 +569,18 @@
           <h4>Tratamientos</h4>
           <ul>
             <li><a href="servicios.html#cejas">Hair Stroke</a></li>
-            <li><a href="servicios.html#cejas">Estudio y diseño</a></li>
-            <li><a href="servicios.html#cejas">Retoque y mantenimiento</a></li>
-            <li><a href="servicios.html#proximamente">Próximamente</a></li>
+            <li><a href="servicios.html#diseno">Laminado y henna</a></li>
+            <li><a href="metodo.html">Estudio y dise&ntilde;o</a></li>
+            <li><a href="servicios.html#proximamente">Pr&oacute;ximamente</a></li>
           </ul>
         </div>
         <div>
           <h4>Estudio</h4>
           <ul>
-            <li><a href="metodo.html">El método</a></li>
+            <li><a href="metodo.html">El m&eacute;todo</a></li>
             <li><a href="estudio.html">Sobre Bela</a></li>
-            <li><a href="index.html#faq">Preguntas frecuentes</a></li>
-            <li><a href="contacto.html">Reservar cita</a></li>
+            <li><a href="#faq">Preguntas frecuentes</a></li>
+            <li><a href="#reservar">Reservar cita</a></li>
           </ul>
         </div>
         <div>
@@ -675,7 +588,7 @@
           <ul>
             <li><a href="https://wa.me/34611599132" target="_blank" rel="noopener">WhatsApp +34 611 599 132</a></li>
             <li><a href="tel:+34611599132">611 599 132</a></li>
-            <li>Email profesional: próximamente</li>
+            <li>Email profesional: pr&oacute;ximamente</li>
             <li><a href="https://www.instagram.com/micropigmentacionbela/" target="_blank" rel="noopener">@micropigmentacionbela</a></li>
           </ul>
         </div>
@@ -685,14 +598,13 @@
     <img class="footer__mark" src="assets/brand/logo-cream.png" alt="Bela Brow Studio and Beauty" loading="lazy">
 
     <div class="footer__bottom">
-      <span>© <span data-year>2026</span> Bela Brow Studio &amp; Beauty</span>
-      <span>Aviso legal · Privacidad · Cookies</span>
+      <span>&copy; <span data-year>2026</span> Bela Brow Studio &amp; Beauty</span>
+      <span>Aviso legal &middot; Privacidad &middot; Cookies</span>
     </div>
   </div>
 </footer>
 
-
-<!-- Botón flotante de WhatsApp, presente en toda la web -->
+<!-- Botón flotante de WhatsApp -->
 <a class="wa-float" href="https://wa.me/34611599132" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.81.83-3.03-.2-.31a8.17 8.17 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.21-8.24 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.21.89 2.39 1.01 2.55.12.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
   <span>WhatsApp</span>
