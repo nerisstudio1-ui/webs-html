@@ -150,36 +150,19 @@ una familia:
 python3 tools/fetch-fonts.py "Bodoni Moda:ital,wght@0,400;1,400"
 ```
 
-Dos familias con papeles muy distintos:
+**Figtree** es la única tipografía de la web. Una geométrica de ojo muy
+abierto, la que se parece a la de la referencia. El carácter no lo pone
+mezclar familias: lo pone **usarla en caja baja, a cuerpo grande y con el
+espaciado cerrado**.
 
-- **Instrument Sans** — grotesca de trazo uniforme. Es la voz que explica:
-  texto corrido, menú, botones y rótulos.
-- **Playfair Display** — serif de alto contraste. Aparece **solo en cursiva**,
-  en la palabra destacada de cada titular. Es la que pone el carácter, en la
-  línea del propio logotipo.
-
-Las dos son variables: un archivo por alfabeto cubre todo el rango de pesos.
-
-El patrón de cada titular es siempre el mismo: sans en caja baja con una
-palabra en cursiva serif. «Un cuidado *completo* de la mirada», «Antes /
-*después*», «Cuatro pasos, *sin prisa*». En el HTML basta con envolver esa
-palabra en `<em>`.
-
-Van en mayúsculas con espaciado solo los rótulos: menú, anuncio superior,
-epígrafes, botones, etiquetas y pies de foto. Los titulares y los textos van
-en caja baja.
-
-El espaciado entre letras es una escala con nombre, no un número suelto:
-
-| Token | Valor | Dónde |
-|---|---|---|
-| `--track-sm` | `.10em` | pies de foto, cifras |
-| `--track-md` | `.16em` | botones, enlaces, epígrafes |
-| `--track-lg` | `.24em` | rótulos medianos |
-| `--track-xl` | `.34em` | menú, anuncio, etiquetas |
-
-La palabra destacada toma su color de `--accent`: granate sobre crema y moka
-en los bloques de fondo oscuro, donde el granate se perdería.
+- **Titulares en minúscula**, hasta 5 rem, con el espaciado en negativo
+  (`--track-tight: -.03em`). Nada de mayúsculas espaciadas.
+- **Nada es pequeño.** El texto corrido está entre 1 y 1,22 rem, los rótulos
+  a .92 rem, los botones a 1 rem. En la referencia no hay versalitas
+  apretadas y aquí tampoco.
+- **Los rótulos llevan un punto delante** (`.eyebrow`, `.head__n`), como el
+  «● super glow set» de la referencia.
+- **Los botones son pastillas grandes**, en caja baja y con mucho relleno.
 
 ### El criterio de la landing
 

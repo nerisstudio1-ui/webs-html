@@ -1,82 +1,41 @@
-/* Las dos tipografias de la web, alojadas aqui mismo: sin depender de Google
-   Fonts, cargan antes y no envian datos de las visitantes a terceros.
-   Se regeneran con tools/fetch-fonts.py.
+/* Figtree, alojada aqui mismo: sin depender de Google Fonts, carga antes y no
+   envia datos de las visitantes a terceros. Se regenera con
+   tools/fetch-fonts.py.
 
-   Instrument Sans: grotesca de trazo uniforme. Es la voz que explica: texto
-   corrido, menu, botones y rotulos.
-
-   Playfair Display: serif de alto contraste. Solo aparece en cursiva, en la
-   palabra destacada de cada titular. Es la que pone el caracter, en la linea
-   del propio logotipo.
-
-   Las dos son variables: un archivo por alfabeto cubre todo el rango. */
+   Es la unica familia de la web. Una geometrica de ojo muy abierto: en caja
+   baja, a cuerpo grande y con el espaciado cerrado da el aire de la
+   referencia. Al ser variable, un archivo por alfabeto cubre de la 300 a la
+   800 y sus cursivas. */
 
 @font-face {
-  font-family: "Instrument Sans";
+  font-family: "Figtree";
   font-style: italic;
-  font-weight: 400 700;
-  font-stretch: 100%;
+  font-weight: 300 800;
   font-display: swap;
-  src: url("../fonts/instrument-sans-latin-ext-400-700-italic.woff2") format("woff2");
+  src: url("../fonts/figtree-latin-ext-300-800-italic.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: "Instrument Sans";
+  font-family: "Figtree";
   font-style: italic;
-  font-weight: 400 700;
-  font-stretch: 100%;
+  font-weight: 300 800;
   font-display: swap;
-  src: url("../fonts/instrument-sans-latin-400-700-italic.woff2") format("woff2");
+  src: url("../fonts/figtree-latin-300-800-italic.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Instrument Sans";
+  font-family: "Figtree";
   font-style: normal;
-  font-weight: 400 700;
-  font-stretch: 100%;
+  font-weight: 300 800;
   font-display: swap;
-  src: url("../fonts/instrument-sans-latin-ext-400-700-normal.woff2") format("woff2");
+  src: url("../fonts/figtree-latin-ext-300-800-normal.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: "Instrument Sans";
+  font-family: "Figtree";
   font-style: normal;
-  font-weight: 400 700;
-  font-stretch: 100%;
+  font-weight: 300 800;
   font-display: swap;
-  src: url("../fonts/instrument-sans-latin-400-700-normal.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: "Playfair Display";
-  font-style: italic;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("../fonts/playfair-display-latin-ext-400-600-italic.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Playfair Display";
-  font-style: italic;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("../fonts/playfair-display-latin-400-600-italic.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("../fonts/playfair-display-latin-ext-400-600-normal.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("../fonts/playfair-display-latin-400-600-normal.woff2") format("woff2");
+  src: url("../fonts/figtree-latin-300-800-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
