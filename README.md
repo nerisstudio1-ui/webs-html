@@ -238,10 +238,9 @@ inicio, sin librerías, y desactivado con `prefers-reduced-motion`:
 - **Inicio**: el logotipo entra recortándose de arriba abajo, y el nombre, el
   reclamo y el filete después, escalonados. En pantalla ancha las dos fotos suben
   con el scroll por detrás, cada una a su ritmo, hasta salir por arriba.
-  **En móvil el inicio no se mueve**: composición fija con las dos fotos a media
-  pantalla, sin escenario pegado. Ese recorrido en un teléfono son casi dos
-  pantallas y media de scroll hasta el primer texto, y con la barra del navegador
-  entrando y saliendo el alto cambia a media animación.
+  En móvil hacen lo mismo, solo que más anchas y con menos recorrido: la pantalla
+  es más estrecha y más alta, y con las medidas de escritorio se quedaban en dos
+  sellos pequeños a los lados del logotipo.
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.

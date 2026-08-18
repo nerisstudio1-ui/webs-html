@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (CA).
-     Generado: 2026-08-18 08:35 UTC
+     Generado: 2026-08-18 08:57 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -789,52 +789,12 @@
 }
 .tile--1 { left: 4%;  top: -6%;  width: 26vw; height: 54svh; --rise: 150svh; --rot: -2.5deg; }
 .tile--2 { left: 66%; top: -14%; width: 28vw; height: 58svh; --rise: 182svh; --rot: 2deg; }
-/* En un móvil el inicio no se mueve: composición fija, sin escenario pegado ni
-   fotos subiendo. En una pantalla de mano ese recorrido son casi dos pantallas y
-   media de scroll para llegar al primer texto, y con la barra del navegador
-   entrando y saliendo el alto cambia a media animación. */
+/* En un móvil las fotos suben igual, solo que más anchas y con menos recorrido:
+   la pantalla es más estrecha y más alta, así que con las medidas de escritorio
+   se quedaban en dos sellos pequeños a los lados del logotipo. */
 @media (max-width: 700px) {
-  #laconic-app .hero {
-    height: auto;
-  }
-  #laconic-app .hero__stage {
-    position: static;
-    height: auto;
-    min-height: 100svh;
-    overflow: visible;
-    /* Una sola columna del ancho del contenido: si se deja que la marque el
-       contenido, las fotos sangradas la ensanchan y arrastran al filete, que
-       acaba sacando scroll horizontal. */
-    grid-template-columns: minmax(0, 1fr);
-    align-content: center;
-    gap: clamp(1.6rem, 6vw, 2.4rem);
-    padding-block: clamp(5rem, 18vh, 8rem) 0;
-  }
-  #laconic-app .hero__bloc {
-    order: 1;
-  }
-  #laconic-app .hero__rule {
-    order: 2;
-    position: static;
-    justify-self: stretch;
-  }
-  #laconic-app .hero__fotos {
-    order: 3;
-    position: static;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* El escenario centra a sus hijos; sin esto la caja se encoge al contenido y
-       los márgenes negativos, en vez de sangrar, sacan scroll horizontal. */
-    justify-self: stretch;
-    margin-inline: calc(-1 * var(--gutter));
-  }
-  #laconic-app .tile {
-    position: static;
-    width: auto;
-    height: clamp(15rem, 34svh, 22rem);
-    transform: none;
-    box-shadow: none;
-  }
+  .tile--1 { left: -4%; top: -4%;  width: 46vw; height: 34svh; --rise: 132svh; }
+  .tile--2 { left: 58%; top: -10%; width: 48vw; height: 36svh; --rise: 160svh; }
 }
 
 /* El bloque del logotipo y el claim, centrado y por delante de las fotos */
