@@ -976,6 +976,15 @@ body.menu-open .mobile-menu {
 }
 /* El número va dentro del nombre, no al lado: así, cuando el nombre parte en dos
    líneas, se queda pegado a la última palabra en vez de irse al otro extremo. */
+/* El nombre se parte por el ancho de la PANTALLA, no por el de su caja. Si algo
+   deja el contenedor más ancho que el móvil —pasó con la medida de la barra de
+   desplazamiento— la caja tiene sitio de sobra y el nombre sale en una línea que
+   se va fuera. Con esto parte igualmente y se queda dentro. */
+.svc__etiqueta {
+  display: inline-block;
+  max-width: calc(100vw - 2 * var(--gutter));
+}
+
 .svc__nom sup {
   font-size: 0.28em;
   font-weight: 600;

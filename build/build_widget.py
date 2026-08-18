@@ -453,10 +453,18 @@ def scope_js(js):
 GUARDIA = (
     '<script>(function(){var a=document.getElementById("laconic-app");if(!a)return;'
     'a.classList.add("has-js");'
-    # El ancho de la barra, para que el contenedor salga a todo el ancho sin
-    # desbordar. Se vuelve a medir al cambiar el tamaño de la ventana.
-    'var m=function(){a.style.setProperty("--lac-barra",'
-    '(window.innerWidth-document.documentElement.clientWidth)+"px");};'
+    # El ancho de la barra de desplazamiento, para que el contenedor salga a todo
+    # el ancho sin desbordar.
+    #
+    # Va acotado a propósito. En un móvil, innerWidth es el ancho *visual*: con la
+    # página ampliada con los dedos, o con el teclado abierto, sale menor que
+    # clientWidth y la resta da negativo. Eso ensanchaba el contenedor por encima
+    # de la pantalla y descolocaba la web entera hacia un lado: el logotipo
+    # cortado por la izquierda, y los nombres de los servicios sin partir porque
+    # les sobraba sitio... fuera de la pantalla. Una barra de verdad mide entre 1
+    # y 40 px; cualquier otra cosa es esto, y entonces vale 0.
+    'var m=function(){var b=window.innerWidth-document.documentElement.clientWidth;'
+    'if(!(b>0&&b<40))b=0;a.style.setProperty("--lac-barra",b+"px");};'
     'm();window.addEventListener("resize",m);'
     'var r=function(){if(!a.classList.contains("lac-ok"))a.classList.remove("has-js");};'
     'if(document.readyState==="complete"){setTimeout(r,300);}'

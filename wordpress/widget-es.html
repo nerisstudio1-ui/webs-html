@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (ES).
-     Generado: 2026-08-18 09:02 UTC
+     Generado: 2026-08-18 09:10 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -1095,6 +1095,15 @@
 }
 /* El número va dentro del nombre, no al lado: así, cuando el nombre parte en dos
    líneas, se queda pegado a la última palabra en vez de irse al otro extremo. */
+/* El nombre se parte por el ancho de la PANTALLA, no por el de su caja. Si algo
+   deja el contenedor más ancho que el móvil —pasó con la medida de la barra de
+   desplazamiento— la caja tiene sitio de sobra y el nombre sale en una línea que
+   se va fuera. Con esto parte igualmente y se queda dentro. */
+#laconic-app .svc__etiqueta {
+  display: inline-block;
+  max-width: calc(100vw - 2 * var(--gutter));
+}
+
 #laconic-app .svc__nom sup {
   font-size: 0.28em;
   font-weight: 600;
@@ -1590,7 +1599,7 @@
 </style>
 
 <div id="laconic-app">
-<script>(function(){var a=document.getElementById("laconic-app");if(!a)return;a.classList.add("has-js");var m=function(){a.style.setProperty("--lac-barra",(window.innerWidth-document.documentElement.clientWidth)+"px");};m();window.addEventListener("resize",m);var r=function(){if(!a.classList.contains("lac-ok"))a.classList.remove("has-js");};if(document.readyState==="complete"){setTimeout(r,300);}else{window.addEventListener("load",function(){setTimeout(r,300);});}setTimeout(r,6000);})();</script>
+<script>(function(){var a=document.getElementById("laconic-app");if(!a)return;a.classList.add("has-js");var m=function(){var b=window.innerWidth-document.documentElement.clientWidth;if(!(b>0&&b<40))b=0;a.style.setProperty("--lac-barra",b+"px");};m();window.addEventListener("resize",m);var r=function(){if(!a.classList.contains("lac-ok"))a.classList.remove("has-js");};if(document.readyState==="complete"){setTimeout(r,300);}else{window.addEventListener("load",function(){setTimeout(r,300);});}setTimeout(r,6000);})();</script>
 <!-- Logo oficial de la marca vectorizado: el cero, el logotipo y el lockup,
      más los iconos de los servicios. Todos heredan color con currentColor. -->
 <svg class="sprite" aria-hidden="true" focusable="false">
