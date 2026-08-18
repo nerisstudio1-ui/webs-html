@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (ES).
-     Generado: 2026-08-17 19:06 UTC
+     Generado: 2026-08-18 08:35 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -580,7 +580,7 @@
   align-items: center;
   gap: 0.6rem;
 }
-.brand:hover /* El cero solo, que es lo que va en la cabecera */
+/* El cero solo, que es lo que va en la cabecera */
 #laconic-app .brand__zero {
   height: clamp(22px, 2.2vw, 28px);
   width: auto;
@@ -789,9 +789,52 @@
 }
 .tile--1 { left: 4%;  top: -6%;  width: 26vw; height: 54svh; --rise: 150svh; --rot: -2.5deg; }
 .tile--2 { left: 66%; top: -14%; width: 28vw; height: 58svh; --rise: 182svh; --rot: 2deg; }
+/* En un móvil el inicio no se mueve: composición fija, sin escenario pegado ni
+   fotos subiendo. En una pantalla de mano ese recorrido son casi dos pantallas y
+   media de scroll para llegar al primer texto, y con la barra del navegador
+   entrando y saliendo el alto cambia a media animación. */
 @media (max-width: 700px) {
-  .tile--1 { left: -4%; width: 46vw; height: 40svh; --rise: 150svh; }
-  .tile--2 { left: 58%; width: 48vw; height: 44svh; --rise: 188svh; }
+  #laconic-app .hero {
+    height: auto;
+  }
+  #laconic-app .hero__stage {
+    position: static;
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+    /* Una sola columna del ancho del contenido: si se deja que la marque el
+       contenido, las fotos sangradas la ensanchan y arrastran al filete, que
+       acaba sacando scroll horizontal. */
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: clamp(1.6rem, 6vw, 2.4rem);
+    padding-block: clamp(5rem, 18vh, 8rem) 0;
+  }
+  #laconic-app .hero__bloc {
+    order: 1;
+  }
+  #laconic-app .hero__rule {
+    order: 2;
+    position: static;
+    justify-self: stretch;
+  }
+  #laconic-app .hero__fotos {
+    order: 3;
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* El escenario centra a sus hijos; sin esto la caja se encoge al contenido y
+       los márgenes negativos, en vez de sangrar, sacan scroll horizontal. */
+    justify-self: stretch;
+    margin-inline: calc(-1 * var(--gutter));
+  }
+  #laconic-app .tile {
+    position: static;
+    width: auto;
+    height: clamp(15rem, 34svh, 22rem);
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 /* El bloque del logotipo y el claim, centrado y por delante de las fotos */
@@ -1054,10 +1097,16 @@
   border: 0;
   background: none;
   font-family: var(--display);
-  font-size: clamp(1.9rem, 6vw, 4.4rem);
+  /* El mínimo va en rem pero bajo a propósito: en un móvil manda el 6.4vw, así
+     el nombre se ajusta al ancho real de la pantalla y no al tamaño de letra
+     raíz del tema de WordPress, que puede ser mayor que 16px. */
+  font-size: clamp(1.35rem, 6.4vw, 4.4rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.08;
+  /* «Graphic Design & Brand Identity» es el único que no cabe en una línea:
+     que parta donde haga falta antes que salirse de su caja. */
+  overflow-wrap: anywhere;
   color: var(--ink);
   opacity: 0.42;
   transition: opacity 0.45s var(--ease), transform 0.45s var(--ease-out);
@@ -1421,10 +1470,7 @@
 
 /* ---------- Responsive ---------- */
 @media (max-width: 700px) {
-  /* En estrecho las piezas del inicio se ensanchan y se separan del logotipo */
-  .tile--1 { left: -3%; top: -6%;  width: 40vw; height: 30svh; }
-  .tile--2 { left: 62%; top: -12%; width: 42vw; height: 32svh; }
-        #laconic-app .hero__claim {
+  #laconic-app .hero__claim {
     max-width: 26ch;
   }
 }

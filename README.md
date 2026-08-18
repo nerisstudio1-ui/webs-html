@@ -218,6 +218,12 @@ Ojo con dos cosas si se toca esto:
   ancho a sangre descuenta la barra de desplazamiento (`--lac-barra`, que mide el
   guion de la cabecera del bloque) en lugar de tapar el desborde recortando.
 
+**El nombre largo de servicio**: «Graphic Design & Brand Identity» es el único que
+no cabe en una línea. Su tamaño se fija con `vw` y no con `rem` a propósito: dentro
+de WordPress el `rem` depende del tamaño de letra raíz **del tema**, que puede no
+ser 16px, y con `rem` el nombre crecía en vez de ajustarse a la pantalla. Lleva
+además `overflow-wrap: anywhere` para que no pueda salirse de su caja.
+
 **Sobre las fotos**: el set de agosto de 2026 viene ya en 1080×1350, sin collages
 ni marcos blancos, así que todas valen a cualquier tamaño. El generador sigue
 leyendo el tamaño real de cada archivo con `medidas()` en lugar de darlo por
@@ -230,8 +236,12 @@ Todo con IntersectionObserver y un único bucle de `requestAnimationFrame` para 
 inicio, sin librerías, y desactivado con `prefers-reduced-motion`:
 
 - **Inicio**: el logotipo entra recortándose de arriba abajo, y el nombre, el
-  reclamo y el filete después, escalonados. Las dos fotos suben con el scroll por
-  detrás, cada una a su ritmo, hasta salir por arriba.
+  reclamo y el filete después, escalonados. En pantalla ancha las dos fotos suben
+  con el scroll por detrás, cada una a su ritmo, hasta salir por arriba.
+  **En móvil el inicio no se mueve**: composición fija con las dos fotos a media
+  pantalla, sin escenario pegado. Ese recorrido en un teléfono son casi dos
+  pantallas y media de scroll hasta el primer texto, y con la barra del navegador
+  entrando y saliendo el alto cambia a media animación.
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.

@@ -10,8 +10,17 @@ a ejecutar, así las dos versiones no se desincronizan nunca.
 """
 import pathlib
 import re
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+# La hoja de estilo se revisa antes de generar nada: una regla a medias no da
+# error en el navegador, simplemente deja de aplicarse, y eso se publica.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from build_widget import revisar_css  # noqa: E402
+
+revisar_css((ROOT / 'assets/css/main.css').read_text(encoding='utf-8'),
+            'assets/css/main.css')
 
 # --------------------------------------------------------------------------- #
 # Logo: los tres SVG oficiales se convierten en un sprite de <symbol>

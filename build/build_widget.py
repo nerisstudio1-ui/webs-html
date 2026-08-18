@@ -97,6 +97,28 @@ def revisar_css(css, de_donde):
     if cola and not cola.endswith('}'):
         raise SystemExit(f'CSS de {de_donde}: acaba en algo que no es el cierre de una '
                          f'regla, así que hay un selector colgando:\n  ...{cola[-90:]!r}')
+
+    # Un comentario en medio de un selector es el otro rastro de una regla
+    # borrada a medias: queda el principio del selector viejo pegado al
+    # comentario del siguiente, y los dos se funden en uno. Pasó con el cero de
+    # la cabecera, que acabó de `.brand:hover .brand__zero` y solo se veía al
+    # pasar el ratón.
+    profundidad, desde = 0, 0
+    for m in re.finditer(r'[{}]', css):
+        if m.group(0) == '{':
+            if profundidad == 0:
+                sel = css[desde:m.start()]
+                partes = re.split(r'/\*.*?\*/', sel, flags=re.S)
+                if len(partes) > 1 and partes[0].strip() and any(p.strip() for p in partes[1:]):
+                    raise SystemExit(
+                        f'CSS de {de_donde}: hay un comentario dentro de un selector, '
+                        f'que casi siempre es una regla borrada a medias:\n  '
+                        f'{sel.strip()[:120]!r}')
+            profundidad += 1
+        else:
+            profundidad -= 1
+            if profundidad == 0:
+                desde = m.end()
     return css
 
 
