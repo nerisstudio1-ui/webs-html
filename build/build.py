@@ -271,7 +271,7 @@ T = {
             ('04', 'UGC', 'UGC',
              'Creem contingut com ho faria una persona real. Vídeos naturals, propers i '
              'pensats per connectar amb el públic sense que sembli un anunci.'),
-            ('05', 'Graphic Design &amp; Brand Identity', 'Graphic Design',
+            ('05', 'Graphic Design<br>&amp; Brand Identity', 'Graphic Design',
              'Donem forma visual a les idees que hi ha darrere de la teva marca. Treballem '
              'la teva identitat i creem les peces gràfiques necessàries perquè sigui '
              'coherent, reconeixible i tingui personalitat.'),
@@ -355,7 +355,7 @@ T = {
             ('04', 'UGC', 'UGC',
              'Creamos contenido como lo haría una persona real. Vídeos naturales, cercanos '
              'y pensados para conectar con el público sin que parezca un anuncio.'),
-            ('05', 'Graphic Design &amp; Brand Identity', 'Graphic Design',
+            ('05', 'Graphic Design<br>&amp; Brand Identity', 'Graphic Design',
              'Damos forma visual a las ideas que hay detrás de tu marca. Trabajamos tu '
              'identidad y creamos las piezas gráficas necesarias para que sea coherente, '
              'reconocible y tenga personalidad.'),
