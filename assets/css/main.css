@@ -627,6 +627,7 @@ body.menu-open .mobile-menu {
 .hero {
   --p: 0;
   position: relative;
+  height: 240vh;   /* reserva para navegadores sin svh */
   height: 240svh;
   background: var(--cream);
   color: var(--text);
@@ -636,6 +637,7 @@ body.menu-open .mobile-menu {
 .hero__stage {
   position: sticky;
   top: 0;
+  height: 100vh;   /* reserva para navegadores sin svh */
   height: 100svh;
   overflow: hidden;
   display: grid;
@@ -668,14 +670,22 @@ body.menu-open .mobile-menu {
   height: 100%;
   object-fit: cover;
 }
-.tile--1 { left: 4%;  top: -6%;  width: 26vw; height: 54svh; --rise: 150svh; --rot: -2.5deg; }
-.tile--2 { left: 66%; top: -14%; width: 28vw; height: 58svh; --rise: 182svh; --rot: 2deg; }
+.tile--1 { left: 4%;  top: -6%;  width: 26vw; height: 54vh; --rise: 150vh; --rot: -2.5deg; }
+.tile--2 { left: 66%; top: -14%; width: 28vw; height: 58vh; --rise: 182vh; --rot: 2deg; }
+@supports (height: 1svh) {
+  .tile--1 { height: 54svh; --rise: 150svh; }
+  .tile--2 { height: 58svh; --rise: 182svh; }
+}
 /* En un móvil las fotos suben igual, solo que más anchas y con menos recorrido:
    la pantalla es más estrecha y más alta, así que con las medidas de escritorio
    se quedaban en dos sellos pequeños a los lados del logotipo. */
 @media (max-width: 700px) {
-  .tile--1 { left: -4%; top: -4%;  width: 46vw; height: 34svh; --rise: 132svh; }
-  .tile--2 { left: 58%; top: -10%; width: 48vw; height: 36svh; --rise: 160svh; }
+  .tile--1 { left: -4%; top: -4%;  width: 46vw; height: 34vh; --rise: 132vh; }
+  .tile--2 { left: 58%; top: -10%; width: 48vw; height: 36vh; --rise: 160vh; }
+  @supports (height: 1svh) {
+    .tile--1 { height: 34svh; --rise: 132svh; }
+    .tile--2 { height: 36svh; --rise: 160svh; }
+  }
 }
 
 /* El bloque del logotipo y el claim, centrado y por delante de las fotos */
@@ -815,8 +825,14 @@ body.menu-open .mobile-menu {
   margin: 0;
   flex: none;
   width: clamp(160px, 22vw, 300px);
-  aspect-ratio: 4 / 5;
+  height: clamp(200px, 27.5vw, 375px);   /* reserva: 4/5 del ancho */
   overflow: hidden;
+}
+@supports (aspect-ratio: 4 / 5) {
+  .strip__cell {
+    height: auto;
+    aspect-ratio: 4 / 5;
+  }
 }
 .strip__cell img {
   width: 100%;
@@ -1058,8 +1074,25 @@ body.menu-open .mobile-menu {
 .obra__media {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  /* Reserva para navegadores sin aspect-ratio: el relleno del 125 % es la
+     proporción 4/5, y la foto va encima en absoluto. */
+  padding-top: 125%;
   background: rgba(var(--ink-rgb), 0.08);
+}
+.obra__media img,
+.obra__media video {
+  position: absolute;
+  inset: 0;
+}
+@supports (aspect-ratio: 4 / 5) {
+  .obra__media {
+    padding-top: 0;
+    aspect-ratio: 4 / 5;
+  }
+  .obra__media img,
+  .obra__media video {
+    position: static;
+  }
 }
 .obra__media img,
 .obra__media video {
