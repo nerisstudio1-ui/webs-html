@@ -24,9 +24,9 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 
 | Ancla (CA / ES) | Contenido |
 | --- | --- |
-| — | Inicio: fondo crema con el **logotipo en terracota**, y las **dos fotos subiendo** por detrás con el scroll, a plena opacidad |
+| — | Inicio: una pantalla de fondo crema con el **logotipo en terracota**, el claim y el filete. Sin fotos y sin movimiento |
 | — | La frase «Ajudem a marques a deixar empremta», sobre crema y encadenada con el inicio |
-| — | La tira de fotos que pasa en bucle: **es la separación** entre la presentación y el resto |
+| — | La tira de fotos que pasa en bucle, **ancha**: es la separación entre la presentación y el resto |
 | `#about` | Manifiesto y las dos socias |
 | — | La línea de servicios que pasa, fina y pequeña |
 | `#serveis` / `#servicios` | Los cinco servicios: los nombres grandes y escalonados, y la definición del que está activo |
@@ -200,23 +200,14 @@ connecten</span>.</h2>`). Es el papel que en las webs editoriales hace la cursiv
 de una serif: cambia la voz sin cambiar de tamaño ni de línea. La clase `rl`
 activa el revelado palabra a palabra.
 
-**El inicio**: el logotipo va en **terracota sobre crema**, y las dos fotos suben
-por detrás con el scroll hasta salir por arriba, a plena opacidad y sin ningún
-velo. La sección mide 240svh y el escenario se queda pegado con `position: sticky`
-mientras pasa por debajo; el valor que mueve las fotos (`--p`) persigue al del
-scroll acercándose un 9 % cada fotograma, que es lo que evita que el movimiento
-vaya a tirones con la rueda del ratón.
+**El inicio** es una pantalla de crema con el logotipo en terracota, el claim y el
+filete de abajo. Nada más: las dos fotos que subían con el scroll se quitaron en
+agosto de 2026, y con ellas el único bucle de `requestAnimationFrame` que quedaba.
 
-Ojo con dos cosas si se toca esto:
-
-- El avance se mide con `getBoundingClientRect()`, no con `offsetTop` y `scrollY`.
-  Dentro de WordPress el contenedor del widget está posicionado, así que
-  `offsetTop` deja de contar desde el documento y el cálculo se descuadra.
-- El contenedor del widget **no puede llevar `overflow-x: hidden` ni `clip`**: las
-  dos cosas rompen el `position: sticky` de dentro, así que las fotos dejarían de
-  subir por detrás del logotipo solo en WordPress. Para que no haga falta, el
-  ancho a sangre descuenta la barra de desplazamiento (`--lac-barra`, que mide el
-  guion de la cabecera del bloque) en lugar de tapar el desborde recortando.
+**La tira de fotos** es lo que separa la presentación del resto de la web. Las
+celdas miden de 240 a 460 px de ancho (antes 160-300), y el carril tarda 72 s en
+dar la vuelta en lugar de 52: al ensanchar las fotos el recorrido creció casi la
+mitad, y con la duración de antes pasaría más deprisa a la vista.
 
 **El nombre largo de servicio**: «Graphic Design & Brand Identity» es el único que
 no cabe en una línea. Su tamaño se fija con `vw` y no con `rem` a propósito: dentro
@@ -236,11 +227,8 @@ Todo con IntersectionObserver y un único bucle de `requestAnimationFrame` para 
 inicio, sin librerías, y desactivado con `prefers-reduced-motion`:
 
 - **Inicio**: el logotipo entra recortándose de arriba abajo, y el nombre, el
-  reclamo y el filete después, escalonados. En pantalla ancha las dos fotos suben
-  con el scroll por detrás, cada una a su ritmo, hasta salir por arriba.
-  En móvil hacen lo mismo, solo que más anchas y con menos recorrido: la pantalla
-  es más estrecha y más alta, y con las medidas de escritorio se quedaban en dos
-  sellos pequeños a los lados del logotipo.
+  reclamo y el filete después, escalonados. No hay nada más: el inicio no se mueve
+  con el scroll.
 - **Tira**: pasa en bucle con una animación CSS; el carril se duplica en el JS
   para que no se vea la costura, y se para al pasar el ratón.
 - **Titulares**: cada palabra sube desde su propia caja, en cascada.
@@ -251,9 +239,9 @@ inicio, sin librerías, y desactivado con `prefers-reduced-motion`:
   encima, y los vídeos se paran al salir de pantalla.
 - **Cursor**: punto que crece sobre elementos interactivos (solo ratón).
 
-El único movimiento atado al scroll es el de las dos fotos del inicio. El
-paralaje de los proyectos, el raíl del proceso y el giro del cero se fueron con
-las secciones que los usaban.
+Ya no queda ningún movimiento atado al scroll: se fue con las fotos del inicio,
+igual que antes se habían ido el paralaje de los proyectos, el raíl del proceso y
+el giro del cero con las secciones que los usaban.
 
 ## Cómo se cambian las cosas
 
@@ -311,8 +299,6 @@ estén, el enlace es la única forma de ver la pieza y el visitante sale del sit
 Pendiente de la revisión de agosto de 2026, todo por material que no llegó con
 el PDF de cambios:
 
-- **Qué dos fotos van en el inicio**: van el corredor y la ratafia, elegidas aquí.
-  Se cambian en `HERO_DUO` (`build/build.py`).
 - **Qué fotos van en la tira**: van siete, una por proyecto, elegidas aquí. Se
   cambian en `TIRA`.
 - **La foto de portada de cada proyecto**: la retícula usa `portada` de

@@ -1,5 +1,5 @@
 <!-- Laconic Studio — bloque de HTML personalizado (ES).
-     Generado: 2026-08-18 09:23 UTC
+     Generado: 2026-08-19 08:16 UTC
      Pegar tal cual en un bloque "HTML personalizado" de WordPress.
      Antes de pegar: sustituir __BASE__ por la URL de la carpeta assets,
      por ejemplo https://tudominio.com/wp-content/uploads/laconic/
@@ -739,72 +739,24 @@
   overflow-wrap: anywhere;
 }
 
-/* ---------- Inicio: fondo beige, logotipo en teja y las piezas subiendo ----
-   El escenario queda pegado 100svh mientras la sección mide 260svh: ese sobrante
-   es el recorrido que usan las fotos para subir (--p va de 0 a 1). Acaban
-   arriba del todo, saliendo por el borde superior. */
+/* ---------- Inicio: fondo beige y el logotipo en teja ----------
+   Una pantalla, sin fotos y sin movimiento: solo el logotipo, el claim y el
+   filete. Las fotos que subían con el scroll se quitaron en agosto de 2026. */
 #laconic-app .hero {
-  --p: 0;
   position: relative;
-  height: 240vh;   /* reserva para navegadores sin svh */
-  height: 240svh;
+  min-height: calc(100vh - var(--lac-top, 0px));
+  min-height: calc(100svh - var(--lac-top, 0px));
   background: var(--cream);
   color: var(--text);
 }
-/* El escenario se queda quieto mientras la sección pasa por debajo: es lo que
-   deja las fotos subiendo detrás del logotipo sin que este se mueva. */
 #laconic-app .hero__stage {
-  position: sticky;
-  top: 0;
-  height: 100vh;   /* reserva para navegadores sin svh */
-  height: 100svh;
-  overflow: hidden;
+  position: relative;
+  min-height: inherit;
   display: grid;
   align-content: center;
   justify-items: center;
+  padding-block: clamp(6rem, 16vh, 9rem) clamp(4rem, 10vh, 6rem);
   padding-inline: var(--gutter);
-}
-
-/* Las dos fotos suben desde debajo del pliegue hasta salir por arriba, por
-   detrás del logotipo, y a plena opacidad: sin velo, que es como las quiere el
-   estudio. Cada una a su ritmo (--rise), que es lo que da la sensación de
-   profundidad. */
-#laconic-app .hero__fotos {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-#laconic-app .tile {
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  transform: translate3d(0, calc(var(--rise, 150svh) * (1 - var(--p))), 0)
-    rotate(var(--rot, 0deg));
-  will-change: transform;
-  box-shadow: 0 30px 60px -44px rgba(var(--ink-rgb), 0.5);
-}
-#laconic-app .tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.tile--1 { left: 4%;  top: -6%;  width: 26vw; height: 54vh; --rise: 150vh; --rot: -2.5deg; }
-.tile--2 { left: 66%; top: -14%; width: 28vw; height: 58vh; --rise: 182vh; --rot: 2deg; }
-@supports (height: 1svh) {
-  .tile--1 { height: 54svh; --rise: 150svh; }
-  .tile--2 { height: 58svh; --rise: 182svh; }
-}
-/* En un móvil las fotos suben igual, solo que más anchas y con menos recorrido:
-   la pantalla es más estrecha y más alta, así que con las medidas de escritorio
-   se quedaban en dos sellos pequeños a los lados del logotipo. */
-@media (max-width: 700px) {
-  .tile--1 { left: -4%; top: -4%;  width: 46vw; height: 34vh; --rise: 132vh; }
-  .tile--2 { left: 58%; top: -10%; width: 48vw; height: 36vh; --rise: 160vh; }
-  @supports (height: 1svh) {
-    .tile--1 { height: 34svh; --rise: 132svh; }
-    .tile--2 { height: 36svh; --rise: 160svh; }
-  }
 }
 
 /* El bloque del logotipo y el claim, centrado y por delante de las fotos */
@@ -930,7 +882,10 @@
 #laconic-app .strip__track {
   display: flex;
   width: max-content;
-  animation: strip 52s linear infinite;
+  /* 72 s y no 52: al ensanchar las fotos el carril mide casi la mitad más, y
+     con la duración de antes pasaría igual de rápido en más distancia, o sea más
+     deprisa a la vista. */
+  animation: strip 72s linear infinite;
 }
 #laconic-app .strip:hover .strip__track {
   animation-play-state: paused;
@@ -943,8 +898,10 @@
 #laconic-app .strip__cell {
   margin: 0;
   flex: none;
-  width: clamp(160px, 22vw, 300px);
-  height: clamp(200px, 27.5vw, 375px);   /* reserva: 4/5 del ancho */
+  /* Más anchas que antes (eran 160-300 px): la banda gana presencia y las fotos
+     se ven de verdad, no como sellos. */
+  width: clamp(240px, 32vw, 460px);
+  height: clamp(300px, 40vw, 575px);   /* reserva: 4/5 del ancho */
   overflow: hidden;
 }
 @supports (aspect-ratio: 4 / 5) {
@@ -1661,15 +1618,9 @@
 
 <main id="lac-top">
 
-  <!-- Inici: fons crema amb el logotip, i les dues fotos que van pujant amb el
-       scroll per darrere, a plena opacitat -->
-  <section class="hero" data-theme="cream" data-collage>
+  <!-- Inici: només el logotip sobre crema -->
+  <section class="hero" data-theme="cream">
     <div class="hero__stage">
-      <div class="hero__fotos" aria-hidden="true">
-        <figure class="tile tile--1"><img src="__BASE__assets/img/proyectos/quality-1-1100.jpg" srcset="__BASE__assets/img/proyectos/quality-1-700.jpg 700w, __BASE__assets/img/proyectos/quality-1-1100.jpg 1100w" sizes="42vw" width="1100" height="1375" alt="Corredor en un camino de tierra con un pino al fondo" loading="eager" decoding="async"></figure>
-        <figure class="tile tile--2"><img src="__BASE__assets/img/proyectos/malhivern-1-1100.jpg" srcset="__BASE__assets/img/proyectos/malhivern-1-700.jpg 700w, __BASE__assets/img/proyectos/malhivern-1-1100.jpg 1100w" sizes="42vw" width="1100" height="1375" alt="Botella de ratafía Malhivern entre tarros de plantas" loading="eager" decoding="async"></figure>
-      </div>
-
       <div class="hero__bloc">
         <h1 class="hero__logo">
           <span class="visually-hidden">Laconic Studio</span>
@@ -2203,60 +2154,6 @@
       videosFicha.forEach(function (v) {
         ioVideo.observe(v);
       });
-    }
-  }
-
-  /* ---- Las dos fotos del inicio, subiendo con el scroll ---- */
-  var collage = APP.querySelector("[data-collage]");
-  if (collage) {
-    var clamp01 = function (v) {
-      return v < 0 ? 0 : v > 1 ? 1 : v;
-    };
-
-    // Las fotos no siguen el scroll uno a uno: el valor que las mueve persigue al
-    // del scroll acercándose un 9 % cada fotograma. Con la rueda del ratón, que
-    // llega a saltos de decenas de píxeles, la diferencia entre las dos cosas es
-    // lo que se nota: sin esto el movimiento va a tirones.
-    var pSuave = null;
-    var SEGUIMIENTO = 0.09;
-    var ticking = false;
-
-    var frame = function () {
-      var vh = window.innerHeight;
-      var recorrido = collage.offsetHeight - vh;
-      // Se mide con getBoundingClientRect, no con offsetTop y scrollY: dentro de
-      // WordPress el contenedor del widget está posicionado, así que offsetTop
-      // deja de contar desde el documento y el cálculo se descuadra.
-      var avance = -collage.getBoundingClientRect().top;
-      var objetivo = clamp01(recorrido > 0 ? avance / recorrido : 1);
-      if (pSuave === null) pSuave = objetivo;   // el primer fotograma, sin arrastre
-      var salto = objetivo - pSuave;
-      var sigue = false;
-      if (Math.abs(salto) < 0.0004) {
-        pSuave = objetivo;
-      } else {
-        pSuave += salto * SEGUIMIENTO;
-        sigue = true;                          // aún no ha llegado: otro fotograma
-      }
-      collage.style.setProperty("--p", pSuave.toFixed(4));
-      ticking = false;
-      if (sigue) pedir();
-    };
-
-    var pedir = function () {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(frame);
-      }
-    };
-
-    if (reduced) {
-      // Sin movimiento: las fotos ya colocadas arriba
-      collage.style.setProperty("--p", "1");
-    } else {
-      window.addEventListener("scroll", pedir, { passive: true });
-      window.addEventListener("resize", pedir);
-      frame();
     }
   }
 

@@ -212,15 +212,15 @@ def scope_css(css):
   width: 100%;
   z-index: 1000;''')
 
-    # El escenario del inicio se queda pegado justo debajo de la cabecera del
-    # tema, no en la parte alta de la ventana, y descuenta su altura.
-    css = css.replace('''.hero__stage {
-  position: sticky;
-  top: 0;
-  height: 100svh;''', '''.hero__stage {
-  position: sticky;
-  top: var(--lac-top, 0px);
-  height: calc(100svh - var(--lac-top, 0px));''')
+    # La primera pantalla descuenta la cabecera del tema, para que el logotipo
+    # quede centrado en lo que se ve y no detrás de la barra de arriba.
+    css = css.replace('''.hero {
+  position: relative;
+  min-height: 100vh;   /* reserva para navegadores sin svh */
+  min-height: 100svh;''', '''.hero {
+  position: relative;
+  min-height: calc(100vh - var(--lac-top, 0px));
+  min-height: calc(100svh - var(--lac-top, 0px));''')
 
     # 4. El grano cubre el contenedor, no toda la ventana
     css = css.replace(APP + ''' .grain {

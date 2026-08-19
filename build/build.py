@@ -429,11 +429,6 @@ FORM_AJAX = f'https://formsubmit.co/ajax/{EMAIL}'
 FORM_OCULTOS = {'_captcha': 'false', '_template': 'table', '_honey': ''}
 DOMINIO = 'https://laconicstudio.com'
 
-# Las DOS fotos del inicio, a sangre y a toda la altura de la pantalla.
-# A 1440x900 cada mitad queda en 4:5, que es justo el formato de las fotos, así
-# que apenas se recortan.
-HERO_DUO = [('quality', 1), ('malhivern', 1)]
-
 # La tira que pasa en bucle en el about: siete, variadas, de siete proyectos.
 TIRA = [('maitasuna', 1), ('f4s', 1), ('malhivern', 2), ('quality', 3),
         ('jordi-coll', 3), ('puig', 2), ('maitasuna', 2)]
@@ -609,15 +604,9 @@ def render(lang):
 
 <main id="top">
 
-  <!-- Inici: fons crema amb el logotip, i les dues fotos que van pujant amb el
-       scroll per darrere, a plena opacitat -->
-  <section class="hero" data-theme="cream" data-collage>
+  <!-- Inici: només el logotip sobre crema -->
+  <section class="hero" data-theme="cream">
     <div class="hero__stage">
-      <div class="hero__fotos" aria-hidden="true">
-        <figure class="tile tile--1">{foto(prefix, HERO_DUO[0][0], HERO_DUO[0][1], '42vw', lang, 'eager')}</figure>
-        <figure class="tile tile--2">{foto(prefix, HERO_DUO[1][0], HERO_DUO[1][1], '42vw', lang, 'eager')}</figure>
-      </div>
-
       <div class="hero__bloc">
         <h1 class="hero__logo">
           <span class="visually-hidden">Laconic Studio</span>

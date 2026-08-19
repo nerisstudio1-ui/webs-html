@@ -216,60 +216,6 @@
     }
   }
 
-  /* ---- Las dos fotos del inicio, subiendo con el scroll ---- */
-  var collage = document.querySelector("[data-collage]");
-  if (collage) {
-    var clamp01 = function (v) {
-      return v < 0 ? 0 : v > 1 ? 1 : v;
-    };
-
-    // Las fotos no siguen el scroll uno a uno: el valor que las mueve persigue al
-    // del scroll acercándose un 9 % cada fotograma. Con la rueda del ratón, que
-    // llega a saltos de decenas de píxeles, la diferencia entre las dos cosas es
-    // lo que se nota: sin esto el movimiento va a tirones.
-    var pSuave = null;
-    var SEGUIMIENTO = 0.09;
-    var ticking = false;
-
-    var frame = function () {
-      var vh = window.innerHeight;
-      var recorrido = collage.offsetHeight - vh;
-      // Se mide con getBoundingClientRect, no con offsetTop y scrollY: dentro de
-      // WordPress el contenedor del widget está posicionado, así que offsetTop
-      // deja de contar desde el documento y el cálculo se descuadra.
-      var avance = -collage.getBoundingClientRect().top;
-      var objetivo = clamp01(recorrido > 0 ? avance / recorrido : 1);
-      if (pSuave === null) pSuave = objetivo;   // el primer fotograma, sin arrastre
-      var salto = objetivo - pSuave;
-      var sigue = false;
-      if (Math.abs(salto) < 0.0004) {
-        pSuave = objetivo;
-      } else {
-        pSuave += salto * SEGUIMIENTO;
-        sigue = true;                          // aún no ha llegado: otro fotograma
-      }
-      collage.style.setProperty("--p", pSuave.toFixed(4));
-      ticking = false;
-      if (sigue) pedir();
-    };
-
-    var pedir = function () {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(frame);
-      }
-    };
-
-    if (reduced) {
-      // Sin movimiento: las fotos ya colocadas arriba
-      collage.style.setProperty("--p", "1");
-    } else {
-      window.addEventListener("scroll", pedir, { passive: true });
-      window.addEventListener("resize", pedir);
-      frame();
-    }
-  }
-
   /* ---- Carriles en bucle: duplicar para que no se vea la costura ---- */
   document.querySelectorAll(".marquee__track, .strip__track").forEach(function (track) {
     track.innerHTML += track.innerHTML;
