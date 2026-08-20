@@ -12,8 +12,10 @@ Abre `index.html` en el navegador. No necesita servidor ni instalación.
 
 ```
 index.html              todas las secciones de la web
+assets/css/fonts.css    tipografías alojadas en el propio proyecto
 assets/css/styles.css   estilos (paleta y tipografías del manual de marca)
 assets/js/main.js       animaciones e interacciones
+assets/fonts/           Cormorant Garamond, Montserrat y Jost en .woff2
 assets/img/             imágenes (ahora mismo, placeholders provisionales)
 ```
 
@@ -28,7 +30,10 @@ assets/img/             imágenes (ahora mismo, placeholders provisionales)
 | Taupe        | `#8E7C70` | Textos secundarios                    |
 | Dark Taupe   | `#3F3936` | Texto principal y secciones oscuras   |
 
-Tipografías: **Cormorant Garamond** (títulos) y **Montserrat** (textos), cargadas desde Google Fonts.
+Tipografías: **Cormorant Garamond** (títulos) y **Montserrat** (textos), servidas desde
+`assets/fonts/` — no dependen de Google Fonts, así que se ven igual siempre y la web
+carga más rápido. Para el logotipo se usa **Jost Thin**, la tipografía libre más parecida
+al logo original. Las tres tienen licencia SIL Open Font (uso comercial permitido).
 
 ## Secciones
 
@@ -39,8 +44,10 @@ Cita de marca · Horarios · Tarifas · Sobre mí · Galería · FAQ · Contacto
 
 - [ ] **Fotos reales** → sustituir los `.svg` de `assets/img/` (mismos nombres, o cambiar el `src`).
 - [ ] **Retrato** de la fundadora → `assets/img/retrato.svg`, y quitar el `<figcaption>Foto próximamente</figcaption>`.
-- [ ] **Logotipo** → ahora está compuesto con tipografía; si se quiere el archivo original,
-      sustituir el bloque `.logo` por `<img src="assets/img/logo.svg" alt="CALMA barre studio">`.
+- [ ] **Logotipo** → ahora está recompuesto con Jost Thin. Para usar el archivo original,
+      guardarlo como `assets/img/logo.svg` y sustituir el bloque `.logo` de la cabecera
+      por `<img src="assets/img/logo.svg" alt="CALMA barre studio" width="180">`
+      (hay un comentario en el HTML justo encima indicándolo).
 - [ ] **Enlace de reservas** → hay 3 sitios marcados con `TODO`; hoy apuntan a `#contacto`.
 - [ ] **Horarios reales** (sección `#horarios`, la estructura ya está lista).
 - [ ] **Tarifas definitivas** (sección `#tarifas`; los importes actuales son orientativos).
