@@ -37,8 +37,15 @@ al logo original. Las tres tienen licencia SIL Open Font (uso comercial permitid
 
 ## Secciones
 
-Anuncio · Hero · Franja de valores · El estudio · Qué es barre · Clases ·
-Cita de marca · Horarios · Tarifas · Sobre mí · Galería · FAQ · Contacto · Pie.
+1. **Inicio** — imagen a pantalla completa, logo, slogan y botón de primera clase gratis
+2. **¿Qué es CALMA?** — concepto y filosofía del estudio
+3. **Barre** — qué es, para quién es, y los seis conceptos clave
+4. **Las clases** — duración, estructura, material y niveles
+5. **Horarios y tarifas** — primera clase gratis, horario semanal y bonos
+6. **Sobre mí** — presentación personal y trayectoria
+7. **El estudio** — mosaico de fotografías del espacio
+8. **Preguntas frecuentes**
+9. **Contacto y ubicación** — dirección, email, Instagram, reservas y mapa
 
 ## Pendiente de la clienta (busca `TODO CLIENTA` en `index.html`)
 
@@ -48,10 +55,11 @@ Cita de marca · Horarios · Tarifas · Sobre mí · Galería · FAQ · Contacto
       guardarlo como `assets/img/logo.svg` y sustituir el bloque `.logo` de la cabecera
       por `<img src="assets/img/logo.svg" alt="CALMA barre studio" width="180">`
       (hay un comentario en el HTML justo encima indicándolo).
-- [ ] **Enlace de reservas** → hay 3 sitios marcados con `TODO`; hoy apuntan a `#contacto`.
-- [ ] **Horarios reales** (sección `#horarios`, la estructura ya está lista).
-- [ ] **Tarifas definitivas** (sección `#tarifas`; los importes actuales son orientativos).
-- [ ] **Dirección exacta y teléfono** (sección `#contacto`).
+- [ ] **Enlace de reservas** → se cambia en UN solo sitio: la variable `RESERVAS_URL`
+      al principio de `assets/js/main.js`. Todos los botones "Primera clase gratis"
+      pasan a apuntar ahí automáticamente.
+- [ ] **Horario semanal real** (sección `#horarios`; las horas actuales son de ejemplo).
+- [ ] **Teléfono**, si quieres que aparezca.
 - [ ] **Textos legales**: aviso legal, privacidad y cookies (enlaces del pie).
 
 ## Notas

@@ -4,13 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CALMA · barre studio — Collado Villalba</title>
-<meta name="description" content="CALMA barre studio: espacio boutique de barre en Collado Villalba. Técnica, fuerza, elegancia y control en grupos reducidos. Tu cuerpo, tu momento, tu calma.">
+<meta name="description" content="CALMA barre studio, estudio boutique de barre en Collado Villalba. Fuerza, tonificación, postura y control corporal en clases reducidas. Tu primera clase es gratis.">
 <meta name="theme-color" content="#F7F1EA">
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="CALMA · barre studio">
-<meta property="og:description" content="Estudio boutique de barre en Collado Villalba. Tu cuerpo, tu momento, tu calma.">
+<meta property="og:description" content="Tu cuerpo, tu momento, tu calma. Estudio boutique de barre en Collado Villalba. Primera clase gratis.">
 <meta property="og:image" content="assets/img/hero.svg">
 <meta property="og:locale" content="es_ES">
 
@@ -18,42 +17,29 @@
 <link rel="stylesheet" href="assets/css/fonts.css">
 <script>document.documentElement.className+=" js";</script>
 <link rel="stylesheet" href="assets/css/styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23F7F1EA'/><text x='32' y='44' font-size='34' font-family='Georgia,serif' fill='%23B89A68' text-anchor='middle'>C</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23F7F1EA'/><text x='32' y='44' font-size='34' font-family='Helvetica,Arial,sans-serif' font-weight='200' fill='%238E7C70' text-anchor='middle'>C</text></svg>">
 </head>
 <body>
-
-<!-- ═══════════ ANUNCIO ═══════════ -->
-<div class="announce">
-  <div class="announce__track" data-marquee>
-    <span>Tu cuerpo, tu momento, tu calma</span><i aria-hidden="true">·</i>
-    <span>Barre studio en Collado Villalba</span><i aria-hidden="true">·</i>
-    <span>Grupos reducidos</span><i aria-hidden="true">·</i>
-    <span>Tu cuerpo, tu momento, tu calma</span><i aria-hidden="true">·</i>
-    <span>Barre studio en Collado Villalba</span><i aria-hidden="true">·</i>
-    <span>Grupos reducidos</span><i aria-hidden="true">·</i>
-  </div>
-</div>
 
 <!-- ═══════════ HEADER ═══════════ -->
 <header class="header" id="header">
   <div class="wrap header__inner">
     <!-- Logotipo compuesto con tipografía. Para usar el archivo original:
-         <a class="logo" href="#top"><img src="assets/img/logo.svg" alt="CALMA barre studio" width="180"></a> -->
-    <a class="logo" href="#top" aria-label="CALMA barre studio, inicio">
+         <a class="logo" href="#inicio"><img src="assets/img/logo.svg" alt="CALMA barre studio" width="170"></a> -->
+    <a class="logo" href="#inicio" aria-label="CALMA barre studio, inicio">
       <span class="logo__name">CALMA</span>
       <span class="logo__sub">barre studio</span>
     </a>
 
     <nav class="nav" id="nav" aria-label="Navegación principal">
-      <a href="#estudio">El estudio</a>
-      <a href="#barre">Qué es barre</a>
+      <a href="#calma">CALMA</a>
+      <a href="#barre">Barre</a>
       <a href="#clases">Clases</a>
-      <a href="#horarios">Horarios</a>
-      <a href="#tarifas">Tarifas</a>
+      <a href="#horarios">Horarios y tarifas</a>
       <a href="#sobre-mi">Sobre mí</a>
+      <a href="#estudio">El estudio</a>
       <a href="#contacto">Contacto</a>
-      <!-- TODO: sustituir href por el enlace de la plataforma de reservas -->
-      <a class="btn btn--primary nav__cta" href="#contacto">Reservar</a>
+      <a class="btn btn--primary nav__cta" data-book href="#contacto">Primera clase gratis</a>
     </nav>
 
     <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
@@ -62,259 +48,140 @@
   </div>
 </header>
 
-<main id="top">
+<main>
 
-<!-- ═══════════ HERO ═══════════ -->
-<section class="hero">
-  <span class="blob blob--1" aria-hidden="true"></span>
-  <span class="blob blob--2" aria-hidden="true"></span>
-
-  <div class="wrap hero__inner">
-    <div class="hero__copy">
-      <p class="eyebrow reveal">Barre studio · Collado Villalba</p>
-      <h1 class="display hero__title">
-        <span class="line"><span>Tu cuerpo,</span></span>
-        <span class="line"><span>tu momento,</span></span>
-        <span class="line"><span><em>tu calma.</em></span></span>
-      </h1>
-      <p class="lead reveal" data-delay="1">Un espacio pequeño y cuidado donde entrenar la técnica, la fuerza,
-        la elegancia y el control. No se trata solo de entrenar: se trata de regalarte un rato para ti.</p>
-
-      <div class="hero__actions reveal" data-delay="2">
-        <!-- TODO: enlace de reservas -->
-        <a class="btn btn--primary" href="#contacto">Reserva tu clase</a>
-        <a class="btn btn--ghost" href="#barre">Descubre el barre</a>
-      </div>
-
-      <ul class="hero__meta reveal" data-delay="3">
-        <li><strong>Grupos</strong>reducidos</li>
-        <li><strong>Técnica</strong>cuidada al detalle</li>
-        <li><strong>Sierra</strong>Collado Villalba</li>
-      </ul>
-    </div>
-
-    <div class="hero__media">
-      <figure class="media-card" data-parallax="0.1">
-        <img src="assets/img/hero.svg" alt="Trabajo en la barra en el estudio CALMA" width="720" height="900" fetchpriority="high">
-      </figure>
-      <div class="float-card reveal" data-delay="3">
-        <span class="float-card__title">Movimiento consciente</span>
-        <span class="float-card__label">Técnica de gimnasia rítmica, fuerza y control en una misma clase.</span>
-      </div>
-    </div>
+<!-- ═══════════ 1. INICIO ═══════════ -->
+<section class="hero" id="inicio">
+  <div class="hero__bg">
+    <img src="assets/img/hero.svg" alt="Clase de barre en el estudio CALMA" width="1600" height="1100" fetchpriority="high">
   </div>
 
-  <a class="scroll-cue" href="#estudio" aria-label="Bajar al contenido"><span></span>scroll</a>
-</section>
+  <div class="hero__inner">
+    <div class="hero__logo reveal">
+      <span class="hero__logo-name">CALMA</span>
+      <span class="hero__logo-sub">barre studio</span>
+    </div>
 
-<!-- ═══════════ FRANJA ═══════════ -->
-<section class="strip" aria-hidden="true">
-  <div class="strip__track" data-marquee>
-    <span>Técnica</span><i>✦</i><span>Fuerza</span><i>✦</i><span>Elegancia</span><i>✦</i>
-    <span>Control</span><i>✦</i><span>Movimiento</span><i>✦</i>
-    <span>Técnica</span><i>✦</i><span>Fuerza</span><i>✦</i><span>Elegancia</span><i>✦</i>
-    <span>Control</span><i>✦</i><span>Movimiento</span><i>✦</i>
+    <h1 class="hero__slogan">
+      <span class="line"><span>Tu cuerpo, tu momento,</span></span>
+      <span class="line"><span><em>tu calma.</em></span></span>
+    </h1>
+
+    <p class="hero__essence reveal" data-delay="2">Un estudio boutique de barre en Collado Villalba.
+      Un espacio pequeño y cuidado donde entrenar fuerte, sentirte bien y regalarte un rato para ti.</p>
+
+    <a class="btn btn--primary btn--lg reveal" data-delay="3" data-book href="#contacto">Reserva tu primera clase gratis</a>
   </div>
+
+  <a class="scroll-cue" href="#calma" aria-label="Bajar al contenido"><span></span></a>
 </section>
 
-<!-- ═══════════ EL ESTUDIO ═══════════ -->
-<section class="section" id="estudio">
+<!-- ═══════════ 2. ¿QUÉ ES CALMA? ═══════════ -->
+<section class="section" id="calma">
   <div class="wrap">
-    <p class="eyebrow center reveal">El estudio</p>
+    <p class="eyebrow center reveal">¿Qué es CALMA?</p>
     <h2 class="statement" data-words>
-      Un lugar al que venir a entrenar, sí, pero también a desconectar,
-      a sentirte bien y a regalarte un rato para ti.
+      No se trata solo de entrenar, sino de regalarse un momento para volver a una misma.
     </h2>
 
-    <div class="feature-grid">
-      <article class="feature reveal">
-        <span class="feature__icon" aria-hidden="true">✦</span>
-        <h3>Pequeño y cercano</h3>
-        <p>Grupos reducidos para poder corregir de verdad, ejercicio a ejercicio, y que nadie se quede atrás.</p>
-      </article>
-      <article class="feature reveal" data-delay="1">
-        <span class="feature__icon" aria-hidden="true">✧</span>
-        <h3>Cuidado al detalle</h3>
-        <p>Estética serena y técnica precisa. Todo pensado para que el momento en el que entras sea tuyo.</p>
-      </article>
-      <article class="feature reveal" data-delay="2">
-        <span class="feature__icon" aria-hidden="true">✦</span>
-        <h3>Exigencia amable</h3>
-        <p>Se trabaja fuerte, pero desde el respeto a tu cuerpo y a tu ritmo. Premium, nunca frío.</p>
-      </article>
-    </div>
-
     <div class="split">
-      <figure class="media-card media-card--tall" data-parallax="0.06">
-        <img src="assets/img/estudio.svg" alt="Sala del estudio CALMA con barras y luz natural" width="640" height="760" loading="lazy">
+      <figure class="media-card media-card--arch" data-parallax="0.06">
+        <img src="assets/img/calma.svg" alt="Detalle del estudio CALMA" width="760" height="900" loading="lazy">
       </figure>
       <div class="split__copy">
-        <p class="eyebrow reveal">Así nace CALMA</p>
-        <h3 class="h2 reveal" data-delay="1">De muchos años viviendo el deporte desde dentro.</h3>
-        <p class="reveal" data-delay="2">CALMA nace de la gimnasia rítmica, de enseñar, de observar cómo el movimiento
-          puede cambiar no solo un cuerpo, sino también la forma en la que nos sentimos con nosotras mismas.</p>
-        <p class="reveal" data-delay="3">Con el tiempo descubrí el barre y entendí que había encontrado una forma
-          de unir muchas de las cosas que más me gustan: la técnica, la fuerza, la elegancia, el control
-          y, sobre todo, el movimiento. Pero quería hacerlo a mi manera.</p>
-        <ul class="ticks reveal" data-delay="4">
-          <li>Un estudio boutique en la capital de la Sierra</li>
-          <li>Creado desde una forma propia de entender el movimiento</li>
-          <li>Para que cada persona que entra sienta que este momento es suyo</li>
+        <h3 class="h2 reveal">Un espacio para cuidarte,<br>sentirte fuerte y conectar<br>contigo misma.</h3>
+        <p class="reveal" data-delay="1">CALMA nace de muchos años viviendo el deporte desde dentro y de la
+          idea de crear un estudio pequeño, cuidado estética y técnicamente, y sobre todo cercano.</p>
+        <p class="reveal" data-delay="2">Un lugar al que venir a entrenar, sí, pero también a desconectar.
+          Aquí no hay prisa, ni comparaciones, ni espejos que juzguen: solo tú, la barra y un rato
+          que es enteramente tuyo.</p>
+        <ul class="ticks reveal" data-delay="3">
+          <li>Grupos reducidos y corrección personalizada</li>
+          <li>Técnica cuidada al detalle, sin perder la cercanía</li>
+          <li>Una experiencia bonita de principio a fin</li>
         </ul>
-        <a class="link-arrow reveal" data-delay="4" href="#sobre-mi">Conóceme <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ QUÉ ES BARRE ═══════════ -->
+<!-- ═══════════ 3. BARRE ═══════════ -->
 <section class="section section--nude" id="barre">
   <div class="wrap">
-    <header class="section__head">
+    <div class="intro-split">
       <div>
-        <p class="eyebrow reveal">El método</p>
-        <h2 class="h1 reveal" data-delay="1">Qué es el barre</h2>
+        <p class="eyebrow reveal">Barre</p>
+        <h2 class="h1 reveal" data-delay="1">Ballet, pilates y fuerza<br>en una misma clase</h2>
       </div>
-      <p class="section__head-note reveal" data-delay="2">La mezcla de ballet, pilates y trabajo de fuerza.
-        Movimientos pequeños, muchas repeticiones y una técnica que se cuida en cada serie.</p>
-    </header>
-
-    <div class="pillars">
-      <article class="pillar reveal">
-        <span class="pillar__num">01</span>
-        <h3>Técnica</h3>
-        <p>La base de todo. Alineación, colocación y control del gesto antes de añadir intensidad.</p>
-      </article>
-      <article class="pillar reveal" data-delay="1">
-        <span class="pillar__num">02</span>
-        <h3>Fuerza</h3>
-        <p>Trabajo isométrico y de resistencia con peso ligero y banda elástica. Fuerza real, sin impacto.</p>
-      </article>
-      <article class="pillar reveal" data-delay="2">
-        <span class="pillar__num">03</span>
-        <h3>Elegancia</h3>
-        <p>El movimiento heredado del ballet y la gimnasia rítmica: largo, estirado y con intención.</p>
-      </article>
-      <article class="pillar reveal" data-delay="3">
-        <span class="pillar__num">04</span>
-        <h3>Control</h3>
-        <p>Respiración, core y conciencia corporal. Aprender a sostener el cuerpo desde dentro.</p>
-      </article>
+      <div class="intro-split__text">
+        <p class="reveal" data-delay="2">El barre combina la técnica y la elegancia del ballet con el trabajo
+          de fuerza y el control del pilates. Movimientos pequeños, muchas repeticiones y cero impacto:
+          un entrenamiento exigente que el cuerpo agradece.</p>
+        <p class="reveal" data-delay="3"><strong>No necesitas experiencia previa ni haber hecho ballet nunca.</strong>
+          Se empieza desde cero, se explica todo y cada ejercicio tiene su versión para ti.</p>
+      </div>
     </div>
 
-    <div class="benefits">
-      <h3 class="h2 center reveal">Lo que vas a notar</h3>
-      <ul class="benefits__list">
-        <li class="reveal">Mejor postura y una espalda más consciente</li>
-        <li class="reveal" data-delay="1">Fuerza y tono, especialmente en core, glúteo y piernas</li>
-        <li class="reveal" data-delay="2">Más movilidad, flexibilidad y equilibrio</li>
-        <li class="reveal" data-delay="3">Un cuerpo largo y estirado, sin impacto en las articulaciones</li>
-        <li class="reveal" data-delay="4">Un rato de desconexión real, solo para ti</li>
-      </ul>
-    </div>
+    <ul class="concepts">
+      <li class="concept reveal"><span>Fuerza</span></li>
+      <li class="concept reveal" data-delay="1"><span>Tonificación</span></li>
+      <li class="concept reveal" data-delay="2"><span>Postura</span></li>
+      <li class="concept reveal"><span>Movilidad</span></li>
+      <li class="concept reveal" data-delay="1"><span>Flexibilidad</span></li>
+      <li class="concept reveal" data-delay="2"><span>Control corporal</span></li>
+    </ul>
+
+    <figure class="media-card media-card--wide reveal" data-parallax="0.05">
+      <img src="assets/img/barre.svg" alt="Trabajo en la barra" width="900" height="700" loading="lazy">
+    </figure>
   </div>
 </section>
 
-<!-- ═══════════ CLASES ═══════════
-     TODO CLIENTA: ajustar nombres, duración y descripciones a tu programación real -->
+<!-- ═══════════ 4. LAS CLASES ═══════════ -->
 <section class="section" id="clases">
   <div class="wrap">
-    <header class="section__head">
-      <div>
-        <p class="eyebrow reveal">Clases</p>
-        <h2 class="h1 reveal" data-delay="1">Elige cómo quieres moverte</h2>
+    <div class="split split--reverse">
+      <figure class="media-card media-card--arch" data-parallax="0.06">
+        <img src="assets/img/clases.svg" alt="Material de clase: mancuernas, bandas y softballs" width="900" height="700" loading="lazy">
+      </figure>
+
+      <div class="split__copy">
+        <p class="eyebrow reveal">Las clases</p>
+        <h2 class="h1 reveal" data-delay="1">Cómo es una clase<br>en CALMA</h2>
+        <p class="reveal" data-delay="2">Sesiones de <strong>50 a 55 minutos</strong> en las que se trabaja
+          en barra, en centro y en suelo, combinando fuerza, tonificación, movilidad y control corporal.</p>
+
+        <dl class="specs">
+          <div class="spec reveal"><dt>Duración</dt><dd>50–55 minutos</dd></div>
+          <div class="spec reveal" data-delay="1"><dt>Estructura</dt><dd>Barra, centro y suelo</dd></div>
+          <div class="spec reveal" data-delay="2"><dt>Material</dt><dd>Mancuernas, bandas, softballs, tobilleras…</dd></div>
+          <div class="spec reveal" data-delay="3"><dt>Niveles</dt><dd>Adaptadas a cada persona</dd></div>
+        </dl>
+
+        <a class="btn btn--primary reveal" data-delay="3" data-book href="#contacto">Prueba tu primera clase gratis</a>
       </div>
-      <p class="section__head-note reveal" data-delay="2">Todas las sesiones incluyen calentamiento,
-        bloque de barra, trabajo de suelo y estiramiento final.</p>
-    </header>
-
-    <div class="cards">
-      <article class="card reveal">
-        <figure class="card__media"><img src="assets/img/clase-1.svg" alt="Clase Barre Classic" width="520" height="620" loading="lazy"></figure>
-        <div class="card__body">
-          <span class="tag">Todos los niveles</span>
-          <h3>Barre Classic</h3>
-          <p>La esencia del método: barra, alineación y las series fundamentales. El punto de partida ideal.</p>
-          <span class="card__meta">Iniciación · sin experiencia previa</span>
-        </div>
-      </article>
-
-      <article class="card reveal" data-delay="1">
-        <figure class="card__media"><img src="assets/img/clase-2.svg" alt="Clase Barre Sculpt" width="520" height="620" loading="lazy"></figure>
-        <div class="card__body">
-          <span class="tag">Intermedio</span>
-          <h3>Barre Sculpt</h3>
-          <p>Peso ligero, banda elástica y repeticiones pequeñas. Fuerza y tono con la técnica siempre delante.</p>
-          <span class="card__meta">Intensidad media-alta</span>
-        </div>
-      </article>
-
-      <article class="card reveal" data-delay="2">
-        <figure class="card__media"><img src="assets/img/clase-3.svg" alt="Clase Barre Stretch" width="520" height="620" loading="lazy"></figure>
-        <div class="card__body">
-          <span class="tag">Todos los niveles</span>
-          <h3>Barre Stretch</h3>
-          <p>Movilidad, flexibilidad y respiración. La sesión que hace que el resto de la semana funcione.</p>
-          <span class="card__meta">Baja intensidad · muy recomendable</span>
-        </div>
-      </article>
-
-      <article class="card reveal">
-        <figure class="card__media"><img src="assets/img/clase-4.svg" alt="Clase Barre Flow" width="520" height="620" loading="lazy"></figure>
-        <div class="card__body">
-          <span class="tag">Intermedio</span>
-          <h3>Barre Flow</h3>
-          <p>Series encadenadas con ritmo continuo. Más cardio, mismo control y cero impacto.</p>
-          <span class="card__meta">Intensidad alta</span>
-        </div>
-      </article>
-
-      <article class="card reveal" data-delay="1">
-        <figure class="card__media"><img src="assets/img/clase-5.svg" alt="Clase de gimnasia rítmica infantil" width="520" height="620" loading="lazy"></figure>
-        <div class="card__body">
-          <span class="tag">Peques</span>
-          <h3>Rítmica infantil</h3>
-          <p>Iniciación y perfeccionamiento en gimnasia rítmica, con entrenadora de nivel nacional.</p>
-          <span class="card__meta">Desde 3 años</span>
-        </div>
-      </article>
-
-      <article class="card reveal" data-delay="2">
-        <figure class="card__media"><img src="assets/img/clase-6.svg" alt="Sesiones privadas" width="520" height="620" loading="lazy"></figure>
-        <div class="card__body">
-          <span class="tag">Privado</span>
-          <h3>Clases privadas</h3>
-          <p>Individuales o en dúo, adaptadas a tus objetivos, tu nivel y tus horarios.</p>
-          <span class="card__meta">Bajo reserva</span>
-        </div>
-      </article>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ CITA DE MARCA ═══════════ -->
-<section class="section pull">
-  <div class="wrap">
-    <blockquote class="pull__quote reveal">
-      No se trata solo de entrenar,<br>sino de <em>regalarse un momento</em><br>para volver a una misma.
-    </blockquote>
-    <p class="pull__by reveal" data-delay="2">CALMA · barre studio</p>
-  </div>
-</section>
-
-<!-- ═══════════ HORARIOS ═══════════
-     TODO CLIENTA: sustituir por la programación real. La estructura ya está lista. -->
+<!-- ═══════════ 5. HORARIOS Y TARIFAS ═══════════ -->
 <section class="section section--nude" id="horarios">
   <div class="wrap">
-    <header class="section__head">
-      <div>
-        <p class="eyebrow reveal">Horarios</p>
-        <h2 class="h1 reveal" data-delay="1">Encuentra tu hueco</h2>
-      </div>
-      <p class="section__head-note reveal" data-delay="2">Horario orientativo de apertura.
-        Escríbenos por Instagram o email y te confirmamos las plazas disponibles de esta semana.</p>
-    </header>
+    <p class="eyebrow center reveal">Horarios y tarifas</p>
+    <h2 class="h1 center reveal" data-delay="1">Elige tus días</h2>
 
+    <!-- Primera clase gratis -->
+    <div class="freebie reveal" data-delay="2">
+      <div>
+        <span class="freebie__tag">Sin compromiso</span>
+        <p class="freebie__title">Primera clase <em>gratis</em></p>
+        <p class="freebie__text">Ven, pruébala y decide después. No hace falta nada más que ganas.</p>
+      </div>
+      <a class="btn btn--primary" data-book href="#contacto">Reservar mi clase gratis</a>
+    </div>
+
+    <!-- Horario semanal · TODO CLIENTA: sustituir por las horas definitivas -->
+    <h3 class="h2 center reveal sub-head">Horario semanal</h3>
     <div class="days reveal" role="tablist" aria-label="Días de la semana">
       <button class="chip is-active" role="tab" aria-selected="true" data-day="lun">Lunes</button>
       <button class="chip" role="tab" aria-selected="false" data-day="mar">Martes</button>
@@ -326,112 +193,95 @@
 
     <div class="schedule" id="schedule">
       <div class="sched" data-day="lun">
-        <div class="sched__row"><span class="sched__time">09:30</span><span class="sched__name">Barre Classic</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">17:30</span><span class="sched__name">Rítmica infantil</span><span class="sched__who">60 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">19:00</span><span class="sched__name">Barre Sculpt</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">20:00</span><span class="sched__name">Barre Stretch</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">09:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">10:45</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">18:00</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">19:15</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">20:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
       </div>
       <div class="sched" data-day="mar" hidden>
-        <div class="sched__row"><span class="sched__time">10:00</span><span class="sched__name">Barre Sculpt</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">18:00</span><span class="sched__name">Barre Flow</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">19:00</span><span class="sched__name">Barre Classic</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">09:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">18:00</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">19:15</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">20:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
       </div>
       <div class="sched" data-day="mie" hidden>
-        <div class="sched__row"><span class="sched__time">09:30</span><span class="sched__name">Barre Classic</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">17:30</span><span class="sched__name">Rítmica infantil</span><span class="sched__who">60 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">19:00</span><span class="sched__name">Barre Sculpt</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">20:00</span><span class="sched__name">Barre Flow</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">09:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">10:45</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">18:00</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">19:15</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">20:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
       </div>
       <div class="sched" data-day="jue" hidden>
-        <div class="sched__row"><span class="sched__time">10:00</span><span class="sched__name">Barre Stretch</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">18:00</span><span class="sched__name">Barre Classic</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">19:00</span><span class="sched__name">Barre Sculpt</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">09:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">18:00</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">19:15</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">20:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
       </div>
       <div class="sched" data-day="vie" hidden>
-        <div class="sched__row"><span class="sched__time">09:30</span><span class="sched__name">Barre Flow</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">18:30</span><span class="sched__name">Barre Stretch</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">09:30</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">10:45</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">18:00</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
       </div>
       <div class="sched" data-day="sab" hidden>
-        <div class="sched__row"><span class="sched__time">10:00</span><span class="sched__name">Barre Classic</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">11:00</span><span class="sched__name">Barre Sculpt</span><span class="sched__who">50 min</span><span class="sched__cta"><a href="#contacto">Reservar</a></span></div>
-        <div class="sched__row"><span class="sched__time">12:00</span><span class="sched__name">Clases privadas</span><span class="sched__who">bajo reserva</span><span class="sched__cta"><a href="#contacto">Consultar</a></span></div>
+        <div class="sched__row"><span class="sched__time">10:00</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
+        <div class="sched__row"><span class="sched__time">11:15</span><span class="sched__name">Barre</span><span class="sched__who">55 min</span><span class="sched__cta"><a data-book href="#contacto">Reservar</a></span></div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══════════ TARIFAS ═══════════
-     TODO CLIENTA: sustituir importes por los definitivos -->
-<section class="section" id="tarifas">
-  <div class="wrap">
-    <p class="eyebrow center reveal">Tarifas</p>
-    <h2 class="h1 center reveal" data-delay="1">Sin permanencia, siempre</h2>
-    <p class="lead center reveal" data-delay="2">Precios orientativos de apertura. Escríbenos y te contamos
-      la opción que mejor encaja contigo.</p>
-
+    <!-- Bonos -->
+    <h3 class="h2 center reveal sub-head">Bonos mensuales</h3>
     <div class="prices">
       <article class="price reveal">
-        <h3>Clase suelta</h3>
-        <p class="price__num"><span>15</span>€</p>
-        <p class="price__sub">1 sesión</p>
-        <ul>
-          <li>Válida para cualquier clase</li>
-          <li>Material incluido</li>
-          <li>Ideal para probar</li>
-        </ul>
-        <a class="btn btn--ghost" href="#contacto">Reservar</a>
+        <h4>1 día / semana</h4>
+        <p class="price__num"><span>45</span>€<small>/mes</small></p>
+        <p class="price__sub">4 clases al mes</p>
       </article>
-
-      <article class="price price--featured reveal" data-delay="1">
-        <span class="price__badge">La más elegida</span>
-        <h3>Bono mensual</h3>
-        <p class="price__num"><span>65</span>€<small>/mes</small></p>
-        <p class="price__sub">2 clases por semana</p>
-        <ul>
-          <li>Acceso a todas las clases</li>
-          <li>Reserva prioritaria</li>
-          <li>Sin permanencia</li>
-          <li>Material incluido</li>
-        </ul>
-        <a class="btn btn--primary" href="#contacto">Empezar</a>
+      <article class="price reveal" data-delay="1">
+        <h4>2 días / semana</h4>
+        <p class="price__num"><span>79</span>€<small>/mes</small></p>
+        <p class="price__sub">8 clases al mes</p>
       </article>
-
       <article class="price reveal" data-delay="2">
-        <h3>Bono 10</h3>
-        <p class="price__num"><span>120</span>€</p>
-        <p class="price__sub">12 € / clase · 3 meses de validez</p>
-        <ul>
-          <li>Sin cuota mensual</li>
-          <li>Tú eliges cuándo venir</li>
-          <li>Compartible</li>
-        </ul>
-        <a class="btn btn--ghost" href="#contacto">Comprar bono</a>
+        <h4>3 días / semana</h4>
+        <p class="price__num"><span>95</span>€<small>/mes</small></p>
+        <p class="price__sub">12 clases al mes</p>
+      </article>
+      <article class="price price--featured reveal" data-delay="3">
+        <span class="price__badge">Sin límite</span>
+        <h4>Ilimitado</h4>
+        <p class="price__num"><span>110</span>€<small>/mes</small></p>
+        <p class="price__sub">Todas las clases que quieras</p>
       </article>
     </div>
-    <p class="note center reveal">¿Buscas clases privadas o rítmica infantil? Consúltanos tarifas por email o Instagram.</p>
+
+    <p class="note center reveal">Los bonos no están ligados a un día fijo: puedes usarlos cualquier día,
+      dentro de los horarios disponibles, según te venga mejor cada semana.</p>
+
+    <div class="center"><a class="btn btn--primary btn--lg reveal" data-book href="#contacto">Reservar mi clase</a></div>
   </div>
 </section>
 
-<!-- ═══════════ SOBRE MÍ ═══════════ -->
+<!-- ═══════════ 6. SOBRE MÍ ═══════════ -->
 <section class="section section--dark" id="sobre-mi">
   <div class="wrap about">
     <figure class="about__media" data-parallax="0.05">
-      <!-- TODO CLIENTA: sustituir por tu foto (assets/img/retrato.jpg) -->
-      <img src="assets/img/retrato.svg" alt="Retrato de la fundadora de CALMA barre studio" width="560" height="700" loading="lazy">
+      <!-- TODO CLIENTA: sustituir por tu fotografía -->
+      <img src="assets/img/retrato.svg" alt="Retrato de la fundadora de CALMA barre studio" width="620" height="780" loading="lazy">
       <figcaption>Foto próximamente</figcaption>
     </figure>
 
     <div class="about__copy">
-      <p class="eyebrow reveal">Sobre mí</p>
-      <h2 class="h1 reveal" data-delay="1">Entrenadora, juez e instructora de barre</h2>
-      <p class="reveal" data-delay="2">Soy entrenadora de gimnasia rítmica de nivel nacional —el máximo—
-        y llevo años entrenando a niñas desde los tres años hasta la veintena. También soy juez de gimnasia
-        rítmica, igualmente de nivel nacional.</p>
-      <p class="reveal" data-delay="3">Ambas cosas me llevaron a seguir formándome hasta convertirme en
-        instructora de barre, algo que realmente me apasiona: me gusta cuidarme por dentro y por fuera,
-        combinando una alimentación saludable con el deporte.</p>
-      <p class="reveal" data-delay="4">Deporte de fuerza como el gimnasio, deporte creativo como la gimnasia
-        rítmica, o la mezcla de ambos, que para mí es la combinación perfecta: <em>barre</em>.</p>
+      <p class="eyebrow reveal">Detrás de CALMA</p>
+      <h2 class="h1 reveal" data-delay="1">Hola, soy quien<br>te va a acompañar</h2>
+      <p class="reveal" data-delay="2">Soy entrenadora nacional de gimnasia rítmica y juez nacional, y llevo
+        años enseñando a niñas desde los tres años en adelante. De ahí viene mi obsesión por la técnica
+        y por el detalle.</p>
+      <p class="reveal" data-delay="3">Con el tiempo descubrí el barre y encontré la combinación perfecta entre
+        el deporte de fuerza y el movimiento creativo. Me formé como instructora y así nació CALMA:
+        un estudio hecho desde mi forma de entender el movimiento.</p>
+      <p class="reveal" data-delay="4">Mi intención es que cada persona que entre por la puerta sienta
+        que este momento es suyo.</p>
 
       <ul class="creds reveal" data-delay="4">
         <li><strong>Nivel nacional</strong>Entrenadora de gimnasia rítmica</li>
@@ -442,114 +292,106 @@
   </div>
 </section>
 
-<!-- ═══════════ GALERÍA ═══════════ -->
-<section class="gallery" aria-label="Galería del estudio">
-  <div class="gallery__row" data-marquee>
-    <img src="assets/img/gal-1.svg" alt="" width="420" height="300" loading="lazy"><img src="assets/img/gal-2.svg" alt="" width="420" height="300" loading="lazy">
-    <img src="assets/img/gal-3.svg" alt="" width="420" height="300" loading="lazy"><img src="assets/img/gal-4.svg" alt="" width="420" height="300" loading="lazy">
-    <img src="assets/img/gal-1.svg" alt="" width="420" height="300" loading="lazy"><img src="assets/img/gal-2.svg" alt="" width="420" height="300" loading="lazy">
-    <img src="assets/img/gal-3.svg" alt="" width="420" height="300" loading="lazy"><img src="assets/img/gal-4.svg" alt="" width="420" height="300" loading="lazy">
+<!-- ═══════════ 7. EL ESTUDIO ═══════════ -->
+<section class="section" id="estudio">
+  <div class="wrap">
+    <div class="intro-split">
+      <div>
+        <p class="eyebrow reveal">El estudio</p>
+        <h2 class="h1 reveal" data-delay="1">Un espacio íntimo,<br>pensado hasta el detalle</h2>
+      </div>
+      <div class="intro-split__text">
+        <p class="reveal" data-delay="2">Pequeño a propósito. Luz cálida, materiales bonitos y todo colocado
+          para que, en cuanto entres, apetezca quedarse. Un sitio para desconectar del día y dedicarte
+          un rato a ti.</p>
+      </div>
+    </div>
   </div>
-  <div class="gallery__row gallery__row--rev" data-marquee>
-    <img src="assets/img/gal-5.svg" alt="" width="420" height="300" loading="lazy"><img src="assets/img/gal-6.svg" alt="" width="420" height="300" loading="lazy">
-    <img src="assets/img/gal-3.svg" alt="" width="420" height="300" loading="lazy"><img src="assets/img/gal-1.svg" alt="" width="420" height="300" loading="lazy">
-    <img src="assets/img/gal-5.svg" alt="" width="420" height="300" loading="lazy"><img src="assets/img/gal-6.svg" alt="" width="420" height="300" loading="lazy">
-    <img src="assets/img/gal-3.svg" alt="" width="420" height="300" loading="lazy"><img src="assets/img/gal-1.svg" alt="" width="420" height="300" loading="lazy">
+
+  <div class="mosaic">
+    <figure class="mosaic__item mosaic__item--tall reveal"><img src="assets/img/est-1.svg" alt="Sala principal del estudio" width="800" height="1000" loading="lazy"></figure>
+    <figure class="mosaic__item reveal" data-delay="1"><img src="assets/img/est-2.svg" alt="Detalle de la barra" width="800" height="600" loading="lazy"></figure>
+    <figure class="mosaic__item reveal" data-delay="2"><img src="assets/img/est-3.svg" alt="Material del estudio" width="800" height="600" loading="lazy"></figure>
+    <figure class="mosaic__item mosaic__item--tall reveal"><img src="assets/img/est-4.svg" alt="Rincón del estudio" width="800" height="1000" loading="lazy"></figure>
+    <figure class="mosaic__item reveal" data-delay="1"><img src="assets/img/est-5.svg" alt="Detalle decorativo" width="800" height="600" loading="lazy"></figure>
+    <figure class="mosaic__item reveal" data-delay="2"><img src="assets/img/est-6.svg" alt="Entrada del estudio" width="800" height="600" loading="lazy"></figure>
   </div>
 </section>
 
-<!-- ═══════════ FAQ ═══════════ -->
-<section class="section" id="faq">
+<!-- ═══════════ 8. FAQ ═══════════ -->
+<section class="section section--nude" id="faq">
   <div class="wrap faq-wrap">
     <div class="faq__intro">
-      <p class="eyebrow reveal">Dudas</p>
-      <h2 class="h1 reveal" data-delay="1">Antes de tu primera clase</h2>
-      <p class="reveal" data-delay="2">¿Te queda alguna pregunta? Escríbenos por Instagram o por email
-        y te contestamos encantadas.</p>
+      <p class="eyebrow reveal">Preguntas frecuentes</p>
+      <h2 class="h1 reveal" data-delay="1">Todo lo que<br>sueles preguntar</h2>
+      <p class="reveal" data-delay="2">¿Te queda alguna duda? Escríbeme por Instagram o por email y te contesto
+        encantada.</p>
       <a class="link-arrow reveal" data-delay="3" href="#contacto">Hablamos <span aria-hidden="true">→</span></a>
     </div>
 
     <div class="faq">
-      <details class="acc reveal"><summary>¿Necesito experiencia previa en ballet o danza?</summary>
-        <div class="acc__body"><p>Ninguna. En Barre Classic se explica todo desde cero y se corrige postura por postura.
-          El barre es progresivo: empiezas donde estás.</p></div></details>
+      <details class="acc reveal"><summary>¿Necesito experiencia previa?</summary>
+        <div class="acc__body"><p>No. La mayoría de alumnas empieza desde cero. Se explica cada ejercicio
+          y siempre hay una versión adaptada a tu nivel.</p></div></details>
 
-      <details class="acc reveal"><summary>¿Qué llevo a la clase?</summary>
-        <div class="acc__body"><p>Ropa cómoda y ajustada (para poder corregir tu alineación), calcetines
-          antideslizantes y una botella de agua. El material lo ponemos nosotras.</p></div></details>
+      <details class="acc reveal"><summary>¿Tengo que haber hecho ballet?</summary>
+        <div class="acc__body"><p>Para nada. El barre se inspira en el ballet, pero no se baila ni hay
+          coreografías: son ejercicios sencillos y muy pautados.</p></div></details>
 
-      <details class="acc reveal"><summary>¿Cuántas veces por semana debería venir?</summary>
-        <div class="acc__body"><p>Con dos sesiones semanales se empiezan a notar cambios claros en postura y tono.
-          Tres es el punto ideal para ganar fuerza sin sobrecargar.</p></div></details>
+      <details class="acc reveal"><summary>¿Qué necesito llevar a clase?</summary>
+        <div class="acc__body"><p>Ropa cómoda y ajustada (para poder corregirte bien), calcetines
+          antideslizantes y una botella de agua. El resto del material lo pongo yo.</p></div></details>
 
-      <details class="acc reveal"><summary>¿El barre es apto si tengo alguna lesión?</summary>
-        <div class="acc__body"><p>El barre es de bajo impacto, así que suele ser una opción muy amable con las
-          articulaciones. Cuéntanoslo al reservar y adaptamos los ejercicios; si hay lesión reciente,
-          consúltalo antes con tu médico o fisioterapeuta.</p></div></details>
+      <details class="acc reveal"><summary>¿Cuánto dura una clase?</summary>
+        <div class="acc__body"><p>Entre 50 y 55 minutos, con trabajo en barra, en centro y en suelo,
+          más el estiramiento final.</p></div></details>
 
-      <details class="acc reveal"><summary>¿Desde qué edad se puede entrenar?</summary>
-        <div class="acc__body"><p>Las clases de barre son para adultos. Para las peques tenemos gimnasia rítmica
-          desde los 3 años, con entrenadora de nivel nacional.</p></div></details>
+      <details class="acc reveal"><summary>¿Cómo funcionan los bonos?</summary>
+        <div class="acc__body"><p>Los bonos son mensuales y no están ligados a un día fijo: eliges 1, 2 o 3 días
+          por semana —o ilimitado— y los usas el día que mejor te venga, dentro de los horarios disponibles.</p></div></details>
 
-      <details class="acc reveal"><summary>¿Cómo reservo?</summary>
-        <div class="acc__body"><p>De momento, por email o mensaje directo en Instagram. Muy pronto tendremos
-          plataforma de reservas online.</p></div></details>
+      <details class="acc reveal"><summary>¿Cómo puedo reservar?</summary>
+        <div class="acc__body"><p>Desde la plataforma de reservas, con el botón de "Primera clase gratis".
+          También puedes escribirme por Instagram o por email y lo vemos juntas.</p></div></details>
+
+      <details class="acc reveal"><summary>¿Dónde está el estudio?</summary>
+        <div class="acc__body"><p>En la Avenida de Honorio Lozano 49, Collado Villalba (Madrid).</p></div></details>
+
+      <details class="acc reveal"><summary>¿Puedo asistir si tengo alguna lesión?</summary>
+        <div class="acc__body"><p>El barre es de bajo impacto y muy adaptable, así que en la mayoría de los casos
+          sí. Cuéntamelo antes de la clase y adaptamos los ejercicios; si la lesión es reciente,
+          consúltalo primero con tu médico o fisioterapeuta.</p></div></details>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ CONTACTO ═══════════ -->
-<section class="section section--dark cta" id="contacto">
-  <div class="wrap cta__inner">
-    <div class="cta__copy">
-      <p class="eyebrow reveal">Reservas</p>
-      <h2 class="display cta__title reveal" data-delay="1">Nos vemos<br>en la barra</h2>
-      <p class="reveal" data-delay="2">Déjanos tus datos y te escribimos con los horarios disponibles.
-        Sin compromiso.</p>
-
-      <ul class="contact-list reveal" data-delay="3">
-        <li><span>Email</span><a href="mailto:Calma.barrestudio@gmail.com">Calma.barrestudio@gmail.com</a></li>
-        <li><span>Instagram</span><a href="https://www.instagram.com/calma.barrestudio" target="_blank" rel="noopener">@calma.barrestudio</a></li>
-        <li><span>Dónde</span>Collado Villalba, Madrid</li>
-        <!-- TODO CLIENTA: añadir dirección exacta y teléfono cuando los tengas -->
-      </ul>
+<!-- ═══════════ 9. CONTACTO Y UBICACIÓN ═══════════ -->
+<section class="section contacto" id="contacto">
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <p class="eyebrow center">¿Nos vemos en CALMA?</p>
+      <p class="final-cta__title">Reserva tu<br><em>primera clase gratis</em></p>
+      <a class="btn btn--primary btn--lg" data-book href="#contacto-datos">Quiero probar una clase</a>
     </div>
 
-    <form class="form reveal" data-delay="2" id="booking-form"
-          action="mailto:Calma.barrestudio@gmail.com" method="post" enctype="text/plain">
-      <div class="field">
-        <label for="f-name">Nombre</label>
-        <input id="f-name" name="Nombre" type="text" required placeholder="Tu nombre">
+    <div class="contact-grid" id="contacto-datos">
+      <div class="contact-info">
+        <h3 class="h2 reveal">Dónde estamos</h3>
+        <ul class="contact-list reveal" data-delay="1">
+          <li><span>Dirección</span>
+            <a href="https://maps.google.com/?q=Avenida+de+Honorio+Lozano+49,+Collado+Villalba,+Madrid" target="_blank" rel="noopener">Avenida de Honorio Lozano 49<br>Collado Villalba, Madrid</a></li>
+          <li><span>Email</span><a href="mailto:Calma.barrestudio@gmail.com">Calma.barrestudio@gmail.com</a></li>
+          <li><span>Instagram</span><a href="https://www.instagram.com/calma.barrestudio" target="_blank" rel="noopener">@calma.barrestudio</a></li>
+          <li><span>Reservas</span><a data-book href="#inicio">Plataforma de reservas</a></li>
+        </ul>
+        <a class="btn btn--ghost reveal" data-delay="2" href="https://maps.google.com/?q=Avenida+de+Honorio+Lozano+49,+Collado+Villalba,+Madrid" target="_blank" rel="noopener">Cómo llegar</a>
       </div>
-      <div class="field">
-        <label for="f-mail">Email</label>
-        <input id="f-mail" name="Email" type="email" required placeholder="tu@email.com">
-      </div>
-      <div class="field">
-        <label for="f-tel">Teléfono</label>
-        <input id="f-tel" name="Telefono" type="tel" placeholder="+34 600 000 000">
-      </div>
-      <div class="field">
-        <label for="f-class">Clase de interés</label>
-        <select id="f-class" name="Clase">
-          <option>Barre Classic</option>
-          <option>Barre Sculpt</option>
-          <option>Barre Stretch</option>
-          <option>Barre Flow</option>
-          <option>Rítmica infantil</option>
-          <option>Clases privadas</option>
-        </select>
-      </div>
-      <div class="field field--full">
-        <label for="f-msg">Cuéntanos (opcional)</label>
-        <textarea id="f-msg" name="Mensaje" rows="3" placeholder="Tu nivel, horarios que te vienen mejor, lesiones…"></textarea>
-      </div>
-      <label class="check field--full">
-        <input type="checkbox" required> Acepto la <a href="#">política de privacidad</a>
-      </label>
-      <button class="btn btn--primary btn--block" type="submit">Enviar solicitud</button>
-      <p class="form__status" id="form-status" role="status"></p>
-    </form>
+
+      <figure class="map reveal" data-delay="1">
+        <iframe title="Mapa de la ubicación de CALMA barre studio" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Avenida%20de%20Honorio%20Lozano%2049,%20Collado%20Villalba,%20Madrid&z=16&output=embed"></iframe>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -560,21 +402,21 @@
   <div class="wrap">
     <div class="footer__top">
       <div>
-        <a class="logo logo--light" href="#top">
+        <a class="logo logo--light" href="#inicio">
           <span class="logo__name">CALMA</span>
           <span class="logo__sub">barre studio</span>
         </a>
-        <p class="footer__tag">Tu cuerpo, tu momento, tu calma.<br>Collado Villalba, Madrid.</p>
+        <p class="footer__tag">Tu cuerpo, tu momento, tu calma.<br>Avenida de Honorio Lozano 49, Collado Villalba.</p>
       </div>
       <nav class="footer__nav" aria-label="Enlaces del pie">
-        <div><h4>Estudio</h4>
-          <a href="#estudio">El estudio</a><a href="#sobre-mi">Sobre mí</a><a href="#barre">Qué es barre</a></div>
+        <div><h4>El estudio</h4>
+          <a href="#calma">¿Qué es CALMA?</a><a href="#barre">Barre</a><a href="#sobre-mi">Sobre mí</a><a href="#estudio">El estudio</a></div>
         <div><h4>Clases</h4>
-          <a href="#clases">Tipos de clase</a><a href="#horarios">Horarios</a><a href="#tarifas">Tarifas</a></div>
+          <a href="#clases">Cómo son las clases</a><a href="#horarios">Horarios y tarifas</a><a href="#faq">Preguntas frecuentes</a></div>
         <div><h4>Contacto</h4>
           <a href="https://www.instagram.com/calma.barrestudio" target="_blank" rel="noopener">Instagram</a>
           <a href="mailto:Calma.barrestudio@gmail.com">Email</a>
-          <a href="#faq">Preguntas frecuentes</a></div>
+          <a data-book href="#inicio">Reservar</a></div>
       </nav>
     </div>
 
@@ -586,6 +428,9 @@
     </div>
   </div>
 </footer>
+
+<!-- Botón fijo de reserva en móvil -->
+<a class="sticky-book" data-book href="#contacto">Primera clase gratis</a>
 
 <script src="assets/js/main.js"></script>
 </body>

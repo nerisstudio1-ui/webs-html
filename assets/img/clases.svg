@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700" role="img" aria-label="Fotografía de CALMA barre studio">
+  <defs>
+    <linearGradient id="gclases" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DCC8B8"/><stop offset="100%" stop-color="#E8D3D2"/>
+    </linearGradient>
+    <filter id="sclases"><feGaussianBlur stdDeviation="60"/></filter>
+  </defs>
+  <rect width="900" height="700" fill="url(#gclases)"/>
+  <circle cx="270" cy="210" r="300" fill="#F7F1EA" opacity=".3" filter="url(#sclases)"/>
+  <circle cx="720" cy="560" r="225" fill="#B89A68" opacity=".14" filter="url(#sclases)"/>
+  <path d="M0 490 Q 450 350 900 560" stroke="#B89A68" stroke-width="1.5" fill="none" opacity=".4"/>
+  <text x="450" y="350" text-anchor="middle" font-family="Jost,Montserrat,Helvetica,Arial,sans-serif" font-size="34" letter-spacing="12" fill="#8E7C70" opacity=".5">CALMA</text>
+</svg>

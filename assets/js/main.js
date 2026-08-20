@@ -1,23 +1,42 @@
-/* ═══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    CALMA · barre studio — interacciones
    Sin dependencias. Todo respeta prefers-reduced-motion.
-   ═══════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════ */
 (function () {
   'use strict';
+
+  /* ──────────────────────────────────────────────────
+     👉 ENLACE DE LA PLATAFORMA DE RESERVAS
+     Pega aquí la dirección cuando la tengas, entre las comillas.
+     Todos los botones de "Primera clase gratis" apuntarán ahí.
+     Ejemplo: var RESERVAS_URL = 'https://calma.bookingplatform.com';
+     ────────────────────────────────────────────────── */
+  var RESERVAS_URL = '';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-  /* ── Header pegajoso ─────────────────────────── */
+  /* ── Botones de reserva ──────────────────────────── */
+  if (RESERVAS_URL) {
+    $$('[data-book]').forEach(function (a) {
+      a.href = RESERVAS_URL;
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+  }
+
+  /* ── Header pegajoso ─────────────────────────────── */
   var header = $('#header');
+  var sticky = $('.sticky-book');
   var onScroll = function () {
     header.classList.toggle('is-stuck', window.scrollY > 24);
+    if (sticky) sticky.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.8);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ── Menú móvil ──────────────────────────────── */
+  /* ── Menú móvil ──────────────────────────────────── */
   var burger = $('#burger');
   var nav = $('#nav');
   if (burger && nav) {
@@ -30,31 +49,24 @@
     burger.addEventListener('click', function () {
       toggleNav(burger.getAttribute('aria-expanded') !== 'true');
     });
-    nav.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') toggleNav(false);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') toggleNav(false);
-    });
+    nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') toggleNav(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleNav(false); });
   }
 
-  /* ── Apariciones al hacer scroll ─────────────── */
-  var revealables = $$('.reveal').concat($$('.hero__title'));
+  /* ── Apariciones al hacer scroll ─────────────────── */
+  var revealables = $$('.reveal').concat($$('.hero__slogan'));
   if (!('IntersectionObserver' in window) || reduced) {
     revealables.forEach(function (el) { el.classList.add('is-in'); });
   } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-in');
-          io.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
     revealables.forEach(function (el) { io.observe(el); });
   }
 
-  /* ── Frase que se ilumina palabra a palabra ──── */
+  /* ── Frase que se ilumina palabra a palabra ──────── */
   var statement = $('[data-words]');
   if (statement) {
     var words = statement.textContent.trim().split(/\s+/);
@@ -63,26 +75,22 @@
       var span = document.createElement('span');
       span.className = 'w';
       span.textContent = word;
-      span.style.transitionDelay = (i * 0.035) + 's';
+      span.style.transitionDelay = (i * 0.04) + 's';
       statement.appendChild(span);
       statement.appendChild(document.createTextNode(' '));
     });
+    var lightUp = function () { $$('.w', statement).forEach(function (w) { w.classList.add('is-lit'); }); };
     if (reduced || !('IntersectionObserver' in window)) {
-      $$('.w', statement).forEach(function (w) { w.classList.add('is-lit'); });
+      lightUp();
     } else {
       var wordsIO = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            $$('.w', statement).forEach(function (w) { w.classList.add('is-lit'); });
-            wordsIO.disconnect();
-          }
-        });
-      }, { threshold: 0.4 });
+        entries.forEach(function (entry) { if (entry.isIntersecting) { lightUp(); wordsIO.disconnect(); } });
+      }, { threshold: 0.35 });
       wordsIO.observe(statement);
     }
   }
 
-  /* ── Parallax suave en imágenes ──────────────── */
+  /* ── Parallax suave en imágenes ──────────────────── */
   var parallaxEls = $$('[data-parallax]');
   if (parallaxEls.length && !reduced) {
     var ticking = false;
@@ -91,7 +99,7 @@
       parallaxEls.forEach(function (el) {
         var rect = el.getBoundingClientRect();
         if (rect.bottom < -200 || rect.top > vh + 200) return;
-        var speed = parseFloat(el.getAttribute('data-parallax')) || 0.08;
+        var speed = parseFloat(el.getAttribute('data-parallax')) || 0.06;
         var offset = (rect.top + rect.height / 2 - vh / 2) * -speed;
         var img = el.querySelector('img');
         if (img) img.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0) scale(1.08)';
@@ -105,7 +113,7 @@
     runParallax();
   }
 
-  /* ── Horarios por día ────────────────────────── */
+  /* ── Horario por días ────────────────────────────── */
   var dayBtns = $$('.days .chip');
   var scheds = $$('#schedule .sched');
   dayBtns.forEach(function (btn) {
@@ -124,12 +132,12 @@
     });
   });
 
-  /* Abre el día actual al cargar (lunes–sábado) */
+  /* Abre el día de hoy al cargar (de lunes a sábado) */
   var todayKey = ['dom', 'lun', 'mar', 'mie', 'jue', 'vie', 'sab'][new Date().getDay()];
   var todayBtn = $('.days .chip[data-day="' + todayKey + '"]');
-  if (todayBtn && !reduced) todayBtn.click();
+  if (todayBtn) todayBtn.click();
 
-  /* ── Acordeón: solo uno abierto a la vez ─────── */
+  /* ── Acordeón: solo uno abierto a la vez ─────────── */
   var accs = $$('.acc');
   accs.forEach(function (acc) {
     acc.addEventListener('toggle', function () {
@@ -138,38 +146,7 @@
     });
   });
 
-  /* ── Formulario → correo ─────────────────────── */
-  var form = $('#booking-form');
-  var status = $('#form-status');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-
-      var data = new FormData(form);
-      var nombre = (data.get('Nombre') || '').toString().trim();
-      var cuerpo = [
-        'Nombre: ' + (data.get('Nombre') || ''),
-        'Email: ' + (data.get('Email') || ''),
-        'Teléfono: ' + (data.get('Telefono') || '—'),
-        'Clase de interés: ' + (data.get('Clase') || ''),
-        '',
-        'Mensaje:',
-        (data.get('Mensaje') || '—')
-      ].join('\n');
-
-      var href = 'mailto:Calma.barrestudio@gmail.com'
-        + '?subject=' + encodeURIComponent('Reserva de clase — ' + (nombre || 'web CALMA'))
-        + '&body=' + encodeURIComponent(cuerpo);
-
-      window.location.href = href;
-      if (status) {
-        status.textContent = 'Abriendo tu gestor de correo… Si no se abre, escríbenos a Calma.barrestudio@gmail.com';
-      }
-    });
-  }
-
-  /* ── Año en el pie ───────────────────────────── */
+  /* ── Año en el pie ───────────────────────────────── */
   var year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
 })();
