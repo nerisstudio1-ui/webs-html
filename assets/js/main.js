@@ -113,30 +113,6 @@
     runParallax();
   }
 
-  /* ── Horario por días ────────────────────────────── */
-  var dayBtns = $$('.days .chip');
-  var scheds = $$('#schedule .sched');
-  dayBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var day = btn.getAttribute('data-day');
-      dayBtns.forEach(function (b) {
-        var active = b === btn;
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-selected', String(active));
-      });
-      scheds.forEach(function (s) {
-        var show = s.getAttribute('data-day') === day;
-        s.hidden = !show;
-        if (show) { s.style.animation = 'none'; void s.offsetWidth; s.style.animation = ''; }
-      });
-    });
-  });
-
-  /* Abre el día de hoy al cargar (de lunes a sábado) */
-  var todayKey = ['dom', 'lun', 'mar', 'mie', 'jue', 'vie', 'sab'][new Date().getDay()];
-  var todayBtn = $('.days .chip[data-day="' + todayKey + '"]');
-  if (todayBtn) todayBtn.click();
-
   /* ── Acordeón: solo uno abierto a la vez ─────────── */
   var accs = $$('.acc');
   accs.forEach(function (acc) {

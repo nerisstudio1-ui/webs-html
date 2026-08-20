@@ -41,7 +41,7 @@ al logo original. Las tres tienen licencia SIL Open Font (uso comercial permitid
 2. **¿Qué es CALMA?** — concepto y filosofía del estudio
 3. **Barre** — qué es, para quién es, y los seis conceptos clave
 4. **Las clases** — duración, estructura, material y niveles
-5. **Horarios y tarifas** — primera clase gratis, horario semanal y bonos
+5. **Tarifas** — primera clase gratis y bonos mensuales
 6. **Sobre mí** — presentación personal y trayectoria
 7. **El estudio** — mosaico de fotografías del espacio
 8. **Preguntas frecuentes**
@@ -50,6 +50,9 @@ al logo original. Las tres tienen licencia SIL Open Font (uso comercial permitid
 ## Pendiente de la clienta (busca `TODO CLIENTA` en `index.html`)
 
 - [ ] **Fotos reales** → sustituir los `.svg` de `assets/img/` (mismos nombres, o cambiar el `src`).
+      Mientras tanto, `hero`, `calma`, `barre` y `clases` son ilustraciones vectoriales
+      originales hechas con la paleta de marca; los seis tiles de `est-*` están marcados
+      como "foto próximamente".
 - [ ] **Retrato** de la fundadora → `assets/img/retrato.svg`, y quitar el `<figcaption>Foto próximamente</figcaption>`.
 - [ ] **Logotipo** → ahora está recompuesto con Jost Thin. Para usar el archivo original,
       guardarlo como `assets/img/logo.svg` y sustituir el bloque `.logo` de la cabecera
@@ -58,7 +61,7 @@ al logo original. Las tres tienen licencia SIL Open Font (uso comercial permitid
 - [ ] **Enlace de reservas** → se cambia en UN solo sitio: la variable `RESERVAS_URL`
       al principio de `assets/js/main.js`. Todos los botones "Primera clase gratis"
       pasan a apuntar ahí automáticamente.
-- [ ] **Horario semanal real** (sección `#horarios`; las horas actuales son de ejemplo).
+- [ ] **Horarios**, si en algún momento se quieren publicar en la web (ahora no aparecen).
 - [ ] **Teléfono**, si quieres que aparezca.
 - [ ] **Textos legales**: aviso legal, privacidad y cookies (enlaces del pie).
 
