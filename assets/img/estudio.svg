@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 760" width="640" height="760" role="img" aria-label="Imagen de CALMA barre studio">
+  <defs>
+    <linearGradient id="gestudio" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DCC8B8"/><stop offset="100%" stop-color="#F7F1EA"/>
+    </linearGradient>
+    <filter id="sestudio"><feGaussianBlur stdDeviation="55"/></filter>
+  </defs>
+  <rect width="640" height="760" fill="url(#gestudio)"/>
+  <circle cx="192" cy="228" r="213" fill="#F7F1EA" opacity=".35" filter="url(#sestudio)"/>
+  <circle cx="512" cy="608" r="160" fill="#B89A68" opacity=".16" filter="url(#sestudio)"/>
+  <path d="M0 532 Q 320 380 640 608" stroke="#B89A68" stroke-width="1.5" fill="none" opacity=".45"/>
+  <path d="M0 577 Q 320 425 640 653" stroke="#B89A68" stroke-width="1" fill="none" opacity=".25"/>
+  <text x="320" y="380" text-anchor="middle" font-family="Montserrat,Helvetica,Arial,sans-serif" font-size="29" letter-spacing="10" fill="#8E7C70" opacity=".55">CALMA</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" width="720" height="900" role="img" aria-label="Imagen de CALMA barre studio">
+  <defs>
+    <linearGradient id="ghero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E8D3D2"/><stop offset="100%" stop-color="#DCC8B8"/>
+    </linearGradient>
+    <filter id="shero"><feGaussianBlur stdDeviation="60"/></filter>
+  </defs>
+  <rect width="720" height="900" fill="url(#ghero)"/>
+  <circle cx="216" cy="270" r="240" fill="#F7F1EA" opacity=".35" filter="url(#shero)"/>
+  <circle cx="576" cy="720" r="180" fill="#B89A68" opacity=".16" filter="url(#shero)"/>
+  <path d="M0 630 Q 360 450 720 720" stroke="#B89A68" stroke-width="1.5" fill="none" opacity=".45"/>
+  <path d="M0 684 Q 360 504 720 774" stroke="#B89A68" stroke-width="1" fill="none" opacity=".25"/>
+  <text x="360" y="450" text-anchor="middle" font-family="Montserrat,Helvetica,Arial,sans-serif" font-size="32" letter-spacing="12" fill="#8E7C70" opacity=".55">CALMA</text>
+</svg>
