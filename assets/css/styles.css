@@ -119,18 +119,11 @@ em{font-style:italic}
 .header__inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.4rem 0;transition:padding .5s var(--ease)}
 .header.is-stuck .header__inner{padding:.85rem 0}
 
-.logo{display:grid;justify-items:center;gap:.3rem;line-height:1}
-.logo__name{
-  font-family:var(--font-logo);font-weight:200;font-size:clamp(1.25rem,2.4vw,1.6rem);
-  letter-spacing:.36em;text-indent:.36em;color:var(--taupe);transition:color .4s
-}
-.logo__sub{
-  font-family:var(--font-logo);font-weight:300;font-size:.46rem;
-  letter-spacing:.46em;text-indent:.46em;text-transform:uppercase;color:var(--taupe);opacity:.9
-}
-.logo:hover .logo__name{color:var(--gold)}
-.logo--light .logo__name{color:var(--cream)}
-.logo--light .logo__sub{color:var(--nude);opacity:.85}
+/* Logotipo (archivo original de marca, recortado con fondo transparente) */
+.logo{display:block;line-height:0}
+.logo img{width:clamp(122px,13vw,158px);height:auto;transition:opacity .4s}
+.logo:hover img{opacity:.75}
+.footer .logo img{width:clamp(150px,18vw,186px)}
 
 .nav{display:flex;align-items:center;gap:1.7rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:300}
 .nav a{white-space:nowrap;flex-shrink:0}
@@ -164,15 +157,7 @@ em{font-style:italic}
   width:min(100% - var(--pad)*2,860px);margin-inline:auto;text-align:center;
   display:grid;justify-items:center;gap:.4rem
 }
-.hero__logo{display:grid;justify-items:center;gap:.7rem;margin-bottom:clamp(1.5rem,4vw,2.5rem)}
-.hero__logo-name{
-  font-family:var(--font-logo);font-weight:200;font-size:clamp(2.6rem,9vw,5.5rem);line-height:1;
-  letter-spacing:.3em;text-indent:.3em;color:var(--taupe)
-}
-.hero__logo-sub{
-  font-family:var(--font-logo);font-weight:300;font-size:clamp(.6rem,1.6vw,.85rem);
-  letter-spacing:.5em;text-indent:.5em;text-transform:uppercase;color:var(--taupe)
-}
+.hero__logo{width:min(78%,480px);height:auto;margin:0 auto clamp(1.6rem,4vw,2.6rem)}
 .hero__slogan{
   font-size:clamp(1.7rem,4.6vw,3.2rem);line-height:1.25;margin:0 0 1.2rem;font-weight:300
 }

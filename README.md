@@ -54,10 +54,9 @@ al logo original. Las tres tienen licencia SIL Open Font (uso comercial permitid
       originales hechas con la paleta de marca; los seis tiles de `est-*` están marcados
       como "foto próximamente".
 - [ ] **Retrato** de la fundadora → `assets/img/retrato.svg`, y quitar el `<figcaption>Foto próximamente</figcaption>`.
-- [ ] **Logotipo** → ahora está recompuesto con Jost Thin. Para usar el archivo original,
-      guardarlo como `assets/img/logo.svg` y sustituir el bloque `.logo` de la cabecera
-      por `<img src="assets/img/logo.svg" alt="CALMA barre studio" width="180">`
-      (hay un comentario en el HTML justo encima indicándolo).
+- [x] **Logotipo** → hecho. A partir de `Logo calma barre.jpg` se han generado
+      `logo.png` (tinta original, fondo transparente) y `logo-cream.png` (versión clara
+      para el pie oscuro). Se usan en cabecera, inicio y pie.
 - [ ] **Enlace de reservas** → se cambia en UN solo sitio: la variable `RESERVAS_URL`
       al principio de `assets/js/main.js`. Todos los botones "Primera clase gratis"
       pasan a apuntar ahí automáticamente.
