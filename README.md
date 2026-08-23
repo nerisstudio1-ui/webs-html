@@ -30,10 +30,13 @@ assets/img/             imágenes (ahora mismo, placeholders provisionales)
 | Taupe        | `#8E7C70` | Textos secundarios                    |
 | Dark Taupe   | `#3F3936` | Texto principal y secciones oscuras   |
 
-Tipografías: **Cormorant Garamond** (títulos) y **Montserrat** (textos), servidas desde
+Tipografías: **Bodoni Moda** (títulos) y **Montserrat** (textos), servidas desde
 `assets/fonts/` — no dependen de Google Fonts, así que se ven igual siempre y la web
-carga más rápido. Para el logotipo se usa **Jost Thin**, la tipografía libre más parecida
-al logo original. Las tres tienen licencia SIL Open Font (uso comercial permitido).
+carga más rápido. Todas con licencia SIL Open Font (uso comercial permitido).
+
+Para cambiar la tipografía de los titulares basta con editar la variable `--font-display`
+al principio de `assets/css/styles.css`. Además de Bodoni Moda están descargadas
+**Marcellus** (más clásica y cálida) e **Italiana** (más fina, de pasarela).
 
 ## Secciones
 
