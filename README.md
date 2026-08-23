@@ -64,6 +64,10 @@ estudio, texto y botón en tonos claros sobre un velo cálido.
 8. **Preguntas frecuentes**
 9. **Contacto y ubicación** — dirección, email, Instagram, reservas y mapa
 
+Además, intercaladas: *Lo que vas a notar* (beneficios), *Para quién es CALMA*
+(tres perfiles), *Tu primera clase paso a paso* (cuatro pasos) y una banda de
+Instagram antes del contacto.
+
 ## Pendiente de la clienta (busca `TODO CLIENTA` en `index.html`)
 
 - [ ] **Fotos reales del estudio** → ahora mismo `hero`, `calma`, `barre`, `clases` y
@@ -78,6 +82,8 @@ estudio, texto y botón en tonos claros sobre un velo cálido.
       pasan a apuntar ahí automáticamente.
 - [ ] **Horarios**, si en algún momento se quieren publicar en la web (ahora no aparecen).
 - [ ] **Teléfono**, si quieres que aparezca.
+- [ ] **Web de Neris Studio** → el crédito del pie ya está puesto, falta la
+      dirección en el `href` (busca `TODO NERIS` en `index.html`).
 - [ ] **Textos legales**: aviso legal, privacidad y cookies (enlaces del pie).
 
 ## Notas
