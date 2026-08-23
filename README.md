@@ -30,13 +30,19 @@ assets/img/             imágenes (ahora mismo, placeholders provisionales)
 | Taupe        | `#8E7C70` | Textos secundarios                    |
 | Dark Taupe   | `#3F3936` | Texto principal y secciones oscuras   |
 
-Tipografías: **Bodoni Moda** (títulos) y **Montserrat** (textos), servidas desde
+Tipografías: **Newsreader** (títulos) y **Montserrat** (textos), servidas desde
 `assets/fonts/` — no dependen de Google Fonts, así que se ven igual siempre y la web
 carga más rápido. Todas con licencia SIL Open Font (uso comercial permitido).
 
 Para cambiar la tipografía de los titulares basta con editar la variable `--font-display`
-al principio de `assets/css/styles.css`. Además de Bodoni Moda están descargadas
-**Marcellus** (más clásica y cálida) e **Italiana** (más fina, de pasarela).
+al principio de `assets/css/styles.css`. Además de Newsreader están descargadas
+**Jost**, **Instrument Sans**, **Bodoni Moda**, **Marcellus** e **Italiana**.
+
+### Dirección visual
+
+Editorial: bloques de color planos y a sangre, cantos rectos (sin esquinas
+redondeadas), composición alineada a la izquierda y el dorado reservado a
+filetes y barras. Sin degradados difuminados.
 
 ## Secciones
 
@@ -52,10 +58,9 @@ al principio de `assets/css/styles.css`. Además de Bodoni Moda están descargad
 
 ## Pendiente de la clienta (busca `TODO CLIENTA` en `index.html`)
 
-- [ ] **Fotos reales** → sustituir los `.svg` de `assets/img/` (mismos nombres, o cambiar el `src`).
-      Mientras tanto, `hero`, `calma`, `barre` y `clases` son ilustraciones vectoriales
-      originales hechas con la paleta de marca; los seis tiles de `est-*` están marcados
-      como "foto próximamente".
+- [ ] **Fotos reales del estudio** → ahora mismo `hero`, `calma`, `barre`, `clases` y
+      `est-1..4` son recortes de `estudio-render.png` (la imagen que subió la clienta).
+      Para cambiarlas basta con sustituir los `.jpg` de `assets/img/` con los mismos nombres.
 - [ ] **Retrato** de la fundadora → `assets/img/retrato.svg`, y quitar el `<figcaption>Foto próximamente</figcaption>`.
 - [x] **Logotipo** → hecho. A partir de `Logo calma barre.jpg` se han generado
       `logo.png` (tinta original, fondo transparente) y `logo-cream.png` (versión clara
