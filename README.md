@@ -25,8 +25,8 @@ assets/img/             imágenes (ahora mismo, placeholders provisionales)
 |--------------|-----------|---------------------------------------|
 | Cream        | `#F7F1EA` | Fondo principal                       |
 | Nude         | `#DCC8B8` | Fondos secundarios                    |
-| Powder Pink  | `#E8D3D2` | Detalles y acentos                    |
-| Soft Gold    | `#B89A68` | Líneas, iconos y detalles premium     |
+| Powder Pink  | `#E8D3D2` | Sin uso en la web, a petición de la clienta |
+| Soft Gold    | `#B89A68` | Sin uso en la web, a petición de la clienta |
 | Taupe        | `#8E7C70` | Textos secundarios                    |
 | Dark Taupe   | `#3F3936` | Texto principal y secciones oscuras   |
 
@@ -37,6 +37,14 @@ carga más rápido. Todas con licencia SIL Open Font (uso comercial permitido).
 Para cambiar la tipografía de los titulares basta con editar la variable `--font-display`
 al principio de `assets/css/styles.css`. Además de Instrument Serif están descargadas
 **Newsreader**, **Jost**, **Instrument Sans**, **Bodoni Moda**, **Marcellus** e **Italiana**.
+
+### Acento de la interfaz
+
+Los detalles (antetítulos, filetes, subrayados, viñetas, estados hover) usan
+Taupe en lugar del dorado del manual, porque la clienta prefirió dejar fuera
+el dorado y el rosa empolvado. Se controla desde dos variables al principio
+de `styles.css`: `--accent` y `--accent-strong`. Para recuperar el dorado
+basta con ponerles `#B89A68` y `#9C8154`.
 
 ### Dirección visual
 
