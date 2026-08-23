@@ -30,13 +30,13 @@ assets/img/             imágenes (ahora mismo, placeholders provisionales)
 | Taupe        | `#8E7C70` | Textos secundarios                    |
 | Dark Taupe   | `#3F3936` | Texto principal y secciones oscuras   |
 
-Tipografías: **Newsreader** (títulos) y **Montserrat** (textos), servidas desde
+Tipografías: **Instrument Serif** (títulos) y **Montserrat** (textos), servidas desde
 `assets/fonts/` — no dependen de Google Fonts, así que se ven igual siempre y la web
 carga más rápido. Todas con licencia SIL Open Font (uso comercial permitido).
 
 Para cambiar la tipografía de los titulares basta con editar la variable `--font-display`
-al principio de `assets/css/styles.css`. Además de Newsreader están descargadas
-**Jost**, **Instrument Sans**, **Bodoni Moda**, **Marcellus** e **Italiana**.
+al principio de `assets/css/styles.css`. Además de Instrument Serif están descargadas
+**Newsreader**, **Jost**, **Instrument Sans**, **Bodoni Moda**, **Marcellus** e **Italiana**.
 
 ### Dirección visual
 
