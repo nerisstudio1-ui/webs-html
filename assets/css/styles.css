@@ -346,11 +346,15 @@ em{font-style:italic}
 /* Botón fijo (solo móvil) */
 .sticky-book{
   position:fixed;left:50%;transform:translateX(-50%);bottom:1rem;z-index:55;display:none;
-  background:var(--dark);color:var(--cream);padding:1rem 1.9rem;border-radius:var(--r-pill);
-  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;box-shadow:var(--shadow);
+  background:var(--dark);color:var(--cream);padding:.95rem 1.6rem;border-radius:var(--r-pill);
+  font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;box-shadow:var(--shadow);
   opacity:0;pointer-events:none;transition:opacity .5s var(--ease)
 }
 .sticky-book.is-visible{opacity:1;pointer-events:auto}
+.sticky-book svg{vertical-align:-3px;margin-right:.45rem}
+/* Verde de WhatsApp, muy contenido: solo el botón fijo del móvil */
+.sticky-book{background:#3F3936}
+.sticky-book:hover{background:var(--accent-strong)}
 
 
 /* Lo que vas a notar */

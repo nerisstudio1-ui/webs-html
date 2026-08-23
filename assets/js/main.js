@@ -6,11 +6,21 @@
   'use strict';
 
   /* ──────────────────────────────────────────────────
-     👉 ENLACE DE LA PLATAFORMA DE RESERVAS
-     Pega aquí la dirección cuando la tengas, entre las comillas.
-     Todos los botones de "Primera clase gratis" apuntarán ahí.
-     Ejemplo: var RESERVAS_URL = 'https://calma.bookingplatform.com';
+     👉 WHATSAPP DE RESERVAS
+     Escribe aquí el número con prefijo del país y sin espacios,
+     signos ni el +. España es 34, así que un móvil 600 12 34 56
+     se escribe: '34600123456'
+
+     Todos los botones de "Primera clase gratis" de la web abrirán
+     WhatsApp con el mensaje ya escrito.
      ────────────────────────────────────────────────── */
+  var WHATSAPP = '';
+
+  /* El mensaje con el que se abre la conversación */
+  var WHATSAPP_MSG = '¡Hola! Me gustaría reservar mi primera clase gratis en CALMA \uD83E\uDD0D';
+
+  /* Si algún día hay plataforma de reservas online, se pega aquí
+     y manda sobre el WhatsApp */
   var RESERVAS_URL = '';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -18,12 +28,18 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   /* ── Botones de reserva ──────────────────────────── */
-  if (RESERVAS_URL) {
+  var reservaUrl = RESERVAS_URL ||
+    (WHATSAPP ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(WHATSAPP_MSG) : '');
+
+  if (reservaUrl) {
     $$('[data-book]').forEach(function (a) {
-      a.href = RESERVAS_URL;
+      a.href = reservaUrl;
       a.target = '_blank';
       a.rel = 'noopener';
     });
+  } else {
+    /* Sin número todavía: los botones llevan al bloque de contacto */
+    document.documentElement.classList.add('sin-reservas');
   }
 
   /* ── Header pegajoso ─────────────────────────────── */

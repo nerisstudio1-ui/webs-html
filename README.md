@@ -80,9 +80,12 @@ Instagram antes del contacto.
 - [x] **Logotipo** → hecho. A partir de `Logo calma barre.jpg` se han generado
       `logo.png` (tinta original, fondo transparente) y `logo-cream.png` (versión clara
       para el pie oscuro). Se usan en cabecera, inicio y pie.
-- [ ] **Enlace de reservas** → se cambia en UN solo sitio: la variable `RESERVAS_URL`
-      al principio de `assets/js/main.js`. Todos los botones "Primera clase gratis"
-      pasan a apuntar ahí automáticamente.
+- [ ] **Número de WhatsApp** → se escribe en UN solo sitio: la variable `WHATSAPP`
+      al principio de `assets/js/main.js`, con prefijo y sin signos (p. ej. `'34600123456'`).
+      Los diez botones de "Primera clase gratis" pasan a abrir WhatsApp con el
+      mensaje ya redactado. Mientras esté vacía, llevan al bloque de contacto.
+      Si algún día hay plataforma de reservas online, se pega en `RESERVAS_URL`
+      (justo debajo) y esa manda sobre el WhatsApp.
 - [ ] **Horarios**, si en algún momento se quieren publicar en la web (ahora no aparecen).
 - [ ] **Teléfono**, si quieres que aparezca.
 
