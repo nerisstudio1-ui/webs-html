@@ -71,9 +71,12 @@ Instagram antes del contacto.
 ## Pendiente de la clienta (busca `TODO CLIENTA` en `index.html`)
 
 - [ ] **Fotos reales del estudio** → ahora mismo `hero`, `calma`, `barre`, `clases` y
-      `est-1..4` son recortes de `estudio-render.png` (la imagen que subió la clienta).
+      `est-1..4` salen de las imágenes que subió la clienta: el hero, `calma` y el
+      mosaico de `estudio-render.png`; `barre`, `clases` y `retrato` de las fotos
+      `src-*` (los originales se conservan en `assets/img/`).
       Para cambiarlas basta con sustituir los `.jpg` de `assets/img/` con los mismos nombres.
-- [ ] **Retrato** de la fundadora → `assets/img/retrato.svg`, y quitar el `<figcaption>Foto próximamente</figcaption>`.
+- [ ] **Retrato de la fundadora** → ahora en "Sobre mí" hay una foto de estudio,
+      no la suya. Sustituir `assets/img/retrato.jpg` cuando la tenga.
 - [x] **Logotipo** → hecho. A partir de `Logo calma barre.jpg` se han generado
       `logo.png` (tinta original, fondo transparente) y `logo-cream.png` (versión clara
       para el pie oscuro). Se usan en cabecera, inicio y pie.
@@ -82,8 +85,7 @@ Instagram antes del contacto.
       pasan a apuntar ahí automáticamente.
 - [ ] **Horarios**, si en algún momento se quieren publicar en la web (ahora no aparecen).
 - [ ] **Teléfono**, si quieres que aparezca.
-- [ ] **Web de Neris Studio** → el crédito del pie ya está puesto, falta la
-      dirección en el `href` (busca `TODO NERIS` en `index.html`).
+
 - [ ] **Textos legales**: aviso legal, privacidad y cookies (enlaces del pie).
 
 ## Notas
