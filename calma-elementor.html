@@ -7,12 +7,6 @@
    Las fotos se cambian buscando y reemplazando la dirección de arriba. */
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:wght@200;300;400;500&family=Jost:wght@200;300;400&display=swap');
 
-/* La web ocupa todo el ancho de la ventana, aunque el contenedor
-   de Elementor sea más estrecho */
-#calma-web{
-  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
-  overflow-x:clip;text-align:left
-}
 #calma-web *,#calma-web *::before,#calma-web *::after{box-sizing:border-box}
 /* Blindaje: los temas de WordPress suelen imponer bordes, mayúsculas
    y subrayados a todo. Aquí dentro, no. */
@@ -176,6 +170,15 @@ body.calma-menu-abierto{overflow:hidden}
 }#calma-web section[id]{scroll-margin-top:90px}
 
 @media(prefers-reduced-motion:reduce){#calma-web{scroll-behavior:auto}#calma-web,#calma-web,#calma-web{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}#calma-web .reveal,#calma-web.js .reveal{opacity:1;transform:none}#calma-web .hero__slogan .line>span,#calma-web.js .hero__slogan .line>span{transform:none}#calma-web .statement .w{opacity:1}
+}
+
+
+/* La web ocupa todo el ancho de la ventana, aunque el contenedor
+   de Elementor sea más estrecho. Si aun así aparece barra horizontal,
+   pon el contenedor de Elementor a ancho completo y sin relleno. */
+#calma-web{
+  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  overflow-x:clip;text-align:left
 }
 
 </style>

@@ -78,12 +78,6 @@ marco = f'''
    Las fotos se cambian buscando y reemplazando la dirección de arriba. */
 @import url('{FUENTES_CDN}');
 
-/* La web ocupa todo el ancho de la ventana, aunque el contenedor
-   de Elementor sea más estrecho */
-#{CAJA}{{
-  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
-  overflow-x:clip;text-align:left
-}}
 #{CAJA} *,#{CAJA} *::before,#{CAJA} *::after{{box-sizing:border-box}}
 /* Blindaje: los temas de WordPress suelen imponer bordes, mayúsculas
    y subrayados a todo. Aquí dentro, no. */
@@ -118,9 +112,20 @@ guion = guion.replace("document.documentElement.classList.add('sin-reservas');",
                       "caja.className += ' sin-reservas';")
 guion = guion.replace("(function () {\n  'use strict';", "(function () {\n  'use strict';")
 
+# Va al final del CSS: si fuera antes, lo pisaría el margin:0 del body
+cierre = f"""
+/* La web ocupa todo el ancho de la ventana, aunque el contenedor
+   de Elementor sea más estrecho. Si aun así aparece barra horizontal,
+   pon el contenedor de Elementor a ancho completo y sin relleno. */
+#{CAJA}{{
+  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  overflow-x:clip;text-align:left
+}}
+"""
+
 def escribir(nombre, resolver_imagen):
     c = re.sub(r'assets/img/([\w.\- ]+?\.(?:jpg|jpeg|png|svg|webp))', resolver_imagen, cuerpo)
-    doc = (f'<div id="{CAJA}">\n\n<style>\n{marco}\n{estilos}\n</style>\n\n'
+    doc = (f'<div id="{CAJA}">\n\n<style>\n{marco}\n{estilos}\n{cierre}\n</style>\n\n'
            f'{c}\n\n<script>\n{guion}\n</script>\n\n</div>\n')
     (RAIZ / nombre).write_text(doc)
     print(f'{nombre} · {len(doc)/1024:.0f} KB')
