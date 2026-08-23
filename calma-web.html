@@ -143,6 +143,8 @@ em{font-style:italic}
 .h2{font-size:clamp(1.6rem,3.1vw,2.5rem)}
 .eyebrow{font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);font-weight:400;margin-bottom:1.1rem}
 .note{font-size:.85rem;color:var(--taupe);max-width:52ch;margin:2.5rem auto 0;line-height:1.8}
+/* El botón que va detrás de una nota necesita aire, no pegarse al texto */
+.note + div{margin-top:clamp(2.2rem,4vw,3rem)}
 .sub-head{margin:clamp(3rem,6vw,4.5rem) 0 2rem}
 
 .section{padding:var(--sp-section) 0;position:relative}
@@ -538,9 +540,18 @@ em{font-style:italic}
   .logo img{width:clamp(126px,34vw,150px)}
   .burger{position:absolute;right:-10px;top:50%;transform:translateY(-50%)}
 
-  /* Rejillas que no caben en un móvil */
-  .profiles__grid{grid-template-columns:1fr;gap:1rem}
-  .steps{grid-template-columns:1fr;gap:1.6rem}
+  /* En móvil, tarjetas y pasos se deslizan de lado en vez de apilarse.
+     Se salen del margen a propósito, para que asome la siguiente y se
+     entienda que hay más. */
+  .profiles__grid,.steps{
+    display:flex;grid-template-columns:none;gap:.9rem;
+    overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin-inline:calc(var(--pad) * -1);padding:.2rem var(--pad) .8rem;
+    scrollbar-width:none
+  }
+  .profiles__grid::-webkit-scrollbar,.steps::-webkit-scrollbar{display:none}
+  .profile,.step{flex:0 0 76%;scroll-snap-align:start}
+  .step{padding-top:1.4rem}
   .ig-band__inner{align-items:flex-start}
 
   /* Zonas de toque cómodas en el menú lateral */
@@ -557,6 +568,10 @@ em{font-style:italic}
   .contact-list span,.creds strong,.footer__nav h4,.spec dt{font-size:.68rem;letter-spacing:.16em}
   .step__num{font-size:.95rem}
   .footer__bottom{font-size:.74rem}
+
+  /* Las preguntas, más grandes: es donde más se lee */
+  .acc summary{font-size:1.2rem;padding:1.5rem 2.6rem 1.5rem 0}
+  .acc__body p{font-size:.96rem;line-height:1.75}
 
   /* Enlaces con sitio para el dedo */
   .link-arrow{padding-bottom:.85rem}
@@ -747,17 +762,17 @@ section[id]{scroll-margin-top:90px}
       <div class="profiles__grid">
         <article class="profile reveal">
           <h4>Empiezas de cero</h4>
-          <p>Nunca has hecho ballet, ni pilates, ni nada parecido. Perfecto: aquí se explica
-            cada ejercicio desde el principio y nadie mira a nadie.</p>
+          <p>Nunca has hecho ballet ni pilates. Perfecto: aquí se explica todo
+            desde el principio y nadie mira a nadie.</p>
         </article>
         <article class="profile reveal" data-delay="1">
           <h4>Vuelves al movimiento</h4>
-          <p>Después de una lesión, un embarazo o una temporada parada. Al ser de bajo impacto,
-            el barre es de las formas más amables de reencontrarte con tu cuerpo.</p>
+          <p>Tras una lesión, un embarazo o una temporada parada. Al ser de bajo
+            impacto, es la forma más amable de volver.</p>
         </article>
         <article class="profile reveal" data-delay="2">
           <h4>Ya entrenas</h4>
-          <p>Corres, vas al gimnasio o vienes de la danza, y buscas técnica, control y
+          <p>Corres, vas al gimnasio o vienes de la danza, y buscas técnica y
             un trabajo profundo que complemente lo que ya haces.</p>
         </article>
       </div>
@@ -783,26 +798,26 @@ section[id]{scroll-margin-top:90px}
       <li class="step reveal">
         <span class="step__num">01</span>
         <h3>Reservas</h3>
-        <p>Eliges el día que mejor te venga. <strong>Si es tu primera vez, la clase es gratis</strong>
-          y no hace falta dejar ningún dato de pago.</p>
+        <p>Eliges el día que mejor te venga. <strong>Si es tu primera vez,
+          la clase es gratis</strong>, y sin dejar datos de pago.</p>
       </li>
       <li class="step reveal" data-delay="1">
         <span class="step__num">02</span>
         <h3>Llegas diez minutos antes</h3>
-        <p>Te enseño el estudio, dejas tus cosas y me cuentas si arrastras alguna molestia o lesión.
-          Con eso ya sé qué adaptarte durante la clase.</p>
+        <p>Te enseño el estudio y me cuentas si arrastras alguna molestia.
+          Con eso ya sé qué adaptarte.</p>
       </li>
       <li class="step reveal" data-delay="2">
         <span class="step__num">03</span>
         <h3>La clase</h3>
-        <p>Entre 50 y 55 minutos de barra, centro y suelo. Voy corrigiendo una por una:
-          <strong>nadie se queda atrás</strong> y cada ejercicio tiene su versión.</p>
+        <p>De 50 a 55 minutos de barra, centro y suelo. Te corrijo una por una:
+          <strong>nadie se queda atrás</strong>.</p>
       </li>
       <li class="step reveal" data-delay="3">
         <span class="step__num">04</span>
         <h3>Después</h3>
-        <p>Estiramos con calma, charlamos si te apetece y te digo por dónde seguir.
-          Decides otro día, sin que nadie te insista.</p>
+        <p>Estiramos con calma y te digo por dónde seguir. Decides otro día,
+          sin que nadie te insista.</p>
       </li>
     </ol>
 

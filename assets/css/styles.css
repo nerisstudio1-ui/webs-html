@@ -79,6 +79,8 @@ em{font-style:italic}
 .h2{font-size:clamp(1.6rem,3.1vw,2.5rem)}
 .eyebrow{font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);font-weight:400;margin-bottom:1.1rem}
 .note{font-size:.85rem;color:var(--taupe);max-width:52ch;margin:2.5rem auto 0;line-height:1.8}
+/* El botón que va detrás de una nota necesita aire, no pegarse al texto */
+.note + div{margin-top:clamp(2.2rem,4vw,3rem)}
 .sub-head{margin:clamp(3rem,6vw,4.5rem) 0 2rem}
 
 .section{padding:var(--sp-section) 0;position:relative}
@@ -474,9 +476,18 @@ em{font-style:italic}
   .logo img{width:clamp(126px,34vw,150px)}
   .burger{position:absolute;right:-10px;top:50%;transform:translateY(-50%)}
 
-  /* Rejillas que no caben en un móvil */
-  .profiles__grid{grid-template-columns:1fr;gap:1rem}
-  .steps{grid-template-columns:1fr;gap:1.6rem}
+  /* En móvil, tarjetas y pasos se deslizan de lado en vez de apilarse.
+     Se salen del margen a propósito, para que asome la siguiente y se
+     entienda que hay más. */
+  .profiles__grid,.steps{
+    display:flex;grid-template-columns:none;gap:.9rem;
+    overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin-inline:calc(var(--pad) * -1);padding:.2rem var(--pad) .8rem;
+    scrollbar-width:none
+  }
+  .profiles__grid::-webkit-scrollbar,.steps::-webkit-scrollbar{display:none}
+  .profile,.step{flex:0 0 76%;scroll-snap-align:start}
+  .step{padding-top:1.4rem}
   .ig-band__inner{align-items:flex-start}
 
   /* Zonas de toque cómodas en el menú lateral */
@@ -493,6 +504,10 @@ em{font-style:italic}
   .contact-list span,.creds strong,.footer__nav h4,.spec dt{font-size:.68rem;letter-spacing:.16em}
   .step__num{font-size:.95rem}
   .footer__bottom{font-size:.74rem}
+
+  /* Las preguntas, más grandes: es donde más se lee */
+  .acc summary{font-size:1.2rem;padding:1.5rem 2.6rem 1.5rem 0}
+  .acc__body p{font-size:.96rem;line-height:1.75}
 
   /* Enlaces con sitio para el dedo */
   .link-arrow{padding-bottom:.85rem}
