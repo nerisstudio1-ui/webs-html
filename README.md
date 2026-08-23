@@ -40,9 +40,9 @@ al principio de `assets/css/styles.css`. Además de Newsreader están descargada
 
 ### Dirección visual
 
-Editorial: bloques de color planos y a sangre, cantos rectos (sin esquinas
-redondeadas), composición alineada a la izquierda y el dorado reservado a
-filetes y barras. Sin degradados difuminados.
+Suave y luminosa: esquinas redondeadas, botones de píldora, composición
+centrada y mucho aire. El inicio va a pantalla completa con la foto del
+estudio, texto y botón en tonos claros sobre un velo cálido.
 
 ## Secciones
 
