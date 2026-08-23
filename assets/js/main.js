@@ -14,10 +14,10 @@
      Todos los botones de "Primera clase gratis" de la web abrirán
      WhatsApp con el mensaje ya escrito.
      ────────────────────────────────────────────────── */
-  var WHATSAPP = '';
+  var WHATSAPP = '34646206292';   /* 646 20 62 92 · Rocío */
 
   /* El mensaje con el que se abre la conversación */
-  var WHATSAPP_MSG = '¡Hola! Me gustaría reservar mi primera clase gratis en CALMA \uD83E\uDD0D';
+  var WHATSAPP_MSG = '¡Hola, Rocío! Me gustaría reservar mi primera clase gratis en CALMA \uD83E\uDD0D';
 
   /* Si algún día hay plataforma de reservas online, se pega aquí
      y manda sobre el WhatsApp */

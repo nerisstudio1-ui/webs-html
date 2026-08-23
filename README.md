@@ -12,6 +12,9 @@ Abre `index.html` en el navegador. No necesita servidor ni instalación.
 
 ```
 index.html              todas las secciones de la web
+calma-web.html          la web entera en un solo archivo, para subirla a
+                        cualquier hosting o a WordPress (se regenera con
+                        `python3 build-single-file.py`)
 assets/css/fonts.css    tipografías alojadas en el propio proyecto
 assets/css/styles.css   estilos (paleta y tipografías del manual de marca)
 assets/js/main.js       animaciones e interacciones
@@ -80,12 +83,24 @@ Instagram antes del contacto.
 - [x] **Logotipo** → hecho. A partir de `Logo calma barre.jpg` se han generado
       `logo.png` (tinta original, fondo transparente) y `logo-cream.png` (versión clara
       para el pie oscuro). Se usan en cabecera, inicio y pie.
-- [ ] **Número de WhatsApp** → se escribe en UN solo sitio: la variable `WHATSAPP`
-      al principio de `assets/js/main.js`, con prefijo y sin signos (p. ej. `'34600123456'`).
-      Los diez botones de "Primera clase gratis" pasan a abrir WhatsApp con el
-      mensaje ya redactado. Mientras esté vacía, llevan al bloque de contacto.
-      Si algún día hay plataforma de reservas online, se pega en `RESERVAS_URL`
-      (justo debajo) y esa manda sobre el WhatsApp.
+- [x] **Número de WhatsApp** → hecho: 646 20 62 92 (Rocío). Se cambia en la
+      variable `WHATSAPP` al principio de `assets/js/main.js`. Si algún día hay
+      plataforma de reservas online, se pega en `RESERVAS_URL` (justo debajo)
+      y esa manda sobre el WhatsApp.
+
+## Subir la web a un hosting
+
+**Un solo archivo.** `calma-web.html` lleva dentro los estilos, el JavaScript,
+las tipografías y las imágenes. Se sube tal cual y funciona: no hay rutas que
+se puedan romper. Pesa unos 3,7 MB.
+
+**Por carpetas.** La otra opción es subir `index.html` junto a la carpeta
+`assets/` completa, respetando la estructura. Carga más rápido (el navegador
+guarda en caché las imágenes y las tipografías por separado) y es lo
+recomendable si la web va a tener dominio propio.
+
+Después de cualquier cambio en `index.html`, `assets/css/` o `assets/js/`,
+hay que regenerar el archivo único con `python3 build-single-file.py`.
 - [ ] **Horarios**, si en algún momento se quieren publicar en la web (ahora no aparecen).
 - [ ] **Teléfono**, si quieres que aparezca.
 
