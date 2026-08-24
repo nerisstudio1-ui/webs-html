@@ -1,0 +1,35 @@
+<div style="font-family:system-ui,-apple-system,Arial,sans-serif;
+            background:#F7F1EA;color:#3F3936;padding:24px;text-align:center;line-height:1.5">
+
+  <p style="margin:0 0 4px;font-size:22px;font-weight:700;color:#8E7C70">PRUEBA 1 · HTML</p>
+  <p style="margin:0 0 18px;font-size:15px">Si lees esto, el widget guarda el HTML.</p>
+
+  <p class="calma-prueba-css" style="margin:0 0 18px;font-size:15px;color:#B00">
+    PRUEBA 2 · CSS — si este texto está EN ROJO, el CSS no llega.</p>
+
+  <input type="checkbox" id="calma-prueba" style="position:absolute;opacity:0;width:1px;height:1px">
+  <label for="calma-prueba"
+         style="display:inline-block;padding:14px 26px;background:#8E7C70;color:#F7F1EA;
+                border-radius:999px;font-size:14px;letter-spacing:.1em;cursor:pointer">
+    PRUEBA 3 · TOCA AQUÍ</label>
+  <div class="calma-prueba-menu"
+       style="margin:16px auto 0;max-width:320px;background:#fff;border-radius:14px;padding:16px">
+    <p style="margin:0;font-size:15px">✅ El menú sin JavaScript FUNCIONA</p>
+  </div>
+
+  <p class="calma-prueba-js" style="margin:18px 0 0;font-size:15px;color:#999">
+    PRUEBA 4 · JavaScript — no se ha ejecutado</p>
+
+  <style>
+    .calma-prueba-css{color:#0A0 !important}
+    .calma-prueba-menu{display:none}
+    #calma-prueba:checked ~ .calma-prueba-menu{display:block}
+  </style>
+
+  <script>
+    (function () {
+      var t = document.querySelector('.calma-prueba-js');
+      if (t) { t.textContent = 'PRUEBA 4 · JavaScript SÍ se ejecuta'; t.style.color = '#0A0'; }
+    })();
+  </script>
+</div>
