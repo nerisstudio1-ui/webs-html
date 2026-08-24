@@ -60,10 +60,39 @@
       nav.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', String(open));
       burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-      document.body.classList.toggle('nav-open', open);
+      document.body.classList.toggle('calma-menu-abierto', open);
     };
     burger.addEventListener('click', function () {
       toggleNav(burger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    /* El menú se cuelga del final de la página al abrirse. Así ningún
+       contenedor del tema puede recortarlo ni desplazarlo fuera de la
+       pantalla, que es lo que pasaba dentro de Elementor. */
+    var ancla = document.createComment('menu'), refugio = null;
+    var moverMenu = function () {
+      var movil = window.matchMedia('(max-width:860px)').matches;
+      if (movil && nav.parentNode !== refugio) {
+        if (!refugio) {
+          refugio = document.createElement('div');
+          refugio.className = 'calma-web calma-refugio-menu';
+          document.body.appendChild(refugio);
+        }
+        nav.parentNode.insertBefore(ancla, nav);
+        refugio.appendChild(nav);
+      } else if (!movil && refugio && nav.parentNode === refugio) {
+        ancla.parentNode.insertBefore(nav, ancla);
+        toggleNav(false);
+      }
+    };
+    moverMenu();
+    window.addEventListener('resize', moverMenu);
+
+    /* Se busca dentro del propio menú: para entonces ya se ha mudado
+       fuera del contenedor y una búsqueda desde arriba no lo encontraría */
+    var cerrar = nav.querySelector('#nav-cerrar, .nav__cerrar');
+    if (cerrar) cerrar.addEventListener('click', function (e) {
+      e.preventDefault(); toggleNav(false);
     });
     nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') toggleNav(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleNav(false); });

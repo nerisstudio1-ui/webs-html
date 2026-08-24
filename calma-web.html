@@ -217,6 +217,7 @@ em{font-style:italic}
 
 /* Menú: dos trazos finos, el de abajo más corto. Sin círculo. */
 .burger{display:none;width:48px;height:48px;position:relative;border:0;background:none;padding:0}
+.nav__cerrar{display:none}
 .burger span{
   position:absolute;right:9px;height:1.5px;background:var(--dark);border-radius:2px;
   transition:width .4s var(--ease),transform .4s var(--ease),opacity .3s
@@ -502,6 +503,7 @@ em{font-style:italic}
 .footer__credit a:hover{color:var(--nude);border-color:var(--nude)}
 
 /* ── 8. ANIMACIONES ──────────────────────────────────── */
+@keyframes navEntra{from{opacity:0}to{opacity:1}}
 @keyframes cue{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes accOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
@@ -518,16 +520,26 @@ em{font-style:italic}
   .mosaic__item:nth-child(n){grid-column:auto;grid-row:auto}
 }
 @media(max-width:860px){
+  /* Menú a pantalla completa, con los enlaces centrados */
   .nav{
-    position:fixed;inset:0 0 0 auto;width:min(86vw,340px);background:var(--cream);
-    flex-direction:column;align-items:flex-start;justify-content:center;gap:1.5rem;
-    padding:2rem var(--pad);font-size:.78rem;
-    transform:translateX(100%);transition:transform .55s var(--ease);box-shadow:var(--shadow);z-index:70
+    position:fixed;top:0;right:0;bottom:0;left:0;width:100%;
+    background:var(--cream);
+    flex-direction:column;align-items:center;justify-content:center;gap:.4rem;
+    padding:5.5rem var(--pad) 3rem;text-align:center;font-size:.92rem;
+    z-index:2147483000;display:none;overflow-y:auto
   }
-  .nav.is-open{transform:none}
-  .nav a.nav__cta{margin:1.2rem 0 0}
+  .nav.is-open{display:flex;animation:navEntra .32s var(--ease)}
+  .nav__cerrar{
+    display:block;position:absolute;top:1rem;right:1rem;width:48px;height:48px;
+    border:0;background:none;padding:0
+  }
+  .nav__cerrar span{
+    position:absolute;left:14px;top:23px;width:20px;height:1.5px;background:var(--dark);border-radius:2px
+  }
+  .nav__cerrar span:nth-child(1){transform:rotate(45deg)}
+  .nav__cerrar span:nth-child(2){transform:rotate(-45deg)}
   .burger{display:block;z-index:80}
-  body.nav-open{overflow:hidden}
+  body.calma-menu-abierto{overflow:hidden}
   .sticky-book{display:block}
   .concepts{grid-template-columns:repeat(2,1fr)}
   .prices{grid-template-columns:repeat(2,1fr);gap:1rem}
@@ -554,9 +566,9 @@ em{font-style:italic}
   .step{padding-top:1.4rem}
   .ig-band__inner{align-items:flex-start}
 
-  /* Zonas de toque cómodas en el menú lateral */
-  .nav{gap:.2rem;font-size:.82rem}
-  .nav a:not(.btn){padding:.85rem 0;width:100%}
+  /* Zonas de toque cómodas y enlaces centrados */
+  .nav a:not(.btn){padding:.95rem 0;width:100%;letter-spacing:.22em}
+  .nav a.nav__cta{margin-top:1.8rem;min-width:min(78vw,320px)}
 }
 @media(max-width:640px){
   .hero{min-height:calc(100svh - 70px)}
@@ -617,6 +629,7 @@ section[id]{scroll-margin-top:90px}
     </a>
 
     <nav class="nav" id="nav" aria-label="Navegación principal">
+      <button class="nav__cerrar" id="nav-cerrar" aria-label="Cerrar menú"><span></span><span></span></button>
       <a href="#calma">CALMA</a>
       <a href="#barre">Barre</a>
       <a href="#clases">Clases</a>
@@ -1121,10 +1134,39 @@ section[id]{scroll-margin-top:90px}
       nav.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', String(open));
       burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-      document.body.classList.toggle('nav-open', open);
+      document.body.classList.toggle('calma-menu-abierto', open);
     };
     burger.addEventListener('click', function () {
       toggleNav(burger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    /* El menú se cuelga del final de la página al abrirse. Así ningún
+       contenedor del tema puede recortarlo ni desplazarlo fuera de la
+       pantalla, que es lo que pasaba dentro de Elementor. */
+    var ancla = document.createComment('menu'), refugio = null;
+    var moverMenu = function () {
+      var movil = window.matchMedia('(max-width:860px)').matches;
+      if (movil && nav.parentNode !== refugio) {
+        if (!refugio) {
+          refugio = document.createElement('div');
+          refugio.className = 'calma-web calma-refugio-menu';
+          document.body.appendChild(refugio);
+        }
+        nav.parentNode.insertBefore(ancla, nav);
+        refugio.appendChild(nav);
+      } else if (!movil && refugio && nav.parentNode === refugio) {
+        ancla.parentNode.insertBefore(nav, ancla);
+        toggleNav(false);
+      }
+    };
+    moverMenu();
+    window.addEventListener('resize', moverMenu);
+
+    /* Se busca dentro del propio menú: para entonces ya se ha mudado
+       fuera del contenedor y una búsqueda desde arriba no lo encontraría */
+    var cerrar = nav.querySelector('#nav-cerrar, .nav__cerrar');
+    if (cerrar) cerrar.addEventListener('click', function (e) {
+      e.preventDefault(); toggleNav(false);
     });
     nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') toggleNav(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleNav(false); });

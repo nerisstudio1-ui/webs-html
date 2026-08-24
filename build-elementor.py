@@ -17,7 +17,11 @@ WordPress puede descolocar la web ni la web puede descolocar el tema.
 import base64, mimetypes, pathlib, re, urllib.parse
 
 RAIZ  = pathlib.Path(__file__).parent
-CAJA  = 'calma-web'                     # id que envuelve toda la web
+CAJA    = 'calma-web'                   # id que envuelve toda la web
+PREFIJO = '.calma-web.calma-web'        # con qué se encierra cada selector
+                                        # (clase, no id: así el menú sigue
+                                        #  con estilo aunque se cuelgue del
+                                        #  final de la página)
 BASE  = 'https://TU-DOMINIO.com/wp-content/uploads/calma/'
 
 FUENTES_CDN = ("https://fonts.googleapis.com/css2?"
@@ -35,17 +39,17 @@ def encajar(selector: str) -> str:
     if s.startswith('@'):
         return s
     if s in GLOBALES:
-        return f'#{CAJA}'
-    if s.startswith('*'):                       # *::before → #caja *::before
-        return f'#{CAJA} {s}'
+        return PREFIJO
+    if s.startswith('*'):                       # *::before → .caja *::before
+        return f'{PREFIJO} {s}'
     if s.startswith('.js '):                    # la clase js pasa a la propia caja
-        return f'#{CAJA}.js {s[4:]}'
+        return f'{PREFIJO}.js {s[4:]}'
     if s.startswith('html') or s.startswith('body'):
         resto = s.split(None, 1)
-        return f'#{CAJA} {resto[1]}' if len(resto) > 1 else f'#{CAJA}'
+        return f'{PREFIJO} {resto[1]}' if len(resto) > 1 else PREFIJO
     if s.startswith(':focus-visible') or s.startswith('::selection'):
-        return f'#{CAJA} {s}'
-    return f'#{CAJA} {s}'
+        return f'{PREFIJO} {s}'
+    return f'{PREFIJO} {s}'
 
 def encajar_css(css: str) -> str:
     # Fuera los comentarios: si no, se cuelan dentro de los selectores
@@ -78,16 +82,16 @@ marco = f'''
    Las fotos se cambian buscando y reemplazando la dirección de arriba. */
 @import url('{FUENTES_CDN}');
 
-#{CAJA} *,#{CAJA} *::before,#{CAJA} *::after{{box-sizing:border-box}}
+{PREFIJO} *,{PREFIJO} *::before,{PREFIJO} *::after{{box-sizing:border-box}}
 /* Blindaje: los temas de WordPress suelen imponer bordes, mayúsculas
    y subrayados a todo. Aquí dentro, no. */
-#{CAJA} img{{max-width:100%;height:auto;display:block;border:0;border-radius:0;box-shadow:none;filter:none}}
-#{CAJA} a{{text-decoration:none;color:inherit;box-shadow:none}}
-#{CAJA} h1,#{CAJA} h2,#{CAJA} h3,#{CAJA} h4{{text-transform:none;font-weight:inherit}}
-#{CAJA} button{{border:0;background:none;font:inherit;color:inherit}}
-#{CAJA} svg{{display:inline-block;vertical-align:middle}}
-#{CAJA} h1,#{CAJA} h2,#{CAJA} h3,#{CAJA} h4,#{CAJA} p,#{CAJA} ul,#{CAJA} ol,#{CAJA} figure{{margin:0;padding:0}}
-#{CAJA} ul,#{CAJA} ol{{list-style:none}}
+{PREFIJO} img{{max-width:100%;height:auto;display:block;border:0;border-radius:0;box-shadow:none;filter:none}}
+{PREFIJO} a{{text-decoration:none;color:inherit;box-shadow:none}}
+{PREFIJO} h1,{PREFIJO} h2,{PREFIJO} h3,{PREFIJO} h4{{text-transform:none;font-weight:inherit}}
+{PREFIJO} button{{border:0;background:none;font:inherit;color:inherit}}
+{PREFIJO} svg{{display:inline-block;vertical-align:middle}}
+{PREFIJO} h1,{PREFIJO} h2,{PREFIJO} h3,{PREFIJO} h4,{PREFIJO} p,{PREFIJO} ul,{PREFIJO} ol,{PREFIJO} figure{{margin:0;padding:0}}
+{PREFIJO} ul,{PREFIJO} ol{{list-style:none}}
 body.calma-menu-abierto{{overflow:hidden}}
 '''
 
@@ -121,11 +125,14 @@ cierre = f"""
   margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
   overflow-x:clip;text-align:left
 }}
+/* El menú del móvil se cuelga del final de la página, dentro de este
+   envoltorio. Ni ancho completo ni márgenes: solo hereda el estilo. */
+.calma-refugio-menu{{margin:0;padding:0;width:auto;overflow:visible;background:none}}
 """
 
 def escribir(nombre, resolver_imagen):
     c = re.sub(r'assets/img/([\w.\- ]+?\.(?:jpg|jpeg|png|svg|webp))', resolver_imagen, cuerpo)
-    doc = (f'<div id="{CAJA}">\n\n<style>\n{marco}\n{estilos}\n{cierre}\n</style>\n\n'
+    doc = (f'<div id="{CAJA}" class="{CAJA}">\n\n<style>\n{marco}\n{estilos}\n{cierre}\n</style>\n\n'
            f'{c}\n\n<script>\n{guion}\n</script>\n\n</div>\n')
     (RAIZ / nombre).write_text(doc)
     print(f'{nombre} · {len(doc)/1024:.0f} KB')
