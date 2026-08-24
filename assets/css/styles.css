@@ -137,12 +137,12 @@ em{font-style:italic}
 .header.is-stuck .header__inner{padding:.85rem 0}
 
 /* Logotipo (archivo original de marca, recortado con fondo transparente) */
-.logo{display:block;line-height:0}
-.logo img{width:clamp(122px,13vw,158px);height:auto;transition:opacity .4s}
+.logo{display:block;line-height:0;flex:0 0 auto}
+.logo img{width:clamp(150px,15vw,190px);height:auto;transition:opacity .4s}
 .logo:hover img{opacity:.75}
 .footer .logo img{width:clamp(150px,18vw,186px)}
 
-.nav{display:flex;align-items:center;gap:1.7rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:300}
+.nav{display:flex;align-items:center;gap:1.15rem;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:300}
 .nav a{white-space:nowrap;flex-shrink:0}
 .nav a:not(.btn){position:relative;padding:.3rem 0;color:var(--dark);transition:color .35s}
 .nav a:not(.btn)::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .45s var(--ease)}
@@ -318,7 +318,7 @@ em{font-style:italic}
 
 /* FAQ */
 .faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,5vw,5rem);align-items:start}
-.faq__intro{position:sticky;top:130px}
+.faq__intro{position:static}
 .acc{border-bottom:1px solid rgba(63,57,54,.18)}
 .acc summary{
   list-style:none;cursor:pointer;padding:1.35rem 3rem 1.35rem 0;position:relative;
@@ -509,6 +509,31 @@ em{font-style:italic}
   font-size:.84rem;opacity:.9
 }
 
+/* ── Franja con la frase, a ancho de pantalla ───────── */
+.franja{
+  position:relative;display:grid;place-items:center;isolation:isolate;
+  min-height:clamp(320px,52vh,520px);padding:clamp(3rem,8vw,6rem) var(--pad);
+  overflow:hidden;background:var(--dark)
+}
+.franja img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  z-index:-2;opacity:.55
+}
+.franja::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(63,57,54,.45),rgba(63,57,54,.6))
+}
+.franja__frase{
+  margin:0;text-align:center;color:var(--cream);
+  font-family:var(--font-display);font-weight:400;line-height:1.2;
+  font-size:clamp(2rem,5.5vw,3.6rem);letter-spacing:-.01em;
+  text-shadow:0 2px 24px rgba(63,57,54,.35)
+}
+.franja__frase em{font-style:italic}
+
+/* Foto dentro de la columna de preguntas frecuentes */
+.faq__foto{margin-top:clamp(2rem,4vw,3rem);aspect-ratio:4/5}
+
 /* ── 7. PIE ──────────────────────────────────────────── */
 .footer{background:var(--dark);color:var(--cream);padding:clamp(3.5rem,7vw,5.5rem) 0 2rem;overflow:hidden}
 .footer__top{display:flex;flex-wrap:wrap;gap:2.5rem 4rem;justify-content:space-between}
@@ -550,7 +575,9 @@ em{font-style:italic}
   .mosaic__item,.mosaic__item--tall{aspect-ratio:4/5;height:auto}
   .mosaic__item:nth-child(n){grid-column:auto;grid-row:auto}
 }
-@media(max-width:860px){
+@media(max-width:1150px){
+  /* La barra con los nombres largos no cabe hasta bien entrado el
+     escritorio: por debajo de aquí, menú desplegable. */
   /* ── Menú del móvil: HTML y CSS, sin JavaScript ──────
      Se despliega debajo de la cabecera, en el flujo normal de la
      página. Nada de position:fixed: dentro de Elementor lo fijo
@@ -600,6 +627,15 @@ em{font-style:italic}
   .nav-toggle:checked ~ .nav{padding-top:1rem !important}
 
   .burger{display:block;z-index:80}
+  .burger{position:absolute;right:-10px;top:.35rem;transform:none}
+
+  /* Logotipo centrado y con presencia */
+  .header__inner{position:relative;justify-content:center}
+  .logo{margin:0 auto}
+  .logo img{width:clamp(165px,22vw,215px)}
+}
+
+@media(max-width:860px){
   body.calma-menu-abierto{overflow:hidden}
   .sticky-book{display:block}
   /* ── Texto centrado en móvil ─────────────────────────
@@ -654,9 +690,6 @@ em{font-style:italic}
   /* Cabecera: el logotipo al centro y el menú a la derecha */
   .header__inner{position:relative;justify-content:center;padding:1.1rem 0}
   .header.is-stuck .header__inner{padding:.8rem 0}
-  .logo{margin:0 auto}
-  .logo img{width:clamp(126px,34vw,150px)}
-  .burger{position:absolute;right:-10px;top:.35rem;transform:none}
 
   /* En móvil, tarjetas y pasos se deslizan de lado en vez de apilarse.
      Se salen del margen a propósito, para que asome la siguiente y se
