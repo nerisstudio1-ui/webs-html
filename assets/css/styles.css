@@ -422,6 +422,93 @@ em{font-style:italic}
 .ig-band__title em{font-style:italic}
 .ig-band .btn--ghost{border-color:rgba(63,57,54,.3)}
 
+/* ── Pilares (grupos reducidos · técnica) ───────────── */
+.pilares{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2.5vw,1.8rem);
+  margin-top:clamp(2.5rem,6vw,4rem)
+}
+.pilar{
+  padding:clamp(1.6rem,3vw,2.4rem);background:var(--cream);
+  border:1px solid var(--line-soft)
+}
+.pilar__num{
+  font-family:var(--font-display);font-size:1.5rem;line-height:1;
+  color:var(--accent);margin:0 0 .6rem
+}
+.pilar h3{font-family:var(--font-display);font-size:clamp(1.3rem,2.4vw,1.7rem);margin:0 0 .5rem}
+.pilar p{margin:0;font-size:.95rem}
+
+/* ── Horarios ───────────────────────────────────────── */
+.horarios{margin-top:clamp(3rem,7vw,5rem)}
+.horarios__grid{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(1rem,2.5vw,1.8rem);
+  align-items:start
+}
+.horario{
+  padding:clamp(1.5rem,3vw,2.2rem);background:var(--cream);
+  border:1px solid var(--line-soft)
+}
+.horario--fitness{background:var(--nude)}
+.horario__tit{
+  font-family:var(--font-display);font-size:clamp(1.25rem,2.2vw,1.55rem);
+  margin:0 0 1rem;padding-bottom:.7rem;border-bottom:1px solid var(--line-soft)
+}
+.horario__lista{margin:0;padding:0;list-style:none}
+.horario__lista li{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  padding:.7rem 0;border-bottom:1px solid var(--line-soft);font-size:.92rem
+}
+.horario__lista li:last-child{border-bottom:0}
+.horario__lista em{
+  font-style:normal;font-variant-numeric:lining-nums tabular-nums;
+  letter-spacing:.06em;white-space:nowrap;color:var(--accent-strong);font-weight:500
+}
+.horario__nota{margin:1rem 0 0;font-size:.82rem;opacity:.8}
+.horario__nota a{border-bottom:1px solid var(--accent);padding-bottom:1px}
+
+/* ── Fitness: los dos bloques de la clase ───────────── */
+.bloques{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2.5vw,1.8rem)}
+.bloque{
+  padding:clamp(1.6rem,3vw,2.4rem);background:var(--cream);
+  border:1px solid var(--line-soft)
+}
+.bloque__num{
+  font-family:var(--font-display);font-size:1.5rem;line-height:1;
+  color:var(--accent);margin:0 0 .5rem
+}
+.bloque h4{font-family:var(--font-display);font-size:clamp(1.25rem,2.2vw,1.6rem);margin:0;font-weight:400}
+.bloque__pie{
+  margin:.15rem 0 1rem;font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent-strong)
+}
+.bloque p{font-size:.95rem}
+.bloque__lista{margin:1rem 0 0;padding:0;list-style:none}
+.bloque__lista li{
+  position:relative;padding:.5rem 0 .5rem 1.15rem;font-size:.9rem;
+  border-bottom:1px solid var(--line-soft)
+}
+.bloque__lista li::before{
+  content:"";position:absolute;left:0;top:1.05rem;width:5px;height:5px;
+  border-radius:50%;background:var(--accent)
+}
+.bloque__lista li:last-child{border-bottom:0}
+.bloque__frase{
+  margin:1.2rem 0 0;font-family:var(--font-display);font-style:italic;
+  font-size:1.05rem;color:var(--accent-strong)
+}
+.fitness-pie{
+  margin-top:clamp(2.5rem,6vw,4rem);padding:clamp(1.8rem,4vw,2.8rem);
+  background:var(--cream);border:1px solid var(--line-soft);text-align:center
+}
+.fitness-pie p{margin:0 0 .6rem;font-size:.95rem}
+.fitness-pie .btn{margin-top:1rem}
+
+/* Aviso de lesiones dentro de las tarjetas de perfil */
+.profile__aviso{
+  margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--line-soft);
+  font-size:.84rem;opacity:.9
+}
+
 /* ── 7. PIE ──────────────────────────────────────────── */
 .footer{background:var(--dark);color:var(--cream);padding:clamp(3.5rem,7vw,5.5rem) 0 2rem;overflow:hidden}
 .footer__top{display:flex;flex-wrap:wrap;gap:2.5rem 4rem;justify-content:space-between}
@@ -516,6 +603,8 @@ em{font-style:italic}
   body.calma-menu-abierto{overflow:hidden}
   .sticky-book{display:block}
   .concepts{grid-template-columns:repeat(2,1fr)}
+  .pilares,.bloques,.horarios__grid{grid-template-columns:1fr}
+  .horario__lista li{font-size:.88rem}
   .prices{grid-template-columns:repeat(2,1fr);gap:1rem}
   .price__badge{font-size:.56rem}
 
