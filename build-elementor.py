@@ -105,7 +105,8 @@ guion = (RAIZ / 'assets/js/main.js').read_text()
 guion = guion.replace(
     "  var $  = function (s, c) { return (c || document).querySelector(s); };\n"
     "  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };",
-    f"  var caja = document.getElementById('{CAJA}');\n"
+    f"  var yo = document.currentScript;\n"
+    f"  var caja = (yo && yo.closest && yo.closest('.{CAJA}')) || document.getElementById('{CAJA}');\n"
     "  if (!caja) return;\n"
     "  caja.className += ' js';\n"
     "  var $  = function (s, c) { return (c || caja).querySelector(s); };\n"

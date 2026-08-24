@@ -56,11 +56,60 @@
   var burger = $('#burger');
   var nav = $('#nav');
   if (burger && nav) {
+    /* El menú se pinta con estilos en línea marcados !important.
+       Así se ve igual aunque el CSS llegue tocado: ni el tema de
+       WordPress, ni un plugin que comprima el código, ni un widget
+       antiguo que siga en la página pueden dejarlo a medias. */
+    var ABIERTO = {
+      'position':'fixed', 'top':'0', 'right':'0', 'bottom':'0', 'left':'0',
+      'width':'100%', 'height':'100%', 'max-width':'none', 'min-width':'0',
+      'margin':'0', 'border':'0', 'box-sizing':'border-box',
+      'display':'flex', 'flex-direction':'column',
+      'align-items':'center', 'justify-content':'center', 'gap':'.4rem',
+      'padding':'5.5rem 1.4rem 3rem', 'text-align':'center',
+      'background':'#F7F1EA', 'transform':'none',
+      'visibility':'visible', 'opacity':'1',
+      'z-index':'2147483000', 'overflow-y':'auto'
+    };
+    var ENLACE = {
+      'display':'block', 'width':'100%', 'max-width':'320px',
+      'color':'#3F3936', 'background':'none', 'opacity':'1',
+      'visibility':'visible', 'text-decoration':'none',
+      'font-size':'1rem', 'letter-spacing':'.22em', 'padding':'.95rem 0'
+    };
+    var CTA = {
+      'display':'block', 'width':'100%', 'max-width':'320px',
+      'margin-top':'1.8rem', 'color':'#F7F1EA', 'background':'#8E7C70',
+      'border-radius':'999px', 'padding':'1.05rem 1.5rem',
+      'opacity':'1', 'visibility':'visible', 'text-decoration':'none',
+      'font-size':'.78rem', 'letter-spacing':'.18em'
+    };
+    var forzar  = function (el, p) { for (var k in p) el.style.setProperty(k, p[k], 'important'); };
+    var soltar  = function (el, p) { for (var k in p) el.style.removeProperty(k); };
+    var esMovil = function () { return window.matchMedia('(max-width:860px)').matches; };
+    var enlaces = function () { return $$('a', nav); };
+
+    var pintar = function () {
+      forzar(nav, ABIERTO);
+      enlaces().forEach(function (a) {
+        forzar(a, a.classList.contains('nav__cta') ? CTA : ENLACE);
+      });
+      document.body.style.setProperty('overflow', 'hidden', 'important');
+    };
+    var despintar = function (ocultar) {
+      soltar(nav, ABIERTO);
+      enlaces().forEach(function (a) { soltar(a, CTA); soltar(a, ENLACE); });
+      document.body.style.removeProperty('overflow');
+      if (ocultar) nav.style.setProperty('display', 'none', 'important');
+    };
+
     var toggleNav = function (open) {
       nav.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', String(open));
       burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
       document.body.classList.toggle('calma-menu-abierto', open);
+      if (!esMovil()) { despintar(false); return; }
+      if (open) { pintar(); } else { despintar(true); }
     };
     burger.addEventListener('click', function () {
       toggleNav(burger.getAttribute('aria-expanded') !== 'true');
@@ -80,9 +129,11 @@
         }
         nav.parentNode.insertBefore(ancla, nav);
         refugio.appendChild(nav);
+        if (!nav.classList.contains('is-open')) despintar(true);
       } else if (!movil && refugio && nav.parentNode === refugio) {
         ancla.parentNode.insertBefore(nav, ancla);
         toggleNav(false);
+        despintar(false);
       }
     };
     moverMenu();
