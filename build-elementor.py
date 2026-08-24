@@ -107,7 +107,7 @@ guion = guion.replace(
     "  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };",
     f"  var yo = document.currentScript;\n"
     f"  var caja = (yo && yo.closest && yo.closest('.{CAJA}')) || document.getElementById('{CAJA}');\n"
-    "  if (!caja) return;\n"
+    "  if (!caja) caja = document.body;   /* si el envoltorio se pierde, la pagina entera */\n"
     "  caja.className += ' js';\n"
     "  var $  = function (s, c) { return (c || caja).querySelector(s); };\n"
     "  var $$ = function (s, c) { return Array.prototype.slice.call((c || caja).querySelectorAll(s)); };")

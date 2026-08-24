@@ -677,7 +677,7 @@ body.calma-menu-abierto{overflow:hidden}
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var yo = document.currentScript;
   var caja = (yo && yo.closest && yo.closest('.calma-web')) || document.getElementById('calma-web');
-  if (!caja) return;
+  if (!caja) caja = document.body;   /* si el envoltorio se pierde, la pagina entera */
   caja.className += ' js';
   var $  = function (s, c) { return (c || caja).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || caja).querySelectorAll(s)); };
@@ -759,6 +759,17 @@ body.calma-menu-abierto{overflow:hidden}
                  'left': Math.round(x - r.left) + 'px' });
   };
 
+  var APARTADOS = [
+    { texto: 'CALMA',      href: '#calma'    },
+    { texto: 'Barre',      href: '#barre'    },
+    { texto: 'Clases',     href: '#clases'   },
+    { texto: 'Tarifas',    href: '#tarifas'  },
+    { texto: 'Sobre mí',   href: '#sobre-mi' },
+    { texto: 'El estudio', href: '#estudio'  },
+    { texto: 'Contacto',   href: '#contacto' },
+    { texto: 'Primera clase gratis', href: '#contacto', cta: true }
+  ];
+
   var panel = null;
 
   var cerrarMenu = function () {
@@ -807,15 +818,15 @@ body.calma-menu-abierto{overflow:hidden}
     x.addEventListener('click', function (e) { e.preventDefault(); cerrarMenu(); });
     panel.appendChild(x);
 
-    /* Los enlaces, copiados del menú de escritorio */
-    var origen = nav ? $$('a', nav) : [];
-    origen.forEach(function (a) {
-      var esCta = a.classList.contains('nav__cta') || a.hasAttribute('data-book');
+    /* Los enlaces van escritos aquí, no se leen de la página: si el
+       menú de la cabecera no apareciese por lo que sea, el panel se
+       construye igual y nunca sale vacío. */
+    APARTADOS.forEach(function (item) {
+      var esCta = !!item.cta;
       var nuevo = document.createElement('a');
-      nuevo.href = a.getAttribute('href') || '#';
-      nuevo.textContent = (a.textContent || '').trim();
-      if (a.target) nuevo.target = a.target;
-      if (a.rel) nuevo.rel = a.rel;
+      nuevo.href = esCta ? (reservaUrl || '#contacto') : item.href;
+      nuevo.textContent = item.texto;
+      if (esCta && reservaUrl) { nuevo.target = '_blank'; nuevo.rel = 'noopener'; }
       vestir(nuevo, {
         'display':'block', 'width':'100%', 'max-width':'320px',
         'box-sizing':'border-box', 'text-align':'center',
@@ -846,18 +857,19 @@ body.calma-menu-abierto{overflow:hidden}
     }
   };
 
-  if (burger) {
-    burger.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (panel) cerrarMenu(); else abrirMenu();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') cerrarMenu();
-    });
-    window.addEventListener('resize', function () {
-      if (panel && !window.matchMedia('(max-width:860px)').matches) cerrarMenu();
-    });
-  }
+  document.addEventListener('click', function (e) {
+    var boton = e.target && e.target.closest && e.target.closest('.burger, #burger');
+    if (!boton) return;
+    e.preventDefault();
+    burger = boton;
+    if (panel) cerrarMenu(); else abrirMenu();
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') cerrarMenu();
+  });
+  window.addEventListener('resize', function () {
+    if (panel && !window.matchMedia('(max-width:860px)').matches) cerrarMenu();
+  });
 
   /* ── Botón flotante de WhatsApp ───────────────────────
      Se cuelga del final de la página, fuera del contenedor de
