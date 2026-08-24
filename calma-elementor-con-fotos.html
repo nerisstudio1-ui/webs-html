@@ -125,7 +125,7 @@ body.calma-menu-abierto{overflow:hidden}
 }.calma-web.calma-web .final-cta__title{
   font-family:var(--font-display);font-size:clamp(1.8rem,4.4vw,3.3rem);line-height:1.18;font-weight:400;
   margin:0 0 2rem;color:var(--dark)
-}.calma-web.calma-web .final-cta__title em{color:var(--accent-strong)}.calma-web.calma-web .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center}.calma-web.calma-web .contact-list{display:grid;gap:1.2rem;border-top:1px solid var(--line);padding-top:1.8rem;margin-bottom:2rem}.calma-web.calma-web .contact-list li{display:grid;grid-template-columns:110px 1fr;gap:1rem;font-size:.92rem;color:var(--taupe)}.calma-web.calma-web .contact-list span{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:.4rem}.calma-web.calma-web .contact-list a{color:var(--dark);border-bottom:1px solid transparent;transition:color .3s,border-color .3s}.calma-web.calma-web .contact-list a:hover{color:var(--accent-strong);border-color:var(--accent)}.calma-web.calma-web .map{margin:0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;background:var(--nude);box-shadow:var(--shadow-soft)}.calma-web.calma-web .map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.35) sepia(.12)}.calma-web.calma-web .sticky-book{
+}.calma-web.calma-web .final-cta__title em{color:var(--accent-strong)}.calma-web.calma-web .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center}.calma-web.calma-web .contact-list{display:grid;gap:1.2rem;border-top:1px solid var(--line);padding-top:1.8rem;margin-bottom:2rem}.calma-web.calma-web .contact-list li{display:grid;grid-template-columns:110px 1fr;gap:1rem;font-size:.92rem;color:var(--taupe)}.calma-web.calma-web .contact-list span{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);padding-top:.4rem}.calma-web.calma-web .contact-list a{color:var(--dark);border-bottom:1px solid transparent;transition:color .3s,border-color .3s}.calma-web.calma-web .contact-list a:hover{color:var(--accent-strong);border-color:var(--accent)}.calma-web.calma-web .map{margin:0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;background:var(--nude);box-shadow:var(--shadow-soft)}.calma-web.calma-web .map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.35) sepia(.12)}.calma-web.calma-web .aviso-js{margin-top:.9rem;font-size:.68rem;letter-spacing:.08em;opacity:.75}.calma-web.calma-web .sticky-book{
   position:fixed;left:50%;transform:translateX(-50%);bottom:1rem;z-index:55;display:none;
   background:var(--cream);color:var(--dark);padding:1rem 1.7rem;border-radius:var(--r-pill);
   border:1px solid rgba(63,57,54,.14);
@@ -644,6 +644,7 @@ body.calma-menu-abierto{overflow:hidden}
       <p><a href="#">Aviso legal</a> · <a href="#">Privacidad</a> · <a href="#">Cookies</a></p>
       <p class="footer__credit">Diseño y desarrollo —
         <a href="https://www.nerisstudio.com" target="_blank" rel="noopener">Neris Studio</a></p>
+      <p class="aviso-js" id="aviso-js">Activa JavaScript en el navegador para poder usar el menú.</p>
     </div>
   </div>
 </footer>
@@ -678,6 +679,12 @@ body.calma-menu-abierto{overflow:hidden}
   /* Si algún día hay plataforma de reservas online, se pega aquí
      y manda sobre el WhatsApp */
   var RESERVAS_URL = '';
+
+  var VERSION = 'v5 · 2026-08-24';
+
+  /* Si esto se ejecuta, el aviso sobra */
+  var aviso = document.getElementById('aviso-js');
+  if (aviso) aviso.style.display = 'none';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var yo = document.currentScript;
@@ -754,7 +761,27 @@ body.calma-menu-abierto{overflow:hidden}
        "fijo" deja de serlo: el menú aparece donde no toca y el botón de
        WhatsApp se queda clavado al final de la página. Lo comprobamos
        midiendo, en vez de darlo por hecho. */
+    var rompeFijo = function (el) {
+      var n = el && el.parentElement;
+      while (n) {
+        var cs = getComputedStyle(n);
+        if (cs.transform !== 'none' ||
+            cs.perspective !== 'none' ||
+            cs.filter !== 'none' ||
+            (cs.backdropFilter && cs.backdropFilter !== 'none') ||
+            /transform|perspective|filter/.test(cs.willChange || '') ||
+            /paint|layout|strict|content/.test(cs.contain || ''))
+          return true;
+        n = n.parentElement;
+      }
+      return false;
+    };
+
     var fijoVa = function () {
+      /* Dos comprobaciones: medir, y mirar si algún padre lleva un
+         transform (con la página arriba del todo, medir no basta:
+         lo roto y lo bueno caen en el mismo sitio). */
+      if (rompeFijo(nav)) return false;
       var t = document.createElement('div');
       t.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;' +
                         'opacity:0;pointer-events:none;margin:0;padding:0;border:0';
@@ -874,48 +901,89 @@ body.calma-menu-abierto{overflow:hidden}
   }
 
   /* ── Diagnóstico ─────────────────────────────────────
-     Abriendo la web con  #calma-debug  al final de la dirección
-     aparece un recuadro con lo que de verdad está pasando en ese
-     móvil. Sirve para mandar una captura cuando algo no se ve. */
-  if (/calma-debug/.test(location.hash)) {
-    var fallos = [];
-    window.addEventListener('error', function (e) { fallos.push(e.message); });
-    setTimeout(function () {
-      var probeta = document.createElement('div');
-      probeta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';
-      document.body.appendChild(probeta);
-      var pr = probeta.getBoundingClientRect();
-      document.body.removeChild(probeta);
-      var menu = document.querySelector('.nav');
-      var caja = menu ? menu.getBoundingClientRect() : null;
-      var culpables = [], el = menu && menu.parentElement;
-      while (el) {
-        var cs = getComputedStyle(el);
-        if (cs.transform !== 'none' || cs.filter !== 'none' ||
-            cs.perspective !== 'none' || cs.contain !== 'none')
-          culpables.push((el.tagName + '.' + (el.className || '')).slice(0, 40));
-        el = el.parentElement;
+     Tres maneras de abrirlo, por si una falla:
+       · dirección terminada en  ?calma-debug  o  #calma-debug
+       · añadir  #calma-debug  y recargar
+       · tocar cinco veces seguidas el logotipo de arriba
+     Sale un recuadro con lo que de verdad pasa en ese móvil. */
+  var fallos = [];
+  window.addEventListener('error', function (e) { fallos.push(e.message); });
+
+  var diagnostico = function () {
+    if (document.getElementById('calma-diag')) return;
+    var probeta = document.createElement('div');
+    probeta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';
+    document.body.appendChild(probeta);
+    var pr = probeta.getBoundingClientRect();
+    document.body.removeChild(probeta);
+
+    var menu = document.querySelector('.nav');
+    var estorba = function (n) {
+      while (n) {
+        var cs = getComputedStyle(n);
+        if (cs.transform !== 'none' || cs.perspective !== 'none' || cs.filter !== 'none' ||
+            /transform|perspective|filter/.test(cs.willChange || '') ||
+            /paint|layout|strict|content/.test(cs.contain || '')) return true;
+        n = n.parentElement;
       }
-      var caj = document.querySelectorAll('.calma-web[id]').length;
-      var p = document.createElement('pre');
-      p.style.cssText = 'position:absolute;top:0;left:0;right:0;z-index:2147483001;' +
-        'margin:0;padding:12px;background:#111;color:#0f0;font:11px/1.5 monospace;' +
-        'white-space:pre-wrap;word-break:break-all';
-      p.textContent = [
-        'pantalla   ' + window.innerWidth + 'x' + window.innerHeight,
-        'fixed va   ' + (Math.abs(pr.top) < 2 && Math.abs(pr.left) < 2),
-        'copias     ' + caj,
-        'menu en    ' + (menu ? menu.parentElement.className.slice(0, 40) : 'NO HAY MENU'),
-        'menu caja  ' + (caja ? [Math.round(caja.x), Math.round(caja.y),
-                                 Math.round(caja.width), Math.round(caja.height)].join(' / ') : '-'),
-        'enlaces    ' + (menu ? menu.querySelectorAll('a').length : 0),
-        'boton      ' + (document.querySelector('.sticky-book') ? 'si' : 'no'),
-        'culpables  ' + (culpables.join(' | ') || 'ninguno'),
-        'errores    ' + (fallos.join(' | ') || 'ninguno')
-      ].join('\n');
-      document.body.appendChild(p);
-    }, 900);
-  }
+      return false;
+    };
+    var fijo = Math.abs(pr.top) < 2 && Math.abs(pr.left) < 2 &&
+               !(menu && estorba(menu.parentElement));
+    var c = menu ? menu.getBoundingClientRect() : null;
+    var culpables = [], el = menu && menu.parentElement;
+    while (el) {
+      var cs = getComputedStyle(el);
+      if (cs.transform !== 'none' || cs.filter !== 'none' ||
+          cs.perspective !== 'none' || cs.contain !== 'none')
+        culpables.push((el.tagName + '.' + (el.className || '')).slice(0, 34));
+      el = el.parentElement;
+    }
+
+    var caja = document.createElement('div');
+    caja.id = 'calma-diag';
+    caja.style.cssText = 'position:absolute;top:0;left:0;width:100%;z-index:2147483600;' +
+      'background:#111;color:#7CFF7C;font:12px/1.6 monospace;padding:14px;' +
+      'white-space:pre-wrap;word-break:break-all;box-sizing:border-box';
+    caja.textContent = [
+      'CALMA · diagnostico ' + VERSION,
+      'pantalla   ' + window.innerWidth + ' x ' + window.innerHeight,
+      'fixed va   ' + (fijo ? 'SI' : 'NO  <-- aqui esta el problema'),
+      'copias     ' + document.querySelectorAll('.calma-web[id]').length,
+      'menu       ' + (menu ? 'si' : 'NO HAY MENU'),
+      'menu en    ' + (menu ? (menu.parentElement.className || '?').slice(0, 34) : '-'),
+      'menu caja  ' + (c ? [Math.round(c.x), Math.round(c.y),
+                            Math.round(c.width), Math.round(c.height)].join(' / ') : '-'),
+      'enlaces    ' + (menu ? menu.querySelectorAll('a').length : 0),
+      'boton wa   ' + (document.querySelector('.sticky-book') ? 'si' : 'no'),
+      'culpables  ' + (culpables.join(' | ') || 'ninguno'),
+      'errores    ' + (fallos.join(' | ') || 'ninguno')
+    ].join('\n');
+
+    var x = document.createElement('button');
+    x.textContent = 'CERRAR';
+    x.style.cssText = 'display:block;margin:12px 0 0;padding:10px 18px;background:#7CFF7C;' +
+      'color:#111;border:0;border-radius:4px;font:600 12px monospace';
+    x.onclick = function () { caja.parentNode.removeChild(caja); };
+    caja.appendChild(x);
+    document.body.appendChild(caja);
+    /* Que caiga donde se está mirando, aunque fixed no funcione */
+    caja.style.top = Math.round(window.scrollY) + 'px';
+  };
+
+  if (/calma-debug/.test(location.hash) || /calma-debug/.test(location.search))
+    setTimeout(diagnostico, 900);
+  window.addEventListener('hashchange', function () {
+    if (/calma-debug/.test(location.hash)) diagnostico();
+  });
+  /* Cinco toques seguidos en el logotipo */
+  var marca = $('.logo'), toques = 0, reloj = 0;
+  if (marca) marca.addEventListener('click', function (e) {
+    clearTimeout(reloj);
+    toques++;
+    reloj = setTimeout(function () { toques = 0; }, 900);
+    if (toques >= 5) { e.preventDefault(); toques = 0; diagnostico(); }
+  });
 
   /* ── Apariciones al hacer scroll ─────────────────── */
   var revealables = $$('.reveal').concat($$('.hero__slogan'));
