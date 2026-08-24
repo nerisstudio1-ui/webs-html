@@ -749,8 +749,41 @@ body.calma-menu-abierto{overflow:hidden}
     var esMovil = function () { return window.matchMedia('(max-width:860px)').matches; };
     var enlaces = function () { return $$('a', nav); };
 
+    /* ¿Funciona aquí position:fixed? Muchos temas y plugins de WordPress
+       ponen un transform en el body o en un contenedor, y entonces lo
+       "fijo" deja de serlo: el menú aparece donde no toca y el botón de
+       WhatsApp se queda clavado al final de la página. Lo comprobamos
+       midiendo, en vez de darlo por hecho. */
+    var fijoVa = function () {
+      var t = document.createElement('div');
+      t.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;' +
+                        'opacity:0;pointer-events:none;margin:0;padding:0;border:0';
+      document.body.appendChild(t);
+      var r = t.getBoundingClientRect();
+      document.body.removeChild(t);
+      return Math.abs(r.top) < 2 && Math.abs(r.left) < 2;
+    };
+
+    /* Deja el elemento en el punto (x, y) de la PANTALLA sin usar fixed:
+       lo pone en 0,0, mide dónde ha caído de verdad y corrige la
+       diferencia. Así da igual lo que haya hecho el tema por encima. */
+    var anclarEn = function (el, x, y) {
+      forzar(el, { 'position':'absolute', 'right':'auto', 'bottom':'auto',
+                   'transform':'none', 'top':'0', 'left':'0' });
+      var r = el.getBoundingClientRect();
+      forzar(el, { 'top': Math.round(y - r.top) + 'px',
+                   'left': Math.round(x - r.left) + 'px' });
+    };
+
     var pintar = function () {
       forzar(nav, ABIERTO);
+      if (!fijoVa()) {
+        /* Plan B: el menú tapa la pantalla igual, pero colocado a mano.
+           Como al abrirlo se bloquea el scroll, se queda quieto. */
+        forzar(nav, { 'width': window.innerWidth + 'px',
+                      'height': window.innerHeight + 'px' });
+        anclarEn(nav, 0, 0);
+      }
       enlaces().forEach(function (a) {
         forzar(a, a.classList.contains('nav__cta') ? CTA : ENLACE);
       });
@@ -778,7 +811,27 @@ body.calma-menu-abierto{overflow:hidden}
     /* El menú se cuelga del final de la página al abrirse. Así ningún
        contenedor del tema puede recortarlo ni desplazarlo fuera de la
        pantalla, que es lo que pasaba dentro de Elementor. */
-    var ancla = document.createComment('menu'), refugio = null;
+    var ancla = document.createComment('menu');
+    var anclaBoton = document.createComment('boton');
+    var refugio = null;
+    var SITIO_BOTON = { 'position':'', 'top':'', 'left':'', 'right':'', 'bottom':'', 'transform':'' };
+
+    /* Si fixed va bien, el botón se queda como está (lo manda el CSS).
+       Si no, lo colocamos nosotros y lo recolocamos al hacer scroll. */
+    var colocarBoton = function () {
+      if (!sticky || !esMovil() || sticky.parentNode !== refugio) return;
+      if (fijoVa()) { soltar(sticky, SITIO_BOTON); return; }
+      var ancho = sticky.offsetWidth, alto = sticky.offsetHeight;
+      anclarEn(sticky, Math.round((window.innerWidth - ancho) / 2),
+                       window.innerHeight - alto - 16);
+    };
+    var pendiente = false;
+    window.addEventListener('scroll', function () {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(function () { pendiente = false; colocarBoton(); });
+    }, { passive: true });
+    window.addEventListener('resize', colocarBoton);
     var moverMenu = function () {
       var movil = window.matchMedia('(max-width:860px)').matches;
       if (movil && nav.parentNode !== refugio) {
@@ -790,10 +843,21 @@ body.calma-menu-abierto{overflow:hidden}
         nav.parentNode.insertBefore(ancla, nav);
         refugio.appendChild(nav);
         if (!nav.classList.contains('is-open')) despintar(true);
-      } else if (!movil && refugio && nav.parentNode === refugio) {
-        ancla.parentNode.insertBefore(nav, ancla);
-        toggleNav(false);
-        despintar(false);
+        if (sticky && sticky.parentNode !== refugio) {
+          sticky.parentNode.insertBefore(anclaBoton, sticky);
+          refugio.appendChild(sticky);
+        }
+        colocarBoton();
+      } else if (!movil && refugio) {
+        if (nav.parentNode === refugio) {
+          ancla.parentNode.insertBefore(nav, ancla);
+          toggleNav(false);
+          despintar(false);
+        }
+        if (sticky && sticky.parentNode === refugio) {
+          anclaBoton.parentNode.insertBefore(sticky, anclaBoton);
+          soltar(sticky, SITIO_BOTON);
+        }
       }
     };
     moverMenu();
@@ -807,6 +871,50 @@ body.calma-menu-abierto{overflow:hidden}
     });
     nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') toggleNav(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleNav(false); });
+  }
+
+  /* ── Diagnóstico ─────────────────────────────────────
+     Abriendo la web con  #calma-debug  al final de la dirección
+     aparece un recuadro con lo que de verdad está pasando en ese
+     móvil. Sirve para mandar una captura cuando algo no se ve. */
+  if (/calma-debug/.test(location.hash)) {
+    var fallos = [];
+    window.addEventListener('error', function (e) { fallos.push(e.message); });
+    setTimeout(function () {
+      var probeta = document.createElement('div');
+      probeta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';
+      document.body.appendChild(probeta);
+      var pr = probeta.getBoundingClientRect();
+      document.body.removeChild(probeta);
+      var menu = document.querySelector('.nav');
+      var caja = menu ? menu.getBoundingClientRect() : null;
+      var culpables = [], el = menu && menu.parentElement;
+      while (el) {
+        var cs = getComputedStyle(el);
+        if (cs.transform !== 'none' || cs.filter !== 'none' ||
+            cs.perspective !== 'none' || cs.contain !== 'none')
+          culpables.push((el.tagName + '.' + (el.className || '')).slice(0, 40));
+        el = el.parentElement;
+      }
+      var caj = document.querySelectorAll('.calma-web[id]').length;
+      var p = document.createElement('pre');
+      p.style.cssText = 'position:absolute;top:0;left:0;right:0;z-index:2147483001;' +
+        'margin:0;padding:12px;background:#111;color:#0f0;font:11px/1.5 monospace;' +
+        'white-space:pre-wrap;word-break:break-all';
+      p.textContent = [
+        'pantalla   ' + window.innerWidth + 'x' + window.innerHeight,
+        'fixed va   ' + (Math.abs(pr.top) < 2 && Math.abs(pr.left) < 2),
+        'copias     ' + caj,
+        'menu en    ' + (menu ? menu.parentElement.className.slice(0, 40) : 'NO HAY MENU'),
+        'menu caja  ' + (caja ? [Math.round(caja.x), Math.round(caja.y),
+                                 Math.round(caja.width), Math.round(caja.height)].join(' / ') : '-'),
+        'enlaces    ' + (menu ? menu.querySelectorAll('a').length : 0),
+        'boton      ' + (document.querySelector('.sticky-book') ? 'si' : 'no'),
+        'culpables  ' + (culpables.join(' | ') || 'ninguno'),
+        'errores    ' + (fallos.join(' | ') || 'ninguno')
+      ].join('\n');
+      document.body.appendChild(p);
+    }, 900);
   }
 
   /* ── Apariciones al hacer scroll ─────────────────── */
