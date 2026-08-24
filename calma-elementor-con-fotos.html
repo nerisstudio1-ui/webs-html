@@ -165,18 +165,7 @@ body.calma-menu-abierto{overflow:hidden}
 
 @media(max-width:1024px){.calma-web.calma-web .split,.calma-web.calma-web .about,.calma-web.calma-web .faq-wrap,.calma-web.calma-web .contact-grid,.calma-web.calma-web .intro-split{grid-template-columns:1fr}.calma-web.calma-web .split--reverse .media-card{order:0}.calma-web.calma-web .split .media-card,.calma-web.calma-web .about__media{max-width:480px;margin-inline:auto;width:100%}.calma-web.calma-web .intro-split{gap:1rem;align-items:start}.calma-web.calma-web .faq__intro{position:static}.calma-web.calma-web .mosaic{grid-template-columns:repeat(2,1fr)}.calma-web.calma-web .mosaic__item,.calma-web.calma-web .mosaic__item--tall{aspect-ratio:4/5;height:auto}.calma-web.calma-web .mosaic__item:nth-child(n){grid-column:auto;grid-row:auto}
 }
-@media(max-width:860px){.calma-web.calma-web .nav{
-    position:fixed;top:0;right:0;bottom:0;left:0;width:100%;
-    background:var(--cream);
-    flex-direction:column;align-items:center;justify-content:center;gap:.4rem;
-    padding:5.5rem var(--pad) 3rem;text-align:center;font-size:.92rem;
-    z-index:2147483000;display:none;overflow-y:auto
-  }.calma-web.calma-web .nav.is-open{display:flex;animation:navEntra .32s var(--ease)}.calma-web.calma-web .nav__cerrar{
-    display:block;position:absolute;top:1rem;right:1rem;width:48px;height:48px;
-    border:0;background:none;padding:0
-  }.calma-web.calma-web .nav__cerrar span{
-    position:absolute;left:14px;top:23px;width:20px;height:1.5px;background:var(--dark);border-radius:2px
-  }.calma-web.calma-web .nav__cerrar span:nth-child(1){transform:rotate(45deg)}.calma-web.calma-web .nav__cerrar span:nth-child(2){transform:rotate(-45deg)}.calma-web.calma-web .burger{display:block;z-index:80}.calma-web.calma-web{overflow:hidden}.calma-web.calma-web .sticky-book{display:block}.calma-web.calma-web .concepts{grid-template-columns:repeat(2,1fr)}.calma-web.calma-web .prices{grid-template-columns:repeat(2,1fr);gap:1rem}.calma-web.calma-web .price__badge{font-size:.56rem}.calma-web.calma-web .header__inner{position:relative;justify-content:center;padding:1.1rem 0}.calma-web.calma-web .header.is-stuck .header__inner{padding:.8rem 0}.calma-web.calma-web .logo{margin:0 auto}.calma-web.calma-web .logo img{width:clamp(126px,34vw,150px)}.calma-web.calma-web .burger{position:absolute;right:-10px;top:50%;transform:translateY(-50%)}.calma-web.calma-web .profiles__grid,.calma-web.calma-web .steps{
+@media(max-width:860px){.calma-web.calma-web .nav{display:none}.calma-web.calma-web .nav__cerrar{display:none}.calma-web.calma-web .burger{display:block;z-index:80}.calma-web.calma-web{overflow:hidden}.calma-web.calma-web .sticky-book{display:block}.calma-web.calma-web .concepts{grid-template-columns:repeat(2,1fr)}.calma-web.calma-web .prices{grid-template-columns:repeat(2,1fr);gap:1rem}.calma-web.calma-web .price__badge{font-size:.56rem}.calma-web.calma-web .header__inner{position:relative;justify-content:center;padding:1.1rem 0}.calma-web.calma-web .header.is-stuck .header__inner{padding:.8rem 0}.calma-web.calma-web .logo{margin:0 auto}.calma-web.calma-web .logo img{width:clamp(126px,34vw,150px)}.calma-web.calma-web .burger{position:absolute;right:-10px;top:50%;transform:translateY(-50%)}.calma-web.calma-web .profiles__grid,.calma-web.calma-web .steps{
     display:flex;grid-template-columns:none;gap:.9rem;
     overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
     margin-inline:calc(var(--pad) * -1);padding:.2rem var(--pad) .8rem;
@@ -211,7 +200,6 @@ body.calma-menu-abierto{overflow:hidden}
     </a>
 
     <nav class="nav" id="nav" aria-label="Navegación principal">
-      <button class="nav__cerrar" id="nav-cerrar" aria-label="Cerrar menú"><span></span><span></span></button>
       <a href="#calma">CALMA</a>
       <a href="#barre">Barre</a>
       <a href="#clases">Clases</a>
@@ -719,185 +707,197 @@ body.calma-menu-abierto{overflow:hidden}
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ── Menú móvil ──────────────────────────────────── */
+  /* ── Menú móvil ──────────────────────────────────────
+     El menú NO se estiliza con la hoja de estilos: al pulsar el
+     icono se construye un panel nuevo, sin clases, con todos los
+     estilos escritos en el propio elemento y marcados !important.
+     Los enlaces se copian del menú de escritorio. Así da igual lo
+     que haga el tema de WordPress: no hay nada suyo de por medio. */
   var burger = $('#burger');
   var nav = $('#nav');
-  if (burger && nav) {
-    /* El menú se pinta con estilos en línea marcados !important.
-       Así se ve igual aunque el CSS llegue tocado: ni el tema de
-       WordPress, ni un plugin que comprima el código, ni un widget
-       antiguo que siga en la página pueden dejarlo a medias. */
-    var ABIERTO = {
-      'position':'fixed', 'top':'0', 'right':'0', 'bottom':'0', 'left':'0',
-      'width':'100%', 'height':'100%', 'max-width':'none', 'min-width':'0',
-      'margin':'0', 'border':'0', 'box-sizing':'border-box',
-      'display':'flex', 'flex-direction':'column',
-      'align-items':'center', 'justify-content':'center', 'gap':'.4rem',
-      'padding':'5.5rem 1.4rem 3rem', 'text-align':'center',
-      'background':'#F7F1EA', 'transform':'none',
-      'visibility':'visible', 'opacity':'1',
-      'z-index':'2147483000', 'overflow-y':'auto'
-    };
-    var ENLACE = {
-      'display':'block', 'width':'100%', 'max-width':'320px',
-      'color':'#3F3936', 'background':'none', 'opacity':'1',
-      'visibility':'visible', 'text-decoration':'none',
-      'font-size':'1rem', 'letter-spacing':'.22em', 'padding':'.95rem 0'
-    };
-    var CTA = {
-      'display':'block', 'width':'100%', 'max-width':'320px',
-      'margin-top':'1.8rem', 'color':'#F7F1EA', 'background':'#8E7C70',
-      'border-radius':'999px', 'padding':'1.05rem 1.5rem',
-      'opacity':'1', 'visibility':'visible', 'text-decoration':'none',
-      'font-size':'.78rem', 'letter-spacing':'.18em'
-    };
-    var forzar  = function (el, p) { for (var k in p) el.style.setProperty(k, p[k], 'important'); };
-    var soltar  = function (el, p) { for (var k in p) el.style.removeProperty(k); };
-    var esMovil = function () { return window.matchMedia('(max-width:860px)').matches; };
-    var enlaces = function () { return $$('a', nav); };
 
-    /* ¿Funciona aquí position:fixed? Muchos temas y plugins de WordPress
-       ponen un transform en el body o en un contenedor, y entonces lo
-       "fijo" deja de serlo: el menú aparece donde no toca y el botón de
-       WhatsApp se queda clavado al final de la página. Lo comprobamos
-       midiendo, en vez de darlo por hecho. */
-    var rompeFijo = function (el) {
-      var n = el && el.parentElement;
-      while (n) {
-        var cs = getComputedStyle(n);
-        if (cs.transform !== 'none' ||
-            cs.perspective !== 'none' ||
-            cs.filter !== 'none' ||
-            (cs.backdropFilter && cs.backdropFilter !== 'none') ||
-            /transform|perspective|filter/.test(cs.willChange || '') ||
-            /paint|layout|strict|content/.test(cs.contain || ''))
-          return true;
-        n = n.parentElement;
-      }
-      return false;
-    };
+  var CREMA = '#F7F1EA', TINTA = '#3F3936', TOPO = '#8E7C70';
+  var LETRA = '"Montserrat",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif';
 
-    var fijoVa = function () {
-      /* Dos comprobaciones: medir, y mirar si algún padre lleva un
-         transform (con la página arriba del todo, medir no basta:
-         lo roto y lo bueno caen en el mismo sitio). */
-      if (rompeFijo(nav)) return false;
-      var t = document.createElement('div');
-      t.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;' +
-                        'opacity:0;pointer-events:none;margin:0;padding:0;border:0';
-      document.body.appendChild(t);
-      var r = t.getBoundingClientRect();
-      document.body.removeChild(t);
-      return Math.abs(r.top) < 2 && Math.abs(r.left) < 2;
-    };
+  var vestir = function (el, reglas) {
+    for (var k in reglas) el.style.setProperty(k, reglas[k], 'important');
+  };
 
-    /* Deja el elemento en el punto (x, y) de la PANTALLA sin usar fixed:
-       lo pone en 0,0, mide dónde ha caído de verdad y corrige la
-       diferencia. Así da igual lo que haya hecho el tema por encima. */
-    var anclarEn = function (el, x, y) {
-      forzar(el, { 'position':'absolute', 'right':'auto', 'bottom':'auto',
-                   'transform':'none', 'top':'0', 'left':'0' });
-      var r = el.getBoundingClientRect();
-      forzar(el, { 'top': Math.round(y - r.top) + 'px',
-                   'left': Math.round(x - r.left) + 'px' });
-    };
+  /* ¿Funciona aquí position:fixed? Muchos temas y plugins ponen un
+     transform por encima, y entonces lo fijo deja de serlo. */
+  var rompeFijo = function (el) {
+    var n = el && el.parentElement;
+    while (n) {
+      var cs = getComputedStyle(n);
+      if (cs.transform !== 'none' || cs.perspective !== 'none' ||
+          cs.filter !== 'none' ||
+          (cs.backdropFilter && cs.backdropFilter !== 'none') ||
+          /transform|perspective|filter/.test(cs.willChange || '') ||
+          /paint|layout|strict|content/.test(cs.contain || ''))
+        return true;
+      n = n.parentElement;
+    }
+    return false;
+  };
+  var fijoVa = function (el) {
+    if (rompeFijo(el)) return false;
+    var t = document.createElement('div');
+    t.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;' +
+                      'pointer-events:none;margin:0;padding:0;border:0';
+    document.body.appendChild(t);
+    var r = t.getBoundingClientRect();
+    document.body.removeChild(t);
+    return Math.abs(r.top) < 2 && Math.abs(r.left) < 2;
+  };
+  /* Deja el elemento en el punto (x, y) de la pantalla sin usar fixed:
+     lo pone en 0,0, mide dónde ha caído de verdad y corrige. */
+  var anclarEn = function (el, x, y) {
+    vestir(el, { 'position':'absolute', 'right':'auto', 'bottom':'auto',
+                 'transform':'none', 'top':'0', 'left':'0' });
+    var r = el.getBoundingClientRect();
+    vestir(el, { 'top': Math.round(y - r.top) + 'px',
+                 'left': Math.round(x - r.left) + 'px' });
+  };
 
-    var pintar = function () {
-      forzar(nav, ABIERTO);
-      if (!fijoVa()) {
-        /* Plan B: el menú tapa la pantalla igual, pero colocado a mano.
-           Como al abrirlo se bloquea el scroll, se queda quieto. */
-        forzar(nav, { 'width': window.innerWidth + 'px',
-                      'height': window.innerHeight + 'px' });
-        anclarEn(nav, 0, 0);
-      }
-      enlaces().forEach(function (a) {
-        forzar(a, a.classList.contains('nav__cta') ? CTA : ENLACE);
-      });
-      document.body.style.setProperty('overflow', 'hidden', 'important');
-    };
-    var despintar = function (ocultar) {
-      soltar(nav, ABIERTO);
-      enlaces().forEach(function (a) { soltar(a, CTA); soltar(a, ENLACE); });
-      document.body.style.removeProperty('overflow');
-      if (ocultar) nav.style.setProperty('display', 'none', 'important');
-    };
+  var panel = null;
 
-    var toggleNav = function (open) {
-      nav.classList.toggle('is-open', open);
-      burger.setAttribute('aria-expanded', String(open));
-      burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-      document.body.classList.toggle('calma-menu-abierto', open);
-      if (!esMovil()) { despintar(false); return; }
-      if (open) { pintar(); } else { despintar(true); }
-    };
-    burger.addEventListener('click', function () {
-      toggleNav(burger.getAttribute('aria-expanded') !== 'true');
+  var cerrarMenu = function () {
+    if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+    panel = null;
+    document.body.style.removeProperty('overflow');
+    if (burger) {
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Abrir menú');
+    }
+  };
+
+  var abrirMenu = function () {
+    cerrarMenu();
+    panel = document.createElement('div');
+    panel.setAttribute('data-calma-menu', '');
+    vestir(panel, {
+      'position':'fixed', 'top':'0', 'left':'0', 'right':'0', 'bottom':'0',
+      'width':window.innerWidth + 'px', 'height':window.innerHeight + 'px',
+      'max-width':'none', 'min-width':'0', 'margin':'0', 'border':'0',
+      'box-sizing':'border-box', 'display':'flex', 'flex-direction':'column',
+      'align-items':'center', 'justify-content':'center', 'gap':'0',
+      'padding':'70px 20px 40px', 'background':CREMA, 'color':TINTA,
+      'font-family':LETRA, 'text-align':'center', 'transform':'none',
+      'visibility':'visible', 'opacity':'1', 'z-index':'2147483000',
+      'overflow-y':'auto', 'overflow-x':'hidden'
     });
 
-    /* El menú se cuelga del final de la página al abrirse. Así ningún
-       contenedor del tema puede recortarlo ni desplazarlo fuera de la
-       pantalla, que es lo que pasaba dentro de Elementor. */
-    var ancla = document.createComment('menu');
+    /* Botón de cerrar, dibujado a mano */
+    var x = document.createElement('button');
+    x.type = 'button';
+    x.setAttribute('aria-label', 'Cerrar menú');
+    vestir(x, { 'position':'absolute', 'top':'12px', 'right':'12px',
+                'width':'48px', 'height':'48px', 'padding':'0', 'margin':'0',
+                'border':'0', 'background':'none', 'cursor':'pointer',
+                'display':'block', 'opacity':'1', 'visibility':'visible',
+                'z-index':'1' });
+    [45, -45].forEach(function (giro) {
+      var raya = document.createElement('span');
+      vestir(raya, { 'position':'absolute', 'left':'14px', 'top':'23px',
+                     'width':'20px', 'height':'2px', 'background':TINTA,
+                     'border-radius':'2px', 'display':'block',
+                     'transform':'rotate(' + giro + 'deg)', 'opacity':'1' });
+      x.appendChild(raya);
+    });
+    x.addEventListener('click', function (e) { e.preventDefault(); cerrarMenu(); });
+    panel.appendChild(x);
+
+    /* Los enlaces, copiados del menú de escritorio */
+    var origen = nav ? $$('a', nav) : [];
+    origen.forEach(function (a) {
+      var esCta = a.classList.contains('nav__cta') || a.hasAttribute('data-book');
+      var nuevo = document.createElement('a');
+      nuevo.href = a.getAttribute('href') || '#';
+      nuevo.textContent = (a.textContent || '').trim();
+      if (a.target) nuevo.target = a.target;
+      if (a.rel) nuevo.rel = a.rel;
+      vestir(nuevo, {
+        'display':'block', 'width':'100%', 'max-width':'320px',
+        'box-sizing':'border-box', 'text-align':'center',
+        'text-decoration':'none', 'font-family':LETRA,
+        'opacity':'1', 'visibility':'visible', 'border':'0',
+        'text-transform':'uppercase', 'line-height':'1.2'
+      });
+      if (esCta) {
+        vestir(nuevo, { 'margin':'26px 0 0', 'padding':'17px 24px',
+                        'background':TOPO, 'color':CREMA,
+                        'border-radius':'999px', 'font-size':'12px',
+                        'font-weight':'500', 'letter-spacing':'.18em' });
+      } else {
+        vestir(nuevo, { 'margin':'0', 'padding':'15px 0', 'background':'none',
+                        'color':TINTA, 'font-size':'15px', 'font-weight':'300',
+                        'letter-spacing':'.22em' });
+      }
+      nuevo.addEventListener('click', function () { cerrarMenu(); });
+      panel.appendChild(nuevo);
+    });
+
+    document.body.appendChild(panel);
+    document.body.style.setProperty('overflow', 'hidden', 'important');
+    if (!fijoVa(panel)) anclarEn(panel, 0, 0);   /* plan B si fixed no vale */
+    if (burger) {
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Cerrar menú');
+    }
+  };
+
+  if (burger) {
+    burger.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (panel) cerrarMenu(); else abrirMenu();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') cerrarMenu();
+    });
+    window.addEventListener('resize', function () {
+      if (panel && !window.matchMedia('(max-width:860px)').matches) cerrarMenu();
+    });
+  }
+
+  /* ── Botón flotante de WhatsApp ───────────────────────
+     Se cuelga del final de la página, fuera del contenedor de
+     Elementor, y si position:fixed no funciona se coloca a mano. */
+  if (sticky) {
     var anclaBoton = document.createComment('boton');
     var refugio = null;
-    var SITIO_BOTON = { 'position':'', 'top':'', 'left':'', 'right':'', 'bottom':'', 'transform':'' };
+    var SITIO = { 'position':'', 'top':'', 'left':'', 'right':'', 'bottom':'', 'transform':'' };
 
-    /* Si fixed va bien, el botón se queda como está (lo manda el CSS).
-       Si no, lo colocamos nosotros y lo recolocamos al hacer scroll. */
     var colocarBoton = function () {
-      if (!sticky || !esMovil() || sticky.parentNode !== refugio) return;
-      if (fijoVa()) { soltar(sticky, SITIO_BOTON); return; }
-      var ancho = sticky.offsetWidth, alto = sticky.offsetHeight;
-      anclarEn(sticky, Math.round((window.innerWidth - ancho) / 2),
-                       window.innerHeight - alto - 16);
+      if (!refugio || sticky.parentNode !== refugio) return;
+      if (fijoVa(sticky)) { for (var k in SITIO) sticky.style.removeProperty(k); return; }
+      anclarEn(sticky, Math.round((window.innerWidth - sticky.offsetWidth) / 2),
+                       window.innerHeight - sticky.offsetHeight - 16);
     };
+    var moverBoton = function () {
+      var movil = window.matchMedia('(max-width:860px)').matches;
+      if (movil && sticky.parentNode !== refugio) {
+        if (!refugio) {
+          refugio = document.createElement('div');
+          refugio.setAttribute('data-calma-boton', '');
+          refugio.style.cssText = 'margin:0;padding:0;border:0;background:none;width:auto';
+          document.body.appendChild(refugio);
+        }
+        sticky.parentNode.insertBefore(anclaBoton, sticky);
+        refugio.appendChild(sticky);
+        colocarBoton();
+      } else if (!movil && refugio && sticky.parentNode === refugio) {
+        anclaBoton.parentNode.insertBefore(sticky, anclaBoton);
+        for (var k in SITIO) sticky.style.removeProperty(k);
+      }
+    };
+    moverBoton();
+    window.addEventListener('resize', function () { moverBoton(); colocarBoton(); });
     var pendiente = false;
     window.addEventListener('scroll', function () {
       if (pendiente) return;
       pendiente = true;
       requestAnimationFrame(function () { pendiente = false; colocarBoton(); });
     }, { passive: true });
-    window.addEventListener('resize', colocarBoton);
-    var moverMenu = function () {
-      var movil = window.matchMedia('(max-width:860px)').matches;
-      if (movil && nav.parentNode !== refugio) {
-        if (!refugio) {
-          refugio = document.createElement('div');
-          refugio.className = 'calma-web calma-refugio-menu';
-          document.body.appendChild(refugio);
-        }
-        nav.parentNode.insertBefore(ancla, nav);
-        refugio.appendChild(nav);
-        if (!nav.classList.contains('is-open')) despintar(true);
-        if (sticky && sticky.parentNode !== refugio) {
-          sticky.parentNode.insertBefore(anclaBoton, sticky);
-          refugio.appendChild(sticky);
-        }
-        colocarBoton();
-      } else if (!movil && refugio) {
-        if (nav.parentNode === refugio) {
-          ancla.parentNode.insertBefore(nav, ancla);
-          toggleNav(false);
-          despintar(false);
-        }
-        if (sticky && sticky.parentNode === refugio) {
-          anclaBoton.parentNode.insertBefore(sticky, anclaBoton);
-          soltar(sticky, SITIO_BOTON);
-        }
-      }
-    };
-    moverMenu();
-    window.addEventListener('resize', moverMenu);
-
-    /* Se busca dentro del propio menú: para entonces ya se ha mudado
-       fuera del contenedor y una búsqueda desde arriba no lo encontraría */
-    var cerrar = nav.querySelector('#nav-cerrar, .nav__cerrar');
-    if (cerrar) cerrar.addEventListener('click', function (e) {
-      e.preventDefault(); toggleNav(false);
-    });
-    nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') toggleNav(false); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleNav(false); });
   }
 
   /* ── Diagnóstico ─────────────────────────────────────
@@ -917,7 +917,7 @@ body.calma-menu-abierto{overflow:hidden}
     var pr = probeta.getBoundingClientRect();
     document.body.removeChild(probeta);
 
-    var menu = document.querySelector('.nav');
+    var menu = document.querySelector('[data-calma-menu]') || document.querySelector('.nav');
     var estorba = function (n) {
       while (n) {
         var cs = getComputedStyle(n);
@@ -950,11 +950,12 @@ body.calma-menu-abierto{overflow:hidden}
       'pantalla   ' + window.innerWidth + ' x ' + window.innerHeight,
       'fixed va   ' + (fijo ? 'SI' : 'NO  <-- aqui esta el problema'),
       'copias     ' + document.querySelectorAll('.calma-web[id]').length,
-      'menu       ' + (menu ? 'si' : 'NO HAY MENU'),
+      'menu       ' + (document.querySelector('[data-calma-menu]') ? 'panel abierto' : (menu ? 'cerrado' : 'NO HAY MENU')),
       'menu en    ' + (menu ? (menu.parentElement.className || '?').slice(0, 34) : '-'),
       'menu caja  ' + (c ? [Math.round(c.x), Math.round(c.y),
                             Math.round(c.width), Math.round(c.height)].join(' / ') : '-'),
-      'enlaces    ' + (menu ? menu.querySelectorAll('a').length : 0),
+      'enlaces    ' + (menu ? menu.querySelectorAll('a').length : 0) + ' (cabecera: ' +
+        (document.querySelector('.nav') ? document.querySelector('.nav').querySelectorAll('a').length : 0) + ')',
       'boton wa   ' + (document.querySelector('.sticky-book') ? 'si' : 'no'),
       'culpables  ' + (culpables.join(' | ') || 'ninguno'),
       'errores    ' + (fallos.join(' | ') || 'ninguno')
