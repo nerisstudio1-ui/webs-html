@@ -666,6 +666,49 @@ em{font-style:italic}
   .burger{display:block;z-index:80}
   body.calma-menu-abierto{overflow:hidden}
   .sticky-book{display:block}
+  /* ── Texto centrado en móvil ─────────────────────────
+     En pantalla estrecha, los párrafos a la izquierda dejan un
+     borde derecho muy irregular. Centrado se lee más tranquilo
+     y va con el tono de la marca. Se dejan a la izquierda las
+     listas de horarios (día · hora) y las preguntas frecuentes,
+     donde centrar estorbaría la lectura. */
+  .intro-split,
+  .intro-split__text,
+  .split__copy,
+  .profile,
+  .pilar,
+  .bloque,
+  .step,
+  .steps__note,
+  .about__copy,
+  .contact-info{text-align:center}
+
+  /* Los datos de contacto, etiqueta encima y dato debajo, centrados */
+  .contact-list li{grid-template-columns:1fr;gap:.2rem;justify-items:center}
+  .contact-list span{padding-top:0}
+
+  .intro-split__text p,
+  .split__copy p,
+  .profile p,
+  .pilar p,
+  .bloque p,
+  .step p{margin-left:auto;margin-right:auto;max-width:34ch}
+
+  /* Las fichas de datos, una debajo de otra y centradas */
+  .spec{grid-template-columns:1fr;gap:.2rem;text-align:center}
+  .spec dt{padding-top:0}
+
+  /* Las listas con símbolo: el ✦ deja de ir suelto a la izquierda
+     y pasa a ir pegado al texto, con todo centrado */
+  .ticks li{padding-left:0;text-align:center}
+  .ticks li::before{position:static;display:inline;margin-right:.45rem;top:auto;left:auto}
+
+  /* La lista de beneficios del fitness: el punto, encima */
+  .bloque__lista li{padding-left:0;text-align:center}
+  .bloque__lista li::before{
+    position:static;display:block;margin:0 auto .35rem;top:auto;left:auto
+  }
+
   .concepts{grid-template-columns:repeat(2,1fr)}
   .pilares,.bloques,.horarios__grid{grid-template-columns:1fr}
   .horario__lista li{font-size:.88rem}
