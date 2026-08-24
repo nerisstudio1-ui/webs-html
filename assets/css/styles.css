@@ -154,6 +154,10 @@ em{font-style:italic}
 /* Menú: dos trazos finos, el de abajo más corto. Sin círculo. */
 .burger{display:none;width:48px;height:48px;position:relative;border:0;background:none;padding:0}
 .nav__cerrar{display:none}
+/* La casilla que abre el menú del móvil: nunca se ve, solo guarda
+   si está abierto o cerrado. Con esto el menú funciona sin JavaScript. */
+.nav-toggle{position:absolute;width:1px;height:1px;opacity:0;margin:0;padding:0;
+  border:0;pointer-events:none;clip:rect(0 0 0 0);overflow:hidden}
 .burger span{
   position:absolute;right:9px;height:1.5px;background:var(--dark);border-radius:2px;
   transition:width .4s var(--ease),transform .4s var(--ease),opacity .3s
@@ -460,10 +464,54 @@ em{font-style:italic}
   .mosaic__item:nth-child(n){grid-column:auto;grid-row:auto}
 }
 @media(max-width:860px){
-  /* En móvil el menú de la cabecera se esconde: al pulsar el icono,
-     el guion construye un panel aparte con sus propios estilos. */
-  .nav{display:none}
-  .nav__cerrar{display:none}
+  /* ── Menú del móvil: HTML y CSS, sin JavaScript ──────
+     Se despliega debajo de la cabecera, en el flujo normal de la
+     página. Nada de position:fixed: dentro de Elementor lo fijo
+     deja de serlo y el panel acababa fuera de la pantalla. Así
+     no puede fallar, se ejecute o no el guion. */
+  .header__inner{flex-wrap:wrap !important}
+  .nav{
+    display:none !important;
+    position:static !important;transform:none !important;
+    width:100% !important;flex-basis:100% !important;
+    order:3 !important;box-sizing:border-box !important;
+    flex-direction:column !important;align-items:center !important;
+    gap:0 !important;margin:.9rem 0 0 !important;
+    padding:.6rem 1rem 1.6rem !important;text-align:center !important;
+    background:var(--cream) !important;
+    border-top:1px solid var(--line-soft) !important;
+    max-height:70vh !important;overflow-y:auto !important;
+    opacity:1 !important;visibility:visible !important
+  }
+  .nav-toggle:checked ~ .nav{display:flex !important}
+
+  .nav a{
+    display:block !important;width:100% !important;max-width:320px !important;
+    box-sizing:border-box !important;text-align:center !important;
+    opacity:1 !important;visibility:visible !important;
+    white-space:normal !important;text-decoration:none !important
+  }
+  .nav a:not(.btn){
+    padding:.85rem 0 !important;margin:0 !important;background:none !important;
+    color:var(--dark) !important;font-size:.92rem !important;
+    letter-spacing:.22em !important;font-weight:300 !important
+  }
+  .nav a:not(.btn)::after{display:none !important}
+  .nav a.nav__cta{
+    margin:1.2rem 0 0 !important;padding:1rem 1.5rem !important;
+    background:var(--accent) !important;color:var(--cream) !important;
+    border-radius:999px !important;font-size:.74rem !important;
+    letter-spacing:.18em !important
+  }
+
+  /* La X de dentro sobra: el propio icono abre y cierra */
+  .nav__cerrar{display:none !important}
+  /* Y el icono se convierte en aspa cuando está abierto */
+  .nav-toggle:checked ~ .burger span:nth-child(1){top:24px;width:26px;transform:rotate(45deg)}
+  .nav-toggle:checked ~ .burger span:nth-child(2){top:24px;width:26px;transform:rotate(-45deg)}
+  /* Un respiro entre el logotipo y la lista */
+  .nav-toggle:checked ~ .nav{padding-top:1rem !important}
+
   .burger{display:block;z-index:80}
   body.calma-menu-abierto{overflow:hidden}
   .sticky-book{display:block}
@@ -476,7 +524,7 @@ em{font-style:italic}
   .header.is-stuck .header__inner{padding:.8rem 0}
   .logo{margin:0 auto}
   .logo img{width:clamp(126px,34vw,150px)}
-  .burger{position:absolute;right:-10px;top:50%;transform:translateY(-50%)}
+  .burger{position:absolute;right:-10px;top:.35rem;transform:none}
 
   /* En móvil, tarjetas y pasos se deslizan de lado en vez de apilarse.
      Se salen del margen a propósito, para que asome la siguiente y se

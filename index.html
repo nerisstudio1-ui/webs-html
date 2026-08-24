@@ -24,11 +24,19 @@
 <!-- ═══════════ HEADER ═══════════ -->
 <header class="header" id="header">
   <div class="wrap header__inner">
+    <!-- El menú del móvil se abre y se cierra solo con HTML y CSS.
+         No depende de JavaScript: aunque el guion no llegue a
+         ejecutarse, el menú sigue funcionando. -->
+    <input class="nav-toggle" type="checkbox" id="calma-nav" aria-hidden="true" tabindex="-1">
+
     <a class="logo" href="#inicio" aria-label="CALMA barre studio, inicio">
       <img src="assets/img/logo.png" alt="CALMA barre studio" width="1200" height="422">
     </a>
 
     <nav class="nav" id="nav" aria-label="Navegación principal">
+      <label class="nav__cerrar" for="calma-nav" aria-label="Cerrar menú">
+        <span></span><span></span>
+      </label>
       <a href="#calma">CALMA</a>
       <a href="#barre">Barre</a>
       <a href="#clases">Clases</a>
@@ -39,9 +47,9 @@
       <a class="btn btn--primary nav__cta" data-book href="#contacto">Primera clase gratis</a>
     </nav>
 
-    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+    <label class="burger" id="burger" for="calma-nav" role="button" tabindex="0" aria-label="Abrir menú">
       <span></span><span></span>
-    </button>
+    </label>
   </div>
 </header>
 

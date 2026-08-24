@@ -59,23 +59,23 @@
   onScroll();
 
   /* ── Menú móvil ──────────────────────────────────────
-     El menú NO se estiliza con la hoja de estilos: al pulsar el
-     icono se construye un panel nuevo, sin clases, con todos los
-     estilos escritos en el propio elemento y marcados !important.
-     Los enlaces se copian del menú de escritorio. Así da igual lo
-     que haga el tema de WordPress: no hay nada suyo de por medio. */
-  var burger = $('#burger');
+     El menú se abre y se cierra SOLO con HTML y CSS (una casilla
+     escondida). Lo de aquí abajo es un extra: si el guion llega a
+     ejecutarse, bloquea el scroll de detrás, cierra al pulsar un
+     enlace y corrige la posición cuando position:fixed no funciona.
+     Si el guion no se ejecutase, el menú sigue funcionando. */
   var nav = $('#nav');
-
-  var CREMA = '#F7F1EA', TINTA = '#3F3936', TOPO = '#8E7C70';
-  var LETRA = '"Montserrat",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif';
+  var casilla = $('#calma-nav') || document.getElementById('calma-nav');
 
   var vestir = function (el, reglas) {
     for (var k in reglas) el.style.setProperty(k, reglas[k], 'important');
   };
+  var desvestir = function (el, reglas) {
+    for (var k in reglas) el.style.removeProperty(k);
+  };
 
-  /* ¿Funciona aquí position:fixed? Muchos temas y plugins ponen un
-     transform por encima, y entonces lo fijo deja de serlo. */
+  /* ¿Funciona aquí position:fixed? Muchos temas ponen un transform
+     por encima, y entonces lo fijo deja de serlo. */
   var rompeFijo = function (el) {
     var n = el && el.parentElement;
     while (n) {
@@ -110,117 +110,25 @@
                  'left': Math.round(x - r.left) + 'px' });
   };
 
-  var APARTADOS = [
-    { texto: 'CALMA',      href: '#calma'    },
-    { texto: 'Barre',      href: '#barre'    },
-    { texto: 'Clases',     href: '#clases'   },
-    { texto: 'Tarifas',    href: '#tarifas'  },
-    { texto: 'Sobre mí',   href: '#sobre-mi' },
-    { texto: 'El estudio', href: '#estudio'  },
-    { texto: 'Contacto',   href: '#contacto' },
-    { texto: 'Primera clase gratis', href: '#contacto', cta: true }
-  ];
+  var CORRIGE = { 'position':'', 'top':'', 'left':'', 'right':'', 'bottom':'',
+                  'transform':'', 'width':'', 'height':'' };
 
-  var panel = null;
-
-  var cerrarMenu = function () {
-    if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
-    panel = null;
-    document.body.style.removeProperty('overflow');
-    if (burger) {
-      burger.setAttribute('aria-expanded', 'false');
-      burger.setAttribute('aria-label', 'Abrir menú');
-    }
-  };
-
-  var abrirMenu = function () {
-    cerrarMenu();
-    panel = document.createElement('div');
-    panel.setAttribute('data-calma-menu', '');
-    vestir(panel, {
-      'position':'fixed', 'top':'0', 'left':'0', 'right':'0', 'bottom':'0',
-      'width':window.innerWidth + 'px', 'height':window.innerHeight + 'px',
-      'max-width':'none', 'min-width':'0', 'margin':'0', 'border':'0',
-      'box-sizing':'border-box', 'display':'flex', 'flex-direction':'column',
-      'align-items':'center', 'justify-content':'center', 'gap':'0',
-      'padding':'70px 20px 40px', 'background':CREMA, 'color':TINTA,
-      'font-family':LETRA, 'text-align':'center', 'transform':'none',
-      'visibility':'visible', 'opacity':'1', 'z-index':'2147483000',
-      'overflow-y':'auto', 'overflow-x':'hidden'
+  if (nav && casilla) {
+    /* Extras cuando el guion sí se ejecuta */
+    var alAbrirCerrar = function () {
+      if (casilla.checked) document.body.style.setProperty('overflow-x', 'hidden', 'important');
+    };
+    casilla.addEventListener('change', alAbrirCerrar);
+    nav.addEventListener('click', function (e) {
+      if (e.target && e.target.tagName === 'A') casilla.checked = false;
     });
-
-    /* Botón de cerrar, dibujado a mano */
-    var x = document.createElement('button');
-    x.type = 'button';
-    x.setAttribute('aria-label', 'Cerrar menú');
-    vestir(x, { 'position':'absolute', 'top':'12px', 'right':'12px',
-                'width':'48px', 'height':'48px', 'padding':'0', 'margin':'0',
-                'border':'0', 'background':'none', 'cursor':'pointer',
-                'display':'block', 'opacity':'1', 'visibility':'visible',
-                'z-index':'1' });
-    [45, -45].forEach(function (giro) {
-      var raya = document.createElement('span');
-      vestir(raya, { 'position':'absolute', 'left':'14px', 'top':'23px',
-                     'width':'20px', 'height':'2px', 'background':TINTA,
-                     'border-radius':'2px', 'display':'block',
-                     'transform':'rotate(' + giro + 'deg)', 'opacity':'1' });
-      x.appendChild(raya);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') casilla.checked = false;
     });
-    x.addEventListener('click', function (e) { e.preventDefault(); cerrarMenu(); });
-    panel.appendChild(x);
-
-    /* Los enlaces van escritos aquí, no se leen de la página: si el
-       menú de la cabecera no apareciese por lo que sea, el panel se
-       construye igual y nunca sale vacío. */
-    APARTADOS.forEach(function (item) {
-      var esCta = !!item.cta;
-      var nuevo = document.createElement('a');
-      nuevo.href = esCta ? (reservaUrl || '#contacto') : item.href;
-      nuevo.textContent = item.texto;
-      if (esCta && reservaUrl) { nuevo.target = '_blank'; nuevo.rel = 'noopener'; }
-      vestir(nuevo, {
-        'display':'block', 'width':'100%', 'max-width':'320px',
-        'box-sizing':'border-box', 'text-align':'center',
-        'text-decoration':'none', 'font-family':LETRA,
-        'opacity':'1', 'visibility':'visible', 'border':'0',
-        'text-transform':'uppercase', 'line-height':'1.2'
-      });
-      if (esCta) {
-        vestir(nuevo, { 'margin':'26px 0 0', 'padding':'17px 24px',
-                        'background':TOPO, 'color':CREMA,
-                        'border-radius':'999px', 'font-size':'12px',
-                        'font-weight':'500', 'letter-spacing':'.18em' });
-      } else {
-        vestir(nuevo, { 'margin':'0', 'padding':'15px 0', 'background':'none',
-                        'color':TINTA, 'font-size':'15px', 'font-weight':'300',
-                        'letter-spacing':'.22em' });
-      }
-      nuevo.addEventListener('click', function () { cerrarMenu(); });
-      panel.appendChild(nuevo);
+    window.addEventListener('resize', function () {
+      if (!window.matchMedia('(max-width:860px)').matches) casilla.checked = false;
     });
-
-    document.body.appendChild(panel);
-    document.body.style.setProperty('overflow', 'hidden', 'important');
-    if (!fijoVa(panel)) anclarEn(panel, 0, 0);   /* plan B si fixed no vale */
-    if (burger) {
-      burger.setAttribute('aria-expanded', 'true');
-      burger.setAttribute('aria-label', 'Cerrar menú');
-    }
-  };
-
-  document.addEventListener('click', function (e) {
-    var boton = e.target && e.target.closest && e.target.closest('.burger, #burger');
-    if (!boton) return;
-    e.preventDefault();
-    burger = boton;
-    if (panel) cerrarMenu(); else abrirMenu();
-  }, true);
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') cerrarMenu();
-  });
-  window.addEventListener('resize', function () {
-    if (panel && !window.matchMedia('(max-width:860px)').matches) cerrarMenu();
-  });
+  }
 
   /* ── Botón flotante de WhatsApp ───────────────────────
      Se cuelga del final de la página, fuera del contenedor de
