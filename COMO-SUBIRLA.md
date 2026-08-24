@@ -1,75 +1,55 @@
-# Cómo poner la web en WordPress con Elementor
+# CALMA · cómo poner la web en Hostinger
 
-## Lo que te llevas
+La web va como archivos sueltos, **sin WordPress**. Así no hay tema
+ni plugins que puedan romperla, que es lo que estaba pasando con el
+menú del móvil dentro de Elementor.
 
-| Archivo | Qué es | Peso |
-|---|---|---|
-| `calma-elementor.html` | El código para pegar. Las fotos se enlazan desde WordPress. | ~54 KB |
-| `calma-elementor-con-fotos.html` | Lo mismo, pero con las fotos metidas dentro. No hay que subir nada. | ~1,5 MB |
+## Lo que necesitas
 
-Usa el primero salvo que tengas prisa: la web carga mucho más rápido y el
-editor de Elementor no se atasca.
+Un solo archivo: **`calma-web-hostinger.zip`** (1,5 MB).
+Dentro va `index.html` y la carpeta `assets` con las fotos, los
+estilos, el guion y las tipografías.
 
 ## Pasos
 
-**1. Prepara la página**
+1. Entra en **hPanel** de Hostinger.
+2. Menú de la izquierda → **Archivos** → **Administrador de archivos**.
+3. Abre la carpeta **`public_html`**.
+4. Botón **Subir** (flecha hacia arriba, arriba a la derecha) y elige
+   `calma-web-hostinger.zip`.
+5. Cuando termine, **clic derecho sobre el zip → Extraer**. Deja la
+   ruta que te propone (`public_html`) y acepta.
+6. Borra el zip, que ya no hace falta.
 
-Crea una página nueva y, antes de nada, en Elementor abre los ajustes de
-página (el engranaje de abajo a la izquierda) y pon **Plantilla de página:
-Elementor Lienzo**. Eso quita la cabecera y el pie del tema, que si no se
-montarían encima del diseño.
+Y ya está. La web se ve en tu dominio.
 
-**2. Sube las fotos** (solo si usas `calma-elementor.html`)
+## Aviso importante
 
-Medios → Añadir nuevo, y sube estos once archivos de golpe, que así van
-todos a la misma carpeta:
+En `public_html` está ahora mismo tu WordPress. Al extraer ahí,
+`index.html` convive con `index.php`: **el servidor da preferencia a
+`index.html`**, así que tu dominio pasará a mostrar esta web y no la
+de WordPress.
 
-    hero.jpg  calma.jpg  barre.jpg  clases.jpg
-    est-1.jpg  est-2.jpg  est-3.jpg  est-4.jpg
-    retrato.jpg  logo.png  logo-cream.png
+Si prefieres probarla antes sin tocar lo que hay:
 
-Abre cualquiera de ellas en la Biblioteca y copia su dirección. Será algo así:
+- En el paso 3, crea una carpeta nueva (botón **Carpeta**), llámala
+  `calma`, entra dentro y sube ahí el zip.
+- La verás en **tu-dominio.com/calma/**
+- Cuando te convenza, movemos los archivos a `public_html` y listo.
 
-    https://tudominio.com/wp-content/uploads/2026/08/hero.jpg
+## Para volver atrás
 
-**3. Cambia la dirección en el código**
+Borra `index.html` y la carpeta `assets` de `public_html`. WordPress
+vuelve a aparecer solo, sin haber tocado nada suyo.
 
-En el archivo, busca y reemplaza todas las apariciones de
+## Cambios más adelante
 
-    https://TU-DOMINIO.com/wp-content/uploads/calma/
+Cualquier cambio lo hago yo aquí, te paso el zip nuevo y repites los
+pasos 4 y 5 (extraer sobreescribiendo). No hay que tocar nada más.
 
-por la parte de tu dirección hasta la última barra, en el ejemplo:
+## Lo que queda pendiente
 
-    https://tudominio.com/wp-content/uploads/2026/08/
-
-Con el Bloc de notas o cualquier editor: Buscar y reemplazar, "Reemplazar todo".
-
-**4. Pega el código**
-
-Arrastra un widget **HTML** a la página, borra lo que traiga dentro y pega
-el contenido entero del archivo. Publica.
-
-## Si algo sale raro
-
-**Se ve el diseño estrecho, con márgenes a los lados**
-El contenedor de Elementor manda. Selecciónalo y ponlo a ancho completo,
-con el relleno (padding) a cero.
-
-**Aparece una barra de desplazamiento horizontal**
-Lo mismo: contenedor a ancho completo y sin relleno.
-
-**Se ven dos cabeceras**
-Falta poner la plantilla en Elementor Lienzo (paso 1).
-
-**Las fotos salen rotas**
-La dirección del paso 3 no coincide. Abre una foto en la Biblioteca de
-medios, copia su dirección exacta y comprueba que la parte hasta la última
-barra es la que has puesto.
-
-## Cuando haya cambios
-
-Los archivos se regeneran con:
-
-    python3 build-elementor.py
-
-Y hay que volver a pegar el código en el widget.
+- La foto de "Sobre mí" **no es Rocío**: es una imagen de archivo.
+  Hay que cambiarla por una suya.
+- Las fotos del estudio son del render, no del estudio real.
+- Aviso legal, privacidad y cookies están sin enlazar en el pie.
