@@ -50,10 +50,14 @@ Para añadir, quitar o cambiar el precio de un producto, edita directamente la f
 6. **Para el cole** — placas de seño y medallas de graduación (con tabla de modelos).
 7. **Para los peques** — cumple mes, placas de habitación y «Mi primer año».
 8. **Comuniones y bodas** — los 12 detalles, en fichas compactas.
-9. **Personalización** — el 100 % personalizable y los 3 pasos del encargo.
-10. **Valores** — banda burdeos con hecho a mano / para el aula / con tu nombre.
-11. **Sobre mí** — Davinia y el origen del nombre.
-12. **Contacto** — WhatsApp e Instagram.
+9. **Galería** — mosaico con 24 fotos de trabajos ya hechos.
+10. **Personalización** — el 100 % personalizable.
+11. **Cómo funciona** — los cuatro pasos del encargo.
+12. **Pedidos grandes** — graduaciones, comuniones, bodas y aulas completas.
+13. **Valores** — banda burdeos con hecho a mano / para el aula / con tu nombre.
+14. **Sobre mí** — Davinia y el origen del nombre.
+15. **Preguntas frecuentes** — siete preguntas desplegables.
+16. **Contacto** — WhatsApp e Instagram.
 
 ## Paleta
 
@@ -67,8 +71,9 @@ tipografía y una sola banda, y el verde menta como acento.
 | Burdeos claro | `#9A3B4A` | Textos en cursiva, detalles |
 | Verde menta | `#D8F8E9` | Cabecera, portada, pie (es el verde exacto del logo) |
 | Menta suave | `#EEFBF5` | Fondo de la sección de personalización |
-| Crema | `#FBF6F0` | Fondo general |
-| Arena | `#F3E7DE` | Sección de categorías |
+| Beige | `#F5EEE3` | Fondo general |
+| Beige claro | `#FAF5EC` | Material educativo, galería y preguntas |
+| Arena | `#EADDCA` | Categorías y pedidos grandes |
 
 Además, **cada familia de producto tiene su propio color**, sacado de las propias piezas,
 para que la web no sea toda igual. Cada sección solo declara su acento y las fichas,
@@ -108,3 +113,15 @@ npx serve .        # o simplemente abrir index.html en el navegador
 
 Poppins y Yellowtail (SIL Open Font License), descargadas y servidas desde el propio
 proyecto para que la web cargue rápido y funcione aunque no haya acceso a Google Fonts.
+
+## Datos pendientes de confirmar con Davinia
+
+Estos puntos no están en la web porque nadie los ha confirmado todavía. En cuanto
+lleguen, se añaden a las preguntas frecuentes y al bloque de contacto:
+
+- **Plazos de entrega** — cuánto tarda un encargo normal y cuánto uno grande.
+- **Envíos** — si hace envíos, a dónde y cuánto cuestan. (Se retiró de la web el texto
+  «Envíos a toda España», que era una suposición.)
+- **Formas de pago** y si pide señal en los pedidos grandes.
+- **Pedido mínimo** en marcasitios, llaveros y demás detalles que van por tandas.
+- **Precio de las placas de seño y de las placas de silla**, que ahora ponen «Consultar».
