@@ -129,10 +129,9 @@ em{font-style:italic}
 .media-card img{width:100%;height:100%;object-fit:cover}
 .media-card--arch{aspect-ratio:5/6;border-radius:50vw 50vw var(--r-lg) var(--r-lg)}
 .media-card--wide{
-  aspect-ratio:16/9;border-radius:var(--r-xl);margin-top:clamp(2.5rem,5vw,4rem);
-  /* Los originales miden 1024 px de ancho: si se pintan más grandes
-     se ven borrosos, así que la banda no pasa de ahí y se centra. */
-  max-width:1024px;margin-inline:auto
+  aspect-ratio:16/9;border-radius:var(--r-xl);
+  /* Aire de sobra con lo que venga antes: pegada se ve apelmazada */
+  margin:clamp(3.5rem,7vw,6rem) auto 0
 }
 
 /* ── 4. HEADER ───────────────────────────────────────── */
@@ -434,7 +433,8 @@ em{font-style:italic}
 }
 .pilar{
   padding:clamp(1.6rem,3vw,2.4rem);background:var(--cream);
-  border:1px solid var(--line-soft)
+  border:1px solid var(--line-soft);
+  border-radius:var(--r-md)
 }
 .pilar__num{
   font-family:var(--font-display);font-size:1.5rem;line-height:1;
@@ -451,7 +451,8 @@ em{font-style:italic}
 }
 .horario{
   padding:clamp(1.5rem,3vw,2.2rem);background:var(--cream);
-  border:1px solid var(--line-soft)
+  border:1px solid var(--line-soft);
+  border-radius:var(--r-md)
 }
 .horario--fitness{background:var(--nude)}
 .horario__tit{
@@ -475,7 +476,8 @@ em{font-style:italic}
 .bloques{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2.5vw,1.8rem)}
 .bloque{
   padding:clamp(1.6rem,3vw,2.4rem);background:var(--cream);
-  border:1px solid var(--line-soft)
+  border:1px solid var(--line-soft);
+  border-radius:var(--r-md)
 }
 .bloque__num{
   font-family:var(--font-display);font-size:1.5rem;line-height:1;
@@ -503,7 +505,8 @@ em{font-style:italic}
 }
 .fitness-pie{
   margin-top:clamp(2.5rem,6vw,4rem);padding:clamp(1.8rem,4vw,2.8rem);
-  background:var(--cream);border:1px solid var(--line-soft);text-align:center
+  background:var(--cream);border:1px solid var(--line-soft);text-align:center;
+  border-radius:var(--r-md)
 }
 .fitness-pie p{margin:0 0 .6rem;font-size:.95rem}
 .fitness-pie .btn{margin-top:1rem}
