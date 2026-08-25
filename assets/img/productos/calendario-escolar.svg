@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" role="img" aria-label="calendario escolar">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#EFE7DB"/><stop offset="1" stop-color="#ffffff" stop-opacity=".6"/>
+  </linearGradient></defs>
+  <rect width="900" height="700" fill="url(#g)"/>
+  <g transform="translate(450.0,338.0) scale(1.5)" opacity=".75"><rect x="-64" y="-46" width="128" height="96" rx="9" fill="none" stroke="#6E1524" stroke-width="4"/><line x1="-64" y1="-20" x2="64" y2="-20" stroke="#6E1524" stroke-width="4"/><line x1="-34" y1="-58" x2="-34" y2="-34" stroke="#6E1524" stroke-width="5" stroke-linecap="round"/><line x1="34" y1="-58" x2="34" y2="-34" stroke="#6E1524" stroke-width="5" stroke-linecap="round"/><g fill="#6E1524"><circle cx="-36" cy="0" r="7" opacity=".45"/><circle cx="-12" cy="0" r="7" opacity=".45"/><circle cx="12" cy="0" r="7" opacity=".8"/><circle cx="36" cy="0" r="7" opacity=".45"/><circle cx="-36" cy="26" r="7" opacity=".45"/><circle cx="-12" cy="26" r="7" opacity=".45"/><circle cx="12" cy="26" r="7" opacity=".45"/></g></g>
+  <text x="450.0" y="648" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" letter-spacing="3" fill="#6E1524" opacity=".6">CALENDARIO ESCOLAR</text>
+</svg>
