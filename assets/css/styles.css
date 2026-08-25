@@ -16,6 +16,19 @@
   --gris:#6B615D;
   --blanco:#FFFFFF;
 
+  /* Colores de cada familia de producto, sacados de las propias piezas:
+     el turquesa de las placas de seño, el rosa de los detalles de bebé
+     y el verde de las cintas y hojitas de comunión. */
+  --turquesa:#16757D;        --turquesa-fondo:#E0F3F4;  --turquesa-tenue:#F0FAFA;
+  --rosa:#B03F63;            --rosa-fondo:#FBEAEF;      --rosa-tenue:#FDF4F7;
+  --oliva:#4E6B41;           --oliva-fondo:#ECF2E5;     --oliva-tenue:#F5F9F0;
+
+  /* Acento de la sección: por defecto, el burdeos de la marca */
+  --acento:var(--burdeos);
+  --acento-claro:var(--burdeos-claro);
+  --acento-fondo:var(--crema);
+  --acento-tenue:var(--arena);
+
   --radio:28px;
   --radio-sm:16px;
   --ancho:1180px;
@@ -340,12 +353,19 @@ p{margin:0 0 1em;}
   transition:var(--transicion);
 }
 .cat img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1);}
+.cat{border-color:var(--tono,var(--burdeos));}
 .cat:hover{transform:translateY(-6px);box-shadow:var(--sombra);}
 .cat:hover img{transform:scale(1.05);}
+.cat--material{--tono:#4C0E19;}
+.cat--cole{--tono:#0F5B62;}
+.cat--peques{--tono:#8C2F4C;}
+.cat--eventos{--tono:#3B5230;}
 .cat__label{
   position:absolute;left:0;right:0;bottom:0;
   padding:2.5rem 1.2rem 1.3rem;
-  background:linear-gradient(to top,rgba(76,14,25,.85),rgba(76,14,25,0));
+  background:linear-gradient(to top,
+    color-mix(in srgb, var(--tono,#4C0E19) 88%, transparent),
+    transparent);
   color:#fff;text-align:center;
   font-size:.8rem;font-weight:600;
   letter-spacing:.16em;text-transform:uppercase;
@@ -354,8 +374,26 @@ p{margin:0 0 1em;}
 /* =========================================================
    TIENDA: cabeceras, rejillas y fichas de producto
    ========================================================= */
-.shop{background:var(--crema);padding:clamp(3.5rem,8vw,6.5rem) 1.5rem;}
-.shop--alt{background:var(--menta-suave);}
+.shop{
+  background:var(--acento-fondo);
+  padding:clamp(3.5rem,8vw,6.5rem) 1.5rem;
+}
+.shop--material{--acento-fondo:#FDF8F1;--acento-tenue:var(--arena);}
+.shop--cole{
+  --acento:var(--turquesa);--acento-claro:var(--turquesa);
+  --acento-fondo:var(--turquesa-fondo);--acento-tenue:var(--turquesa-tenue);
+}
+.shop--peques{
+  --acento:var(--rosa);--acento-claro:var(--rosa);
+  --acento-fondo:var(--rosa-fondo);--acento-tenue:var(--rosa-tenue);
+}
+.shop--eventos{
+  --acento:var(--oliva);--acento-claro:var(--oliva);
+  --acento-fondo:var(--oliva-fondo);--acento-tenue:var(--oliva-tenue);
+}
+.shop h2,
+.shop .eyebrow,
+.shop .script{color:var(--acento);}
 .shop__inner{max-width:var(--ancho);margin:0 auto;}
 
 .shop__head{max-width:56ch;margin:0 auto clamp(2.5rem,5vw,3.5rem);text-align:center;}
@@ -375,24 +413,24 @@ p{margin:0 0 1em;}
 .card{
   display:flex;flex-direction:column;
   background:var(--blanco);
-  border:1.5px solid rgba(110,21,36,.18);
+  border:1.5px solid color-mix(in srgb, var(--acento) 24%, transparent);
   border-radius:var(--radio);
   overflow:hidden;
   transition:var(--transicion);
 }
 .card:hover{
   transform:translateY(-5px);
-  border-color:var(--burdeos);
-  box-shadow:var(--sombra);
+  border-color:var(--acento);
+  box-shadow:0 18px 50px color-mix(in srgb, var(--acento) 16%, transparent);
 }
-.card__media{position:relative;background:var(--arena);}
+.card__media{position:relative;background:var(--acento-tenue);}
 .card__media img{width:100%;aspect-ratio:4/3;object-fit:cover;}
 .card__body{
   padding:1.5rem 1.5rem 1.4rem;
   display:flex;flex-direction:column;flex:1;
 }
 .card__title{
-  font-size:1.15rem;line-height:1.25;margin-bottom:.6em;
+  font-size:1.15rem;line-height:1.25;margin-bottom:.6em;color:var(--acento);
 }
 .card__text{
   color:var(--gris);font-size:.88rem;line-height:1.65;
@@ -402,27 +440,27 @@ p{margin:0 0 1em;}
   margin-top:auto;
   display:flex;align-items:center;justify-content:space-between;gap:1rem;
   padding-top:1.1rem;
-  border-top:1px solid rgba(110,21,36,.13);
+  border-top:1px solid color-mix(in srgb, var(--acento) 18%, transparent);
 }
 .card__price{
-  font-size:1.35rem;font-weight:700;color:var(--burdeos);
+  font-size:1.35rem;font-weight:700;color:var(--acento);
   letter-spacing:-.02em;line-height:1;
 }
 .card__link{
   text-decoration:none;
   font-size:.7rem;font-weight:600;
   letter-spacing:.14em;text-transform:uppercase;
-  color:var(--burdeos);
-  border:1.5px solid var(--burdeos);
+  color:var(--acento);
+  border:1.5px solid var(--acento);
   border-radius:999px;
   padding:.6rem 1.1rem;
   white-space:nowrap;
   transition:var(--transicion);
 }
-.card__link:hover{background:var(--burdeos);color:var(--menta-suave);}
+.card__link:hover{background:var(--acento);color:#fff;}
 
 .tag{
-  background:var(--burdeos);color:var(--menta);
+  background:var(--acento);color:#fff;
   font-size:.62rem;font-weight:600;
   letter-spacing:.16em;text-transform:uppercase;
   padding:.45rem .95rem;border-radius:999px;
@@ -432,21 +470,21 @@ p{margin:0 0 1em;}
 /* --- Ficha compacta (detalles de evento) --- */
 .mini{
   background:var(--blanco);
-  border:1.5px solid rgba(110,21,36,.16);
+  border:1.5px solid color-mix(in srgb, var(--acento) 22%, transparent);
   border-radius:var(--radio-sm);
   overflow:hidden;
   display:flex;flex-direction:column;
   transition:var(--transicion);
 }
-.mini:hover{transform:translateY(-4px);border-color:var(--burdeos);}
-.mini__media{background:var(--arena);}
+.mini:hover{transform:translateY(-4px);border-color:var(--acento);}
+.mini__media{background:var(--acento-tenue);}
 .mini__media img{width:100%;aspect-ratio:5/4;object-fit:cover;}
 .mini__body{padding:1.1rem 1.2rem 1.2rem;display:flex;flex-direction:column;flex:1;}
-.mini__title{font-size:.98rem;margin-bottom:.5em;line-height:1.25;}
+.mini__title{font-size:.98rem;margin-bottom:.5em;line-height:1.25;color:var(--acento);}
 .mini__text{color:var(--gris);font-size:.8rem;line-height:1.6;margin:0 0 1rem;}
 .mini__price{
   margin-top:auto;
-  font-size:1.05rem;font-weight:700;color:var(--burdeos);
+  font-size:1.05rem;font-weight:700;color:var(--acento);
 }
 
 /* --- Galería de placas --- */
@@ -455,7 +493,7 @@ p{margin:0 0 1em;}
   text-align:center;
   font-size:.74rem;font-weight:600;
   letter-spacing:.2em;text-transform:uppercase;
-  color:var(--burdeos-claro);
+  color:var(--acento);
   margin-bottom:1.4rem;
 }
 .galeria__tira{
@@ -466,23 +504,23 @@ p{margin:0 0 1em;}
 .galeria__tira img{
   width:100%;aspect-ratio:1/1;object-fit:cover;
   border-radius:var(--radio-sm);
-  border:1.5px solid rgba(110,21,36,.18);
+  border:1.5px solid color-mix(in srgb, var(--acento) 24%, transparent);
   transition:var(--transicion);
 }
-.galeria__tira img:hover{transform:translateY(-4px);border-color:var(--burdeos);}
+.galeria__tira img:hover{transform:translateY(-4px);border-color:var(--acento);}
 
 /* --- Lista de variantes (modelos de medalla) --- */
 .options{
   margin-top:clamp(2rem,4vw,3rem);
   background:var(--blanco);
-  border:1.5px solid rgba(110,21,36,.18);
+  border:1.5px solid color-mix(in srgb, var(--acento) 24%, transparent);
   border-radius:var(--radio);
   padding:clamp(1.6rem,3vw,2.2rem);
 }
 .options__title{
   font-size:.78rem;font-weight:600;
   letter-spacing:.2em;text-transform:uppercase;
-  color:var(--burdeos-claro);
+  color:var(--acento);
   margin-bottom:1.4em;
 }
 .options__list{list-style:none;padding:0;margin:0;display:grid;gap:0;}
@@ -491,13 +529,13 @@ p{margin:0 0 1em;}
   grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) auto;
   gap:1rem;align-items:baseline;
   padding:1rem 0;
-  border-top:1px solid rgba(110,21,36,.12);
+  border-top:1px solid color-mix(in srgb, var(--acento) 18%, transparent);
 }
 .options__list li:first-child{border-top:0;padding-top:0;}
-.options__list strong{color:var(--burdeos);font-weight:600;font-size:.95rem;}
+.options__list strong{color:var(--acento);font-weight:600;font-size:.95rem;}
 .options__list span{color:var(--gris);font-size:.85rem;}
 .options__list em{
-  font-style:normal;font-weight:700;color:var(--burdeos);
+  font-style:normal;font-weight:700;color:var(--acento);
   font-size:1.1rem;text-align:right;
 }
 

@@ -20,10 +20,11 @@ assets/img/                Imágenes (ahora mismo, marcadores de posición)
 
 ## Catálogo publicado
 
-**Material educativo** (10 productos) — Calendario escolar 49,90 € · Material Protagonista
+**Material educativo** (11 productos) — Calendario escolar 49,90 € · Material Protagonista
 49,90 € · El número protagonista 49,90 € · La palabra secreta 49,90 € · Rutinas de clase
 49,90 € · Árbol de las estaciones y festividades 54,90 € · Tiempo atmosférico 44,90 € ·
-Asistencia 44,90 € · Cumplemeses 34,90 € · Lee, crea y escribe 24,90 €.
+Asistencia 44,90 € · Cumplemeses 34,90 € · Casas de los días de la semana 79,90 € ·
+Lee, crea y escribe 24,90 €.
 
 **Para el cole** — Placas personalizadas de seño (a consultar) · Medallas de graduación:
 grabada 3,50 €, con nombre a relieve 4 €, con círculo + nombre + sombrero a relieve 4,50 €.
@@ -64,10 +65,21 @@ tipografía y una sola banda, y el verde menta como acento.
 | Burdeos | `#6E1524` | Titulares, botones, banda de valores |
 | Burdeos oscuro | `#4C0E19` | Bloque de contacto |
 | Burdeos claro | `#9A3B4A` | Textos en cursiva, detalles |
-| Verde menta | `#D6F3E2` | Cabecera, portada, pie |
-| Menta suave | `#EDFAF3` | Fondo de la sección de personalización |
+| Verde menta | `#D8F8E9` | Cabecera, portada, pie (es el verde exacto del logo) |
+| Menta suave | `#EEFBF5` | Fondo de la sección de personalización |
 | Crema | `#FBF6F0` | Fondo general |
 | Arena | `#F3E7DE` | Sección de categorías |
+
+Además, **cada familia de producto tiene su propio color**, sacado de las propias piezas,
+para que la web no sea toda igual. Cada sección solo declara su acento y las fichas,
+precios, botones y bordes de dentro lo heredan (variable `--acento`):
+
+| Sección | Acento | Fondo |
+|---|---|---|
+| Material educativo | Burdeos `#6E1524` | Crema cálido `#FDF8F1` |
+| Para el cole | Turquesa `#16757D` (el de las placas) | `#E0F3F4` |
+| Para los peques | Rosa `#B03F63` | `#FBEAEF` |
+| Comuniones y bodas | Verde oliva `#4E6B41` (el de las cintas) | `#ECF2E5` |
 
 Se cambian todos en un sitio: las variables `:root` de `assets/css/styles.css`.
 
@@ -78,12 +90,10 @@ Se cambian todos en un sitio: las variables `:root` de `assets/css/styles.css`.
 - ~~Fotos de producto~~ ✅ puestas. Están en `assets/img/productos/`, con el nombre del
   producto (`calendario-escolar.jpg`). Las que llevan `-2`, `-3`… son fotos adicionales
   del mismo producto, guardadas para futuras galerías.
-- **Falta la foto de los joyeros** — es el único producto sin foto; de momento hay un
-  marcador (`productos/joyeros.svg`).
 - **Falta la foto de Davinia** para «Sobre mí»: ahora hay una placa en la mano
   (`assets/img/davinia.jpg`). Se sustituye por su foto manteniendo el nombre.
-- **Producto sin ficha**: `productos/dias-semana.jpg` (las casitas de los días de la
-  semana). No tenemos descripción ni precio, así que todavía no está en la web.
+- Queda por decidir si el **portalápiz (6 €)** encaja mejor en «Para los peques» que en
+  los detalles de comunión, donde está ahora.
 - **WhatsApp**: cambiar `https://wa.me/34600000000` por el número real.
 - **Instagram**: cambiar `https://instagram.com/` por el perfil real.
 - Faltan por añadir el resto de productos y precios cuando lleguen las fotos.
