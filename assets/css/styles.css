@@ -128,7 +128,12 @@ em{font-style:italic}
 .media-card{margin:0;overflow:hidden;background:var(--nude);border-radius:var(--r-lg)}
 .media-card img{width:100%;height:100%;object-fit:cover}
 .media-card--arch{aspect-ratio:5/6;border-radius:50vw 50vw var(--r-lg) var(--r-lg)}
-.media-card--wide{aspect-ratio:16/9;border-radius:var(--r-xl);margin-top:clamp(2.5rem,5vw,4rem)}
+.media-card--wide{
+  aspect-ratio:16/9;border-radius:var(--r-xl);margin-top:clamp(2.5rem,5vw,4rem);
+  /* Los originales miden 1024 px de ancho: si se pintan más grandes
+     se ven borrosos, así que la banda no pasa de ahí y se centra. */
+  max-width:1024px;margin-inline:auto
+}
 
 /* ── 4. HEADER ───────────────────────────────────────── */
 .header{position:sticky;top:0;z-index:60;transition:background .5s var(--ease),box-shadow .5s}
