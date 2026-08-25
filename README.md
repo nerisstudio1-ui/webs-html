@@ -114,14 +114,29 @@ npx serve .        # o simplemente abrir index.html en el navegador
 Poppins y Yellowtail (SIL Open Font License), descargadas y servidas desde el propio
 proyecto para que la web cargue rápido y funcione aunque no haya acceso a Google Fonts.
 
+## Condiciones publicadas
+
+Confirmadas por Davinia y ya en la web (preguntas frecuentes, franja bajo los pasos
+del encargo y pie del bloque de contacto):
+
+- **Plazo**: unos 15 días desde que se cierran los detalles.
+- **Pedido mínimo**: no hay, ni siquiera en marcasitios o llaveros.
+- **Pago**: al terminar el producto, por Bizum o transferencia. Sin señal.
+
 ## Datos pendientes de confirmar con Davinia
 
-Estos puntos no están en la web porque nadie los ha confirmado todavía. En cuanto
-lleguen, se añaden a las preguntas frecuentes y al bloque de contacto:
-
-- **Plazos de entrega** — cuánto tarda un encargo normal y cuánto uno grande.
 - **Envíos** — si hace envíos, a dónde y cuánto cuestan. (Se retiró de la web el texto
   «Envíos a toda España», que era una suposición.)
-- **Formas de pago** y si pide señal en los pedidos grandes.
-- **Pedido mínimo** en marcasitios, llaveros y demás detalles que van por tandas.
 - **Precio de las placas de seño y de las placas de silla**, que ahora ponen «Consultar».
+
+## El móvil
+
+La web se rehízo para móvil porque a una columna se iba a 28.000 px de alto. Ahora:
+
+- Las fichas de producto van en horizontal, con la foto como miniatura cuadrada a la
+  izquierda. Por debajo de 345 px vuelven a apilarse.
+- La galería pasa de mosaico a una tira que se desliza con el dedo.
+- Las categorías van de dos en dos, y los pasos y los valores ponen el número o el
+  icono al lado del título en vez de encima.
+
+Con eso la página baja a unos 19.800 px, un 31 % menos.
