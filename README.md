@@ -73,20 +73,17 @@ Se cambian todos en un sitio: las variables `:root` de `assets/css/styles.css`.
 
 ## Qué falta por poner (pendiente de material real)
 
-- **Logo**: ahora está escrito con tipografía. Para usar el logo original, guarda el
-  archivo como `assets/img/logo.png` y sustituye en `index.html` el
-  `<span class="logo__word">ArTnia</span>` por
-  `<img src="assets/img/logo.png" alt="ArTnia" class="logo__img">` (ya hay un
-  comentario en el sitio exacto).
-- **Fotos**: los `.svg` de `assets/img/` y `assets/img/productos/` son marcadores.
-  Se sustituyen por las fotos reales manteniendo el mismo nombre de archivo (cambiando la
-  extensión en el `src` de `index.html`, p. ej. `calendario-escolar.jpg`):
-  - `hero.svg` — foto principal (vertical)
-  - `detalle.svg` — detalle de un acabado
-  - `cat-material.svg`, `cat-placas.svg`, `cat-detalles.svg` — las categorías (vertical 3:4)
-  - `personalizable.svg` — piezas personalizadas
-  - `davinia.svg` — foto de Davinia (aquí va la foto de ella con una placa)
-  - `productos/*.svg` — una por producto, con el nombre del producto (horizontal 4:3)
+- ~~Logo~~ ✅ puesto (`assets/img/logo.png`, con el fondo recortado y transparente).
+  El verde menta de toda la web es exactamente el del logo (`#D8F8E9`).
+- ~~Fotos de producto~~ ✅ puestas. Están en `assets/img/productos/`, con el nombre del
+  producto (`calendario-escolar.jpg`). Las que llevan `-2`, `-3`… son fotos adicionales
+  del mismo producto, guardadas para futuras galerías.
+- **Falta la foto de los joyeros** — es el único producto sin foto; de momento hay un
+  marcador (`productos/joyeros.svg`).
+- **Falta la foto de Davinia** para «Sobre mí»: ahora hay una placa en la mano
+  (`assets/img/davinia.jpg`). Se sustituye por su foto manteniendo el nombre.
+- **Producto sin ficha**: `productos/dias-semana.jpg` (las casitas de los días de la
+  semana). No tenemos descripción ni precio, así que todavía no está en la web.
 - **WhatsApp**: cambiar `https://wa.me/34600000000` por el número real.
 - **Instagram**: cambiar `https://instagram.com/` por el perfil real.
 - Faltan por añadir el resto de productos y precios cuando lleguen las fotos.

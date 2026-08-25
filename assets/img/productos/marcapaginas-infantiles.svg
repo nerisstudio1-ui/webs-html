@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" role="img" aria-label="marcapáginas infantiles">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#E8F0EC"/><stop offset="1" stop-color="#ffffff" stop-opacity=".6"/>
-  </linearGradient></defs>
-  <rect width="900" height="700" fill="url(#g)"/>
-  <g transform="translate(450.0,338.0) scale(1.5)" opacity=".75"><rect x="-26" y="-56" width="52" height="100" rx="5" fill="none" stroke="#6E1524" stroke-width="4"/><path d="M-26 44 L0 26 L26 44" fill="none" stroke="#6E1524" stroke-width="4" stroke-linejoin="round"/><g stroke="#6E1524" stroke-width="4" stroke-linecap="round" opacity=".6"><line x1="-12" y1="-30" x2="12" y2="-30"/><line x1="-14" y1="-12" x2="14" y2="-12"/><line x1="-10" y1="6" x2="10" y2="6"/></g></g>
-  <text x="450.0" y="648" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" letter-spacing="3" fill="#6E1524" opacity=".6">MARCAPÁGINAS INFANTILES</text>
-</svg>

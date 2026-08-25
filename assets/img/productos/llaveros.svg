@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" role="img" aria-label="llaveros">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#F3E8E4"/><stop offset="1" stop-color="#ffffff" stop-opacity=".6"/>
-  </linearGradient></defs>
-  <rect width="900" height="700" fill="url(#g)"/>
-  <g transform="translate(450.0,338.0) scale(1.5)" opacity=".75"><path d="M-46 -18 h72 q20 0 20 20 q0 20 -20 20 h-72 q-16 0 -16 -20 q0 -20 16 -20 Z" fill="none" stroke="#6E1524" stroke-width="4"/><circle cx="44" cy="-30" r="12" fill="none" stroke="#6E1524" stroke-width="4"/><path d="M-30 4 q12 -16 22 -2 q6 8 18 -8" fill="none" stroke="#6E1524" stroke-width="4" stroke-linecap="round"/></g>
-  <text x="450.0" y="648" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" letter-spacing="3" fill="#6E1524" opacity=".6">LLAVEROS</text>
-</svg>
