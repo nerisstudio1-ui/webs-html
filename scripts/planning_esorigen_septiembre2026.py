@@ -12,36 +12,36 @@ SUB     = "Planning de contenido Instagram"
 PIE_IZQ = "ES ORIGEN · Entrenamiento personalizado · Running y fuerza"
 PIE_MID = f"Planning Instagram · {MES} · Elaborado por Neris Studio"
 
-STATS = [("8", "POSTS", "post"), ("14", "STORIES", "cream"),
+STATS = [("8", "POSTS", "post"), ("9", "STORIES", "cream"),
          ("Lun · Jue", "PUBLICAR", "brown"), ("18:00 h", "HORA FEED", "soft")]
-COLUMNAS = [("LUNES", "POST"), ("MARTES", "STORY"), ("MIÉRCOLES", "STORY"),
+COLUMNAS = [("LUNES", "POST"), ("MARTES", "STORY"), ("MIÉRCOLES", "DESCANSO"),
             ("JUEVES", "POST"), ("VIERNES", "STORY")]
 
 # calendario: filas de 5 · None = hueco · (dia, fmt, hora, linea1, linea2)
 CAL = [
  [None,
   ("1", "STORY", "10:00", "Encuesta:", "¿Empiezas en septiembre?"),
-  ("2", "STORY", "10:00", "Caja:", "¿Qué te frenó en verano?"),
+  ("2",),
   ("3", "POST", "18:00", "Septiembre no empieza", "el lunes que viene."),
   ("4", "STORY", "10:00", "Quiz:", "¿Cuántos días hacen falta?")],
  [("7", "POST", "18:00", "Las primeras tres semanas", "son las que deciden."),
   ("8", "STORY", "10:00", "Así ajustamos un plan", "cuando falla una semana."),
-  ("9", "STORY", "10:00", "Encuesta:", "¿Empezar o seguir?"),
+  ("9",),
   ("10", "POST", "18:00", "El descanso", "también entrena."),
   ("11", "STORY", "10:00", "Consejo:", "la regla de los 10 minutos.")],
  [("14", "POST", "18:00", "Elige tu carrera", "de otoño."),
   ("15", "STORY", "10:00", "Encuesta:", "¿Qué distancia te llama?"),
-  ("16", "STORY", "10:00", "Quiz:", "¿Cuánto se tarda en un 10K?"),
+  ("16",),
   ("17", "POST", "18:00", "Preparar una carrera", "no es correr más."),
   ("18", "STORY", "10:00", "Caja:", "¿Qué carrera tienes en mente?")],
  [("21", "POST", "18:00", "Qué cambia cuando", "entrenas con seguimiento."),
   ("22", "STORY", "10:00", "Backstage:", "una revisión semanal."),
-  ("23", "STORY", "10:00", "Mito o realidad:", "si no acabas reventado, no vale."),
+  ("23",),
   ("24", "POST", "18:00", "Tu plan debería", "cambiar contigo."),
   ("25", "STORY", "10:00", "Encuesta:", "¿Sigues un plan o improvisas?")],
  [("28", "POST", "18:00", "Octubre es", "para consolidar."),
   ("29", "STORY", "10:00", "Caja:", "¿Qué has conseguido este mes?"),
-  ("30", "STORY", "10:00", "Plazas abiertas", "para octubre."),
+  ("30",),
   None, None],
 ]
 
@@ -53,10 +53,6 @@ SEMANAS = [
    ["Encuesta: Sí, este mes / Lo estoy pensando.",
     "Visual: foto real de una salida temprano.",
     "Compartir resultado al día siguiente."]),
-  ("STORY", "Mié 2 · 10:00", "¿Qué te frenó en verano?",
-   ["Caja de respuestas abierta.",
-    "Calor, viajes o falta de plan.",
-    "Guardar respuestas para los contenidos del mes."]),
   ("POST", "Jue 3 · 18:00", "Septiembre no empieza el lunes que viene.",
    ["Carrusel: hoy, mañana, la semana que viene.",
     "Mensaje: el mejor día para empezar es el que ya está en el calendario.",
@@ -75,10 +71,6 @@ SEMANAS = [
    ["Backstage: qué hacemos cuando falla una semana.",
     "Texto breve, cercano y profesional.",
     "Sin necesidad de interacción."]),
-  ("STORY", "Mié 9 · 10:00", "¿Qué te cuesta más?",
-   ["Encuesta: Empezar / Seguir.",
-    "Foto real de entrenamiento.",
-    "Cierre: casi siempre es lo segundo."]),
   ("POST", "Jue 10 · 18:00", "El descanso también entrena.",
    ["Carrusel: sueño, días suaves, carga y recuperación.",
     "Mensaje: entrenar sin descansar es solo cansarse.",
@@ -97,10 +89,6 @@ SEMANAS = [
    ["Encuesta por pantallas: 5K / 10K / media.",
     "Una foto para cada distancia.",
     "Objetivo: detectar intereses."]),
-  ("STORY", "Mié 16 · 10:00", "¿Cuánto se tarda en preparar un 10K?",
-   ["Quiz con opciones.",
-    "Respuesta: depende del punto de partida.",
-    "Lo habitual: entre 8 y 12 semanas."]),
   ("POST", "Jue 17 · 18:00", "Preparar una carrera no es correr más.",
    ["Carrusel: series, tirada larga, fuerza y descanso.",
     "Mensaje: cada sesión tiene una función.",
@@ -119,10 +107,6 @@ SEMANAS = [
    ["Backstage: cómo se ajusta un plan real.",
     "Sin datos ni nombres de clientes.",
     "Humaniza la marca."]),
-  ("STORY", "Mié 23 · 10:00", "Mito o realidad.",
-   ["“Si no acabas reventado, no ha valido.”",
-    "Respuesta: mito. La mayoría de sesiones son suaves.",
-    "Sticker de quiz."]),
   ("POST", "Jue 24 · 18:00", "Tu plan debería cambiar contigo.",
    ["Foto de una planificación en revisión.",
     "Mensaje: el plan de septiembre no es el de noviembre.",
@@ -141,10 +125,6 @@ SEMANAS = [
    ["Caja de respuestas abierta.",
     "Repostear las respuestas con permiso.",
     "Refuerzo de comunidad."]),
-  ("STORY", "Mié 30 · 10:00", "Plazas abiertas para octubre.",
-   ["Encuesta: Quiero información / Tengo dudas.",
-    "Visual de marca + fotografía deportiva.",
-    "CTA directo a mensaje privado."]),
   None, None,
  ]),
 ]
@@ -204,6 +184,8 @@ body {{ margin:0; font-family:Helvetica, Arial, sans-serif; color:{INK}; }}
 .cell .bar .h {{ font-weight:normal; letter-spacing:.02em; opacity:.9; }}
 .cell .bd {{ flex:1; padding:2.2mm 2.2mm; font-size:7.4pt; line-height:1.38; }}
 .cell.blank {{ background:{BG}; border-color:{BORDER}; opacity:.45; }}
+.cell.off {{ background:{CREAM}; opacity:.55; }}
+.cell.off .badge {{ background:#CFC5BA; color:#fff; }}
 .cell.post {{ background:{SOFT}; }}
 .cell.post .badge {{ background:{PERI}; color:{INK}; }}
 .cell.post .bar {{ background:{PERI}; color:{INK}; }}
@@ -213,7 +195,7 @@ body {{ margin:0; font-family:Helvetica, Arial, sans-serif; color:{INK}; }}
 
 .wgrid {{ display:grid; grid-template-columns:repeat(5,1fr); gap:1.6mm;
           padding:1.2mm 8mm 2.6mm; flex:1;
-          grid-template-rows:auto repeat(5, 1fr); }}
+          grid-template-rows:auto repeat(4, 1fr); }}
 .whead {{ border-radius:1.4mm; padding:1.9mm 2.6mm; color:#fff; }}
 .whead.light {{ color:{BROWN}; }}
 .whead .c {{ font-size:7.1pt; font-weight:bold; letter-spacing:.04em; }}
@@ -268,6 +250,10 @@ for fila in CAL:
         if celda is None:
             h.append('<div class="cell blank"></div>')
             continue
+        if len(celda) == 1:
+            h.append(f'<div class="cell off"><div class="r1">'
+                     f'<span class="badge">{esc(celda[0])}</span></div></div>')
+            continue
         num, fmt, hora, l1, l2 = celda
         cls = "post" if fmt == "POST" else "story"
         h.append(f'<div class="cell {cls}"><div class="r1">'
@@ -283,7 +269,7 @@ for tit, tema, color, _ in SEMANAS:
     light = " light" if color == PERI else ""
     h.append(f'<div class="whead{light}" style="background:{color}">'
              f'<div class="c">{esc(tit)}</div><div class="s">{esc(tema)}</div></div>')
-for fila in range(5):
+for fila in range(4):
     for _, _, _, slots in SEMANAS:
         slot = slots[fila]
         if slot is None:
