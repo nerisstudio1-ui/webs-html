@@ -26,8 +26,8 @@ SEMANAS = [
   ("Mié 2", "POST", "18:00", "La flota, lista para septiembre",
    "Publicación de arranque de mes con los coches ya preparados para la temporada alta.",
    "Consulta disponibilidad para tu fecha."),
-  ("Jue 3", "BODA", "18:00", "Boda de la semana al feed",
-   "Publicación en el feed de la boda de esa semana, con fotos reales de la pareja.",
+  ("Jue 3", "BODA", "18:00", "Boda",
+   "Espacio fijo de la semana. Se publica la boda que toque, con fotos reales de la pareja y su permiso. Se concreta unos días antes de publicar.",
    "Cuéntanos tu boda y te asesoramos."),
   ("Vie 4", "STORY", "10:00", "El coche, antes de salir",
    "Behind the scenes corto: limpieza, revisión y últimos detalles la mañana de la boda.", None),
@@ -39,9 +39,8 @@ SEMANAS = [
   ("Mar 8", "STORY", "10:00", "¿Con cuánto tiempo se reserva?",
    "Tip. Lo habitual es reservar con ocho o diez meses de margen. Los sábados de otoño son los "
    "primeros en cerrarse.", None),
-  ("Jue 10", "BODA", "18:00", "Boda real de la semana",
-   "Espacio reservado para la boda de esa semana. Solo imágenes reales de la pareja, sin inventar "
-   "nombres ni datos. Adaptar al caso real antes de publicar.",
+  ("Jue 10", "BODA", "18:00", "Boda",
+   "Espacio fijo de la semana. Se publica la boda que toque, con fotos reales de la pareja y su permiso. Se concreta unos días antes de publicar.",
    "Escríbenos si tienes dudas sobre tu boda."),
   ("Vie 11", "STORY", "10:00", "Fechas libres de otoño",
    "Historias con los fines de semana que siguen disponibles en octubre y noviembre.", None),
@@ -53,8 +52,8 @@ SEMANAS = [
   ("Mar 15", "STORY", "10:00", "¿Fotos dentro o fuera del coche? (1/2)",
    "Sticker de pregunta, primera interactiva del mes. Sirve para recoger ideas reales para próximos "
    "contenidos.", None),
-  ("Jue 17", "BODA", "18:00", "Boda de otoño en finca",
-   "Boda de la semana en finca, aprovechando la llegada al atardecer.",
+  ("Jue 17", "BODA", "18:00", "Boda",
+   "Espacio fijo de la semana. Se publica la boda que toque, con fotos reales de la pareja y su permiso. Se concreta unos días antes de publicar.",
    "Consulta disponibilidad para tu fecha."),
   ("Vie 18", "STORY", "10:00", "Dato: la hora de la llegada",
    "Dato. El coche llega antes de la hora prevista para dar margen al tráfico y a las fotos previas.", None),
@@ -66,9 +65,8 @@ SEMANAS = [
    "Escríbenos y te pasamos presupuesto."),
   ("Mar 22", "STORY", "10:00", "¿Uno o dos coches? (2/2)",
    "Encuesta, segunda y última interactiva del mes, para conocer cómo se plantea la llegada.", None),
-  ("Jue 24", "BODA", "18:00", "Dos coches, una misma boda",
-   "Boda de la semana en la que la pareja llega por separado. Cómo se organizan los tiempos y "
-   "los dos recorridos.", "Cuéntanos cómo es tu boda y te asesoramos."),
+  ("Jue 24", "BODA", "18:00", "Boda",
+   "Espacio fijo de la semana. Se publica la boda que toque, con fotos reales de la pareja y su permiso. Se concreta unos días antes de publicar.", "Cuéntanos cómo es tu boda y te asesoramos."),
   ("Vie 25", "STORY", "10:00", "Resumen de la semana",
    "Repaso del contenido de la semana, en formato resumen — repost del post del lunes.", None),
  ]),
@@ -84,9 +82,10 @@ SEMANAS = [
 ]
 
 NOTAS = [
- ("Bodas reales", "Las publicaciones de los jueves 3, 10, 17 y 24 dependen de que haya boda esa semana. "
-                  "Solo imágenes reales de la pareja, con su permiso y el del fotógrafo. Si alguna semana "
-                  "no hay boda, se sustituye por contenido de flota."),
+ ("Bodas", "Los jueves 3, 10, 17 y 24 quedan reservados para la boda de esa semana, sin definir "
+           "todavía cuál. Se elige unos días antes según lo que haya en agenda. Solo imágenes reales "
+           "de la pareja, con su permiso y el del fotógrafo. Si alguna semana no hay boda, el hueco se "
+           "cubre con contenido de flota."),
  ("Interactivas", "Dos por mes, como en agosto: pregunta el 15 y encuesta el 22. No se acumulan en la "
                   "misma semana."),
  ("Horarios", "Feed y bodas a las 18:00, historias a las 10:00. Se mantiene el patrón de agosto: "
@@ -99,22 +98,22 @@ NOTAS = [
 CAL = [
  [None,                                  ("1", "STORY", "10:00", "Septiembre, el mes de las bodas"),
   ("2", "POST", "18:00", "La flota, lista para septiembre"),
-  ("3", "BODA", "18:00", "Boda de la semana al feed"),
+  ("3", "BODA", "18:00", "Boda"),
   ("4", "STORY", "10:00", "El coche, antes de salir")],
  [("7", "REEL", "18:00", "La llegada, a cámara lenta"),
   ("8", "STORY", "10:00", "¿Con cuánto tiempo se reserva?"),
   ("9", None, None, "Sin publicación"),
-  ("10", "BODA", "18:00", "Boda real de la semana"),
+  ("10", "BODA", "18:00", "Boda"),
   ("11", "STORY", "10:00", "Fechas libres de otoño")],
  [("14", "POST", "18:00", "La luz de octubre"),
   ("15", "STORY", "10:00", "¿Fotos dentro o fuera del coche?"),
   ("16", None, None, "Sin publicación"),
-  ("17", "BODA", "18:00", "Boda de otoño en finca"),
+  ("17", "BODA", "18:00", "Boda"),
   ("18", "STORY", "10:00", "Dato: la hora de la llegada")],
  [("21", "CARRUSEL", "18:00", "Qué incluye el servicio"),
   ("22", "STORY", "10:00", "¿Uno o dos coches?"),
   ("23", None, None, "Sin publicación"),
-  ("24", "BODA", "18:00", "Dos coches, una misma boda"),
+  ("24", "BODA", "18:00", "Boda"),
   ("25", "STORY", "10:00", "Resumen de la semana")],
  [("28", "REEL", "18:00", "Un mes de llegadas"),
   ("29", "STORY", "10:00", "Lo más visto de septiembre"),
