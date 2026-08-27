@@ -143,3 +143,29 @@ La web se rehízo para móvil porque a una columna se iba a 28.000 px de alto. A
   icono al lado del título en vez de encima.
 
 Con eso la página baja de 28.000 a unos 23.300 px.
+
+## Cómo generar el código para un widget de HTML
+
+La web está escrita como página propia, así que su CSS lleva reglas para `*`, `html`
+y `body`. Pegada tal cual dentro del widget de una plataforma, esas reglas se aplican
+a **toda** la página de la plataforma (le cambian la tipografía, el fondo y el
+`box-sizing`), y a la vez los estilos de la plataforma pisan los de la web: el logo
+salía a tamaño natural y el menú se partía en dos líneas.
+
+`construir_widget.py` (en el scratchpad de la sesión) genera la versión para pegar:
+
+1. Mete todo el CSS dentro de `#artnia-web` con un pequeño analizador de bloques, de
+   modo que `:root`, `html` y `body` pasan a ser el propio contenedor y `*` pasa a ser
+   `#artnia-web *`. Los `@keyframes` se dejan intactos y los `@media` se procesan por
+   dentro.
+2. Cambia las alturas en `vh` por píxeles: dentro de un widget la ventana no es la de
+   la web.
+3. Añade un bloque de blindaje con `!important` en el logo y en las fotos, porque las
+   plataformas suelen forzar `img{width:100% !important}`.
+4. Saca el contenedor a ancho completo con `margin-left:calc(50% - 50vw)`, ya que el
+   widget suele vivir dentro de una columna estrecha.
+5. Incrusta las fotos en el propio código, así no dependen del repositorio.
+
+Comprobado contra una página que imita a una plataforma hostil: el contenedor ocupa
+todo el ancho, el logo mide lo que debe, no hay fotos rotas, el contenido se ve con y
+sin JavaScript, y la página de la plataforma se queda como estaba.
