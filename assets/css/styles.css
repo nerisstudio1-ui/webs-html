@@ -847,11 +847,11 @@ p{margin:0 0 1em;}
 /* =========================================================
    ANIMACIÓN DE ENTRADA
    ========================================================= */
-.reveal{
-  opacity:0;transform:translateY(26px);
-  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1);
-}
-.reveal.is-visible{opacity:1;transform:none;}
+/* La animación de entrada solo se activa si hay JavaScript. Sin él, el
+   contenido se ve directamente en vez de quedarse invisible para siempre. */
+.reveal{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1);}
+.js .reveal{opacity:0;transform:translateY(26px);}
+.js .reveal.is-visible{opacity:1;transform:none;}
 
 /* =========================================================
    RESPONSIVE
@@ -1027,6 +1027,6 @@ p{margin:0 0 1em;}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   .marquee__track{animation:none;}
-  .reveal{opacity:1;transform:none;transition:none;}
+  .js .reveal{opacity:1;transform:none;transition:none;}
   *{transition-duration:.01ms !important;}
 }
