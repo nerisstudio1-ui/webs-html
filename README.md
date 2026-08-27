@@ -43,8 +43,9 @@ Para añadir, quitar o cambiar el precio de un producto, edita directamente la f
 ## Secciones
 
 1. **Cabecera** con el logo y el menú (se convierte en desplegable en móvil).
-2. **Portada** — la foto del aula a todo el ancho y el texto en una tarjeta crema
-   encima. En móvil la foto va arriba y la tarjeta debajo, a ancho completo.
+2. **Portada** — la foto del aula a un lado, saliéndose por el borde de la pantalla, y
+   el texto al otro sobre el beige. Sin nada encima de la foto. En móvil la foto va
+   arriba y el texto debajo.
 3. **Statement** — el problema/deseo de la clienta, en grande.
 4. **Qué puedes encontrar** — las cuatro familias de producto.
 5. **Material educativo** — las 10 fichas con descripción y precio.
