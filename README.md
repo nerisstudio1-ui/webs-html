@@ -135,10 +135,11 @@ del encargo y pie del bloque de contacto):
 
 La web se rehízo para móvil porque a una columna se iba a 28.000 px de alto. Ahora:
 
-- Las fichas de producto van en horizontal, con la foto como miniatura cuadrada a la
-  izquierda. Por debajo de 345 px vuelven a apilarse.
+- Las fichas de producto llevan la foto arriba y el texto debajo. La foto conserva su
+  propia forma (las hay verticales, cuadradas y apaisadas) con un tope de alto del
+  78 % del ancho de la pantalla, encuadrada un poco por encima del centro.
 - La galería pasa de mosaico a una tira que se desliza con el dedo.
 - Las categorías van de dos en dos, y los pasos y los valores ponen el número o el
   icono al lado del título en vez de encima.
 
-Con eso la página baja a unos 19.800 px, un 31 % menos.
+Con eso la página baja de 28.000 a unos 23.300 px.
