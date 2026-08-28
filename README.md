@@ -169,3 +169,22 @@ salía a tamaño natural y el menú se partía en dos líneas.
 Comprobado contra una página que imita a una plataforma hostil: el contenedor ocupa
 todo el ancho, el logo mide lo que debe, no hay fotos rotas, el contenido se ve con y
 sin JavaScript, y la página de la plataforma se queda como estaba.
+
+### El tamaño del código pegado
+
+Incrustar las 69 fotos en base64 deja el archivo en 2,2 MB. Ese tamaño es el sospechoso
+principal de que la web pegada no cambie: los campos de código de las plataformas suelen
+cortar o rechazar en silencio pegados muy grandes, así que se sigue viendo la versión
+anterior.
+
+Por eso hay tres tamaños, todos con el mismo contenido:
+
+| Archivo | Tamaño | Cómo se consigue |
+| --- | --- | --- |
+| `ArTnia-PRUEBA.txt` | 164 KB | Solo cabecera, portada, frase y categorías. Sirve para comprobar en 30 segundos si el widget acepta el código. |
+| `ArTnia-codigo-compacto.txt` | 730 KB | `COMPACTO=1`: fotos a 300 px (portada 620, galería 150), calidad 38 y el logo cuantizado a 64 colores. |
+| `ArTnia-codigo-completo.txt` | 2,2 MB | Fotos a 520 px y calidad 58. |
+
+Las tres versiones pasan la misma comprobación contra la plataforma simulada: ancho
+completo, logo a 68 px, cero fotos rotas, cero bloques invisibles sin JavaScript y la
+página de la plataforma intacta.
