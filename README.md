@@ -172,19 +172,28 @@ sin JavaScript, y la página de la plataforma se queda como estaba.
 
 ### El tamaño del código pegado
 
-Incrustar las 69 fotos en base64 deja el archivo en 2,2 MB. Ese tamaño es el sospechoso
-principal de que la web pegada no cambie: los campos de código de las plataformas suelen
-cortar o rechazar en silencio pegados muy grandes, así que se sigue viendo la versión
-anterior.
+Incrustar las 67 fotos en base64 deja el archivo en 2,2 MB y la plataforma lo corta o lo
+rechaza al guardar sin avisar: se sigue viendo la versión anterior. Con 164 KB sí entra,
+así que el techo está entre medias.
 
-Por eso hay tres tamaños, todos con el mismo contenido:
+Bajar el peso a base de comprimir mucho el JPEG (calidad 38, fotos a 300 px) sí entra,
+pero las fotos se ven mal. La salida es **WebP**, que a igualdad de vista pesa un 30 %
+menos que el JPEG, y repartir el peso según lo que cada foto ocupa de verdad en pantalla:
+la portada y las categorías se ven grandes y van finas, y lo que se recorta son las 52
+fichas pequeñas del catálogo.
 
-| Archivo | Tamaño | Cómo se consigue |
-| --- | --- | --- |
-| `ArTnia-PRUEBA.txt` | 164 KB | Solo cabecera, portada, frase y categorías. Sirve para comprobar en 30 segundos si el widget acepta el código. |
-| `ArTnia-codigo-compacto.txt` | 730 KB | `COMPACTO=1`: fotos a 300 px (portada 620, galería 150), calidad 38 y el logo cuantizado a 64 colores. |
-| `ArTnia-codigo-completo.txt` | 2,2 MB | Fotos a 520 px y calidad 58. |
+`fotos.py` guarda esa tabla y `construir_v2.py` genera cada versión con `NIVEL=`:
 
-Las tres versiones pasan la misma comprobación contra la plataforma simulada: ancho
+| Nivel | Tamaño | Portada | Categorías | Fichas |
+| --- | --- | --- | --- | --- |
+| `alto` | 1,8 MB | 1300 px | 640 px | 460 px |
+| `medio` | 1,2 MB | 1100 px | 520 px | 360 px |
+| `bajo` | 850 KB | 1000 px | 460 px | 270 px |
+
+El logo lleva transparencia, así que sigue en PNG, reducido a 256 colores (a 64 se
+notaban escalones en la letra). Con `TROZO=1` sale solo la cabecera, la portada y las
+categorías, que es el archivo de prueba para comprobar el widget en 30 segundos.
+
+Las cuatro versiones pasan la misma comprobación contra la plataforma simulada: ancho
 completo, logo a 68 px, cero fotos rotas, cero bloques invisibles sin JavaScript y la
 página de la plataforma intacta.
