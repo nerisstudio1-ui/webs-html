@@ -86,7 +86,14 @@ marco = f'''
 /* Blindaje: los temas de WordPress suelen imponer bordes, mayúsculas
    y subrayados a todo. Aquí dentro, no. */
 {PREFIJO} img{{max-width:100%;height:auto;display:block;border:0;border-radius:0;box-shadow:none;filter:none}}
-{PREFIJO} a{{text-decoration:none;color:inherit;box-shadow:none}}
+/* Hay temas de WordPress que pintan TODOS los enlaces de su color de
+   marca, y el texto salía en rojo. Aquí dentro, cada enlace hereda el
+   color de su sección, y los que llevan color propio se lo imponen. */
+{PREFIJO} a{{text-decoration:none !important;color:inherit !important;box-shadow:none}}
+{PREFIJO} .btn--primary,{PREFIJO} .btn--primary:hover{{color:#F7F1EA !important}}
+{PREFIJO} .btn--ghost,{PREFIJO} .sticky-book{{color:#3F3936 !important}}
+{PREFIJO} .link-arrow{{color:#8E7C70 !important}}
+{PREFIJO} .nav a.nav__cta{{color:#F7F1EA !important}}
 {PREFIJO} h1,{PREFIJO} h2,{PREFIJO} h3,{PREFIJO} h4{{text-transform:none;font-weight:inherit}}
 {PREFIJO} button{{border:0;background:none;font:inherit;color:inherit}}
 {PREFIJO} svg{{display:inline-block;vertical-align:middle}}

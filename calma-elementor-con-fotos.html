@@ -11,7 +11,14 @@
 /* Blindaje: los temas de WordPress suelen imponer bordes, mayúsculas
    y subrayados a todo. Aquí dentro, no. */
 .calma-web.calma-web img{max-width:100%;height:auto;display:block;border:0;border-radius:0;box-shadow:none;filter:none}
-.calma-web.calma-web a{text-decoration:none;color:inherit;box-shadow:none}
+/* Hay temas de WordPress que pintan TODOS los enlaces de su color de
+   marca, y el texto salía en rojo. Aquí dentro, cada enlace hereda el
+   color de su sección, y los que llevan color propio se lo imponen. */
+.calma-web.calma-web a{text-decoration:none !important;color:inherit !important;box-shadow:none}
+.calma-web.calma-web .btn--primary,.calma-web.calma-web .btn--primary:hover{color:#F7F1EA !important}
+.calma-web.calma-web .btn--ghost,.calma-web.calma-web .sticky-book{color:#3F3936 !important}
+.calma-web.calma-web .link-arrow{color:#8E7C70 !important}
+.calma-web.calma-web .nav a.nav__cta{color:#F7F1EA !important}
 .calma-web.calma-web h1,.calma-web.calma-web h2,.calma-web.calma-web h3,.calma-web.calma-web h4{text-transform:none;font-weight:inherit}
 .calma-web.calma-web button{border:0;background:none;font:inherit;color:inherit}
 .calma-web.calma-web svg{display:inline-block;vertical-align:middle}
@@ -989,11 +996,27 @@ body.calma-menu-abierto{overflow:hidden}
         if (!refugio) {
           refugio = document.createElement('div');
           refugio.setAttribute('data-calma-boton', '');
+          /* La clase de la caja va también aquí: al colgarse del final
+             de la página, el botón se queda fuera del bloque y sin ella
+             perdería los estilos y saldría como un enlace del tema. */
+          refugio.className = 'calma-web';
           refugio.style.cssText = 'margin:0;padding:0;border:0;background:none;width:auto';
           document.body.appendChild(refugio);
         }
         sticky.parentNode.insertBefore(anclaBoton, sticky);
         refugio.appendChild(sticky);
+        /* Y por si el CSS no llegara: el botón se pinta a sí mismo */
+        vestir(sticky, {
+          'background':'#F7F1EA', 'color':'#3F3936',
+          'border':'1px solid rgba(63,57,54,.14)', 'border-radius':'999px',
+          'padding':'1rem 1.7rem', 'font-size':'.7rem', 'letter-spacing':'.16em',
+          'text-transform':'uppercase', 'text-decoration':'none',
+          'white-space':'nowrap', 'display':'inline-flex', 'align-items':'center',
+          'font-family':'"Montserrat",system-ui,-apple-system,Arial,sans-serif',
+          'box-shadow':'0 14px 34px -12px rgba(63,57,54,.6)', 'z-index':'55'
+        });
+        var icono = sticky.querySelector('svg');
+        if (icono) icono.style.setProperty('color', '#5E524A', 'important');
         colocarBoton();
       } else if (!movil && refugio && sticky.parentNode === refugio) {
         anclaBoton.parentNode.insertBefore(sticky, anclaBoton);

@@ -150,11 +150,27 @@
         if (!refugio) {
           refugio = document.createElement('div');
           refugio.setAttribute('data-calma-boton', '');
+          /* La clase de la caja va también aquí: al colgarse del final
+             de la página, el botón se queda fuera del bloque y sin ella
+             perdería los estilos y saldría como un enlace del tema. */
+          refugio.className = 'calma-web';
           refugio.style.cssText = 'margin:0;padding:0;border:0;background:none;width:auto';
           document.body.appendChild(refugio);
         }
         sticky.parentNode.insertBefore(anclaBoton, sticky);
         refugio.appendChild(sticky);
+        /* Y por si el CSS no llegara: el botón se pinta a sí mismo */
+        vestir(sticky, {
+          'background':'#F7F1EA', 'color':'#3F3936',
+          'border':'1px solid rgba(63,57,54,.14)', 'border-radius':'999px',
+          'padding':'1rem 1.7rem', 'font-size':'.7rem', 'letter-spacing':'.16em',
+          'text-transform':'uppercase', 'text-decoration':'none',
+          'white-space':'nowrap', 'display':'inline-flex', 'align-items':'center',
+          'font-family':'"Montserrat",system-ui,-apple-system,Arial,sans-serif',
+          'box-shadow':'0 14px 34px -12px rgba(63,57,54,.6)', 'z-index':'55'
+        });
+        var icono = sticky.querySelector('svg');
+        if (icono) icono.style.setProperty('color', '#5E524A', 'important');
         colocarBoton();
       } else if (!movil && refugio && sticky.parentNode === refugio) {
         anclaBoton.parentNode.insertBefore(sticky, anclaBoton);
