@@ -443,34 +443,36 @@ em{font-style:italic}
 .pilar h3{font-family:var(--font-display);font-size:clamp(1.3rem,2.4vw,1.7rem);margin:0 0 .5rem}
 .pilar p{margin:0;font-size:.95rem}
 
-/* ── Horarios ───────────────────────────────────────── */
+/* ── Horarios · calendario de la semana ─────────────── */
 .horarios{margin-top:clamp(3rem,7vw,5rem)}
-.horarios__grid{
-  display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(1rem,2.5vw,1.8rem);
-  align-items:start
+
+.leyenda{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:1.4rem;
+  margin:0 0 1.6rem;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase
 }
-.horario{
-  padding:clamp(1.5rem,3vw,2.2rem);background:var(--cream);
-  border:1px solid var(--line-soft);
-  border-radius:var(--r-md)
+.leyenda__it{display:inline-flex;align-items:center;gap:.5rem}
+.punto{width:9px;height:9px;border-radius:50%;display:inline-block}
+.punto--barre{background:var(--accent)}
+.punto--fitness{background:var(--dark)}
+
+.semana{display:grid;grid-template-columns:repeat(7,1fr);gap:.6rem;align-items:start}
+.dia{
+  background:var(--cream);border:1px solid var(--line-soft);border-radius:var(--r-md);
+  padding:1rem .6rem 1.1rem;text-align:center
 }
-.horario--fitness{background:var(--nude)}
-.horario__tit{
-  font-family:var(--font-display);font-size:clamp(1.25rem,2.2vw,1.55rem);
-  margin:0 0 1rem;padding-bottom:.7rem;border-bottom:1px solid var(--line-soft)
+.dia__nom{
+  margin:0 0 .7rem;padding-bottom:.6rem;border-bottom:1px solid var(--line-soft);
+  font-family:var(--font-display);font-size:.95rem;font-weight:400
 }
-.horario__lista{margin:0;padding:0;list-style:none}
-.horario__lista li{
-  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-  padding:.7rem 0;border-bottom:1px solid var(--line-soft);font-size:.92rem
+.dia__clases{display:grid;gap:.4rem}
+.clase{
+  display:grid;gap:.05rem;padding:.5rem .3rem;border-radius:var(--r-sm);
+  font-variant-numeric:lining-nums tabular-nums
 }
-.horario__lista li:last-child{border-bottom:0}
-.horario__lista em{
-  font-style:normal;font-variant-numeric:lining-nums tabular-nums;
-  letter-spacing:.06em;white-space:nowrap;color:var(--accent-strong);font-weight:500
-}
-.horario__nota{margin:1rem 0 0;font-size:.82rem;opacity:.8}
-.horario__nota a{border-bottom:1px solid var(--accent);padding-bottom:1px}
+.clase__hora{font-size:.88rem;font-weight:500;letter-spacing:.02em}
+.clase__tipo{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.clase--barre{background:rgba(142,124,112,.12);color:var(--dark)}
+.clase--fitness{background:var(--dark);color:var(--cream)}
 
 /* ── Fitness: los dos bloques de la clase ───────────── */
 .bloques{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2.5vw,1.8rem)}
@@ -690,8 +692,16 @@ em{font-style:italic}
   }
 
   .concepts{grid-template-columns:repeat(2,1fr)}
-  .pilares,.bloques,.horarios__grid{grid-template-columns:1fr}
-  .horario__lista li{font-size:.88rem}
+  .pilares,.bloques{grid-template-columns:1fr}
+  /* La semana se desliza de lado, como las otras tarjetas */
+  .semana{
+    display:flex;grid-template-columns:none;gap:.7rem;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    margin-inline:calc(var(--pad) * -1);padding:.2rem var(--pad) .8rem;
+    scrollbar-width:none
+  }
+  .semana::-webkit-scrollbar{display:none}
+  .dia{flex:0 0 44%;scroll-snap-align:start}
   .prices{grid-template-columns:repeat(2,1fr);gap:1rem}
   .price__badge{font-size:.56rem}
 

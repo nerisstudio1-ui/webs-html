@@ -507,34 +507,36 @@ em{font-style:italic}
 .pilar h3{font-family:var(--font-display);font-size:clamp(1.3rem,2.4vw,1.7rem);margin:0 0 .5rem}
 .pilar p{margin:0;font-size:.95rem}
 
-/* ── Horarios ───────────────────────────────────────── */
+/* ── Horarios · calendario de la semana ─────────────── */
 .horarios{margin-top:clamp(3rem,7vw,5rem)}
-.horarios__grid{
-  display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(1rem,2.5vw,1.8rem);
-  align-items:start
+
+.leyenda{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:1.4rem;
+  margin:0 0 1.6rem;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase
 }
-.horario{
-  padding:clamp(1.5rem,3vw,2.2rem);background:var(--cream);
-  border:1px solid var(--line-soft);
-  border-radius:var(--r-md)
+.leyenda__it{display:inline-flex;align-items:center;gap:.5rem}
+.punto{width:9px;height:9px;border-radius:50%;display:inline-block}
+.punto--barre{background:var(--accent)}
+.punto--fitness{background:var(--dark)}
+
+.semana{display:grid;grid-template-columns:repeat(7,1fr);gap:.6rem;align-items:start}
+.dia{
+  background:var(--cream);border:1px solid var(--line-soft);border-radius:var(--r-md);
+  padding:1rem .6rem 1.1rem;text-align:center
 }
-.horario--fitness{background:var(--nude)}
-.horario__tit{
-  font-family:var(--font-display);font-size:clamp(1.25rem,2.2vw,1.55rem);
-  margin:0 0 1rem;padding-bottom:.7rem;border-bottom:1px solid var(--line-soft)
+.dia__nom{
+  margin:0 0 .7rem;padding-bottom:.6rem;border-bottom:1px solid var(--line-soft);
+  font-family:var(--font-display);font-size:.95rem;font-weight:400
 }
-.horario__lista{margin:0;padding:0;list-style:none}
-.horario__lista li{
-  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-  padding:.7rem 0;border-bottom:1px solid var(--line-soft);font-size:.92rem
+.dia__clases{display:grid;gap:.4rem}
+.clase{
+  display:grid;gap:.05rem;padding:.5rem .3rem;border-radius:var(--r-sm);
+  font-variant-numeric:lining-nums tabular-nums
 }
-.horario__lista li:last-child{border-bottom:0}
-.horario__lista em{
-  font-style:normal;font-variant-numeric:lining-nums tabular-nums;
-  letter-spacing:.06em;white-space:nowrap;color:var(--accent-strong);font-weight:500
-}
-.horario__nota{margin:1rem 0 0;font-size:.82rem;opacity:.8}
-.horario__nota a{border-bottom:1px solid var(--accent);padding-bottom:1px}
+.clase__hora{font-size:.88rem;font-weight:500;letter-spacing:.02em}
+.clase__tipo{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.clase--barre{background:rgba(142,124,112,.12);color:var(--dark)}
+.clase--fitness{background:var(--dark);color:var(--cream)}
 
 /* ── Fitness: los dos bloques de la clase ───────────── */
 .bloques{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2.5vw,1.8rem)}
@@ -754,8 +756,16 @@ em{font-style:italic}
   }
 
   .concepts{grid-template-columns:repeat(2,1fr)}
-  .pilares,.bloques,.horarios__grid{grid-template-columns:1fr}
-  .horario__lista li{font-size:.88rem}
+  .pilares,.bloques{grid-template-columns:1fr}
+  /* La semana se desliza de lado, como las otras tarjetas */
+  .semana{
+    display:flex;grid-template-columns:none;gap:.7rem;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    margin-inline:calc(var(--pad) * -1);padding:.2rem var(--pad) .8rem;
+    scrollbar-width:none
+  }
+  .semana::-webkit-scrollbar{display:none}
+  .dia{flex:0 0 44%;scroll-snap-align:start}
   .prices{grid-template-columns:repeat(2,1fr);gap:1rem}
   .price__badge{font-size:.56rem}
 
@@ -908,9 +918,9 @@ section[id]{scroll-margin-top:90px}
         <p class="reveal" data-delay="1">Un estudio pequeño y cercano. Aquí <strong>no hay prisa
           ni comparaciones</strong>: solo tú, la barra y <span class="hl">un rato que es tuyo</span>.</p>
         <ul class="ticks reveal" data-delay="2">
-          <li>Grupos reducidos</li>
-          <li>Corrección personalizada</li>
+          <li>Grupos reducidos y corrección personalizada</li>
           <li>Técnica cuidada al detalle</li>
+          <li>Una comunidad principalmente femenina, abierta a todo el mundo</li>
         </ul>
       </div>
     </div>
@@ -944,10 +954,10 @@ section[id]{scroll-margin-top:90px}
       <h3 class="h2 center reveal">Lo que vas a notar</h3>
       <ul class="benefits__list">
         <li class="reveal">Mejor postura</li>
-        <li class="reveal" data-delay="1">Fuerza en core, glúteo y piernas</li>
+        <li class="reveal" data-delay="1">Fuerza en brazos, core, glúteo y piernas</li>
         <li class="reveal" data-delay="2">Más movilidad y equilibrio</li>
         <li class="reveal" data-delay="3">Un cuerpo estilizado y tonificado</li>
-        <li class="reveal" data-delay="4">Desconexión de verdad</li>
+        <li class="reveal" data-delay="4">Desconexión real</li>
       </ul>
     </div>
 
@@ -968,7 +978,6 @@ section[id]{scroll-margin-top:90px}
       <div class="split__copy">
         <p class="eyebrow reveal">Clases y horarios</p>
         <h2 class="h1 reveal" data-delay="1">Cómo es una clase<br>en CALMA</h2>
-        <p class="reveal" data-delay="2">Sesiones de <strong>50 a 55 minutos</strong>.</p>
 
         <dl class="specs">
           <div class="spec reveal"><dt>Duración</dt><dd>50–55 minutos</dd></div>
@@ -1014,31 +1023,76 @@ section[id]{scroll-margin-top:90px}
       </div>
     </div>
 
-    <!-- Horarios -->
+    <!-- Horarios · calendario de la semana -->
     <div class="horarios" id="horarios">
-      <h3 class="h2 center reveal sub-head">Horarios</h3>
+      <h3 class="h2 center reveal sub-head">Horarios de la semana</h3>
 
-      <div class="horarios__grid">
-        <article class="horario reveal">
-          <h4 class="horario__tit">Barre</h4>
-          <ul class="horario__lista">
-            <li><span>Lunes, miércoles y viernes</span><em>9:30 h</em></li>
-            <li><span>De lunes a viernes, tardes</span><em>18:30 y 19:30 h</em></li>
-            <li><span>Martes y jueves</span><em>20:30 h</em></li>
-            <li><span>Sábados y domingos</span><em>10:30 y 11:30 h</em></li>
+      <p class="leyenda reveal">
+        <span class="leyenda__it"><i class="punto punto--barre"></i>Barre</span>
+        <span class="leyenda__it"><i class="punto punto--fitness"></i>Fitness y tonificación</span>
+      </p>
+
+      <div class="semana">
+        <article class="dia reveal">
+          <h4 class="dia__nom">Lunes</h4>
+          <ul class="dia__clases">
+            <li class="clase clase--barre"><span class="clase__hora">9:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">18:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">19:30</span><span class="clase__tipo">Barre</span></li>
           </ul>
         </article>
-
-        <article class="horario horario--fitness reveal" data-delay="1">
-          <h4 class="horario__tit">Fitness y tonificación</h4>
-          <ul class="horario__lista">
-            <li><span>Martes y jueves</span><em>9:30 h</em></li>
+        <article class="dia reveal" data-delay="1">
+          <h4 class="dia__nom">Martes</h4>
+          <ul class="dia__clases">
+            <li class="clase clase--fitness"><span class="clase__hora">9:30</span><span class="clase__tipo">Fitness</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">18:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">19:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">20:30</span><span class="clase__tipo">Barre</span></li>
           </ul>
-          <p class="horario__nota">Plazas limitadas. <a href="#fitness">Ver en qué consiste</a></p>
+        </article>
+        <article class="dia reveal" data-delay="2">
+          <h4 class="dia__nom">Miércoles</h4>
+          <ul class="dia__clases">
+            <li class="clase clase--barre"><span class="clase__hora">9:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">18:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">19:30</span><span class="clase__tipo">Barre</span></li>
+          </ul>
+        </article>
+        <article class="dia reveal" data-delay="3">
+          <h4 class="dia__nom">Jueves</h4>
+          <ul class="dia__clases">
+            <li class="clase clase--fitness"><span class="clase__hora">9:30</span><span class="clase__tipo">Fitness</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">18:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">19:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">20:30</span><span class="clase__tipo">Barre</span></li>
+          </ul>
+        </article>
+        <article class="dia reveal" data-delay="4">
+          <h4 class="dia__nom">Viernes</h4>
+          <ul class="dia__clases">
+            <li class="clase clase--barre"><span class="clase__hora">9:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">18:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">19:30</span><span class="clase__tipo">Barre</span></li>
+          </ul>
+        </article>
+        <article class="dia reveal" data-delay="4">
+          <h4 class="dia__nom">Sábado</h4>
+          <ul class="dia__clases">
+            <li class="clase clase--barre"><span class="clase__hora">10:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">11:30</span><span class="clase__tipo">Barre</span></li>
+          </ul>
+        </article>
+        <article class="dia reveal" data-delay="4">
+          <h4 class="dia__nom">Domingo</h4>
+          <ul class="dia__clases">
+            <li class="clase clase--barre"><span class="clase__hora">10:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">11:30</span><span class="clase__tipo">Barre</span></li>
+          </ul>
         </article>
       </div>
 
-      <p class="note center reveal">Eliges el horario que mejor te venga cada semana.</p>
+      <p class="note center reveal">Eliges el horario que mejor te venga cada semana.
+        Las plazas de fitness son limitadas.</p>
     </div>
   </div>
 </section>
@@ -1092,51 +1146,9 @@ section[id]{scroll-margin-top:90px}
 
     <div class="fitness-pie reveal">
       <p><strong>Martes y jueves, 9:30 h.</strong> Plazas limitadas.</p>
-      <p>Pensadas sobre todo para mujeres, pero <strong>cualquiera es bienvenido</strong>.</p>
+      <p><strong>Para hombres y mujeres</strong>, sea cual sea tu nivel.</p>
       <a class="btn btn--primary" data-book href="#contacto">Quiero probarla</a>
     </div>
-  </div>
-</section>
-
-<!-- ═══════════ TU PRIMERA CLASE ═══════════ -->
-<section class="section section--dark" id="primera-clase">
-  <div class="wrap">
-    <div class="intro-split">
-      <div>
-        <p class="eyebrow reveal">Tu primera clase</p>
-        <h2 class="h1 reveal" data-delay="1">Qué pasa el día<br>que vienes</h2>
-      </div>
-      <div class="intro-split__text">
-        <p class="reveal" data-delay="2">Para que llegues sabiendo qué esperar.</p>
-      </div>
-    </div>
-
-    <ol class="steps">
-      <li class="step reveal">
-        <span class="step__num">01</span>
-        <h3>Reservas</h3>
-        <p><strong>La primera es gratis</strong>, sin datos de pago.</p>
-      </li>
-      <li class="step reveal" data-delay="1">
-        <span class="step__num">02</span>
-        <h3>Llegas diez minutos antes</h3>
-        <p>Te enseño el estudio y me cuentas si arrastras alguna molestia.</p>
-      </li>
-      <li class="step reveal" data-delay="2">
-        <span class="step__num">03</span>
-        <h3>La clase</h3>
-        <p>Te corrijo una por una: <strong>nadie se queda atrás</strong>.</p>
-      </li>
-      <li class="step reveal" data-delay="3">
-        <span class="step__num">04</span>
-        <h3>Después</h3>
-        <p>Estiramos con calma. Sin que nadie te insista.</p>
-      </li>
-    </ol>
-
-    <p class="steps__note reveal">Ropa cómoda, calcetines antideslizantes y agua.
-      <strong>El material lo pongo yo.</strong></p>
-
   </div>
 </section>
 
@@ -1340,7 +1352,7 @@ section[id]{scroll-margin-top:90px}
         <div><h4>El estudio</h4>
           <a href="#calma">¿Qué es CALMA?</a><a href="#barre">Barre</a><a href="#sobre-mi">Sobre mí</a><a href="#estudio">El estudio</a></div>
         <div><h4>Clases</h4>
-          <a href="#clases">Cómo son las clases</a><a href="#primera-clase">Tu primera clase</a><a href="#tarifas">Tarifas</a><a href="#faq">Preguntas frecuentes</a></div>
+          <a href="#clases">Cómo son las clases</a><a href="#fitness">Fitness</a><a href="#tarifas">Tarifas</a><a href="#faq">Preguntas frecuentes</a></div>
         <div><h4>Contacto</h4>
           <a href="https://www.instagram.com/calma.barrestudio" target="_blank" rel="noopener">Instagram</a>
           <a href="mailto:Calma.barrestudio@gmail.com">Email</a>
