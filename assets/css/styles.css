@@ -423,6 +423,17 @@ p{margin:0 0 1em;}
 }
 .card__media{position:relative;background:var(--acento-tenue);}
 .card__media img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+/* Tira de fotos: los productos con varias piezas las enseñan todas de una vez,
+   sin flechas ni nada que haya que pulsar. */
+.card__tira{
+  display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
+  gap:2px;background:color-mix(in srgb, var(--acento) 18%, transparent);
+  border-top:2px solid color-mix(in srgb, var(--acento) 18%, transparent);
+}
+.card__tira img{aspect-ratio:1/1;display:block;}
+/* Las dos fichas con tira llevan foto vertical y se enseña entera: recortarla a
+   4/3 se comía la cabecera y el pie del calendario. */
+.card--album .card__media>img{aspect-ratio:3/4;}
 .card__body{
   padding:1.5rem 1.5rem 1.4rem;
   display:flex;flex-direction:column;flex:1;
@@ -944,6 +955,8 @@ p{margin:0 0 1em;}
     max-height:78vw;
     object-fit:cover;object-position:center 30%;
   }
+  .card__tira img{aspect-ratio:1/1;height:auto;max-height:none;object-position:center;}
+  .card--album .card__media>img{aspect-ratio:3/4;height:auto;max-height:none;object-position:center;}
   .card__body{padding:1.1rem 1.2rem 1.2rem;min-width:0;}
   .card__title{font-size:1.05rem;margin-bottom:.5em;}
   .card__text{font-size:.85rem;line-height:1.6;margin-bottom:1rem;}

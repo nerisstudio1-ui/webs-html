@@ -170,6 +170,24 @@ Comprobado contra una página que imita a una plataforma hostil: el contenedor o
 todo el ancho, el logo mide lo que debe, no hay fotos rotas, el contenido se ve con y
 sin JavaScript, y la página de la plataforma se queda como estaba.
 
+### Fichas con varias fotos
+
+El calendario escolar y el árbol de las estaciones se venden por lo que traen dentro,
+así que su ficha enseña todas las piezas de una vez: la foto grande arriba y una tira
+de miniaturas justo debajo (`.card__tira`). Todas se ven a la vez, sin flechas ni nada
+que haya que pulsar, porque en el widget no corre JavaScript.
+
+Las dos fotos grandes son verticales (3:4) y el recorte a 4/3 se comía la cabecera y el
+pie del calendario, así que esas fichas llevan `.card--album` y se enseñan enteras.
+
+Las fotos que solo salen en las tiras y en el mosaico se ven a 90-140 px, así que se
+guardan a 180-260 px en vez de al tamaño de una ficha. Con eso la versión alta bajó de
+1,8 a 1,6 MB **aunque tiene nueve fotos más**.
+
+Falta por recibir: del árbol de las estaciones hay diez fotos de piezas y solo llegaron
+cuatro (primavera, otoño, Navidad y Carnaval). Faltan, entre otras, «Día del libro:
+Libros» y «Verano: Helados».
+
 ### El tamaño del código pegado
 
 Incrustar las 67 fotos en base64 deja el archivo en 2,2 MB y la plataforma lo corta o lo
@@ -186,9 +204,9 @@ fichas pequeñas del catálogo.
 
 | Nivel | Tamaño | Portada | Categorías | Fichas |
 | --- | --- | --- | --- | --- |
-| `alto` | 1,8 MB | 1300 px | 640 px | 460 px |
-| `medio` | 1,2 MB | 1100 px | 520 px | 360 px |
-| `bajo` | 850 KB | 1000 px | 460 px | 270 px |
+| `alto` | 1,6 MB | 1300 px | 640 px | 460 px |
+| `medio` | 1,1 MB | 1100 px | 520 px | 360 px |
+| `bajo` | 820 KB | 1000 px | 460 px | 270 px |
 
 El logo lleva transparencia, así que sigue en PNG, reducido a 256 colores (a 64 se
 notaban escalones en la letra). Con `TROZO=1` sale solo la cabecera, la portada y las
