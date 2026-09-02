@@ -831,6 +831,14 @@ p{margin:0 0 1em;}
   font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(255,255,255,.55);margin:0;
 }
+/* El número, a la vista y pulsable: no todo el mundo entra desde el móvil. */
+.contact__tel{margin-bottom:.5rem;}
+.contact__tel a{
+  color:var(--menta-suave);font-size:1.05rem;letter-spacing:.06em;
+  text-decoration:none;border-bottom:1px solid rgba(216,248,233,.45);
+  padding-bottom:2px;
+}
+.contact__tel a:hover{border-bottom-color:var(--menta-suave);}
 
 /* =========================================================
    FOOTER

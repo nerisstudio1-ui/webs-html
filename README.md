@@ -170,6 +170,22 @@ Comprobado contra una página que imita a una plataforma hostil: el contenedor o
 todo el ancho, el logo mide lo que debe, no hay fotos rotas, el contenido se ve con y
 sin JavaScript, y la página de la plataforma se queda como estaba.
 
+### Botones de WhatsApp
+
+Todos los botones de acción escriben a Davinia al **649 12 36 90**
+(`https://wa.me/34649123690`), con el mensaje ya redactado y abriéndose en otra pestaña.
+Son 23: el «Pedir presupuesto» de la cabecera, el «Encargar el mío» de la portada, los
+16 «Lo quiero» de las fichas, el de cómo funciona, el de pedidos grandes, el de las
+preguntas frecuentes y los dos de la sección de contacto. En el pie, «Contacto» sigue
+llevando a la sección, que es lo que toca en un menú.
+
+Cada ficha manda el nombre de su producto: «Te escribo por «Calendario escolar», que he
+visto en la web». Sin artículo delante, porque los nombres van en masculino, femenino,
+singular y plural y cualquier «el» o «la» fijo se equivocaba en la mitad.
+
+El número también aparece escrito bajo los botones de contacto, para quien entre desde
+el ordenador.
+
 ### Fichas con varias fotos
 
 El calendario escolar y el árbol de las estaciones se venden por lo que traen dentro,
