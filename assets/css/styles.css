@@ -858,6 +858,16 @@ p{margin:0 0 1em;}
   text-decoration:none;font-size:.82rem;color:var(--burdeos);
 }
 .footer__nav a:hover{text-decoration:underline;}
+/* Instagram y teléfono, encima de la raya del aviso legal. */
+.footer__social{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem 1.6rem;
+  margin:0 0 1.4rem;
+}
+.footer__social a{
+  color:var(--burdeos);font-size:.85rem;font-weight:500;letter-spacing:.04em;
+  text-decoration:none;border-bottom:1px solid rgba(110,21,36,.28);padding-bottom:2px;
+}
+.footer__social a:hover{border-bottom-color:var(--burdeos);}
 .footer__legal{
   font-size:.75rem;color:var(--burdeos-claro);margin:0;
   padding-top:1.5rem;border-top:1px solid rgba(110,21,36,.15);

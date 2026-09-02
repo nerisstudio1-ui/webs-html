@@ -101,8 +101,10 @@ Se cambian todos en un sitio: las variables `:root` de `assets/css/styles.css`.
   (`assets/img/davinia.jpg`). Se sustituye por su foto manteniendo el nombre.
 - Queda por decidir si el **portalápiz (6 €)** encaja mejor en «Para los peques» que en
   los detalles de comunión, donde está ahora.
-- **WhatsApp**: cambiar `https://wa.me/34600000000` por el número real.
-- **Instagram**: cambiar `https://instagram.com/` por el perfil real.
+- ~~WhatsApp~~ ✅ puesto: **649 12 36 90** en los 23 botones de acción.
+- ~~Instagram~~ ✅ puesto: **@artnia_1**.
+- Del **árbol de las estaciones** faltan seis fotos de piezas (entre ellas «Día del
+  libro: Libros» y «Verano: Helados»); llegaron cuatro de las diez.
 - Faltan por añadir el resto de productos y precios cuando lleguen las fotos.
 
 ## Ver la web en local
@@ -184,7 +186,8 @@ visto en la web». Sin artículo delante, porque los nombres van en masculino, f
 singular y plural y cualquier «el» o «la» fijo se equivocaba en la mitad.
 
 El número también aparece escrito bajo los botones de contacto, para quien entre desde
-el ordenador.
+el ordenador, y en el pie junto al Instagram: **@artnia_1**
+(`https://www.instagram.com/artnia_1/`).
 
 ### Fichas con varias fotos
 
