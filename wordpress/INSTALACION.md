@@ -51,6 +51,24 @@ Sigue en el apartado **«Ajusta la cabecera»** si tu tema tiene cabecera fija.
 
 ---
 
+# El píxel de Meta
+
+Los cuatro archivos ya llevan dentro el píxel de Meta (id `1381891154135741`), al
+principio del bloque. Se dispara una vez por página y no hay que pegar nada más.
+
+Dos avisos:
+
+- **Viaja con el archivo.** Cada vez que pegues una versión nueva, el píxel viene
+  con ella; pero si algún día decides ponerlo en la cabecera del sitio (con el
+  campo de scripts del tema o con un plugin tipo WPCode), **quítalo de uno de los
+  dos sitios** o contará las visitas por duplicado.
+- **Falta el banner de cookies.** El píxel instala cookies de terceros nada más
+  abrir la página. Para cumplir la LSSI y el RGPD hace falta un banner que lo
+  retenga hasta que el visitante acepte: Complianz o CookieYes lo hacen con una
+  casilla. Eso va en la configuración de WordPress, no en el bloque.
+
+---
+
 # Las dos páginas y el enlace de idioma
 
 Los archivos ya llevan puesto el enlace a la otra lengua, y esperan esta

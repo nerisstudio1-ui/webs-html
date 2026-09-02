@@ -111,6 +111,26 @@ Dejando `FORM_ACTION` vacío, el formulario vuelve al modo de reserva: compone e
 correo y abre el cliente de email del visitante. Un plugin tipo Contact Form 7 no
 sirve, porque su shortcode no se ejecuta dentro de un bloque de HTML personalizado.
 
+## Píxel de Meta
+
+`PIXEL_META` en `build/build.py` lleva el identificador; vacío, el píxel no se
+pone. Va al principio del `<body>` y no en el `<head>` a propósito: la versión de
+WordPress solo copia el cuerpo, así que puesto ahí sirve para las dos webs y para
+los cuatro archivos del bloque, y se dispara una sola vez por página.
+
+Dos cosas que conviene tener presentes:
+
+- **Su sitio natural no es este.** Lo suyo es la cabecera del sitio de WordPress
+  —el campo de scripts del tema, o un plugin tipo WPCode—: allí mide todas las
+  páginas y no se pierde cada vez que se vuelve a pegar el bloque. Aquí dentro,
+  solo mide estas dos páginas y hay que acordarse de que viaja con el archivo.
+- **Falta el consentimiento.** El píxel instala cookies de terceros y se dispara
+  nada más abrir la página. Sin un banner de cookies que lo bloquee hasta que el
+  visitante acepte, eso incumple la LSSI y el RGPD, y la AEPD sanciona justo eso.
+  El banner va en la configuración del sitio, no se puede montar desde el bloque:
+  los plugins habituales (Complianz, CookieYes) ya traen la casilla para retener
+  el píxel de Meta hasta la aceptación.
+
 ## Versión para WordPress
 
 En `wordpress/` hay la web preparada para pegarla en un bloque de **HTML
@@ -311,7 +331,8 @@ el PDF de cambios:
 
 ## Accesibilidad y rendimiento
 
-- Sin peticiones externas: tipografías autoalojadas, símbolo en SVG.
+- Tipografías autoalojadas y símbolo en SVG. La **única** petición a fuera es la
+  del píxel de Meta; sin él la web no llama a ningún servidor ajeno.
 - Navegación por teclado con `:focus-visible`, enlace de salto al contenido y menú
   móvil con `aria-hidden`.
 - Las animaciones de entrada solo se aplican si hay JavaScript, y con

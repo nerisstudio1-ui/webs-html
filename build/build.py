@@ -393,6 +393,20 @@ EMAIL = 'hello@laconicstudio.es'
 INSTAGRAM = 'https://www.instagram.com/laconicstudio_/'
 NERIS = 'https://www.nerisstudio.com'
 
+# Píxel de Meta (Facebook). Vacío = no se pone.
+#
+# Va aquí dentro porque el estudio lo pidió así, pero su sitio natural es la
+# cabecera del sitio de WordPress —con el campo de scripts del tema o con un
+# plugin tipo WPCode—: allí mide todas las páginas y no se pierde cada vez que se
+# vuelve a pegar el bloque. Puesto aquí, hay que acordarse de que estas dos webs
+# son las únicas que mide.
+#
+# OJO, y no es un detalle: el píxel instala cookies de terceros y se dispara nada
+# más abrir la página. Sin un banner de cookies que lo bloquee hasta que el
+# visitante acepte, eso incumple la LSSI y el RGPD, y la AEPD sanciona justo eso.
+# El banner no se puede montar desde aquí: va en la configuración del sitio.
+PIXEL_META = '1381891154135741'
+
 # A dónde llega el formulario.
 #
 # FormSubmit envía el mensaje por correo a EMAIL y no pide cuenta, clave ni
@@ -498,6 +512,30 @@ def foto(prefix, slug, n, sizes, lang, loading='lazy', clases=''):
 
 def render(lang):
     t = T[lang]
+
+    # El píxel va al principio del <body> y no en el <head> a propósito: de la
+    # cabeza no se lleva nada la versión de WordPress, que solo copia el cuerpo,
+    # y así el mismo código sirve para las dos y se dispara una sola vez.
+    pixel = f'''<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)}};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '{PIXEL_META}');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id={PIXEL_META}&amp;ev=PageView&amp;noscript=1"
+alt=""/></noscript>
+<!-- End Meta Pixel Code -->
+
+''' if PIXEL_META else ''
+
     if FORM_ACTION:
         # El asunto va por idioma, para saber de qué página viene el mensaje.
         ocultos = dict(FORM_OCULTOS)
@@ -558,7 +596,7 @@ def render(lang):
 </script>
 </head>
 <body>
-{SPRITE}
+{pixel}{SPRITE}
 
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>
