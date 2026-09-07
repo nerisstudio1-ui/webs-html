@@ -5,3 +5,9 @@ __pycache__/
 # Sistema operativo
 .DS_Store
 Thumbs.db
+
+# Copias en .txt de los ficheros de copiar y pegar. Se hacen a mano, al enviarlos,
+# solo para que se abran en un editor de texto en vez de en el navegador. Son
+# idénticas a los .html de wordpress/, que sí están en el repositorio, y quedan
+# viejas en cuanto se vuelve a generar el widget.
+wordpress/*-copiar-pegar.txt
