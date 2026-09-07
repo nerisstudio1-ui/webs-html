@@ -1365,39 +1365,3 @@ body.cursor-on .cursor {
     transform: none;
   }
 }
-
-/* ---------- Equipo: dos socias, "two of two" ---------- */
-.team {
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  margin-top: clamp(2.5rem, 6vw, 4rem);
-  border-top: 1px solid var(--line);
-  padding-top: clamp(2rem, 4vw, 3rem);
-}
-.person {
-  display: grid;
-  gap: 0.4rem;
-  align-content: start;
-}
-.person__name {
-  font-family: var(--hand);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  line-height: 1.1;
-  color: var(--terra);
-}
-.person__role {
-  font-size: var(--step--2);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.person__note {
-  font-size: var(--step--1);
-  color: var(--muted);
-  max-width: 30ch;
-  line-height: 1.6;
-  margin: 0;
-}
- 

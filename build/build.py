@@ -250,9 +250,6 @@ T = {
             'sentit dins d\'una estratègia.'],
         # Cierre del párrafo del about: en Raleway, no en manuscrita
         nota_estudio='Busquem marques que vulguin deixar empremta.',
-        equipo=[('Núria', 'Creative &amp; Founder'), ('Júlia', 'Strategist &amp; Founder')],
-        equipo_nota='Som dues, i ens agrada que sigui així. Parles directament amb qui '
-                    'pensa, crea i executa. I si no podem fer-ho bé, preferim dir que no.',
         k_servicios='Serveis',
         # (número, nombre, nombre corto para la línea que pasa, definición)
         servicios=[
@@ -335,9 +332,6 @@ T = {
             'grabamos, editamos y pensamos cada detalle para que cada publicación sume y '
             'tenga sentido dentro de una estrategia.'],
         nota_estudio='Buscamos marcas que quieran dejar huella.',
-        equipo=[('Núria', 'Creative &amp; Founder'), ('Júlia', 'Strategist &amp; Founder')],
-        equipo_nota='Somos dos, y nos gusta que sea así. Hablas directamente con quien '
-                    'piensa, crea y ejecuta. Y si no podemos hacerlo bien, preferimos decir que no.',
         k_servicios='Servicios',
         servicios=[
             ('01', 'Content creation', 'Content creation',
@@ -694,17 +688,6 @@ alt=""/></noscript>
     for parrafo in t['cuerpo_estudio']:
         w(f'          <p>{parrafo}</p>')
     w(f'''          <p class="body-col__cierre">{t['nota_estudio']}</p>
-        </div>
-      </div>
-
-      <div class="team fade" data-delay="2">''')
-    for nombre, rol in t['equipo']:
-        w(f'''        <div class="person">
-          <span class="person__name">{nombre}</span>
-          <span class="person__role">{rol}</span>
-        </div>''')
-    w(f'''        <div class="person">
-          <p class="person__note">{t['equipo_nota']}</p>
         </div>
       </div>
 

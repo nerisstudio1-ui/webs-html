@@ -27,7 +27,7 @@ titulares que mezclan la manuscrita y la sans pesada dentro de la misma frase.
 | — | Inicio: una pantalla de fondo crema con el **logotipo en terracota**, el claim y el filete. Sin fotos y sin movimiento |
 | — | La frase «Ajudem a marques a deixar empremta», sobre crema y encadenada con el inicio |
 | — | La tira de fotos que pasa en bucle, **ancha**: es la separación entre la presentación y el resto |
-| `#about` | Manifiesto y las dos socias |
+| `#about` | El manifiesto: quiénes son y cómo trabajan |
 | — | La línea de servicios que pasa, fina y pequeña |
 | `#serveis` / `#servicios` | Los cinco servicios: los nombres grandes y escalonados, y la definición del que está activo |
 | `#projectes` / `#proyectos` | Los seis proyectos en retícula; cada ficha abre el perfil de Instagram de la marca |
@@ -37,10 +37,13 @@ Las secciones ya no se separan con rectángulos de esquinas redondas: la separac
 son las fotos, como pidió el estudio. El inicio, la frase, la tira y el about van
 todos sobre crema y se leen como una sola presentación.
 
-Fuera en las dos revisiones de agosto de 2026: la FAQ, «com treballem», «el que
-diuen» (reseñas), la cita «Menys soroll. Més sentit», «Designed to speak quietly»,
-«Less noise. More meaning.», la lista de marcas, el rótulo «El estudio», el
-isotipo del cero sobre los nombres de las socias y el proyecto de F45.
+Fuera en las revisiones de agosto y septiembre de 2026: la FAQ, «com treballem»,
+«el que diuen» (reseñas), la cita «Menys soroll. Més sentit», «Designed to speak
+quietly», «Less noise. More meaning.», la lista de marcas, el rótulo «El estudio»,
+el proyecto de F45 y el bloque de las dos socias —los nombres, los cargos y la
+nota «Som dues, i ens agrada que sigui així»— con el isotipo del cero que iba
+encima. Los nombres siguen apareciendo una vez, en el texto de contacto («O la
+Núria o la Júlia»), porque así lo pidió el estudio.
 
 ## Material de marca
 
