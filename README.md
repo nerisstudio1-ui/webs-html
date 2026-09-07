@@ -42,8 +42,9 @@ Fuera en las revisiones de agosto y septiembre de 2026: la FAQ, «com treballem�
 quietly», «Less noise. More meaning.», la lista de marcas, el rótulo «El estudio»,
 el proyecto de F45 y el bloque de las dos socias —los nombres, los cargos y la
 nota «Som dues, i ens agrada que sigui així»— con el isotipo del cero que iba
-encima. Los nombres siguen apareciendo una vez, en el texto de contacto («O la
-Núria o la Júlia»), porque así lo pidió el estudio.
+encima. Los nombres tampoco salen ya en el texto de contacto: el lead termina
+en «Et respondrem en menys de 48 hores 🙂». Núria y Júlia no aparecen en
+ninguna parte de la web.
 
 ## Material de marca
 

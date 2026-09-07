@@ -282,7 +282,7 @@ T = {
         k_contacto='Contacte',
         h_contacto='Això comença <span class="hand">amb un missatge</span>.',
         lead_contacto='Explica\'ns qui ets i què t\'està frenant. Et respondrem en menys de '
-                      '48 hores. O la Núria o la Júlia &#128578;',
+                      '48 hores &#128578;',
         dm='DM a @laconicstudio_',
         f_nombre='El teu nom', f_marca='Marca o projecte', f_email='Email',
         f_necesitas='Què necessites', f_cuentanos='Explica\'ns',
@@ -363,7 +363,7 @@ T = {
         k_contacto='Contacto',
         h_contacto='Esto empieza <span class="hand">con un mensaje</span>.',
         lead_contacto='Cuéntanos quién eres y qué te está frenando. Te responderemos en menos '
-                      'de 48 horas. O Núria o Júlia &#128578;',
+                      'de 48 horas &#128578;',
         dm='DM a @laconicstudio_',
         f_nombre='Tu nombre', f_marca='Marca o proyecto', f_email='Email',
         f_necesitas='Qué necesitas', f_cuentanos='Cuéntanos',

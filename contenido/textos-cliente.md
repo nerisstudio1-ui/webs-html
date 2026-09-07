@@ -11,8 +11,9 @@ al editar `index.html`.
 Fotografías del equipo: de momento no hay, así que la web no las muestra.
 
 Desde septiembre de 2026 la web tampoco muestra los nombres y los cargos: el
-estudio pidió quitar ese bloque del about. Se quedan aquí como referencia. En la
-web solo se les nombra en el texto de contacto: «O la Núria o la Júlia».
+estudio pidió quitar el bloque del about y, después, la mención que quedaba en
+el texto de contacto. Se quedan aquí como referencia, pero no salen en ninguna
+parte de la web publicada.
 
 ## About (original en catalán)
 
