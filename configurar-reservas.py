@@ -39,6 +39,14 @@ def aplicar(destino: str, es_whatsapp: bool):
     texto = 'WhatsApp' if es_whatsapp else 'Reserva online'
     html = re.sub(r'(<li><span>Reservas</span><a[^>]*>)[^<]*(</a>)',
                   r'\g<1>' + texto + r'\g<2>', html)
+
+    # La respuesta de "¿Cómo reservo?" en las preguntas frecuentes
+    respuesta = ('Por WhatsApp, con el botón de <strong>"Primera clase gratis"</strong>.'
+                 if es_whatsapp else
+                 'Desde la <strong>plataforma de reservas</strong>, con cualquier botón de '
+                 'reserva de la web. Si prefieres preguntar antes, escríbenos por WhatsApp.')
+    html = re.sub(r'(<summary>¿Cómo reservo\?</summary>\s*<div class="acc__body"><p>).*?(</p>)',
+                  r'\g<1>' + respuesta + r'\g<2>', html, flags=re.S)
     p.write_text(html)
     print(f'· {n} enlaces de reserva apuntando a {destino[:60]}')
 
