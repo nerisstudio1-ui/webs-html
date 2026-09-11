@@ -155,7 +155,8 @@ def incrustar(m):
         return m.group(0)
     if ruta.suffix == '.svg':
         return 'data:image/svg+xml;charset=utf-8,' + urllib.parse.quote(ruta.read_text(), safe='')
-    tipo = mimetypes.guess_type(ruta.name)[0] or 'application/octet-stream'
+    tipo = {'.webp': 'image/webp'}.get(ruta.suffix) \
+           or mimetypes.guess_type(ruta.name)[0] or 'application/octet-stream'
     return f'data:{tipo};base64,' + base64.b64encode(ruta.read_bytes()).decode()
 escribir('calma-elementor-con-fotos.html', incrustar)
 
