@@ -92,6 +92,9 @@ marco = f'''
 {PREFIJO} a{{text-decoration:none !important;color:inherit !important;box-shadow:none}}
 {PREFIJO} .btn--primary,{PREFIJO} .btn--primary:hover{{color:#F7F1EA !important}}
 {PREFIJO} .btn--ghost,{PREFIJO} .sticky-book{{color:#3F3936 !important}}
+/* El botón del hero va sobre fondo claro: ahí el texto es oscuro */
+{PREFIJO} .hero .btn--primary,{PREFIJO} .hero .btn--primary:hover{{color:#3F3936 !important}}
+{PREFIJO} .hero .btn--ghost,{PREFIJO} .hero .btn--ghost:hover{{color:#F7F1EA !important}}
 {PREFIJO} .link-arrow{{color:#8E7C70 !important}}
 {PREFIJO} .nav a.nav__cta{{color:#F7F1EA !important}}
 {PREFIJO} h1,{PREFIJO} h2,{PREFIJO} h3,{PREFIJO} h4{{text-transform:none;font-weight:inherit}}
