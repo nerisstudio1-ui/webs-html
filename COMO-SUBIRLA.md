@@ -53,3 +53,50 @@ pasos 4 y 5 (extraer sobreescribiendo). No hay que tocar nada más.
   Hay que cambiarla por una suya.
 - Las fotos del estudio son del render, no del estudio real.
 - Aviso legal, privacidad y cookies están sin enlazar en el pie.
+
+## Reservas con Momoyoga
+
+La web está preparada para apuntar todos los botones de reserva a
+Momoyoga. Cuando el estudio tenga su dirección (algo como
+`https://www.momoyoga.com/nombredelestudio`), basta con:
+
+    python3 configurar-reservas.py https://www.momoyoga.com/nombredelestudio
+
+Eso reescribe los once botones de reserva y regenera los archivos.
+Para volver a WhatsApp:
+
+    python3 configurar-reservas.py --whatsapp
+
+La dirección se escribe **dentro del HTML**, no la pone el JavaScript:
+así los botones funcionan aunque WordPress se coma el guion.
+
+El botón flotante de abajo se queda en WhatsApp a propósito: una cosa
+es reservar y otra preguntar.
+
+### Si además se quiere el horario de Momoyoga dentro de la web
+
+Momoyoga no ofrece iframe (lo desaconsejan por seguridad). Hay dos
+caminos:
+
+1. **El plugin oficial de WordPress** ("Yoga Schedule Momoyoga"). Es lo
+   más sencillo y lo que ellos recomiendan. Se instala, se activa y se
+   coloca donde se quiera. Como esta web va en un único widget HTML,
+   habría que partir la página: widget HTML, widget del plugin, widget
+   HTML. Queda algo aparatoso de mantener.
+
+2. **El código JavaScript de Momoyoga**, que se puede pegar dentro de
+   este mismo widget:
+
+       <link rel="stylesheet" href="https://www.momoyoga.com/schedule-plugin/v2/css/schedule-frontend.css" crossorigin="anonymous">
+       <div data-momo-schedule="https://www.momoyoga.com/nombredelestudio"></div>
+       <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+       <script src="https://www.momoyoga.com/schedule-plugin/v2/js/schedule.js" crossorigin="anonymous"></script>
+
+   Muestra las clases de las próximas 8 semanas y al pulsar "Book now"
+   lleva a Momoyoga. Dos avisos: necesita que el JavaScript se ejecute
+   (en esta web nada más lo necesita), y **viene con su propio diseño**,
+   que no se parece al de CALMA.
+
+Mientras tanto, el calendario de la semana que ya tiene la web es
+estático: se ve siempre, no depende de nadie y va con el diseño. Si los
+horarios cambian, se cambian a mano en un minuto.

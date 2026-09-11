@@ -37,15 +37,19 @@
   var reservaUrl = RESERVAS_URL ||
     (WHATSAPP ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(WHATSAPP_MSG) : '');
 
+  /* Si el enlace ya lleva una dirección de verdad escrita en el HTML
+     (la plataforma de reservas, por ejemplo), se respeta: así funciona
+     aunque este guion no llegue a ejecutarse. Solo se rellenan los que
+     siguen siendo un ancla de la propia página. */
   if (reservaUrl) {
     $$('[data-book]').forEach(function (a) {
-      a.href = reservaUrl;
-      a.target = '_blank';
-      a.rel = 'noopener';
+      var actual = a.getAttribute('href') || '';
+      if (actual.charAt(0) === '#' || actual === '') {
+        a.href = reservaUrl;
+        a.target = '_blank';
+        a.rel = 'noopener';
+      }
     });
-  } else {
-    /* Sin número todavía: los botones llevan al bloque de contacto */
-    document.documentElement.classList.add('sin-reservas');
   }
 
   /* ── Header pegajoso ─────────────────────────────── */
