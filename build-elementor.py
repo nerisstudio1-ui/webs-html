@@ -106,9 +106,12 @@ body.calma-menu-abierto{{overflow:hidden}}
 '''
 
 # ── HTML: solo el contenido, dentro de la caja ────────────────────
-html = (RAIZ / 'index.html').read_text()
-cuerpo = html.split('<body>', 1)[1].rsplit('</body>', 1)[0]
-cuerpo = cuerpo.replace('<script src="assets/js/main.js"></script>', '').strip()
+def solo_cuerpo(archivo):
+    html = (RAIZ / archivo).read_text()
+    c = html.split('<body>', 1)[1].rsplit('</body>', 1)[0]
+    return c.replace('<script src="assets/js/main.js"></script>', '').strip()
+
+cuerpo = solo_cuerpo('index.html')
 
 # ── JS: mirar solo dentro de la caja ──────────────────────────────
 guion = (RAIZ / 'assets/js/main.js').read_text()
@@ -141,8 +144,9 @@ cierre = f"""
 .calma-refugio-menu{{margin:0;padding:0;width:auto;overflow:visible;background:none}}
 """
 
-def escribir(nombre, resolver_imagen):
-    c = re.sub(r'assets/img/([\w.\- ]+?\.(?:jpg|jpeg|png|svg|webp))', resolver_imagen, cuerpo)
+def escribir(nombre, resolver_imagen, fuente=None):
+    c = re.sub(r'assets/img/([\w.\- ]+?\.(?:jpg|jpeg|png|svg|webp))', resolver_imagen,
+               cuerpo if fuente is None else fuente)
     doc = (f'<div id="{CAJA}" class="{CAJA}">\n\n<style>\n{marco}\n{estilos}\n{cierre}\n</style>\n\n'
            f'{c}\n\n<script>\n{guion}\n</script>\n\n</div>\n')
     (RAIZ / nombre).write_text(doc)
@@ -162,6 +166,12 @@ def incrustar(m):
            or mimetypes.guess_type(ruta.name)[0] or 'application/octet-stream'
     return f'data:{tipo};base64,' + base64.b64encode(ruta.read_bytes()).decode()
 escribir('calma-elementor-con-fotos.html', incrustar)
+
+# 3 · la página de términos y condiciones, también para su widget
+for pagina, nombre in [('terminos.html', 'terminos'), ('privacidad.html', 'privacidad')]:
+    cuerpo_pagina = solo_cuerpo(pagina)
+    escribir(f'calma-{nombre}-elementor.html', lambda m: BASE + m.group(1), cuerpo_pagina)
+    escribir(f'calma-{nombre}-con-fotos.html', incrustar, cuerpo_pagina)
 
 print('\nFotos que hay que subir a la Biblioteca de medios:')
 for n in sorted({m for m in re.findall(r'assets/img/([\w.\- ]+?\.(?:jpg|jpeg|png|svg|webp))', cuerpo)}):
