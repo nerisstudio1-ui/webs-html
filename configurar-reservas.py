@@ -15,7 +15,8 @@ es reservar y otra preguntar.
 import pathlib, re, subprocess, sys
 
 RAIZ = pathlib.Path(__file__).parent
-WA = 'https://wa.me/34646206292?text=%C2%A1Hola%2C%20Roc%C3%ADo!%20Me%20gustar%C3%ADa%20reservar%20mi%20primera%20clase%20gratis%20en%20CALMA'
+# Reservar es cosa de Momoyoga; el botón flotante es para preguntar
+WA = 'https://wa.me/34646206292?text=%C2%A1Hola%2C%20Roc%C3%ADo!%20Tengo%20una%20duda%20sobre%20CALMA'
 
 def aplicar(destino: str, es_whatsapp: bool):
     p = RAIZ / 'index.html'
