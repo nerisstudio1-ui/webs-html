@@ -168,7 +168,8 @@ def incrustar(m):
 escribir('calma-elementor-con-fotos.html', incrustar)
 
 # 3 · la página de términos y condiciones, también para su widget
-for pagina, nombre in [('terminos.html', 'terminos'), ('privacidad.html', 'privacidad')]:
+for pagina, nombre in [('terminos.html', 'terminos'), ('privacidad.html', 'privacidad'),
+                       ('aviso-legal.html', 'aviso-legal'), ('cookies.html', 'cookies')]:
     cuerpo_pagina = solo_cuerpo(pagina)
     escribir(f'calma-{nombre}-elementor.html', lambda m: BASE + m.group(1), cuerpo_pagina)
     escribir(f'calma-{nombre}-con-fotos.html', incrustar, cuerpo_pagina)
