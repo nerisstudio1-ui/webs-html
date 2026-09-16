@@ -35,9 +35,11 @@
   --accent-deep:   var(--verde-hondo);
   --line:          color-mix(in srgb, var(--verde-hondo) 16%, transparent);
 
-  /* Tipografía */
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Tipografía
+     Primero la de pago; si no está el archivo, el navegador pasa sola
+     a la sustituta. Ver assets/css/fonts.css. */
+  --font-display: "Hatton", "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-body:    "Agrandir", "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-script:  "Caveat", "Segoe Script", cursive;
 
   --step--1: clamp(0.82rem, 0.79rem + 0.15vw, 0.9rem);
@@ -79,7 +81,7 @@ body {
   color: var(--fg);
   font-family: var(--font-body);
   font-size: var(--step-0);
-  line-height: 1.65;
+  line-height: 1.58;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -96,10 +98,13 @@ a { color: inherit; }
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
+  line-height: 1.06;
+  letter-spacing: -0.012em;
   text-wrap: balance;
 }
+
+/* Hatton gana con un poco de aire negativo en los tamaños grandes */
+h1 { letter-spacing: -0.025em; }
 
 p { text-wrap: pretty; }
 
@@ -260,10 +265,11 @@ p { text-wrap: pretty; }
 }
 .brand:hover .brand__marca { rotate: -4deg; }
 .brand__texto {
-  font-family: var(--font-display);
-  font-size: var(--step-0);
-  line-height: 1.15;
-  letter-spacing: 0.14em;
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--fg);
   white-space: nowrap;
@@ -540,11 +546,17 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
 
 .sobre__body > * + * { margin-top: 1.25rem; }
 .sobre__title { font-size: var(--step-3); color: var(--verde-hondo); }
-.sobre__cols {
-  display: grid;
-  gap: 1.5rem;
+/* Dos columnas que el navegador equilibra solo, para que no quede
+   una corta y otra larga con un hueco en medio. */
+.sobre__cols > p + p { margin-top: 1rem; }
+@media (min-width: 46rem) {
+  .sobre__cols {
+    columns: 2;
+    column-gap: 2.5rem;
+  }
+  .sobre__cols > p { break-inside: avoid-column; }
+  .sobre__cols > p:first-child { margin-top: 0; }
 }
-@media (min-width: 40rem) { .sobre__cols { grid-template-columns: 1fr 1fr; } }
 
 .sobre__quote {
   font-family: var(--font-display);
