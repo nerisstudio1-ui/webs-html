@@ -1,33 +1,138 @@
 /* ==========================================================================
    TIPOGRAFÍAS
    --------------------------------------------------------------------------
-   La web está pensada para dos tipografías de Pangram Pangram:
+       Títulos  →  PRATA
+       Textos   →  OUTFIT
 
-       Títulos  →  HATTON
-       Textos   →  AGRANDIR
-
-   Las dos son de pago, así que sus archivos no están en el repositorio.
-   En cuanto se compre la licencia web, se dejan los .woff2 en
-   assets/fonts/licenciadas/ y se descomenta el bloque 1 de aquí abajo.
-
-   Mientras no estén, el navegador no encuentra esos archivos y pasa
-   automáticamente a las sustitutas:
-
-       Hatton    →  Instrument Serif   (serif display de alto contraste)
-       Agrandir  →  Archivo            (grotesca de proporciones anchas)
-
-   Son parecidas, pero no son las mismas: la maqueta sirve para ver
-   estructura y aire, no para aprobar la tipografía definitiva.
+   La web se diseñó pensando en Hatton y Agrandir, de Pangram Pangram, pero
+   las dos son de pago. Prata y Outfit se eligieron comparándolas contra
+   ellas: Prata coincide en ancho y en contraste con Hatton, y Outfit en
+   geometría y altura de ojo con Agrandir. Las dos son libres, también para
+   uso comercial, y están autoalojadas: ninguna petición a terceros.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Las de pago — Hatton y Agrandir
-   --------------------------------------------------------------------------
-   Están comentadas a propósito: si se dejan activas sin los archivos, cada
-   visita pide cuatro ficheros que no existen y se lleva cuatro errores 404.
+   1. Títulos — Prata
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Prata";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/prata-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-   PARA ACTIVARLAS: dejar los .woff2 en assets/fonts/licenciadas/ con los
-   nombres de abajo y quitar el /* y el */ /* que envuelven este bloque.
+/* --------------------------------------------------------------------------
+   2. La cursiva de los títulos — Bodoni Moda
+   --------------------------------------------------------------------------
+   Prata no tiene cursiva. Si se deja así, el navegador se inventa una
+   inclinando la redonda, y en una tipografía de contraste tan alto eso
+   deforma los trazos.
+
+   Se declara la cursiva de Bodoni Moda, que sí es una cursiva dibujada,
+   bajo el nombre de familia "Prata". Así, al pedir font-style: italic el
+   navegador coge esta y no se inventa nada. Las dos son didonas de contraste
+   alto, y a los tamaños en que se usa (el «soy» de la portada y las citas)
+   casan sin ruido.
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Prata";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/bodoni-moda-400-italic-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Prata";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/bodoni-moda-400-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
+   3. Textos — Outfit
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/outfit-300-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/outfit-300-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/outfit-400-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/outfit-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/outfit-500-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/outfit-500-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
+   4. Acento manuscrito — Caveat
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/caveat-500-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/caveat-500-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
+   5. Hatton y Agrandir
+   --------------------------------------------------------------------------
+   Por si algún día se compran las licencias web. Están comentadas porque,
+   sin los archivos, cada visita se llevaría cuatro errores 404. Para
+   activarlas: dejar los .woff2 en assets/fonts/licenciadas/ con estos
+   nombres, quitar el comentario de aquí abajo y añadirlas delante en
+   --font-display y --font-body, en styles.css.
    -------------------------------------------------------------------------- */
 /*
 @font-face {
@@ -59,41 +164,3 @@
   src: url("../fonts/licenciadas/agrandir-medium.woff2") format("woff2");
 }
 */
-
-/* --------------------------------------------------------------------------
-   2. Sustitutas, autoalojadas. Sin peticiones a servidores de terceros.
-   -------------------------------------------------------------------------- */
-@font-face{font-family:"Archivo";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/archivo-400-italic-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:"Archivo";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/archivo-400-italic-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/archivo-300-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/archivo-300-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/archivo-400-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/archivo-400-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/archivo-500-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/archivo-500-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/archivo-600-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:"Archivo";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/archivo-600-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/instrument-serif-400-italic-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/instrument-serif-400-italic-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/instrument-serif-400-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/instrument-serif-400-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-
-/* --------------------------------------------------------------------------
-   3. Acento manuscrito
-   -------------------------------------------------------------------------- */
-@font-face {
-  font-family: "Caveat";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("../fonts/caveat-500-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Caveat";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("../fonts/caveat-500-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
