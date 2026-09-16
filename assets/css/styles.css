@@ -38,9 +38,9 @@
   /* Tipografía
      Primero la de pago; si no está el archivo, el navegador pasa sola
      a la sustituta. Ver assets/css/fonts.css. */
-  --font-display: "Prata", Georgia, "Times New Roman", serif;
+  --font-display: "Zalando Sans Expanded", "Helvetica Neue", Arial, sans-serif;
   --font-body:    "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-script:  "Caveat", "Segoe Script", cursive;
+  --font-script:  "Homemade Apple", "Segoe Script", cursive;
 
   --step--1: clamp(0.82rem, 0.79rem + 0.15vw, 0.9rem);
   --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
@@ -104,10 +104,10 @@ h1, h2, h3, h4 {
 }
 
 /* Hatton gana con un poco de aire negativo en los tamaños grandes */
-h1 { letter-spacing: -0.028em; }
-
-/* Prata solo tiene un peso; pedir más solo provoca negritas falsas. */
-h1, h2, h3, h4 { font-weight: 400; }
+/* Zalando Sans Expanded ya es ancha de por sí: en los tamaños grandes
+   pide algo de aire negativo para que no se descosa. */
+h1 { letter-spacing: -0.03em; font-weight: 300; }
+h2, h3 { letter-spacing: -0.02em; font-weight: 400; }
 
 p { text-wrap: pretty; }
 
@@ -172,15 +172,35 @@ p { text-wrap: pretty; }
   background: var(--line);
 }
 
+/* Homemade Apple tiene el ojo pequeño y los ascendentes muy largos:
+   necesita más cuerpo del que parece y una línea muy apretada, o abre
+   un hueco enorme encima. */
 .script {
   font-family: var(--font-script);
-  font-size: 1.45em;
-  line-height: 1;
+  font-size: 1.15em;
+  line-height: 1.5;
   color: var(--tierra);
-  font-weight: 500;
+  font-weight: 400;
 }
 
-.italic { font-style: italic; }
+/* La palabra suelta de los titulares, escrita a mano.
+   No es cursiva de verdad: es otra tipografía, así que se cancela el
+   font-style y se ajusta para que case con la de al lado.
+
+   Medido a cuerpo 100: la equis de Homemade Apple mide 48 y la de Zalando
+   Sans Expanded 54, así que va un punto más grande para igualarlas. Y sus
+   minúsculas cuelgan 6 por debajo de la línea base, de ahí que haya que
+   subirla: si no, la palabra se hunde respecto a las de al lado. */
+.italic {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.05em;
+  line-height: 1;
+  display: inline-block;
+  transform: translateY(-0.06em) rotate(-2deg);
+  padding-inline: 0.1em;
+}
 
 .lead {
   font-size: var(--step-1);
@@ -396,8 +416,8 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
 }
 
 .hero__title {
-  font-size: var(--step-5);
-  line-height: 0.92;
+  font-size: calc(var(--step-5) * 0.88);
+  line-height: 1.02;
   text-align: center;
   letter-spacing: -0.02em;
   color: var(--verde-hondo);
