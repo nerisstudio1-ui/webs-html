@@ -1,126 +1,128 @@
 # Qué falta para cerrar la web
 
-Estado a 16 de septiembre de 2026. Fecha objetivo: **primeros de noviembre**
-(publicación del nuevo libro).
+Estado tras recibir el material de la clienta (16 de septiembre de 2026).
+Fecha objetivo: **primeros de noviembre**, con la salida del nuevo libro.
 
 ---
 
-## 🔴 Bloqueante — sin esto no se puede publicar
-
-### Dominio y alojamiento
-No tiene ninguno de los dos. Hay que decidir el dominio (¿`cristinafalcon.com`?
-¿`cristinafalconmaldonado.com`?), registrarlo y elegir alojamiento.
-Cuanto antes se registre, mejor: el DNS tarda en propagarse.
+## 🔴 Bloqueante
 
 ### El libro nuevo de noviembre
-Es el motivo de la web y ahora mismo es el único hueco grande. Falta:
-- Título
-- Editorial
-- Portada
-- Texto de presentación (2-3 frases)
-- Fecha exacta de publicación
-- Enlace de compra o de la editorial
+Es el motivo de la web y sigue siendo el único hueco grande. Falta **todo**:
+título, editorial, portada, texto de presentación, fecha exacta y enlace.
+Ahora mismo ese bloque se ve con un marcador de posición.
+
+### Un retrato en condiciones
+**Este es el punto más delicado.** En el brief ponía «tengo material
+profesional», pero de las 48 imágenes recibidas no hay ningún retrato suyo
+utilizable a tamaño grande:
+
+- La foto buena —la de la biblioteca, apoyada en la mano— está a **128 × 140
+  píxeles**. Es un recorte de miniatura; ampliada se deshace.
+- Lo demás son fotos de acto y de viaje, correctas para la galería pero no
+  para presidir la portada.
+
+De momento la portada usa la foto del páramo andino, que le va muy bien al
+tema de su obra, pero está a 768 px de ancho y ella sale de lejos.
+
+**Lo que hace falta:** o el archivo original de la foto de la biblioteca, o
+una sesión de retrato. Si hay presupuesto y tiempo antes de noviembre, una
+sesión sencilla cambia la web por completo.
+
+### Dominio y alojamiento
+No tiene ninguno de los dos. Hay que decidir dominio
+(¿`cristinafalcon.com`?), registrarlo y elegir alojamiento. El DNS tarda en
+propagarse: cuanto antes, mejor.
 
 ### Datos para el aviso legal
-Para `aviso-legal.html`: NIF, domicilio fiscal y email de contacto público.
+NIF, domicilio fiscal y email de contacto público.
 
-> ⚠️ El CV que nos pasó incluye su **NIE y su dirección particular completa**.
-> Ninguno de los dos está en la web ni en este repositorio, y no deben estar.
-> Para el aviso legal se necesita un domicilio, pero conviene hablarlo con ella
-> antes: si no tiene actividad económica declarada, el aviso legal puede
-> resolverse de forma mucho más ligera.
+> El CV que mandó lleva su NIE y su dirección particular. Lo he sacado de la
+> carpeta del proyecto (`material-privado/`, que está excluida del control de
+> versiones). El repositorio es privado, así que no ha habido exposición
+> pública, pero esos archivos siguen en el historial de los commits que ella
+> subió: si algún día el repositorio se hace público, hay que limpiarlo antes.
 
 ### Email de contacto
-Decidir si usa su correo personal o uno nuevo del dominio
-(`contacto@sudominio.com`, recomendado). Va en `assets/js/config.js`.
+Decidir entre su correo personal o uno del dominio (`contacto@…`,
+recomendado). Va en `assets/js/config.js`.
 
-### Confirmar el teléfono de WhatsApp
-Ahora está puesto el **645 76 46 16**, que es el que dio en el formulario de
-Neris Studio. Hay que confirmar que es el que quiere publicar.
+### Confirmar el WhatsApp
+Está puesto el **645 76 46 16**, el del formulario de Neris Studio. Confirmar
+que es el que quiere publicar.
 
 ---
 
-## 🟠 Importante — la web funciona, pero se ve incompleta
+## 🟠 Importante
 
-### Portadas de los libros
-Faltan las 12. Deben ir en `assets/img/obra/` como JPG o WebP, recorte
-vertical 2:3, unos 600 × 900 px.
+### Faltan 7 portadas
+Ya están puestas 5: *Ítaca es nunca*, *Premura sagrada*, *Al otro lado*,
+*Siwar el jaguar guardián* y *Letras en los cordones*.
 
-| Poesía | Infantil |
-|---|---|
-| Ítaca es nunca (Candaya, 2021) | Al otro lado (Akiara, 2021) |
-| Borrar el paisaje (Candaya, 2014) | Siwar, el jaguar guardián (FCE, 2020) |
-| Memoria errante (Candaya, 2009) | La palabra encantada (CEPLI, 2017) |
-| Premura sagrada (Caracas, 1986) | Peperoncino (Giunti, 2014) |
-| | Letras en los cordones (Kalandraka, 2012) |
-| | 1, 2, 3, de repente en… (Edebé, 2011-2012) |
-| | Guías infantiles de España (Susaeta, 2012-2018) |
-| | Caja de cuentos y aventuras (2006) |
+Faltan:
 
-Las editoriales suelen facilitarlas en alta resolución si se piden.
+| Libro | Editorial | Dónde pedirla |
+|---|---|---|
+| Memoria errante (2009) | Candaya | candaya.com |
+| Borrar el paisaje (2014) | Candaya | candaya.com |
+| 1, 2, 3, de repente en… | Edebé | — |
+| Peperoncino (2014) | Giunti (Florencia) | — |
+| Guías infantiles de España | Susaeta | — |
+| La palabra encantada (2017) | CEPLI-UCLM | — |
+| Caja de cuentos y aventuras (2006) | F. Turismo de Cuenca | — |
 
-### Fotos de la autora
-Hacen falta tres, del material profesional que ya tiene:
-- `assets/img/perfil/retrato-hero.jpg` — vertical 3:4, la de portada
-- `assets/img/perfil/sobre-mi.jpg` — vertical 4:5
-- `assets/img/perfil/polaroid.jpg` — cuadrada, más informal
-
-### Galería
-Hay ocho huecos. De lo que ha ido mandando encajan muy bien: las fotos de
-infancia en Venezuela, el cartel del Festival Mundial de Poesía de Trujillo, la
-firma de ejemplares, la presentación de *Letras en los cordones*, la lectura en
-escena y el paisaje de los Andes.
-
-### Reseñas
-Las tres tarjetas están vacías. Para cada una: la cita, quién la firma y dónde
-se publicó. Aunque sean solo dos reales, mejor dos verdaderas que tres
-inventadas.
+Las dos de Candaya son las más urgentes, porque son poesía y van en la
+primera pestaña. Las editoriales suelen darlas en alta si se piden.
 
 ### Vídeos
-Faltan los enlaces de YouTube. En `index.html`, cambiar `data-yt="VIDEO_ID_1"`
-por el ID real del vídeo.
-
-> El `.MOV` que mandó pesa solo 50 KB, así que probablemente no se subió
-> entero. Además, los vídeos no deberían ir dentro del repositorio: lo suyo es
-> subirlos a YouTube (aunque sea como «no listados») y enlazarlos.
+Siguen sin enlaces. El `.MP4` que subió (10 MB) no debería ir en el
+repositorio: lo suyo es subirlo a YouTube, aunque sea como «no listado», y
+pasarme el enlace. Luego se cambia `data-yt="VIDEO_ID_1"` en `index.html`.
 
 ### Descargas
 Faltan los archivos de `assets/docs/`: dossier de prensa, biografía en PDF,
-fragmento del libro nuevo y ZIP de fotos en alta. Si alguno no se va a usar,
-se quita esa tarjeta de la sección.
+fragmento del libro nuevo y ZIP de fotos en alta.
+
+> El dossier de Candaya de *Ítaca es nunca* que mandó serviría muy bien como
+> dossier de prensa, si ella está de acuerdo.
+
+### URL de Facebook
+Solo tenemos el nombre, «Cristina Falcón». Hace falta la dirección exacta.
+Instagram (`@titiescribe`) ya está enlazado.
 
 ---
 
 ## 🟡 Por confirmar
 
-- **Derechos de la ilustración del logo.** Es de **Giulia Sagramola**. Ya está
-  acreditada en el pie, pero conviene confirmar que el encargo cubre el uso en
-  la web.
-- **Redes sociales.** Instagram `@titiescribe` está enlazado; falta la URL
-  exacta de su página de Facebook.
-- **Enlaces de compra.** Ahora las fichas de libro no llevan botón. Decidir si
-  enlazan a la editorial, a una librería o a nada.
-- **Fecha de *Premura sagrada*.** La biografía y el CV dicen 1986; el listado de
-  publicaciones dice 1987. En la web está puesto 1986.
-- **Traducción al inglés.** Está hecha entera, pero es traducción nuestra:
-  merece que ella la revise, sobre todo la biografía y la cita.
+- **Derechos de la ilustración del logo**, de Giulia Sagramola. Ya está
+  acreditada en el pie; confirmar que el encargo cubre el uso web.
+- **Las reseñas.** Las seis citas salen del dossier de Candaya y de la reseña
+  de Josu Landa. Conviene que ella confirme que puede publicarlas y que la
+  atribución es correcta.
+- **Fecha de *Premura sagrada*.** La biografía y el CV dicen 1986; el listado
+  de publicaciones dice 1987. En la web está 1986.
+- **Traducción al inglés.** Está completa, pero es nuestra: merece que ella la
+  revise, sobre todo la biografía, la cita y las reseñas traducidas.
+- **Pies de foto de la galería.** Los he escrito interpretando las imágenes;
+  puede que alguno no acierte con el sitio o el acto.
 
 ---
 
 ## ✅ Hecho
 
-- Estructura completa de la landing con todas las secciones del brief
-- Diseño editorial en su paleta (verdes, azules y tierra) con el ocre del logo
-- Logotipo integrado en cabecera y pie, extraído en vectorial del PDF
-- Biografía, trayectoria y las 12 fichas de libro con datos reales
+- Landing completa con todas las secciones del brief
+- Diseño editorial en su paleta, con el ocre del logotipo como acento
+- Logotipo vectorizado desde el PDF: marca, texto y favicon
+- Biografía, trayectoria y 12 fichas de libro con datos reales
+- **5 portadas reales** colocadas, sin recortes, alineadas por la base
+- **Galería de 10 fotos** en mosaico, con ampliación y pies descriptivos
+- **6 reseñas de prensa reales**: La Vanguardia, QuéLeer, Olcades Poesía,
+  El Nacional, Ciudad Literaria y Josu Landa
+- Enlaces a Candaya, Kalandraka, FCE y Akiara en las fichas
 - Bloque de antologías
-- Español e inglés completos (154 claves, sin desajustes)
-- WhatsApp flotante y enlace directo
-- Galería con ampliación de imagen (teclado y ratón)
-- Vídeos que no cargan YouTube hasta que se pulsa reproducir
-- Formulario de contacto con antispam
-- Sección de descargas
-- Aviso legal redactado (a falta de datos)
-- Responsive verificado en móvil, sin scroll horizontal
+- Español e inglés completos (174 claves, sin desajustes)
+- WhatsApp flotante, galería con teclado, vídeos que no cargan solos
+- Formulario con antispam, aviso legal redactado
+- Responsive verificado, sin scroll horizontal
 - Tipografías autoalojadas, sin peticiones a Google
-- Accesibilidad: navegación por teclado, foco visible, `prefers-reduced-motion`
+- Todas las imágenes con dimensiones declaradas (sin saltos de maquetación)
