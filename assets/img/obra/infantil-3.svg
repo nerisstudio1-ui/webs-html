@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-label="Infantil 3">
+  <rect width="600" height="900" fill="#2E5A4B"/>
+  <g fill="none" stroke="#F7F3EA" stroke-width="1.2" opacity=".5">
+    <rect x="12" y="12" width="576" height="876"/>
+  </g>
+  <text x="50%" y="50%" fill="#F7F3EA" opacity=".85" font-family="Georgia, serif" font-size="50" text-anchor="middle" dominant-baseline="middle">Infantil 3</text>
+  <text x="50%" y="516.6666666666666" fill="#F7F3EA" opacity=".5" font-family="Helvetica, Arial, sans-serif" font-size="27" letter-spacing="2" text-anchor="middle" dominant-baseline="middle">600 × 900</text>
+</svg>

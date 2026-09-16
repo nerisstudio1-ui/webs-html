@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title data-i18n="meta.title">Cristina Falcón Maldonado — Escritora</title>
+<meta name="description" data-i18n-attr="content:meta.description" content="Web oficial de Cristina Falcón Maldonado, escritora. Poesía para adultos y literatura infantil.">
+<meta name="author" content="Cristina Falcón Maldonado">
+
+<!-- Open Graph / redes sociales -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" data-i18n-attr="content:meta.title" content="Cristina Falcón Maldonado — Escritora">
+<meta property="og:description" data-i18n-attr="content:meta.description" content="Web oficial de Cristina Falcón Maldonado, escritora.">
+<meta property="og:image" content="assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://EJEMPLO-DOMINIO.com/">
+
+<!-- Tipografías autoalojadas: sin peticiones a servidores de Google (RGPD) -->
+<link rel="preload" href="assets/fonts/playfair-display-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+<a class="skip-link" href="#main" data-i18n="nav.saltar">Saltar al contenido</a>
+
+<!-- ======================================================================
+     CABECERA
+     ====================================================================== -->
+<header class="header" id="header">
+  <div class="wrap wrap--wide header__inner">
+
+    <a class="brand" href="#inicio" aria-label="Cristina Falcón Maldonado, escritora">
+      <img class="brand__marca" src="assets/img/logo-marca.svg" alt="" width="44" height="87">
+      <span class="brand__texto">
+        Cristina Falcón
+        <span data-i18n="brand.rol">Poeta y escritora</span>
+      </span>
+    </a>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav"
+            data-i18n-attr="aria-label:nav.abrir" aria-label="Abrir menú">
+      <span></span>
+    </button>
+
+    <nav class="nav" id="nav">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#sobre"    data-i18n="nav.sobre">Sobre mí</a></li>
+        <li><a class="nav__link" href="#obra"     data-i18n="nav.obra">Obra</a></li>
+        <li><a class="nav__link" href="#resenas"  data-i18n="nav.resenas">Reseñas</a></li>
+        <li><a class="nav__link" href="#galeria"  data-i18n="nav.galeria">Galería</a></li>
+        <li><a class="nav__link" href="#videos"   data-i18n="nav.videos">Vídeos</a></li>
+        <li><a class="nav__link" href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
+      </ul>
+
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button class="lang__btn" data-lang="es" aria-pressed="true">ES</button>
+        <span class="lang__sep" aria-hidden="true">/</span>
+        <button class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================================================================
+     HERO
+     ====================================================================== -->
+<section class="hero" id="inicio">
+  <div class="wrap wrap--wide hero__inner">
+
+    <h1 class="hero__title" data-i18n-html="hero.titulo">Hola, <span class="italic">soy</span> Cristina</h1>
+
+    <figure class="hero__figure">
+      <!-- TODO: sustituir por el retrato profesional de Cristina (recorte vertical 3:4) -->
+      <img src="assets/img/perfil/retrato-hero.svg" width="900" height="1200"
+           data-i18n-attr="alt:hero.foto" alt="Retrato de Cristina Falcón Maldonado" fetchpriority="high">
+    </figure>
+
+    <div class="hero__meta">
+      <p data-i18n-html="hero.rol"><strong>Escritora</strong> Poesía y literatura infantil</p>
+      <p data-i18n-html="hero.centro"><strong>Nuevo libro</strong> Noviembre 2026</p>
+      <p data-i18n-html="hero.libros"><strong>Obra publicada</strong> Poesía para adultos e infantil</p>
+    </div>
+
+  </div>
+
+  <a class="scroll-cue" href="#sobre" data-i18n="hero.scroll">Desliza</a>
+</section>
+
+<!-- ======================================================================
+     MARQUESINA
+     ====================================================================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="marquee"></div>
+</div>
+
+<!-- ======================================================================
+     SOBRE MÍ
+     ====================================================================== -->
+<section class="section sobre" id="sobre">
+  <div class="wrap">
+    <div class="sobre__grid">
+
+      <div class="sobre__media reveal">
+        <!-- TODO: foto vertical de Cristina (4:5) -->
+        <img src="assets/img/perfil/sobre-mi.svg" width="800" height="1000" loading="lazy"
+             data-i18n-attr="alt:sobre.foto" alt="Cristina Falcón Maldonado">
+        <figure class="polaroid">
+          <!-- TODO: foto cuadrada secundaria -->
+          <img src="assets/img/perfil/polaroid.svg" width="400" height="400" loading="lazy"
+               data-i18n-attr="alt:sobre.foto2" alt="Cristina durante una presentación">
+        </figure>
+      </div>
+
+      <div class="sobre__body reveal" style="--delay:120ms">
+        <p class="script" data-i18n="sobre.saludo">Hola, soy Cristina</p>
+        <h2 class="sobre__title" data-i18n="sobre.titulo">Escribo para los que aún saben mirar</h2>
+
+        <div class="sobre__cols">
+          <p data-i18n="sobre.p1">[Texto pendiente de la autora]</p>
+          <div>
+            <p data-i18n="sobre.p2">[Texto pendiente de la autora]</p>
+            <p style="margin-top:1rem" data-i18n="sobre.p3">[Texto pendiente de la autora]</p>
+          </div>
+        </div>
+
+        <blockquote class="sobre__quote" data-i18n="sobre.cita">
+          La poesía no se escribe: se escucha y se deja caer sobre el papel.
+        </blockquote>
+
+        <p><a class="btn" href="assets/docs/biografia.pdf" download
+              data-i18n="sobre.cta">Descargar biografía</a></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     TRAYECTORIA
+     ====================================================================== -->
+<section class="section trayectoria">
+  <div class="wrap">
+    <div class="trayectoria__grid">
+      <div class="trayectoria__item reveal">
+        <p class="trayectoria__dato" data-i18n="tray.1.dato">Desde 2017</p>
+        <p class="trayectoria__texto" data-i18n="tray.1.texto">—</p>
+      </div>
+      <div class="trayectoria__item reveal" style="--delay:90ms">
+        <p class="trayectoria__dato" data-i18n="tray.2.dato">Memoria errante</p>
+        <p class="trayectoria__texto" data-i18n="tray.2.texto">—</p>
+      </div>
+      <div class="trayectoria__item reveal" style="--delay:180ms">
+        <p class="trayectoria__dato" data-i18n="tray.3.dato">La Guarida</p>
+        <p class="trayectoria__texto" data-i18n="tray.3.texto">—</p>
+      </div>
+      <div class="trayectoria__item reveal" style="--delay:270ms">
+        <p class="trayectoria__dato" data-i18n="tray.4.dato">Álabe</p>
+        <p class="trayectoria__texto" data-i18n="tray.4.texto">—</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     OBRA PUBLICADA
+     ====================================================================== -->
+<section class="section obra" id="obra">
+  <div class="wrap">
+
+    <!-- Novedad destacada -->
+    <article class="novedad reveal">
+      <!-- TODO: portada del libro de noviembre -->
+      <img src="assets/img/obra/novedad.svg" width="600" height="900" loading="lazy"
+           data-i18n-attr="alt:obra.novedad.cover" alt="Portada del nuevo libro">
+      <div>
+        <p class="kicker" data-i18n="obra.novedad.kicker">Novedad · Noviembre 2026</p>
+        <h2 data-i18n="obra.novedad.titulo">Título del nuevo libro</h2>
+        <p data-i18n="obra.novedad.texto">[Texto pendiente]</p>
+        <div class="libro__actions">
+          <a class="btn btn--light" href="#contacto" data-i18n="obra.novedad.cta">Reservar ejemplar</a>
+          <a class="btn" href="assets/docs/fragmento.pdf" download
+             style="--btn-bg:transparent;--btn-fg:var(--crema);border-color:rgba(247,243,234,.35)"
+             data-i18n="obra.novedad.cta2">Leer un fragmento</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="section__head reveal">
+      <div>
+        <p class="kicker" data-i18n="obra.kicker">Obra publicada</p>
+        <h2 class="section__title" data-i18n="obra.titulo">Los libros</h2>
+      </div>
+      <p class="lead" data-i18n="obra.intro">Una obra repartida entre la poesía para adultos y los libros que crecen con quien los lee.</p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-poesia"   aria-controls="panel-poesia"   aria-selected="true"  data-i18n="obra.tab.poesia">Poesía para adultos</button>
+      <button class="tab" role="tab" id="tab-infantil" aria-controls="panel-infantil" aria-selected="false" data-i18n="obra.tab.infantil">Literatura infantil</button>
+    </div>
+
+    <!-- Poesía para adultos -->
+    <div class="libros" role="tabpanel" id="panel-poesia" aria-labelledby="tab-poesia">
+
+      <article class="libro reveal">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/novedad.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.p1.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.p1.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.p1.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:90ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/poesia-2.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.p2.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.p2.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.p2.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:180ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/poesia-3.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.p3.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.p3.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.p3.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:270ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/poesia-1.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.p4.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.p4.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.p4.texto">—</p>
+      </article>
+
+    </div>
+
+    <div class="libros" role="tabpanel" id="panel-infantil" aria-labelledby="tab-infantil" hidden>
+
+      <article class="libro reveal">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/infantil-1.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.i1.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.i1.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.i1.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:90ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/infantil-2.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.i2.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.i2.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.i2.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:180ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/infantil-3.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.i3.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.i3.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.i3.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:270ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/infantil-1.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.i4.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.i4.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.i4.texto">—</p>
+      </article>
+
+      <article class="libro reveal">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/infantil-2.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.i5.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.i5.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.i5.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:90ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/infantil-3.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.i6.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.i6.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.i6.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:180ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/infantil-1.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.i7.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.i7.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.i7.texto">—</p>
+      </article>
+
+      <article class="libro reveal" style="--delay:270ms">
+        <div class="libro__cover">
+          <!-- TODO: portada real de este libro -->
+          <img src="assets/img/obra/infantil-2.svg" width="600" height="900" loading="lazy" alt="">
+        </div>
+        <h3 class="libro__title" data-i18n="libro.i8.titulo">—</h3>
+        <p class="libro__meta"  data-i18n="libro.i8.meta">—</p>
+        <p class="libro__text"  data-i18n="libro.i8.texto">—</p>
+      </article>
+
+    </div>
+
+    <aside class="antologias reveal">
+      <h3 class="antologias__titulo" data-i18n="obra.antologias.titulo">También en antologías</h3>
+      <p class="antologias__texto" data-i18n="obra.antologias.texto">—</p>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ======================================================================
+     RESEÑAS
+     ====================================================================== -->
+<section class="section resenas" id="resenas">
+  <div class="wrap">
+
+    <div class="section__head reveal">
+      <div>
+        <p class="kicker" data-i18n="resenas.kicker">Reseñas</p>
+        <h2 class="section__title" data-i18n="resenas.titulo">Lo que se ha escrito sobre mi obra</h2>
+      </div>
+      <p class="lead" data-i18n="resenas.intro">Críticas, reseñas y comentarios publicados sobre los libros.</p>
+    </div>
+
+    <div class="resenas__grid">
+
+      <figure class="resena reveal">
+        <blockquote data-i18n="resena.1.texto">[Cita pendiente]</blockquote>
+        <figcaption>
+          <strong data-i18n="resena.1.autor">Nombre del crítico</strong>
+          <span data-i18n="resena.1.medio">Medio · Año</span>
+        </figcaption>
+      </figure>
+
+      <figure class="resena reveal" style="--delay:100ms">
+        <blockquote data-i18n="resena.2.texto">[Cita pendiente]</blockquote>
+        <figcaption>
+          <strong data-i18n="resena.2.autor">Nombre del crítico</strong>
+          <span data-i18n="resena.2.medio">Medio · Año</span>
+        </figcaption>
+      </figure>
+
+      <figure class="resena reveal" style="--delay:200ms">
+        <blockquote data-i18n="resena.3.texto">[Cita pendiente]</blockquote>
+        <figcaption>
+          <strong data-i18n="resena.3.autor">Nombre del crítico</strong>
+          <span data-i18n="resena.3.medio">Medio · Año</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     GALERÍA
+     ====================================================================== -->
+<section class="section galeria" id="galeria">
+  <div class="wrap wrap--wide">
+
+    <div class="section__head reveal">
+      <div>
+        <p class="kicker" data-i18n="galeria.kicker">Galería</p>
+        <h2 class="section__title" data-i18n="galeria.titulo">Imágenes</h2>
+      </div>
+      <p class="lead" data-i18n="galeria.intro">Presentaciones, recitales, talleres y retratos.</p>
+    </div>
+
+    <!-- TODO: sustituir por las fotos reales. Clases --tall / --wide para variar el ritmo. -->
+    <div class="galeria__grid reveal" id="galeria-grid">
+      <button class="galeria__item galeria__item--tall" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
+        <img src="assets/img/galeria/01.svg" width="600" height="1200" loading="lazy" alt="">
+      </button>
+      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
+        <img src="assets/img/galeria/02.svg" width="600" height="600" loading="lazy" alt="">
+      </button>
+      <button class="galeria__item galeria__item--wide" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
+        <img src="assets/img/galeria/03.svg" width="1200" height="600" loading="lazy" alt="">
+      </button>
+      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
+        <img src="assets/img/galeria/04.svg" width="600" height="600" loading="lazy" alt="">
+      </button>
+      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
+        <img src="assets/img/galeria/05.svg" width="600" height="600" loading="lazy" alt="">
+      </button>
+      <button class="galeria__item galeria__item--tall" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
+        <img src="assets/img/galeria/06.svg" width="600" height="1200" loading="lazy" alt="">
+      </button>
+      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
+        <img src="assets/img/galeria/07.svg" width="600" height="600" loading="lazy" alt="">
+      </button>
+      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
+        <img src="assets/img/galeria/08.svg" width="600" height="600" loading="lazy" alt="">
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Lightbox de la galería -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lightbox__close" id="lb-close" data-i18n-attr="aria-label:galeria.cerrar" aria-label="Cerrar">&times;</button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lb-prev" data-i18n-attr="aria-label:galeria.anterior" aria-label="Imagen anterior">&#8249;</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lightbox__nav lightbox__nav--next" id="lb-next" data-i18n-attr="aria-label:galeria.siguiente" aria-label="Imagen siguiente">&#8250;</button>
+</div>
+
+<!-- ======================================================================
+     VÍDEOS
+     ====================================================================== -->
+<section class="section videos" id="videos">
+  <div class="wrap">
+
+    <div class="section__head reveal">
+      <div>
+        <p class="kicker" data-i18n="videos.kicker">Vídeos</p>
+        <h2 class="section__title" data-i18n="videos.titulo">Escuchar la voz</h2>
+      </div>
+      <p class="lead" data-i18n="videos.intro">Recitales, entrevistas y presentaciones.</p>
+    </div>
+
+    <!-- TODO: cambiar data-yt por el ID real de cada vídeo de YouTube -->
+    <div class="videos__grid">
+
+      <article class="video reveal">
+        <button class="video__frame" data-yt="VIDEO_ID_1" data-i18n-attr="aria-label:videos.reproducir" aria-label="Reproducir vídeo">
+          <img src="assets/img/obra/video-1.svg" width="1280" height="720" loading="lazy" alt="">
+          <span class="video__play" aria-hidden="true">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M19 9.27a2 2 0 0 1 0 3.46L3 21.99a2 2 0 0 1-3-1.73V1.74A2 2 0 0 1 3 .01z"/></svg>
+          </span>
+        </button>
+        <h3 class="video__title" data-i18n="video.1.titulo">Título del vídeo</h3>
+        <p class="video__meta"  data-i18n="video.1.meta">Recital · 2024</p>
+      </article>
+
+      <article class="video reveal" style="--delay:100ms">
+        <button class="video__frame" data-yt="VIDEO_ID_2" data-i18n-attr="aria-label:videos.reproducir" aria-label="Reproducir vídeo">
+          <img src="assets/img/obra/video-2.svg" width="1280" height="720" loading="lazy" alt="">
+          <span class="video__play" aria-hidden="true">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M19 9.27a2 2 0 0 1 0 3.46L3 21.99a2 2 0 0 1-3-1.73V1.74A2 2 0 0 1 3 .01z"/></svg>
+          </span>
+        </button>
+        <h3 class="video__title" data-i18n="video.2.titulo">Título del vídeo</h3>
+        <p class="video__meta"  data-i18n="video.2.meta">Entrevista · 2023</p>
+      </article>
+
+      <article class="video reveal" style="--delay:200ms">
+        <button class="video__frame" data-yt="VIDEO_ID_3" data-i18n-attr="aria-label:videos.reproducir" aria-label="Reproducir vídeo">
+          <img src="assets/img/obra/video-3.svg" width="1280" height="720" loading="lazy" alt="">
+          <span class="video__play" aria-hidden="true">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M19 9.27a2 2 0 0 1 0 3.46L3 21.99a2 2 0 0 1-3-1.73V1.74A2 2 0 0 1 3 .01z"/></svg>
+          </span>
+        </button>
+        <h3 class="video__title" data-i18n="video.3.titulo">Título del vídeo</h3>
+        <p class="video__meta"  data-i18n="video.3.meta">Presentación · 2022</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     DESCARGAS
+     ====================================================================== -->
+<section class="section descargas" id="descargas">
+  <div class="wrap">
+
+    <div class="section__head reveal">
+      <div>
+        <p class="kicker" data-i18n="descargas.kicker">Descargas</p>
+        <h2 class="section__title" data-i18n="descargas.titulo">Material para prensa y librerías</h2>
+      </div>
+      <p class="lead" data-i18n="descargas.intro">Dossier, biografía y fotografías en alta resolución, listos para usar.</p>
+    </div>
+
+    <div class="descargas__grid reveal">
+
+      <a class="descarga" href="assets/docs/dossier-prensa.pdf" download>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <span>
+          <strong data-i18n="descarga.1.titulo">Dossier de prensa</strong>
+          <span data-i18n="descarga.1.meta">PDF · 2 MB</span>
+        </span>
+      </a>
+
+      <a class="descarga" href="assets/docs/biografia.pdf" download>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <span>
+          <strong data-i18n="descarga.2.titulo">Biografía</strong>
+          <span data-i18n="descarga.2.meta">PDF · 300 KB</span>
+        </span>
+      </a>
+
+      <a class="descarga" href="assets/docs/fotografias.zip" download>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <span>
+          <strong data-i18n="descarga.3.titulo">Fotografías en alta</strong>
+          <span data-i18n="descarga.3.meta">ZIP · 12 MB</span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     CONTACTO
+     ====================================================================== -->
+<section class="section contacto" id="contacto">
+  <div class="wrap">
+
+    <div class="section__head reveal">
+      <div>
+        <p class="kicker" data-i18n="contacto.kicker">Contacto</p>
+        <h2 class="section__title" data-i18n="contacto.titulo">Hablemos</h2>
+      </div>
+      <p class="lead" data-i18n="contacto.intro">Para presentaciones, talleres, entrevistas o cualquier consulta sobre los libros.</p>
+    </div>
+
+    <div class="contacto__grid">
+
+      <form class="form reveal" id="form" novalidate>
+        <!-- Anti-spam: campo oculto que los bots rellenan -->
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="field">
+          <label for="nombre" data-i18n="form.nombre">Nombre</label>
+          <input id="nombre" name="Nombre" type="text" required autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="email" data-i18n="form.email">Email</label>
+          <input id="email" name="Email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="asunto" data-i18n="form.asunto">Asunto</label>
+          <input id="asunto" name="Asunto" type="text">
+        </div>
+
+        <div class="field">
+          <label for="mensaje" data-i18n="form.mensaje">Mensaje</label>
+          <textarea id="mensaje" name="Mensaje" required></textarea>
+        </div>
+
+        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+
+        <p><button class="btn" type="submit" id="form-submit" data-i18n="form.enviar">Enviar mensaje</button></p>
+      </form>
+
+      <aside class="contacto__aside reveal" style="--delay:120ms">
+        <p class="kicker" data-i18n="contacto.directo">O directamente</p>
+
+        <ul class="contacto__list">
+          <li>
+            <a class="link-underline" href="mailto:EMAIL@PENDIENTE.com">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6 9-6"/></svg>
+              EMAIL@PENDIENTE.com
+            </a>
+          </li>
+          <li>
+            <a class="link-underline" id="wa-link-inline" href="#">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.96L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2m0 1.8a8.1 8.1 0 1 1-4.13 15.06l-.3-.18-3.08.9.9-3-.2-.31A8.1 8.1 0 0 1 12.04 3.8m4.6 11.3c-.25-.13-1.47-.73-1.7-.81s-.4-.13-.56.13-.64.8-.79.97-.29.19-.54.06a6.6 6.6 0 0 1-1.95-1.2 7.3 7.3 0 0 1-1.35-1.68c-.14-.25 0-.38.11-.5s.25-.3.37-.44a1.7 1.7 0 0 0 .25-.42.46.46 0 0 0 0-.44c0-.12-.56-1.35-.77-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.65.3 2.75 2.75 0 0 0-.86 2.05 4.8 4.8 0 0 0 1 2.54 10.9 10.9 0 0 0 4.2 3.7c.58.26 1.04.4 1.4.51a3.4 3.4 0 0 0 1.54.1 2.53 2.53 0 0 0 1.65-1.17 2 2 0 0 0 .14-1.16c-.06-.1-.23-.17-.48-.29"/></svg>
+              645 76 46 16
+            </a>
+          </li>
+        </ul>
+
+        <div>
+          <p class="kicker" style="margin-bottom:1rem" data-i18n="contacto.redes">Redes sociales</p>
+          <div class="social">
+            <!-- TODO: confirmar URLs reales -->
+            <a href="https://www.instagram.com/titiescribe/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7.5c0-.8.2-1.2 1.4-1.2H17V3.1A20 20 0 0 0 14.8 3C12.1 3 10.3 4.6 10.3 7.6V9H8v3.5h2.3V21H14v-8.5h2.6l.4-3.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================================
+     PIE
+     ====================================================================== -->
+<footer class="footer">
+  <div class="wrap">
+
+    <div class="footer__top">
+      <div>
+        <img class="footer__marca" src="assets/img/logo-marca.svg" alt="" width="70" height="139" loading="lazy">
+        <p class="footer__name">Cristina Falcón Maldonado</p>
+        <p style="margin-top:.75rem" data-i18n="footer.claim">Poeta, narradora y traductora. Poesía para adultos y literatura infantil.</p>
+        <p class="footer__credito-ilustracion" data-i18n="footer.ilustracion">Ilustración del logotipo: Giulia Sagramola.</p>
+      </div>
+      <div>
+        <a class="link-underline" href="#inicio" data-i18n="footer.arriba">Volver arriba</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; <span id="year">2026</span> Cristina Falcón Maldonado. <span data-i18n="footer.derechos">Todos los derechos reservados.</span></p>
+      <p>
+        <a class="link-underline" href="aviso-legal.html" data-i18n="footer.legal">Aviso legal y privacidad</a>
+        &nbsp;·&nbsp;
+        <a class="link-underline" href="https://nerisstudio.com" target="_blank" rel="noopener" data-i18n="footer.credito">Web por Neris Studio</a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a class="wa" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.96L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2m0 1.8a8.1 8.1 0 1 1-4.13 15.06l-.3-.18-3.08.9.9-3-.2-.31A8.1 8.1 0 0 1 12.04 3.8m4.6 11.3c-.25-.13-1.47-.73-1.7-.81s-.4-.13-.56.13-.64.8-.79.97-.29.19-.54.06a6.6 6.6 0 0 1-1.95-1.2 7.3 7.3 0 0 1-1.35-1.68c-.14-.25 0-.38.11-.5s.25-.3.37-.44a1.7 1.7 0 0 0 .25-.42.46.46 0 0 0 0-.44c0-.12-.56-1.35-.77-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.65.3 2.75 2.75 0 0 0-.86 2.05 4.8 4.8 0 0 0 1 2.54 10.9 10.9 0 0 0 4.2 3.7c.58.26 1.04.4 1.4.51a3.4 3.4 0 0 0 1.54.1 2.53 2.53 0 0 0 1.65-1.17 2 2 0 0 0 .14-1.16c-.06-.1-.23-.17-.48-.29"/></svg>
+  <span data-i18n="wa.texto">WhatsApp</span>
+</a>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Material original de la clienta con datos personales
+# (currículums con NIE y dirección: NO deben subirse)
+material-privado/
