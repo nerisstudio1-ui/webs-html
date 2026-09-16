@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1200" width="600" height="1200" role="img" aria-label="Foto 6">
-  <rect width="600" height="1200" fill="#1F3D33"/>
-  <g fill="none" stroke="#F7F3EA" stroke-width="1.2" opacity=".5">
-    <rect x="12" y="12" width="576" height="1176"/>
-  </g>
-  <text x="50%" y="50%" fill="#F7F3EA" opacity=".85" font-family="Georgia, serif" font-size="50" text-anchor="middle" dominant-baseline="middle">Foto 6</text>
-  <text x="50%" y="666.6666666666666" fill="#F7F3EA" opacity=".5" font-family="Helvetica, Arial, sans-serif" font-size="27" letter-spacing="2" text-anchor="middle" dominant-baseline="middle">600 × 1200</text>
-</svg>

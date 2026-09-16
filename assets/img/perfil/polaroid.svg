@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Polaroid">
-  <rect width="400" height="400" fill="#F7F3EA"/>
-  <g fill="none" stroke="#A26E4B" stroke-width="1.2" opacity=".5">
-    <rect x="12" y="12" width="376" height="376"/>
-  </g>
-  <text x="50%" y="50%" fill="#A26E4B" opacity=".85" font-family="Georgia, serif" font-size="33" text-anchor="middle" dominant-baseline="middle">Polaroid</text>
-  <text x="50%" y="244.44444444444446" fill="#A26E4B" opacity=".5" font-family="Helvetica, Arial, sans-serif" font-size="18" letter-spacing="2" text-anchor="middle" dominant-baseline="middle">400 × 400</text>
-</svg>
