@@ -50,11 +50,20 @@ al principio de `assets/script.js`.
 **Peso:** exporta en JPG de calidad 80 y máximo 2400 px de lado largo.
 Cada foto debería quedar por debajo de 500 KB para que la web cargue rápido.
 
+## Diseño
+
+Fondo claro y una sola tipografía, **Archivo** (Google Fonts), en todos los
+tamaños. Sin serif ni cursivas: el peso visual lo llevan las fotos, no la
+decoración.
+
+Los colores están definidos como variables al principio de `assets/styles.css`.
+Para cambiar el fondo o el color del texto basta con tocar `--bg` y `--fg`.
+
 ## Logo
 
-`logo-blanco.png` y `logo-negro.png` están generados a partir del PDF original
-con fondo transparente. El blanco es el que usa la web; el negro queda
-disponible para fondos claros (facturas, documentos, papelería).
+`logo-negro.png` y `logo-blanco.png` están generados a partir del PDF original
+con fondo transparente. El negro es el que usa la web; el blanco queda
+disponible por si algún soporte lleva fondo oscuro.
 
 ## Idiomas
 
