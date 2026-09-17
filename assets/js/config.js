@@ -5,16 +5,15 @@
    ========================================================================== */
 
 window.CONFIG = {
-  /* Teléfono de WhatsApp en formato internacional, sin "+" ni espacios.
-     PENDIENTE DE CONFIRMAR: el 645764616 es el teléfono del formulario de
-     contacto de Neris Studio. Confirmar con Cristina si es el que quiere
-     publicar en la web. */
+  /* Teléfono de WhatsApp. Confirmado por la clienta.
+     Se guarda en formato internacional y sin signos, que es lo que pide
+     wa.me; la versión bonita que se ve en pantalla se compone sola. */
   whatsapp: "34645764616",
 
-  /* Email al que llegan los mensajes del formulario.
-     PENDIENTE: confirmar si usa su email personal o uno nuevo tipo
-     contacto@sudominio.com (recomendado). */
-  email: "EMAIL@PENDIENTE.com",
+  /* Email de contacto. Confirmado por la clienta.
+     Es a la vez el que se muestra en pantalla y al que FormSubmit envía
+     los mensajes del formulario. */
+  email: "cfalconmaldonado@gmail.com",
 
   /* Servicio del formulario. FormSubmit no necesita servidor: envía a este
      email. Hay que activarlo una vez (ver README). */

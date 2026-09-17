@@ -1005,22 +1005,64 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
 
 .hp { position: absolute; left: -9999px; opacity: 0; }
 
-.contacto__aside > * + * { margin-top: 1.5rem; }
-.contacto__list { list-style: none; padding: 0; display: grid; gap: 0.9rem; }
-.contacto__list a { text-decoration: none; display: flex; align-items: center; gap: 0.75rem; }
-.contacto__list svg { color: var(--tierra); flex: none; }
-
-.social { display: flex; gap: 0.75rem; }
-.social a {
-  width: 2.75rem; height: 2.75rem;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--verde-hondo);
-  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+.contacto__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-.social a:hover { background: var(--verde-hondo); color: var(--crema); border-color: var(--verde-hondo); }
+
+/* Los datos van como una ficha: etiqueta pequeña a la izquierda, valor a la
+   derecha, filete debajo. Mismo lenguaje que la banda de trayectoria, y
+   llena la columna en lugar de dejar dos enlaces sueltos arriba. */
+.contacto__datos {
+  width: 100%;
+  margin: 1.5rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.contacto__dato {
+  display: grid;
+  gap: 0.25rem 1.5rem;
+  align-items: baseline;
+  padding-block: 1.05rem;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 30rem) {
+  .contacto__dato { grid-template-columns: 6.5rem 1fr; }
+}
+
+.contacto__dato dt {
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.contacto__dato dd {
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: 1.35;
+  color: var(--verde-hondo);
+  overflow-wrap: anywhere;
+}
+
+.contacto__dato a { text-decoration: none; }
+.contacto__sep { color: var(--line); padding-inline: 0.4rem; }
+
+/* La ilustración del logotipo cierra la columna, que antes se quedaba
+   vacía de medio metro para abajo. */
+.contacto__marca {
+  width: auto;
+  height: clamp(5rem, 10vw, 8rem);
+  align-self: flex-end;
+  margin-top: auto;
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  opacity: 0.7;
+}
+@media (max-width: 55rem) {
+  /* En móvil la columna va debajo del formulario y no hay hueco que llenar */
+  .contacto__marca { display: none; }
+}
 
 /* --------------------------------------------------------------------------
    15. Pie

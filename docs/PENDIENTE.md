@@ -35,21 +35,13 @@ No tiene ninguno de los dos. Hay que decidir dominio
 propagarse: cuanto antes, mejor.
 
 ### Datos para el aviso legal
-NIF, domicilio fiscal y email de contacto público.
+Faltan **NIF, domicilio fiscal y dominio**. El email ya está puesto.
 
 > El CV que mandó lleva su NIE y su dirección particular. Lo he sacado de la
 > carpeta del proyecto (`material-privado/`, que está excluida del control de
 > versiones). El repositorio es privado, así que no ha habido exposición
 > pública, pero esos archivos siguen en el historial de los commits que ella
 > subió: si algún día el repositorio se hace público, hay que limpiarlo antes.
-
-### Email de contacto
-Decidir entre su correo personal o uno del dominio (`contacto@…`,
-recomendado). Va en `assets/js/config.js`.
-
-### Confirmar el WhatsApp
-Está puesto el **645 76 46 16**, el del formulario de Neris Studio. Confirmar
-que es el que quiere publicar.
 
 ---
 

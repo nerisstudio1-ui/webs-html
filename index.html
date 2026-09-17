@@ -626,34 +626,32 @@
       <aside class="contacto__aside reveal" style="--delay:120ms">
         <p class="kicker" data-i18n="contacto.directo">O directamente</p>
 
-        <ul class="contacto__list">
-          <li>
-            <a class="link-underline" href="mailto:EMAIL@PENDIENTE.com">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6 9-6"/></svg>
-              EMAIL@PENDIENTE.com
-            </a>
-          </li>
-          <li>
-            <a class="link-underline" id="wa-link-inline" href="#">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.96L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2m0 1.8a8.1 8.1 0 1 1-4.13 15.06l-.3-.18-3.08.9.9-3-.2-.31A8.1 8.1 0 0 1 12.04 3.8m4.6 11.3c-.25-.13-1.47-.73-1.7-.81s-.4-.13-.56.13-.64.8-.79.97-.29.19-.54.06a6.6 6.6 0 0 1-1.95-1.2 7.3 7.3 0 0 1-1.35-1.68c-.14-.25 0-.38.11-.5s.25-.3.37-.44a1.7 1.7 0 0 0 .25-.42.46.46 0 0 0 0-.44c0-.12-.56-1.35-.77-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.65.3 2.75 2.75 0 0 0-.86 2.05 4.8 4.8 0 0 0 1 2.54 10.9 10.9 0 0 0 4.2 3.7c.58.26 1.04.4 1.4.51a3.4 3.4 0 0 0 1.54.1 2.53 2.53 0 0 0 1.65-1.17 2 2 0 0 0 .14-1.16c-.06-.1-.23-.17-.48-.29"/></svg>
-              645 76 46 16
-            </a>
-          </li>
-        </ul>
-
-        <div>
-          <p class="kicker" style="margin-bottom:1rem" data-i18n="contacto.redes">Redes sociales</p>
-          <div class="social">
-            <!-- TODO: confirmar URLs reales -->
-            <a href="https://www.instagram.com/titiescribe/" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            </a>
-            <!-- TODO: falta la URL exacta de su página de Facebook ("Cristina Falcón") -->
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7.5c0-.8.2-1.2 1.4-1.2H17V3.1A20 20 0 0 0 14.8 3C12.1 3 10.3 4.6 10.3 7.6V9H8v3.5h2.3V21H14v-8.5h2.6l.4-3.5z"/></svg>
-            </a>
+        <dl class="contacto__datos">
+          <div class="contacto__dato">
+            <dt data-i18n="contacto.etiq.email">Email</dt>
+            <dd><a class="link-underline" id="enlace-email" href="#">—</a></dd>
           </div>
-        </div>
+          <div class="contacto__dato">
+            <dt data-i18n="contacto.etiq.whatsapp">WhatsApp</dt>
+            <dd><a class="link-underline" id="wa-link-inline" href="#" target="_blank" rel="noopener">—</a></dd>
+          </div>
+          <div class="contacto__dato">
+            <dt data-i18n="contacto.etiq.donde">Dónde</dt>
+            <dd data-i18n="contacto.lugar">Cuenca, España</dd>
+          </div>
+          <div class="contacto__dato">
+            <dt data-i18n="contacto.etiq.redes">Redes</dt>
+            <dd>
+              <a class="link-underline" href="https://www.instagram.com/titiescribe/" target="_blank" rel="noopener">Instagram</a>
+              <span class="contacto__sep" aria-hidden="true">·</span>
+              <!-- TODO: falta la URL exacta de su página de Facebook ("Cristina Falcón") -->
+              <a class="link-underline" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+            </dd>
+          </div>
+        </dl>
+
+        <img class="contacto__marca" src="assets/img/logo-marca.svg" alt=""
+             width="44" height="87" loading="lazy">
       </aside>
 
     </div>

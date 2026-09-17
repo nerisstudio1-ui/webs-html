@@ -57,7 +57,7 @@
     });
 
     pintarMarquesina();
-    actualizarWhatsApp();
+    actualizarContacto();
 
     try { localStorage.setItem("idioma", lang); } catch (e) { /* ignorar */ }
   }
@@ -69,14 +69,32 @@
   /* ------------------------------------------------------------------
      2. WhatsApp
      ------------------------------------------------------------------ */
-  function actualizarWhatsApp() {
+  /* Pone el número con espacios, como se escribe de toda la vida:
+     34645764616 → +34 645 76 46 16 */
+  function telefonoLegible(numero) {
+    var m = String(numero).match(/^(\d{2})(\d{3})(\d{2})(\d{2})(\d{2})$/);
+    return m ? "+" + m[1] + " " + m[2] + " " + m[3] + " " + m[4] + " " + m[5] : "+" + numero;
+  }
+
+  function actualizarContacto() {
     var dic = I18N[idiomaActual] || {};
     var texto = encodeURIComponent(dic["wa.mensaje"] || "");
     var url = "https://wa.me/" + CONFIG.whatsapp + (texto ? "?text=" + texto : "");
+
     var flotante = $("#wa-float");
-    var enlace = $("#wa-link-inline");
     if (flotante) flotante.href = url;
-    if (enlace) enlace.href = url;
+
+    var enlaceWa = $("#wa-link-inline");
+    if (enlaceWa) {
+      enlaceWa.href = url;
+      enlaceWa.textContent = telefonoLegible(CONFIG.whatsapp);
+    }
+
+    var enlaceEmail = $("#enlace-email");
+    if (enlaceEmail) {
+      enlaceEmail.href = "mailto:" + CONFIG.email;
+      enlaceEmail.textContent = CONFIG.email;
+    }
   }
 
   /* ------------------------------------------------------------------
