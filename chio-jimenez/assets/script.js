@@ -19,18 +19,14 @@
      wide:true hace la pieza el doble de ancha.
      --------------------------------------------------------- */
   var PHOTOS = [
-    { src: 'novia-01.jpg',     cat: 'novias',      es: 'Novia',                  en: 'Bride' },
-    { src: 'novia-02.jpg',     cat: 'novias',      es: 'Peinado de novia',       en: 'Bridal hair' },
-    { src: 'novia-03.jpg',     cat: 'novias',      es: 'Novia · Granada',        en: 'Bride · Granada' },
-    { src: 'evento-01.jpg',    cat: 'novias',      es: 'Madrina',                en: 'Mother of the bride' },
-    { src: 'moda-01.jpg',      cat: 'moda',        es: 'Editorial',              en: 'Editorial', wide: true },
-    { src: 'moda-02.jpg',      cat: 'moda',        es: 'Campaña',                en: 'Campaign' },
-    { src: 'moda-03.jpg',      cat: 'moda',        es: 'Alta costura · París',   en: 'Haute couture · Paris' },
-    { src: 'av-01.jpg',        cat: 'audiovisual', es: 'Videoclip',              en: 'Music video' },
-    { src: 'av-02.jpg',        cat: 'audiovisual', es: 'Rodaje',                 en: 'On set' },
-    { src: 'av-03.jpg',        cat: 'audiovisual', es: 'Backstage',              en: 'Backstage', wide: true },
-    { src: 'creativo-01.jpg',  cat: 'creativo',    es: 'Proyecto creativo',      en: 'Creative project' },
-    { src: 'creativo-02.jpg',  cat: 'creativo',    es: 'Investigación creativa', en: 'Creative research' }
+    { src: 'novia-01.jpg',     cat: 'novias',      es: 'Recogido de novia',       en: 'Bridal updo' },
+    { src: 'novia-02.jpg',     cat: 'novias',      es: 'Preparativos de novia',   en: 'Getting ready', wide: true },
+    { src: 'novia-03.jpg',     cat: 'novias',      es: 'El día de la boda',       en: 'The wedding day' },
+    { src: 'evento-01.jpg',    cat: 'novias',      es: 'Prueba de novia',         en: 'Bridal trial', wide: true },
+    { src: 'av-01.jpg',        cat: 'audiovisual', es: 'Rodaje',                  en: 'On set' },
+    { src: 'av-02.jpg',        cat: 'audiovisual', es: 'Maquillaje en set',       en: 'Make-up on set' },
+    { src: 'av-03.jpg',        cat: 'audiovisual', es: 'Peinado en rodaje',       en: 'Hair on set' },
+    { src: 'formacion-01.jpg', cat: 'formacion',   es: 'Escuma Granada',          en: 'Escuma Granada', wide: true }
   ];
 
   /* ---------------------------------------------------------
@@ -101,7 +97,7 @@
       'portfolio.title': 'The work, <span class="italic">in images</span>',
       'portfolio.ig': 'More work on Instagram',
       'filter.all': 'All', 'filter.brides': 'Brides & events', 'filter.fashion': 'Fashion & advertising',
-      'filter.av': 'Audiovisual', 'filter.creative': 'Creative',
+      'filter.av': 'Audiovisual', 'filter.training': 'Training', 'filter.creative': 'Creative',
       'portfolio.empty': 'New images coming soon.',
 
       'featured.eyebrow': 'Featured work',
@@ -308,10 +304,11 @@
 
   function catLabel(cat) {
     var map = {
-      novias:      { es: 'Novias y eventos',      en: 'Brides & events' },
-      moda:        { es: 'Moda y publicidad',     en: 'Fashion & advertising' },
-      audiovisual: { es: 'Audiovisuales',         en: 'Audiovisual' },
-      creativo:    { es: 'Creativo',              en: 'Creative' }
+      novias:      { es: 'Novias y eventos',  en: 'Brides & events' },
+      moda:        { es: 'Moda y publicidad', en: 'Fashion & advertising' },
+      audiovisual: { es: 'Audiovisuales',     en: 'Audiovisual' },
+      formacion:   { es: 'Formación',         en: 'Training' },
+      creativo:    { es: 'Creativo',          en: 'Creative' }
     };
     var m = map[cat];
     return m ? m[state.lang] || m.es : cat;
