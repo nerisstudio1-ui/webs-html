@@ -103,8 +103,12 @@
   var header = $("#header");
   var burger = $("#burger");
 
+  var botonWa = $("#wa-float");
+
   function alScroll() {
     if (header) header.classList.toggle("is-stuck", window.scrollY > 40);
+    /* El botón de WhatsApp espera a que se pase la portada */
+    if (botonWa) botonWa.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.6);
   }
   window.addEventListener("scroll", alScroll, { passive: true });
   alScroll();
@@ -308,12 +312,13 @@
     frame.addEventListener("click", function () { reproducir(frame); }, { once: true });
   });
 
-  /* Fondo en movimiento de la sección de vídeos.
-     Se descarga solo cuando la sección se acerca, y no se reproduce si el
-     sistema pide menos animación ni si el navegador dice que la conexión
-     va justa o el usuario pidió ahorrar datos. */
+  /* Fondo en movimiento de la portada.
+     No se descarga hasta que hace falta, y no se reproduce si el sistema
+     pide menos animación ni si el navegador dice que la conexión va justa
+     o el usuario pidió ahorrar datos. En esos casos se queda el póster,
+     que ya es una imagen del propio vídeo. */
   (function () {
-    var fondo = $("#videos-fondo");
+    var fondo = $("#portada-fondo");
     if (!fondo) return;
 
     var menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

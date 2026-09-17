@@ -31,7 +31,7 @@ window.I18N = {
     "hero.rol": "<strong>Poeta, narradora y traductora</strong> Escribo para adultos y para niños",
     "hero.centro": "<strong>Venezuela · España</strong> De Valera a Cuenca, pasando por Bolonia",
     "hero.libros": "<strong>Cuatro poemarios</strong> Y una veintena de libros para la infancia",
-    "hero.foto": "Retrato de Cristina Falcón Maldonado",
+    "hero.sub": "Poeta, narradora y traductora · Venezuela · España",
 
     /* Marquesina */
     "marquee.1": "Poesía",
@@ -240,7 +240,7 @@ window.I18N = {
     "hero.rol": "<strong>Poet, storyteller and translator</strong> I write for adults and for children",
     "hero.centro": "<strong>Venezuela · Spain</strong> From Valera to Cuenca, by way of Bologna",
     "hero.libros": "<strong>Four poetry books</strong> And some twenty books for children",
-    "hero.foto": "Portrait of Cristina Falcón Maldonado",
+    "hero.sub": "Poet, storyteller and translator · Venezuela · Spain",
 
     "marquee.1": "Poetry",
     "marquee.2": "Children's literature",

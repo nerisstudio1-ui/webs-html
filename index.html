@@ -75,23 +75,27 @@
      HERO
      ====================================================================== -->
 <section class="hero" id="inicio">
+
+  <!-- Su sombra sobre el agua. El bucle es de ida y vuelta, así que no hay
+       corte al terminar. No se descarga hasta que hace falta, y se queda
+       quieto si el sistema pide menos animación o el navegador avisa de
+       conexión justa. -->
+  <video class="hero__fondo" id="portada-fondo" muted loop playsinline preload="none"
+         poster="assets/img/portada-agua.jpg" aria-hidden="true" tabindex="-1">
+    <source src="assets/video/portada-agua.mp4" type="video/mp4">
+  </video>
+
   <div class="wrap wrap--wide hero__inner">
-
     <h1 class="hero__title" data-i18n-html="hero.titulo">Hola, <span class="italic">soy</span> Cristina</h1>
-
-    <figure class="hero__figure">
-      <!-- TODO: sustituir por el retrato profesional de Cristina (recorte vertical 3:4) -->
-      <img src="assets/img/perfil/retrato-hero.jpg" width="768" height="1280"
-           data-i18n-attr="alt:hero.foto" alt="Retrato de Cristina Falcón Maldonado" fetchpriority="high">
-    </figure>
-
-    <div class="hero__meta">
-      <p data-i18n-html="hero.rol"><strong>Escritora</strong> Poesía y literatura infantil</p>
-      <p data-i18n-html="hero.centro"><strong>Nuevo libro</strong> Noviembre 2026</p>
-      <p data-i18n-html="hero.libros"><strong>Obra publicada</strong> Poesía para adultos e infantil</p>
-    </div>
-
+    <p class="hero__sub" data-i18n="hero.sub">Poeta, narradora y traductora · Venezuela · España</p>
   </div>
+
+  <div class="wrap wrap--wide hero__meta">
+    <p data-i18n-html="hero.rol"><strong>Escritora</strong> Poesía y literatura infantil</p>
+    <p data-i18n-html="hero.centro"><strong>Nuevo libro</strong> Noviembre 2026</p>
+    <p data-i18n-html="hero.libros"><strong>Obra publicada</strong> Poesía para adultos e infantil</p>
+  </div>
+
 </section>
 
 <!-- ======================================================================
@@ -484,13 +488,6 @@
      VÍDEOS
      ====================================================================== -->
 <section class="section videos" id="videos">
-
-  <!-- Fondo en movimiento: su sombra sobre el agua. No carga hasta que la
-       sección se acerca, y no se reproduce si el sistema pide menos animación. -->
-  <video class="videos__fondo" id="videos-fondo" muted loop playsinline preload="none"
-         poster="assets/img/fondo-agua.jpg" aria-hidden="true" tabindex="-1">
-    <source src="assets/video/fondo-agua.mp4" type="video/mp4">
-  </video>
 
   <div class="wrap">
 
