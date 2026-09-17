@@ -329,7 +329,11 @@ h1.hero__logo{ font-size:0; }
 .filter:hover{ color:var(--fg); border-color:var(--line); }
 .filter.is-active{ background:var(--fg); color:#000; border-color:var(--fg); }
 
-.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:clamp(10px,1.2vw,18px); }
+.grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:clamp(10px,1.2vw,18px);
+  grid-auto-flow:dense;   /* las piezas anchas no dejan huecos al final de fila */
+}
 .tile{
   position:relative; overflow:hidden; background:var(--surface);
   aspect-ratio:3/4; margin:0; cursor:pointer;

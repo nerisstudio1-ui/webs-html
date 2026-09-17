@@ -19,14 +19,29 @@
      wide:true hace la pieza el doble de ancha.
      --------------------------------------------------------- */
   var PHOTOS = [
-    { src: 'novia-01.jpg',     cat: 'novias',      es: 'Recogido de novia',       en: 'Bridal updo' },
-    { src: 'novia-02.jpg',     cat: 'novias',      es: 'Preparativos de novia',   en: 'Getting ready', wide: true },
-    { src: 'novia-03.jpg',     cat: 'novias',      es: 'El día de la boda',       en: 'The wedding day' },
-    { src: 'evento-01.jpg',    cat: 'novias',      es: 'Prueba de novia',         en: 'Bridal trial', wide: true },
-    { src: 'av-01.jpg',        cat: 'audiovisual', es: 'Rodaje',                  en: 'On set' },
-    { src: 'av-02.jpg',        cat: 'audiovisual', es: 'Maquillaje en set',       en: 'Make-up on set' },
-    { src: 'av-03.jpg',        cat: 'audiovisual', es: 'Peinado en rodaje',       en: 'Hair on set' },
-    { src: 'formacion-01.jpg', cat: 'formacion',   es: 'Escuma Granada',          en: 'Escuma Granada', wide: true }
+    { src: 'moda-01.jpg',      cat: 'moda',        es: 'Editorial · Revista MOEVIR',  en: 'Editorial · MOEVIR Magazine' },
+    { src: 'nov-01.jpg',       cat: 'novias',      es: 'Recogido de novia',           en: 'Bridal updo' },
+    { src: 'nov-02.jpg',       cat: 'novias',      es: 'Maquillaje de novia',         en: 'Bridal make-up' },
+    { src: 'nov-12.jpg',       cat: 'novias',      es: 'Preparativos',                en: 'Getting ready', wide: true },
+    { src: 'nov-04.jpg',       cat: 'novias',      es: 'Novia con flores',            en: 'Bride with flowers' },
+    { src: 'moda-02.jpg',      cat: 'moda',        es: 'Maquillaje artístico',        en: 'Artistic make-up' },
+    { src: 'nov-05.jpg',       cat: 'novias',      es: 'Antes de la ceremonia',       en: 'Before the ceremony' },
+    { src: 'nov-03.jpg',       cat: 'novias',      es: 'Belleza natural',             en: 'Natural beauty' },
+    { src: 'nov-06.jpg',       cat: 'novias',      es: 'Corona y velo',               en: 'Crown and veil' },
+    { src: 'nov-07.jpg',       cat: 'novias',      es: 'Recogido pulido',             en: 'Sleek updo' },
+    { src: 'moda-04.jpg',      cat: 'moda',        es: 'Editorial de moda',           en: 'Fashion editorial' },
+    { src: 'nov-08.jpg',       cat: 'novias',      es: 'Tiara y trenza',              en: 'Tiara and braid' },
+    { src: 'nov-09.jpg',       cat: 'novias',      es: 'Novia con corona',            en: 'Bride with crown' },
+    { src: 'nov-10.jpg',       cat: 'novias',      es: 'Semirecogido',                en: 'Half-up hair' },
+    { src: 'nov-11.jpg',       cat: 'novias',      es: 'El proceso',                  en: 'The process' },
+    { src: 'novia-02.jpg',     cat: 'novias',      es: 'Preparativos en el hotel',    en: 'Getting ready at the hotel', wide: true },
+    { src: 'novia-01.jpg',     cat: 'novias',      es: 'Peinado de novia',            en: 'Bridal hair' },
+    { src: 'novia-03.jpg',     cat: 'novias',      es: 'El día de la boda',           en: 'The wedding day' },
+    { src: 'evento-01.jpg',    cat: 'novias',      es: 'Prueba de novia',             en: 'Bridal trial', wide: true },
+    { src: 'av-01.jpg',        cat: 'audiovisual', es: 'Rodaje',                      en: 'On set' },
+    { src: 'av-02.jpg',        cat: 'audiovisual', es: 'Maquillaje en set',           en: 'Make-up on set' },
+    { src: 'av-03.jpg',        cat: 'audiovisual', es: 'Peinado en rodaje',           en: 'Hair on set' },
+    { src: 'formacion-01.jpg', cat: 'formacion',   es: 'Escuma Granada',              en: 'Escuma Granada', wide: true }
   ];
 
   /* ---------------------------------------------------------
