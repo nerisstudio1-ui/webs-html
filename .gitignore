@@ -6,5 +6,7 @@ Thumbs.db
 # (currículums con NIE y dirección: NO deben subirse)
 material-privado/
 
-# Los paquetes se generan con build/empaquetar.py
-dist/
+# Los paquetes se generan con build/empaquetar.py.
+# El de WordPress sí se versiona, porque es el que se descarga y se pega.
+# El completo no: son casi 5 MB por cada reconstrucción.
+dist/cristina-falcon-completa.html
