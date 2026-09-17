@@ -73,10 +73,10 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
   text-decoration:none;
   transition:background .3s var(--ease), color .3s var(--ease);
 }
-.btn--light{ background:var(--fg); color:#fff; }
+.btn--light{ background:var(--fg); color:var(--bg); }
 .btn--light:hover{ background:transparent; color:var(--fg); }
 .btn--ghost{ background:transparent; color:var(--fg); }
-.btn--ghost:hover{ background:var(--fg); color:#fff; }
+.btn--ghost:hover{ background:var(--fg); color:var(--bg); }
 
 .link-ext{
   text-decoration:none; font-size:11px; font-weight:500;
@@ -91,9 +91,8 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 .ph img{ width:100%; height:100%; object-fit:cover; }
 .ph.is-empty::after{
   content:attr(data-ph); position:absolute; inset:0; display:grid; place-items:center;
-  font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:rgba(0,0,0,.3);
-  background:repeating-linear-gradient(45deg, rgba(0,0,0,.03) 0 12px, transparent 12px 24px), var(--surface);
-  padding:12px; text-align:center;
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint);
+  background:var(--surface); padding:12px; text-align:center;
 }
 
 /* =========================================================
@@ -201,8 +200,12 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
    FILOSOFÍA
    ========================================================= */
 .section--quote{ background:var(--bg-soft); }
-.quote{ margin:0 0 clamp(40px,5vw,68px); max-width:24ch; }
-.quote p{ font-size:clamp(26px,3.8vw,48px); font-weight:400; line-height:1.14; letter-spacing:-.03em; margin:0 0 20px; }
+.quote{ margin:0 0 clamp(40px,5vw,68px); }
+/* el ancho se mide sobre el propio texto grande, no sobre el contenedor */
+.quote p{
+  font-size:clamp(26px,3.8vw,48px); font-weight:400; line-height:1.14;
+  letter-spacing:-.03em; margin:0 0 20px; max-width:22ch;
+}
 .quote cite{ font-style:normal; font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
 .philo__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:clamp(24px,3.4vw,48px); }
 .philo__grid p{ color:var(--muted); margin:0; padding-top:20px; border-top:1px solid var(--line-soft); }
@@ -257,7 +260,7 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
   transition:border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease);
 }
 .filter:hover{ color:var(--fg); border-color:var(--line); }
-.filter.is-active{ background:var(--fg); color:#fff; border-color:var(--fg); }
+.filter.is-active{ background:var(--fg); color:var(--bg); border-color:var(--fg); }
 
 .grid{
   display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
@@ -283,16 +286,16 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 .portfolio__note{ margin:clamp(28px,3.4vw,44px) 0 0; text-align:center; }
 
 /* Visor */
-.lb{ position:fixed; inset:0; z-index:150; display:none; background:rgba(255,255,255,.98); padding:clamp(20px,4vw,56px); place-items:center; }
+.lb{ position:fixed; inset:0; z-index:150; display:none; background:rgba(10,10,10,.97); padding:clamp(20px,4vw,56px); place-items:center; }
 .lb.is-open{ display:grid; }
 .lb img{ max-width:100%; max-height:82vh; object-fit:contain; }
-.lb__cap{ margin-top:14px; text-align:center; font-size:11px; font-weight:500; letter-spacing:.12em; color:var(--muted); text-transform:uppercase; }
+.lb__cap{ margin-top:14px; text-align:center; font-size:11px; font-weight:500; letter-spacing:.12em; color:rgba(255,255,255,.66); text-transform:uppercase; }
 .lb__close,.lb__nav{
-  position:absolute; background:none; border:1px solid var(--line); color:var(--fg);
+  position:absolute; background:none; border:1px solid rgba(255,255,255,.24); color:#fff;
   cursor:pointer; width:46px; height:46px; display:grid; place-items:center; font-size:18px; line-height:1;
   transition:background .25s var(--ease), color .25s var(--ease);
 }
-.lb__close:hover,.lb__nav:hover{ background:var(--fg); color:#fff; }
+.lb__close:hover,.lb__nav:hover{ background:#fff; color:#121212; }
 .lb__close{ top:clamp(16px,3vw,32px); right:clamp(16px,3vw,32px); }
 .lb__nav--prev{ left:clamp(10px,2vw,28px); top:50%; transform:translateY(-50%); }
 .lb__nav--next{ right:clamp(10px,2vw,28px); top:50%; transform:translateY(-50%); }
@@ -391,13 +394,43 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 .footer__social a:hover{ color:var(--fg); border-color:var(--fg); }
 .footer__legal{ margin:0; font-size:10px; letter-spacing:.08em; color:var(--faint); padding-top:22px; border-top:1px solid var(--line-soft); }
 
+
+/* =========================================================
+   SECCIONES EN NEGRO
+   Solo se redefinen las variables: todo lo de dentro se adapta
+   solo, porque los componentes ya usan estos tokens.
+   ========================================================= */
+.section--dark,
+.footer--dark{
+  --bg:        #0d0d0d;
+  --bg-soft:   #141414;
+  --surface:   #1e1e1e;
+  --line:      rgba(255,255,255,.20);
+  --line-soft: rgba(255,255,255,.11);
+  --fg:        #ffffff;
+  --muted:     rgba(255,255,255,.66);
+  --faint:     rgba(255,255,255,.48);
+  background:var(--bg);
+  color:var(--fg);
+}
+
+/* el desplegable y el selector de fecha del formulario, sobre negro */
+.section--dark .field select option{ background:#1a1a1a; color:#fff; }
+.section--dark .field input[type="date"]::-webkit-calendar-picker-indicator{ filter:invert(1); opacity:.6; }
+.section--dark .field input.is-error,
+.section--dark .field select.is-error,
+.section--dark .field textarea.is-error{ border-bottom-color:#ff8b8b; }
+.section--dark .form__note.is-error{ color:#ff8b8b; }
+
 /* =========================================================
    WHATSAPP
    ========================================================= */
 .wa{
   position:fixed; right:clamp(16px,2.2vw,26px); bottom:clamp(16px,2.2vw,26px); z-index:90;
-  width:54px; height:54px; border-radius:50%; background:var(--fg); color:#fff;
-  display:grid; place-items:center; box-shadow:0 4px 20px rgba(0,0,0,.2);
+  width:54px; height:54px; border-radius:50%; background:#121212; color:#fff;
+  display:grid; place-items:center;
+  /* el aro claro lo mantiene visible también sobre las secciones en negro */
+  box-shadow:0 0 0 1px rgba(255,255,255,.30), 0 4px 20px rgba(0,0,0,.25);
   transform:translateY(14px) scale(.92); opacity:0; pointer-events:none;
   transition:transform .4s var(--ease), opacity .4s var(--ease), background .25s var(--ease);
 }
