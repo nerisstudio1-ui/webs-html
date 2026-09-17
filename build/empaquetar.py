@@ -115,9 +115,15 @@ def acotar(css):
 
 # --------------------------------------------------------------------- medios
 def medios(texto, empotrar_imagenes):
-    """Cambia las rutas de assets/img y assets/video."""
+    """Cambia las rutas de assets/img y assets/video.
+
+    Los SVG van siempre dentro del archivo: WordPress los rechaza al subir,
+    por seguridad, y el logotipo es un SVG. Además pesan poco.
+    """
     def cambio(m):
         rel = m.group(1)
+        if rel.endswith(".svg"):
+            return m.group(0).replace(rel, a_datos(rel))
         if rel.startswith("assets/video/"):
             return m.group(0).replace(rel, BASE + rel.split("/")[-1])
         if empotrar_imagenes:
