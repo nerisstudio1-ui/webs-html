@@ -137,16 +137,13 @@
       'work.camin': 'Advertising campaign',
 
       'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
-      'reviews.eyebrow': 'Reviews',
-      'reviews.title': 'What the people who <span class="italic">trust me</span> say',
-      'reviews.text': 'All reviews are published and verified on my Google profile.',
-      'reviews.cta': 'Read reviews on Google',
 
       'contact.eyebrow': 'Contact',
       'contact.title': 'Tell me about your <span class="italic">project</span>',
       'contact.lead': 'Weddings, events, audiovisual productions, advertising and creative projects. Write to me with the date and the details and I will prepare a tailored quote.',
       'contact.whatsapp': 'WhatsApp', 'contact.email': 'Email',
       'contact.area': 'Working area', 'contact.areaval': 'Granada · All of Spain · International',
+      'contact.reviews': 'Reviews', 'contact.reviewsval': 'Read reviews on Google',
       'contact.social': 'Social',
 
       'form.name': 'Full name', 'form.email': 'Email', 'form.phone': 'Phone',
