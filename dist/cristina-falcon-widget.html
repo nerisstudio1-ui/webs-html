@@ -1289,6 +1289,21 @@
   #cfm-web .nav { position: absolute; }
 }
 
+/* A todo lo ancho, aunque el tema meta el contenido en un contenedor
+   estrecho. Los márgenes negativos compensan lo que el contenedor aparta
+   por cada lado.
+
+   El ancho sale de --ancho-real, que pone el guion con la anchura del
+   documento SIN la barra de desplazamiento. Con 100vw a secas la página
+   se queda unos píxeles más ancha que la ventana y aparece una barra
+   horizontal. 100vw queda de reserva por si el guion no llega a correr. */
+#cfm-web {
+  width: var(--ancho-real, 100vw);
+  max-width: var(--ancho-real, 100vw);
+  margin-left: calc(50% - var(--ancho-real, 100vw) / 2);
+  margin-right: calc(50% - var(--ancho-real, 100vw) / 2);
+}
+
 </style>
 
 
@@ -1401,7 +1416,7 @@
           La poesía no se escribe: se escucha y se deja caer sobre el papel.
         </blockquote>
 
-        <p><a class="btn" href="assets/docs/biografia.pdf" download
+        <p><a class="btn" href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/biografia.pdf" download
               data-i18n="sobre.cta">Descargar biografía</a></p>
       </div>
 
@@ -1452,9 +1467,9 @@
         <p data-i18n="obra.novedad.texto">[Texto pendiente]</p>
         <div class="libro__actions">
           <a class="btn btn--light" href="#contacto" data-i18n="obra.novedad.cta">Reservar ejemplar</a>
-          <a class="btn" href="assets/docs/fragmento.pdf" download
-             style="--btn-bg:transparent;--btn-fg:var(--crema);border-color:rgba(247,243,234,.35)"
-             data-i18n="obra.novedad.cta2">Leer un fragmento</a>
+          <!-- TODO: el botón de «leer un fragmento» vuelve cuando exista el
+               PDF del libro de noviembre. Enlazar a un archivo que no está
+               es peor que no ofrecerlo. -->
         </div>
       </div>
     </article>
@@ -1813,7 +1828,7 @@
 
     <div class="descargas__grid reveal">
 
-      <a class="descarga" href="assets/docs/dossier-prensa.pdf" download>
+      <a class="descarga" href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/dossier-prensa.pdf" download>
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <span>
           <strong data-i18n="descarga.1.titulo">Dossier de prensa</strong>
@@ -1821,7 +1836,7 @@
         </span>
       </a>
 
-      <a class="descarga" href="assets/docs/biografia.pdf" download>
+      <a class="descarga" href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/biografia.pdf" download>
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <span>
           <strong data-i18n="descarga.2.titulo">Biografía</strong>
@@ -1829,7 +1844,7 @@
         </span>
       </a>
 
-      <a class="descarga" href="assets/docs/fotografias.zip" download>
+      <a class="descarga" href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/fotografias.zip" download>
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
         <span>
           <strong data-i18n="descarga.3.titulo">Fotografías en alta</strong>
@@ -2131,11 +2146,11 @@ window.I18N = {
     "descargas.titulo": "Material para prensa y librerías",
     "descargas.intro": "Dossier, biografía y fotografías en alta resolución, listos para usar.",
     "descarga.1.titulo": "Dossier de prensa",
-    "descarga.1.meta": "PDF",
+    "descarga.1.meta": "PDF · 113 KB",
     "descarga.2.titulo": "Biografía",
-    "descarga.2.meta": "PDF",
+    "descarga.2.meta": "PDF · 158 KB",
     "descarga.3.titulo": "Fotografías en alta",
-    "descarga.3.meta": "ZIP",
+    "descarga.3.meta": "ZIP · 9.0 MB",
 
     /* Contacto */
     "contacto.kicker": "Contacto",
@@ -2330,11 +2345,11 @@ window.I18N = {
     "descargas.titulo": "Material for press and bookshops",
     "descargas.intro": "Press kit, biography and high-resolution photographs, ready to use.",
     "descarga.1.titulo": "Press kit",
-    "descarga.1.meta": "PDF",
+    "descarga.1.meta": "PDF · 113 KB",
     "descarga.2.titulo": "Biography",
-    "descarga.2.meta": "PDF",
+    "descarga.2.meta": "PDF · 158 KB",
     "descarga.3.titulo": "High-res photographs",
-    "descarga.3.meta": "ZIP",
+    "descarga.3.meta": "ZIP · 9.0 MB",
 
     "contacto.kicker": "Contact",
     "contacto.titulo": "Let's talk",
@@ -2796,13 +2811,33 @@ window.I18N = {
   }
 
   /* ------------------------------------------------------------------
-     11. Año del pie
+     11. Ancho real de la ventana
+     ------------------------------------------------------------------
+     Solo hace falta cuando la web va incrustada en otra página, como en
+     un bloque de WordPress: allí el CSS la saca a todo lo ancho y
+     necesita saber cuánto mide la ventana sin la barra de
+     desplazamiento. Suelto en su propia página no molesta.
+     ------------------------------------------------------------------ */
+  (function () {
+    var raiz = document.getElementById("cfm-web");
+    if (!raiz) return;
+
+    function medir() {
+      raiz.style.setProperty("--ancho-real", document.documentElement.clientWidth + "px");
+    }
+    medir();
+    window.addEventListener("resize", medir, { passive: true });
+    window.addEventListener("orientationchange", medir);
+  })();
+
+  /* ------------------------------------------------------------------
+     12. Año del pie
      ------------------------------------------------------------------ */
   var year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
   /* ------------------------------------------------------------------
-     12. Arranque
+     13. Arranque
      ------------------------------------------------------------------ */
   traducir(idiomaInicial());
 

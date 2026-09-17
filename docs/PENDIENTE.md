@@ -79,12 +79,22 @@ no quiero inventarme el sitio ni la fecha.
 > El `.MOV` de infantil sigue llegando roto: 50 KB para 10 segundos. Habría
 > que volver a subirlo.
 
-### Descargas
-Faltan los archivos de `assets/docs/`: dossier de prensa, biografía en PDF,
-fragmento del libro nuevo y ZIP de fotos en alta.
+### Descargas — hechas, pero conviene que las revise
+Los tres archivos están generados y puestos:
 
-> El dossier de Candaya de *Ítaca es nunca* que mandó serviría muy bien como
-> dossier de prensa, si ella está de acuerdo.
+- `dossier-prensa.pdf` — bio breve, las seis citas de prensa, las dos listas
+  de libros y los datos de contacto. Dos páginas.
+- `biografia.pdf` — la biografía completa con formación, obra, antologías y
+  actividad. Dos páginas.
+- `fotografias.zip` — once fotos en alta del material original, renombradas
+  para que se entiendan al descargarlas, con un LEEME de uso.
+
+Están redactados a partir de su currículum y del dossier de Candaya.
+**Que los lea antes de publicarlos**, sobre todo el de prensa.
+
+El «leer un fragmento» del libro de noviembre se ha quitado: apuntaba a un
+PDF que no existe, y enlazar a un archivo ausente es peor que no ofrecerlo.
+Vuelve cuando haya libro.
 
 ### URL de Facebook
 Solo tenemos el nombre, «Cristina Falcón». Hace falta la dirección exacta.

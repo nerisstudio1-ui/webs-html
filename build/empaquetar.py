@@ -124,12 +124,12 @@ def medios(texto, empotrar_imagenes):
         rel = m.group(1)
         if rel.endswith(".svg"):
             return m.group(0).replace(rel, a_datos(rel))
-        if rel.startswith("assets/video/"):
+        if rel.startswith(("assets/video/", "assets/docs/")):
             return m.group(0).replace(rel, BASE + rel.split("/")[-1])
         if empotrar_imagenes:
             return m.group(0).replace(rel, a_datos(rel))
         return m.group(0).replace(rel, BASE + rel.split("/")[-1])
-    return re.sub(r'(?:src|href|poster)="(assets/(?:img|video)/[^"]+)"', cambio, texto)
+    return re.sub(r'(?:src|href|poster)="(assets/(?:img|video|docs)/[^"]+)"', cambio, texto)
 
 
 # ---------------------------------------------------------------------- build
@@ -172,6 +172,21 @@ def construir(widget, destino):
    era la página entera. */
 @media (max-width: 62rem) {
   #%(w)s .nav { position: absolute; }
+}
+
+/* A todo lo ancho, aunque el tema meta el contenido en un contenedor
+   estrecho. Los márgenes negativos compensan lo que el contenedor aparta
+   por cada lado.
+
+   El ancho sale de --ancho-real, que pone el guion con la anchura del
+   documento SIN la barra de desplazamiento. Con 100vw a secas la página
+   se queda unos píxeles más ancha que la ventana y aparece una barra
+   horizontal. 100vw queda de reserva por si el guion no llega a correr. */
+#%(w)s {
+  width: var(--ancho-real, 100vw);
+  max-width: var(--ancho-real, 100vw);
+  margin-left: calc(50%% - var(--ancho-real, 100vw) / 2);
+  margin-right: calc(50%% - var(--ancho-real, 100vw) / 2);
 }
 """ % {"w": ENVOLTORIO}
 

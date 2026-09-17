@@ -391,13 +391,33 @@
   }
 
   /* ------------------------------------------------------------------
-     11. Año del pie
+     11. Ancho real de la ventana
+     ------------------------------------------------------------------
+     Solo hace falta cuando la web va incrustada en otra página, como en
+     un bloque de WordPress: allí el CSS la saca a todo lo ancho y
+     necesita saber cuánto mide la ventana sin la barra de
+     desplazamiento. Suelto en su propia página no molesta.
+     ------------------------------------------------------------------ */
+  (function () {
+    var raiz = document.getElementById("cfm-web");
+    if (!raiz) return;
+
+    function medir() {
+      raiz.style.setProperty("--ancho-real", document.documentElement.clientWidth + "px");
+    }
+    medir();
+    window.addEventListener("resize", medir, { passive: true });
+    window.addEventListener("orientationchange", medir);
+  })();
+
+  /* ------------------------------------------------------------------
+     12. Año del pie
      ------------------------------------------------------------------ */
   var year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
   /* ------------------------------------------------------------------
-     12. Arranque
+     13. Arranque
      ------------------------------------------------------------------ */
   traducir(idiomaInicial());
 
