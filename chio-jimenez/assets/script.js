@@ -233,9 +233,17 @@
     var toggle = $('#navToggle');
     var menu = $('#navMenu');
 
+    var hero = $('#top');
+    var wa = $('.wa');
+
     var onScroll = function () {
-      nav.classList.toggle('is-stuck', window.scrollY > 40);
-      var wa = $('.wa');
+      // La cabecera va en blanco mientras queda sobre la portada en negro,
+      // y pasa a fondo claro en cuanto la portada deja de estar detrás.
+      var limite = hero ? hero.offsetHeight - nav.offsetHeight : 40;
+      var sobreLaPortada = window.scrollY < limite;
+
+      nav.classList.toggle('is-on-dark', sobreLaPortada);
+      nav.classList.toggle('is-stuck', !sobreLaPortada);
       if (wa) wa.classList.toggle('is-visible', window.scrollY > 400);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -243,6 +251,7 @@
 
     toggle.addEventListener('click', function () {
       var open = menu.classList.toggle('is-open');
+      onScroll();
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
     });

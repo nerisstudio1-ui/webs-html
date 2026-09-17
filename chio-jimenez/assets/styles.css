@@ -103,9 +103,40 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
   background:rgba(255,255,255,.92);
   backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
   border-bottom:1px solid transparent;
-  transition:border-color .35s var(--ease), padding .35s var(--ease);
+  transition:background .35s var(--ease), border-color .35s var(--ease), padding .35s var(--ease);
 }
 .nav.is-stuck{ border-bottom-color:var(--line-soft); }
+
+/* Mientras la cabecera está sobre la portada en negro se vuelve
+   transparente y pasa a blanco. El estado claro es el de partida, para que
+   siga leyéndose aunque el JS no llegue a ejecutarse. */
+.nav.is-on-dark{
+  background:transparent;
+  backdrop-filter:none; -webkit-backdrop-filter:none;
+  border-bottom-color:transparent;
+}
+/* Velo degradado bajo la cabecera: sobre el negro no se nota, y sobre la
+   zona clara de la foto es lo que mantiene legibles los enlaces en blanco. */
+.nav.is-on-dark::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:170px; z-index:-1;
+  background:linear-gradient(to bottom, rgba(0,0,0,.72) 0%, rgba(0,0,0,.34) 55%, rgba(0,0,0,0) 100%);
+  pointer-events:none;
+}
+.nav.is-on-dark .nav__inner{ position:relative; }
+.nav.is-on-dark .nav__menu a{ color:rgba(255,255,255,.72); }
+.nav.is-on-dark .nav__menu a:hover,
+.nav.is-on-dark .nav__menu a.is-current{ color:#fff; }
+.nav.is-on-dark .nav__menu a::after{ background:#fff; }
+.nav.is-on-dark .lang__btn{ color:rgba(255,255,255,.55); }
+.nav.is-on-dark .lang__btn:hover,
+.nav.is-on-dark .lang__btn.is-active{ color:#fff; }
+.nav.is-on-dark .lang{ color:rgba(255,255,255,.4); }
+.nav.is-on-dark .nav__bars i{ background:#fff; }
+
+/* el logo que toca según el fondo */
+.nav__logo--sobre-oscuro{ display:none; }
+.nav.is-on-dark .nav__logo--sobre-claro{ display:none; }
+.nav.is-on-dark .nav__logo--sobre-oscuro{ display:block; }
 .nav__inner{
   max-width:var(--maxw); margin-inline:auto; padding:20px var(--gutter);
   display:flex; align-items:center; justify-content:space-between; gap:24px;
@@ -113,7 +144,8 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 }
 .nav.is-stuck .nav__inner{ padding-block:14px; }
 
-.nav__brand{ display:flex; align-items:center; text-decoration:none; flex-shrink:0; }
+/* Por encima del desplegable de móvil, que si no los tapa al abrirse. */
+.nav__brand{ position:relative; z-index:2; display:flex; align-items:center; text-decoration:none; flex-shrink:0; }
 .nav__logo{ height:52px; width:auto; transition:height .35s var(--ease); }
 .nav.is-stuck .nav__logo{ height:40px; }
 
@@ -130,7 +162,7 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 .nav__menu a:hover,.nav__menu a.is-current{ color:var(--fg); }
 .nav__menu a:hover::after,.nav__menu a.is-current::after{ width:100%; }
 
-.nav__side{ display:flex; align-items:center; gap:18px; flex-shrink:0; }
+.nav__side{ position:relative; z-index:2; display:flex; align-items:center; gap:18px; flex-shrink:0; }
 .lang{ display:flex; align-items:center; gap:6px; font-size:11px; font-weight:500; letter-spacing:.1em; color:var(--faint); }
 .lang__btn{ background:none; border:0; padding:4px 2px; cursor:pointer; font:inherit; color:var(--faint); transition:color .25s var(--ease); }
 .lang__btn:hover,.lang__btn.is-active{ color:var(--fg); }
@@ -392,6 +424,8 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
    Solo se redefinen las variables: todo lo de dentro se adapta
    solo, porque los componentes ya usan estos tokens.
    ========================================================= */
+.hero,
+.marquee,
 .section--dark,
 .footer--dark{
   --bg:        #0d0d0d;
@@ -453,13 +487,18 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 @media (max-width:860px){
   .nav__toggle{ display:grid; }
   .nav__menu{
-    position:fixed; inset:0 0 auto 0; flex-direction:column; align-items:flex-start; gap:0;
+    position:fixed; inset:0 0 auto 0; z-index:1;
+    flex-direction:column; align-items:flex-start; gap:0;
     background:rgba(255,255,255,.99); backdrop-filter:blur(16px);
     padding:104px var(--gutter) 36px; transform:translateY(-100%);
     transition:transform .45s var(--ease);
     border-bottom:1px solid var(--line-soft); max-height:100svh; overflow-y:auto;
   }
   .nav__menu.is-open{ transform:none; }
+  .nav.is-on-dark .nav__menu{
+    background:rgba(10,10,10,.98); border-bottom-color:rgba(255,255,255,.11);
+  }
+  .nav.is-on-dark .nav__menu a{ border-bottom-color:rgba(255,255,255,.11); }
   .nav__menu a{ font-size:16px; letter-spacing:.05em; padding-block:15px; width:100%; border-bottom:1px solid var(--line-soft); }
   .nav__menu a::after{ content:none; }
   .nav__logo{ height:42px; }
