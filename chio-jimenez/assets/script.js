@@ -19,20 +19,30 @@
      wide:true hace la pieza el doble de ancha.
      --------------------------------------------------------- */
   var PHOTOS = [
-    { src: 'moda-01.jpg',      cat: 'moda',        es: 'Editorial · Revista MOEVIR',  en: 'Editorial · MOEVIR Magazine' },
+    { src: 'pub-01.jpg',       cat: 'moda',        es: 'MOEVIR · Disco',              en: 'MOEVIR · Disco' },
     { src: 'nov-01.jpg',       cat: 'novias',      es: 'Recogido de novia',           en: 'Bridal updo' },
+    { src: 'pub-05.jpg',       cat: 'moda',        es: 'StyleCruze · The Last Gheisa', en: 'StyleCruze · The Last Gheisa' },
     { src: 'nov-02.jpg',       cat: 'novias',      es: 'Maquillaje de novia',         en: 'Bridal make-up' },
+    { src: 'pub-09.jpg',       cat: 'moda',        es: 'MOEVIR · Winter Brides',      en: 'MOEVIR · Winter Brides' },
     { src: 'nov-12.jpg',       cat: 'novias',      es: 'Preparativos',                en: 'Getting ready', wide: true },
+    { src: 'pub-02.jpg',       cat: 'moda',        es: 'StyleCruze · The Black Orchid', en: 'StyleCruze · The Black Orchid' },
     { src: 'nov-04.jpg',       cat: 'novias',      es: 'Novia con flores',            en: 'Bride with flowers' },
-    { src: 'moda-02.jpg',      cat: 'moda',        es: 'Maquillaje artístico',        en: 'Artistic make-up' },
+    { src: 'pub-11.jpg',       cat: 'moda',        es: 'StyleCruze · Electric',       en: 'StyleCruze · Electric' },
     { src: 'nov-05.jpg',       cat: 'novias',      es: 'Antes de la ceremonia',       en: 'Before the ceremony' },
+    { src: 'pub-10.jpg',       cat: 'moda',        es: 'StyleCruze · Flower Girl',    en: 'StyleCruze · Flower Girl' },
     { src: 'nov-03.jpg',       cat: 'novias',      es: 'Belleza natural',             en: 'Natural beauty' },
+    { src: 'pub-06.jpg',       cat: 'moda',        es: 'StyleCruze · All Green',      en: 'StyleCruze · All Green' },
     { src: 'nov-06.jpg',       cat: 'novias',      es: 'Corona y velo',               en: 'Crown and veil' },
+    { src: 'pub-04.jpg',       cat: 'moda',        es: 'Vigour · Sauvage Swan',       en: 'Vigour · Sauvage Swan' },
     { src: 'nov-07.jpg',       cat: 'novias',      es: 'Recogido pulido',             en: 'Sleek updo' },
-    { src: 'moda-04.jpg',      cat: 'moda',        es: 'Editorial de moda',           en: 'Fashion editorial' },
+    { src: 'pub-07.jpg',       cat: 'moda',        es: 'StyleCruze · Neon Vibes',     en: 'StyleCruze · Neon Vibes' },
     { src: 'nov-08.jpg',       cat: 'novias',      es: 'Tiara y trenza',              en: 'Tiara and braid' },
+    { src: 'pub-03.jpg',       cat: 'moda',        es: 'Vigour · Belleza natural',    en: 'Vigour · Natural beauty' },
     { src: 'nov-09.jpg',       cat: 'novias',      es: 'Novia con corona',            en: 'Bride with crown' },
+    { src: 'pub-08.jpg',       cat: 'moda',        es: 'StyleCruze · Young and Beauty', en: 'StyleCruze · Young and Beauty' },
     { src: 'nov-10.jpg',       cat: 'novias',      es: 'Semirecogido',                en: 'Half-up hair' },
+    { src: 'moda-02.jpg',      cat: 'moda',        es: 'Maquillaje artístico',        en: 'Artistic make-up' },
+    { src: 'moda-04.jpg',      cat: 'moda',        es: 'Editorial de moda',           en: 'Fashion editorial' },
     { src: 'nov-11.jpg',       cat: 'novias',      es: 'El proceso',                  en: 'The process' },
     { src: 'novia-02.jpg',     cat: 'novias',      es: 'Preparativos en el hotel',    en: 'Getting ready at the hotel', wide: true },
     { src: 'novia-01.jpg',     cat: 'novias',      es: 'Peinado de novia',            en: 'Bridal hair' },
@@ -49,7 +59,8 @@
      --------------------------------------------------------- */
   var BRANDS = [
     'Paris Haute Couture Week 2026', 'Leandro Cano', 'Dellafuente', 'Sayko',
-    'Carmen Avilés', 'Lori Meyers', 'Eskorzo', 'Adidas', 'Camin', 'Pepe & Vizio'
+    'Carmen Avilés', 'Lori Meyers', 'Eskorzo', 'Adidas', 'Camin', 'Pepe & Vizio',
+    'MOEVIR Magazine', 'StyleCruze Magazine', 'Vigour Magazine'
   ];
 
   /* ---------------------------------------------------------
@@ -111,7 +122,7 @@
       'portfolio.eyebrow': 'Portfolio',
       'portfolio.title': 'The work, <span class="italic">in images</span>',
       'portfolio.ig': 'More work on Instagram',
-      'filter.all': 'All', 'filter.brides': 'Brides & events', 'filter.fashion': 'Fashion & advertising',
+      'filter.all': 'All', 'filter.brides': 'Brides & events', 'filter.fashion': 'Fashion & press',
       'filter.av': 'Audiovisual', 'filter.training': 'Training', 'filter.creative': 'Creative',
       'portfolio.empty': 'New images coming soon.',
 
@@ -125,6 +136,7 @@
       'work.della': '<em>Adidas</em> promo · Launch material for the album <em>Brigado</em>',
       'work.camin': 'Advertising campaign',
 
+      'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
       'reviews.eyebrow': 'Reviews',
       'reviews.title': 'What the people who <span class="italic">trust me</span> say',
       'reviews.text': 'All reviews are published and verified on my Google profile.',
@@ -320,7 +332,7 @@
   function catLabel(cat) {
     var map = {
       novias:      { es: 'Novias y eventos',  en: 'Brides & events' },
-      moda:        { es: 'Moda y publicidad', en: 'Fashion & advertising' },
+      moda:        { es: 'Moda y publicaciones', en: 'Fashion & press' },
       audiovisual: { es: 'Audiovisuales',     en: 'Audiovisual' },
       formacion:   { es: 'Formación',         en: 'Training' },
       creativo:    { es: 'Creativo',          en: 'Creative' }

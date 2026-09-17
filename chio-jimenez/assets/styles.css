@@ -406,6 +406,27 @@ h1.hero__logo{ font-size:0; }
 .work__items{ color:var(--muted); margin:0; font-size:15px; }
 .work__items em{ font-style:italic; color:rgba(255,255,255,.82); }
 
+/* ---------- Publicada en ---------- */
+.press{ margin-top:clamp(40px,5vw,64px); border-top:1px solid var(--line-soft); padding-top:clamp(28px,3.4vw,42px); }
+.press__title{
+  font-family:var(--sans); font-size:11px; font-weight:400;
+  letter-spacing:.24em; text-transform:uppercase; color:var(--faint);
+  margin:0 0 24px;
+}
+.press__list{ list-style:none; margin:0; padding:0; display:grid; gap:20px; }
+.press__list li{
+  display:grid; grid-template-columns:minmax(160px,.4fr) minmax(0,1fr);
+  gap:clamp(14px,2.4vw,32px); align-items:baseline;
+  padding-bottom:20px; border-bottom:1px solid var(--line-soft);
+}
+.press__list li:last-child{ border-bottom:0; padding-bottom:0; }
+.press__mag{ font-family:var(--serif); font-size:clamp(19px,2vw,24px); }
+.press__works{ color:var(--muted); font-size:15px; }
+.press__works em{ font-style:italic; color:rgba(255,255,255,.82); }
+@media (max-width:640px){
+  .press__list li{ grid-template-columns:1fr; gap:6px; }
+}
+
 /* =========================================================
    RESEÑAS
    ========================================================= */
