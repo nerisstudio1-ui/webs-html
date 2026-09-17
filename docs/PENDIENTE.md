@@ -66,10 +66,18 @@ Faltan:
 Las dos de Candaya son las más urgentes, porque son poesía y van en la
 primera pestaña. Las editoriales suelen darlas en alta si se piden.
 
-### Vídeos
-Siguen sin enlaces. El `.MP4` que subió (10 MB) no debería ir en el
-repositorio: lo suyo es subirlo a YouTube, aunque sea como «no listado», y
-pasarme el enlace. Luego se cambia `data-yt="VIDEO_ID_1"` en `index.html`.
+### Vídeos — resueltos, pero falta el pie
+Ya están puestos los dos: la lectura de *Ítaca es nunca* y la conversación.
+Se sirven desde la propia web, comprimidos, y no se descargan hasta que
+alguien le da al play.
+
+Lo que falta es saber **dónde y cuándo se grabaron**, para poner un pie en
+condiciones. Ahora aparece solo la duración, que es lo único que sé con
+certeza. Se ve un claustro y un cartel que pone «Agregué y devuelva», pero
+no quiero inventarme el sitio ni la fecha.
+
+> El `.MOV` de infantil sigue llegando roto: 50 KB para 10 segundos. Habría
+> que volver a subirlo.
 
 ### Descargas
 Faltan los archivos de `assets/docs/`: dossier de prensa, biografía en PDF,

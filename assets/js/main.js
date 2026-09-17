@@ -266,22 +266,74 @@
   });
 
   /* ------------------------------------------------------------------
-     9. Vídeos — la miniatura carga el iframe solo al pulsar
-         (así la web no arrastra el peso de YouTube en cada visita)
+     9. Vídeos
+     ------------------------------------------------------------------
+     Hasta que alguien pulsa, en la página solo hay una imagen. Así la
+     visita no arrastra megas de vídeo que quizá nadie vea.
+
+     Admite las dos formas: data-src para un archivo propio y data-yt
+     para un vídeo de YouTube, por si algún día se enlaza alguno.
      ------------------------------------------------------------------ */
-  $$(".video__frame").forEach(function (frame) {
-    frame.addEventListener("click", function () {
-      var id = frame.dataset.yt;
-      if (!id || id.indexOf("VIDEO_ID") === 0) return;
+  function reproducir(frame) {
+    var propio = frame.dataset.src;
+    var yt = frame.dataset.yt;
+    var etiqueta = frame.getAttribute("aria-label") || "";
+
+    if (propio) {
+      var video = document.createElement("video");
+      video.src = propio;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.preload = "auto";
+      video.setAttribute("aria-label", etiqueta);
+      frame.innerHTML = "";
+      frame.appendChild(video);
+      video.play().catch(function () { /* si el navegador lo bloquea, queda el control */ });
+      return;
+    }
+
+    if (yt && yt.indexOf("VIDEO_ID") !== 0) {
       var iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
-      iframe.title = frame.getAttribute("aria-label") || "";
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + yt + "?autoplay=1&rel=0";
+      iframe.title = etiqueta;
       iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
       iframe.allowFullscreen = true;
       frame.innerHTML = "";
       frame.appendChild(iframe);
-    });
+    }
+  }
+
+  $$(".video__frame").forEach(function (frame) {
+    frame.addEventListener("click", function () { reproducir(frame); }, { once: true });
   });
+
+  /* Fondo en movimiento de la sección de vídeos.
+     Se descarga solo cuando la sección se acerca, y no se reproduce si el
+     sistema pide menos animación ni si el navegador dice que la conexión
+     va justa o el usuario pidió ahorrar datos. */
+  (function () {
+    var fondo = $("#videos-fondo");
+    if (!fondo) return;
+
+    var menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var con = navigator.connection || {};
+    var conexionJusta = con.saveData === true || /2g/.test(con.effectiveType || "");
+    if (menosMovimiento || conexionJusta || !("IntersectionObserver" in window)) return;
+
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) {
+          fondo.preload = "auto";
+          fondo.play().catch(function () { /* sin autoplay, se queda el póster */ });
+        } else if (!fondo.paused) {
+          fondo.pause();
+        }
+      });
+    }, { rootMargin: "200px" });
+
+    obs.observe(fondo);
+  })();
 
   /* ------------------------------------------------------------------
      10. Formulario de contacto

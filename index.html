@@ -484,6 +484,14 @@
      VÍDEOS
      ====================================================================== -->
 <section class="section videos" id="videos">
+
+  <!-- Fondo en movimiento: su sombra sobre el agua. No carga hasta que la
+       sección se acerca, y no se reproduce si el sistema pide menos animación. -->
+  <video class="videos__fondo" id="videos-fondo" muted loop playsinline preload="none"
+         poster="assets/img/fondo-agua.jpg" aria-hidden="true" tabindex="-1">
+    <source src="assets/video/fondo-agua.mp4" type="video/mp4">
+  </video>
+
   <div class="wrap">
 
     <div class="section__head reveal">
@@ -494,40 +502,34 @@
       <p class="lead" data-i18n="videos.intro">Recitales, entrevistas y presentaciones.</p>
     </div>
 
-    <!-- TODO: cambiar data-yt por el ID real de cada vídeo de YouTube -->
     <div class="videos__grid">
 
       <article class="video reveal">
-        <button class="video__frame" data-yt="VIDEO_ID_1" data-i18n-attr="aria-label:videos.reproducir" aria-label="Reproducir vídeo">
-          <img src="assets/img/obra/video-1.svg" width="1280" height="720" loading="lazy" alt="">
+        <button class="video__frame"
+                data-src="assets/video/recital-itaca.mp4"
+                data-i18n-attr="aria-label:videos.reproducir" aria-label="Reproducir vídeo">
+          <img src="assets/img/obra/video-recital.jpg" width="640" height="352" loading="lazy" alt=""
+               data-i18n-attr="alt:video.1.titulo">
           <span class="video__play" aria-hidden="true">
             <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M19 9.27a2 2 0 0 1 0 3.46L3 21.99a2 2 0 0 1-3-1.73V1.74A2 2 0 0 1 3 .01z"/></svg>
           </span>
         </button>
-        <h3 class="video__title" data-i18n="video.1.titulo">Título del vídeo</h3>
-        <p class="video__meta"  data-i18n="video.1.meta">Recital · 2024</p>
+        <h3 class="video__title" data-i18n="video.1.titulo">—</h3>
+        <p class="video__meta"  data-i18n="video.1.meta">—</p>
       </article>
 
       <article class="video reveal" style="--delay:100ms">
-        <button class="video__frame" data-yt="VIDEO_ID_2" data-i18n-attr="aria-label:videos.reproducir" aria-label="Reproducir vídeo">
-          <img src="assets/img/obra/video-2.svg" width="1280" height="720" loading="lazy" alt="">
+        <button class="video__frame"
+                data-src="assets/video/conversacion.mp4"
+                data-i18n-attr="aria-label:videos.reproducir" aria-label="Reproducir vídeo">
+          <img src="assets/img/obra/video-conversacion.jpg" width="848" height="480" loading="lazy" alt=""
+               data-i18n-attr="alt:video.2.titulo">
           <span class="video__play" aria-hidden="true">
             <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M19 9.27a2 2 0 0 1 0 3.46L3 21.99a2 2 0 0 1-3-1.73V1.74A2 2 0 0 1 3 .01z"/></svg>
           </span>
         </button>
-        <h3 class="video__title" data-i18n="video.2.titulo">Título del vídeo</h3>
-        <p class="video__meta"  data-i18n="video.2.meta">Entrevista · 2023</p>
-      </article>
-
-      <article class="video reveal" style="--delay:200ms">
-        <button class="video__frame" data-yt="VIDEO_ID_3" data-i18n-attr="aria-label:videos.reproducir" aria-label="Reproducir vídeo">
-          <img src="assets/img/obra/video-3.svg" width="1280" height="720" loading="lazy" alt="">
-          <span class="video__play" aria-hidden="true">
-            <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M19 9.27a2 2 0 0 1 0 3.46L3 21.99a2 2 0 0 1-3-1.73V1.74A2 2 0 0 1 3 .01z"/></svg>
-          </span>
-        </button>
-        <h3 class="video__title" data-i18n="video.3.titulo">Título del vídeo</h3>
-        <p class="video__meta"  data-i18n="video.3.meta">Presentación · 2022</p>
+        <h3 class="video__title" data-i18n="video.2.titulo">—</h3>
+        <p class="video__meta"  data-i18n="video.2.meta">—</p>
       </article>
 
     </div>
