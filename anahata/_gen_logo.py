@@ -160,4 +160,24 @@ for nombre, g, o in (("logo-marca.svg", GREEN, GOLD), ("logo-marca-crema.svg", "
     with open(f"{OUT}/{nombre}", "w", encoding="utf-8") as f:
         f.write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" '
                 'role="img" aria-label="ANAHATA">' + marca(g, o) + '</svg>')
+
+# 6) Lockup completo en crema (para fondos oscuros: pie, hero de la landing)
+def lockup(green, gold):
+    w = (f'<text x="300" y="772" text-anchor="middle" fill="{green}" textLength="470" '
+         f'lengthAdjust="spacingAndGlyphs" '
+         f'font-family="Cormorant Garamond, Georgia, Times New Roman, serif" font-size="104">ANAHATA</text>')
+    r = (f'<g stroke="{gold}" stroke-width="1.8"><path d="M 72 806 H 282"/><path d="M 318 806 H 528"/></g>'
+         + heart(300, 806, 26, gold, 0).replace('fill="none"', f'fill="{gold}"'))
+    c = (f'<text x="300" y="848" text-anchor="middle" fill="{gold}" textLength="470" '
+         f'lengthAdjust="spacingAndGlyphs" '
+         f'font-family="Jost, Helvetica Neue, Arial, sans-serif" font-size="22">'
+         f'YOGA &#8226; PILATES &#8226; CONEXI&#211;N &#8226; TRANSFORMACI&#211;N &#8226; AMOR</text>')
+    l = (laurel(286, 898, 104, -1, gold, 1.5) + laurel(314, 898, 104, 1, gold, 1.5)
+         + f'<circle cx="300" cy="898" r="4.6" fill="{gold}"/>')
+    return symbol(green=green, gold=gold) + w + r + c + l
+
+with open(f"{OUT}/logo-anahata-crema.svg", "w", encoding="utf-8") as f:
+    f.write(HEAD.format(vb="45 35 510 900", w=510, h=900,
+            al="ANAHATA · Yoga, Pilates, Conexi\u00f3n, Transformaci\u00f3n, Amor")
+            + lockup("#F7EFE3", "#E0C283") + "</svg>")
 print("logo-simbolo.svg / logo-anahata.svg / favicon.svg generados")

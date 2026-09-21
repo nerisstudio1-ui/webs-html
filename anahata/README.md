@@ -11,6 +11,9 @@ Diseño minimalista y cercano, con la paleta tomada del logotipo: verde bosque, 
 
 1. **Fotografías.** Todas las imágenes son **marcadores provisionales** generados con la paleta de marca
    (se distinguen porque llevan una etiqueta en el centro). Ver apartado «Sustituir las imágenes».
+   No se pueden descargar automáticamente desde Instagram: la red del entorno bloquea el dominio,
+   Instagram exige inicio de sesión para servir los archivos y, además, lo que publica está recomprimido
+   a 1080 px como máximo, insuficiente para las portadas (1920 px). Lo ideal son los originales del móvil.
 2. **Testimonios.** La sección de opiniones tiene tres tarjetas marcadas como *«Pendiente de recibir»*,
    a la espera de las reseñas de Google. Se editan en `_build.py` → lista `TESTIMONIOS`.
 3. **Logotipo.** El logo se ha **vectorizado a SVG** a partir de la imagen enviada.
@@ -25,7 +28,8 @@ Diseño minimalista y cercano, con la paleta tomada del logotipo: verde bosque, 
 
 ```
 anahata/
-├── index.html            Inicio
+├── landing.html          Landing de una página (todo en scroll)
+├── index.html            Inicio de la web corporativa
 ├── sobre-mi.html         Sobre mí · trayectoria y origen de ANAHATA
 ├── servicios.html        Yoga (4 estilos), Pilates, Meditación, Alimentación
 ├── clases.html           Clases y programas + preguntas frecuentes
@@ -40,6 +44,24 @@ anahata/
 ├── _build.py             Generador de las páginas (textos y contenido)
 └── _gen_logo.py          Generador de los SVG del logotipo
 ```
+
+## Dos formatos en el mismo proyecto
+
+El proyecto incluye **las dos versiones**, que comparten estilos, logotipo e imágenes:
+
+- **`landing.html`** — una sola página con todo el contenido en scroll y navegación por anclas.
+  Es la más directa para captar reservas y para enviar por Instagram o WhatsApp.
+- **`index.html` + el resto** — web corporativa de 8 páginas, mejor para posicionamiento (cada
+  servicio tiene su propia URL) y para ir ampliando contenido.
+
+Para que la landing sea la página principal del dominio, basta con renombrar:
+
+```bash
+mv index.html corporativa.html && mv landing.html index.html
+```
+
+(y después ajustar los enlaces del menú, que en la corporativa apuntan a las páginas internas).
+Si tienes dudas, dímelo y lo dejo montado en un minuto.
 
 ## Cómo editar
 
@@ -111,6 +133,10 @@ Antes de publicar:
 
 ## Detalles técnicos
 
+- **Logotipo:** cuatro variantes en `assets/img/` — `logo-anahata.svg` (completo),
+  `logo-anahata-crema.svg` (para fondos oscuros: pie y portada de la landing),
+  `logo-simbolo.svg` (solo el símbolo) y `logo-marca.svg` (versión compacta de la cabecera),
+  cada uno con su versión en crema donde hace falta.
 - **Tipografías:** Cormorant Garamond (titulares) y Jost (texto), cargadas desde Google Fonts.
 - **Accesibilidad:** navegación por teclado, textos alternativos, foco visible, enlace de salto al contenido
   y respeto por `prefers-reduced-motion`.
