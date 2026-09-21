@@ -77,12 +77,19 @@
 <section class="hero" id="inicio">
 
   <!-- Su sombra sobre el agua. El bucle es de ida y vuelta, así que no hay
-       corte al terminar. No se descarga hasta que hace falta, y se queda
-       quieto si el sistema pide menos animación o el navegador avisa de
-       conexión justa. -->
+       corte al terminar.
+
+       preload="auto": el vídeo empieza a descargarse con la página. Cuesta
+       640 KB en cada visita, pero es lo que hace que arranque solo. Con
+       preload="none" el navegador no tenía ni un fotograma cuando se le
+       pedía reproducir, y en el móvil se negaba.
+
+       autoplay + muted + playsinline es la combinación que los navegadores
+       aceptan sin preguntar. Los tres son imprescindibles: si falta uno,
+       no hay reproducción automática en el móvil. -->
   <video class="hero__fondo" id="portada-fondo"
          autoplay muted loop playsinline webkit-playsinline disableremoteplayback
-         preload="none" poster="assets/img/portada-agua.jpg"
+         preload="auto" poster="assets/img/portada-agua.jpg"
          aria-hidden="true" tabindex="-1">
     <source src="assets/video/portada-agua.mp4" type="video/mp4">
   </video>

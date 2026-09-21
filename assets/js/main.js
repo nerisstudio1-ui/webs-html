@@ -322,55 +322,48 @@
 
   /* Fondo en movimiento de la portada.
      ------------------------------------------------------------------
-     En el móvil esto es más delicado de lo que parece. En iPhone, un
-     vídeo solo arranca solo si está silenciado Y marcado para verse
-     dentro de la página; y aun cumpliéndolo, el modo de bajo consumo lo
-     bloquea siempre. Por eso, si el navegador se niega, se vuelve a
-     intentar en cuanto la persona toca la pantalla: ese toque ya cuenta
-     como permiso.
+     Quien reproduce es el propio navegador, por los atributos del
+     marcado: autoplay + muted + playsinline. Esto de aquí no arranca
+     nada que no arrancara ya solo; solo se ocupa de los casos en que el
+     navegador se echa atrás.
 
-     Si aun así no arranca, queda el póster, que es un fotograma del
-     propio vídeo. Nadie ve un hueco.
+     En el móvil hay dos situaciones en las que se niega y no hay código
+     que lo evite: el modo de bajo consumo del iPhone y el ahorro de datos
+     de Android. Para esas, se reintenta con el primer gesto de la
+     persona, que cuenta como permiso. Y si ni así, queda el póster, que
+     es el primer fotograma del vídeo: no se ve ningún hueco.
      ------------------------------------------------------------------ */
   (function () {
     var fondo = $("#portada-fondo");
     if (!fondo) return;
 
-    var menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var con = navigator.connection || {};
-    var conexionJusta = con.saveData === true || /2g/.test(con.effectiveType || "");
-    if (menosMovimiento || conexionJusta) return;
+    /* Quien ha pedido menos animación en su sistema se queda con el
+       póster. Es una preferencia de accesibilidad, no un obstáculo
+       técnico que haya que sortear. */
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      fondo.removeAttribute("autoplay");
+      fondo.preload = "none";
+      return;
+    }
 
     /* Como propiedades, no solo como atributos: si un plugin del gestor de
-       contenidos toca el marcado, los atributos pueden perderse y sin
+       contenidos toca el marcado, los atributos pueden perderse, y sin
        silenciar no hay reproducción automática que valga. */
     fondo.muted = true;
     fondo.defaultMuted = true;
     fondo.playsInline = true;
     fondo.loop = true;
 
-    var enMarcha = false;
-
-    function arrancar() {
-      if (enMarcha) return;
-      if (fondo.preload !== "auto") {
-        fondo.preload = "auto";
-        fondo.load();
-      }
-      var intento = fondo.play();
-      if (intento && intento.then) {
-        intento.then(function () { enMarcha = true; }).catch(esperarAlGesto);
-      } else {
-        enMarcha = true;
-      }
-    }
-
-    /* Un solo intento más, con el primer gesto de la persona.
-       Un toque dispara touchstart, pointerdown y click, así que hay que
-       desengancharlos todos a la primera o se intenta tres veces. */
-    var GESTOS = ["touchstart", "pointerdown", "click", "scroll"];
+    var GESTOS = ["touchstart", "pointerdown", "click", "scroll", "keydown"];
     var esperando = false;
 
+    function intentar() {
+      var r = fondo.play();
+      if (r && r.catch) r.catch(esperarAlGesto);
+    }
+
+    /* Un toque dispara touchstart, pointerdown y click: hay que
+       desengancharlos todos a la primera o se intenta tres veces. */
     function esperarAlGesto() {
       if (esperando) return;
       esperando = true;
@@ -380,26 +373,21 @@
     }
 
     function unaVez() {
+      esperando = false;
       GESTOS.forEach(function (ev) { window.removeEventListener(ev, unaVez); });
-      fondo.play().then(function () { enMarcha = true; }).catch(function () { /* queda el póster */ });
+      var r = fondo.play();
+      if (r && r.catch) r.catch(function () { /* queda el póster */ });
     }
 
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (entradas) {
-        entradas.forEach(function (e) {
-          if (e.isIntersecting) arrancar();
-          else if (!fondo.paused) fondo.pause();
-        });
-      }, { rootMargin: "200px" }).observe(fondo);
-    } else {
-      arrancar();
-    }
+    /* Por si el navegador no llegó a arrancarlo por su cuenta */
+    if (fondo.paused) intentar();
+    fondo.addEventListener("canplay", function () {
+      if (fondo.paused) intentar();
+    });
 
     /* Al volver a la pestaña, algunos móviles lo dejan parado */
     document.addEventListener("visibilitychange", function () {
-      if (!document.hidden && enMarcha && fondo.paused) {
-        fondo.play().catch(function () { /* da igual */ });
-      }
+      if (!document.hidden && fondo.paused) intentar();
     });
   })();
 
