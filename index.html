@@ -80,8 +80,10 @@
        corte al terminar. No se descarga hasta que hace falta, y se queda
        quieto si el sistema pide menos animación o el navegador avisa de
        conexión justa. -->
-  <video class="hero__fondo" id="portada-fondo" muted loop playsinline preload="none"
-         poster="assets/img/portada-agua.jpg" aria-hidden="true" tabindex="-1">
+  <video class="hero__fondo" id="portada-fondo"
+         autoplay muted loop playsinline webkit-playsinline disableremoteplayback
+         preload="none" poster="assets/img/portada-agua.jpg"
+         aria-hidden="true" tabindex="-1">
     <source src="assets/video/portada-agua.mp4" type="video/mp4">
   </video>
 

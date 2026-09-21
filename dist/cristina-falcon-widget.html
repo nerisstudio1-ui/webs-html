@@ -1359,8 +1359,10 @@
        corte al terminar. No se descarga hasta que hace falta, y se queda
        quieto si el sistema pide menos animación o el navegador avisa de
        conexión justa. -->
-  <video class="hero__fondo" id="portada-fondo" muted loop playsinline preload="none"
-         poster="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/portada-agua.jpg" aria-hidden="true" tabindex="-1">
+  <video class="hero__fondo" id="portada-fondo"
+         autoplay muted loop playsinline webkit-playsinline disableremoteplayback
+         preload="none" poster="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/portada-agua.jpg"
+         aria-hidden="true" tabindex="-1">
     <source src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/portada-agua.mp4" type="video/mp4">
   </video>
 
@@ -2705,15 +2707,23 @@ window.I18N = {
 
     if (propio) {
       var video = document.createElement("video");
-      video.src = propio;
-      video.controls = true;
-      video.autoplay = true;
+      /* En iPhone, sin esto el vídeo se abre a pantalla completa él solo.
+         Hay que ponerlo ANTES de la fuente, o no lo tiene en cuenta. */
       video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.controls = true;
       video.preload = "auto";
       video.setAttribute("aria-label", etiqueta);
+      video.src = propio;
       frame.innerHTML = "";
       frame.appendChild(video);
-      video.play().catch(function () { /* si el navegador lo bloquea, queda el control */ });
+      /* La orden de reproducir va dentro del mismo toque que la ha pedido:
+         es lo que hace que el navegador la dé por autorizada. */
+      var intento = video.play();
+      if (intento && intento.catch) {
+        intento.catch(function () { /* si se niega, quedan sus controles */ });
+      }
       return;
     }
 
@@ -2733,10 +2743,17 @@ window.I18N = {
   });
 
   /* Fondo en movimiento de la portada.
-     No se descarga hasta que hace falta, y no se reproduce si el sistema
-     pide menos animación ni si el navegador dice que la conexión va justa
-     o el usuario pidió ahorrar datos. En esos casos se queda el póster,
-     que ya es una imagen del propio vídeo. */
+     ------------------------------------------------------------------
+     En el móvil esto es más delicado de lo que parece. En iPhone, un
+     vídeo solo arranca solo si está silenciado Y marcado para verse
+     dentro de la página; y aun cumpliéndolo, el modo de bajo consumo lo
+     bloquea siempre. Por eso, si el navegador se niega, se vuelve a
+     intentar en cuanto la persona toca la pantalla: ese toque ya cuenta
+     como permiso.
+
+     Si aun así no arranca, queda el póster, que es un fotograma del
+     propio vídeo. Nadie ve un hueco.
+     ------------------------------------------------------------------ */
   (function () {
     var fondo = $("#portada-fondo");
     if (!fondo) return;
@@ -2744,71 +2761,69 @@ window.I18N = {
     var menosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var con = navigator.connection || {};
     var conexionJusta = con.saveData === true || /2g/.test(con.effectiveType || "");
-    if (menosMovimiento || conexionJusta || !("IntersectionObserver" in window)) return;
+    if (menosMovimiento || conexionJusta) return;
 
-    var obs = new IntersectionObserver(function (entradas) {
-      entradas.forEach(function (e) {
-        if (e.isIntersecting) {
-          fondo.preload = "auto";
-          fondo.play().catch(function () { /* sin autoplay, se queda el póster */ });
-        } else if (!fondo.paused) {
-          fondo.pause();
-        }
-      });
-    }, { rootMargin: "200px" });
+    /* Como propiedades, no solo como atributos: si un plugin del gestor de
+       contenidos toca el marcado, los atributos pueden perderse y sin
+       silenciar no hay reproducción automática que valga. */
+    fondo.muted = true;
+    fondo.defaultMuted = true;
+    fondo.playsInline = true;
+    fondo.loop = true;
 
-    obs.observe(fondo);
-  })();
+    var enMarcha = false;
 
-  /* ------------------------------------------------------------------
-     10. Formulario de contacto
-     ------------------------------------------------------------------ */
-  var form = $("#form");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var dic = I18N[idiomaActual] || {};
-      var estado = $("#form-status");
-      var boton = $("#form-submit");
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
+    function arrancar() {
+      if (enMarcha) return;
+      if (fondo.preload !== "auto") {
+        fondo.preload = "auto";
+        fondo.load();
       }
+      var intento = fondo.play();
+      if (intento && intento.then) {
+        intento.then(function () { enMarcha = true; }).catch(esperarAlGesto);
+      } else {
+        enMarcha = true;
+      }
+    }
 
-      boton.disabled = true;
-      boton.textContent = dic["form.enviando"] || "Enviando…";
-      estado.className = "form__status";
+    /* Un solo intento más, con el primer gesto de la persona.
+       Un toque dispara touchstart, pointerdown y click, así que hay que
+       desengancharlos todos a la primera o se intenta tres veces. */
+    var GESTOS = ["touchstart", "pointerdown", "click", "scroll"];
+    var esperando = false;
 
-      var datos = {};
-      new FormData(form).forEach(function (v, k) { datos[k] = v; });
-      datos._subject = "Nuevo mensaje desde la web — " + (datos.Asunto || datos.Nombre || "");
-      datos._captcha = "false";
+    function esperarAlGesto() {
+      if (esperando) return;
+      esperando = true;
+      GESTOS.forEach(function (ev) {
+        window.addEventListener(ev, unaVez, { passive: true });
+      });
+    }
 
-      fetch(CONFIG.formEndpoint + CONFIG.email, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(datos)
-      })
-        .then(function (r) {
-          if (!r.ok) throw new Error("HTTP " + r.status);
-          return r.json();
-        })
-        .then(function () {
-          estado.className = "form__status is-visible is-ok";
-          estado.textContent = dic["form.ok"] || "Mensaje enviado.";
-          form.reset();
-        })
-        .catch(function () {
-          estado.className = "form__status is-visible is-err";
-          estado.textContent = dic["form.error"] || "No se ha podido enviar.";
-        })
-        .then(function () {
-          boton.disabled = false;
-          boton.textContent = dic["form.enviar"] || "Enviar mensaje";
+    function unaVez() {
+      GESTOS.forEach(function (ev) { window.removeEventListener(ev, unaVez); });
+      fondo.play().then(function () { enMarcha = true; }).catch(function () { /* queda el póster */ });
+    }
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting) arrancar();
+          else if (!fondo.paused) fondo.pause();
         });
+      }, { rootMargin: "200px" }).observe(fondo);
+    } else {
+      arrancar();
+    }
+
+    /* Al volver a la pestaña, algunos móviles lo dejan parado */
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden && enMarcha && fondo.paused) {
+        fondo.play().catch(function () { /* da igual */ });
+      }
     });
-  }
+  })();
 
   /* ------------------------------------------------------------------
      11. Ancho real de la ventana
