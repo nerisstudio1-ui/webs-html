@@ -8,8 +8,8 @@ import os, re
 MARCA     = "ANAHATA"
 TITULAR   = "Sara Viñas Gómez"
 EMAIL     = "saravgyoga@gmail.com"
-TEL       = "664607464"                 # ← verificar (ver README)
-TEL_FMT   = "664 60 74 64"
+TEL       = "664607474"                 # confirmado por Sara (correo del 18/09)
+TEL_FMT   = "664 60 74 74"
 WA        = "34" + TEL
 WA_MSG    = "Hola%20Sara%2C%20me%20gustar%C3%ADa%20informarme%20sobre%20las%20clases%20de%20ANAHATA"
 WA_URL    = f"https://wa.me/{WA}?text={WA_MSG}"

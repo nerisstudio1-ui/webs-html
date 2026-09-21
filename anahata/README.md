@@ -7,17 +7,17 @@ Diseño minimalista y cercano, con la paleta tomada del logotipo: verde bosque, 
 
 ## ⚠️ Pendiente de confirmar con Sara
 
-1. **Teléfono.** En el brief del formulario aparece **664 60 74 64** y en el correo posterior **664 60 74 74**.
-   Está puesto el del brief. Si el correcto es el otro, cámbialo en `_build.py` (variables `TEL` y `TEL_FMT`) y vuelve a generar.
-2. **Fotografías.** Todas las imágenes son **marcadores provisionales** generados con la paleta de marca
+> Teléfono confirmado: **664 60 74 74** (el del correo del 18/09).
+
+1. **Fotografías.** Todas las imágenes son **marcadores provisionales** generados con la paleta de marca
    (se distinguen porque llevan una etiqueta en el centro). Ver apartado «Sustituir las imágenes».
-3. **Testimonios.** La sección de opiniones tiene tres tarjetas marcadas como *«Pendiente de recibir»*,
+2. **Testimonios.** La sección de opiniones tiene tres tarjetas marcadas como *«Pendiente de recibir»*,
    a la espera de las reseñas de Google. Se editan en `_build.py` → lista `TESTIMONIOS`.
-4. **Logotipo.** El logo se ha **vectorizado a SVG** a partir de la imagen enviada.
+3. **Logotipo.** El logo se ha **vectorizado a SVG** a partir de la imagen enviada.
    Si Sara tiene el archivo original (AI, SVG o PNG con fondo transparente), sustituirlo mejora la fidelidad.
-5. **Datos legales.** `aviso-legal.html` y `privacidad.html` tienen campos entre corchetes
+4. **Datos legales.** `aviso-legal.html` y `privacidad.html` tienen campos entre corchetes
    (NIF, domicilio, proveedor de hosting) que hay que completar antes de publicar.
-6. **Formulario.** Todavía no está conectado a ningún servicio de envío. Ver «Conectar el formulario».
+5. **Formulario.** Todavía no está conectado a ningún servicio de envío. Ver «Conectar el formulario».
 
 ---
 
@@ -103,7 +103,6 @@ Es una web estática: basta con subir el contenido de esta carpeta por FTP a la 
 
 Antes de publicar:
 
-- [ ] Confirmar el teléfono correcto
 - [ ] Sustituir las imágenes por fotos reales
 - [ ] Añadir los testimonios de Google
 - [ ] Completar los datos de aviso legal y privacidad
