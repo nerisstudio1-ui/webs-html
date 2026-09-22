@@ -10,9 +10,12 @@
   color-scheme: light;
 
   /* Paleta — verdes, azules y tierra */
-  --verde-hondo:   #1F3D33;
-  --verde:         #2E5A4B;
-  --verde-claro:   #6F9384;
+  /* Verdes subidos de saturación y de luz respecto a la primera versión:
+     en pantalla los anteriores se leían casi como negro y no se percibía
+     que fueran verdes. Mismo tono, más cuerpo. */
+  --verde-hondo:   #255647;
+  --verde:         #347461;
+  --verde-claro:   #72AC9A;
   --azul-hondo:    #1B3448;
   --azul:          #2F5975;
   --azul-claro:    #7FA0B7;
@@ -40,7 +43,7 @@
      a la sustituta. Ver assets/css/fonts.css. */
   --font-display: "Zalando Sans Expanded", "Helvetica Neue", Arial, sans-serif;
   --font-body:    "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-script:  "Homemade Apple", "Segoe Script", cursive;
+  --font-script:  "Cedarville Cursive", "Segoe Script", cursive;
 
   --step--1: clamp(0.74rem, 0.72rem + 0.1vw, 0.8rem);
   --step-0:  clamp(0.92rem, 0.89rem + 0.13vw, 1rem);
@@ -73,7 +76,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 6.5rem;
 }
 
 body {
@@ -172,40 +175,14 @@ p { text-wrap: pretty; }
   background: var(--line);
 }
 
-/* Homemade Apple tiene el ojo pequeño y los ascendentes muy largos:
-   necesita más cuerpo del que parece y una línea muy apretada, o abre
-   un hueco enorme encima. */
+/* Las manuscritas tienen el ojo pequeño respecto al cuerpo: necesitan
+   más tamaño del que parece, o al lado del texto normal se ven enanas. */
 .script {
   font-family: var(--font-script);
-  font-size: 1.15em;
+  font-size: 1.35em;
   line-height: 1.5;
   color: var(--tierra);
   font-weight: 400;
-}
-
-/* La palabra suelta de los titulares, escrita a mano.
-   No es cursiva de verdad: es otra tipografía, así que se cancela el
-   font-style y se ajusta para que case con la de al lado.
-
-   Medido a cuerpo 100: la equis de Homemade Apple mide 48 y la de Zalando
-   Sans Expanded 54, así que va un punto más grande para igualarlas. Y sus
-   minúsculas cuelgan 6 por debajo de la línea base, de ahí que haya que
-   subirla: si no, la palabra se hunde respecto a las de al lado. */
-.italic {
-  font-family: var(--font-script);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.05em;
-  line-height: 1;
-  display: inline-block;
-  transform: translateY(-0.06em) rotate(-2deg);
-  padding-inline: 0.1em;
-}
-
-.lead {
-  font-size: var(--step-1);
-  line-height: 1.55;
-  color: var(--fg-muted);
 }
 
 /* --------------------------------------------------------------------------
@@ -271,7 +248,7 @@ p { text-wrap: pretty; }
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  min-height: 4.75rem;
+  min-height: 5.5rem;
 }
 
 .brand {
@@ -283,7 +260,7 @@ p { text-wrap: pretty; }
 }
 .brand__marca {
   width: auto;
-  height: clamp(2.4rem, 5vw, 3.1rem);
+  height: clamp(3.1rem, 6.5vw, 4.2rem);
   transition: rotate 0.5s var(--ease);
 }
 .brand:hover .brand__marca { rotate: -4deg; }
@@ -403,7 +380,7 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 6rem;
+  padding-top: 7rem;
   background: var(--crema);
 }
 
@@ -442,14 +419,59 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
 }
 
 .hero__title {
-  font-size: calc(var(--step-5) * 0.92);
-  line-height: 1.02;
+  font-size: calc(var(--step-5) * 0.7);
+  line-height: 1.05;
   text-align: center;
   letter-spacing: -0.03em;
   color: var(--verde-hondo);
-  max-width: 16ch;
+  max-width: 18ch;
 }
-.hero__title .italic { color: var(--tierra); }
+
+/* El verso, arriba a la derecha, escrito a mano */
+.hero__verso {
+  position: absolute;
+  top: clamp(6rem, 13vh, 10rem);
+  right: var(--gutter);
+  z-index: 3;
+  max-width: min(22ch, 42vw);
+  text-align: right;
+  margin: 0;
+}
+.hero__verso blockquote {
+  font-family: var(--font-script);
+  font-size: clamp(1.05rem, 2.1vw, 1.7rem);
+  line-height: 1.35;
+  color: var(--tierra);
+  text-wrap: balance;
+}
+.hero__verso figcaption {
+  margin-top: 0.5rem;
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.hero__verso figcaption::before {
+  content: "";
+  display: inline-block;
+  width: 1.4rem;
+  height: 1px;
+  margin-right: 0.6rem;
+  vertical-align: 0.3em;
+  background: var(--ocre);
+}
+
+/* En pantallas estrechas no cabe en la esquina: pasa debajo del nombre */
+@media (max-width: 55rem) {
+  .hero__verso {
+    position: static;
+    max-width: 26ch;
+    margin: 0 auto clamp(1.5rem, 5vw, 2.5rem);
+    text-align: center;
+    padding-inline: var(--gutter);
+  }
+  .hero__verso figcaption::before { display: none; }
+}
 
 .hero__sub {
   font-size: var(--step--1);

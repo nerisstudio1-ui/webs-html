@@ -27,11 +27,13 @@ window.I18N = {
     "brand.rol": "Poeta y escritora",
 
     /* Hero */
-    "hero.titulo": "Hola, <span class=\"italic\">soy</span> Cristina",
+    "hero.titulo": "Cristina Falcón Maldonado",
     "hero.rol": "<strong>Poeta, narradora y traductora</strong> Escribo para adultos y para niños",
-    "hero.centro": "<strong>Venezuela · España</strong> De Valera a Cuenca, pasando por Bolonia",
-    "hero.libros": "<strong>Cuatro poemarios</strong> Y una veintena de libros para la infancia",
-    "hero.sub": "Poeta, narradora y traductora · Venezuela · España",
+    "hero.centro": "<strong>Venezuela · Italia · España</strong>",
+    "hero.libros": "<strong>Poesía</strong> Libros para niños y jóvenes",
+    "hero.sub": "Poeta, narradora y traductora",
+    "hero.verso": "La vida era más que lo que nos dijeron",
+    "hero.verso.fuente": "Ítaca es nunca",
 
     /* Marquesina */
     "marquee.1": "Poesía",
@@ -43,7 +45,7 @@ window.I18N = {
     "sobre.titulo": "Antes de aprender a leer, aprendí poesías de memoria",
     "sobre.p1": "Me enseñó mi abuela, que sin saberlo me abrió el camino para vivir rodeada de palabras, jugando con ellas, escribiéndolas. Nací en Valera, en Venezuela, y como esos pájaros a los que no me canso de mirar —hasta soñar con ser uno de ellos— he emigrado y he vivido en distintos países y ciudades: de Trujillo a Bolonia, y de allí a Motril, Calahonda, Ibiza y Cuenca.",
     "sobre.p2": "Mi formación es multidisciplinar: empecé Arquitectura en la Universidad de los Andes y la continué en la del Zulia, donde también estudié Filosofía y Letras, y me formé en Diseño Gráfico en la Accademia Bolognese de Bolonia. Las dos facetas siguen presentes en todo lo que hago: la palabra y la imagen nunca han ido por separado.",
-    "sobre.p3": "Escribo poesía para adultos y libros para niños. Doy talleres de poesía creativa en bibliotecas, universidades y centros educativos de América Latina y Europa, y dirijo «La Guarida», el taller de lectura y escritura creativa de la Biblioteca Pública del Estado «Fermín Caballero» de Cuenca.",
+    "sobre.p3": "Escribo poesía para adultos y libros para niños. Doy talleres de poesía creativa en bibliotecas, universidades y centros educativos de América Latina y Europa. Durante años dirigí «La Guarida», el taller de lectura y escritura creativa de la Biblioteca Pública del Estado «Fermín Caballero» de Cuenca.",
     "sobre.cita": "Me encantan los pájaros, los árboles, las flores silvestres, las orquídeas de mi tierra, las cometas, los globos aerostáticos, la música y las letras. También las casas en los árboles.",
     "sobre.foto": "Cristina Falcón Maldonado",
     "sobre.foto2": "Cristina en una presentación",
@@ -55,9 +57,9 @@ window.I18N = {
     "tray.2.dato": "Memoria errante",
     "tray.2.texto": "Su poemario inspiró el montaje teatral homónimo de Dèria Teatre, que cruza los poemas con fragmentos de La Odisea, música en directo y audiovisual.",
     "tray.3.dato": "La Guarida",
-    "tray.3.texto": "Taller de lectura y escritura creativa para niños y club de lectura en la Biblioteca Pública del Estado «Fermín Caballero» de Cuenca.",
-    "tray.4.dato": "Álabe",
-    "tray.4.texto": "Miembro del Comité Científico y diseñadora de la revista de la Red Internacional de Universidades Lectoras desde 2010.",
+    "tray.3.texto": "Dirigió durante años este taller de lectura y escritura creativa para niños, y su club de lectura, en la Biblioteca Pública del Estado «Fermín Caballero» de Cuenca.",
+    "tray.4.dato": "Casa Victoria Mancera",
+    "tray.4.texto": "Cofundadora de este centro de promoción de la lectura y la escritura literarias.",
 
     /* Obra */
     "obra.kicker": "Obra publicada",
@@ -105,6 +107,10 @@ window.I18N = {
     "resena.6.medio": "QuéLeer",
 
     /* --- Pies de la galería --- */
+    "galeria.11": "Cristina de niña, en Trujillo",
+    "galeria.12": "Con su hermano, de pequeños",
+    "galeria.13": "Manos y un poema",
+    "galeria.14": "Con su editora de Candaya y el cuadro de la portada de Ítaca es nunca",
     "galeria.01": "Cristina firmando ejemplares en una presentación",
     "galeria.02": "Sus libros en una mesa de Casa de América",
     "galeria.03": "Recital de poesía sobre el escenario",
@@ -236,11 +242,13 @@ window.I18N = {
     "nav.saltar": "Skip to content",
     "brand.rol": "Poet and writer",
 
-    "hero.titulo": "Hi, <span class=\"italic\">I'm</span> Cristina",
+    "hero.titulo": "Cristina Falcón Maldonado",
     "hero.rol": "<strong>Poet, storyteller and translator</strong> I write for adults and for children",
-    "hero.centro": "<strong>Venezuela · Spain</strong> From Valera to Cuenca, by way of Bologna",
-    "hero.libros": "<strong>Four poetry books</strong> And some twenty books for children",
-    "hero.sub": "Poet, storyteller and translator · Venezuela · Spain",
+    "hero.centro": "<strong>Venezuela · Italy · Spain</strong>",
+    "hero.libros": "<strong>Poetry</strong> Books for children and young readers",
+    "hero.sub": "Poet, storyteller and translator",
+    "hero.verso": "La vida era más que lo que nos dijeron",
+    "hero.verso.fuente": "Ítaca es nunca",
 
     "marquee.1": "Poetry",
     "marquee.2": "Children's literature",
@@ -250,7 +258,7 @@ window.I18N = {
     "sobre.titulo": "Before I could read, I learned poems by heart",
     "sobre.p1": "My grandmother taught them to me and, without knowing it, opened the way for a life surrounded by words — playing with them, writing them. I was born in Valera, Venezuela, and like those birds I never tire of watching — to the point of dreaming I am one of them — I have emigrated and lived in different countries and cities: from Trujillo to Bologna, and from there to Motril, Calahonda, Ibiza and Cuenca.",
     "sobre.p2": "My training is multidisciplinary: I began Architecture at the Universidad de los Andes and continued at the Universidad del Zulia, where I also studied Philosophy and Literature, and I trained in Graphic Design at the Accademia Bolognese in Bologna. Both sides are still present in everything I do: word and image have never travelled separately.",
-    "sobre.p3": "I write poetry for adults and books for children. I run creative poetry workshops in libraries, universities and schools across Latin America and Europe, and I lead «La Guarida», the reading and creative writing workshop at the «Fermín Caballero» State Public Library in Cuenca.",
+    "sobre.p3": "I write poetry for adults and books for children. I run creative poetry workshops in libraries, universities and schools across Latin America and Europe. For years I led «La Guarida», the reading and creative writing workshop at the «Fermín Caballero» State Public Library in Cuenca.",
     "sobre.cita": "I love birds, trees, wildflowers, the orchids of my homeland, kites, hot-air balloons, music and letters. Treehouses, too.",
     "sobre.foto": "Cristina Falcón Maldonado",
     "sobre.foto2": "Cristina at a book presentation",
@@ -261,9 +269,9 @@ window.I18N = {
     "tray.2.dato": "Memoria errante",
     "tray.2.texto": "Her poetry book inspired the stage production of the same name by Dèria Teatre, weaving the poems together with fragments of The Odyssey, live music and video.",
     "tray.3.dato": "La Guarida",
-    "tray.3.texto": "Reading and creative writing workshop and book club for children at the «Fermín Caballero» State Public Library in Cuenca.",
-    "tray.4.dato": "Álabe",
-    "tray.4.texto": "Member of the Scientific Committee and designer of the journal of the International Network of Reading Universities since 2010.",
+    "tray.3.texto": "For years she led this reading and creative writing workshop for children, and its book club, at the «Fermín Caballero» State Public Library in Cuenca.",
+    "tray.4.dato": "Casa Victoria Mancera",
+    "tray.4.texto": "Co-founder of this centre for the promotion of literary reading and writing.",
 
     "obra.kicker": "Published work",
     "obra.titulo": "The books",
@@ -307,6 +315,10 @@ window.I18N = {
     "resena.6.autor": "Enrique Vilagrasa",
     "resena.6.medio": "QuéLeer",
 
+    "galeria.11": "Cristina as a child, in Trujillo",
+    "galeria.12": "With her brother, as children",
+    "galeria.13": "Hands and a poem",
+    "galeria.14": "With her editor at Candaya and the painting used on the cover of Ítaca es nunca",
     "galeria.01": "Cristina signing copies at a book presentation",
     "galeria.02": "Her books on display at Casa de América",
     "galeria.03": "A poetry reading on stage",
