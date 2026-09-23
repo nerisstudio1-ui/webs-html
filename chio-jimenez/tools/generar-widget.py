@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 """Genera una versión de la web en un solo archivo, para pegar en un widget."""
-import re, os
+import re, os, sys
 
-RAIZ = '/home/user/webs-html/chio-jimenez'
-SALIDA = '/tmp/claude-0/-home-user-webs-html/4222ec57-bb53-5365-b8aa-568195089d83/scratchpad/entrega/chio-jimenez-widget.html'
+RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AMBITO = '.cj'          # todo queda encerrado aquí dentro
+
+# Dos variantes:
+#   sin argumentos      -> para insertar en una página que ya tiene cabecera
+#                          de WordPress: se retira el menú propio.
+#   --con-cabecera      -> para una página en blanco (plantilla Lienzo de
+#                          Elementor): la web va entera, con su menú.
+CON_CABECERA = '--con-cabecera' in sys.argv
+SALIDA = sys.argv[sys.argv.index('-o')+1] if '-o' in sys.argv else (
+    'chio-jimenez-elementor-lienzo.html' if CON_CABECERA else 'chio-jimenez-widget.html')
 
 html = open(os.path.join(RAIZ,'index.html'), encoding='utf-8').read()
 css  = open(os.path.join(RAIZ,'assets/styles.css'), encoding='utf-8').read()
@@ -90,7 +98,7 @@ escudo = """
 }
 .cj{ isolation:isolate; }
 """
-remate = """
+remate = "" if CON_CABECERA else """
 /* El selector de idioma ya no vive en la cabecera, sino en la portada. */
 .cj .hero__inner .lang{ margin-bottom:20px; }
 """
@@ -109,8 +117,9 @@ cuerpo = re.sub(r'<script src="assets/script\.js"[^>]*></script>', '', cuerpo)
 # tema. Se retira y el selector de idioma se traslada a la portada.
 m = re.search(r'<div class="lang".*?</div>', cuerpo, re.S)
 selector_idioma = m.group(0) if m else ''
-cuerpo = re.sub(r'<header class="nav".*?</header>', '', cuerpo, flags=re.S)
-if selector_idioma:
+if not CON_CABECERA:
+    cuerpo = re.sub(r'<header class="nav".*?</header>', '', cuerpo, flags=re.S)
+if selector_idioma and not CON_CABECERA:
     cuerpo = cuerpo.replace(
         '      <p class="eyebrow reveal" data-i18n="hero.eyebrow">',
         '      ' + selector_idioma + '\n      <p class="eyebrow reveal" data-i18n="hero.eyebrow">',
@@ -172,5 +181,6 @@ salida = '''<!-- ===============================================================
 ''' % (fuente, css_acotado, cuerpo, js)
 
 open(SALIDA, 'w', encoding='utf-8').write(salida)
-print('generado: %s  (%.0f KB)' % (os.path.basename(SALIDA), os.path.getsize(SALIDA)/1024))
-print('reglas acotadas a "%s"' % AMBITO)
+print('generado: %s  (%.0f KB)  %s' % (
+    os.path.basename(SALIDA), os.path.getsize(SALIDA)/1024,
+    'con cabecera' if CON_CABECERA else 'sin cabecera'))
