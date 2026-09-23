@@ -386,6 +386,16 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 .work__client{ font-size:clamp(20px,2.2vw,28px); }
 .work__items{ color:var(--muted); margin:0; font-size:14.5px; }
 .work__items em{ font-style:normal; color:var(--fg); }
+/* Fila con miniatura: la del vídeo de Toyota */
+.work--foto{ grid-template-columns:200px minmax(110px,.45fr) minmax(0,1fr) minmax(0,1.3fr); }
+.work__miniatura{ display:block; aspect-ratio:16/9; align-self:center; overflow:hidden; }
+.work__miniatura img{ transition:transform .6s var(--ease); }
+.work__miniatura:hover img{ transform:scale(1.04); }
+@media (max-width:1100px){
+  .work--foto{ grid-template-columns:1fr; }
+  .work__miniatura{ max-width:300px; margin-bottom:10px; }
+}
+
 .work__enlace{
   display:inline-block; margin-top:8px; text-decoration:none;
   font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;

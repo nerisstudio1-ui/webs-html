@@ -413,6 +413,16 @@
 .cj .work__client{ font-size:clamp(20px,2.2vw,28px); }
 .cj .work__items{ color:var(--muted); margin:0; font-size:14.5px; }
 .cj .work__items em{ font-style:normal; color:var(--fg); }
+/* Fila con miniatura: la del vídeo de Toyota */
+.cj .work--foto{ grid-template-columns:200px minmax(110px,.45fr) minmax(0,1fr) minmax(0,1.3fr); }
+.cj .work__miniatura{ display:block; aspect-ratio:16/9; align-self:center; overflow:hidden; }
+.cj .work__miniatura img{ transition:transform .6s var(--ease); }
+.cj .work__miniatura:hover img{ transform:scale(1.04); }
+@media (max-width:1100px){
+  .cj .work--foto{ grid-template-columns:1fr; }
+  .cj .work__miniatura{ max-width:300px; margin-bottom:10px; }
+}
+
 .cj .work__enlace{
   display:inline-block; margin-top:8px; text-decoration:none;
   font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
@@ -846,7 +856,10 @@ html{ overflow-x:clip; }
       </article>
 
       <ul class="works">
-        <li class="work reveal">
+        <li class="work work--foto reveal">
+          <a class="work__miniatura ph" href="https://www.youtube.com/watch?v=rlheIV7Xw4w" target="_blank" rel="noopener noreferrer" data-ph="toyota.jpg" aria-label="Ver la review en YouTube">
+            <img data-cj="toyota.jpg" alt="Review de Toyota en YouTube presentada por Chío Jiménez" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          </a>
           <span class="work__cat" data-i18n="cat.brand">Publicidad · Marca</span>
           <h3 class="work__client">Toyota España</h3>
           <p class="work__items">
