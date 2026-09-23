@@ -49,6 +49,13 @@ def acotar_selector(sel):
 def acotar_bloque(texto):
     fuera, i, n = [], 0, len(texto)
     while i < n:
+        # espacios: hay que consumirlos antes de mirar si viene un @media,
+        # porque si no la detección falla y el bloque se copia sin acotar
+        if texto[i].isspace():
+            j = i
+            while j < n and texto[j].isspace():
+                j += 1
+            fuera.append(texto[i:j]); i = j; continue
         # comentarios
         if texto.startswith('/*', i):
             j = texto.find('*/', i) + 2
@@ -89,6 +96,24 @@ def extraer_bloque(texto, pos_llave):
         i += 1
     return texto[pos_llave+1:], len(texto)
 
+ancho_completo = """
+/* ---- Ancho completo ----
+   WordPress y Elementor envuelven el widget en un contenedor con ancho
+   máximo. Estos márgenes negativos sacan el bloque de ese contenedor y lo
+   llevan de borde a borde de la ventana, sin depender de ningún ajuste del
+   tema. */
+.cj{
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  max-width:100vw;
+}
+/* 100vw cuenta la barra de desplazamiento, así que sobra un pelo por la
+   derecha. Se recorta con clip y no con hidden: hidden convertiría la
+   página en contenedor de scroll y rompería el position:sticky del
+   retrato de "Sobre mí". */
+html{ overflow-x:clip; }
+"""
+
 escudo = """
 /* Escudo: impide que los estilos del tema de WordPress se cuelen dentro.
    Va el primero, así cualquier regla propia de abajo lo sobrescribe. */
@@ -108,7 +133,17 @@ remate = "" if CON_CABECERA else """
 /* El selector de idioma ya no vive en la cabecera, sino en la portada. */
 .cj .hero__inner .lang{ margin-bottom:20px; }
 """
-css_acotado = escudo + acotar_bloque(css) + remate
+cuerpo_acotado = acotar_bloque(css)
+
+# Comprobación: toda regla dentro de una @media tiene que quedar acotada.
+# Si no, la de escritorio (más específica) ganaría y el móvil se rompería.
+for bloque_media in re.findall(r'@media[^{]*\{(.*?)\n\}', cuerpo_acotado, re.S):
+    sueltos = [l.strip() for l in bloque_media.splitlines()
+               if re.match(r'^\s*[.#a-zA-Z*]', l) and '{' in l and AMBITO not in l]
+    if sueltos:
+        raise SystemExit('selectores sin acotar dentro de @media:\n  ' + '\n  '.join(sueltos[:5]))
+
+css_acotado = escudo + cuerpo_acotado + ancho_completo + remate
 
 # la tipografía, como @import al principio de la hoja
 fuente = '@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&display=swap");\n'
