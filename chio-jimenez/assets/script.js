@@ -19,6 +19,10 @@
      wide:true hace la pieza el doble de ancha.
      --------------------------------------------------------- */
   var PHOTOS = [
+    { src: 'creativo-01.jpg',  cat: 'moda',        es: 'Trabajo creativo',            en: 'Creative work' },
+    { src: 'creativo-03.jpg',  cat: 'moda',        es: 'Diseño de mirada',            en: 'Eye design' },
+    { src: 'creativo-04.jpg',  cat: 'moda',        es: 'Color sobre la piel',         en: 'Colour on skin' },
+    { src: 'creativo-02.jpg',  cat: 'moda',        es: 'Retrato de belleza',          en: 'Beauty portrait' },
     { src: 'pub-01.jpg',       cat: 'moda',        es: 'MOEVIR · Disco',              en: 'MOEVIR · Disco' },
     { src: 'nov-01.jpg',       cat: 'novias',      es: 'Recogido de novia',           en: 'Bridal updo' },
     { src: 'pub-05.jpg',       cat: 'moda',        es: 'StyleCruze · The Last Gheisa', en: 'StyleCruze · The Last Gheisa' },
@@ -51,7 +55,8 @@
     { src: 'av-01.jpg',        cat: 'audiovisual', es: 'Rodaje',                      en: 'On set' },
     { src: 'av-02.jpg',        cat: 'audiovisual', es: 'Maquillaje en set',           en: 'Make-up on set' },
     { src: 'av-03.jpg',        cat: 'audiovisual', es: 'Peinado en rodaje',           en: 'Hair on set' },
-    { src: 'formacion-01.jpg', cat: 'formacion',   es: 'Escuma Granada',              en: 'Escuma Granada', wide: true }
+    { src: 'formacion-01.jpg', cat: 'formacion',   es: 'Escuma Granada',              en: 'Escuma Granada', wide: true },
+    { src: 'guia-color.jpg',   cat: 'formacion',   es: 'Pequeña guía del color',      en: 'A Short Guide to Colour' }
   ];
 
   /* ---------------------------------------------------------
@@ -131,11 +136,16 @@
       'featured.couture': 'Haute couture',
       'featured.paris.t': 'Key Make Up Artist · Paris Haute Couture Week 2026',
       'featured.paris.d': 'Make-up direction for <strong>Leandro Cano</strong> at Paris Haute Couture Week.',
-      'cat.video': 'Music video', 'cat.adv': 'Advertising · Music', 'cat.campaign': 'Campaign',
+      'cat.video': 'Music video', 'cat.brand': 'Advertising · Brand',
+      'work.toyota': 'YouTube reviews · From 2021 to today', 'cat.adv': 'Advertising · Music', 'cat.campaign': 'Campaign',
       'work.sayko': 'Intro for <em>Sakura</em>',
       'work.della': '<em>Adidas</em> promo · Launch material for the album <em>Brigado</em>',
       'work.camin': 'Advertising campaign',
 
+      'libro.eyebrow': 'Publication',
+      'libro.titulo': 'A Short Guide to Colour for Make-up Artists',
+      'libro.desc': 'Colour is the foundation of everything we do and, at the same time, the least studied. This guide gathers what is essential to understand it and apply it with judgement in make-up: how it behaves, how it is corrected and how it is decided.',
+      'libro.cta': 'Buy via WhatsApp',
       'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
 
       'contact.eyebrow': 'Contact',
@@ -164,7 +174,7 @@
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-  var state = { lang: 'es', filter: 'all' };
+  var state = { lang: 'es', filter: 'novias' };   // ya no hay pestaña "Todo"
   var originals = null;
 
   /* =========================================================
@@ -300,7 +310,7 @@
     if (!grid) return;
 
     var items = PHOTOS.filter(function (p) {
-      return state.filter === 'all' || p.cat === state.filter;
+      return p.cat === state.filter;
     });
 
     grid.innerHTML = items.map(function (p, i) {

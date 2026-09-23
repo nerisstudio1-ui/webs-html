@@ -307,6 +307,38 @@
 .cj .gaze__item p{ color:var(--muted); margin:0; font-size:14.5px; max-width:60ch; }
 .cj .gaze__price{ font-size:clamp(20px,2.2vw,28px); letter-spacing:-.03em; white-space:nowrap; }
 
+
+/* ---------- Foto junto a la cita ---------- */
+.cj .philo{ display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:clamp(32px,5vw,72px); align-items:start; }
+.cj .philo__foto{ aspect-ratio:3/4; order:2; }
+.cj .quote{ order:1; }
+.cj .philo__grid{ order:3; grid-column:1 / -1; }
+
+/* ---------- Foto de apertura de una sección ---------- */
+.cj .servicios__foto, .cj .destacados__foto{ aspect-ratio:21/9; margin-bottom:clamp(32px,4vw,56px); }
+
+/* ---------- La guía publicada ---------- */
+.cj .libro{
+  margin-top:clamp(48px,6vw,80px);
+  display:grid; grid-template-columns:minmax(0,.4fr) minmax(0,1fr);
+  gap:clamp(28px,4vw,60px); align-items:center;
+  border-top:1px solid var(--line-soft); padding-top:clamp(36px,4.4vw,60px);
+}
+.cj .libro__portada{ aspect-ratio:1250/2000; box-shadow:0 12px 40px rgba(0,0,0,.14); }
+.cj .libro__texto h3{ font-size:clamp(24px,3vw,38px); margin:0 0 18px; }
+.cj .libro__texto p{ color:var(--muted); margin:0 0 16px; max-width:56ch; }
+.cj .libro__autora{ font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); }
+.cj .libro__texto .btn{ margin-top:10px; }
+
+@media (max-width:860px){
+  .cj .philo{ grid-template-columns:1fr; }
+  .cj .philo__foto{ order:1; max-width:340px; }
+  .cj .quote{ order:2; }
+  .cj .servicios__foto, .cj .destacados__foto{ aspect-ratio:16/9; }
+  .cj .libro{ grid-template-columns:1fr; }
+  .cj .libro__portada{ max-width:260px; }
+}
+
 /* =========================================================
    PORTFOLIO
    ========================================================= */
@@ -664,6 +696,9 @@ html{ overflow-x:clip; }
   <!-- ============ FILOSOFÍA ============ -->
   <section class="section section--quote section--dark" id="filosofia">
     <div class="wrap philo">
+      <figure class="philo__foto ph reveal" data-ph="creativo-03.jpg">
+        <img data-cj="creativo-03.jpg" alt="Diseño de mirada en azul, trabajo creativo de Chío Jiménez" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      </figure>
       <blockquote class="quote reveal">
         <p data-i18n="quote.text">“Aprende las reglas como un profesional para romperlas después como artista.”</p>
         <cite>Pablo Picasso</cite>
@@ -684,6 +719,10 @@ html{ overflow-x:clip; }
         <h2 class="reveal" data-i18n="services.title">Maquillaje y <span class="italic">peinado</span></h2>
         <p class="section__sub reveal" data-i18n="services.sub">Zona de trabajo natural en Granada, con desplazamientos a toda España y al extranjero.</p>
       </header>
+
+      <figure class="servicios__foto ph reveal" data-ph="creativo-04.jpg">
+        <img data-cj="creativo-04.jpg" alt="Color aplicado sobre la piel, trabajo creativo" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      </figure>
 
       <ul class="services">
         <li class="service reveal">
@@ -763,6 +802,20 @@ html{ overflow-x:clip; }
           </li>
         </ol>
       </div>
+
+      <!-- La guía publicada -->
+      <div class="libro reveal">
+        <figure class="libro__portada ph" data-ph="guia-color.jpg">
+          <img data-cj="guia-color.jpg" alt="Portada de Pequeña guía del color para maquilladores, de Chío Jiménez Mejías" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+        </figure>
+        <div class="libro__texto">
+          <p class="eyebrow" data-i18n="libro.eyebrow">Publicación</p>
+          <h3 data-i18n="libro.titulo">Pequeña guía del color para maquilladores</h3>
+          <p data-i18n="libro.desc">El color es la base de todo lo que hacemos y, a la vez, lo que menos se estudia. Esta guía reúne lo esencial para entenderlo y aplicarlo con criterio en el maquillaje: cómo se comporta, cómo se corrige y cómo se decide.</p>
+          <p class="libro__autora">Chío Jiménez Mejías</p>
+          <a class="btn btn--light" href="https://wa.me/34627232326?text=Hola%20Ch%C3%ADo%2C%20quiero%20comprar%20la%20Peque%C3%B1a%20gu%C3%ADa%20del%20color%20para%20maquilladores." target="_blank" rel="noopener noreferrer" data-i18n="libro.cta">Comprar por WhatsApp</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -775,8 +828,7 @@ html{ overflow-x:clip; }
       </header>
 
       <div class="filters reveal" role="group" aria-label="Filtrar portfolio">
-        <button type="button" class="filter is-active" data-filter="all" data-i18n="filter.all">Todo</button>
-        <button type="button" class="filter" data-filter="novias" data-i18n="filter.brides">Novias y eventos</button>
+        <button type="button" class="filter is-active" data-filter="novias" data-i18n="filter.brides">Novias y eventos</button>
         <button type="button" class="filter" data-filter="moda" data-i18n="filter.fashion">Moda y publicaciones</button>
         <button type="button" class="filter" data-filter="audiovisual" data-i18n="filter.av">Audiovisuales</button>
         <button type="button" class="filter" data-filter="formacion" data-i18n="filter.training">Formación</button>
@@ -798,6 +850,10 @@ html{ overflow-x:clip; }
         <h2 class="reveal" data-i18n="featured.title">Clientes y <span class="italic">proyectos</span></h2>
       </header>
 
+      <figure class="destacados__foto ph reveal" data-ph="pub-05.jpg">
+        <img data-cj="pub-05.jpg" alt="Editorial The Last Gheisa para StyleCruze" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      </figure>
+
       <article class="feature reveal">
         <span class="feature__tag" data-i18n="featured.couture">Alta costura</span>
         <h3 data-i18n="featured.paris.t">Key Make Up Artist · Paris Haute Couture Week 2026</h3>
@@ -805,6 +861,11 @@ html{ overflow-x:clip; }
       </article>
 
       <ul class="works">
+        <li class="work reveal">
+          <span class="work__cat" data-i18n="cat.brand">Publicidad · Marca</span>
+          <h3 class="work__client">Toyota España</h3>
+          <p class="work__items" data-i18n="work.toyota">Reviews en YouTube · De 2021 a la actualidad</p>
+        </li>
         <li class="work reveal">
           <span class="work__cat" data-i18n="cat.video">Videoclip</span>
           <h3 class="work__client">Sayko</h3>
@@ -1004,6 +1065,10 @@ html{ overflow-x:clip; }
      wide:true hace la pieza el doble de ancha.
      --------------------------------------------------------- */
   var PHOTOS = [
+    { src: 'creativo-01.jpg',  cat: 'moda',        es: 'Trabajo creativo',            en: 'Creative work' },
+    { src: 'creativo-03.jpg',  cat: 'moda',        es: 'Diseño de mirada',            en: 'Eye design' },
+    { src: 'creativo-04.jpg',  cat: 'moda',        es: 'Color sobre la piel',         en: 'Colour on skin' },
+    { src: 'creativo-02.jpg',  cat: 'moda',        es: 'Retrato de belleza',          en: 'Beauty portrait' },
     { src: 'pub-01.jpg',       cat: 'moda',        es: 'MOEVIR · Disco',              en: 'MOEVIR · Disco' },
     { src: 'nov-01.jpg',       cat: 'novias',      es: 'Recogido de novia',           en: 'Bridal updo' },
     { src: 'pub-05.jpg',       cat: 'moda',        es: 'StyleCruze · The Last Gheisa', en: 'StyleCruze · The Last Gheisa' },
@@ -1036,7 +1101,8 @@ html{ overflow-x:clip; }
     { src: 'av-01.jpg',        cat: 'audiovisual', es: 'Rodaje',                      en: 'On set' },
     { src: 'av-02.jpg',        cat: 'audiovisual', es: 'Maquillaje en set',           en: 'Make-up on set' },
     { src: 'av-03.jpg',        cat: 'audiovisual', es: 'Peinado en rodaje',           en: 'Hair on set' },
-    { src: 'formacion-01.jpg', cat: 'formacion',   es: 'Escuma Granada',              en: 'Escuma Granada', wide: true }
+    { src: 'formacion-01.jpg', cat: 'formacion',   es: 'Escuma Granada',              en: 'Escuma Granada', wide: true },
+    { src: 'guia-color.jpg',   cat: 'formacion',   es: 'Pequeña guía del color',      en: 'A Short Guide to Colour' }
   ];
 
   /* ---------------------------------------------------------
@@ -1116,11 +1182,16 @@ html{ overflow-x:clip; }
       'featured.couture': 'Haute couture',
       'featured.paris.t': 'Key Make Up Artist · Paris Haute Couture Week 2026',
       'featured.paris.d': 'Make-up direction for <strong>Leandro Cano</strong> at Paris Haute Couture Week.',
-      'cat.video': 'Music video', 'cat.adv': 'Advertising · Music', 'cat.campaign': 'Campaign',
+      'cat.video': 'Music video', 'cat.brand': 'Advertising · Brand',
+      'work.toyota': 'YouTube reviews · From 2021 to today', 'cat.adv': 'Advertising · Music', 'cat.campaign': 'Campaign',
       'work.sayko': 'Intro for <em>Sakura</em>',
       'work.della': '<em>Adidas</em> promo · Launch material for the album <em>Brigado</em>',
       'work.camin': 'Advertising campaign',
 
+      'libro.eyebrow': 'Publication',
+      'libro.titulo': 'A Short Guide to Colour for Make-up Artists',
+      'libro.desc': 'Colour is the foundation of everything we do and, at the same time, the least studied. This guide gathers what is essential to understand it and apply it with judgement in make-up: how it behaves, how it is corrected and how it is decided.',
+      'libro.cta': 'Buy via WhatsApp',
       'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
 
       'contact.eyebrow': 'Contact',
@@ -1149,7 +1220,7 @@ html{ overflow-x:clip; }
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-  var state = { lang: 'es', filter: 'all' };
+  var state = { lang: 'es', filter: 'novias' };   // ya no hay pestaña "Todo"
   var originals = null;
 
   /* =========================================================
@@ -1290,7 +1361,7 @@ html{ overflow-x:clip; }
     if (!grid) return;
 
     var items = PHOTOS.filter(function (p) {
-      return state.filter === 'all' || p.cat === state.filter;
+      return p.cat === state.filter;
     });
 
     grid.innerHTML = items.map(function (p, i) {
