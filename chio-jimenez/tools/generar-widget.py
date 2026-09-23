@@ -11,6 +11,12 @@ AMBITO = '.cj'          # todo queda encerrado aquí dentro
 #   --con-cabecera      -> para una página en blanco (plantilla Lienzo de
 #                          Elementor): la web va entera, con su menú.
 CON_CABECERA = '--con-cabecera' in sys.argv
+
+# Carpeta de Medios de WordPress donde están las fotos. Se puede cambiar
+# con  --base <url>  sin tocar el archivo.
+BASE_IMAGENES = '"https://orange-gull-246246.hostingersite.com/wp-content/uploads/2026/09/"'
+if '--base' in sys.argv:
+    BASE_IMAGENES = '"%s"' % sys.argv[sys.argv.index('--base') + 1]
 SALIDA = sys.argv[sys.argv.index('-o')+1] if '-o' in sys.argv else (
     'chio-jimenez-elementor-lienzo.html' if CON_CABECERA else 'chio-jimenez-widget.html')
 
@@ -158,7 +164,7 @@ salida = '''<!-- ===============================================================
      copiando su URL hasta la última barra.
      =================================================================== -->
 <script>
-  window.CJ_IMAGENES = "https://chiojimenez.makeup/wp-content/uploads/2026/09/";
+  window.CJ_IMAGENES = %s;
 </script>
 
 <style>
@@ -178,7 +184,7 @@ salida = '''<!-- ===============================================================
 })();
 %s
 </script>
-''' % (fuente, css_acotado, cuerpo, js)
+''' % (BASE_IMAGENES, fuente, css_acotado, cuerpo, js)
 
 open(SALIDA, 'w', encoding='utf-8').write(salida)
 print('generado: %s  (%.0f KB)  %s' % (

@@ -1,0 +1,1273 @@
+<!-- ===================================================================
+     Chío Jiménez · Maquillaje profesional
+     Pega TODO este bloque en un widget de HTML personalizado.
+
+     ANTES DE PEGARLO, cambia la línea de abajo por la carpeta donde
+     hayan quedado las imágenes en Medios de WordPress. Es lo único
+     que hay que tocar. La ves abriendo cualquier imagen en Medios y
+     copiando su URL hasta la última barra.
+     =================================================================== -->
+<script>
+  window.CJ_IMAGENES = "https://orange-gull-246246.hostingersite.com/wp-content/uploads/2026/09/";
+</script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&display=swap");
+
+/* Escudo: impide que los estilos del tema de WordPress se cuelen dentro.
+   Va el primero, así cualquier regla propia de abajo lo sobrescribe. */
+.cj, .cj *, .cj *::before, .cj *::after{
+  margin:0; padding:0;
+  border:0; border-radius:0;
+  box-shadow:none; text-shadow:none;
+  outline:none; float:none;
+  list-style:none; text-decoration:none;
+  text-transform:none; letter-spacing:normal;
+  font-style:normal; text-align:left;
+  max-width:none; min-width:0;
+}
+.cj{ isolation:isolate; }
+/* =========================================================
+   Chío Jiménez · Maquillaje profesional
+   Fondo claro · Una sola tipografía · El peso lo llevan las fotos
+   ========================================================= */.cj{
+  --bg:        #ffffff;
+  --bg-soft:   #f4f2ef;   /* crema, para alternar secciones */
+  --surface:   #e9e6e1;
+  --line:      rgba(0,0,0,.16);
+  --line-soft: rgba(0,0,0,.10);
+  --fg:        #121212;
+  --muted:     rgba(0,0,0,.62);
+  --faint:     rgba(0,0,0,.45);
+
+  --sans: "Archivo", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+
+  --gutter: clamp(20px, 4.5vw, 72px);
+  --maxw: 1440px;
+  --sec-y: clamp(72px, 10vw, 150px);
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}.cj *, .cj *::before, .cj *::after{ box-sizing:border-box; }.cj{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }.cj{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:clamp(15px,.5vw + 13.8px,16.5px);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}.cj img{ max-width:100%; height:auto; display:block; }.cj a{ color:inherit; }.cj ::selection{ background:#121212; color:#fff; }.cj :focus-visible{ outline:2px solid #121212; outline-offset:3px; }.cj .sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}.cj .skip-link{ position:absolute; left:-9999px; top:0; z-index:200; background:#121212; color:#fff; padding:12px 18px; font-size:14px; }.cj .skip-link:focus{ left:12px; top:12px; }.cj .wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }.cj /* ---------- Tipografía ---------- */
+h1, .cj h2, .cj h3, .cj h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:0; letter-spacing:-.025em; }.cj .italic{ font-style:normal; color:var(--faint); }.cj /* sin cursivas: una sola voz */
+
+.eyebrow{
+  font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--faint); margin:0 0 20px;
+}.cj .section{ padding-block:var(--sec-y); position:relative; }.cj .section__head{ margin-bottom:clamp(36px,5vw,64px); max-width:820px; }.cj .section__head h2{ font-size:clamp(32px,5vw,60px); }.cj .section__sub{ color:var(--muted); margin:20px 0 0; max-width:56ch; }.cj /* ---------- Botones ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:16px 32px; border:1px solid var(--fg);
+  font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  text-decoration:none;
+  transition:background .3s var(--ease), color .3s var(--ease);
+}.cj .btn--light{ background:var(--fg); color:var(--bg); }.cj .btn--light:hover{ background:transparent; color:var(--fg); }.cj .btn--ghost{ background:transparent; color:var(--fg); }.cj .btn--ghost:hover{ background:var(--fg); color:var(--bg); }.cj .link-ext{
+  text-decoration:none; font-size:11px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  border-bottom:1px solid var(--line); padding-bottom:5px;
+  transition:border-color .3s var(--ease);
+}.cj .link-ext:hover{ border-color:var(--fg); }.cj /* ---------- Huecos de imagen ---------- */
+.ph{ margin:0; position:relative; overflow:hidden; background:var(--surface); }.cj .ph img{ width:100%; height:100%; object-fit:cover; }.cj .ph.is-empty::after{
+  content:attr(data-ph); position:absolute; inset:0; display:grid; place-items:center;
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint);
+  background:var(--surface); padding:12px; text-align:center;
+}.cj /* =========================================================
+   NAV
+   ========================================================= */
+.nav{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:background .35s var(--ease), border-color .35s var(--ease), padding .35s var(--ease);
+}.cj .nav.is-stuck{ border-bottom-color:var(--line-soft); }.cj /* Mientras la cabecera está sobre la portada en negro se vuelve
+   transparente y pasa a blanco. El estado claro es el de partida, .cj para que
+   siga leyéndose aunque el JS no llegue a ejecutarse. */
+.nav.is-on-dark{
+  background:transparent;
+  backdrop-filter:none; -webkit-backdrop-filter:none;
+  border-bottom-color:transparent;
+}.cj /* Velo degradado bajo la cabecera: sobre el negro no se nota, .cj y sobre la
+   zona clara de la foto es lo que mantiene legibles los enlaces en blanco. */
+.nav.is-on-dark::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:170px; z-index:-1;
+  background:linear-gradient(to bottom, rgba(0,0,0,.72) 0%, rgba(0,0,0,.34) 55%, rgba(0,0,0,0) 100%);
+  pointer-events:none;
+}.cj .nav.is-on-dark .nav__inner{ position:relative; }.cj .nav.is-on-dark .nav__menu a{ color:rgba(255,255,255,.72); }.cj .nav.is-on-dark .nav__menu a:hover, .cj .nav.is-on-dark .nav__menu a.is-current{ color:#fff; }.cj .nav.is-on-dark .nav__menu a::after{ background:#fff; }.cj .nav.is-on-dark .lang__btn{ color:rgba(255,255,255,.55); }.cj .nav.is-on-dark .lang__btn:hover, .cj .nav.is-on-dark .lang__btn.is-active{ color:#fff; }.cj .nav.is-on-dark .lang{ color:rgba(255,255,255,.4); }.cj .nav.is-on-dark .nav__bars i{ background:#fff; }.cj /* el logo que toca según el fondo */
+.nav__logo--sobre-oscuro{ display:none; }.cj .nav.is-on-dark .nav__logo--sobre-claro{ display:none; }.cj .nav.is-on-dark .nav__logo--sobre-oscuro{ display:block; }.cj .nav__inner{
+  max-width:var(--maxw); margin-inline:auto; padding:20px var(--gutter);
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  transition:padding .35s var(--ease);
+}.cj .nav.is-stuck .nav__inner{ padding-block:14px; }.cj /* Por encima del desplegable de móvil, .cj que si no los tapa al abrirse. */
+.nav__brand{ position:relative; z-index:2; display:flex; align-items:center; text-decoration:none; flex-shrink:0; }.cj .nav__logo{ height:52px; width:auto; transition:height .35s var(--ease); }.cj .nav.is-stuck .nav__logo{ height:40px; }.cj .nav__menu{ display:flex; align-items:center; gap:clamp(16px,2.2vw,34px); }.cj .nav__menu a{
+  text-decoration:none; font-size:11px; font-weight:500; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--muted); position:relative; padding-block:6px;
+  transition:color .25s var(--ease);
+}.cj .nav__menu a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+  background:var(--fg); transition:width .3s var(--ease);
+}.cj .nav__menu a:hover, .cj .nav__menu a.is-current{ color:var(--fg); }.cj .nav__menu a:hover::after, .cj .nav__menu a.is-current::after{ width:100%; }.cj .nav__side{ position:relative; z-index:2; display:flex; align-items:center; gap:18px; flex-shrink:0; }.cj .lang{ display:flex; align-items:center; gap:6px; font-size:11px; font-weight:500; letter-spacing:.1em; color:var(--faint); }.cj .lang__btn{ background:none; border:0; padding:4px 2px; cursor:pointer; font:inherit; color:var(--faint); transition:color .25s var(--ease); }.cj .lang__btn:hover, .cj .lang__btn.is-active{ color:var(--fg); }.cj .nav__toggle{ display:none; background:none; border:0; cursor:pointer; width:34px; height:34px; padding:0; place-items:center; }.cj .nav__bars{ display:block; width:24px; }.cj .nav__bars i{ display:block; height:1.5px; background:var(--fg); transition:transform .3s var(--ease); }.cj .nav__bars i:first-child{ margin-bottom:7px; }.cj .nav__toggle[aria-expanded="true"] .nav__bars i:first-child{ transform:translateY(4px) rotate(45deg); }.cj .nav__toggle[aria-expanded="true"] .nav__bars i:last-child{ transform:translateY(-4px) rotate(-45deg); }.cj /* =========================================================
+   HERO  ·  texto y foto uno al lado del otro, .cj sin oscurecer la imagen
+   ========================================================= */
+.hero{
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  min-height:100svh; align-items:stretch;
+}.cj .hero__inner{
+  order:1;                      /* el texto a la izquierda, la foto a la derecha */
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(120px,14vh,170px) clamp(28px,4vw,72px) clamp(56px,8vh,90px);
+}.cj .hero__logo{ width:min(560px,100%); margin:0 0 clamp(26px,3vw,38px); font-size:0; }.cj .hero__lead{
+  font-size:clamp(20px,1.8vw,26px); font-weight:400; line-height:1.35;
+  letter-spacing:-.02em; color:var(--fg);
+  max-width:22ch; margin:0 0 clamp(28px,3.4vw,40px);
+}.cj .hero__actions{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:clamp(26px,3.4vw,38px); }.cj .hero__meta{ font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); margin:0; }.cj .hero__media{ order:2; position:relative; overflow:hidden; background:var(--surface); }.cj .hero__media img{ width:100%; height:100%; object-fit:cover; }.cj .hero__scroll{ display:none; }.cj /* =========================================================
+   MARQUEE
+   ========================================================= */
+.marquee{ border-block:1px solid var(--line-soft); padding-block:16px; overflow:hidden; background:var(--bg); }.cj .marquee__track{
+  display:flex; align-items:center; gap:20px; width:max-content;
+  animation:marquee 60s linear infinite;
+  font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--faint); white-space:nowrap;
+}.cj .marquee__track b{ color:rgba(0,0,0,.2); font-weight:400; }@keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }.cj /* =========================================================
+   SOBRE MÍ
+   ========================================================= */
+.about{ display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(36px,5vw,80px); align-items:start; }.cj .about__media{ position:sticky; top:120px; }.cj .ph--portrait{ aspect-ratio:3/4; }.cj .facts{ list-style:none; margin:24px 0 0; padding:0; display:grid; gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); }.cj .facts li{ background:var(--bg); padding:16px 18px; display:flex; align-items:baseline; gap:16px; }.cj .facts strong{ font-size:26px; font-weight:400; letter-spacing:-.03em; min-width:62px; }.cj .facts span{ font-size:12px; color:var(--muted); }.cj .about__text h2{ font-size:clamp(30px,4.2vw,54px); margin-bottom:clamp(26px,3.4vw,38px); }.cj .prose p{ color:var(--muted); margin:0 0 18px; max-width:62ch; }.cj .prose strong{ color:var(--fg); font-weight:500; }.cj /* =========================================================
+   FILOSOFÍA
+   ========================================================= */
+.section--quote{ background:var(--bg-soft); }.cj .quote{ margin:0 0 clamp(40px,5vw,68px); }.cj /* el ancho se mide sobre el propio texto grande, .cj no sobre el contenedor */
+.quote p{
+  font-size:clamp(26px,3.8vw,48px); font-weight:400; line-height:1.14;
+  letter-spacing:-.03em; margin:0 0 20px; max-width:22ch;
+}.cj .quote cite{ font-style:normal; font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }.cj .philo__grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:clamp(24px,3.4vw,48px); }.cj .philo__grid p{ color:var(--muted); margin:0; padding-top:20px; border-top:1px solid var(--line-soft); }.cj .philo__grid strong{ color:var(--fg); font-weight:500; }.cj .philo__grid em{ color:var(--fg); font-style:normal; font-weight:500; }.cj /* =========================================================
+   SERVICIOS
+   ========================================================= */
+.services{
+  list-style:none; margin:0; padding:0;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:1px;
+}.cj /* La línea la dibuja cada tarjeta, .cj no el contenedor: así los huecos que
+   sobran al final de la rejilla quedan en blanco y no como un bloque gris. */
+.service{
+  background:var(--bg); box-shadow:0 0 0 1px var(--line-soft);
+  padding:clamp(26px,3vw,38px); display:flex; flex-direction:column; gap:14px;
+  transition:background .3s var(--ease);
+}.cj .service:hover{ background:var(--bg-soft); }.cj .service__head{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap; }.cj .service__head h3{ font-size:clamp(20px,2vw,26px); }.cj .service__price{ font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); white-space:nowrap; }.cj .service p{ color:var(--muted); margin:0; flex:1; font-size:14.5px; }.cj .service__link{
+  align-self:flex-start; text-decoration:none; font-size:10px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  border-bottom:1px solid var(--line); padding-bottom:5px; transition:border-color .25s var(--ease);
+}.cj .service__link:hover{ border-color:var(--fg); }.cj .gaze{ margin-top:clamp(48px,6vw,80px); }.cj .gaze__title{ font-size:clamp(24px,3vw,36px); margin-bottom:24px; }.cj .gaze__list{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line-soft); }.cj .gaze__item{ display:grid; grid-template-columns:auto 1fr auto; gap:clamp(16px,2.6vw,36px); align-items:center; padding:24px 0; border-bottom:1px solid var(--line-soft); }.cj .gaze__num{ font-size:12px; font-weight:500; color:var(--faint); }.cj .gaze__item h4{ font-size:clamp(18px,1.9vw,23px); margin-bottom:6px; }.cj .gaze__item p{ color:var(--muted); margin:0; font-size:14.5px; max-width:60ch; }.cj .gaze__price{ font-size:clamp(20px,2.2vw,28px); letter-spacing:-.03em; white-space:nowrap; }.cj /* =========================================================
+   PORTFOLIO
+   ========================================================= */
+.section--portfolio{ background:var(--bg); }.cj .filters{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:clamp(24px,3vw,40px); }.cj .filter{
+  background:none; border:1px solid var(--line-soft); color:var(--muted);
+  padding:10px 18px; cursor:pointer; font:inherit;
+  font-size:10px; font-weight:500; letter-spacing:.13em; text-transform:uppercase;
+  transition:border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease);
+}.cj .filter:hover{ color:var(--fg); border-color:var(--line); }.cj .filter.is-active{ background:var(--fg); color:var(--bg); border-color:var(--fg); }.cj .grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:clamp(8px,.9vw,14px); grid-auto-flow:dense;
+}.cj .tile{
+  position:relative; overflow:hidden; background:var(--surface);
+  aspect-ratio:3/4; margin:0; cursor:pointer;
+  border:0; padding:0; width:100%; display:block; color:inherit; font:inherit; text-align:left;
+}.cj .tile--wide{ grid-column:span 2; aspect-ratio:3/2; }.cj .tile img{ width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease); }.cj .tile:hover img{ transform:scale(1.03); }.cj .tile__meta{
+  position:absolute; inset:auto 0 0 0; z-index:2; padding:16px 18px;
+  background:linear-gradient(to top, rgba(0,0,0,.72), transparent);
+  color:#fff; opacity:0; transform:translateY(6px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}.cj .tile:hover .tile__meta, .cj .tile:focus-visible .tile__meta{ opacity:1; transform:none; }.cj .tile__cat{ display:block; font-size:9px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.72); margin-bottom:3px; }.cj .tile__title{ font-size:16px; font-weight:500; letter-spacing:-.01em; }.cj .portfolio__note{ margin:clamp(28px,3.4vw,44px) 0 0; text-align:center; }.cj /* Visor */
+.lb{ position:fixed; inset:0; z-index:150; display:none; background:rgba(10,10,10,.97); padding:clamp(20px,4vw,56px); place-items:center; }.cj .lb.is-open{ display:grid; }.cj .lb img{ max-width:100%; max-height:82vh; object-fit:contain; }.cj .lb__cap{ margin-top:14px; text-align:center; font-size:11px; font-weight:500; letter-spacing:.12em; color:rgba(255,255,255,.66); text-transform:uppercase; }.cj .lb__close, .cj .lb__nav{
+  position:absolute; background:none; border:1px solid rgba(255,255,255,.24); color:#fff;
+  cursor:pointer; width:46px; height:46px; display:grid; place-items:center; font-size:18px; line-height:1;
+  transition:background .25s var(--ease), color .25s var(--ease);
+}.cj .lb__close:hover, .cj .lb__nav:hover{ background:#fff; color:#121212; }.cj .lb__close{ top:clamp(16px,3vw,32px); right:clamp(16px,3vw,32px); }.cj .lb__nav--prev{ left:clamp(10px,2vw,28px); top:50%; transform:translateY(-50%); }.cj .lb__nav--next{ right:clamp(10px,2vw,28px); top:50%; transform:translateY(-50%); }.cj /* =========================================================
+   TRABAJOS DESTACADOS
+   ========================================================= */
+.feature{ background:var(--bg-soft); }.cj .feature{ border:1px solid var(--line-soft); padding:clamp(28px,4vw,52px); margin-bottom:clamp(26px,3vw,40px); }.cj .feature__tag{ display:inline-block; font-size:9px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); margin-bottom:16px; }.cj .feature h3{ font-size:clamp(24px,3.2vw,40px); margin-bottom:14px; }.cj .feature p{ color:var(--muted); margin:0; max-width:62ch; }.cj .feature strong{ color:var(--fg); font-weight:500; }.cj .works{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line-soft); }.cj .work{
+  display:grid; grid-template-columns:minmax(110px,.45fr) minmax(0,1fr) minmax(0,1.3fr);
+  gap:clamp(14px,2.6vw,36px); align-items:baseline;
+  padding:22px 0; border-bottom:1px solid var(--line-soft);
+  transition:padding-left .3s var(--ease);
+}.cj .work:hover{ padding-left:12px; }.cj .work__cat{ font-size:9px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }.cj .work__client{ font-size:clamp(20px,2.2vw,28px); }.cj .work__items{ color:var(--muted); margin:0; font-size:14.5px; }.cj .work__items em{ font-style:normal; color:var(--fg); }.cj /* Publicada en */
+.press{ margin-top:clamp(36px,4.4vw,60px); border-top:1px solid var(--line-soft); padding-top:clamp(26px,3vw,40px); }.cj .press__title{ font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); margin:0 0 22px; }.cj .press__list{ list-style:none; margin:0; padding:0; display:grid; gap:18px; }.cj .press__list li{
+  display:grid; grid-template-columns:minmax(160px,.4fr) minmax(0,1fr);
+  gap:clamp(14px,2.2vw,30px); align-items:baseline;
+  padding-bottom:18px; border-bottom:1px solid var(--line-soft);
+}.cj .press__list li:last-child{ border-bottom:0; padding-bottom:0; }.cj .press__mag{ font-size:clamp(18px,1.9vw,23px); letter-spacing:-.02em; }.cj .press__works{ color:var(--muted); font-size:14.5px; }.cj .press__works em{ font-style:normal; color:var(--fg); }.cj /* =========================================================
+   CONTACTO
+   ========================================================= */
+.section--contact{ background:var(--bg); }.cj .contact{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:clamp(36px,5vw,80px); align-items:start; }.cj .contact__intro{ max-width:560px; }.cj .contact h2{ font-size:clamp(30px,4.2vw,54px); }.cj .contact__lead{ color:var(--muted); margin:22px 0 34px; max-width:46ch; }.cj .contact__data{ list-style:none; margin:0; padding:0; display:grid; gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); }.cj .contact__data li{ background:var(--bg); padding:16px 18px; display:grid; gap:4px; }.cj .contact__label{ font-size:9px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }.cj .contact__data a{ text-decoration:none; border-bottom:1px solid var(--line-soft); padding-bottom:2px; width:fit-content; transition:border-color .25s var(--ease); }.cj .contact__data a:hover{ border-color:var(--fg); }.cj .contact__social{ display:flex; gap:18px; flex-wrap:wrap; }.cj .form{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }.cj .field{ display:grid; gap:7px; }.cj .field--full{ grid-column:1 / -1; }.cj .field label{ font-size:9px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); }.cj .field .opt{ letter-spacing:.04em; text-transform:none; }.cj .field input, .cj .field select, .cj .field textarea{
+  background:transparent; border:0; border-bottom:1px solid var(--line);
+  color:var(--fg); font:inherit; font-size:15px; padding:10px 0;
+  border-radius:0; transition:border-color .25s var(--ease);
+}.cj .field textarea{ resize:vertical; min-height:108px; }.cj .field input:focus, .cj .field select:focus, .cj .field textarea:focus{ outline:none; border-bottom-color:var(--fg); }.cj .field select{ appearance:none; cursor:pointer; }.cj .field input[type="date"]::-webkit-calendar-picker-indicator{ opacity:.45; cursor:pointer; }.cj .field input.is-error, .cj .field select.is-error, .cj .field textarea.is-error{ border-bottom-color:#c0392b; }.cj .form__actions{ grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:12px; margin-top:6px; }.cj .form__note{ grid-column:1 / -1; margin:0; font-size:13px; color:var(--muted); min-height:1.4em; }.cj .form__note.is-error{ color:#c0392b; }.cj /* =========================================================
+   FOOTER
+   ========================================================= */
+.footer{ border-top:1px solid var(--line-soft); padding-block:clamp(44px,5vw,68px); background:var(--bg); }.cj .footer__inner{ display:grid; gap:30px; }.cj .footer__brand{ display:flex; align-items:center; }.cj .footer__logo{ height:72px; width:auto; }.cj .footer__nav{ display:flex; flex-wrap:wrap; gap:clamp(14px,2.2vw,30px); }.cj .footer__nav a{ text-decoration:none; font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); transition:color .25s var(--ease); }.cj .footer__nav a:hover{ color:var(--fg); }.cj .footer__social{ display:flex; flex-wrap:wrap; gap:20px; }.cj .footer__social a{ text-decoration:none; font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line-soft); padding-bottom:4px; transition:color .25s var(--ease), border-color .25s var(--ease); }.cj .footer__social a:hover{ color:var(--fg); border-color:var(--fg); }.cj .footer__legal{ margin:0; font-size:10px; letter-spacing:.08em; color:var(--faint); padding-top:22px; border-top:1px solid var(--line-soft); }.cj /* =========================================================
+   SECCIONES EN NEGRO
+   Solo se redefinen las variables: todo lo de dentro se adapta
+   solo, .cj porque los componentes ya usan estos tokens.
+   ========================================================= */
+.hero, .cj .marquee, .cj .section--dark, .cj .footer--dark{
+  --bg:        #0d0d0d;
+  --bg-soft:   #141414;
+  --surface:   #1e1e1e;
+  --line:      rgba(255,255,255,.20);
+  --line-soft: rgba(255,255,255,.11);
+  --fg:        #ffffff;
+  --muted:     rgba(255,255,255,.66);
+  --faint:     rgba(255,255,255,.48);
+  background:var(--bg);
+  color:var(--fg);
+}.cj /* el desplegable y el selector de fecha del formulario, .cj sobre negro */
+.section--dark .field select option{ background:#1a1a1a; color:#fff; }.cj .section--dark .field input[type="date"]::-webkit-calendar-picker-indicator{ filter:invert(1); opacity:.6; }.cj .section--dark .field input.is-error, .cj .section--dark .field select.is-error, .cj .section--dark .field textarea.is-error{ border-bottom-color:#ff8b8b; }.cj .section--dark .form__note.is-error{ color:#ff8b8b; }.cj /* =========================================================
+   WHATSAPP
+   ========================================================= */
+.wa{
+  position:fixed; right:clamp(16px,2.2vw,26px); bottom:clamp(16px,2.2vw,26px); z-index:90;
+  width:54px; height:54px; border-radius:50%; background:#121212; color:#fff;
+  display:grid; place-items:center;
+  /* el aro claro lo mantiene visible también sobre las secciones en negro */
+  box-shadow:0 0 0 1px rgba(255,255,255,.30), 0 4px 20px rgba(0,0,0,.25);
+  transform:translateY(14px) scale(.92); opacity:0; pointer-events:none;
+  transition:transform .4s var(--ease), opacity .4s var(--ease), background .25s var(--ease);
+}.cj .wa.is-visible{ transform:none; opacity:1; pointer-events:auto; }.cj .wa:hover{ background:#25D366; }.cj .wa svg{ width:29px; height:29px; fill:currentColor; }.cj /* =========================================================
+   REVEAL  ·  discreto
+   ========================================================= */
+.reveal{ opacity:0; transform:translateY(12px); transition:opacity .6s var(--ease), transform .6s var(--ease); }.cj .reveal.is-in{ opacity:1; transform:none; }.cj /* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:1100px){
+  .hero{ grid-template-columns:1fr; min-height:0; }
+  .hero__inner{ padding:clamp(110px,16vh,150px) var(--gutter) clamp(40px,6vh,60px); }
+  .hero__media{ aspect-ratio:4/5; }
+  .about{ grid-template-columns:1fr; }
+  .about__media{ position:static; max-width:420px; }
+  .contact{ grid-template-columns:1fr; }
+  .work{ grid-template-columns:1fr; gap:6px; }
+  .work__cat{ order:-1; }
+}@media (max-width:860px){
+  .nav__toggle{ display:grid; }
+  .nav__menu{
+    position:fixed; inset:0 0 auto 0; z-index:1;
+    flex-direction:column; align-items:flex-start; gap:0;
+    background:rgba(255,255,255,.99); backdrop-filter:blur(16px);
+    padding:104px var(--gutter) 36px; transform:translateY(-100%);
+    transition:transform .45s var(--ease);
+    border-bottom:1px solid var(--line-soft); max-height:100svh; overflow-y:auto;
+  }
+  .nav__menu.is-open{ transform:none; }
+  .nav.is-on-dark .nav__menu{
+    background:rgba(10,10,10,.98); border-bottom-color:rgba(255,255,255,.11);
+  }
+  .nav.is-on-dark .nav__menu a{ border-bottom-color:rgba(255,255,255,.11); }
+  .nav__menu a{ font-size:16px; letter-spacing:.05em; padding-block:15px; width:100%; border-bottom:1px solid var(--line-soft); }
+  .nav__menu a::after{ content:none; }
+  .nav__logo{ height:42px; }
+  .nav.is-stuck .nav__logo{ height:36px; }
+
+  .tile--wide{ grid-column:span 1; aspect-ratio:3/4; }
+  .gaze__item{ grid-template-columns:auto 1fr; row-gap:8px; }
+  .gaze__price{ grid-column:2; justify-self:start; }
+  .form{ grid-template-columns:1fr; }
+  .press__list li{ grid-template-columns:1fr; gap:5px; }
+}@media (max-width:560px){
+  .grid{ grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); }
+  .btn{ width:100%; }
+  .hero__actions{ flex-direction:column; align-items:stretch; }
+  .form__actions .btn{ width:100%; }
+  .footer__logo{ height:56px; }
+}@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.01ms !important; scroll-behavior:auto !important;
+  }
+  .reveal{ opacity:1; transform:none; }
+  .wa{ opacity:1; transform:none; pointer-events:auto; }
+}@media print{
+  .nav,.wa,.marquee,.filters,.lb{ display:none !important; }
+  .reveal{ opacity:1; transform:none; }
+}
+
+</style>
+
+<div class="cj">
+
+<a class="skip-link" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#top" aria-label="Chío Jiménez, inicio">
+      <img class="nav__logo nav__logo--sobre-claro" data-cj="logo-negro.png" alt="" width="1600" height="475">
+      <img class="nav__logo nav__logo--sobre-oscuro" data-cj="logo-blanco.png" alt="" width="1600" height="475">
+    </a>
+
+    <nav class="nav__menu" id="navMenu" aria-label="Navegación principal">
+      <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#destacados" data-i18n="nav.featured">Trabajos destacados</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+    </nav>
+
+    <div class="nav__side">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" class="lang__btn is-active" data-lang="es" aria-pressed="true">ES</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+        <span class="nav__bars" aria-hidden="true"><i></i><i></i></span>
+        <span class="sr-only" data-i18n="nav.menu">Menú</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <figure class="hero__media ph" data-ph="hero.jpg">
+      <img data-cj="hero.jpg" alt="Chío Jiménez peinando a una novia el día de la boda" decoding="async" fetchpriority="high" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+    </figure>
+    <div class="hero__inner">
+      <p class="eyebrow reveal" data-i18n="hero.eyebrow">Maquilladora profesional · Directora de Escuma Granada</p>
+      <h1 class="hero__logo reveal">
+        <img data-cj="logo-blanco.png" alt="Chío Jiménez · Maquillaje profesional" width="1600" height="475" fetchpriority="high">
+      </h1>
+      <p class="hero__lead reveal" data-i18n="hero.lead">Ciencia, técnica y arte. Tres disciplinas que no se separan: construyen mi forma de entender el maquillaje.</p>
+      <div class="hero__actions reveal">
+        <a class="btn btn--light" href="#contacto" data-i18n="cta.quote">Pedir presupuesto</a>
+        <a class="btn btn--ghost" href="#portfolio" data-i18n="cta.portfolio">Ver portfolio</a>
+      </div>
+      <p class="hero__meta reveal" data-i18n="hero.meta">Granada · Toda España · Internacional</p>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- ============ SOBRE MÍ ============ -->
+  <section class="section" id="sobre-mi">
+    <div class="wrap about">
+      <div class="about__media">
+        <figure class="ph ph--portrait reveal" data-ph="chio-retrato.jpg">
+          <img data-cj="chio-retrato.jpg" alt="Chío Jiménez, maquilladora profesional" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+        </figure>
+        <ul class="facts reveal">
+          <li><strong>2008</strong><span data-i18n="facts.start">Inicio de trayectoria</span></li>
+          <li><strong>19</strong><span data-i18n="facts.lab">Años en laboratorio farmacéutico</span></li>
+          <li><strong>2019</strong><span data-i18n="facts.escuma">Dedicación exclusiva · Nace Escuma</span></li>
+        </ul>
+      </div>
+
+      <div class="about__text">
+        <p class="eyebrow reveal" data-i18n="about.eyebrow">Sobre mí</p>
+        <h2 class="reveal" data-i18n="about.title">Observar, comprender,<br><span class="italic">analizar y decidir</span></h2>
+        <div class="prose reveal" data-i18n="about.body">
+          <p>Soy maquilladora profesional, docente y directora de <strong>Escuma Granada</strong>. Mi manera de entender el maquillaje nace de la unión entre la ciencia, la técnica y el arte: tres disciplinas que, lejos de estar separadas, se complementan y construyen mi forma de trabajar.</p>
+          <p>Soy <strong>licenciada en Biología</strong> por la Universidad de Granada y cuento con formación de posgrado en <strong>Cosmética</strong>. Antes de dedicarme plenamente al maquillaje desarrollé durante 19 años mi carrera profesional en el ámbito del laboratorio farmacéutico. Esta experiencia me proporcionó una formación rigurosa y analítica que hoy forma parte esencial de mi manera de trabajar: observar, comprender, analizar y tomar decisiones con criterio.</p>
+          <p>Mi formación como maquilladora profesional comenzó en Madrid, en la desaparecida escuela <strong>Bôgart Make Up</strong>, de la mano de <strong>Baltasar González Pinel</strong>. Allí construí una sólida base técnica y descubrí una forma de entender el maquillaje que iba mucho más allá de la ejecución: el conocimiento profundo de la técnica como herramienta para poder crear.</p>
+          <p>Desde <strong>2008</strong> desarrollo mi trayectoria profesional como maquilladora, trabajando en diferentes ámbitos y evolucionando continuamente a través de la formación y la experiencia. En <strong>2019</strong> decidí dedicarme de manera exclusiva al maquillaje y a la formación, dando paso a una nueva etapa profesional en la que nace y crece Escuma Granada.</p>
+          <p>En mi trabajo confluyen el conocimiento de la piel y la cosmética, el color, la técnica del maquillaje, las técnicas pictóricas, la historia de la moda y, cada vez más, la investigación creativa y el lenguaje visual.</p>
+          <p>Mi formación más reciente en moda y creatividad la he realizado en <strong>Kabuki Make Up</strong>, en Buenos Aires, junto a <strong>Jazmín Calcarami</strong>. Una experiencia que ha ampliado mi mirada sobre el maquillaje como lenguaje artístico y sobre la relación entre maquillaje, imagen, moda y creatividad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FILOSOFÍA ============ -->
+  <section class="section section--quote section--dark" id="filosofia">
+    <div class="wrap philo">
+      <blockquote class="quote reveal">
+        <p data-i18n="quote.text">“Aprende las reglas como un profesional para romperlas después como artista.”</p>
+        <cite>Pablo Picasso</cite>
+      </blockquote>
+      <div class="philo__grid">
+        <p class="reveal" data-i18n="philo.1">Un maquillador profesional no se define únicamente por el número de técnicas que conoce, sino por su capacidad para <em>observar, analizar, decidir y adaptar</em>.</p>
+        <p class="reveal" data-i18n="philo.2">Aprender maquillaje no consiste solamente en reproducir una técnica, sino en comprender por qué funciona, cuándo utilizarla y cómo transformarla para construir una propuesta propia.</p>
+        <p class="reveal" data-i18n="philo.3">Antes de romper las reglas hay que conocerlas. Y la técnica no limita la creatividad: <strong>cuando se domina, se convierte en libertad</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section class="section" id="servicios">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="eyebrow reveal" data-i18n="services.eyebrow">Servicios</p>
+        <h2 class="reveal" data-i18n="services.title">Maquillaje y <span class="italic">peinado</span></h2>
+        <p class="section__sub reveal" data-i18n="services.sub">Zona de trabajo natural en Granada, con desplazamientos a toda España y al extranjero.</p>
+      </header>
+
+      <ul class="services">
+        <li class="service reveal">
+          <div class="service__head">
+            <h3 data-i18n="service.bride.t">Novia</h3>
+            <span class="service__price" data-i18n="price.quote">Pedir presupuesto</span>
+          </div>
+          <p data-i18n="service.bride.d">Maquillaje y/o peinado de novia. Prueba previa, estudio del look y acompañamiento el día de la boda.</p>
+          <a class="service__link" href="#contacto" data-i18n="cta.ask">Solicitar presupuesto</a>
+        </li>
+
+        <li class="service reveal">
+          <div class="service__head">
+            <h3 data-i18n="service.madrina.t">Madrina</h3>
+            <span class="service__price" data-i18n="price.quote">Pedir presupuesto</span>
+          </div>
+          <p data-i18n="service.madrina.d">Maquillaje y/o peinado de madrina, diseñado en armonía con el estilo del evento.</p>
+          <a class="service__link" href="#contacto" data-i18n="cta.ask">Solicitar presupuesto</a>
+        </li>
+
+        <li class="service reveal">
+          <div class="service__head">
+            <h3 data-i18n="service.home.t">A domicilio o en estudio</h3>
+            <span class="service__price" data-i18n="price.from90">desde 90 €</span>
+          </div>
+          <p data-i18n="service.home.d">Maquillaje y/o peinado para eventos, invitadas y ocasiones especiales, en tu domicilio o en estudio.</p>
+          <a class="service__link" href="#contacto" data-i18n="cta.book">Reservar</a>
+        </li>
+
+        <li class="service reveal">
+          <div class="service__head">
+            <h3 data-i18n="service.shooting.t">Shooting, moda y publicidad</h3>
+            <span class="service__price" data-i18n="price.quote">Pedir presupuesto</span>
+          </div>
+          <p data-i18n="service.shooting.d">Editorial, videoclip, campaña, catálogo y producción audiovisual. Trabajo coordinado con dirección y equipo creativo.</p>
+          <a class="service__link" href="#contacto" data-i18n="cta.project">Hablemos del proyecto</a>
+        </li>
+
+        <li class="service reveal">
+          <div class="service__head">
+            <h3 data-i18n="service.creative.t">Proyectos creativos</h3>
+            <span class="service__price" data-i18n="price.quote">Pedir presupuesto</span>
+          </div>
+          <p data-i18n="service.creative.d">Investigación creativa y lenguaje visual: propuestas de autor, colaboraciones artísticas y desarrollo de concepto.</p>
+          <a class="service__link" href="#contacto" data-i18n="cta.collab">Proponer una colaboración</a>
+        </li>
+
+        <li class="service reveal">
+          <div class="service__head">
+            <h3 data-i18n="service.school.t">Formación · Escuma Granada</h3>
+            <span class="service__price" data-i18n="price.info">Más información</span>
+          </div>
+          <p data-i18n="service.school.d">Escuela de maquillaje profesional. Comprender por qué funciona una técnica, cuándo usarla y cómo transformarla.</p>
+          <a class="service__link" href="#contacto" data-i18n="cta.info">Pedir información</a>
+        </li>
+      </ul>
+
+      <!-- Diseño de mirada -->
+      <div class="gaze">
+        <h3 class="gaze__title reveal" data-i18n="gaze.title">Diseño de mirada</h3>
+        <ol class="gaze__list">
+          <li class="gaze__item reveal">
+            <span class="gaze__num">01</span>
+            <div>
+              <h4 data-i18n="gaze.brows.t">Diseño y laminado de cejas</h4>
+              <p data-i18n="gaze.brows.d">Estudio de la forma según proporción y expresión, más laminado para fijar y ordenar el pelo.</p>
+            </div>
+            <span class="gaze__price">38 €</span>
+          </li>
+          <li class="gaze__item reveal">
+            <span class="gaze__num">02</span>
+            <div>
+              <h4 data-i18n="gaze.lash.t">Lifting coreano de pestañas</h4>
+              <p data-i18n="gaze.lash.d">Curvatura natural y duradera que abre la mirada sin necesidad de extensiones.</p>
+            </div>
+            <span class="gaze__price">40 €</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PORTFOLIO ============ -->
+  <section class="section section--portfolio section--dark" id="portfolio">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="eyebrow reveal" data-i18n="portfolio.eyebrow">Portfolio</p>
+        <h2 class="reveal" data-i18n="portfolio.title">El trabajo, <span class="italic">en imágenes</span></h2>
+      </header>
+
+      <div class="filters reveal" role="group" aria-label="Filtrar portfolio">
+        <button type="button" class="filter is-active" data-filter="all" data-i18n="filter.all">Todo</button>
+        <button type="button" class="filter" data-filter="novias" data-i18n="filter.brides">Novias y eventos</button>
+        <button type="button" class="filter" data-filter="moda" data-i18n="filter.fashion">Moda y publicaciones</button>
+        <button type="button" class="filter" data-filter="audiovisual" data-i18n="filter.av">Audiovisuales</button>
+        <button type="button" class="filter" data-filter="formacion" data-i18n="filter.training">Formación</button>
+      </div>
+
+      <div class="grid" id="grid"></div>
+
+      <p class="portfolio__note reveal">
+        <a class="link-ext" href="https://www.instagram.com/chiojimenezmaquillajepro" target="_blank" rel="noopener noreferrer" data-i18n="portfolio.ig">Más trabajos en Instagram</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ TRABAJOS DESTACADOS ============ -->
+  <section class="section" id="destacados">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="eyebrow reveal" data-i18n="featured.eyebrow">Trabajos destacados</p>
+        <h2 class="reveal" data-i18n="featured.title">Clientes y <span class="italic">proyectos</span></h2>
+      </header>
+
+      <article class="feature reveal">
+        <span class="feature__tag" data-i18n="featured.couture">Alta costura</span>
+        <h3 data-i18n="featured.paris.t">Key Make Up Artist · Paris Haute Couture Week 2026</h3>
+        <p data-i18n="featured.paris.d">Dirección de maquillaje para <strong>Leandro Cano</strong> en la Semana de la Alta Costura de París.</p>
+      </article>
+
+      <ul class="works">
+        <li class="work reveal">
+          <span class="work__cat" data-i18n="cat.video">Videoclip</span>
+          <h3 class="work__client">Sayko</h3>
+          <p class="work__items">Videoclip <em>Luna</em> · <span data-i18n="work.sayko">Intro de <em>Sakura</em></span></p>
+        </li>
+        <li class="work reveal">
+          <span class="work__cat" data-i18n="cat.adv">Publicidad · Música</span>
+          <h3 class="work__client">Dellafuente</h3>
+          <p class="work__items" data-i18n="work.della">Promo <em>Adidas</em> · Material de presentación del álbum <em>Brigado</em></p>
+        </li>
+        <li class="work reveal">
+          <span class="work__cat" data-i18n="cat.video">Videoclip</span>
+          <h3 class="work__client">Carmen Avilés</h3>
+          <p class="work__items"><em>Otra canción</em> · <em>Amor gitano</em> · <em>Baila</em> · <em>Se secó la flor</em> · <em>Niña Mariola</em></p>
+        </li>
+        <li class="work reveal">
+          <span class="work__cat" data-i18n="cat.video">Videoclip</span>
+          <h3 class="work__client">Lori Meyers</h3>
+          <p class="work__items"><em>En lo total</em> · <em>Malafollá</em> · <em>Tus amigos</em></p>
+        </li>
+        <li class="work reveal">
+          <span class="work__cat" data-i18n="cat.video">Videoclip</span>
+          <h3 class="work__client">Pepe &amp; Vizio</h3>
+          <p class="work__items"><em>Pa mi gente</em></p>
+        </li>
+        <li class="work reveal">
+          <span class="work__cat" data-i18n="cat.video">Videoclip</span>
+          <h3 class="work__client">Eskorzo</h3>
+          <p class="work__items"><em>Cuando ya no quede nada</em> · <em>Se tiene que acabar</em></p>
+        </li>
+        <li class="work reveal">
+          <span class="work__cat" data-i18n="cat.campaign">Campaña</span>
+          <h3 class="work__client">Camin</h3>
+          <p class="work__items" data-i18n="work.camin">Campaña publicitaria</p>
+        </li>
+      </ul>
+
+      <div class="press reveal">
+        <h3 class="press__title" data-i18n="press.title">Publicada en</h3>
+        <ul class="press__list">
+          <li>
+            <span class="press__mag">MOEVIR Magazine</span>
+            <span class="press__works"><em>Disco</em> · <em>Winter Brides</em></span>
+          </li>
+          <li>
+            <span class="press__mag">StyleCruze Magazine</span>
+            <span class="press__works"><em>The Black Orchid</em> · <em>The Last Gheisa</em> · <em>All Green</em> · <em>Neon Vibes</em> · <em>Young and Beauty</em> · <em>Flower Girl</em> · <em>Electric</em></span>
+          </li>
+          <li>
+            <span class="press__mag">Vigour Magazine</span>
+            <span class="press__works"><em>Sauvage Swan</em> · <span data-i18n="press.beauty">Editorial de belleza</span></span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="section section--contact section--dark" id="contacto">
+    <div class="wrap contact">
+      <div class="contact__intro">
+        <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contacto</p>
+        <h2 class="reveal" data-i18n="contact.title">Cuéntame tu <span class="italic">proyecto</span></h2>
+        <p class="contact__lead reveal" data-i18n="contact.lead">Bodas, eventos, producciones audiovisuales, publicidad y proyectos creativos. Escríbeme con la fecha y los detalles y te preparo un presupuesto a medida.</p>
+
+        <ul class="contact__data reveal">
+          <li>
+            <span class="contact__label" data-i18n="contact.whatsapp">WhatsApp</span>
+            <a href="https://wa.me/34627232326" target="_blank" rel="noopener noreferrer">+34 627 23 23 26</a>
+          </li>
+          <li>
+            <span class="contact__label" data-i18n="contact.email">Email</span>
+            <a href="mailto:chiojm@gmail.com">chiojm@gmail.com</a>
+          </li>
+          <li>
+            <span class="contact__label" data-i18n="contact.area">Zona de trabajo</span>
+            <span data-i18n="contact.areaval">Granada · Toda España · Internacional</span>
+          </li>
+          <li>
+            <span class="contact__label" data-i18n="contact.reviews">Reseñas</span>
+            <a href="https://maps.app.goo.gl/6aUgYZmsuYcvuNWE8?g_st=ic" target="_blank" rel="noopener noreferrer" data-i18n="contact.reviewsval">Ver opiniones en Google</a>
+          </li>
+          <li>
+            <span class="contact__label" data-i18n="contact.social">Redes</span>
+            <span class="contact__social">
+              <a href="https://www.instagram.com/chiojimenezmaquillajepro" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.tiktok.com/@chiojimenezmaquillajepro" target="_blank" rel="noopener noreferrer">TikTok</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <form class="form reveal" id="contactForm" novalidate>
+        <div class="field">
+          <label for="f-nombre" data-i18n="form.name">Nombre y apellidos</label>
+          <input type="text" id="f-nombre" name="nombre" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email" data-i18n="form.email">Email</label>
+          <input type="email" id="f-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-tel" data-i18n="form.phone">Teléfono <span class="opt" data-i18n="form.optional">(opcional)</span></label>
+          <input type="tel" id="f-tel" name="telefono" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="f-servicio" data-i18n="form.service">Servicio</label>
+          <select id="f-servicio" name="servicio" required>
+            <option value="" selected disabled data-i18n="form.choose">Selecciona un servicio</option>
+            <option data-i18n="service.bride.t">Novia</option>
+            <option data-i18n="service.madrina.t">Madrina</option>
+            <option data-i18n="service.home.t">A domicilio o en estudio</option>
+            <option data-i18n="service.shooting.t">Shooting, moda y publicidad</option>
+            <option data-i18n="service.creative.t">Proyectos creativos</option>
+            <option data-i18n="gaze.brows.t">Diseño y laminado de cejas</option>
+            <option data-i18n="gaze.lash.t">Lifting coreano de pestañas</option>
+            <option data-i18n="service.school.t">Formación · Escuma Granada</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-fecha" data-i18n="form.date">Fecha <span class="opt" data-i18n="form.optional">(opcional)</span></label>
+          <input type="date" id="f-fecha" name="fecha">
+        </div>
+        <div class="field">
+          <label for="f-lugar" data-i18n="form.place">Lugar <span class="opt" data-i18n="form.optional">(opcional)</span></label>
+          <input type="text" id="f-lugar" name="lugar">
+        </div>
+        <div class="field field--full">
+          <label for="f-mensaje" data-i18n="form.message">Cuéntame más</label>
+          <textarea id="f-mensaje" name="mensaje" rows="5" required></textarea>
+        </div>
+        <div class="form__actions">
+          <button class="btn btn--light" type="submit" data-i18n="form.send">Enviar por WhatsApp</button>
+          <button class="btn btn--ghost" type="button" id="sendMail" data-i18n="form.sendmail">Enviar por email</button>
+        </div>
+        <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer footer--dark">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <img class="footer__logo" data-cj="logo-blanco.png" alt="Chío Jiménez · Maquillaje profesional" width="1600" height="475" loading="lazy">
+    </div>
+    <nav class="footer__nav" aria-label="Navegación del pie">
+      <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#destacados" data-i18n="nav.featured">Trabajos destacados</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+    </nav>
+    <div class="footer__social">
+      <a href="https://www.instagram.com/chiojimenezmaquillajepro" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.tiktok.com/@chiojimenezmaquillajepro" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="mailto:chiojm@gmail.com">Email</a>
+    </div>
+    <p class="footer__legal">© <span id="year">2026</span> Chío Jiménez. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/34627232326" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.06c-.24.68-1.42 1.32-1.95 1.36-.5.04-.98.22-3.3-.69-2.78-1.1-4.54-3.94-4.68-4.13-.14-.18-1.12-1.49-1.12-2.84 0-1.35.71-2.01.96-2.29.25-.28.55-.35.73-.35.18 0 .37 0 .53.01.17.01.4-.06.62.48.24.57.8 1.97.87 2.11.07.14.12.31.02.49-.09.18-.14.29-.28.45-.14.16-.29.35-.42.47-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.17-.19.69-.8.88-1.08.18-.28.37-.23.62-.14.25.09 1.6.75 1.87.89.28.14.46.21.53.32.07.12.07.66-.17 1.33z"/></svg>
+</a>
+
+
+
+</div>
+
+<script>
+// coloca las imágenes desde la carpeta indicada arriba
+(function () {
+  var base = window.CJ_IMAGENES || '';
+  var nodos = document.querySelectorAll('.cj [data-cj]');
+  for (var i = 0; i < nodos.length; i++) nodos[i].src = base + nodos[i].getAttribute('data-cj');
+})();
+/* =========================================================
+   Chío Jiménez · Maquillaje profesional
+   ========================================================= */
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     DATOS DE CONTACTO  ·  editar aquí si cambian
+     --------------------------------------------------------- */
+  var CONTACT = {
+    phone: '34627232326',          // WhatsApp, sin + ni espacios
+    email: 'chiojm@gmail.com'
+  };
+
+  /* ---------------------------------------------------------
+     PORTFOLIO
+     Para añadir una foto: sube el archivo a assets/img/ y añade
+     una línea aquí. cat: novias | moda | audiovisual | creativo
+     wide:true hace la pieza el doble de ancha.
+     --------------------------------------------------------- */
+  var PHOTOS = [
+    { src: 'pub-01.jpg',       cat: 'moda',        es: 'MOEVIR · Disco',              en: 'MOEVIR · Disco' },
+    { src: 'nov-01.jpg',       cat: 'novias',      es: 'Recogido de novia',           en: 'Bridal updo' },
+    { src: 'pub-05.jpg',       cat: 'moda',        es: 'StyleCruze · The Last Gheisa', en: 'StyleCruze · The Last Gheisa' },
+    { src: 'nov-02.jpg',       cat: 'novias',      es: 'Maquillaje de novia',         en: 'Bridal make-up' },
+    { src: 'pub-09.jpg',       cat: 'moda',        es: 'MOEVIR · Winter Brides',      en: 'MOEVIR · Winter Brides' },
+    { src: 'nov-12.jpg',       cat: 'novias',      es: 'Preparativos',                en: 'Getting ready', wide: true },
+    { src: 'pub-02.jpg',       cat: 'moda',        es: 'StyleCruze · The Black Orchid', en: 'StyleCruze · The Black Orchid' },
+    { src: 'nov-04.jpg',       cat: 'novias',      es: 'Novia con flores',            en: 'Bride with flowers' },
+    { src: 'pub-11.jpg',       cat: 'moda',        es: 'StyleCruze · Electric',       en: 'StyleCruze · Electric' },
+    { src: 'nov-05.jpg',       cat: 'novias',      es: 'Antes de la ceremonia',       en: 'Before the ceremony' },
+    { src: 'pub-10.jpg',       cat: 'moda',        es: 'StyleCruze · Flower Girl',    en: 'StyleCruze · Flower Girl' },
+    { src: 'nov-03.jpg',       cat: 'novias',      es: 'Belleza natural',             en: 'Natural beauty' },
+    { src: 'pub-06.jpg',       cat: 'moda',        es: 'StyleCruze · All Green',      en: 'StyleCruze · All Green' },
+    { src: 'nov-06.jpg',       cat: 'novias',      es: 'Corona y velo',               en: 'Crown and veil' },
+    { src: 'pub-04.jpg',       cat: 'moda',        es: 'Vigour · Sauvage Swan',       en: 'Vigour · Sauvage Swan' },
+    { src: 'nov-07.jpg',       cat: 'novias',      es: 'Recogido pulido',             en: 'Sleek updo' },
+    { src: 'pub-07.jpg',       cat: 'moda',        es: 'StyleCruze · Neon Vibes',     en: 'StyleCruze · Neon Vibes' },
+    { src: 'nov-08.jpg',       cat: 'novias',      es: 'Tiara y trenza',              en: 'Tiara and braid' },
+    { src: 'pub-03.jpg',       cat: 'moda',        es: 'Vigour · Belleza natural',    en: 'Vigour · Natural beauty' },
+    { src: 'nov-09.jpg',       cat: 'novias',      es: 'Novia con corona',            en: 'Bride with crown' },
+    { src: 'pub-08.jpg',       cat: 'moda',        es: 'StyleCruze · Young and Beauty', en: 'StyleCruze · Young and Beauty' },
+    { src: 'nov-10.jpg',       cat: 'novias',      es: 'Semirecogido',                en: 'Half-up hair' },
+    { src: 'moda-02.jpg',      cat: 'moda',        es: 'Maquillaje artístico',        en: 'Artistic make-up' },
+    { src: 'moda-04.jpg',      cat: 'moda',        es: 'Editorial de moda',           en: 'Fashion editorial' },
+    { src: 'nov-11.jpg',       cat: 'novias',      es: 'El proceso',                  en: 'The process' },
+    { src: 'novia-02.jpg',     cat: 'novias',      es: 'Preparativos en el hotel',    en: 'Getting ready at the hotel', wide: true },
+    { src: 'novia-01.jpg',     cat: 'novias',      es: 'Peinado de novia',            en: 'Bridal hair' },
+    { src: 'novia-03.jpg',     cat: 'novias',      es: 'El día de la boda',           en: 'The wedding day' },
+    { src: 'evento-01.jpg',    cat: 'novias',      es: 'Prueba de novia',             en: 'Bridal trial', wide: true },
+    { src: 'av-01.jpg',        cat: 'audiovisual', es: 'Rodaje',                      en: 'On set' },
+    { src: 'av-02.jpg',        cat: 'audiovisual', es: 'Maquillaje en set',           en: 'Make-up on set' },
+    { src: 'av-03.jpg',        cat: 'audiovisual', es: 'Peinado en rodaje',           en: 'Hair on set' },
+    { src: 'formacion-01.jpg', cat: 'formacion',   es: 'Escuma Granada',              en: 'Escuma Granada', wide: true }
+  ];
+
+  /* ---------------------------------------------------------
+     MARQUEE
+     --------------------------------------------------------- */
+  var BRANDS = [
+    'Paris Haute Couture Week 2026', 'Leandro Cano', 'Dellafuente', 'Sayko',
+    'Carmen Avilés', 'Lori Meyers', 'Eskorzo', 'Adidas', 'Camin', 'Pepe & Vizio',
+    'MOEVIR Magazine', 'StyleCruze Magazine', 'Vigour Magazine'
+  ];
+
+  /* ---------------------------------------------------------
+     TRADUCCIONES
+     --------------------------------------------------------- */
+  var I18N = {
+    en: {
+      'skip': 'Skip to content',
+      'nav.about': 'About', 'nav.services': 'Services', 'nav.portfolio': 'Portfolio',
+      'nav.featured': 'Featured work', 'nav.contact': 'Contact', 'nav.menu': 'Menu',
+
+      'hero.eyebrow': 'Professional make-up artist · Director of Escuma Granada',
+      'hero.lead': 'Science, technique and art. Three disciplines that never stand apart: together they shape the way I understand make-up.',
+      'hero.meta': 'Granada · All of Spain · International',
+      'cta.quote': 'Request a quote', 'cta.portfolio': 'View portfolio',
+
+      'about.eyebrow': 'About me',
+      'about.title': 'Observe, understand,<br><span class="italic">analyse and decide</span>',
+      'about.body':
+        '<p>I am a professional make-up artist, teacher and director of <strong>Escuma Granada</strong>. The way I understand make-up comes from the union of science, technique and art: three disciplines that, far from being separate, complement each other and shape the way I work.</p>' +
+        '<p>I hold a <strong>degree in Biology</strong> from the University of Granada and postgraduate training in <strong>Cosmetics</strong>. Before devoting myself fully to make-up, I spent 19 years working in the pharmaceutical laboratory field. That experience gave me a rigorous, analytical training that is still essential to the way I work today: observing, understanding, analysing and making decisions with judgement.</p>' +
+        '<p>My training as a professional make-up artist began in Madrid, at the now-closed <strong>Bôgart Make Up</strong> school, with <strong>Baltasar González Pinel</strong>. There I built a solid technical foundation and discovered a way of understanding make-up that went far beyond execution: a deep knowledge of technique as the tool that makes creation possible.</p>' +
+        '<p>Since <strong>2008</strong> I have worked professionally as a make-up artist across different fields, evolving continuously through training and experience. In <strong>2019</strong> I decided to devote myself exclusively to make-up and teaching, opening a new professional chapter in which Escuma Granada was born and continues to grow.</p>' +
+        '<p>My work brings together the knowledge of skin and cosmetics, colour, make-up technique, painting techniques, fashion history and, increasingly, creative research and visual language.</p>' +
+        '<p>My most recent training in fashion and creativity took place at <strong>Kabuki Make Up</strong>, in Buenos Aires, with <strong>Jazmín Calcarami</strong>. An experience that widened my view of make-up as an artistic language and of the relationship between make-up, image, fashion and creativity.</p>',
+      'facts.start': 'Career begins', 'facts.lab': 'Years in pharmaceutical labs',
+      'facts.escuma': 'Full dedication · Escuma is born',
+
+      'quote.text': '“Learn the rules like a pro, so you can break them like an artist.”',
+      'philo.1': 'A professional make-up artist is not defined solely by the number of techniques they know, but by their ability to <em>observe, analyse, decide and adapt</em>.',
+      'philo.2': 'Learning make-up is not only about reproducing a technique, but about understanding why it works, when to use it and how to transform it to build a proposal of your own.',
+      'philo.3': 'Before breaking the rules you have to know them. And technique does not limit creativity: <strong>once mastered, it becomes freedom</strong>.',
+
+      'services.eyebrow': 'Services',
+      'services.title': 'Make-up and <span class="italic">hair</span>',
+      'services.sub': 'Based in Granada, travelling throughout Spain and abroad.',
+      'service.bride.t': 'Bride',
+      'service.bride.d': 'Bridal make-up and/or hair. Trial session, look design and support on the wedding day.',
+      'service.madrina.t': 'Mother of the bride / groom',
+      'service.madrina.d': 'Make-up and/or hair designed in harmony with the style of the event.',
+      'service.home.t': 'At home or in studio',
+      'service.home.d': 'Make-up and/or hair for events, guests and special occasions, at your home or in studio.',
+      'service.shooting.t': 'Shooting, fashion and advertising',
+      'service.shooting.d': 'Editorial, music video, campaign, catalogue and audiovisual production. Working closely with direction and the creative team.',
+      'service.creative.t': 'Creative projects',
+      'service.creative.d': 'Creative research and visual language: authorial proposals, artistic collaborations and concept development.',
+      'service.school.t': 'Training · Escuma Granada',
+      'service.school.d': 'Professional make-up school. Understanding why a technique works, when to use it and how to transform it.',
+      'price.quote': 'Request a quote', 'price.from90': 'from €90', 'price.info': 'More information',
+      'cta.ask': 'Request a quote', 'cta.book': 'Book', 'cta.project': "Let's talk about it",
+      'cta.collab': 'Propose a collaboration', 'cta.info': 'Request information',
+
+      'gaze.title': 'Eye design',
+      'gaze.brows.t': 'Brow design and lamination',
+      'gaze.brows.d': 'Shape study based on proportion and expression, plus lamination to set and order the hair.',
+      'gaze.lash.t': 'Korean lash lift',
+      'gaze.lash.d': 'A natural, long-lasting curl that opens the eye without extensions.',
+
+      'portfolio.eyebrow': 'Portfolio',
+      'portfolio.title': 'The work, <span class="italic">in images</span>',
+      'portfolio.ig': 'More work on Instagram',
+      'filter.all': 'All', 'filter.brides': 'Brides & events', 'filter.fashion': 'Fashion & press',
+      'filter.av': 'Audiovisual', 'filter.training': 'Training', 'filter.creative': 'Creative',
+      'portfolio.empty': 'New images coming soon.',
+
+      'featured.eyebrow': 'Featured work',
+      'featured.title': 'Clients and <span class="italic">projects</span>',
+      'featured.couture': 'Haute couture',
+      'featured.paris.t': 'Key Make Up Artist · Paris Haute Couture Week 2026',
+      'featured.paris.d': 'Make-up direction for <strong>Leandro Cano</strong> at Paris Haute Couture Week.',
+      'cat.video': 'Music video', 'cat.adv': 'Advertising · Music', 'cat.campaign': 'Campaign',
+      'work.sayko': 'Intro for <em>Sakura</em>',
+      'work.della': '<em>Adidas</em> promo · Launch material for the album <em>Brigado</em>',
+      'work.camin': 'Advertising campaign',
+
+      'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
+
+      'contact.eyebrow': 'Contact',
+      'contact.title': 'Tell me about your <span class="italic">project</span>',
+      'contact.lead': 'Weddings, events, audiovisual productions, advertising and creative projects. Write to me with the date and the details and I will prepare a tailored quote.',
+      'contact.whatsapp': 'WhatsApp', 'contact.email': 'Email',
+      'contact.area': 'Working area', 'contact.areaval': 'Granada · All of Spain · International',
+      'contact.reviews': 'Reviews', 'contact.reviewsval': 'Read reviews on Google',
+      'contact.social': 'Social',
+
+      'form.name': 'Full name', 'form.email': 'Email', 'form.phone': 'Phone',
+      'form.service': 'Service', 'form.choose': 'Choose a service',
+      'form.date': 'Date', 'form.place': 'Location', 'form.message': 'Tell me more',
+      'form.optional': '(optional)',
+      'form.send': 'Send via WhatsApp', 'form.sendmail': 'Send by email',
+      'form.error': 'Please fill in the required fields.',
+      'form.okwa': 'Opening WhatsApp with your message…',
+      'form.okmail': 'Opening your email app…',
+      'form.subject': 'Enquiry from the website',
+
+      'footer.role': 'Professional make-up artist · Granada',
+      'footer.rights': 'All rights reserved.'
+    }
+  };
+
+  var $  = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  var state = { lang: 'es', filter: 'all' };
+  var originals = null;
+
+  /* =========================================================
+     IDIOMA
+     ========================================================= */
+  function cacheOriginals() {
+    originals = [];
+    $$('[data-i18n]').forEach(function (el) {
+      originals.push({ el: el, html: el.innerHTML });
+    });
+  }
+
+  function t(key) {
+    var dict = I18N[state.lang];
+    return dict ? dict[key] : null;
+  }
+
+  function applyLang(lang) {
+    state.lang = lang;
+    document.documentElement.lang = lang;
+
+    originals.forEach(function (o) {
+      if (lang === 'es') {
+        o.el.innerHTML = o.html;
+        return;
+      }
+      var val = t(o.el.getAttribute('data-i18n'));
+      if (val != null) o.el.innerHTML = val;
+    });
+
+    $$('.lang__btn').forEach(function (b) {
+      var on = b.getAttribute('data-lang') === lang;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+
+    try { localStorage.setItem('cj-lang', lang); } catch (e) { /* modo privado */ }
+
+    renderGrid();
+  }
+
+  function initLang() {
+    cacheOriginals();
+
+    var saved = null;
+    try { saved = localStorage.getItem('cj-lang'); } catch (e) { /* modo privado */ }
+
+    var lang;
+    if (saved === 'es' || saved === 'en') {
+      lang = saved;                                  // preferencia guardada
+    } else {
+      var browser = (navigator.language || 'es').toLowerCase();
+      lang = browser.indexOf('es') === 0 ? 'es' : 'en';
+    }
+    $$('.lang__btn').forEach(function (b) {
+      b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
+    });
+    applyLang(lang);
+  }
+
+  /* =========================================================
+     NAV
+     ========================================================= */
+  function initNav() {
+    var nav = $('#nav');
+    if (!nav) {                       // versión para widget: no hay cabecera
+      var waSuelto = $('.wa');
+      if (waSuelto) waSuelto.classList.add('is-visible');
+      return;
+    }
+    var toggle = $('#navToggle');
+    var menu = $('#navMenu');
+
+    var hero = $('#top');
+    var wa = $('.wa');
+
+    var onScroll = function () {
+      // La cabecera va en blanco mientras queda sobre la portada en negro,
+      // y pasa a fondo claro en cuanto la portada deja de estar detrás.
+      var limite = hero ? hero.offsetHeight - nav.offsetHeight : 40;
+      var sobreLaPortada = window.scrollY < limite;
+
+      nav.classList.toggle('is-on-dark', sobreLaPortada);
+      nav.classList.toggle('is-stuck', !sobreLaPortada);
+      if (wa) wa.classList.toggle('is-visible', window.scrollY > 400);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      onScroll();
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    $$('a', menu).forEach(function (a) {
+      a.addEventListener('click', function () {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Sección activa
+    var links = $$('a[href^="#"]', menu);
+    var sections = links.map(function (a) { return $(a.getAttribute('href')); }).filter(Boolean);
+    if ('IntersectionObserver' in window && sections.length) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          links.forEach(function (a) {
+            a.classList.toggle('is-current', a.getAttribute('href') === '#' + e.target.id);
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach(function (s) { spy.observe(s); });
+    }
+  }
+
+  /* =========================================================
+     MARQUEE
+     ========================================================= */
+  function initMarquee() {
+    var track = $('#marqueeTrack');
+    if (!track) return;
+    var half = BRANDS.map(function (b) {
+      return '<span>' + b + '</span><b>·</b>';
+    }).join('');
+    track.innerHTML = half + half; // duplicado para bucle continuo
+  }
+
+  /* =========================================================
+     PORTFOLIO
+     ========================================================= */
+  function renderGrid() {
+    var grid = $('#grid');
+    if (!grid) return;
+
+    var items = PHOTOS.filter(function (p) {
+      return state.filter === 'all' || p.cat === state.filter;
+    });
+
+    grid.innerHTML = items.map(function (p, i) {
+      var title = state.lang === 'en' ? (p.en || p.es) : p.es;
+      return '' +
+        '<button class="tile' + (p.wide ? ' tile--wide' : '') + ' ph reveal" ' +
+              'type="button" data-index="' + i + '" data-ph="' + p.src + '">' +
+          '<img src="' + (window.CJ_IMAGENES || '') + p.src + '" alt="' + title + '" loading="lazy" decoding="async">' +
+          '<span class="tile__meta">' +
+            '<span class="tile__cat">' + catLabel(p.cat) + '</span>' +
+            '<span class="tile__title">' + title + '</span>' +
+          '</span>' +
+        '</button>';
+    }).join('');
+
+    // Marca como vacía toda pieza cuya imagen aún no exista
+    $$('img', grid).forEach(function (img) {
+      img.addEventListener('error', function () {
+        var tile = img.closest('.tile');
+        if (tile) tile.classList.add('is-empty');
+        img.remove();
+      });
+    });
+
+    $$('.tile', grid).forEach(function (tile) {
+      tile.addEventListener('click', function () {
+        if (tile.classList.contains('is-empty')) return;
+        openLightbox(items, parseInt(tile.getAttribute('data-index'), 10));
+      });
+    });
+
+    observeReveals(grid);
+  }
+
+  function catLabel(cat) {
+    var map = {
+      novias:      { es: 'Novias y eventos',  en: 'Brides & events' },
+      moda:        { es: 'Moda y publicaciones', en: 'Fashion & press' },
+      audiovisual: { es: 'Audiovisuales',     en: 'Audiovisual' },
+      formacion:   { es: 'Formación',         en: 'Training' },
+      creativo:    { es: 'Creativo',          en: 'Creative' }
+    };
+    var m = map[cat];
+    return m ? m[state.lang] || m.es : cat;
+  }
+
+  function initFilters() {
+    $$('.filter').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        $$('.filter').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        state.filter = btn.getAttribute('data-filter');
+        renderGrid();
+      });
+    });
+  }
+
+  /* =========================================================
+     LIGHTBOX
+     ========================================================= */
+  var lb = { el: null, items: [], i: 0, lastFocus: null };
+
+  function buildLightbox() {
+    var el = document.createElement('div');
+    el.className = 'lb';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-modal', 'true');
+    el.innerHTML =
+      '<button class="lb__close" type="button" aria-label="Cerrar">&#10005;</button>' +
+      '<button class="lb__nav lb__nav--prev" type="button" aria-label="Anterior">&#8249;</button>' +
+      '<button class="lb__nav lb__nav--next" type="button" aria-label="Siguiente">&#8250;</button>' +
+      '<div><img alt=""><p class="lb__cap"></p></div>';
+    document.body.appendChild(el);
+
+    $('.lb__close', el).addEventListener('click', closeLightbox);
+    $('.lb__nav--prev', el).addEventListener('click', function () { step(-1); });
+    $('.lb__nav--next', el).addEventListener('click', function () { step(1); });
+    el.addEventListener('click', function (e) { if (e.target === el) closeLightbox(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (!el.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+
+    lb.el = el;
+  }
+
+  function openLightbox(items, i) {
+    if (!lb.el) buildLightbox();
+    lb.items = items;
+    lb.i = i;
+    lb.lastFocus = document.activeElement;
+    paint();
+    lb.el.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    $('.lb__close', lb.el).focus();
+  }
+
+  function closeLightbox() {
+    lb.el.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (lb.lastFocus) lb.lastFocus.focus();
+  }
+
+  function step(dir) {
+    lb.i = (lb.i + dir + lb.items.length) % lb.items.length;
+    paint();
+  }
+
+  function paint() {
+    var p = lb.items[lb.i];
+    var title = state.lang === 'en' ? (p.en || p.es) : p.es;
+    $('img', lb.el).src = (window.CJ_IMAGENES || '') + p.src;
+    $('img', lb.el).alt = title;
+    $('.lb__cap', lb.el).textContent = title + ' · ' + catLabel(p.cat);
+  }
+
+  /* =========================================================
+     FORMULARIO  →  WhatsApp / Email
+     ========================================================= */
+  function initForm() {
+    var form = $('#contactForm');
+    if (!form) return;
+    var note = $('#formNote');
+
+    var read = function () {
+      return {
+        nombre:   form.nombre.value.trim(),
+        email:    form.email.value.trim(),
+        telefono: form.telefono.value.trim(),
+        servicio: form.servicio.value,
+        fecha:    form.fecha.value,
+        lugar:    form.lugar.value.trim(),
+        mensaje:  form.mensaje.value.trim()
+      };
+    };
+
+    var validate = function () {
+      var ok = true;
+      ['nombre', 'email', 'servicio', 'mensaje'].forEach(function (name) {
+        var field = form[name];
+        var empty = !field.value.trim();
+        var bad = name === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(field.value);
+        field.classList.toggle('is-error', empty || bad);
+        if (empty || bad) ok = false;
+      });
+      if (!ok) {
+        note.textContent = state.lang === 'en'
+          ? I18N.en['form.error']
+          : 'Por favor, completa los campos obligatorios.';
+        note.classList.add('is-error');
+      } else {
+        note.classList.remove('is-error');
+      }
+      return ok;
+    };
+
+    var compose = function (d) {
+      var en = state.lang === 'en';
+      var L = en
+        ? { hi: 'Hello Chío, I am writing from your website.', name: 'Name', email: 'Email',
+            phone: 'Phone', service: 'Service', date: 'Date', place: 'Location', msg: 'Message' }
+        : { hi: 'Hola Chío, te escribo desde tu web.', name: 'Nombre', email: 'Email',
+            phone: 'Teléfono', service: 'Servicio', date: 'Fecha', place: 'Lugar', msg: 'Mensaje' };
+
+      var lines = [L.hi, '', L.name + ': ' + d.nombre, L.email + ': ' + d.email];
+      if (d.telefono) lines.push(L.phone + ': ' + d.telefono);
+      lines.push(L.service + ': ' + d.servicio);
+      if (d.fecha) lines.push(L.date + ': ' + d.fecha);
+      if (d.lugar) lines.push(L.place + ': ' + d.lugar);
+      lines.push('', L.msg + ': ' + d.mensaje);
+      return lines.join('\n');
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate()) return;
+      var body = compose(read());
+      note.textContent = state.lang === 'en'
+        ? I18N.en['form.okwa']
+        : 'Abriendo WhatsApp con tu mensaje…';
+      window.open('https://wa.me/' + CONTACT.phone + '?text=' + encodeURIComponent(body), '_blank', 'noopener');
+    });
+
+    $('#sendMail').addEventListener('click', function () {
+      if (!validate()) return;
+      var d = read();
+      var subject = (state.lang === 'en' ? I18N.en['form.subject'] : 'Consulta desde la web') + ' · ' + d.servicio;
+      note.textContent = state.lang === 'en'
+        ? I18N.en['form.okmail']
+        : 'Abriendo tu aplicación de correo…';
+      window.location.href = 'mailto:' + CONTACT.email +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(compose(d));
+    });
+
+    $$('input, select, textarea', form).forEach(function (f) {
+      f.addEventListener('input', function () { f.classList.remove('is-error'); });
+    });
+  }
+
+  /* =========================================================
+     REVEAL AL HACER SCROLL
+     ========================================================= */
+  var revealObserver = null;
+
+  function observeReveals(scope) {
+    if (!('IntersectionObserver' in window)) {
+      $$('.reveal', scope || document).forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    if (!revealObserver) {
+      revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('is-in');
+          revealObserver.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    }
+    $$('.reveal', scope || document).forEach(function (el) {
+      if (!el.classList.contains('is-in')) revealObserver.observe(el);
+    });
+  }
+
+  /* =========================================================
+     INIT
+     ========================================================= */
+  function init() {
+    var y = $('#year');
+    if (y) y.textContent = String(new Date().getFullYear());
+
+    initNav();
+    initMarquee();
+    initFilters();
+    initLang();      // llama a renderGrid()
+    initForm();
+    observeReveals();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+</script>
