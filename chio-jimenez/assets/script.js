@@ -145,7 +145,7 @@
 
       'libro.eyebrow': 'Publication',
       'libro.titulo': 'A Short Guide to Colour for Make-up Artists',
-      'libro.desc': 'Colour is the foundation of everything we do and, at the same time, the least studied. This guide gathers what is essential to understand it and apply it with judgement in make-up: how it behaves, how it is corrected and how it is decided.',
+      'libro.desc': 'A guide to colour for those who work with it. It gathers the way Chío has come to understand it, bringing together her scientific training \u2014a degree in Biology and a master\u2019s in cosmetology\u2014 with the practice of professional make-up.',
       'libro.cta': 'Buy via WhatsApp',
       'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
 
@@ -175,7 +175,7 @@
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-  var state = { lang: 'es', filter: 'novias' };   // ya no hay pestaña "Todo"
+  var state = { lang: 'es', filter: 'moda' };   // se entra por moda y publicaciones
   var originals = null;
 
   /* =========================================================

@@ -810,7 +810,7 @@ html{ overflow-x:clip; }
         <div class="libro__texto">
           <p class="eyebrow" data-i18n="libro.eyebrow">Publicación</p>
           <h3 data-i18n="libro.titulo">Pequeña guía del color para maquilladores</h3>
-          <p data-i18n="libro.desc">El color es la base de todo lo que hacemos y, a la vez, lo que menos se estudia. Esta guía reúne lo esencial para entenderlo y aplicarlo con criterio en el maquillaje: cómo se comporta, cómo se corrige y cómo se decide.</p>
+          <p data-i18n="libro.desc">Una guía sobre el color dirigida a quien trabaja con él. Recoge la forma de entenderlo que Chío ha construido uniendo su formación científica —licenciada en Biología y máster en cosmetología— con la práctica del maquillaje profesional.</p>
           <p class="libro__autora">Chío Jiménez Mejías</p>
           <a class="btn btn--light" href="https://wa.me/34627232326?text=Hola%20Ch%C3%ADo%2C%20quiero%20comprar%20la%20Peque%C3%B1a%20gu%C3%ADa%20del%20color%20para%20maquilladores." target="_blank" rel="noopener noreferrer" data-i18n="libro.cta">Comprar por WhatsApp</a>
         </div>
@@ -827,8 +827,8 @@ html{ overflow-x:clip; }
       </header>
 
       <div class="filters reveal" role="group" aria-label="Filtrar portfolio">
-        <button type="button" class="filter is-active" data-filter="novias" data-i18n="filter.brides">Novias y eventos</button>
-        <button type="button" class="filter" data-filter="moda" data-i18n="filter.fashion">Moda y publicaciones</button>
+        <button type="button" class="filter is-active" data-filter="moda" data-i18n="filter.fashion">Moda y publicaciones</button>
+        <button type="button" class="filter" data-filter="novias" data-i18n="filter.brides">Novias y eventos</button>
         <button type="button" class="filter" data-filter="audiovisual" data-i18n="filter.av">Audiovisuales</button>
         <button type="button" class="filter" data-filter="formacion" data-i18n="filter.training">Formación</button>
       </div>
@@ -1192,7 +1192,7 @@ html{ overflow-x:clip; }
 
       'libro.eyebrow': 'Publication',
       'libro.titulo': 'A Short Guide to Colour for Make-up Artists',
-      'libro.desc': 'Colour is the foundation of everything we do and, at the same time, the least studied. This guide gathers what is essential to understand it and apply it with judgement in make-up: how it behaves, how it is corrected and how it is decided.',
+      'libro.desc': 'A guide to colour for those who work with it. It gathers the way Chío has come to understand it, bringing together her scientific training \u2014a degree in Biology and a master\u2019s in cosmetology\u2014 with the practice of professional make-up.',
       'libro.cta': 'Buy via WhatsApp',
       'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
 
@@ -1222,7 +1222,7 @@ html{ overflow-x:clip; }
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-  var state = { lang: 'es', filter: 'novias' };   // ya no hay pestaña "Todo"
+  var state = { lang: 'es', filter: 'moda' };   // se entra por moda y publicaciones
   var originals = null;
 
   /* =========================================================
