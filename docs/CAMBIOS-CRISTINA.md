@@ -81,28 +81,33 @@ el resto del material.
 | 2 | En obra: «Poesía» y «Literatura infantil y juvenil» | Las dos pestañas. La marquesina de arriba se mueve con ellas, que usa la misma etiqueta |
 | 3 | La reseña de Pedro Cerrillo | Séptima del bloque. Cierra la rejilla en 3×2, que antes quedaba coja |
 | 4 | Fuera «escribo para adultos y para niños» | Quitado del bloque de la portada, que era donde se decía suelto |
+| 5 | La ilustración de portada y el prólogo de cada poemario | Apartado nuevo al final de la pestaña de poesía, con las tres ilustraciones y el prologuista debajo de cada una |
 
-## ⏳ A medias
+## Cómo ha quedado el punto 5
 
-**Punto 5 · La ilustración de portada y el prólogo de cada poemario.**
+Ella daba dos opciones: dentro de la ficha de cada libro, «o bien en un
+apartado dentro de lo que es poesía». Se ha hecho lo segundo, porque son
+dibujos, no portadas: meterlos donde va la cubierta los haría pasar por lo que
+no son, y además *Ítaca es nunca* y *Premura sagrada* sí tienen su cubierta de
+verdad puesta.
 
-De las portadas que mandó se sacan ya los prologuistas, y están puestos en la
-ficha de cada libro:
+Las tres llegaron con mucho papel en blanco alrededor. Se han recortado al
+dibujo dejando un 3 % de margen, y van sobre tarjeta blanca para que el papel
+siga leyéndose como papel sobre el crema de la página.
 
-| Poemario | Prólogo |
-|---|---|
-| Memoria errante | Ramón Palomares |
-| Borrar el paisaje | Margot Carrillo Pimentel |
-| Ítaca es nunca | sin confirmar |
+| Poemario | Ilustración | Pie |
+|---|---|---|
+| Memoria errante | el sello de migración | Prólogo de Ramón Palomares |
+| Borrar el paisaje | la figura a tinta | Prólogo de Margot Carrillo Pimentel |
+| Ítaca es nunca | la ballena | Candaya · 2021 |
 
-Falta lo demás:
+Los prologuistas salen de las cubiertas que ella mandó. **Falta el de *Ítaca
+es nunca***: en su cubierta no aparece, así que ese pie lleva de momento la
+editorial y el año.
 
-- **Los textos de los prólogos.** Sin ellos no hay apartado que montar.
-- **Las ilustraciones sueltas** (la ballena, el dibujo a tinta, el sello de
-  migración). Llegaron dentro del correo, no como archivos, y a ese tamaño no
-  sirven para la web.
-- **Las dos portadas de Candaya completas** (*Memoria errante* en rojo y
-  *Borrar el paisaje* en turquesa). Mismo caso: hacen falta los archivos.
+Y siguen faltando **los textos de los prólogos**, que es la otra mitad de lo
+que pedía. Cuando lleguen caben debajo de cada ilustración sin tocar el
+diseño.
 
 ## ⚠️ El zip venía cambiado
 

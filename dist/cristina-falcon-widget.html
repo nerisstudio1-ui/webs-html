@@ -830,6 +830,57 @@
 #cfm-web .libro__text { font-size: var(--step--1); line-height: 1.7; color: var(--fg-muted); }
 #cfm-web .libro__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
+/* Las ilustraciones de portada de los poemarios.
+   Van dentro de la pestaña de poesía, que es una rejilla: ocupan todo el
+   ancho para no caer como una columna más. */
+#cfm-web .ilustraciones {
+  grid-column: 1 / -1;
+  margin-top: clamp(1rem, 3vw, 2rem);
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--line);
+}
+#cfm-web .ilustraciones__titulo {
+  font-size: var(--step-1);
+  color: var(--verde-hondo);
+  margin-bottom: 0.5rem;
+}
+#cfm-web .ilustraciones__intro {
+  font-size: var(--step--1);
+  line-height: 1.7;
+  color: var(--fg-muted);
+  max-width: 46ch;
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+}
+#cfm-web .ilustraciones__lista {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+#cfm-web .ilustracion { display: grid; gap: 0.9rem; align-content: start; }
+#cfm-web .ilustracion img {
+  width: 100%;
+  height: clamp(9rem, 17vw, 13rem);
+  /* Son dibujos sobre papel blanco: contain y fondo blanco, para no
+     recortarlos y para que el papel siga pareciendo papel. */
+  object-fit: contain;
+  background: #fff;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgb(25 26 23 / 0.07);
+}
+#cfm-web .ilustracion figcaption {
+  display: grid;
+  gap: 0.2rem;
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+#cfm-web .ilustracion figcaption strong { color: var(--verde-hondo); font-weight: 500; }
+#cfm-web .ilustracion figcaption span {
+  color: var(--fg-muted);
+  font-size: 0.8em;
+  letter-spacing: 0.06em;
+}
+
 /* Libro destacado / novedad */
 #cfm-web .novedad {
   display: grid;
@@ -1569,6 +1620,43 @@
         <p class="libro__text"  data-i18n="libro.p4.texto">—</p>
       </article>
 
+      <!-- Las ilustraciones de portada, que ella quería ver aparte -->
+      <section class="ilustraciones reveal" aria-labelledby="ilustraciones-titulo">
+        <h3 class="ilustraciones__titulo" id="ilustraciones-titulo"
+            data-i18n="obra.ilustraciones.titulo">Las ilustraciones de portada</h3>
+        <p class="ilustraciones__intro" data-i18n="obra.ilustraciones.intro">—</p>
+
+        <div class="ilustraciones__lista">
+          <figure class="ilustracion">
+            <img width="1644" height="1050" loading="lazy"
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/memoria-sello.jpg" alt=""
+                 data-i18n-attr="alt:obra.ilus.p3.alt">
+            <figcaption>
+              <strong data-i18n="libro.p3.titulo">—</strong>
+              <span data-i18n="obra.ilus.p3.pie">—</span>
+            </figcaption>
+          </figure>
+          <figure class="ilustracion">
+            <img width="1978" height="1414" loading="lazy"
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/borrar-tinta.jpg" alt=""
+                 data-i18n-attr="alt:obra.ilus.p2.alt">
+            <figcaption>
+              <strong data-i18n="libro.p2.titulo">—</strong>
+              <span data-i18n="obra.ilus.p2.pie">—</span>
+            </figcaption>
+          </figure>
+          <figure class="ilustracion">
+            <img width="1072" height="692" loading="lazy"
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/itaca-ballena.jpg" alt=""
+                 data-i18n-attr="alt:obra.ilus.p1.alt">
+            <figcaption>
+              <strong data-i18n="libro.p1.titulo">—</strong>
+              <span data-i18n="obra.ilus.p1.pie">—</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
     </div>
 
     <div class="libros" role="tabpanel" id="panel-infantil" aria-labelledby="tab-infantil" hidden>
@@ -2123,6 +2211,14 @@ window.I18N = {
     "obra.titulo": "Los libros",
     "obra.intro": "Cuatro poemarios, una veintena de libros para la infancia y la presencia en antologías de poesía venezolana e iberoamericana.",
     "obra.tab.poesia": "Poesía",
+    "obra.ilustraciones.titulo": "Las ilustraciones de portada",
+    "obra.ilustraciones.intro": "Los tres poemarios de Candaya llevan en la cubierta una imagen distinta. Aquí están sueltas, fuera del libro.",
+    "obra.ilus.p1.alt": "Ilustración de la portada de Ítaca es nunca: una ballena de acuarela con barcos y olas dibujados dentro",
+    "obra.ilus.p1.pie": "Candaya · 2021",
+    "obra.ilus.p2.alt": "Ilustración de la portada de Borrar el paisaje: figura recostada dibujada a tinta, con salpicaduras",
+    "obra.ilus.p2.pie": "Prólogo de Margot Carrillo Pimentel",
+    "obra.ilus.p3.alt": "Ilustración de la portada de Memoria errante: un sello de migración de Venezuela sobre un texto manuscrito",
+    "obra.ilus.p3.pie": "Prólogo de Ramón Palomares",
     "obra.tab.infantil": "Literatura infantil y juvenil",
 
     "obra.novedad.kicker": "Novedad · Noviembre 2026",
@@ -2338,6 +2434,14 @@ window.I18N = {
     "obra.titulo": "The books",
     "obra.intro": "Four poetry collections, some twenty books for children, and a presence in anthologies of Venezuelan and Ibero-American poetry.",
     "obra.tab.poesia": "Poetry",
+    "obra.ilustraciones.titulo": "The cover artwork",
+    "obra.ilustraciones.intro": "Each of the three Candaya collections carries a different image on its cover. Here they are on their own, away from the book.",
+    "obra.ilus.p1.alt": "Cover artwork for Ítaca es nunca: a watercolour whale with boats and waves drawn inside it",
+    "obra.ilus.p1.pie": "Candaya · 2021",
+    "obra.ilus.p2.alt": "Cover artwork for Borrar el paisaje: a reclining figure drawn in ink, with spattered marks",
+    "obra.ilus.p2.pie": "Preface by Margot Carrillo Pimentel",
+    "obra.ilus.p3.alt": "Cover artwork for Memoria errante: a Venezuelan migration stamp over handwritten text",
+    "obra.ilus.p3.pie": "Preface by Ramón Palomares",
     "obra.tab.infantil": "Children's and young adult literature",
 
     "obra.novedad.kicker": "New · November 2026",
