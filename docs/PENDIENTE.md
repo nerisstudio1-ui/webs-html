@@ -64,7 +64,15 @@ Faltan:
 | Caja de cuentos y aventuras (2006) | F. Turismo de Cuenca | — |
 
 Las dos de Candaya son las más urgentes, porque son poesía y van en la
-primera pestaña. Las editoriales suelen darlas en alta si se piden.
+primera pestaña. **Cristina las enseñó por correo el 24 de septiembre**
+—*Memoria errante* en rojo y *Borrar el paisaje* en turquesa— pero pegadas
+dentro del mensaje, no como archivo: se ven, no se pueden usar. Basta con que
+las reenvíe adjuntas.
+
+Mientras tanto, esos siete libros llevan una cubierta provisional con su
+título y su editorial, generada con `build/portadas-provisionales.py`. Antes
+eran rectángulos con «Poesía 2» y «600 × 900» dentro, y dos pares de libros
+compartían el mismo archivo, así que salían dos iguales en la misma rejilla.
 
 ### Vídeos — resueltos, pero falta el pie
 Ya están puestos los dos: la lectura de *Ítaca es nunca* y la conversación.
