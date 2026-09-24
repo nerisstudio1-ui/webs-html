@@ -147,6 +147,7 @@
       'libro.titulo': 'A Short Guide to Colour for Make-up Artists',
       'libro.desc': 'A guide to colour for those who work with it. It gathers the way Chío has come to understand it, bringing together her scientific training \u2014a degree in Biology and a master\u2019s in cosmetology\u2014 with the practice of professional make-up.',
       'libro.cta': 'Buy via WhatsApp',
+      'trio.moda': 'Fashion & press', 'trio.novias': 'Brides & events', 'trio.av': 'Audiovisual',
       'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
 
       'contact.eyebrow': 'Contact',

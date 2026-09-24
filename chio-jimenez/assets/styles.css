@@ -244,6 +244,22 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 .philo__grid strong{ color:var(--fg); font-weight:500; }
 .philo__grid em{ color:var(--fg); font-style:normal; font-weight:500; }
 
+
+/* ---------- Trío de fotos, de borde a borde ---------- */
+.trio{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line-soft); }
+.trio__pieza{ position:relative; aspect-ratio:4/5; margin:0; overflow:hidden; }
+.trio__pieza img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+.trio__pieza:hover img{ transform:scale(1.04); }
+.trio__pieza figcaption{
+  position:absolute; inset:auto 0 0 0; padding:18px 20px;
+  background:linear-gradient(to top, rgba(0,0,0,.75), transparent);
+  color:#fff; font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+}
+@media (max-width:760px){
+  .trio{ grid-template-columns:1fr 1fr; }
+  .trio__pieza:last-child{ grid-column:1 / -1; aspect-ratio:16/10; }
+}
+
 /* =========================================================
    SERVICIOS
    ========================================================= */
@@ -287,13 +303,20 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 .philo__fondo img{ width:100%; height:100%; object-fit:cover; object-position:center 25%; }
 /* Velo: general para que el texto se lea en cualquier punto, y reforzado
    por la izquierda, que es donde cae la cita. */
+/* Un solo velo, y solo por la izquierda: lo justo para que la cita se lea.
+   De la mitad derecha en adelante la foto se ve limpia. */
 .section--quote::after{
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:
-    linear-gradient(to right, rgba(8,8,8,.93) 0%, rgba(8,8,8,.80) 38%, rgba(8,8,8,.42) 72%, rgba(8,8,8,.30) 100%),
-    linear-gradient(to bottom, rgba(8,8,8,.30), rgba(8,8,8,.55));
+  background:linear-gradient(to right,
+    rgba(8,8,8,.86) 0%, rgba(8,8,8,.70) 30%, rgba(8,8,8,.28) 60%, rgba(8,8,8,0) 85%);
 }
+.section--quote{ min-height:72vh; display:grid; align-items:center; }
 .philo{ position:relative; z-index:2; }
+.quote{ max-width:none; margin-bottom:0; }
+.quote p{ max-width:16ch; }
+
+/* ---------- Los tres párrafos, en su propia banda ---------- */
+.section--credo{ background:var(--bg-soft); }
 
 /* ---------- La guía publicada ---------- */
 .libro{
@@ -309,11 +332,13 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 .libro__texto .btn{ margin-top:10px; }
 
 @media (max-width:860px){
-  /* en móvil el velo va parejo: la foto queda detrás de todo el texto */
+  /* en móvil el texto ocupa todo el ancho, así que el velo baja en vertical */
+  .section--quote{ min-height:0; }
   .section--quote::after{
-    background:linear-gradient(to bottom, rgba(8,8,8,.72), rgba(8,8,8,.88));
+    background:linear-gradient(to bottom, rgba(8,8,8,.42) 0%, rgba(8,8,8,.78) 55%, rgba(8,8,8,.88) 100%);
   }
-  .philo__fondo img{ object-position:center 20%; }
+  .philo__fondo img{ object-position:center 22%; }
+  .quote p{ max-width:none; }
   .libro{ grid-template-columns:1fr; }
   .libro__portada{ max-width:260px; }
 }

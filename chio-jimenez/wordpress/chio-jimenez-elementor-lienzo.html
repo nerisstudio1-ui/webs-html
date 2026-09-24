@@ -271,6 +271,22 @@
 .cj .philo__grid strong{ color:var(--fg); font-weight:500; }
 .cj .philo__grid em{ color:var(--fg); font-style:normal; font-weight:500; }
 
+
+/* ---------- Trío de fotos, de borde a borde ---------- */
+.cj .trio{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line-soft); }
+.cj .trio__pieza{ position:relative; aspect-ratio:4/5; margin:0; overflow:hidden; }
+.cj .trio__pieza img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+.cj .trio__pieza:hover img{ transform:scale(1.04); }
+.cj .trio__pieza figcaption{
+  position:absolute; inset:auto 0 0 0; padding:18px 20px;
+  background:linear-gradient(to top, rgba(0,0,0,.75), transparent);
+  color:#fff; font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+}
+@media (max-width:760px){
+  .cj .trio{ grid-template-columns:1fr 1fr; }
+  .cj .trio__pieza:last-child{ grid-column:1 / -1; aspect-ratio:16/10; }
+}
+
 /* =========================================================
    SERVICIOS
    ========================================================= */
@@ -314,13 +330,20 @@
 .cj .philo__fondo img{ width:100%; height:100%; object-fit:cover; object-position:center 25%; }
 /* Velo: general para que el texto se lea en cualquier punto, y reforzado
    por la izquierda, que es donde cae la cita. */
+/* Un solo velo, y solo por la izquierda: lo justo para que la cita se lea.
+   De la mitad derecha en adelante la foto se ve limpia. */
 .cj .section--quote::after{
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:
-    linear-gradient(to right, rgba(8,8,8,.93) 0%, rgba(8,8,8,.80) 38%, rgba(8,8,8,.42) 72%, rgba(8,8,8,.30) 100%),
-    linear-gradient(to bottom, rgba(8,8,8,.30), rgba(8,8,8,.55));
+  background:linear-gradient(to right,
+    rgba(8,8,8,.86) 0%, rgba(8,8,8,.70) 30%, rgba(8,8,8,.28) 60%, rgba(8,8,8,0) 85%);
 }
+.cj .section--quote{ min-height:72vh; display:grid; align-items:center; }
 .cj .philo{ position:relative; z-index:2; }
+.cj .quote{ max-width:none; margin-bottom:0; }
+.cj .quote p{ max-width:16ch; }
+
+/* ---------- Los tres párrafos, en su propia banda ---------- */
+.cj .section--credo{ background:var(--bg-soft); }
 
 /* ---------- La guía publicada ---------- */
 .cj .libro{
@@ -336,11 +359,13 @@
 .cj .libro__texto .btn{ margin-top:10px; }
 
 @media (max-width:860px){
-  /* en móvil el velo va parejo: la foto queda detrás de todo el texto */
+  /* en móvil el texto ocupa todo el ancho, así que el velo baja en vertical */
+  .cj .section--quote{ min-height:0; }
   .cj .section--quote::after{
-    background:linear-gradient(to bottom, rgba(8,8,8,.72), rgba(8,8,8,.88));
+    background:linear-gradient(to bottom, rgba(8,8,8,.42) 0%, rgba(8,8,8,.78) 55%, rgba(8,8,8,.88) 100%);
   }
-  .cj .philo__fondo img{ object-position:center 20%; }
+  .cj .philo__fondo img{ object-position:center 22%; }
+  .cj .quote p{ max-width:none; }
   .cj .libro{ grid-template-columns:1fr; }
   .cj .libro__portada{ max-width:260px; }
 }
@@ -717,6 +742,22 @@ html{ overflow-x:clip; }
     </div>
   </section>
 
+  <!-- ============ TRÍO DE FOTOS ============ -->
+  <div class="trio">
+    <figure class="trio__pieza ph reveal" data-ph="pub-01.jpg">
+      <img data-cj="pub-01.jpg" alt="Editorial Disco para la revista MOEVIR" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      <figcaption data-i18n="trio.moda">Moda y publicaciones</figcaption>
+    </figure>
+    <figure class="trio__pieza ph reveal" data-ph="nov-01.jpg">
+      <img data-cj="nov-01.jpg" alt="Recogido de novia con horquillas doradas" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      <figcaption data-i18n="trio.novias">Novias y eventos</figcaption>
+    </figure>
+    <figure class="trio__pieza ph reveal" data-ph="av-02.jpg">
+      <img data-cj="av-02.jpg" alt="Maquillaje en un rodaje" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      <figcaption data-i18n="trio.av">Audiovisuales</figcaption>
+    </figure>
+  </div>
+
   <!-- ============ FILOSOFÍA ============ -->
   <section class="section section--quote section--dark" id="filosofia">
     <figure class="philo__fondo ph" data-ph="creativo-03.jpg" aria-hidden="true">
@@ -728,6 +769,12 @@ html{ overflow-x:clip; }
         <p data-i18n="quote.text">“Aprende las reglas como profesional para que puedas romperlas como artista.”</p>
         <cite>Pablo Picasso</cite>
       </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ FILOSOFÍA · TEXTO ============ -->
+  <section class="section section--credo">
+    <div class="wrap">
       <div class="philo__grid">
         <p class="reveal" data-i18n="philo.1">Un maquillador profesional no se define únicamente por el número de técnicas que conoce, sino por su capacidad para <em>observar, analizar, decidir y adaptar</em>.</p>
         <p class="reveal" data-i18n="philo.2">Aprender maquillaje no consiste solamente en reproducir una técnica, sino en comprender por qué funciona, cuándo utilizarla y cómo transformarla para construir una propuesta propia.</p>
@@ -1216,6 +1263,7 @@ html{ overflow-x:clip; }
       'libro.titulo': 'A Short Guide to Colour for Make-up Artists',
       'libro.desc': 'A guide to colour for those who work with it. It gathers the way Chío has come to understand it, bringing together her scientific training \u2014a degree in Biology and a master\u2019s in cosmetology\u2014 with the practice of professional make-up.',
       'libro.cta': 'Buy via WhatsApp',
+      'trio.moda': 'Fashion & press', 'trio.novias': 'Brides & events', 'trio.av': 'Audiovisual',
       'press.title': 'Featured in', 'press.beauty': 'Beauty editorial',
 
       'contact.eyebrow': 'Contact',
