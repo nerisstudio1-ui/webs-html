@@ -308,14 +308,19 @@
 .cj .gaze__price{ font-size:clamp(20px,2.2vw,28px); letter-spacing:-.03em; white-space:nowrap; }
 
 
-/* ---------- Foto junto a la cita ---------- */
-.cj .philo{ display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:clamp(32px,5vw,72px); align-items:start; }
-.cj .philo__foto{ aspect-ratio:3/4; order:2; }
-.cj .quote{ order:1; }
-.cj .philo__grid{ order:3; grid-column:1 / -1; }
-
-/* ---------- Foto de apertura de una sección ---------- */
-.cj .servicios__foto{ aspect-ratio:21/9; margin-bottom:clamp(32px,4vw,56px); }
+/* ---------- La cita, sobre la foto a sangre ---------- */
+.cj .section--quote{ position:relative; overflow:hidden; }
+.cj .philo__fondo{ position:absolute; inset:0; z-index:0; margin:0; }
+.cj .philo__fondo img{ width:100%; height:100%; object-fit:cover; object-position:center 25%; }
+/* Velo: general para que el texto se lea en cualquier punto, y reforzado
+   por la izquierda, que es donde cae la cita. */
+.cj .section--quote::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(to right, rgba(8,8,8,.93) 0%, rgba(8,8,8,.80) 38%, rgba(8,8,8,.42) 72%, rgba(8,8,8,.30) 100%),
+    linear-gradient(to bottom, rgba(8,8,8,.30), rgba(8,8,8,.55));
+}
+.cj .philo{ position:relative; z-index:2; }
 
 /* ---------- La guía publicada ---------- */
 .cj .libro{
@@ -331,10 +336,11 @@
 .cj .libro__texto .btn{ margin-top:10px; }
 
 @media (max-width:860px){
-  .cj .philo{ grid-template-columns:1fr; }
-  .cj .philo__foto{ order:1; max-width:340px; }
-  .cj .quote{ order:2; }
-  .cj .servicios__foto{ aspect-ratio:16/9; }
+  /* en móvil el velo va parejo: la foto queda detrás de todo el texto */
+  .cj .section--quote::after{
+    background:linear-gradient(to bottom, rgba(8,8,8,.72), rgba(8,8,8,.88));
+  }
+  .cj .philo__fondo img{ object-position:center 20%; }
   .cj .libro{ grid-template-columns:1fr; }
   .cj .libro__portada{ max-width:260px; }
 }
@@ -713,10 +719,11 @@ html{ overflow-x:clip; }
 
   <!-- ============ FILOSOFÍA ============ -->
   <section class="section section--quote section--dark" id="filosofia">
+    <figure class="philo__fondo ph" data-ph="creativo-03.jpg" aria-hidden="true">
+      <img data-cj="creativo-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+    </figure>
+
     <div class="wrap philo">
-      <figure class="philo__foto ph reveal" data-ph="creativo-03.jpg">
-        <img data-cj="creativo-03.jpg" alt="Diseño de mirada en azul, trabajo creativo de Chío Jiménez" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
-      </figure>
       <blockquote class="quote reveal">
         <p data-i18n="quote.text">“Aprende las reglas como profesional para que puedas romperlas como artista.”</p>
         <cite>Pablo Picasso</cite>
@@ -737,10 +744,6 @@ html{ overflow-x:clip; }
         <h2 class="reveal" data-i18n="services.title">Maquillaje y <span class="italic">peinado</span></h2>
         <p class="section__sub reveal" data-i18n="services.sub">Zona de trabajo natural en Granada, con desplazamientos a toda España y al extranjero.</p>
       </header>
-
-      <figure class="servicios__foto ph reveal" data-ph="creativo-04.jpg">
-        <img data-cj="creativo-04.jpg" alt="Color aplicado sobre la piel, trabajo creativo" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
-      </figure>
 
       <ul class="services">
         <li class="service reveal">
