@@ -47,32 +47,29 @@ Faltan **NIF, domicilio fiscal y dominio**. El email ya está puesto.
 
 ## 🟠 Importante
 
-### Faltan 7 portadas
-Ya están puestas 5: *Ítaca es nunca*, *Premura sagrada*, *Al otro lado*,
-*Siwar el jaguar guardián* y *Letras en los cordones*.
+### Faltan 5 portadas
+Ya están puestas 7: *Ítaca es nunca*, *Premura sagrada*, *Al otro lado*,
+*Siwar el jaguar guardián*, *Letras en los cordones*, *Borrar el paisaje* y
+*Memoria errante*. Las dos últimas llegaron el 24 de septiembre. Vienen
+pequeñas —259 × 361 y 395 × 560— y en pantalla normal se ven bien, pero en
+una de alta densidad quedan algo blandas. Si Candaya las tiene en grande,
+merece la pena pedirlas.
 
 Faltan:
 
 | Libro | Editorial | Dónde pedirla |
 |---|---|---|
-| Memoria errante (2009) | Candaya | candaya.com/libro/memoria-errante/ |
-| Borrar el paisaje (2014) | Candaya | candaya.com/libro/borrar-el-paisaje/ |
 | 1, 2, 3, de repente en… | Edebé | — |
 | Peperoncino (2014) | Giunti (Florencia) | giuntialpunto.it |
 | Guías infantiles de España | Susaeta | — |
 | La palabra encantada (2017) | CEPLI-UCLM | uclm.es (CEPLI) |
 | Caja de cuentos y aventuras (2006) | F. Turismo de Cuenca | — |
 
-Las dos de Candaya son las más urgentes, porque son poesía y van en la
-primera pestaña. **Cristina las enseñó por correo el 24 de septiembre**
-—*Memoria errante* en rojo y *Borrar el paisaje* en turquesa— pero pegadas
-dentro del mensaje, no como archivo: se ven, no se pueden usar. Basta con que
-las reenvíe adjuntas.
-
-Mientras tanto, esos siete libros llevan una cubierta provisional con su
-título y su editorial, generada con `build/portadas-provisionales.py`. Antes
-eran rectángulos con «Poesía 2» y «600 × 900» dentro, y dos pares de libros
-compartían el mismo archivo, así que salían dos iguales en la misma rejilla.
+Las cinco que faltan son todas de literatura infantil. Mientras tanto llevan
+una cubierta provisional con su título y su editorial, que genera
+`build/portadas-provisionales.py`. Antes eran rectángulos con «Poesía 2» y
+«600 × 900» dentro, y dos pares de libros compartían el mismo archivo, así
+que salían dos iguales en la misma rejilla.
 
 ### Vídeos — resueltos, pero falta el pie
 Ya están puestos los dos: la lectura de *Ítaca es nunca* y la conversación.

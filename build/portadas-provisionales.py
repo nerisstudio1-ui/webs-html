@@ -25,8 +25,6 @@ TIERRA = '#8A5C3E'
 CREMA  = '#F7F3EA'
 
 LIBROS = [
-    ('poesia-2',   'Borrar el paisaje',           'Candaya · 2014',                      VERDE),
-    ('poesia-3',   'Memoria errante',             'Candaya · 2009',                      AZUL),
     ('infantil-3', 'La palabra encantada',        'CEPLI-UCLM · 2017',                   VERDE),
     ('infantil-4', 'Peperoncino',                 'Giunti Editori · 2014',               TIERRA),
     ('infantil-6', '1, 2, 3, de repente en…',     'Edebé · 2011-2012',                   AZUL),
