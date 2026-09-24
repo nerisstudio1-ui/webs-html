@@ -122,13 +122,13 @@ with open(f"{OUT}/logo-simbolo.svg", "w", encoding="utf-8") as f:
 # 2) Lockup completo (símbolo + ANAHATA + claim)
 word = (f'<text x="300" y="772" text-anchor="middle" fill="{GREEN}" textLength="470" '
         f'lengthAdjust="spacingAndGlyphs" '
-        f'font-family="Cormorant Garamond, Georgia, Times New Roman, serif" font-size="104">'
+        f'font-family="Playfair Display, Georgia, Times New Roman, serif" font-size="104">'
         f'ANAHATA</text>')
 rule = (f'<g stroke="{GOLD}" stroke-width="1.8"><path d="M 72 806 H 282"/><path d="M 318 806 H 528"/></g>'
         + heart(300, 806, 26, GOLD, 0).replace('fill="none"', f'fill="{GOLD}"'))
 claim = (f'<text x="300" y="848" text-anchor="middle" fill="{GOLD}" textLength="470" '
          f'lengthAdjust="spacingAndGlyphs" '
-         f'font-family="Jost, Helvetica Neue, Arial, sans-serif" font-size="22">'
+         f'font-family="DM Sans, Helvetica Neue, Arial, sans-serif" font-size="22">'
          f'YOGA &#8226; PILATES &#8226; CONEXI&#211;N &#8226; TRANSFORMACI&#211;N &#8226; AMOR</text>')
 lau = laurel(286, 898, 104, -1, GOLD, 1.5) + laurel(314, 898, 104, 1, GOLD, 1.5) + \
       f'<circle cx="300" cy="898" r="4.6" fill="{GOLD}"/>'
@@ -165,12 +165,12 @@ for nombre, g, o in (("logo-marca.svg", GREEN, GOLD), ("logo-marca-crema.svg", "
 def lockup(green, gold):
     w = (f'<text x="300" y="772" text-anchor="middle" fill="{green}" textLength="470" '
          f'lengthAdjust="spacingAndGlyphs" '
-         f'font-family="Cormorant Garamond, Georgia, Times New Roman, serif" font-size="104">ANAHATA</text>')
+         f'font-family="Playfair Display, Georgia, Times New Roman, serif" font-size="104">ANAHATA</text>')
     r = (f'<g stroke="{gold}" stroke-width="1.8"><path d="M 72 806 H 282"/><path d="M 318 806 H 528"/></g>'
          + heart(300, 806, 26, gold, 0).replace('fill="none"', f'fill="{gold}"'))
     c = (f'<text x="300" y="848" text-anchor="middle" fill="{gold}" textLength="470" '
          f'lengthAdjust="spacingAndGlyphs" '
-         f'font-family="Jost, Helvetica Neue, Arial, sans-serif" font-size="22">'
+         f'font-family="DM Sans, Helvetica Neue, Arial, sans-serif" font-size="22">'
          f'YOGA &#8226; PILATES &#8226; CONEXI&#211;N &#8226; TRANSFORMACI&#211;N &#8226; AMOR</text>')
     l = (laurel(286, 898, 104, -1, gold, 1.5) + laurel(314, 898, 104, 1, gold, 1.5)
          + f'<circle cx="300" cy="898" r="4.6" fill="{gold}"/>')

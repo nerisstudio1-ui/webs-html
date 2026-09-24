@@ -59,7 +59,7 @@ def head(titulo, desc, pagina, og="assets/img/logo-anahata.svg"):
 <title>{titulo}</title>
 <meta name="description" content="{desc}">
 <meta name="author" content="{TITULAR}">
-<meta name="theme-color" content="#3C4A31">
+<meta name="theme-color" content="#A18974">
 <link rel="canonical" href="{DOMINIO}/{pagina}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
@@ -73,7 +73,7 @@ def head(titulo, desc, pagina, og="assets/img/logo-anahata.svg"):
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>

@@ -1,22 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Yoga & brunch">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#EFE6DA"/>
-      <stop offset="1" stop-color="#D3BEA5"/>
+    <linearGradient id="g" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#EDE5D9"/><stop offset="1" stop-color="#CDBCA7"/>
     </linearGradient>
-    <radialGradient id="v" cx="0.5" cy="0.45" r="0.78">
-      <stop offset="0.55" stop-color="#000000" stop-opacity="0"/>
-      <stop offset="1" stop-color="#3A3129" stop-opacity="0.22"/>
+    <radialGradient id="v" cx="0.5" cy="0.44" r="0.80">
+      <stop offset="0.58" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#4A3A2C" stop-opacity="0.20"/>
     </radialGradient>
-    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/>
-      <feColorMatrix type="saturate" values="0"/></filter>
+    <filter id="b"><feGaussianBlur stdDeviation="90"/></filter>
   </defs>
   <rect width="1200" height="900" fill="url(#g)"/>
-  <path d="M 0 666 Q 600 576 1200 666" fill="none" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="3.60"/><path d="M 0 774 Q 600 684 1200 774" fill="none" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="3.60"/><path d="M 0 882 Q 600 792 1200 882" fill="none" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="3.60"/>
-  <g><path d="M 665.1798587091499 224.3057681994942 C 832.5798587091499 380.9057681994942, 832.5798587091499 607.7057681994942, 665.1798587091499 764.3057681994942 C 497.77985870914995 607.7057681994942, 497.77985870914995 380.9057681994942, 665.1798587091499 224.3057681994942 Z" fill="#FFFFFF" fill-opacity="0.13" transform="rotate(0.0 665.1798587091499 494.3057681994942)"/><path d="M 665.1798587091499 224.3057681994942 C 832.5798587091499 380.9057681994942, 832.5798587091499 607.7057681994942, 665.1798587091499 764.3057681994942 C 497.77985870914995 607.7057681994942, 497.77985870914995 380.9057681994942, 665.1798587091499 224.3057681994942 Z" fill="#FFFFFF" fill-opacity="0.13" transform="rotate(45.0 665.1798587091499 494.3057681994942)"/><path d="M 665.1798587091499 224.3057681994942 C 832.5798587091499 380.9057681994942, 832.5798587091499 607.7057681994942, 665.1798587091499 764.3057681994942 C 497.77985870914995 607.7057681994942, 497.77985870914995 380.9057681994942, 665.1798587091499 224.3057681994942 Z" fill="#FFFFFF" fill-opacity="0.13" transform="rotate(90.0 665.1798587091499 494.3057681994942)"/><path d="M 665.1798587091499 224.3057681994942 C 832.5798587091499 380.9057681994942, 832.5798587091499 607.7057681994942, 665.1798587091499 764.3057681994942 C 497.77985870914995 607.7057681994942, 497.77985870914995 380.9057681994942, 665.1798587091499 224.3057681994942 Z" fill="#FFFFFF" fill-opacity="0.13" transform="rotate(135.0 665.1798587091499 494.3057681994942)"/><path d="M 665.1798587091499 224.3057681994942 C 832.5798587091499 380.9057681994942, 832.5798587091499 607.7057681994942, 665.1798587091499 764.3057681994942 C 497.77985870914995 607.7057681994942, 497.77985870914995 380.9057681994942, 665.1798587091499 224.3057681994942 Z" fill="#FFFFFF" fill-opacity="0.13" transform="rotate(180.0 665.1798587091499 494.3057681994942)"/><path d="M 665.1798587091499 224.3057681994942 C 832.5798587091499 380.9057681994942, 832.5798587091499 607.7057681994942, 665.1798587091499 764.3057681994942 C 497.77985870914995 607.7057681994942, 497.77985870914995 380.9057681994942, 665.1798587091499 224.3057681994942 Z" fill="#FFFFFF" fill-opacity="0.13" transform="rotate(225.0 665.1798587091499 494.3057681994942)"/><path d="M 665.1798587091499 224.3057681994942 C 832.5798587091499 380.9057681994942, 832.5798587091499 607.7057681994942, 665.1798587091499 764.3057681994942 C 497.77985870914995 607.7057681994942, 497.77985870914995 380.9057681994942, 665.1798587091499 224.3057681994942 Z" fill="#FFFFFF" fill-opacity="0.13" transform="rotate(270.0 665.1798587091499 494.3057681994942)"/><path d="M 665.1798587091499 224.3057681994942 C 832.5798587091499 380.9057681994942, 832.5798587091499 607.7057681994942, 665.1798587091499 764.3057681994942 C 497.77985870914995 607.7057681994942, 497.77985870914995 380.9057681994942, 665.1798587091499 224.3057681994942 Z" fill="#FFFFFF" fill-opacity="0.13" transform="rotate(315.0 665.1798587091499 494.3057681994942)"/><circle cx="665.1798587091499" cy="494.3057681994942" r="324.0" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1.44"/><circle cx="665.1798587091499" cy="494.3057681994942" r="396.0" fill="none" stroke="#FFFFFF" stroke-opacity="0.13" stroke-width="1.44"/><circle cx="665.1798587091499" cy="494.3057681994942" r="468.0" fill="none" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1.44"/></g>
+  <g filter="url(#b)"><ellipse cx="599" cy="385" rx="468" ry="414" fill="#FFFFFF" fill-opacity="0.1"/><ellipse cx="851" cy="583" rx="360" ry="306" fill="#FFFFFF" fill-opacity="0.07"/><ellipse cx="491" cy="673" rx="270" ry="234" fill="#FFFFFF" fill-opacity="0.05"/></g>
   <rect width="1200" height="900" fill="url(#v)"/>
-  <rect width="1200" height="900" filter="url(#grain)" opacity="0.06"/>
-  <text x="600" y="850" text-anchor="middle"
-        font-family="Georgia, 'Times New Roman', serif" font-size="29"
-        fill="#FFFFFF" fill-opacity="0.72" letter-spacing="5.2">YOGA & BRUNCH</text>
+  <text x="600" y="853" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="27" fill="#FFFFFF" fill-opacity="0.60" letter-spacing="4.3">YOGA & BRUNCH</text>
 </svg>
