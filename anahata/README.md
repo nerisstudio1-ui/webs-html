@@ -7,20 +7,28 @@ Diseño minimalista y cercano, con la paleta tomada del logotipo: verde bosque, 
 
 ## ⚠️ Pendiente de confirmar con Sara
 
-> Teléfono confirmado: **664 60 74 74** (el del correo del 18/09).
+> Teléfono confirmado por Sara el 24/09: **664 60 74 64** (coincide con el rótulo del estudio).
 
-1. **Fotografías.** Todas las imágenes son **marcadores provisionales** generados con la paleta de marca
-   (se distinguen porque llevan una etiqueta en el centro). Ver apartado «Sustituir las imágenes».
-   No se pueden descargar automáticamente desde Instagram: la red del entorno bloquea el dominio,
-   Instagram exige inicio de sesión para servir los archivos y, además, lo que publica está recomprimido
-   a 1080 px como máximo, insuficiente para las portadas (1920 px). Lo ideal son los originales del móvil.
-2. **Testimonios.** La sección de opiniones tiene tres tarjetas marcadas como *«Pendiente de recibir»*,
-   a la espera de las reseñas de Google. Se editan en `_build.py` → lista `TESTIMONIOS`.
-3. **Logotipo.** El logo se ha **vectorizado a SVG** a partir de la imagen enviada.
+1. **Fotografías.** Ya hay **6 huecos con fotos reales** de Sara (pilates, grupos, retiro y alimentación),
+   procesadas desde `assets/img/originales/` con `_fotos.py`. **Siguen con marcador provisional**:
+   las seis portadas (`hero-*`), `sobre-retrato`, `sobre-detalle`, `pilar-meditacion`,
+   `servicio-meditacion`, `programa-membresia`, `programa-reto21`, `programa-privadas`,
+   los cuatro `evento-*` y `cta-banner`. Lo más urgente es **una foto horizontal para la portada**
+   y **un retrato vertical de Sara**.
+
+2. **Vídeo.** `assets/video-original-yoga-brunch.mp4` (20 MB, H.264) está guardado pero **sin usar**:
+   es demasiado largo y pesado para la portada, y este entorno no puede recortarlo ni recomprimirlo
+   (el ffmpeg disponible no decodifica H.264). Hace falta una versión de **10-15 segundos, sin audio,
+   1920×1080 y por debajo de 5 MB**. El CSS ya soporta vídeo de fondo en el hero (`.hero__media video`).
+3. **Hosting.** Sara pide que lo gestionemos nosotras. El dominio está en **Hostinet** y la web
+   anterior era un WordPress al que ya no puede acceder. Pendiente de contratar alojamiento y de
+   añadir el nombre del proveedor a las páginas legales.
+4. **Logotipo.** El logo se ha **vectorizado a SVG** a partir de la imagen enviada.
    Si Sara tiene el archivo original (AI, SVG o PNG con fondo transparente), sustituirlo mejora la fidelidad.
-4. **Datos legales.** `aviso-legal.html` y `privacidad.html` tienen campos entre corchetes
-   (NIF, domicilio, proveedor de hosting) que hay que completar antes de publicar.
-5. **Formulario.** Todavía no está conectado a ningún servicio de envío. Ver «Conectar el formulario».
+5. **Datos legales.** NIF y domicilio ya están puestos. Falta únicamente el **proveedor de hosting**
+   en ambas páginas legales.
+6. **Formulario.** Los mensajes deben llegar a **saravgyoga@gmail.com**. Todavía no está conectado
+   a ningún servicio de envío. Ver «Conectar el formulario».
 
 ---
 
@@ -79,6 +87,18 @@ en el bloque `DATOS DEL NEGOCIO`. Cambiar ahí un dato lo actualiza en todas las
 > Si prefieres no usar Python, puedes editar los `.html` directamente: son ficheros estáticos normales.
 > En ese caso, recuerda que un cambio en la cabecera o el pie hay que repetirlo en las 8 páginas.
 
+## Procesar fotos nuevas
+
+Los originales se guardan en `assets/img/originales/` y se recortan a cada hueco con:
+
+```bash
+python3 _fotos.py
+```
+
+Las asignaciones (origen → destino, tamaño y foco vertical del recorte) están en la lista
+`TRABAJOS` del propio script. Ajustar el foco entre 0 (arriba) y 1 (abajo) sirve para que
+no se corten las caras.
+
 ## Sustituir las imágenes
 
 Cada marcador es un `.svg` dentro de `assets/img/`. Para poner las fotos reales:
@@ -125,8 +145,7 @@ Es una web estática: basta con subir el contenido de esta carpeta por FTP a la 
 
 Antes de publicar:
 
-- [ ] Sustituir las imágenes por fotos reales
-- [ ] Añadir los testimonios de Google
+- [ ] Completar los huecos de imagen que siguen con marcador
 - [ ] Completar los datos de aviso legal y privacidad
 - [ ] Conectar el formulario y probar un envío
 - [ ] Cambiar `DOMINIO` en `_build.py` si el dominio final no es `www.saravgyoga.com`

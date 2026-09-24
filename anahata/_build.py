@@ -8,8 +8,8 @@ import os, re
 MARCA     = "ANAHATA"
 TITULAR   = "Sara Viñas Gómez"
 EMAIL     = "saravgyoga@gmail.com"
-TEL       = "664607474"                 # confirmado por Sara (correo del 18/09)
-TEL_FMT   = "664 60 74 74"
+TEL       = "664607464"                 # confirmado por Sara (24/09) y visible en el rótulo del estudio
+TEL_FMT   = "664 60 74 64"
 WA        = "34" + TEL
 WA_MSG    = "Hola%20Sara%2C%20me%20gustar%C3%ADa%20informarme%20sobre%20las%20clases%20de%20ANAHATA"
 WA_URL    = f"https://wa.me/{WA}?text={WA_MSG}"
@@ -17,6 +17,9 @@ IG        = "https://www.instagram.com/saravgyoga/"
 FB        = "https://www.facebook.com/people/Sara-Vinas-G%C3%B3mez/pfbid06JHJpnUKVaPrk51RJiH3VkkNQhAaW25DX8NyPRMMUbtA3BUvygtoCdssqahxWKQLl/"
 DOMINIO   = "https://www.saravgyoga.com"
 CIUDAD    = "Barcelona"
+NIF       = "25199625C"
+DIRECCION = "Carrer Xiprer 30-32, 1º 1ª · 08041 Barcelona"
+GOOGLE_REVIEW = "https://g.page/r/CSeJ0912NzUzEAE/review"
 
 # ============================== ICONOS =====================================
 I = {
@@ -229,13 +232,13 @@ JSONLD = f'''
 </script>'''
 
 PILARES = [
-    ("pilar-yoga.svg", "Movimiento consciente",
+    ("pilar-yoga.jpg", "Movimiento consciente",
      "Yoga Integral, Ashtanga, Vinyasa, Yin y Pilates Mat con implementos. Fuerza, movilidad y presencia en cada práctica.",
      "servicios.html", "Descubrir las prácticas"),
     ("pilar-meditacion.svg", "Meditación y pranayamas",
      "Respiración consciente y quietud guiada para calmar la mente, regular el sistema nervioso y volver a tu centro.",
      "servicios.html#meditacion", "Aprender a respirar"),
-    ("pilar-programas.svg", "Retiros y programas",
+    ("pilar-programas.jpg", "Retiros y programas",
      "Retiros de fin de semana, talleres temáticos, membresías y el reto de 21 días para crear constancia y transformación.",
      "retiros.html", "Ver experiencias"),
 ]
@@ -273,11 +276,25 @@ def bloque_modalidades(titulo=True):
   </div>
 </section>'''
 
-# Testimonios: marcadores a la espera de las reseñas reales de Google.
+# Reseñas reales publicadas en Google (facilitadas por Sara).
 TESTIMONIOS = [
-    ("Pendiente de recibir", "Reseña de Google"),
-    ("Pendiente de recibir", "Reseña de Google"),
-    ("Pendiente de recibir", "Reseña de Google"),
+    ("Mi experiencia con Sara ha sido maravillosa. Los ejercicios de estiramiento, los de "
+     "respiración, la paz interior que transmite y la cercanía y el cariño con el que te recibe "
+     "hacen de sus clases una terapia tanto espiritual como física. Gracias, Sara.", "Maribel"),
+    ("Llevo poco tiempo, pero el suficiente para ver que Sara es una grandísima persona y "
+     "profesional. Me acogió súper bien desde el primer día y con mucho cariño, lo cual, al no "
+     "conocer a nadie, te relaja bastante. Es muy cercana. Las clases me encantan, con su "
+     "reflexión del día; son muy diferentes unas de otras, siempre te sorprende, y sobre todo "
+     "salgo súper relajada y contenta.", "Lore Chavero"),
+    ("No hay nada mejor que asistir a una clase donde, además de encontrar profesionalidad y una "
+     "atención cuidadosa a la postura de cada participante, se perciban vocación, paz y cariño. "
+     "El trabajo de Sara nace de la vocación, y eso es precisamente lo que lo hace verdaderamente "
+     "excepcional.", "Maider Patiño"),
+    ("Conocí a Sara tras una complicación quirúrgica en la que física y mentalmente mi cuerpo dijo "
+     "«hasta aquí». Creo que en esta vida todo pasa por algo… conocerla ha supuesto un antes y un "
+     "después. Físicamente voy notando una mejoría importante con sus clases de pilates, y "
+     "mentalmente estoy trabajando en ver la vida desde otra perspectiva. ¡Un millón de gracias, "
+     "Sara!", "Leire Iribarren García"),
 ]
 def bloque_testimonios():
     tarjetas = "".join(f'''
@@ -303,6 +320,9 @@ def bloque_testimonios():
         <button type="button" aria-label="Siguiente" data-carrusel-siguiente>{I["flecha"]}</button>
       </div>
     </div>
+    <p class="texto-centrado" style="margin-top:2rem">
+      <a class="enlace-flecha" href="{GOOGLE_REVIEW}" target="_blank" rel="noopener">Ver reseñas en Google</a>
+    </p>
   </div>
 </section>'''
 
@@ -569,7 +589,7 @@ def pagina_servicios():
 <section class="seccion seccion--crema" id="pilates">
   <div class="contenedor duo">
     <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/servicio-pilates.svg" alt="Clase de Pilates Mat" loading="lazy" width="1000" height="1000">
+      <img src="assets/img/servicio-pilates.jpg" alt="Clase de Pilates Mat con fitball en el estudio de ANAHATA" loading="lazy" width="1000" height="1000">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Pilates</span>
@@ -601,7 +621,7 @@ def pagina_servicios():
 <section class="seccion seccion--arena" id="alimentacion">
   <div class="contenedor duo">
     <div class="duo__media revelar">
-      <img src="assets/img/pilar-programas.svg" alt="Alimentación saludable" loading="lazy" width="1200" height="900">
+      <img src="assets/img/alimentacion.jpg" alt="Comida saludable en un retiro de ANAHATA" loading="lazy" width="1200" height="900">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Nutrición consciente</span>
@@ -623,7 +643,7 @@ def pagina_servicios():
 
 # ========================= CLASES Y PROGRAMAS ==============================
 PROGRAMAS = [
-    ("programa-sueltas.svg", "Clases sueltas",
+    ("programa-sueltas.jpg", "Clases sueltas",
      "Prueba una sesión sin compromiso o practica a tu ritmo cuando tu agenda lo permita. Yoga, pilates o meditación, en grupo o individual.",
      ["Sin permanencia", "Presencial u online", "Todos los niveles"]),
     ("programa-membresia.svg", "Membresía mensual",
@@ -724,7 +744,7 @@ def pagina_clases():
 
 # ==================== RETIROS, EVENTOS Y TALLERES ==========================
 EVENTOS = [
-    ("retiro-finde.svg", "Retiros de fin de semana", "Retiro",
+    ("retiro-finde.jpg", "Retiros de fin de semana", "Retiro",
      "Encuentros presenciales donde hacer tribu, para desconectar del ritmo diario y reconectar contigo. Movimiento, descanso, naturaleza y autocuidado profundo, siempre en entornos de naturaleza y silencio."),
     ("evento-brunch.svg", "Yoga & brunch", "Evento",
      "Una mañana para moverte con calma y compartir mesa después. Práctica suave, respiración y un desayuno saludable en buena compañía."),
@@ -925,16 +945,15 @@ def pagina_legal(titulo, pagina, desc, cuerpo):
 
 AVISO_LEGAL = f'''
     <p class="nota-formulario" style="background:var(--arena);padding:16px 20px;border-radius:var(--radio-img)">
-      <strong>Nota para Sara:</strong> revisa y completa los datos marcados entre corchetes antes de publicar la web
-      (NIF, domicilio fiscal y datos del proveedor de hosting). Este texto es una base orientativa y no sustituye
-      el asesoramiento de un profesional.</p>
+      <strong>Pendiente:</strong> falta indicar el proveedor de hosting cuando esté contratado. Este texto es una base
+      orientativa y no sustituye el asesoramiento de un profesional.</p>
     <h3 style="margin-top:2.4rem">1. Datos identificativos</h3>
     <p>En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE),
     se informa de los siguientes datos del titular de este sitio web:</p>
     <ul style="margin-bottom:1.2rem">
       <li>· <strong>Titular:</strong> {TITULAR}</li>
-      <li>· <strong>NIF:</strong> [pendiente]</li>
-      <li>· <strong>Domicilio:</strong> [pendiente] · {CIUDAD}, España</li>
+      <li>· <strong>NIF:</strong> {NIF}</li>
+      <li>· <strong>Domicilio:</strong> {DIRECCION}, España</li>
       <li>· <strong>Correo electrónico:</strong> <a href="mailto:{EMAIL}">{EMAIL}</a></li>
       <li>· <strong>Teléfono:</strong> {TEL_FMT}</li>
       <li>· <strong>Actividad:</strong> clases de yoga, pilates y meditación, retiros, talleres y acompañamiento en bienestar integral.</li>
@@ -954,10 +973,10 @@ AVISO_LEGAL = f'''
 
 PRIVACIDAD = f'''
     <p class="nota-formulario" style="background:var(--arena);padding:16px 20px;border-radius:var(--radio-img)">
-      <strong>Nota para Sara:</strong> completa los datos entre corchetes y revisa el apartado de encargados de tratamiento
-      con tu proveedor de hosting y de email marketing. Texto orientativo, no sustituye asesoramiento profesional.</p>
+      <strong>Pendiente:</strong> falta nombrar al proveedor de hosting y, si se usa, el de email marketing,
+      en el apartado de encargados del tratamiento. Texto orientativo, no sustituye asesoramiento profesional.</p>
     <h3 style="margin-top:2.4rem">1. Responsable del tratamiento</h3>
-    <p>{TITULAR} · NIF [pendiente] · {CIUDAD}, España · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+    <p>{TITULAR} · NIF {NIF} · {DIRECCION}, España · <a href="mailto:{EMAIL}">{EMAIL}</a></p>
     <h3 style="margin-top:2rem">2. Finalidad</h3>
     <p>Los datos que facilitas a través del formulario de contacto se tratan para responder a tu consulta, gestionar la reserva
     de clases o experiencias y, si lo autorizas expresamente, enviarte información sobre próximas actividades (newsletter).</p>
@@ -1199,6 +1218,9 @@ def pagina_landing():
         <button type="button" aria-label="Siguiente" data-carrusel-siguiente>{I["flecha"]}</button>
       </div>
     </div>
+    <p class="texto-centrado" style="margin-top:2rem">
+      <a class="enlace-flecha" href="{GOOGLE_REVIEW}" target="_blank" rel="noopener">Ver reseñas en Google</a>
+    </p>
   </div>
 </section>
 
