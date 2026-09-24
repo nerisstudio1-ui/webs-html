@@ -28,16 +28,16 @@ window.I18N = {
 
     /* Hero */
     "hero.titulo": "Cristina Falcón Maldonado",
-    "hero.rol": "<strong>Poeta, narradora y traductora</strong> Escribo para adultos y para niños",
+    "hero.rol": "<strong>Poeta, narradora y traductora</strong>",
     "hero.centro": "<strong>Venezuela · Italia · España</strong>",
-    "hero.libros": "<strong>Poesía</strong> Libros para niños y jóvenes",
+    "hero.libros": "<strong>Poemarios</strong> Libros para niños y jóvenes",
     "hero.sub": "Poeta, narradora y traductora",
     "hero.verso": "La vida era más que lo que nos dijeron",
     "hero.verso.fuente": "Ítaca es nunca",
 
     /* Marquesina */
     "marquee.1": "Poesía",
-    "marquee.2": "Literatura infantil",
+    "marquee.2": "Literatura infantil y juvenil",
 
     /* Sobre mí */
     "sobre.kicker": "Sobre mí",
@@ -65,8 +65,8 @@ window.I18N = {
     "obra.kicker": "Obra publicada",
     "obra.titulo": "Los libros",
     "obra.intro": "Cuatro poemarios, una veintena de libros para la infancia y la presencia en antologías de poesía venezolana e iberoamericana.",
-    "obra.tab.poesia": "Poesía para adultos",
-    "obra.tab.infantil": "Literatura infantil",
+    "obra.tab.poesia": "Poesía",
+    "obra.tab.infantil": "Literatura infantil y juvenil",
 
     "obra.novedad.kicker": "Novedad · Noviembre 2026",
     "obra.novedad.titulo": "Título del nuevo libro",
@@ -105,6 +105,9 @@ window.I18N = {
     "resena.6.texto": "Un gozo para los sentidos, del que la poeta hace partícipe al lector al mostrarle esa lucha gozosa entre el yo poético y la poesía.",
     "resena.6.autor": "Enrique Vilagrasa",
     "resena.6.medio": "QuéLeer",
+    "resena.7.texto": "Si la poesía puede ayudarnos a entender, más que cualquier otro género, algunas dualidades en la que se fundamenta la naturaleza y la vida de las personas, Memoria errante de Cristina Falcón Maldonado sólo podía ser poesía.",
+    "resena.7.autor": "Pedro Cerrillo",
+    "resena.7.medio": "Sobre Memoria errante",
 
     /* --- Pies de la galería --- */
     "galeria.11": "Cristina de niña, en Trujillo",
@@ -192,10 +195,10 @@ window.I18N = {
     "libro.p1.texto": "Cuarto poemario de la autora, publicado por Candaya (Vilafranca del Penedès).",
     "libro.p2.titulo": "Borrar el paisaje",
     "libro.p2.meta": "Poesía · Candaya · 2014",
-    "libro.p2.texto": "Tercer poemario, publicado por Candaya.",
+    "libro.p2.texto": "Tercer poemario, publicado por Candaya, con prólogo de Margot Carrillo Pimentel.",
     "libro.p3.titulo": "Memoria errante",
     "libro.p3.meta": "Poesía · Candaya · 2009",
-    "libro.p3.texto": "Poemario sobre el desarraigo que supone emigrar. Inspiró el montaje teatral homónimo de Dèria Teatre, que cruza los poemas con fragmentos de La Odisea, música en directo y audiovisual.",
+    "libro.p3.texto": "Poemario sobre el desarraigo que supone emigrar, con prólogo de Ramón Palomares. Inspiró el montaje teatral homónimo de Dèria Teatre, que cruza los poemas con fragmentos de La Odisea, música en directo y audiovisual.",
     "libro.p4.titulo": "Premura sagrada",
     "libro.p4.meta": "Poesía · Caracas · 1986",
     "libro.p4.texto": "Primer poemario, publicado en Caracas.",
@@ -244,15 +247,15 @@ window.I18N = {
     "brand.rol": "Poet and writer",
 
     "hero.titulo": "Cristina Falcón Maldonado",
-    "hero.rol": "<strong>Poet, storyteller and translator</strong> I write for adults and for children",
+    "hero.rol": "<strong>Poet, storyteller and translator</strong>",
     "hero.centro": "<strong>Venezuela · Italy · Spain</strong>",
-    "hero.libros": "<strong>Poetry</strong> Books for children and young readers",
+    "hero.libros": "<strong>Poetry collections</strong> Books for children and young readers",
     "hero.sub": "Poet, storyteller and translator",
     "hero.verso": "La vida era más que lo que nos dijeron",
     "hero.verso.fuente": "Ítaca es nunca",
 
     "marquee.1": "Poetry",
-    "marquee.2": "Children's literature",
+    "marquee.2": "Children's and young adult literature",
 
     "sobre.kicker": "About me",
     "sobre.saludo": "Hi, I'm Cristina",
@@ -277,8 +280,8 @@ window.I18N = {
     "obra.kicker": "Published work",
     "obra.titulo": "The books",
     "obra.intro": "Four poetry collections, some twenty books for children, and a presence in anthologies of Venezuelan and Ibero-American poetry.",
-    "obra.tab.poesia": "Poetry for adults",
-    "obra.tab.infantil": "Children's literature",
+    "obra.tab.poesia": "Poetry",
+    "obra.tab.infantil": "Children's and young adult literature",
 
     "obra.novedad.kicker": "New · November 2026",
     "obra.novedad.titulo": "Title of the new book",
@@ -315,6 +318,9 @@ window.I18N = {
     "resena.6.texto": "A joy for the senses, one the poet shares with the reader by showing that joyful struggle between the poetic self and poetry itself.",
     "resena.6.autor": "Enrique Vilagrasa",
     "resena.6.medio": "QuéLeer",
+    "resena.7.texto": "If poetry, more than any other genre, can help us grasp some of the dualities that nature and human life are built on, then Cristina Falcón Maldonado's Memoria errante could only ever have been poetry.",
+    "resena.7.autor": "Pedro Cerrillo",
+    "resena.7.medio": "On Memoria errante",
 
     "galeria.11": "Cristina as a child, in Trujillo",
     "galeria.12": "With her brother, as children",
@@ -395,10 +401,10 @@ window.I18N = {
     "libro.p1.texto": "The author's fourth poetry collection, published by Candaya (Vilafranca del Penedès).",
     "libro.p2.titulo": "Borrar el paisaje",
     "libro.p2.meta": "Poetry · Candaya · 2014",
-    "libro.p2.texto": "Third poetry collection, published by Candaya.",
+    "libro.p2.texto": "Third poetry collection, published by Candaya, with a preface by Margot Carrillo Pimentel.",
     "libro.p3.titulo": "Memoria errante",
     "libro.p3.meta": "Poetry · Candaya · 2009",
-    "libro.p3.texto": "A collection on the uprooting that emigration brings. It inspired the stage production of the same name by Dèria Teatre, weaving the poems together with fragments of The Odyssey, live music and video.",
+    "libro.p3.texto": "A collection on the uprooting that emigration brings, with a preface by Ramón Palomares. It inspired the stage production of the same name by Dèria Teatre, weaving the poems together with fragments of The Odyssey, live music and video.",
     "libro.p4.titulo": "Premura sagrada",
     "libro.p4.meta": "Poetry · Caracas · 1986",
     "libro.p4.texto": "First poetry collection, published in Caracas.",
