@@ -1,0 +1,26 @@
+@page { size: A4; margin: 20mm 18mm; }
+:root{
+  --verde-hondo:#1F3D33; --verde:#2E5A4B; --tierra:#A26E4B; --ocre:#F9B65A;
+  --crema:#F7F3EA; --tinta:#191A17; --suave:#4A4E49; --line:rgba(31,61,51,.2);
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Outfit",sans-serif;font-size:10.5pt;line-height:1.6;color:var(--tinta);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:"Zalando Sans Expanded",sans-serif;font-weight:300;color:var(--verde-hondo);letter-spacing:-.02em;line-height:1.1}
+h1{font-size:28pt;margin-bottom:4pt}
+h2{font-size:14pt;font-weight:400;margin:20pt 0 7pt;padding-bottom:4pt;border-bottom:1px solid var(--line)}
+h3{font-size:11.5pt;font-weight:400;margin-bottom:2pt}
+p{margin-bottom:7pt}
+.marca{display:flex;align-items:flex-end;justify-content:space-between;gap:18pt;
+       padding-bottom:10pt;border-bottom:2px solid var(--verde-hondo);margin-bottom:16pt}
+.marca img{height:58pt}
+.rol{font-size:8.5pt;letter-spacing:.2em;text-transform:uppercase;color:var(--suave);margin:0}
+.pie{margin-top:22pt;padding-top:8pt;border-top:1px solid var(--line);
+     font-size:8.5pt;letter-spacing:.06em;color:var(--suave);display:flex;justify-content:space-between;gap:14pt}
+.cita{font-size:11pt;line-height:1.45;color:var(--verde);padding-left:10pt;
+      border-left:2px solid var(--ocre);margin:10pt 0}
+.firma{font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--tierra);margin-top:4pt}
+.dos{column-count:2;column-gap:14pt}
+ul{margin:0 0 7pt 14pt;padding:0}
+li{margin-bottom:3pt}
+.libro{margin-bottom:8pt;break-inside:avoid}
+.meta{font-size:8.5pt;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}

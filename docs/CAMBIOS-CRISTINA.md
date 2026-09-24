@@ -18,6 +18,7 @@ Los quince puntos de sus mensajes, y qué se ha hecho con cada uno.
 | 12 | Un verde más luminoso | Mismo tono, más saturación y más luz. De `#1F3D33` a `#255647`. En pantalla ya se lee como verde |
 | 13 | Quitar «de Valera a Cuenca, pasando por Bolonia» | Ahora pone «Venezuela · Italia · España», que es la opción que ella daba con Bolonia dentro |
 | 14 | Simplificar «cuatro poemarios y una veintena de…» | «Poesía» y debajo «Libros para niños y jóvenes» |
+| 15 | Que cada libro lleve a su ficha, no a la portada de la editorial | Hecho con las direcciones que mandó. Dos libros que no tenían enlace ya lo tienen |
 
 ## ⏳ Pendientes de que ella mande material
 
@@ -27,29 +28,39 @@ Los quince puntos de sus mensajes, y qué se ha hecho con cada uno.
 | 10 | Un par de vídeos más | Los archivos |
 | — | Las portadas que faltan, en mejor resolución | Siguen siendo siete: *Memoria errante*, *Borrar el paisaje*, *1, 2, 3, de repente en…*, *Peperoncino*, *Guías infantiles*, *La palabra encantada* y *Caja de cuentos* |
 
-## ⚠️ Punto 15 · Los enlaces a cada libro
+## Los enlaces de cada libro · punto 15
 
-Pide que cada libro lleve a **su ficha** en la editorial, no a la portada de
-la editorial, como ya hace el de Akiara.
+Ella mandó las direcciones el 24 de septiembre y ya están puestas:
 
-Tiene toda la razón, pero **hacen falta las direcciones exactas**. Desde
-aquí no se pueden consultar las webs de las editoriales, y poner una
-dirección inventada es peor que dejar la portada: daría error.
-
-Las que faltan:
-
-| Libro | Editorial |
+| Libro | A dónde lleva |
 |---|---|
-| Ítaca es nunca | Candaya |
-| Borrar el paisaje | Candaya |
-| Memoria errante | Candaya |
-| Siwar, el jaguar guardián | Fondo de Cultura Económica |
-| Letras en los cordones | Kalandraka |
+| Ítaca es nunca | `candaya.com/libro/itaca-es-nunca/` |
+| Borrar el paisaje | `candaya.com/libro/borrar-el-paisaje/` |
+| Memoria errante | `candaya.com/libro/memoria-errante/` |
+| Al otro lado | `akiarabooks.com/es/libro/al-otro-lado/` (ya estaba) |
+| Siwar, el jaguar guardián | `fondodeculturaeconomica.com/Ficha/9786071668851/F` |
+| La palabra encantada | la guía del CEPLI en `uclm.es` — **antes no tenía enlace** |
+| Peperoncino | `giuntialpunto.it/products/peperoncino-1-propedeutica-9788809772366` — **antes no tenía enlace** |
+| Letras en los cordones | `kalandraka.com/letras-en-los-cordones-castellano` |
 
-Basta con abrir cada libro en la web de su editorial y copiar la dirección
-de la barra del navegador.
+Tres apuntes sobre cómo han quedado:
 
-## Otro detalle
+- La de *Peperoncino* venía con la coletilla de seguimiento de la tienda
+  (`?pr_prod_strat=…&pr_rec_id=…`). Se ha quitado: son parámetros de
+  recomendación de la sesión de quien copió el enlace, no forman parte de la
+  dirección del libro y caducan.
+- La de *La palabra encantada* no es una ficha de editorial sino una guía de
+  lectura del CEPLI, así que su botón pone «Ver la guía de lectura» y no «Ver
+  en la editorial», que sería engañoso.
+- Esa misma dirección es la **versión en inglés** del sitio de la UCLM
+  (`uclm.es/en/…`). Se ha dejado tal cual porque es la que ella dio y
+  funciona; si existe la equivalente en español, mejor usar esa.
 
-El PDF de la biografía que se generó para las descargas **todavía menciona
-Álabe**. Hay que regenerarlo con el texto corregido.
+Desde aquí no se puede abrir ninguna de estas webs para comprobarlas, así que
+**conviene pinchar los ocho botones una vez publicada la web.**
+
+## Las descargas
+
+El PDF de la biografía ya no menciona *Álabe* (punto 4). De paso, tanto la
+biografía como el dossier de prensa hablan de «La Guarida» en pasado, igual
+que la web (punto 11). Los dos se regeneran con `node build/pdf/generar.js`.

@@ -123,6 +123,7 @@ window.I18N = {
     "galeria.10": "Presentación en Cuenca junto a su editor",
 
     "obra.editorial": "Ver en la editorial",
+    "obra.guia": "Ver la guía de lectura",
     "resenas.cta": "Leer reseñas completas",
 
     /* Galería */
@@ -331,6 +332,7 @@ window.I18N = {
     "galeria.10": "A presentation in Cuenca alongside her publisher",
 
     "obra.editorial": "View at the publisher",
+    "obra.guia": "View the reading guide",
     "resenas.cta": "Read full reviews",
 
     "galeria.kicker": "Gallery",

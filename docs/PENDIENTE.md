@@ -55,12 +55,12 @@ Faltan:
 
 | Libro | Editorial | Dónde pedirla |
 |---|---|---|
-| Memoria errante (2009) | Candaya | candaya.com |
-| Borrar el paisaje (2014) | Candaya | candaya.com |
+| Memoria errante (2009) | Candaya | candaya.com/libro/memoria-errante/ |
+| Borrar el paisaje (2014) | Candaya | candaya.com/libro/borrar-el-paisaje/ |
 | 1, 2, 3, de repente en… | Edebé | — |
-| Peperoncino (2014) | Giunti (Florencia) | — |
+| Peperoncino (2014) | Giunti (Florencia) | giuntialpunto.it |
 | Guías infantiles de España | Susaeta | — |
-| La palabra encantada (2017) | CEPLI-UCLM | — |
+| La palabra encantada (2017) | CEPLI-UCLM | uclm.es (CEPLI) |
 | Caja de cuentos y aventuras (2006) | F. Turismo de Cuenca | — |
 
 Las dos de Candaya son las más urgentes, porque son poesía y van en la
@@ -128,9 +128,10 @@ Instagram (`@titiescribe`) ya está enlazado.
 - **Galería de 10 fotos** en mosaico, con ampliación y pies descriptivos
 - **6 reseñas de prensa reales**: La Vanguardia, QuéLeer, Olcades Poesía,
   El Nacional, Ciudad Literaria y Josu Landa
-- Enlaces a Candaya, Kalandraka, FCE y Akiara en las fichas
+- **Ocho fichas enlazan a la página del libro** en su editorial, no a la
+  portada de la editorial
 - Bloque de antologías
-- Español e inglés completos (174 claves, sin desajustes)
+- Español e inglés completos (181 claves, sin desajustes)
 - WhatsApp flotante, galería con teclado, vídeos que no cargan solos
 - Formulario con antispam, aviso legal redactado
 - Responsive verificado, sin scroll horizontal
