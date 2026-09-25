@@ -63,7 +63,7 @@
      MARQUEE
      --------------------------------------------------------- */
   var BRANDS = [
-    'Paris Haute Couture Week 2026', 'Leandro Cano', 'Dellafuente', 'Sayko',
+    'Paris Haute Couture Week 2026', 'Leandro Cano', 'Dellafuente', 'Saiko',
     'Carmen Avilés', 'Lori Meyers', 'Eskorzo', 'Adidas', 'Camin', 'Pepe & Vizio',
     'MOEVIR Magazine', 'StyleCruze Magazine', 'Vigour Magazine'
   ];
@@ -78,7 +78,7 @@
       'nav.featured': 'Featured work', 'nav.contact': 'Contact', 'nav.menu': 'Menu',
 
       'hero.eyebrow': 'Professional make-up artist · Director of Escuma Granada',
-      'hero.lead': 'Science, technique and art. Three disciplines that never stand apart: together they shape the way I understand make-up.',
+      'hero.lead': 'Science, technique and art. Three inseparable pillars in the way I understand make-up.',
       'hero.meta': 'Granada · All of Spain · International',
       'cta.quote': 'Request a quote', 'cta.portfolio': 'View portfolio',
 
@@ -87,7 +87,7 @@
       'about.body':
         '<p>I am a professional make-up artist, teacher and director of <strong>Escuma Granada</strong>. The way I understand make-up comes from the union of science, technique and art: three disciplines that, far from being separate, complement each other and shape the way I work.</p>' +
         '<p>I hold a <strong>degree in Biology</strong> from the University of Granada and postgraduate training in <strong>Cosmetics</strong>. Before devoting myself fully to make-up, I spent 19 years working in the pharmaceutical laboratory field. That experience gave me a rigorous, analytical training that is still essential to the way I work today: observing, understanding, analysing and making decisions with judgement.</p>' +
-        '<p>My training as a professional make-up artist began in Madrid, at the now-closed <strong>Bôgart Make Up</strong> school, with <strong>Baltasar González Pinel</strong>. There I built a solid technical foundation and discovered a way of understanding make-up that went far beyond execution: a deep knowledge of technique as the tool that makes creation possible.</p>' +
+        '<p>My first contact with professional make-up training was with <strong>Noelia Fuentes</strong>, in Málaga. I then continued in Madrid, at the <strong>Bôgart Make Up</strong> school, with <strong>Baltasar González Pinel</strong>. There I built a solid technical foundation and discovered a way of understanding make-up that went far beyond execution: a deep knowledge of technique as the tool that makes creation possible.</p>' +
         '<p>Since <strong>2008</strong> I have worked professionally as a make-up artist across different fields, evolving continuously through training and experience. In <strong>2019</strong> I decided to devote myself exclusively to make-up and teaching, opening a new professional chapter in which Escuma Granada was born and continues to grow.</p>' +
         '<p>My work brings together the knowledge of skin and cosmetics, colour, make-up technique, painting techniques, fashion history and, increasingly, creative research and visual language.</p>' +
         '<p>My most recent training in fashion and creativity took place at <strong>Kabuki Make Up</strong>, in Buenos Aires, with <strong>Jazmín Calcarami</strong>. An experience that widened my view of make-up as an artistic language and of the relationship between make-up, image, fashion and creativity.</p>',

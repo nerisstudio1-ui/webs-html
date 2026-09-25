@@ -110,10 +110,8 @@
     </figure>
     <div class="hero__inner">
       <p class="eyebrow reveal" data-i18n="hero.eyebrow">Maquilladora profesional · Directora de Escuma Granada</p>
-      <h1 class="hero__logo reveal">
-        <img src="assets/img/logo-blanco.png" alt="Chío Jiménez · Maquillaje profesional" width="1600" height="475" fetchpriority="high">
-      </h1>
-      <p class="hero__lead reveal" data-i18n="hero.lead">Ciencia, técnica y arte. Tres disciplinas que no se separan: construyen mi forma de entender el maquillaje.</p>
+      <h1 class="sr-only">Chío Jiménez · Maquilladora profesional en Granada</h1>
+      <p class="hero__lead reveal" data-i18n="hero.lead">Ciencia, técnica y arte. Tres pilares inseparables en mi forma de entender el maquillaje.</p>
       <div class="hero__actions reveal">
         <a class="btn btn--light" href="#contacto" data-i18n="cta.quote">Pedir presupuesto</a>
         <a class="btn btn--ghost" href="#portfolio" data-i18n="cta.portfolio">Ver portfolio</a>
@@ -147,7 +145,7 @@
         <div class="prose reveal" data-i18n="about.body">
           <p>Soy maquilladora profesional, docente y directora de <strong>Escuma Granada</strong>. Mi manera de entender el maquillaje nace de la unión entre la ciencia, la técnica y el arte: tres disciplinas que, lejos de estar separadas, se complementan y construyen mi forma de trabajar.</p>
           <p>Soy <strong>licenciada en Biología</strong> por la Universidad de Granada y cuento con formación de posgrado en <strong>Cosmética</strong>. Antes de dedicarme plenamente al maquillaje desarrollé durante 19 años mi carrera profesional en el ámbito del laboratorio farmacéutico. Esta experiencia me proporcionó una formación rigurosa y analítica que hoy forma parte esencial de mi manera de trabajar: observar, comprender, analizar y tomar decisiones con criterio.</p>
-          <p>Mi formación como maquilladora profesional comenzó en Madrid, en la desaparecida escuela <strong>Bôgart Make Up</strong>, de la mano de <strong>Baltasar González Pinel</strong>. Allí construí una sólida base técnica y descubrí una forma de entender el maquillaje que iba mucho más allá de la ejecución: el conocimiento profundo de la técnica como herramienta para poder crear.</p>
+          <p>Mi primer contacto con la formación profesional de maquillaje fue con <strong>Noelia Fuentes</strong>, en Málaga. Después continué en Madrid, en la escuela <strong>Bôgart Make Up</strong>, de la mano de <strong>Baltasar González Pinel</strong>. Allí construí una sólida base técnica y descubrí una forma de entender el maquillaje que iba mucho más allá de la ejecución: el conocimiento profundo de la técnica como herramienta para poder crear.</p>
           <p>Desde <strong>2008</strong> desarrollo mi trayectoria profesional como maquilladora, trabajando en diferentes ámbitos y evolucionando continuamente a través de la formación y la experiencia. En <strong>2019</strong> decidí dedicarme de manera exclusiva al maquillaje y a la formación, dando paso a una nueva etapa profesional en la que nace y crece Escuma Granada.</p>
           <p>En mi trabajo confluyen el conocimiento de la piel y la cosmética, el color, la técnica del maquillaje, las técnicas pictóricas, la historia de la moda y, cada vez más, la investigación creativa y el lenguaje visual.</p>
           <p>Mi formación más reciente en moda y creatividad la he realizado en <strong>Kabuki Make Up</strong>, en Buenos Aires, junto a <strong>Jazmín Calcarami</strong>. Una experiencia que ha ampliado mi mirada sobre el maquillaje como lenguaje artístico y sobre la relación entre maquillaje, imagen, moda y creatividad.</p>
@@ -332,10 +330,20 @@
         <h2 class="reveal" data-i18n="featured.title">Clientes y <span class="italic">proyectos</span></h2>
       </header>
 
-      <article class="feature reveal">
-        <span class="feature__tag" data-i18n="featured.couture">Alta costura</span>
-        <h3 data-i18n="featured.paris.t">Key Make Up Artist · Paris Haute Couture Week 2026</h3>
-        <p data-i18n="featured.paris.d">Dirección de maquillaje para <strong>Leandro Cano</strong> en la Semana de la Alta Costura de París.</p>
+      <article class="feature feature--fotos reveal">
+        <div class="feature__texto">
+          <span class="feature__tag" data-i18n="featured.couture">Alta costura</span>
+          <h3 data-i18n="featured.paris.t">Key Make Up Artist · Paris Haute Couture Week 2026</h3>
+          <p data-i18n="featured.paris.d">Dirección de maquillaje para <strong>Leandro Cano</strong> en la Semana de la Alta Costura de París.</p>
+        </div>
+        <div class="feature__galeria">
+          <figure class="ph" data-ph="paris-01.jpg">
+            <img src="assets/img/paris-01.jpg" alt="Desfile de Leandro Cano en la Semana de la Alta Costura de París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          </figure>
+          <figure class="ph" data-ph="paris-02.jpg">
+            <img src="assets/img/paris-02.jpg" alt="Maquillaje para el desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          </figure>
+        </div>
       </article>
 
       <ul class="works">
@@ -352,7 +360,7 @@
         </li>
         <li class="work reveal">
           <span class="work__cat" data-i18n="cat.video">Videoclip</span>
-          <h3 class="work__client">Sayko</h3>
+          <h3 class="work__client">Saiko</h3>
           <p class="work__items">Videoclip <em>Luna</em> · <span data-i18n="work.sayko">Intro de <em>Sakura</em></span></p>
         </li>
         <li class="work reveal">
