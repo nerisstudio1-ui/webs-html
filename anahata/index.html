@@ -31,19 +31,18 @@
 </div>
 <header class="cabecera cabecera--transparente" data-cabecera>
   <div class="cabecera__interior">
-    <button class="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-boton>
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav nav--principal" aria-label="Navegación principal"><a href="#sobre-mi">Sobre mí</a><a href="#servicios">Servicios</a><a href="#programas">Programas</a></nav>
     <a class="logo" href="#inicio" aria-label="ANAHATA">
       <img class="logo__simbolo logo__simbolo--color" src="assets/img/logo-marca.svg" alt="" width="34" height="34">
       <img class="logo__simbolo logo__simbolo--crema" src="assets/img/logo-marca-crema.svg" alt="" width="34" height="34">
       <span class="logo__texto">ANAHATA</span>
     </a>
-    <nav class="nav nav--fin" aria-label="Acciones">
-      <a href="#retiros">Retiros</a><a href="#contacto">Contacto</a>
+    <nav class="nav nav--principal" aria-label="Navegación principal">
+      <a href="#sobre-mi">Sobre mí</a><a href="#servicios">Servicios</a><a href="#programas">Programas</a><a href="#opiniones">Opiniones</a><a href="#retiros">Retiros</a><a href="#contacto">Contacto</a>
       <a class="btn btn--linea" href="#contacto">Reservar</a>
     </nav>
+    <button class="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-boton>
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 <nav class="menu-movil" data-menu aria-label="Menú">
@@ -82,8 +81,9 @@
 
 <section class="seccion seccion--crema" id="sobre-mi">
   <div class="contenedor duo">
-    <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/sara-retrato.jpg" alt="Sara Viñas Gómez" loading="lazy" width="900" height="1200">
+    <div class="duo__media revelar">
+      <img src="assets/img/espacio-estudio.jpg" alt="El espacio de ANAHATA, con el rótulo en la cristalera"
+           loading="lazy" width="1200" height="900">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Sobre mí</span>
@@ -269,29 +269,33 @@
       <p class="lead" style="margin-top:1.2rem">Las tarifas y los horarios se adaptan al formato, la frecuencia y el lugar de la práctica. Escríbeme y te lo cuento sin compromiso.</p>
     </div>
     <div class="grid grid-4">
-      <article class="tarjeta revelar" data-retardo="0">
-        <div class="tarjeta__media"><img src="assets/img/programa-sueltas.jpg" alt="Clases sueltas" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="0">
+        <div class="numero">01</div>
         <h3>Clases sueltas</h3>
-        <p>Prueba una sesión sin compromiso o practica a tu ritmo cuando tu agenda lo permita. Yoga, pilates o meditación, en grupo o individual.</p>
-        <a class="enlace-flecha" href="#contacto">Quiero información</a>
+        <p style="margin:.4rem 0 1rem">Prueba una sesión sin compromiso o practica a tu ritmo cuando tu agenda lo permita. Yoga, pilates o meditación, en grupo o individual.</p>
+        <ul style="margin:0 0 1.2rem"><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Sin permanencia</li><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Presencial u online</li><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Todos los niveles</li></ul>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>
-      <article class="tarjeta revelar" data-retardo="90">
-        <div class="tarjeta__media"><img src="assets/img/comunidad.jpg" alt="Membresía mensual" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="90">
+        <div class="numero">02</div>
         <h3>Membresía mensual</h3>
-        <p>La opción para crear constancia. Practica cada semana con seguimiento cercano y acceso prioritario a talleres y eventos.</p>
-        <a class="enlace-flecha" href="#contacto">Quiero información</a>
+        <p style="margin:.4rem 0 1rem">La opción para crear constancia. Practica cada semana con seguimiento cercano y acceso prioritario a talleres y eventos.</p>
+        <ul style="margin:0 0 1.2rem"><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Clases semanales</li><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Acompañamiento continuo</li><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Prioridad en retiros</li></ul>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>
-      <article class="tarjeta revelar" data-retardo="180">
-        <div class="tarjeta__media"><img src="assets/img/reto21.jpg" alt="Reto de 21 días" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="180">
+        <div class="numero">03</div>
         <h3>Reto de 21 días</h3>
-        <p>Veintiún días para instalar un hábito consciente. Práctica guiada, respiración y pautas sencillas para sostener el cambio.</p>
-        <a class="enlace-flecha" href="#contacto">Quiero información</a>
+        <p style="margin:.4rem 0 1rem">Veintiún días para instalar un hábito consciente. Práctica guiada, respiración y pautas sencillas para sostener el cambio.</p>
+        <ul style="margin:0 0 1.2rem"><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Práctica diaria guiada</li><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Materiales descargables</li><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Grupo de acompañamiento</li></ul>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>
-      <article class="tarjeta revelar" data-retardo="270">
-        <div class="tarjeta__media"><img src="assets/img/sesion-privada.jpg" alt="Sesiones privadas" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="270">
+        <div class="numero">04</div>
         <h3>Sesiones privadas</h3>
-        <p>Un espacio íntimo, diseñado para ti. Trabajamos tus objetivos, corregimos y profundizamos desde la atención plena.</p>
-        <a class="enlace-flecha" href="#contacto">Quiero información</a>
+        <p style="margin:.4rem 0 1rem">Un espacio íntimo, diseñado para ti. Trabajamos tus objetivos, corregimos y profundizamos desde la atención plena.</p>
+        <ul style="margin:0 0 1.2rem"><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>100 % personalizada</li><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>En estudio, a domicilio u online</li><li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>Sesión suelta o bono</li></ul>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article></div>
   </div>
 </section>
@@ -305,16 +309,16 @@
     </div>
     <div class="galeria">
       <figure class="galeria__item revelar" data-retardo="0">
-        <img src="assets/img/espacio-estudio.jpg" alt="El espacio de práctica de ANAHATA" loading="lazy" width="1200" height="900">
+        <img src="assets/img/programa-sueltas.jpg" alt="Clase de suelo en ANAHATA" loading="lazy" width="1200" height="900">
       </figure>
       <figure class="galeria__item revelar" data-retardo="70">
-        <img src="assets/img/detalle-esterillas.jpg" alt="Detalle de una clase de Pilates Mat" loading="lazy" width="1200" height="900">
+        <img src="assets/img/sesion-privada.jpg" alt="Trabajo sobre fitball en clase" loading="lazy" width="1200" height="900">
       </figure>
       <figure class="galeria__item revelar" data-retardo="140">
         <img src="assets/img/comunidad.jpg" alt="Alumnas de ANAHATA tras una clase" loading="lazy" width="1200" height="900">
       </figure>
       <figure class="galeria__item revelar" data-retardo="210">
-        <img src="assets/img/retiro-paisaje.jpg" alt="Vistas desde uno de los retiros" loading="lazy" width="1200" height="900">
+        <img src="assets/img/evento-brunch.jpg" alt="Mesa compartida en uno de los retiros" loading="lazy" width="1200" height="900">
       </figure></div>
   </div>
 </section>
@@ -361,47 +365,50 @@
 
 <section class="seccion" id="retiros">
   <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(36px,5vw,64px)">
+    <figure class="banda-foto revelar">
+      <img src="assets/img/retiro-finde.jpg" alt="Grupo de uno de los retiros de ANAHATA" loading="lazy" width="1400" height="1050">
+    </figure>
+    <div class="medida texto-centrado" style="margin:clamp(40px,5vw,64px) auto clamp(32px,4vw,52px)">
       <span class="eyebrow">Retiros, eventos y talleres</span>
       <h2>Experiencias para hacer tribu</h2>
       <p class="lead" style="margin-top:1.2rem">Encuentros presenciales para desconectar del ritmo diario y reconectar contigo, siempre en entornos de naturaleza y silencio.</p>
     </div>
     <div class="grid grid-3">
-      <article class="tarjeta revelar" data-retardo="0">
-        <div class="tarjeta__media"><img src="assets/img/retiro-finde.jpg" alt="Retiros de fin de semana" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="0">
         <span class="eyebrow" style="margin-bottom:.5rem">Retiro</span>
         <h3>Retiros de fin de semana</h3>
-        <p>Encuentros presenciales donde hacer tribu, para desconectar del ritmo diario y reconectar contigo. Movimiento, descanso, naturaleza y autocuidado profundo, siempre en entornos de naturaleza y silencio.</p>
+        <p style="margin:.4rem 0 1.1rem">Encuentros presenciales donde hacer tribu, para desconectar del ritmo diario y reconectar contigo. Movimiento, descanso, naturaleza y autocuidado profundo, siempre en entornos de naturaleza y silencio.</p>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>
-      <article class="tarjeta revelar" data-retardo="90">
-        <div class="tarjeta__media"><img src="assets/img/evento-brunch.jpg" alt="Yoga & brunch" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="80">
         <span class="eyebrow" style="margin-bottom:.5rem">Evento</span>
         <h3>Yoga & brunch</h3>
-        <p>Una mañana para moverte con calma y compartir mesa después. Práctica suave, respiración y un desayuno saludable en buena compañía.</p>
+        <p style="margin:.4rem 0 1.1rem">Una mañana para moverte con calma y compartir mesa después. Práctica suave, respiración y un desayuno saludable en buena compañía.</p>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>
-      <article class="tarjeta revelar" data-retardo="180">
-        <div class="tarjeta__media"><img src="assets/img/aromaterapia.jpg" alt="Taller de aromaterapia" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="160">
         <span class="eyebrow" style="margin-bottom:.5rem">Taller</span>
         <h3>Taller de aromaterapia</h3>
-        <p>Descubre el poder de los aceites esenciales y cómo integrarlos en tu rutina para acompañar tu descanso, tu energía y tu estado de ánimo.</p>
+        <p style="margin:.4rem 0 1.1rem">Descubre el poder de los aceites esenciales y cómo integrarlos en tu rutina para acompañar tu descanso, tu energía y tu estado de ánimo.</p>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>
-      <article class="tarjeta revelar" data-retardo="0">
-        <div class="tarjeta__media"><img src="assets/img/mujeres.jpg" alt="Yoga y menopausia" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="0">
         <span class="eyebrow" style="margin-bottom:.5rem">Taller</span>
         <h3>Yoga y menopausia</h3>
-        <p>Una práctica específica para acompañar los cambios de esta etapa: movilidad, fuerza, respiración y herramientas para habitar el cuerpo con amabilidad.</p>
+        <p style="margin:.4rem 0 1.1rem">Una práctica específica para acompañar los cambios de esta etapa: movilidad, fuerza, respiración y herramientas para habitar el cuerpo con amabilidad.</p>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>
-      <article class="tarjeta revelar" data-retardo="90">
-        <div class="tarjeta__media"><img src="assets/img/familia.jpg" alt="Yoga en familia" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="80">
         <span class="eyebrow" style="margin-bottom:.5rem">Evento</span>
         <h3>Yoga en familia</h3>
-        <p>Una experiencia para compartir con los peques de casa: juego, movimiento y respiración para crear vínculo y consciencia corporal desde la infancia.</p>
+        <p style="margin:.4rem 0 1.1rem">Una experiencia para compartir con los peques de casa: juego, movimiento y respiración para crear vínculo y consciencia corporal desde la infancia.</p>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>
-      <article class="tarjeta revelar" data-retardo="180">
-        <div class="tarjeta__media"><img src="assets/img/kundalini.jpg" alt="Activación de la energía Kundalini" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="160">
         <span class="eyebrow" style="margin-bottom:.5rem">Taller</span>
         <h3>Activación de la energía Kundalini</h3>
-        <p>Un espacio para trabajar la energía desde la respiración, el movimiento y la meditación, despertando vitalidad y presencia.</p>
+        <p style="margin:.4rem 0 1.1rem">Un espacio para trabajar la energía desde la respiración, el movimiento y la meditación, despertando vitalidad y presencia.</p>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article></div>
   </div>
 </section>

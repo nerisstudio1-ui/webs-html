@@ -86,40 +86,6 @@ def aviso():
   </button>
 </div>'''
 
-def cabecera(activa, sobre_imagen=False):
-    clase = "cabecera cabecera--transparente" if sobre_imagen else "cabecera cabecera--solida"
-    marca_actual = ' aria-current="page"'
-    enlaces = "".join(
-        '<a href="%s"%s>%s</a>' % (h, marca_actual if h == activa else "", t)
-        for h, t in NAV[:-1])
-    menu_movil = "".join(f'<a href="{h}">{t}</a>' for h, t in NAV)
-    return f'''
-<header class="{clase}" data-cabecera>
-  <div class="cabecera__interior">
-    <button class="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-boton>
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav nav--principal" aria-label="Navegación principal">{enlaces}</nav>
-    <a class="logo" href="index.html" aria-label="{MARCA} · inicio">
-      <img class="logo__simbolo logo__simbolo--color" src="assets/img/logo-marca.svg" alt="" width="34" height="34">
-      <img class="logo__simbolo logo__simbolo--crema" src="assets/img/logo-marca-crema.svg" alt="" width="34" height="34">
-      <span class="logo__texto">{MARCA}</span>
-    </a>
-    <nav class="nav nav--fin" aria-label="Acciones">
-      <a class="nav-enlace" href="contacto.html"{marca_actual if activa == "contacto.html" else ""}>Contacto</a>
-      <a class="btn btn--linea" href="contacto.html#reservar">Reservar</a>
-    </nav>
-  </div>
-</header>
-<nav class="menu-movil" data-menu aria-label="Menú">
-  {menu_movil}
-  <a class="btn btn--solido" href="contacto.html#reservar">Reservar tu clase</a>
-  <div class="menu-movil__pie">
-    <a href="{IG}" target="_blank" rel="noopener">Instagram</a>
-    <a href="{WA_URL}" target="_blank" rel="noopener">WhatsApp</a>
-  </div>
-</nav>'''
-
 def pie(landing=False):
     if landing:
         enlaces_nav = [("#inicio", "Inicio"), ("#sobre-mi", "Sobre mí"), ("#servicios", "Servicios"),
@@ -184,19 +150,6 @@ def pie(landing=False):
 
 def orn():
     return f'<div class="ornamento">{I["corazon"]}</div>'
-
-def hero_interior(titulo, bajada, imagen, alt):
-    return f'''
-<section class="hero hero--interior">
-  <div class="hero__media"><img src="assets/img/{imagen}" alt="{alt}" width="1920" height="900" fetchpriority="high"></div>
-  <div class="contenedor">
-    <div class="hero__contenido">
-      <p class="miga"><a href="index.html">Inicio</a> · {titulo}</p>
-      <h1>{titulo}</h1>
-      <p>{bajada}</p>
-    </div>
-  </div>
-</section>'''
 
 def franja_cta(titulo, texto, imagen="retiro-paisaje.jpg"):
     return f'''
@@ -375,83 +328,6 @@ def bloque_zonas(verde=False):
   </div>
 </section>'''
 
-def pagina_inicio():
-    pilares = "".join(f'''
-      <article class="tarjeta revelar" data-retardo="{i*110}">
-        <div class="tarjeta__media"><img src="assets/img/{img}" alt="{tit}" loading="lazy" width="1200" height="900"></div>
-        <h3>{tit}</h3>
-        <p>{txt}</p>
-        <a class="enlace-flecha" href="{url}">{cta}</a>
-      </article>''' for i, (img, tit, txt, url, cta) in enumerate(PILARES))
-
-    return (head(f"{MARCA} · Yoga, Pilates y Meditación en {CIUDAD} | {TITULAR}",
-                 f"Clases de yoga, pilates y meditación en {CIUDAD}, a domicilio, al aire libre y online. Retiros, talleres y programas para tu bienestar integral con {TITULAR}.",
-                 "index.html")
-    + aviso() + cabecera("index.html", sobre_imagen=True) + f'''
-<main id="contenido">
-
-<section class="hero">
-  <div class="hero__media">
-    <img src="assets/img/hero-inicio.jpg" alt="Clase de Pilates Mat con fitball en ANAHATA" width="1920" height="1280" fetchpriority="high">
-  </div>
-  <div class="contenedor">
-    <div class="hero__contenido">
-    <span class="eyebrow">Yoga · Pilates · Conexión · Transformación · Amor</span>
-    <h1>Bienestar consciente<span class="cursiva">para cuerpo, mente y espíritu</span></h1>
-    <p>Yoga, pilates y meditación en {CIUDAD}, a domicilio, al aire libre y online. Un espacio para escucharte, habitar tu cuerpo y volver a ti.</p>
-    <div class="botonera mt-l">
-      <a class="btn btn--claro" href="contacto.html#reservar">Reservar tu clase</a>
-      <a class="btn btn--linea-clara" href="servicios.html">Ver servicios</a>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section class="seccion">
-  <div class="contenedor manifiesto revelar">
-    {orn()}
-    <p>ANAHATA es un espacio holístico donde cuerpo, mente y espíritu vuelven a encontrarse. Lejos de las prisas y los resultados inmediatos, te acompaño con prácticas que cultivan equilibrio, presencia y hábitos saludables.</p>
-    <p class="firma">Sara Viñas</p>
-  </div>
-</section>
-
-<section class="seccion seccion--crema">
-  <div class="contenedor">
-    <div class="grid grid-3">{pilares}</div>
-  </div>
-</section>
-
-<section class="seccion">
-  <div class="contenedor duo">
-    <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/sara-retrato.jpg" alt="{TITULAR}, profesora de yoga y pilates" loading="lazy" width="900" height="1200">
-    </div>
-    <div class="revelar" data-retardo="120">
-      <span class="eyebrow">Sobre mí</span>
-      <h2>Mi historia y el origen de ANAHATA</h2>
-      <p style="margin-top:1.4rem">Mi nombre es Sara. Nací en Zaragoza, aunque la vida me ha llevado a vivir en diferentes ciudades de España, cada una aportando algo esencial a mi camino.</p>
-      <p>En 2016 comenzó mi transformación. Tras dos grandes pérdidas familiares, decidí convertir ese dolor en una oportunidad para reenfocar mi vida y reconectar conmigo misma. Puse el foco en volver a estudiar y formarme en aquello que me hacía sentir en equilibrio.</p>
-      <p>Así nace ANAHATA, un espacio holístico que hoy es un proyecto vivo, en constante renovación, que se expande más allá de un lugar físico.</p>
-      <a class="enlace-flecha mt-l" href="sobre-mi.html">Conocer mi trayectoria</a>
-    </div>
-  </div>
-</section>
-
-{bloque_estilos_resumen()}
-{bloque_implementos()}
-{bloque_beneficios("seccion--crema")}
-{bloque_modalidades()}
-{bloque_galeria("seccion--crema")}
-
-{franja_cta("Tu práctica empieza con una respiración",
-            "Cuéntame qué necesitas y encontramos juntas el formato, el estilo y el ritmo que mejor te acompañan.")}
-
-{bloque_pasos()}
-{bloque_zonas()}
-{bloque_testimonios()}
-{bloque_newsletter()}
-</main>''' + JSONLD + pie())
-
 # ============================== SOBRE MÍ ===================================
 FORMACION = [
     ("Pilates Mat", "Técnica, control y consciencia corporal"),
@@ -464,97 +340,6 @@ FORMACION = [
     ("En curso", "Yogagara (India) y Astrología Psicológica"),
 ]
 
-def pagina_sobre_mi():
-    formacion = "".join(f'''
-      <article class="tarjeta-texto revelar" data-retardo="{(i%4)*90}">
-        <div class="numero">{str(i+1).zfill(2)}</div>
-        <h4>{t}</h4>
-        <p style="margin:.5rem 0 0">{d}</p>
-      </article>''' for i, (t, d) in enumerate(FORMACION))
-
-    return (head(f"Sobre mí · {TITULAR} | {MARCA}",
-                 f"Conoce a {TITULAR}, profesora de yoga y pilates. El origen de ANAHATA, mi formación y la manera en que acompaño a cada persona.",
-                 "sobre-mi.html")
-    + aviso() + cabecera("sobre-mi.html", sobre_imagen=True)
-    + hero_interior("Sobre mí",
-                    "Mi historia y el origen de ANAHATA.",
-                    "hero-sobre-mi.svg", f"{TITULAR}") + f'''
-<main id="contenido">
-
-<section class="seccion">
-  <div class="contenedor duo">
-    <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/sara-retrato.jpg" alt="{TITULAR}" loading="lazy" width="900" height="1200">
-    </div>
-    <div class="revelar" data-retardo="120">
-      <span class="eyebrow">Mi camino</span>
-      <h2>Del dolor al equilibrio</h2>
-      <p style="margin-top:1.4rem">Mi nombre es Sara. Nací en Zaragoza, aunque la vida me ha llevado a vivir en diferentes ciudades de España, cada una aportando algo esencial a mi camino.</p>
-      <p>En 2016 comenzó mi transformación. Tras dos grandes pérdidas familiares, decidí convertir ese dolor en una oportunidad para reenfocar mi vida y reconectar conmigo misma.</p>
-      <p>Puse el foco en volver a estudiar y formarme en aquello que me hacía sentir en equilibrio: Pilates Mat, Yoga (300 h), Mindfulness, Nutrición, Masaje Ayurvédico, Yoga y Menopausia y Activación de la Energía Kundalini.</p>
-      <p>Actualmente sigo ampliando mi formación —próximamente en Yogagara (India) y Astrología Psicológica— porque creo profundamente en el aprendizaje continuo y en la evolución personal.</p>
-    </div>
-  </div>
-</section>
-
-<section class="seccion seccion--crema">
-  <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(30px,4vw,56px)">
-      {orn()}
-      <span class="eyebrow">El origen</span>
-      <h2>Así nace ANAHATA</h2>
-    </div>
-    <div class="medida revelar">
-      <p class="lead">Todo este recorrido me llevó a dedicarme a lo que realmente me apasiona: ofrecer clases de yoga y pilates y acompañar a las personas en la creación de consciencia corporal, mental y espiritual, para que puedan encontrar equilibrio y bienestar en su día a día.</p>
-      <p>Así nace ANAHATA, un espacio holístico que comenzó como un centro físico en Etxebarri, un lugar al que guardo un agradecimiento infinito. Por amor, cambié de ciudad y traspasé el centro, permitiendo que ANAHATA siguiera su propio proceso natural de transformación.</p>
-      <p>Hoy ANAHATA es un proyecto vivo, en constante renovación, que se expande más allá de un lugar físico. Mi propósito es crear espacios —presenciales y online— que puedan llegar a cualquier rincón del mundo, acompañando a cada persona en su camino hacia una vida más consciente, equilibrada y plena.</p>
-    </div>
-  </div>
-</section>
-
-<section class="seccion seccion--verde">
-  <div class="contenedor">
-    <div class="cita revelar">
-      <figure>
-        <blockquote>Anahata es el centro del corazón: el lugar donde el cuerpo y la consciencia se encuentran. Ahí es donde trabajamos.</blockquote>
-        <figcaption>{TITULAR}</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="seccion">
-  <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(30px,4vw,56px)">
-      <span class="eyebrow">Formación</span>
-      <h2>Aprendizaje continuo</h2>
-      <p class="lead" style="margin-top:1.2rem">Creo en la evolución personal como práctica diaria. Esta es la base desde la que acompaño.</p>
-    </div>
-    <div class="grid grid-4">{formacion}</div>
-  </div>
-</section>
-
-<section class="seccion seccion--crema">
-  <div class="contenedor duo duo--invertido">
-    <div class="duo__media revelar">
-      <img src="assets/img/detalle-esterillas.jpg" alt="Detalle de una clase de Pilates Mat" loading="lazy" width="1200" height="900">
-    </div>
-    <div class="revelar" data-retardo="120">
-      <span class="eyebrow">Mi propósito</span>
-      <h2>Crear espacios donde puedas escucharte</h2>
-      <p style="margin-top:1.4rem">Mi misión es crear espacios donde puedas escucharte, habitar tu cuerpo, calmar la mente y nutrir tu energía a través de prácticas que acompañan tu bienestar físico, emocional y espiritual.</p>
-      <div class="botonera mt-l">
-        <a class="btn btn--solido" href="servicios.html">Ver mis prácticas</a>
-        <a class="btn btn--linea" href="contacto.html#reservar">Reservar una sesión</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-{franja_cta("¿Empezamos juntas?",
-            "Tanto si es tu primera clase como si llevas años practicando, adaptamos la sesión a tu momento.")}
-</main>''' + pie())
-
 # ============================== SERVICIOS ==================================
 ESTILOS_YOGA = [
     ("Yoga Integral", "Cuerpo, mente y espíritu",
@@ -566,92 +351,6 @@ ESTILOS_YOGA = [
     ("Yin Yoga", "Suave y meditativo",
      "Un estilo suave, meditativo y profundo que trabaja desde la quietud. Las posturas se mantienen durante varios minutos para acceder a los tejidos más internos, liberar tensiones y equilibrar el sistema nervioso. Yin Yoga es perfecto para quienes buscan calma, introspección y un espacio de descanso consciente."),
 ]
-
-def pagina_servicios():
-    estilos = "".join(f'''
-      <article class="estilo revelar">
-        <div>
-          <h3>{t}</h3>
-          <p class="estilo__etiqueta">{et}</p>
-        </div>
-        <p>{d}</p>
-      </article>''' for t, et, d in ESTILOS_YOGA)
-
-    return (head(f"Servicios · Yoga, Pilates y Meditación | {MARCA}",
-                 "Yoga Integral, Ashtanga, Vinyasa, Yin Yoga, Pilates Mat con implementos, meditación, pranayamas y alimentación saludable. Descubre todas las prácticas de ANAHATA.",
-                 "servicios.html")
-    + aviso() + cabecera("servicios.html", sobre_imagen=True)
-    + hero_interior("Servicios",
-                    "Prácticas que cultivan equilibrio, presencia y hábitos saludables.",
-                    "hero-servicios.jpg", "Clase grupal de yoga") + f'''
-<main id="contenido">
-
-<section class="seccion" id="yoga">
-  <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(36px,5vw,70px)">
-      {orn()}
-      <span class="eyebrow">Yoga</span>
-      <h2>Estilos de yoga que ofrezco</h2>
-      <p class="lead" style="margin-top:1.2rem">Cuatro caminos distintos hacia el mismo lugar: tu equilibrio. Elegimos juntas el que mejor acompaña tu momento.</p>
-    </div>
-    <div class="medida">{estilos}</div>
-  </div>
-</section>
-
-<section class="seccion seccion--crema" id="pilates">
-  <div class="contenedor duo">
-    <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/servicio-pilates.jpg" alt="Clase de Pilates Mat con fitball en el estudio de ANAHATA" loading="lazy" width="1000" height="1000">
-    </div>
-    <div class="revelar" data-retardo="120">
-      <span class="eyebrow">Pilates</span>
-      <h2>Pilates Mat con diferentes implementos</h2>
-      <p style="margin-top:1.4rem">El Pilates Mat es una práctica enfocada en la fuerza, la estabilidad y la consciencia corporal. A través del control, la precisión y la respiración, trabajamos la musculatura profunda, mejoramos la postura y fortalecemos el cuerpo de forma funcional.</p>
-      <p>En mis clases incorporo diferentes implementos —bandas elásticas, aro mágico, fitball, softball, bloques, sliders, rulo y pica— que permiten adaptar la intensidad, profundizar en la técnica y hacer la práctica más dinámica y completa. Estos elementos ayudan a activar zonas específicas, mejorar la movilidad y acompañar el movimiento de forma segura y consciente.</p>
-      <p>Además, el Pilates Mat contribuye a ganar elasticidad, mejorar la coordinación y fortalecer el suelo pélvico, favoreciendo una base corporal estable y saludable para el día a día.</p>
-      <p>Es una disciplina ideal para quienes buscan cuidarse desde la presencia, mejorar su alineación, prevenir molestias y conectar con su cuerpo de manera equilibrada y consciente.</p>
-    </div>
-  </div>
-</section>
-
-<section class="seccion" id="meditacion">
-  <div class="contenedor duo duo--invertido">
-    <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/servicio-meditacion.svg" alt="Meditación guiada" loading="lazy" width="1000" height="1000">
-    </div>
-    <div class="revelar" data-retardo="120">
-      <span class="eyebrow">Meditación</span>
-      <h2>Meditación y pranayamas</h2>
-      <p style="margin-top:1.4rem">La meditación y los pranayamas son prácticas esenciales para cultivar calma, claridad y equilibrio interior. A través de técnicas de respiración consciente y momentos de quietud guiada, te acompaño a conectar con tu energía, regular el sistema nervioso y habitar el presente con más serenidad.</p>
-      <p>Los pranayamas —ejercicios de control y expansión de la respiración— ayudan a mejorar la capacidad pulmonar, liberar tensiones internas, equilibrar la energía y preparar el cuerpo y la mente para la práctica física. Son herramientas poderosas para gestionar el estrés, aumentar la vitalidad y profundizar en la conexión contigo.</p>
-      <p>La meditación te invita a observar, a sentir y a crear un espacio de silencio donde puedas escucharte. Trabajamos diferentes técnicas: atención plena, visualizaciones, escaneo corporal, meditación guiada y prácticas de presencia que te ayudan a encontrar estabilidad emocional y claridad mental.</p>
-      <p><strong>Es un espacio para respirar, soltar, reconectar y volver a tu centro, volver a ti.</strong></p>
-    </div>
-  </div>
-</section>
-
-<section class="seccion seccion--arena" id="alimentacion">
-  <div class="contenedor duo">
-    <div class="duo__media revelar">
-      <img src="assets/img/alimentacion.jpg" alt="Comida saludable en un retiro de ANAHATA" loading="lazy" width="1200" height="900">
-    </div>
-    <div class="revelar" data-retardo="120">
-      <span class="eyebrow">Nutrición consciente</span>
-      <h2>Alimentación saludable</h2>
-      <p style="margin-top:1.4rem">La alimentación saludable empieza por elegir alimentos que te nutran y combinarlos de forma adecuada para mejorar la digestión, la energía y el bienestar. En este espacio te acompaño a entender qué mezclas favorecen tu cuerpo, cuáles generan más ligereza y cómo crear platos sencillos, equilibrados y llenos de vida.</p>
-      <p>Es una manera práctica y consciente de cuidarte desde dentro, escuchando tu cuerpo y aprendiendo a alimentarte de forma más natural y armoniosa.</p>
-      <a class="enlace-flecha mt-l" href="contacto.html">Consultar disponibilidad</a>
-    </div>
-  </div>
-</section>
-
-{bloque_modalidades()}
-
-{franja_cta("¿No sabes por dónde empezar?",
-            "Escríbeme y valoramos juntas qué práctica encaja mejor contigo, tu cuerpo y tu momento vital.")}
-
-{bloque_zonas()}
-</main>''' + pie())
 
 # ========================= CLASES Y PROGRAMAS ==============================
 PROGRAMAS = [
@@ -684,76 +383,6 @@ FAQ = [
      "En directo o grabadas, para que puedas practicar desde cualquier lugar. Solo necesitas conexión, un espacio tranquilo y tu esterilla."),
 ]
 
-def pagina_clases():
-    programas = "".join(f'''
-      <article class="tarjeta revelar" data-retardo="{(i%2)*110}">
-        <div class="tarjeta__media"><img src="assets/img/{img}" alt="{t}" loading="lazy" width="1200" height="900"></div>
-        <h3>{t}</h3>
-        <p>{d}</p>
-        <ul style="margin:0 0 1.3rem">{"".join(f'<li style="font-size:.9rem;padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--oro)">·</span>{b}</li>' for b in bullets)}</ul>
-        <a class="enlace-flecha" href="contacto.html#reservar">Consultar e inscribirme</a>
-      </article>''' for i, (img, t, d, bullets) in enumerate(PROGRAMAS))
-
-    faq = "".join(f'''
-      <div class="acordeon__item">
-        <button class="acordeon__boton" type="button" aria-expanded="false">
-          <span>{p}</span><span aria-hidden="true">+</span>
-        </button>
-        <div class="acordeon__panel"><div><p>{r}</p></div></div>
-      </div>''' for p, r in FAQ)
-
-    return (head(f"Clases y programas · {MARCA}",
-                 "Clases sueltas, membresía mensual, reto de 21 días y sesiones privadas de yoga y pilates. Elige el formato que mejor acompaña tu momento.",
-                 "clases.html")
-    + aviso() + cabecera("clases.html", sobre_imagen=True)
-    + hero_interior("Clases y programas",
-                    "Elige cómo quieres acompañarte: una clase suelta, un mes completo o un reto que te sostenga.",
-                    "hero-clases.jpg", "Sala de práctica") + f'''
-<main id="contenido">
-
-<section class="seccion">
-  <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(36px,5vw,64px)">
-      {orn()}
-      <span class="eyebrow">Formatos</span>
-      <h2>Programas para crear constancia</h2>
-      <p class="lead" style="margin-top:1.2rem">La transformación no llega con un esfuerzo puntual, sino con la constancia amable. Estas son las formas de practicar conmigo.</p>
-    </div>
-    <div class="grid grid-2">{programas}</div>
-  </div>
-</section>
-
-<section class="seccion seccion--verde seccion--compacta">
-  <div class="contenedor duo">
-    <div class="revelar">
-      <span class="eyebrow">Tarifas y horarios</span>
-      <h2>Cada propuesta se adapta a ti</h2>
-      <p class="lead" style="margin-top:1.2rem">Los horarios se organizan por temporada y las tarifas dependen del formato, la frecuencia y el lugar de la práctica. Escríbeme y te lo cuento todo sin compromiso.</p>
-    </div>
-    <div class="revelar" data-retardo="120" style="display:flex;flex-direction:column;justify-content:center;gap:14px">
-      <a class="btn btn--oro btn--bloque" href="{WA_URL}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
-      <a class="btn btn--linea-clara btn--bloque" href="contacto.html#reservar">Escribir por el formulario</a>
-      <p class="nota-formulario" style="color:#CFCBBC;text-align:center">Respondo personalmente en 24-48 h.</p>
-    </div>
-  </div>
-</section>
-
-{bloque_modalidades()}
-
-<section class="seccion seccion--crema">
-  <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(30px,4vw,50px)">
-      <span class="eyebrow">Dudas frecuentes</span>
-      <h2>Antes de tu primera clase</h2>
-    </div>
-    <div class="medida acordeon revelar" data-acordeon>{faq}</div>
-  </div>
-</section>
-
-{franja_cta("Reserva tu plaza",
-            "Dime qué práctica te interesa y en qué momento del día te viene bien. Te confirmo disponibilidad enseguida.")}
-</main>''' + pie())
-
 # ==================== RETIROS, EVENTOS Y TALLERES ==========================
 EVENTOS = [
     ("retiro-finde.jpg", "Retiros de fin de semana", "Retiro",
@@ -770,177 +399,7 @@ EVENTOS = [
      "Un espacio para trabajar la energía desde la respiración, el movimiento y la meditación, despertando vitalidad y presencia."),
 ]
 
-def pagina_retiros():
-    tarjetas = "".join(f'''
-      <article class="tarjeta revelar" data-retardo="{(i%3)*100}">
-        <div class="tarjeta__media"><img src="assets/img/{img}" alt="{t}" loading="lazy" width="1200" height="900"></div>
-        <span class="eyebrow" style="margin-bottom:.5rem">{et}</span>
-        <h3>{t}</h3>
-        <p>{d}</p>
-        <a class="enlace-flecha" href="contacto.html#reservar">Quiero información</a>
-      </article>''' for i, (img, t, et, d) in enumerate(EVENTOS))
-
-    return (head(f"Retiros, eventos y talleres · {MARCA}",
-                 "Retiros de fin de semana, yoga & brunch, talleres de aromaterapia, yoga y menopausia, yoga en familia y activación de la energía Kundalini.",
-                 "retiros.html")
-    + aviso() + cabecera("retiros.html", sobre_imagen=True)
-    + hero_interior("Retiros, eventos y talleres",
-                    "Experiencias para desconectar del ritmo diario y reconectar contigo.",
-                    "hero-retiros.jpg", "Retiro de yoga en la naturaleza") + f'''
-<main id="contenido">
-
-<section class="seccion">
-  <div class="contenedor manifiesto revelar">
-    {orn()}
-    <p>Encuentros presenciales donde hacer tribu. Movimiento, descanso, naturaleza y autocuidado profundo, siempre en entornos de silencio.</p>
-  </div>
-</section>
-
-<section class="seccion seccion--crema">
-  <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(36px,5vw,64px)">
-      <span class="eyebrow">Propuestas</span>
-      <h2>Experiencias de temporada</h2>
-      <p class="lead" style="margin-top:1.2rem">Cada temporada preparo nuevas fechas. Escríbeme para conocer las próximas o para organizar una experiencia a medida para tu grupo.</p>
-    </div>
-    <div class="grid grid-3">{tarjetas}</div>
-  </div>
-</section>
-
-<section class="seccion">
-  <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(30px,4vw,50px)">
-      {orn()}
-      <span class="eyebrow">Programas y retos</span>
-      <h2>Constancia, transformación y equilibrio</h2>
-    </div>
-    <div class="grid grid-3 medida" style="max-width:1000px">
-      <article class="tarjeta-texto revelar"><div class="numero">01</div><h4>Reto de 21 días</h4><p style="margin:.5rem 0 0">El tiempo justo para instalar un hábito consciente, con práctica guiada y acompañamiento.</p></article>
-      <article class="tarjeta-texto revelar" data-retardo="100"><div class="numero">02</div><h4>Hábitos conscientes</h4><p style="margin:.5rem 0 0">Programas para integrar movimiento, respiración y alimentación en tu día a día.</p></article>
-      <article class="tarjeta-texto revelar" data-retardo="200"><div class="numero">03</div><h4>Membresías mensuales</h4><p style="margin:.5rem 0 0">Practica cada semana con seguimiento cercano y prioridad en retiros y talleres.</p></article>
-    </div>
-    <div class="botonera botonera--centro mt-l">
-      <a class="btn btn--linea" href="clases.html">Ver todos los programas</a>
-    </div>
-  </div>
-</section>
-
-{bloque_zonas(verde=True)}
-
-{franja_cta("¿Organizamos un retiro para tu grupo?",
-            "Diseño experiencias a medida para grupos, empresas y celebraciones. Cuéntame tu idea y la hacemos posible.")}
-
-{bloque_newsletter()}
-</main>''' + pie())
-
 # =============================== CONTACTO ==================================
-def pagina_contacto():
-    opciones = ["Clases grupales", "Sesión personalizada", "Clases a domicilio",
-                "Clases al aire libre", "Clases online", "Membresía mensual",
-                "Reto de 21 días", "Retiros y experiencias", "Talleres y eventos",
-                "Alimentación saludable", "Otra consulta"]
-    select = "".join(f'<option value="{o}">{o}</option>' for o in opciones)
-
-    return (head(f"Contacto y reservas · {MARCA}",
-                 f"Reserva tu clase de yoga, pilates o meditación con {TITULAR}. Escríbeme por WhatsApp, correo o a través del formulario.",
-                 "contacto.html")
-    + aviso() + cabecera("contacto.html", sobre_imagen=True)
-    + hero_interior("Contacto",
-                    "Cuéntame qué necesitas y encontramos juntas la práctica que mejor te acompaña.",
-                    "hero-contacto.jpg", "Espacio de práctica") + f'''
-<main id="contenido">
-
-<section class="seccion" id="reservar">
-  <div class="contenedor duo" style="align-items:flex-start">
-    <div class="revelar">
-      <span class="eyebrow">Reservas</span>
-      <h2>Escríbeme</h2>
-      <p class="lead" style="margin-top:1.2rem">Respondo personalmente cada mensaje en un plazo de 24-48 h. Si prefieres una respuesta rápida, WhatsApp es la vía más directa.</p>
-
-      <div style="margin-top:clamp(32px,4vw,48px)">
-        <div class="dato">
-          <div class="dato__icono">{I["wa"]}</div>
-          <div><h4>WhatsApp</h4><a href="{WA_URL}" target="_blank" rel="noopener">{TEL_FMT}</a></div>
-        </div>
-        <div class="dato">
-          <div class="dato__icono">{I["sobre"]}</div>
-          <div><h4>Correo</h4><a href="mailto:{EMAIL}">{EMAIL}</a></div>
-        </div>
-        <div class="dato">
-          <div class="dato__icono">{I["tel"]}</div>
-          <div><h4>Teléfono</h4><a href="tel:+34{TEL}">{TEL_FMT}</a></div>
-        </div>
-        <div class="dato">
-          <div class="dato__icono">{I["pin"]}</div>
-          <div><h4>Dónde</h4><p>{CIUDAD} · a domicilio · al aire libre · online</p></div>
-        </div>
-        <div class="dato">
-          <div class="dato__icono">{I["reloj"]}</div>
-          <div><h4>Horarios</h4><p>Por temporada. Consúltame la disponibilidad actual.</p></div>
-        </div>
-      </div>
-
-      <div class="redes" style="margin-top:2rem">
-        <a href="{IG}" target="_blank" rel="noopener" aria-label="Instagram" style="border-color:rgba(190,169,141,.7);color:var(--verde)">{I["ig"]}</a>
-        <a href="{FB}" target="_blank" rel="noopener" aria-label="Facebook" style="border-color:rgba(190,169,141,.7);color:var(--verde)">{I["fb"]}</a>
-      </div>
-    </div>
-
-    <div class="revelar" data-retardo="120">
-      <form class="formulario tarjeta-texto" data-formulario novalidate>
-        <h3>Formulario de contacto</h3>
-        <div class="campo--doble">
-          <div class="campo">
-            <label for="nombre">Nombre y apellidos *</label>
-            <input id="nombre" name="nombre" type="text" required autocomplete="name">
-          </div>
-          <div class="campo">
-            <label for="telefono">Teléfono</label>
-            <input id="telefono" name="telefono" type="tel" autocomplete="tel">
-          </div>
-        </div>
-        <div class="campo">
-          <label for="email">Correo electrónico *</label>
-          <input id="email" name="email" type="email" required autocomplete="email">
-        </div>
-        <div class="campo">
-          <label for="interes">¿Qué te interesa?</label>
-          <select id="interes" name="interes">{select}</select>
-        </div>
-        <div class="campo">
-          <label for="mensaje">Cuéntame *</label>
-          <textarea id="mensaje" name="mensaje" required placeholder="Tu experiencia previa, qué buscas, qué días te vendrían bien…"></textarea>
-        </div>
-        <label class="consentimiento">
-          <input type="checkbox" name="consentimiento" required>
-          <span>He leído y acepto la <a href="privacidad.html">política de privacidad</a> y el tratamiento de mis datos para responder a esta consulta. *</span>
-        </label>
-        <button class="btn btn--solido btn--bloque" type="submit">Enviar mensaje</button>
-        <p class="nota-formulario">* Campos obligatorios. Tus datos solo se utilizan para responderte.</p>
-        <p class="nota-formulario" style="color:#9A4A2A" data-aviso-form hidden></p>
-      </form>
-    </div>
-  </div>
-</section>
-
-<section class="seccion seccion--crema seccion--compacta">
-  <div class="contenedor texto-centrado medida">
-    {orn()}
-    <h2>¿Prefieres que te escriba yo?</h2>
-    <p class="lead" style="margin-top:1.2rem">Suscríbete y recibe las próximas fechas de clases, retiros y talleres.</p>
-    <form class="newsletter" data-formulario novalidate style="margin:2rem auto 0;justify-content:center">
-      <label class="solo-lectores" for="news-email-contacto">Tu correo electrónico</label>
-      <input id="news-email-contacto" type="email" name="email" placeholder="tu@email.com" required autocomplete="email"
-             style="background:var(--blanco);border-color:rgba(190,169,141,.6);color:var(--tinta)">
-      <button class="btn btn--solido" type="submit">Suscribirme</button>
-      <p class="nota-formulario" style="flex:1 1 100%" data-aviso-form hidden></p>
-    </form>
-  </div>
-</section>
-
-{bloque_zonas(verde=True)}
-</main>''' + pie())
-
 # ================================ LEGAL ====================================
 ANCLAS = ["inicio", "sobre-mi", "servicios", "estilos", "beneficios", "modalidades",
           "programas", "galeria", "empezar", "retiros", "zonas", "opiniones", "faq",
@@ -1147,10 +606,10 @@ def bloque_pasos(fondo="seccion--verde"):
 </section>'''
 
 GALERIA = [
-    ("espacio-estudio.jpg", "El espacio de práctica de ANAHATA"),
-    ("detalle-esterillas.jpg", "Detalle de una clase de Pilates Mat"),
+    ("programa-sueltas.jpg", "Clase de suelo en ANAHATA"),
+    ("sesion-privada.jpg", "Trabajo sobre fitball en clase"),
     ("comunidad.jpg", "Alumnas de ANAHATA tras una clase"),
-    ("retiro-paisaje.jpg", "Vistas desde uno de los retiros"),
+    ("evento-brunch.jpg", "Mesa compartida en uno de los retiros"),
 ]
 
 def bloque_galeria(fondo="seccion--crema"):
@@ -1198,25 +657,25 @@ NAV_LANDING = NAV_IZQ + NAV_DER + [("#opiniones", "Opiniones")]
 
 def cabecera_landing():
     enlaces = "".join('<a href="%s">%s</a>' % (h, t) for h, t in NAV_IZQ)
-    enlaces_der = "".join('<a href="%s">%s</a>' % (h, t) for h, t in NAV_DER)
+    enlaces_der = "".join('<a href="%s">%s</a>' % (h, t) for h, t in
+                          [("#opiniones", "Opiniones")] + NAV_DER)
     movil = "".join('<a href="%s">%s</a>' % (h, t) for h, t in
                     NAV_IZQ + [("#opiniones", "Opiniones")] + NAV_DER)
     return f'''
 <header class="cabecera cabecera--transparente" data-cabecera>
   <div class="cabecera__interior">
-    <button class="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-boton>
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav nav--principal" aria-label="Navegación principal">{enlaces}</nav>
     <a class="logo" href="#inicio" aria-label="{MARCA}">
       <img class="logo__simbolo logo__simbolo--color" src="assets/img/logo-marca.svg" alt="" width="34" height="34">
       <img class="logo__simbolo logo__simbolo--crema" src="assets/img/logo-marca-crema.svg" alt="" width="34" height="34">
       <span class="logo__texto">{MARCA}</span>
     </a>
-    <nav class="nav nav--fin" aria-label="Acciones">
-      {enlaces_der}
+    <nav class="nav nav--principal" aria-label="Navegación principal">
+      {enlaces}{enlaces_der}
       <a class="btn btn--linea" href="#contacto">Reservar</a>
     </nav>
+    <button class="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-boton>
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 <nav class="menu-movil" data-menu aria-label="Menú">
@@ -1255,19 +714,20 @@ def pagina_landing():
       </article>''' for ic, t, d in MODALIDADES)
 
     programas = "".join(f'''
-      <article class="tarjeta revelar" data-retardo="{(i%4)*90}">
-        <div class="tarjeta__media"><img src="assets/img/{img}" alt="{t}" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="{(i%4)*90}">
+        <div class="numero">{str(i+1).zfill(2)}</div>
         <h3>{t}</h3>
-        <p>{d}</p>
-        <a class="enlace-flecha" href="#contacto">Quiero información</a>
-      </article>''' for i, (img, t, d, _b) in enumerate(PROGRAMAS))
+        <p style="margin:.4rem 0 1rem">{d}</p>
+        <ul style="margin:0 0 1.2rem">{"".join(f'<li style="font-size:.88rem;padding-left:16px;position:relative"><span style="position:absolute;left:0;color:var(--melocoton-2)">·</span>{b}</li>' for b in bullets)}</ul>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
+      </article>''' for i, (img, t, d, bullets) in enumerate(PROGRAMAS))
 
     eventos = "".join(f'''
-      <article class="tarjeta revelar" data-retardo="{(i%3)*90}">
-        <div class="tarjeta__media"><img src="assets/img/{img}" alt="{t}" loading="lazy" width="1200" height="900"></div>
+      <article class="tarjeta-texto revelar" data-retardo="{(i%3)*80}">
         <span class="eyebrow" style="margin-bottom:.5rem">{et}</span>
         <h3>{t}</h3>
-        <p>{d}</p>
+        <p style="margin:.4rem 0 1.1rem">{d}</p>
+        <a class="enlace-flecha" style="margin-top:auto;align-self:flex-start" href="#contacto">Quiero información</a>
       </article>''' for i, (img, t, et, d) in enumerate(EVENTOS))
 
     testimonios = "".join(f'''
@@ -1317,8 +777,9 @@ def pagina_landing():
 
 <section class="seccion seccion--crema" id="sobre-mi">
   <div class="contenedor duo">
-    <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/sara-retrato.jpg" alt="{TITULAR}" loading="lazy" width="900" height="1200">
+    <div class="duo__media revelar">
+      <img src="assets/img/espacio-estudio.jpg" alt="El espacio de ANAHATA, con el rótulo en la cristalera"
+           loading="lazy" width="1200" height="900">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Sobre mí</span>
@@ -1378,7 +839,10 @@ def pagina_landing():
 
 <section class="seccion" id="retiros">
   <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(36px,5vw,64px)">
+    <figure class="banda-foto revelar">
+      <img src="assets/img/retiro-finde.jpg" alt="Grupo de uno de los retiros de ANAHATA" loading="lazy" width="1400" height="1050">
+    </figure>
+    <div class="medida texto-centrado" style="margin:clamp(40px,5vw,64px) auto clamp(32px,4vw,52px)">
       <span class="eyebrow">Retiros, eventos y talleres</span>
       <h2>Experiencias para hacer tribu</h2>
       <p class="lead" style="margin-top:1.2rem">Encuentros presenciales para desconectar del ritmo diario y reconectar contigo, siempre en entornos de naturaleza y silencio.</p>
