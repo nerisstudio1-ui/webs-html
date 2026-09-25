@@ -26,8 +26,8 @@ const servidor = http.createServer((req, res) => {
   await new Promise(r => servidor.listen(PUERTO, r));
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   for (const [origen, destino] of [
-    ['biografia.html', 'assets/docs/biografia.pdf'],
-    ['dossier.html',   'assets/docs/dossier-prensa.pdf'],
+    ['biografia.html', 'assets/docs/cristina-falcon-biografia.pdf'],
+    ['dossier.html',   'assets/docs/cristina-falcon-dossier-prensa.pdf'],
   ]) {
     const p = await b.newPage();
     await p.goto(`http://localhost:${PUERTO}/build/pdf/${origen}`, { waitUntil: 'networkidle' });
