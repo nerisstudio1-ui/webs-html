@@ -988,30 +988,48 @@
    11. Galería
    -------------------------------------------------------------------------- */
 #cfm-web .galeria { background: var(--crema); }
+#cfm-web .galeria__bloque + .galeria__bloque { margin-top: clamp(2.5rem, 5vw, 4rem); }
+#cfm-web .galeria__bloque-titulo {
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  padding-bottom: 0.7rem;
+  margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Celdas iguales, no cascada. Antes eran columnas de alturas dispares con las
+   fotos en el orden en que fueron llegando, y el conjunto se leía como un
+   revoltijo. Con la retícula regular el ojo descansa. */
 #cfm-web .galeria__grid {
-  columns: 4 15rem;
-  column-gap: 0.75rem;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
 }
 #cfm-web .galeria__item {
   display: block;
   width: 100%;
   padding: 0;
-  margin: 0 0 0.75rem;
+  margin: 0;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--arena);
-  break-inside: avoid;
   cursor: zoom-in;
 }
 #cfm-web .galeria__item img {
+  display: block;
   width: 100%;
-  height: auto;
+  /* Todas al mismo formato: lo que sobra se recorta, y así ninguna foto
+     rompe la línea. La ampliación sigue enseñándolas enteras. */
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
   transition: scale 0.6s var(--ease), filter 0.4s var(--ease);
 }
 #cfm-web .galeria__item:hover img { scale: 1.04; filter: saturate(1.06); }
 
 @media (max-width: 40rem) {
-#cfm-web .galeria__grid { columns: 2 8rem; }
+#cfm-web .galeria__grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
 }
 
 /* Lightbox */
@@ -1849,51 +1867,158 @@
       <p class="lead" data-i18n="galeria.intro">Presentaciones, recitales, talleres y retratos.</p>
     </div>
 
-    <!-- TODO: sustituir por las fotos reales. Clases --tall / --wide para variar el ritmo. -->
-    <div class="galeria__grid reveal" id="galeria-grid">
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="1024" height="768" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/11-infancia-sola.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.11">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="640" height="1136" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/12-con-su-hermano.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.12">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="733" height="867" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/13-manos.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.13">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="1400" height="1051" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/14-editora-cuadro.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.14">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="1400" height="2487" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/01-firmando.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.01">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="922" height="615" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/02-casa-america.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.02">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="615" height="922" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/03-recital.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.03">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="900" height="1200" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/04-bolonia.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.04">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="810" height="797" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/05-festival-trujillo.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.05">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="675" height="1200" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/06-haciendo-papel.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.06">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="1400" height="1050" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/07-paramo.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.07">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="1400" height="1750" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/08-itaca-libreria.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.08">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="473" height="697" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/09-luna.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.09">
-      </button>
-      <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar" aria-label="Ampliar imagen">
-        <img width="901" height="1200" src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/10-cuenca.jpg" loading="lazy" alt="" data-i18n-attr="alt:galeria.10">
-      </button>
-    </div>
+    <!-- galeria:inicio -->
+      <section class="galeria__bloque reveal">
+        <h3 class="galeria__bloque-titulo" data-i18n="galeria.raices">—</h3>
+        <div class="galeria__grid">
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1024" height="768" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/11-infancia-sola.jpg" data-i18n-attr="alt:galeria.11">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="640" height="1136" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/12-con-su-hermano.jpg" data-i18n-attr="alt:galeria.12">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1400" height="1050" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/07-paramo.jpg" data-i18n-attr="alt:galeria.07">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="810" height="797" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/05-festival-trujillo.jpg" data-i18n-attr="alt:galeria.05">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1181" height="886" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/20-con-ramon-palomares.jpg" data-i18n-attr="alt:galeria.20">
+          </button>
+        </div>
+      </section>
+      <section class="galeria__bloque reveal">
+        <h3 class="galeria__bloque-titulo" data-i18n="galeria.poesia">—</h3>
+        <div class="galeria__grid">
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1400" height="1750" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/08-itaca-libreria.jpg" data-i18n-attr="alt:galeria.08">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1400" height="1051" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/14-editora-cuadro.jpg" data-i18n-attr="alt:galeria.14">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1400" height="2487" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/01-firmando.jpg" data-i18n-attr="alt:galeria.01">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1400" height="933" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/22-presentacion-cuenca.jpg" data-i18n-attr="alt:galeria.22">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="922" height="615" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/02-casa-america.jpg" data-i18n-attr="alt:galeria.02">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="615" height="922" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/03-recital.jpg" data-i18n-attr="alt:galeria.03">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="787" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/23-aires-poetics.jpg" data-i18n-attr="alt:galeria.23">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="750" height="346" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/24-lectura-barcelona.jpg" data-i18n-attr="alt:galeria.24">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1400" height="931" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/21-libreria-amigos.jpg" data-i18n-attr="alt:galeria.21">
+          </button>
+        </div>
+      </section>
+      <section class="galeria__bloque reveal">
+        <h3 class="galeria__bloque-titulo" data-i18n="galeria.escena">—</h3>
+        <div class="galeria__grid">
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1050" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/25-auditori-montcada.jpg" data-i18n-attr="alt:galeria.25">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1212" height="548" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/26-programa-deria.jpg" data-i18n-attr="alt:galeria.26">
+          </button>
+        </div>
+      </section>
+      <section class="galeria__bloque reveal">
+        <h3 class="galeria__bloque-titulo" data-i18n="galeria.infantil">—</h3>
+        <div class="galeria__grid">
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1050" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/15-con-siwar.jpg" data-i18n-attr="alt:galeria.15">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="768" height="1024" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/19-firma-akiara.jpg" data-i18n-attr="alt:galeria.19">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1048" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/17-firma-letras.jpg" data-i18n-attr="alt:galeria.17">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="765" height="1024" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/18-bolonia-kalandraka.jpg" data-i18n-attr="alt:galeria.18">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="900" height="1200" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/04-bolonia.jpg" data-i18n-attr="alt:galeria.04">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1050" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/16-feria-bolonia.jpg" data-i18n-attr="alt:galeria.16">
+          </button>
+        </div>
+      </section>
+      <section class="galeria__bloque reveal">
+        <h3 class="galeria__bloque-titulo" data-i18n="galeria.cuenca">—</h3>
+        <div class="galeria__grid">
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="901" height="1200" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/10-cuenca.jpg" data-i18n-attr="alt:galeria.10">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="675" height="1200" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/06-haciendo-papel.jpg" data-i18n-attr="alt:galeria.06">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="473" height="697" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/09-luna.jpg" data-i18n-attr="alt:galeria.09">
+          </button>
+        </div>
+      </section>
+      <!-- galeria:fin -->
 
   </div>
 </section>
@@ -2277,6 +2402,23 @@ window.I18N = {
     "galeria.08": "Ítaca es nunca en una librería",
     "galeria.09": "Entre los árboles, asomada a una luna de metal",
     "galeria.10": "Presentación en Cuenca junto a su editor",
+    "galeria.raices": "Raíces",
+    "galeria.poesia": "Poesía",
+    "galeria.escena": "En escena",
+    "galeria.infantil": "Libros para niños",
+    "galeria.cuenca": "Cuenca",
+    "galeria.15": "Con Siwar, el jaguar guardián, tapándose la cara",
+    "galeria.16": "Ante el cartel de la Feria del Libro Infantil de Bolonia",
+    "galeria.17": "Firmando ejemplares de Letras en los cordones",
+    "galeria.18": "Con la ilustradora Marina Marcolin en el stand de Kalandraka, en Bolonia",
+    "galeria.19": "Firmando Al otro lado en la caseta de Akiara",
+    "galeria.20": "Con el poeta Ramón Palomares, que prologó Memoria errante",
+    "galeria.21": "Con amigos y editores después de una presentación",
+    "galeria.22": "Presentación de De aventuras por Cuenca, con los niños que la estrenaron",
+    "galeria.23": "En el ciclo Aires Poètics, en Barcelona",
+    "galeria.24": "Lectura de poesía en Barcelona",
+    "galeria.25": "Ante el cartel de Memoria errante en el Auditori de Montcada",
+    "galeria.26": "Programa del montaje de Memoria errante por Dèria Teatre",
 
     "obra.editorial": "Ver en la editorial",
     "obra.guia": "Ver la guía de lectura",
@@ -2497,6 +2639,23 @@ window.I18N = {
     "galeria.08": "Ítaca es nunca in a bookshop",
     "galeria.09": "Among the trees, framed by a metal moon",
     "galeria.10": "A presentation in Cuenca alongside her publisher",
+    "galeria.raices": "Roots",
+    "galeria.poesia": "Poetry",
+    "galeria.escena": "On stage",
+    "galeria.infantil": "Books for children",
+    "galeria.cuenca": "Cuenca",
+    "galeria.15": "Holding Siwar, el jaguar guardián in front of her face",
+    "galeria.16": "In front of the Bologna Children's Book Fair hoarding",
+    "galeria.17": "Signing copies of Letras en los cordones",
+    "galeria.18": "With illustrator Marina Marcolin at the Kalandraka stand in Bologna",
+    "galeria.19": "Signing Al otro lado at the Akiara stand",
+    "galeria.20": "With the poet Ramón Palomares, who wrote the preface to Memoria errante",
+    "galeria.21": "With friends and publishers after a book presentation",
+    "galeria.22": "Launching De aventuras por Cuenca with the children who first read it",
+    "galeria.23": "At the Aires Poètics series in Barcelona",
+    "galeria.24": "A poetry reading in Barcelona",
+    "galeria.25": "In front of the Memoria errante poster at the Auditori in Montcada",
+    "galeria.26": "Programme for Dèria Teatre's staging of Memoria errante",
 
     "obra.editorial": "View at the publisher",
     "obra.guia": "View the reading guide",

@@ -915,31 +915,50 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
    -------------------------------------------------------------------------- */
 .galeria { background: var(--crema); }
 
+.galeria__bloque + .galeria__bloque { margin-top: clamp(2.5rem, 5vw, 4rem); }
+
+.galeria__bloque-titulo {
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  padding-bottom: 0.7rem;
+  margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Celdas iguales, no cascada. Antes eran columnas de alturas dispares con las
+   fotos en el orden en que fueron llegando, y el conjunto se leía como un
+   revoltijo. Con la retícula regular el ojo descansa. */
 .galeria__grid {
-  columns: 4 15rem;
-  column-gap: 0.75rem;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
 }
 
 .galeria__item {
   display: block;
   width: 100%;
   padding: 0;
-  margin: 0 0 0.75rem;
+  margin: 0;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--arena);
-  break-inside: avoid;
   cursor: zoom-in;
 }
 .galeria__item img {
+  display: block;
   width: 100%;
-  height: auto;
+  /* Todas al mismo formato: lo que sobra se recorta, y así ninguna foto
+     rompe la línea. La ampliación sigue enseñándolas enteras. */
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
   transition: scale 0.6s var(--ease), filter 0.4s var(--ease);
 }
 .galeria__item:hover img { scale: 1.04; filter: saturate(1.06); }
 
 @media (max-width: 40rem) {
-  .galeria__grid { columns: 2 8rem; }
+  .galeria__grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
 }
 
 /* Lightbox */
