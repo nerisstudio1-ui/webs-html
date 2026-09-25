@@ -133,10 +133,33 @@ def medios(texto, empotrar_imagenes):
 
 
 # ---------------------------------------------------------------------- build
+def comprobar_etiquetas(cuerpo):
+    """Aborta si las <div> no cuadran.
+
+    En el widget todo el contenido cuelga de un <div id="cfm-web">, y de ahí
+    cuelga también el alcance del CSS. Un </div> de más lo cierra antes de
+    tiempo: el navegador saca de dentro todo lo que venga después, esas
+    secciones se quedan sin ninguna regla aplicada, las imágenes salen a su
+    tamaño natural y la página se va de ancho. Se ve raro, pero no da ningún
+    error, así que conviene que el empaquetado no lo deje pasar.
+    """
+    prof, minimo = 0, 0
+    for m in re.finditer(r"<(/?)div\b[^>]*?(/?)>", cuerpo):
+        if m.group(2) == "/":        # <div/>, que no abre nada
+            continue
+        prof += -1 if m.group(1) else 1
+        minimo = min(minimo, prof)
+    if prof or minimo:
+        sys.exit("index.html tiene las <div> descuadradas: saldo %d, mínimo %d.\n"
+                 "Sobra un </div> o falta un <div>. No se ha generado nada."
+                 % (prof, minimo))
+
+
 def construir(widget, destino):
     html = leer("index.html")
 
     cuerpo = re.search(r"<body>(.*)</body>", html, re.S).group(1)
+    comprobar_etiquetas(cuerpo)
     cuerpo = re.sub(r'\s*<script src="[^"]+"></script>', "", cuerpo)
     # el aviso legal es otra página: en un solo archivo no existe
     cuerpo = cuerpo.replace('href="aviso-legal.html"', 'href="#" data-aviso-legal')
