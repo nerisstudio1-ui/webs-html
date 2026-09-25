@@ -45,7 +45,7 @@
     { src: 'nov-09.jpg',       cat: 'novias',      es: 'Novia con corona',            en: 'Bride with crown' },
     { src: 'pub-08.jpg',       cat: 'moda',        es: 'StyleCruze · Young and Beauty', en: 'StyleCruze · Young and Beauty' },
     { src: 'nov-10.jpg',       cat: 'novias',      es: 'Semirecogido',                en: 'Half-up hair' },
-    { src: 'moda-02.jpg',      cat: 'moda',        es: 'Maquillaje artístico',        en: 'Artistic make-up' },
+    { src: 'moda-102.jpg',     cat: 'moda',        es: 'Maquillaje artístico',        en: 'Artistic make-up' },
     { src: 'moda-04.jpg',      cat: 'moda',        es: 'Editorial de moda',           en: 'Fashion editorial' },
     { src: 'nov-11.jpg',       cat: 'novias',      es: 'El proceso',                  en: 'The process' },
     { src: 'novia-02.jpg',     cat: 'novias',      es: 'Preparativos en el hotel',    en: 'Getting ready at the hotel', wide: true },
