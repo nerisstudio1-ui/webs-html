@@ -1085,7 +1085,7 @@ def bloque_estilos_resumen(fondo="seccion--crema"):
     </div>
     <div class="grid grid-4">{items}</div>
     <div class="botonera botonera--centro mt-l">
-      <a class="btn btn--linea" href="servicios.html">Ver los servicios al detalle</a>
+      <a class="btn btn--linea" href="#contacto">Consultar horarios y tarifas</a>
     </div>
   </div>
 </section>'''

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """Vectorización del logo ANAHATA (símbolo + lockup + favicon)."""
 import os, math, random
+from _texto_a_trazo import trazar
+
+SERIF = 'assets/fonts/marcellus-400-normal-latin.woff2'
+SANS  = 'assets/fonts/inter-400-normal-latin.woff2'
 
 OUT = "assets/img"
 os.makedirs(OUT, exist_ok=True)
@@ -120,16 +124,11 @@ with open(f"{OUT}/logo-simbolo.svg", "w", encoding="utf-8") as f:
     f.write(HEAD.format(vb="100 35 400 620", w=400, h=620, al="Símbolo ANAHATA") + symbol() + "</svg>")
 
 # 2) Lockup completo (símbolo + ANAHATA + claim)
-word = (f'<text x="300" y="772" text-anchor="middle" fill="{GREEN}" textLength="470" '
-        f'lengthAdjust="spacingAndGlyphs" '
-        f'font-family="Playfair Display, Georgia, Times New Roman, serif" font-size="104">'
-        f'ANAHATA</text>')
+word = trazar("ANAHATA", SERIF, 104, 300, 772, ancho=470, color=GREEN)
 rule = (f'<g stroke="{GOLD}" stroke-width="1.8"><path d="M 72 806 H 282"/><path d="M 318 806 H 528"/></g>'
         + heart(300, 806, 26, GOLD, 0).replace('fill="none"', f'fill="{GOLD}"'))
-claim = (f'<text x="300" y="848" text-anchor="middle" fill="{GOLD}" textLength="470" '
-         f'lengthAdjust="spacingAndGlyphs" '
-         f'font-family="DM Sans, Helvetica Neue, Arial, sans-serif" font-size="22">'
-         f'YOGA &#8226; PILATES &#8226; CONEXI&#211;N &#8226; TRANSFORMACI&#211;N &#8226; AMOR</text>')
+claim = trazar("YOGA \u2022 PILATES \u2022 CONEXI\u00d3N \u2022 TRANSFORMACI\u00d3N \u2022 AMOR",
+                   SANS, 22, 300, 848, ancho=470, color=GOLD)
 lau = laurel(286, 898, 104, -1, GOLD, 1.5) + laurel(314, 898, 104, 1, GOLD, 1.5) + \
       f'<circle cx="300" cy="898" r="4.6" fill="{GOLD}"/>'
 with open(f"{OUT}/logo-anahata.svg", "w", encoding="utf-8") as f:
@@ -163,15 +162,11 @@ for nombre, g, o in (("logo-marca.svg", GREEN, GOLD), ("logo-marca-crema.svg", "
 
 # 6) Lockup completo en crema (para fondos oscuros: pie, hero de la landing)
 def lockup(green, gold):
-    w = (f'<text x="300" y="772" text-anchor="middle" fill="{green}" textLength="470" '
-         f'lengthAdjust="spacingAndGlyphs" '
-         f'font-family="Playfair Display, Georgia, Times New Roman, serif" font-size="104">ANAHATA</text>')
+    w = trazar("ANAHATA", SERIF, 104, 300, 772, ancho=470, color=green)
     r = (f'<g stroke="{gold}" stroke-width="1.8"><path d="M 72 806 H 282"/><path d="M 318 806 H 528"/></g>'
          + heart(300, 806, 26, gold, 0).replace('fill="none"', f'fill="{gold}"'))
-    c = (f'<text x="300" y="848" text-anchor="middle" fill="{gold}" textLength="470" '
-         f'lengthAdjust="spacingAndGlyphs" '
-         f'font-family="DM Sans, Helvetica Neue, Arial, sans-serif" font-size="22">'
-         f'YOGA &#8226; PILATES &#8226; CONEXI&#211;N &#8226; TRANSFORMACI&#211;N &#8226; AMOR</text>')
+    c = trazar("YOGA \u2022 PILATES \u2022 CONEXI\u00d3N \u2022 TRANSFORMACI\u00d3N \u2022 AMOR",
+               SANS, 22, 300, 848, ancho=470, color=gold)
     l = (laurel(286, 898, 104, -1, gold, 1.5) + laurel(314, 898, 104, 1, gold, 1.5)
          + f'<circle cx="300" cy="898" r="4.6" fill="{gold}"/>')
     return symbol(green=green, gold=gold) + w + r + c + l

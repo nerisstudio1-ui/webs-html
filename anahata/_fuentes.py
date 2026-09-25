@@ -15,34 +15,35 @@ def css_de(familia):
         raise RuntimeError(r.stderr[:200])
     return r.stdout
 
-def descargar(familias, prefijo=""):
+# Subconjuntos que necesitamos; el resto (cirílico, griego, vietnamita) se descarta.
+SUBSETS = ("latin", "latin-ext")
+
+def descargar(familias):
     os.makedirs(DEST, exist_ok=True)
     reglas = []
     for familia in familias:
         css = css_de(familia)
-        for bloque in re.findall(r"@font-face\s*{[^}]+}", css):
+        # Google antecede cada @font-face con un comentario que nombra el subconjunto:
+        # /* latin */ @font-face { ... }
+        bloques = re.findall(r"/\*\s*([\w-]+)\s*\*/\s*(@font-face\s*{[^}]+})", css)
+        if not bloques:  # por si algún día deja de incluir el comentario
+            bloques = [("latin", b) for b in re.findall(r"@font-face\s*{[^}]+}", css)]
+        for subset, bloque in bloques:
+            if subset not in SUBSETS:
+                continue
             m_url = re.search(r"url\((https://[^)]+\.woff2)\)", bloque)
             m_fam = re.search(r"font-family:\s*'([^']+)'", bloque)
             m_pes = re.search(r"font-weight:\s*([\d ]+)", bloque)
             m_est = re.search(r"font-style:\s*(\w+)", bloque)
-            m_rng = re.search(r"unicode-range:\s*([^;]+);", bloque)
             if not (m_url and m_fam):
                 continue
-            # solo latin y latin-ext: evitamos cirílico, griego y vietnamita
-            rango = m_rng.group(1) if m_rng else ""
-            if "U+0460" in rango or "U+0370" in rango or "U+0102" in rango:
-                continue
-            nombre = (m_fam.group(1).replace(" ", "-").lower() + "-" +
-                      (m_pes.group(1).replace(" ", "-") if m_pes else "400") + "-" +
-                      (m_est.group(1) if m_est else "normal") +
-                      ("-ext" if "U+0100" in rango else "") + ".woff2")
-            ruta = f"{DEST}/{nombre}"
+            peso = m_pes.group(1).replace(" ", "-") if m_pes else "400"
+            estilo = m_est.group(1) if m_est else "normal"
+            nombre = f"{m_fam.group(1).replace(' ', '-').lower()}-{peso}-{estilo}-{subset}.woff2"
+            ruta = os.path.join(DEST, nombre)
             if not os.path.exists(ruta):
                 subprocess.run(["curl", "-sS", "--max-time", "60", "-o", ruta, m_url.group(1)], check=True)
-            reglas.append(bloque
-                          .replace(m_url.group(1), f"../fonts/{nombre}")
-                          .replace("url(", "url(")
-                          + "\n")
+            reglas.append(bloque.replace(m_url.group(1), f"../fonts/{nombre}") + "\n")
     return "".join(reglas)
 
 if __name__ == "__main__":

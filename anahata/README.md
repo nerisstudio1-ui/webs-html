@@ -144,11 +144,16 @@ Antes de publicar:
 
 ## Detalles técnicos
 
-- **Logotipo:** cuatro variantes en `assets/img/` — `logo-anahata.svg` (completo),
+- **Logotipo:** su texto está convertido a trazos con `_texto_a_trazo.py`, de modo que se ve
+  igual aunque el SVG se cargue como imagen suelta. Cuatro variantes en `assets/img/` — `logo-anahata.svg` (completo),
   `logo-anahata-crema.svg` (para fondos oscuros: pie y portada de la landing),
   `logo-simbolo.svg` (solo el símbolo) y `logo-marca.svg` (versión compacta de la cabecera),
   cada uno con su versión en crema donde hace falta.
-- **Tipografías:** Cormorant Garamond (titulares) y Jost (texto), cargadas desde Google Fonts.
+- **Tipografías:** Marcellus (titulares) e Inter (texto), **auto-alojadas** en `assets/fonts/`.
+  Se descargan con `python3 _fuentes.py "Marcellus" "Inter:wght@300;400;500"`, que genera
+  también el `fuentes.css` con las reglas `@font-face`. La web no conecta con Google.
+  Marcellus no tiene cursiva: donde antes había texto en itálica ahora se marca el contraste
+  con tamaño, color y espaciado (ver `.hero h1 .cursiva` y `.firma` en la hoja de estilos).
 - **Accesibilidad:** navegación por teclado, textos alternativos, foco visible, enlace de salto al contenido
   y respeto por `prefers-reduced-motion`.
 - **SEO:** títulos y descripciones por página, Open Graph, enlaces canónicos y datos estructurados
