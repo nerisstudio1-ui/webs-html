@@ -94,12 +94,6 @@
     <source src="assets/video/portada-agua.mp4" type="video/mp4">
   </video>
 
-  <!-- Un verso suyo, del cierre de Ítaca es nunca -->
-  <figure class="hero__verso">
-    <blockquote data-i18n="hero.verso">La vida era más que lo que nos dijeron</blockquote>
-    <figcaption data-i18n="hero.verso.fuente">Ítaca es nunca</figcaption>
-  </figure>
-
   <div class="wrap wrap--wide hero__inner">
     <h1 class="hero__title" data-i18n="hero.titulo">Cristina Falcón Maldonado</h1>
     <p class="hero__sub" data-i18n="hero.sub">Poeta, narradora y traductora</p>
@@ -139,18 +133,14 @@
       </div>
 
       <div class="sobre__body reveal" style="--delay:120ms">
-        <p class="script" data-i18n="sobre.saludo">Hola, soy Cristina</p>
-        <h2 class="sobre__title" data-i18n="sobre.titulo">Escribo para los que aún saben mirar</h2>
+        <h2 class="sobre__title" data-i18n="sobre.titulo">—</h2>
 
         <div class="sobre__cols">
-          <p data-i18n="sobre.p1">[Texto pendiente de la autora]</p>
-          <p data-i18n="sobre.p2">[Texto pendiente de la autora]</p>
-          <p data-i18n="sobre.p3">[Texto pendiente de la autora]</p>
+          <p data-i18n="sobre.p1">—</p>
+          <p data-i18n="sobre.p2">—</p>
+          <p data-i18n="sobre.p3">—</p>
+          <p data-i18n="sobre.p4">—</p>
         </div>
-
-        <blockquote class="sobre__quote" data-i18n="sobre.cita">
-          La poesía no se escribe: se escucha y se deja caer sobre el papel.
-        </blockquote>
 
         <p><a class="btn" href="assets/docs/biografia.pdf" download
               data-i18n="sobre.cta">Descargar biografía</a></p>
@@ -163,25 +153,26 @@
 <!-- ======================================================================
      TRAYECTORIA
      ====================================================================== -->
-<section class="section trayectoria">
+<!-- Dos poemas suyos a los lados y la foto de las manos en medio.
+     Antes había cuatro cajas de datos sobre su trayectoria. -->
+<section class="section versos">
   <div class="wrap">
-    <div class="trayectoria__grid">
-      <div class="trayectoria__item reveal">
-        <p class="trayectoria__dato" data-i18n="tray.1.dato">Desde 2017</p>
-        <p class="trayectoria__texto" data-i18n="tray.1.texto">—</p>
+    <div class="versos__grid">
+
+      <figure class="verso reveal">
+        <blockquote data-i18n-html="verso.1.texto">—</blockquote>
+        <figcaption data-i18n="verso.1.fuente">—</figcaption>
+      </figure>
+
+      <div class="verso__foto reveal" style="--delay:90ms">
+        <img src="assets/img/galeria/13-manos.jpg" width="733" height="867" loading="lazy"
+             alt="" data-i18n-attr="alt:verso.foto">
       </div>
-      <div class="trayectoria__item reveal" style="--delay:90ms">
-        <p class="trayectoria__dato" data-i18n="tray.2.dato">Memoria errante</p>
-        <p class="trayectoria__texto" data-i18n="tray.2.texto">—</p>
-      </div>
-      <div class="trayectoria__item reveal" style="--delay:180ms">
-        <p class="trayectoria__dato" data-i18n="tray.3.dato">La Guarida</p>
-        <p class="trayectoria__texto" data-i18n="tray.3.texto">—</p>
-      </div>
-      <div class="trayectoria__item reveal" style="--delay:270ms">
-        <p class="trayectoria__dato" data-i18n="tray.4.dato">Álabe</p>
-        <p class="trayectoria__texto" data-i18n="tray.4.texto">—</p>
-      </div>
+
+      <figure class="verso reveal" style="--delay:180ms">
+        <blockquote data-i18n-html="verso.2.texto">—</blockquote>
+      </figure>
+
     </div>
   </div>
 </section>

@@ -520,50 +520,9 @@
   max-width: 18ch;
 }
 
-/* El verso, arriba a la derecha, escrito a mano */
-#cfm-web .hero__verso {
-  position: absolute;
-  top: clamp(6rem, 13vh, 10rem);
-  right: var(--gutter);
-  z-index: 3;
-  max-width: min(22ch, 42vw);
-  text-align: right;
-  margin: 0;
-}
-#cfm-web .hero__verso blockquote {
-  font-family: var(--font-script);
-  font-size: clamp(1.05rem, 2.1vw, 1.7rem);
-  line-height: 1.35;
-  color: var(--tierra);
-  text-wrap: balance;
-}
-#cfm-web .hero__verso figcaption {
-  margin-top: 0.5rem;
-  font-size: var(--step--1);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-}
-#cfm-web .hero__verso figcaption::before {
-  content: "";
-  display: inline-block;
-  width: 1.4rem;
-  height: 1px;
-  margin-right: 0.6rem;
-  vertical-align: 0.3em;
-  background: var(--ocre);
-}
 
 /* En pantallas estrechas no cabe en la esquina: pasa debajo del nombre */
 @media (max-width: 55rem) {
-#cfm-web .hero__verso {
-    position: static;
-    max-width: 26ch;
-    margin: 0 auto clamp(1.5rem, 5vw, 2.5rem);
-    text-align: center;
-    padding-inline: var(--gutter);
-  }
-#cfm-web .hero__verso figcaption::before { display: none; }
 }
 #cfm-web .hero__sub {
   font-size: var(--step--1);
@@ -698,37 +657,45 @@
   max-width: 34ch;
 }
 
-/* --------------------------------------------------------------------------
-   8 bis. Trayectoria
-   -------------------------------------------------------------------------- */
-#cfm-web .trayectoria {
-  background: var(--hueso);
-  padding-block: 0 var(--section);
-}
-#cfm-web .trayectoria__grid {
+/* Dos versos suyos con la foto de las manos en medio.
+   Aquí había cuatro cajas de datos de su trayectoria. */
+#cfm-web .versos { background: var(--bg-alt); }
+#cfm-web .versos__grid {
   display: grid;
-  gap: 1px;
-  background: var(--line);
-  border-block: 1px solid var(--line);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  grid-template-columns: 1fr;
 }
-#cfm-web .trayectoria__item {
-  background: var(--hueso);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  display: grid;
-  gap: 0.6rem;
-  align-content: start;
+@media (min-width: 52rem) {
+  /* Tres columnas iguales: con «auto» en el centro la foto se iba a la
+     izquierda y el verso de la derecha se quedaba descolgado. */
+#cfm-web .versos__grid { grid-template-columns: repeat(3, 1fr); }
 }
-#cfm-web .trayectoria__dato {
-  font-family: var(--font-display);
+#cfm-web .verso { margin: 0; text-align: center; }
+#cfm-web .verso blockquote {
+  font-family: var(--font-script);
   font-size: var(--step-1);
-  color: var(--verde-hondo);
-  line-height: 1.15;
+  line-height: 1.7;
+  color: var(--accent-deep);
+  /* La manuscrita necesita renglón largo: si se parte cada dos palabras
+     deja de leerse como un verso. */
+  max-width: 24ch;
+  margin: 0 auto;
 }
-#cfm-web .trayectoria__texto {
+#cfm-web .verso figcaption {
+  margin-top: 1rem;
   font-size: var(--step--1);
-  line-height: 1.65;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--fg-muted);
+}
+#cfm-web .verso__foto { justify-self: center; }
+#cfm-web .verso__foto img {
+  display: block;
+  width: min(100%, 19rem);
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 14px 34px rgb(25 26 23 / 0.16);
 }
 
 /* --------------------------------------------------------------------------
@@ -1457,12 +1424,6 @@
     <source src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/portada-agua.mp4" type="video/mp4">
   </video>
 
-  <!-- Un verso suyo, del cierre de Ítaca es nunca -->
-  <figure class="hero__verso">
-    <blockquote data-i18n="hero.verso">La vida era más que lo que nos dijeron</blockquote>
-    <figcaption data-i18n="hero.verso.fuente">Ítaca es nunca</figcaption>
-  </figure>
-
   <div class="wrap wrap--wide hero__inner">
     <h1 class="hero__title" data-i18n="hero.titulo">Cristina Falcón Maldonado</h1>
     <p class="hero__sub" data-i18n="hero.sub">Poeta, narradora y traductora</p>
@@ -1502,18 +1463,14 @@
       </div>
 
       <div class="sobre__body reveal" style="--delay:120ms">
-        <p class="script" data-i18n="sobre.saludo">Hola, soy Cristina</p>
-        <h2 class="sobre__title" data-i18n="sobre.titulo">Escribo para los que aún saben mirar</h2>
+        <h2 class="sobre__title" data-i18n="sobre.titulo">—</h2>
 
         <div class="sobre__cols">
-          <p data-i18n="sobre.p1">[Texto pendiente de la autora]</p>
-          <p data-i18n="sobre.p2">[Texto pendiente de la autora]</p>
-          <p data-i18n="sobre.p3">[Texto pendiente de la autora]</p>
+          <p data-i18n="sobre.p1">—</p>
+          <p data-i18n="sobre.p2">—</p>
+          <p data-i18n="sobre.p3">—</p>
+          <p data-i18n="sobre.p4">—</p>
         </div>
-
-        <blockquote class="sobre__quote" data-i18n="sobre.cita">
-          La poesía no se escribe: se escucha y se deja caer sobre el papel.
-        </blockquote>
 
         <p><a class="btn" href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/biografia.pdf" download
               data-i18n="sobre.cta">Descargar biografía</a></p>
@@ -1526,25 +1483,26 @@
 <!-- ======================================================================
      TRAYECTORIA
      ====================================================================== -->
-<section class="section trayectoria">
+<!-- Dos poemas suyos a los lados y la foto de las manos en medio.
+     Antes había cuatro cajas de datos sobre su trayectoria. -->
+<section class="section versos">
   <div class="wrap">
-    <div class="trayectoria__grid">
-      <div class="trayectoria__item reveal">
-        <p class="trayectoria__dato" data-i18n="tray.1.dato">Desde 2017</p>
-        <p class="trayectoria__texto" data-i18n="tray.1.texto">—</p>
+    <div class="versos__grid">
+
+      <figure class="verso reveal">
+        <blockquote data-i18n-html="verso.1.texto">—</blockquote>
+        <figcaption data-i18n="verso.1.fuente">—</figcaption>
+      </figure>
+
+      <div class="verso__foto reveal" style="--delay:90ms">
+        <img src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/13-manos.jpg" width="733" height="867" loading="lazy"
+             alt="" data-i18n-attr="alt:verso.foto">
       </div>
-      <div class="trayectoria__item reveal" style="--delay:90ms">
-        <p class="trayectoria__dato" data-i18n="tray.2.dato">Memoria errante</p>
-        <p class="trayectoria__texto" data-i18n="tray.2.texto">—</p>
-      </div>
-      <div class="trayectoria__item reveal" style="--delay:180ms">
-        <p class="trayectoria__dato" data-i18n="tray.3.dato">La Guarida</p>
-        <p class="trayectoria__texto" data-i18n="tray.3.texto">—</p>
-      </div>
-      <div class="trayectoria__item reveal" style="--delay:270ms">
-        <p class="trayectoria__dato" data-i18n="tray.4.dato">Álabe</p>
-        <p class="trayectoria__texto" data-i18n="tray.4.texto">—</p>
-      </div>
+
+      <figure class="verso reveal" style="--delay:180ms">
+        <blockquote data-i18n-html="verso.2.texto">—</blockquote>
+      </figure>
+
     </div>
   </div>
 </section>
@@ -2311,25 +2269,20 @@ window.I18N = {
 
     /* Sobre mí */
     "sobre.kicker": "Sobre mí",
-    "sobre.saludo": "Hola, soy Cristina",
-    "sobre.titulo": "Antes de aprender a leer, aprendí poesías de memoria",
-    "sobre.p1": "Me enseñó mi abuela, que sin saberlo me abrió el camino para vivir rodeada de palabras, jugando con ellas, escribiéndolas. Nací en Valera, en Venezuela, y como esos pájaros a los que no me canso de mirar —hasta soñar con ser uno de ellos— he emigrado y he vivido en distintos países y ciudades: de Trujillo a Bolonia, y de allí a Motril, Calahonda, Ibiza y Cuenca.",
-    "sobre.p2": "Mi formación es multidisciplinar: empecé Arquitectura en la Universidad de los Andes y la continué en la del Zulia, donde también estudié Filosofía y Letras, y me formé en Diseño Gráfico en la Accademia Bolognese de Bolonia. Las dos facetas siguen presentes en todo lo que hago: la palabra y la imagen nunca han ido por separado.",
-    "sobre.p3": "Escribo poesía para adultos y libros para niños. Doy talleres de poesía creativa en bibliotecas, universidades y centros educativos de América Latina y Europa. Durante años dirigí «La Guarida», el taller de lectura y escritura creativa de la Biblioteca Pública del Estado «Fermín Caballero» de Cuenca.",
-    "sobre.cita": "Me encantan los pájaros, los árboles, las flores silvestres, las orquídeas de mi tierra, las cometas, los globos aerostáticos, la música y las letras. También las casas en los árboles.",
+    "sobre.titulo": "Antes de aprender a leer, aprendió poesías de memoria",
+    "sobre.p1": "A Cristina Falcón Maldonado le encantan los pájaros, los árboles, las flores silvestres, las orquídeas de su tierra, las cometas, los globos aerostáticos, las palabras, la poesía, los cuentos, la música, las bibliotecas, las librerías. También las casas en los árboles.",
+    "sobre.p2": "Se las enseñó su abuela, quien sin saberlo le abrió el camino para vivir rodeada de palabras, jugando a jugar con ellas, escribiéndolas.",
+    "sobre.p3": "Como esos pájaros a los que no se cansa de admirar y observar, hasta soñar con ser uno de ellos, ha emigrado y vivido en diferentes países y ciudades: desde Trujillo, en su Venezuela natal, hasta Bolonia, en Italia, y Motril, Calahonda, Ibiza y Cuenca, en España.",
+    "verso.foto": "Unas manos sosteniendo un poema escrito a mano",
+    "verso.2.texto": "Escribo para salvarme<br>a sabiendas de lo inútil.<br><br>Ojalá me vuelva olvido.",
+    "verso.1.fuente": "Ítaca es nunca",
+    "verso.1.texto": "La vida era más que lo que nos dijeron",
+    "sobre.p4": "Ha realizado talleres de poesía creativa y creación literaria en bibliotecas, en ámbitos educativos y en universidades latinoamericanas y europeas.",
     "sobre.foto": "Cristina Falcón Maldonado",
     "sobre.foto2": "Cristina en una presentación",
     "sobre.cta": "Descargar biografía",
 
     /* Trayectoria */
-    "tray.1.dato": "Desde 2017",
-    "tray.1.texto": "Jurado del Premio Internacional de Poesía «Luna de Aire» (CEPLI, Universidad de Castilla-La Mancha). También lo fue del premio «Ciudad de Orihuela».",
-    "tray.2.dato": "Memoria errante",
-    "tray.2.texto": "Su poemario inspiró el montaje teatral homónimo de Dèria Teatre, que cruza los poemas con fragmentos de La Odisea, música en directo y audiovisual.",
-    "tray.3.dato": "La Guarida",
-    "tray.3.texto": "Dirigió durante años este taller de lectura y escritura creativa para niños, y su club de lectura, en la Biblioteca Pública del Estado «Fermín Caballero» de Cuenca.",
-    "tray.4.dato": "Casa Victoria Mancera",
-    "tray.4.texto": "Cofundadora de este centro de promoción de la lectura y la escritura literarias.",
 
     /* Obra */
     "obra.kicker": "Obra publicada",
@@ -2553,24 +2506,19 @@ window.I18N = {
     "marquee.2": "Children's and young adult literature",
 
     "sobre.kicker": "About me",
-    "sobre.saludo": "Hi, I'm Cristina",
-    "sobre.titulo": "Before I could read, I learned poems by heart",
-    "sobre.p1": "My grandmother taught them to me and, without knowing it, opened the way for a life surrounded by words — playing with them, writing them. I was born in Valera, Venezuela, and like those birds I never tire of watching — to the point of dreaming I am one of them — I have emigrated and lived in different countries and cities: from Trujillo to Bologna, and from there to Motril, Calahonda, Ibiza and Cuenca.",
-    "sobre.p2": "My training is multidisciplinary: I began Architecture at the Universidad de los Andes and continued at the Universidad del Zulia, where I also studied Philosophy and Literature, and I trained in Graphic Design at the Accademia Bolognese in Bologna. Both sides are still present in everything I do: word and image have never travelled separately.",
-    "sobre.p3": "I write poetry for adults and books for children. I run creative poetry workshops in libraries, universities and schools across Latin America and Europe. For years I led «La Guarida», the reading and creative writing workshop at the «Fermín Caballero» State Public Library in Cuenca.",
-    "sobre.cita": "I love birds, trees, wildflowers, the orchids of my homeland, kites, hot-air balloons, music and letters. Treehouses, too.",
+    "sobre.titulo": "Before she could read, she learned poems by heart",
+    "sobre.p1": "Cristina Falcón Maldonado loves birds, trees, wild flowers, the orchids of her homeland, kites, hot-air balloons, words, poetry, stories, music, libraries, bookshops. Treehouses, too.",
+    "sobre.p2": "Her grandmother taught her those poems and, without knowing it, opened the way to a life surrounded by words — playing at playing with them, writing them down.",
+    "sobre.p3": "Like those birds she never tires of watching, to the point of dreaming she is one of them, she has emigrated and lived in different countries and cities: from Trujillo, in her native Venezuela, to Bologna, in Italy, and Motril, Calahonda, Ibiza and Cuenca, in Spain.",
+    "verso.foto": "Hands holding a handwritten poem",
+    "verso.2.texto": "I write to save myself<br>knowing full well it is useless.<br><br>May I turn into forgetting.",
+    "verso.1.fuente": "Ítaca es nunca",
+    "verso.1.texto": "Life was more than what they told us",
+    "sobre.p4": "She has run creative poetry and creative writing workshops in libraries, in schools and at universities across Latin America and Europe.",
     "sobre.foto": "Cristina Falcón Maldonado",
     "sobre.foto2": "Cristina at a book presentation",
     "sobre.cta": "Download biography",
 
-    "tray.1.dato": "Since 2017",
-    "tray.1.texto": "Juror of the «Luna de Aire» International Poetry Prize (CEPLI, University of Castilla-La Mancha). She has also served on the jury of the «Ciudad de Orihuela» prize.",
-    "tray.2.dato": "Memoria errante",
-    "tray.2.texto": "Her poetry book inspired the stage production of the same name by Dèria Teatre, weaving the poems together with fragments of The Odyssey, live music and video.",
-    "tray.3.dato": "La Guarida",
-    "tray.3.texto": "For years she led this reading and creative writing workshop for children, and its book club, at the «Fermín Caballero» State Public Library in Cuenca.",
-    "tray.4.dato": "Casa Victoria Mancera",
-    "tray.4.texto": "Co-founder of this centre for the promotion of literary reading and writing.",
 
     "obra.kicker": "Published work",
     "obra.titulo": "The books",
