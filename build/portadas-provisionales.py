@@ -24,13 +24,10 @@ AZUL   = '#1B3448'
 TIERRA = '#8A5C3E'
 CREMA  = '#F7F3EA'
 
-LIBROS = [
-    ('infantil-3', 'La palabra encantada',        'CEPLI-UCLM · 2017',                   VERDE),
-    ('infantil-4', 'Peperoncino',                 'Giunti Editori · 2014',               TIERRA),
-    ('infantil-6', '1, 2, 3, de repente en…',     'Edebé · 2011-2012',                   AZUL),
-    ('infantil-7', 'Guías infantiles de España',  'Susaeta · 2012-2018',                 TIERRA),
-    ('infantil-8', 'Caja de cuentos y aventuras', 'F. Turismo de Cuenca · 2006',         VERDE),
-]
+# Ya no queda ningún libro sin portada real. La lista se deja vacía a
+# propósito: el día que entre un título nuevo sin cubierta, se añade aquí y
+# el generador sigue funcionando.
+LIBROS = []
 
 
 def parte(texto, ancho_max):
