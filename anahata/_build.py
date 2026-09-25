@@ -191,7 +191,7 @@ def hero_interior(titulo, bajada, imagen, alt):
   </div>
 </section>'''
 
-def franja_cta(titulo, texto, imagen="cta-banner.svg"):
+def franja_cta(titulo, texto, imagen="retiro-paisaje.jpg"):
     return f'''
 <section class="franja">
   <div class="franja__media"><img src="assets/img/{imagen}" alt="" loading="lazy" width="1920" height="900"></div>
@@ -385,7 +385,7 @@ def pagina_inicio():
 
 <section class="hero">
   <div class="hero__media">
-    <img src="assets/img/hero-inicio.svg" alt="Práctica de yoga consciente" width="1920" height="1280" fetchpriority="high">
+    <img src="assets/img/hero-inicio.jpg" alt="Clase de Pilates Mat con fitball en ANAHATA" width="1920" height="1280" fetchpriority="high">
   </div>
   <div class="contenedor">
     <div class="hero__contenido">
@@ -430,11 +430,16 @@ def pagina_inicio():
   </div>
 </section>
 
+{bloque_estilos_resumen()}
+{bloque_implementos()}
+{bloque_beneficios("seccion--crema")}
 {bloque_modalidades()}
+{bloque_galeria("seccion--crema")}
 
 {franja_cta("Tu práctica empieza con una respiración",
             "Cuéntame qué necesitas y encontramos juntas el formato, el estilo y el ritmo que mejor te acompañan.")}
 
+{bloque_pasos()}
 {bloque_zonas()}
 {bloque_testimonios()}
 {bloque_newsletter()}
@@ -525,7 +530,7 @@ def pagina_sobre_mi():
 <section class="seccion seccion--crema">
   <div class="contenedor duo duo--invertido">
     <div class="duo__media revelar">
-      <img src="assets/img/sobre-detalle.svg" alt="Detalle de una práctica de yoga" loading="lazy" width="1200" height="900">
+      <img src="assets/img/detalle-esterillas.jpg" alt="Detalle de una clase de Pilates Mat" loading="lazy" width="1200" height="900">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Mi propósito</span>
@@ -571,7 +576,7 @@ def pagina_servicios():
     + aviso() + cabecera("servicios.html", sobre_imagen=True)
     + hero_interior("Servicios",
                     "Prácticas que cultivan equilibrio, presencia y hábitos saludables.",
-                    "hero-servicios.svg", "Clase grupal de yoga") + f'''
+                    "hero-servicios.jpg", "Clase grupal de yoga") + f'''
 <main id="contenido">
 
 <section class="seccion" id="yoga">
@@ -646,7 +651,7 @@ PROGRAMAS = [
     ("programa-sueltas.jpg", "Clases sueltas",
      "Prueba una sesión sin compromiso o practica a tu ritmo cuando tu agenda lo permita. Yoga, pilates o meditación, en grupo o individual.",
      ["Sin permanencia", "Presencial u online", "Todos los niveles"]),
-    ("programa-membresia.svg", "Membresía mensual",
+    ("comunidad.jpg", "Membresía mensual",
      "La opción para crear constancia. Practica cada semana con seguimiento cercano y acceso prioritario a talleres y eventos.",
      ["Clases semanales", "Acompañamiento continuo", "Prioridad en retiros"]),
     ("programa-reto21.svg", "Reto de 21 días",
@@ -696,7 +701,7 @@ def pagina_clases():
     + aviso() + cabecera("clases.html", sobre_imagen=True)
     + hero_interior("Clases y programas",
                     "Elige cómo quieres acompañarte: una clase suelta, un mes completo o un reto que te sostenga.",
-                    "hero-clases.svg", "Sala de práctica") + f'''
+                    "hero-clases.jpg", "Sala de práctica") + f'''
 <main id="contenido">
 
 <section class="seccion">
@@ -746,7 +751,7 @@ def pagina_clases():
 EVENTOS = [
     ("retiro-finde.jpg", "Retiros de fin de semana", "Retiro",
      "Encuentros presenciales donde hacer tribu, para desconectar del ritmo diario y reconectar contigo. Movimiento, descanso, naturaleza y autocuidado profundo, siempre en entornos de naturaleza y silencio."),
-    ("evento-brunch.svg", "Yoga & brunch", "Evento",
+    ("evento-brunch.jpg", "Yoga & brunch", "Evento",
      "Una mañana para moverte con calma y compartir mesa después. Práctica suave, respiración y un desayuno saludable en buena compañía."),
     ("evento-aromaterapia.svg", "Taller de aromaterapia", "Taller",
      "Descubre el poder de los aceites esenciales y cómo integrarlos en tu rutina para acompañar tu descanso, tu energía y tu estado de ánimo."),
@@ -774,7 +779,7 @@ def pagina_retiros():
     + aviso() + cabecera("retiros.html", sobre_imagen=True)
     + hero_interior("Retiros, eventos y talleres",
                     "Experiencias para desconectar del ritmo diario y reconectar contigo.",
-                    "hero-retiros.svg", "Retiro de yoga en la naturaleza") + f'''
+                    "hero-retiros.jpg", "Retiro de yoga en la naturaleza") + f'''
 <main id="contenido">
 
 <section class="seccion">
@@ -835,7 +840,7 @@ def pagina_contacto():
     + aviso() + cabecera("contacto.html", sobre_imagen=True)
     + hero_interior("Contacto",
                     "Cuéntame qué necesitas y encontramos juntas la práctica que mejor te acompaña.",
-                    "hero-contacto.svg", "Espacio de práctica") + f'''
+                    "hero-contacto.jpg", "Espacio de práctica") + f'''
 <main id="contenido">
 
 <section class="seccion" id="reservar">
@@ -1002,6 +1007,156 @@ PRIVACIDAD = f'''
     consentimiento de cookies.</p>'''
 
 
+
+# ====================== BLOQUES DE CONTENIDO AMPLIADO ======================
+
+ESTILOS_RESUMEN = [
+    ("Yoga Integral", "Movimiento consciente, respiración, meditación y trabajo energético en una misma práctica. Para quien busca una experiencia profunda y transformadora."),
+    ("Ashtanga Yoga", "Secuencia fija enlazada con la respiración. Fortalece, mejora la resistencia y cultiva disciplina y presencia."),
+    ("Vinyasa Yoga", "Movimiento fluido sincronizado con la respiración. Cada clase es distinta y se adapta al ritmo del grupo."),
+    ("Yin Yoga", "Posturas sostenidas durante varios minutos para llegar a los tejidos profundos, soltar tensión y calmar el sistema nervioso."),
+]
+
+BENEFICIOS = [
+    ("Fuerza y estabilidad", "Trabajamos la musculatura profunda y el suelo pélvico para una base corporal estable y saludable."),
+    ("Movilidad y postura", "Ganarás elasticidad, coordinación y una alineación más consciente en tu día a día."),
+    ("Calma y descanso", "La respiración consciente y la quietud guiada ayudan a regular el sistema nervioso y a gestionar el estrés."),
+    ("Energía y vitalidad", "Los pranayamas mejoran la capacidad pulmonar, liberan tensiones internas y equilibran tu energía."),
+    ("Presencia", "Aprenderás a habitar tu cuerpo y a sostener la atención en lo que está pasando ahora."),
+    ("Comunidad", "En las clases grupales se crea una energía compartida que motiva y acompaña la constancia."),
+]
+
+IMPLEMENTOS = ["Bandas elásticas", "Aro mágico", "Fitball", "Softball",
+               "Bloques", "Sliders", "Rulo", "Pica"]
+
+PASOS = [
+    ("Escríbeme", "Cuéntame en qué momento estás, si has practicado antes y qué te gustaría trabajar. Por WhatsApp o con el formulario."),
+    ("Lo vemos juntas", "Elegimos el estilo, el formato y el horario que mejor encajan contigo. Te paso las tarifas sin compromiso."),
+    ("Reservas tu plaza", "Y empiezas a practicar. Si es tu primera vez, iremos paso a paso: la práctica se adapta a ti, no al revés."),
+]
+
+def bloque_estilos_resumen(fondo="seccion--crema"):
+    items = "".join(f'''
+      <article class="tarjeta-texto revelar" data-retardo="{i*80}">
+        <div class="numero">{str(i+1).zfill(2)}</div>
+        <h3>{t}</h3>
+        <p style="margin:.4rem 0 0">{d}</p>
+      </article>''' for i, (t, d) in enumerate(ESTILOS_RESUMEN))
+    return f'''
+<section class="seccion {fondo}" id="estilos">
+  <div class="contenedor">
+    <div class="medida texto-centrado" style="margin-bottom:clamp(30px,4vw,54px)">
+      {orn()}
+      <span class="eyebrow">Estilos de yoga</span>
+      <h2>Cuatro caminos, un mismo equilibrio</h2>
+      <p class="lead" style="margin-top:1.1rem">Cada estilo aporta algo distinto. Elegimos juntas el que mejor acompaña tu cuerpo y tu momento.</p>
+    </div>
+    <div class="grid grid-4">{items}</div>
+    <div class="botonera botonera--centro mt-l">
+      <a class="btn btn--linea" href="servicios.html">Ver los servicios al detalle</a>
+    </div>
+  </div>
+</section>'''
+
+def bloque_beneficios(fondo=""):
+    items = "".join(f'''
+      <article class="beneficio revelar" data-retardo="{(i%3)*80}">
+        <span class="beneficio__num">{str(i+1).zfill(2)}</span>
+        <h4>{t}</h4>
+        <p>{d}</p>
+      </article>''' for i, (t, d) in enumerate(BENEFICIOS))
+    return f'''
+<section class="seccion {fondo}" id="beneficios">
+  <div class="contenedor">
+    <div class="medida texto-centrado" style="margin-bottom:clamp(30px,4vw,54px)">
+      <span class="eyebrow">Qué vas a notar</span>
+      <h2>Cuidarte desde la presencia</h2>
+    </div>
+    <div class="grid grid-3">{items}</div>
+  </div>
+</section>'''
+
+def bloque_implementos():
+    chips = "".join(f'<span class="zona">{i}</span>' for i in IMPLEMENTOS)
+    return f'''
+<section class="seccion seccion--compacta">
+  <div class="contenedor duo">
+    <div class="duo__media revelar">
+      <img src="assets/img/detalle-esterillas.jpg" alt="Esterillas y material en una clase de Pilates Mat" loading="lazy" width="1200" height="900">
+    </div>
+    <div class="revelar" data-retardo="100">
+      <span class="eyebrow">Pilates Mat</span>
+      <h2>Con implementos, para llegar más lejos</h2>
+      <p style="margin-top:1.1rem">En mis clases incorporo distintos implementos que permiten adaptar la intensidad, profundizar en la técnica y hacer la práctica más dinámica y completa. Ayudan a activar zonas concretas, mejorar la movilidad y acompañar el movimiento de forma segura.</p>
+      <div class="zonas" style="margin-top:1.4rem">{chips}</div>
+    </div>
+  </div>
+</section>'''
+
+def bloque_pasos(fondo="seccion--verde"):
+    items = "".join(f'''
+      <article class="paso revelar" data-retardo="{i*90}">
+        <span class="paso__num">{i+1}</span>
+        <h3>{t}</h3>
+        <p>{d}</p>
+      </article>''' for i, (t, d) in enumerate(PASOS))
+    return f'''
+<section class="seccion {fondo}" id="empezar">
+  <div class="contenedor">
+    <div class="medida texto-centrado" style="margin-bottom:clamp(30px,4vw,54px)">
+      <span class="eyebrow">Cómo empezar</span>
+      <h2>Tres pasos y estás dentro</h2>
+    </div>
+    <div class="grid grid-3">{items}</div>
+    <div class="botonera botonera--centro mt-l">
+      <a class="btn btn--oro" href="{WA_URL}" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>'''
+
+GALERIA = [
+    ("espacio-estudio.jpg", "El espacio de práctica de ANAHATA"),
+    ("detalle-esterillas.jpg", "Detalle de una clase de Pilates Mat"),
+    ("comunidad.jpg", "Alumnas de ANAHATA tras una clase"),
+    ("retiro-paisaje.jpg", "Vistas desde uno de los retiros"),
+]
+
+def bloque_galeria(fondo="seccion--crema"):
+    fotos = "".join(f'''
+      <figure class="galeria__item revelar" data-retardo="{i*70}">
+        <img src="assets/img/{img}" alt="{alt}" loading="lazy" width="1200" height="900">
+      </figure>''' for i, (img, alt) in enumerate(GALERIA))
+    return f'''
+<section class="seccion {fondo}" id="galeria">
+  <div class="contenedor">
+    <div class="medida texto-centrado" style="margin-bottom:clamp(28px,3.5vw,48px)">
+      {orn()}
+      <span class="eyebrow">El espacio y la tribu</span>
+      <h2>Así se vive ANAHATA</h2>
+    </div>
+    <div class="galeria">{fotos}</div>
+  </div>
+</section>'''
+
+def bloque_faq():
+    faq = "".join(f'''
+      <div class="acordeon__item">
+        <button class="acordeon__boton" type="button" aria-expanded="false">
+          <span>{p}</span><span aria-hidden="true">+</span>
+        </button>
+        <div class="acordeon__panel"><div><p>{r}</p></div></div>
+      </div>''' for p, r in FAQ)
+    return f'''
+<section class="seccion" id="faq">
+  <div class="contenedor">
+    <div class="medida texto-centrado" style="margin-bottom:clamp(28px,3.5vw,46px)">
+      <span class="eyebrow">Dudas frecuentes</span>
+      <h2>Antes de tu primera clase</h2>
+    </div>
+    <div class="medida acordeon revelar" data-acordeon>{faq}</div>
+  </div>
+</section>'''
+
 # =============================== LANDING ===================================
 # Versión de una sola página: todo el contenido en scroll, orientada a conversión.
 NAV_LANDING = [("#sobre-mi","Sobre mí"), ("#servicios","Servicios"), ("#programas","Programas"),
@@ -1102,7 +1257,7 @@ def pagina_landing():
 
 <section class="hero hero--landing" id="inicio">
   <div class="hero__media">
-    <img src="assets/img/hero-inicio.svg" alt="Práctica de yoga consciente" width="1920" height="1280" fetchpriority="high">
+    <img src="assets/img/hero-inicio.jpg" alt="Clase de Pilates Mat con fitball en ANAHATA" width="1920" height="1280" fetchpriority="high">
   </div>
   <div class="contenedor hero__contenido hero__contenido--centrado">
     <img class="hero__logo" src="assets/img/logo-anahata-crema.svg"
@@ -1151,6 +1306,10 @@ def pagina_landing():
   </div>
 </section>
 
+{bloque_estilos_resumen("")}
+{bloque_implementos()}
+{bloque_beneficios("seccion--crema")}
+
 <section class="seccion seccion--arena" id="modalidades">
   <div class="contenedor">
     <div class="texto-centrado medida" style="margin-bottom:clamp(30px,4vw,56px)">
@@ -1173,8 +1332,12 @@ def pagina_landing():
   </div>
 </section>
 
+{bloque_galeria("")}
+
 {franja_cta("Tu práctica empieza con una respiración",
             "Cuéntame qué necesitas y encontramos juntas el formato, el estilo y el ritmo que mejor te acompañan.")}
+
+{bloque_pasos()}
 
 <section class="seccion" id="retiros">
   <div class="contenedor">
@@ -1224,7 +1387,9 @@ def pagina_landing():
   </div>
 </section>
 
-<section class="seccion" id="contacto">
+{bloque_faq()}
+
+<section class="seccion seccion--crema" id="contacto">
   <div class="contenedor duo" style="align-items:flex-start">
     <div class="revelar">
       <span class="eyebrow">Contacto y reservas</span>

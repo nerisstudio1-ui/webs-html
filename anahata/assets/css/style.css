@@ -78,7 +78,7 @@ strong{ font-weight:500; color:var(--tinta); }
 .contenedor{ width:100%; max-width:var(--ancho); margin-inline:auto; padding-inline:var(--gutter); }
 .seccion{ padding-block:var(--seccion); }
 .seccion--crema{ background:var(--marfil-2); }
-.seccion--arena{ background:var(--marfil-2); }
+.seccion--arena{ background:#EBE4D8; }
 .seccion--verde{ background:var(--cacao); color:#D8D1C6; }
 .seccion--verde h2,.seccion--verde h3,.seccion--verde h4{ color:#F4F0E8; }
 .seccion--verde .eyebrow{ color:var(--melocoton); }
@@ -490,3 +490,32 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 
 :target{ scroll-margin-top:calc(var(--header-h) + 16px); }
 section[id]{ scroll-margin-top:calc(var(--header-h) + 8px); }
+
+/* ---------- Beneficios ---------- */
+.beneficio{ padding-top:22px; border-top:1px solid var(--borde); }
+.beneficio__num{
+  display:block; font-family:var(--serif); font-size:.95rem;
+  color:var(--melocoton-2); letter-spacing:.14em; margin-bottom:.7rem;
+}
+.beneficio h4{ margin-bottom:.4rem; }
+.beneficio p{ font-size:.92rem; margin:0; }
+
+/* ---------- Pasos ---------- */
+.paso{ text-align:center; }
+.paso__num{
+  display:grid; place-items:center; width:46px; height:46px; margin:0 auto 18px;
+  border:1px solid currentColor; border-radius:50%;
+  font-family:var(--serif); font-size:1.1rem; color:var(--melocoton);
+}
+.paso h3{ margin-bottom:.5rem; }
+.paso p{ font-size:.93rem; margin:0; }
+.seccion--verde .paso p{ color:#CFC8BB; }
+
+/* ---------- Galería ---------- */
+.galeria{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(10px,1.4vw,18px); }
+.galeria__item{ margin:0; overflow:hidden; border-radius:var(--radio-img); aspect-ratio:3/4; background:var(--marfil-2); }
+.galeria__item img{ width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
+.galeria__item:hover img{ transform:scale(1.05); }
+.galeria__item:nth-child(even){ margin-top:clamp(14px,2.4vw,34px); }
+@media (max-width:860px){ .galeria{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:460px){ .galeria{ grid-template-columns:1fr; } .galeria__item:nth-child(even){ margin-top:0; } }
