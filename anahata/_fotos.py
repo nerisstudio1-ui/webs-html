@@ -30,6 +30,14 @@ TRABAJOS = [
     ("retiro-mesa.jpg",     "retiro-paisaje.jpg",    1400, 1050, 0.16, 0.50, 1.00),
     ("retiro-mesa.jpg",     "hero-retiros.jpg",      1920,  900, 0.18, 0.50, 1.00),
     ("retiro-mesa.jpg",     "evento-brunch.jpg",     1200,  900, 0.58, 0.50, 1.30),
+    # ---- huecos que faltaban ----
+    ("grupo-pequeno.jpg",   "sara-retrato.jpg",      900, 1200, 0.60, 0.50, 3.05),
+    ("pilates-suelo.jpg",   "reto21.jpg",           1200,  900, 0.62, 0.30, 1.45),
+    ("pilates-fitball.jpg", "sesion-privada.jpg",   1200,  900, 0.55, 0.28, 1.80),
+    ("retiro-mesa.jpg",     "aromaterapia.jpg",     1200,  900, 0.46, 0.35, 2.20),
+    ("grupo-pequeno.jpg",   "mujeres.jpg",          1200,  900, 0.46, 0.62, 1.70),
+    ("grupo-grande.jpg",    "familia.jpg",          1200,  900, 0.45, 0.30, 1.55),
+    ("retiro-mesa.jpg",     "kundalini.jpg",        1200,  900, 0.30, 0.60, 1.80),
 ]
 
 def recortar(img, w, h, foco_v=0.5, foco_h=0.5, zoom=1.0):

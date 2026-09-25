@@ -71,9 +71,6 @@ def head(titulo, desc, pagina, og="assets/img/logo-anahata.svg"):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -245,7 +242,7 @@ PILARES = [
     ("pilar-yoga.jpg", "Movimiento consciente",
      "Yoga Integral, Ashtanga, Vinyasa, Yin y Pilates Mat con implementos. Fuerza, movilidad y presencia en cada práctica.",
      "servicios.html", "Descubrir las prácticas"),
-    ("pilar-meditacion.svg", "Meditación y pranayamas",
+    ("kundalini.jpg", "Meditación y pranayamas",
      "Respiración consciente y quietud guiada para calmar la mente, regular el sistema nervioso y volver a tu centro.",
      "servicios.html#meditacion", "Aprender a respirar"),
     ("pilar-programas.jpg", "Retiros y programas",
@@ -427,7 +424,7 @@ def pagina_inicio():
 <section class="seccion">
   <div class="contenedor duo">
     <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/sobre-retrato.svg" alt="{TITULAR}, profesora de yoga y pilates" loading="lazy" width="900" height="1200">
+      <img src="assets/img/sara-retrato.jpg" alt="{TITULAR}, profesora de yoga y pilates" loading="lazy" width="900" height="1200">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Sobre mí</span>
@@ -487,7 +484,7 @@ def pagina_sobre_mi():
 <section class="seccion">
   <div class="contenedor duo">
     <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/sobre-retrato.svg" alt="{TITULAR}" loading="lazy" width="900" height="1200">
+      <img src="assets/img/sara-retrato.jpg" alt="{TITULAR}" loading="lazy" width="900" height="1200">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Mi camino</span>
@@ -664,10 +661,10 @@ PROGRAMAS = [
     ("comunidad.jpg", "Membresía mensual",
      "La opción para crear constancia. Practica cada semana con seguimiento cercano y acceso prioritario a talleres y eventos.",
      ["Clases semanales", "Acompañamiento continuo", "Prioridad en retiros"]),
-    ("programa-reto21.svg", "Reto de 21 días",
+    ("reto21.jpg", "Reto de 21 días",
      "Veintiún días para instalar un hábito consciente. Práctica guiada, respiración y pautas sencillas para sostener el cambio.",
      ["Práctica diaria guiada", "Materiales descargables", "Grupo de acompañamiento"]),
-    ("programa-privadas.svg", "Sesiones privadas",
+    ("sesion-privada.jpg", "Sesiones privadas",
      "Un espacio íntimo, diseñado para ti. Trabajamos tus objetivos, corregimos y profundizamos desde la atención plena.",
      ["100 % personalizada", "En estudio, a domicilio u online", "Sesión suelta o bono"]),
 ]
@@ -763,13 +760,13 @@ EVENTOS = [
      "Encuentros presenciales donde hacer tribu, para desconectar del ritmo diario y reconectar contigo. Movimiento, descanso, naturaleza y autocuidado profundo, siempre en entornos de naturaleza y silencio."),
     ("evento-brunch.jpg", "Yoga & brunch", "Evento",
      "Una mañana para moverte con calma y compartir mesa después. Práctica suave, respiración y un desayuno saludable en buena compañía."),
-    ("evento-aromaterapia.svg", "Taller de aromaterapia", "Taller",
+    ("aromaterapia.jpg", "Taller de aromaterapia", "Taller",
      "Descubre el poder de los aceites esenciales y cómo integrarlos en tu rutina para acompañar tu descanso, tu energía y tu estado de ánimo."),
-    ("evento-menopausia.svg", "Yoga y menopausia", "Taller",
+    ("mujeres.jpg", "Yoga y menopausia", "Taller",
      "Una práctica específica para acompañar los cambios de esta etapa: movilidad, fuerza, respiración y herramientas para habitar el cuerpo con amabilidad."),
-    ("evento-familia.svg", "Yoga en familia", "Evento",
+    ("familia.jpg", "Yoga en familia", "Evento",
      "Una experiencia para compartir con los peques de casa: juego, movimiento y respiración para crear vínculo y consciencia corporal desde la infancia."),
-    ("pilar-meditacion.svg", "Activación de la energía Kundalini", "Taller",
+    ("kundalini.jpg", "Activación de la energía Kundalini", "Taller",
      "Un espacio para trabajar la energía desde la respiración, el movimiento y la meditación, despertando vitalidad y presencia."),
 ]
 
@@ -1023,9 +1020,9 @@ PRIVACIDAD = f'''
     <p>Esta web no utiliza cookies propias de analítica ni de publicidad. Únicamente se emplea el almacenamiento local del
     navegador para recordar si has cerrado el aviso superior, un dato técnico que no identifica a ninguna persona y que
     permanece en tu dispositivo.</p>
-    <p>Se cargan tipografías desde Google Fonts, lo que implica una conexión a servidores de Google. Si en el futuro se añaden
-    herramientas de analítica, vídeos incrustados o píxeles de redes sociales, será necesario incorporar un banner de
-    consentimiento de cookies.</p>'''
+    <p>Las tipografías están alojadas en el propio servidor, de modo que la navegación no genera conexiones con terceros.
+    Si en el futuro se añaden herramientas de analítica, vídeos incrustados o píxeles de redes sociales, será necesario
+    incorporar un banner de consentimiento de cookies.</p>'''
 
 
 
@@ -1194,12 +1191,16 @@ def bloque_faq():
 
 # =============================== LANDING ===================================
 # Versión de una sola página: todo el contenido en scroll, orientada a conversión.
-NAV_LANDING = [("#sobre-mi","Sobre mí"), ("#servicios","Servicios"), ("#programas","Programas"),
-               ("#retiros","Retiros"), ("#opiniones","Opiniones"), ("#contacto","Contacto")]
+# Tres entradas a cada lado del logotipo, para que quede centrado de verdad.
+NAV_IZQ = [("#sobre-mi", "Sobre mí"), ("#servicios", "Servicios"), ("#programas", "Programas")]
+NAV_DER = [("#retiros", "Retiros"), ("#contacto", "Contacto")]
+NAV_LANDING = NAV_IZQ + NAV_DER + [("#opiniones", "Opiniones")]
 
 def cabecera_landing():
-    enlaces = "".join('<a href="%s">%s</a>' % (h, t) for h, t in NAV_LANDING[:-1])
-    movil = "".join('<a href="%s">%s</a>' % (h, t) for h, t in NAV_LANDING)
+    enlaces = "".join('<a href="%s">%s</a>' % (h, t) for h, t in NAV_IZQ)
+    enlaces_der = "".join('<a href="%s">%s</a>' % (h, t) for h, t in NAV_DER)
+    movil = "".join('<a href="%s">%s</a>' % (h, t) for h, t in
+                    NAV_IZQ + [("#opiniones", "Opiniones")] + NAV_DER)
     return f'''
 <header class="cabecera cabecera--transparente" data-cabecera>
   <div class="cabecera__interior">
@@ -1213,7 +1214,7 @@ def cabecera_landing():
       <span class="logo__texto">{MARCA}</span>
     </a>
     <nav class="nav nav--fin" aria-label="Acciones">
-      <a class="nav-enlace" href="#contacto">Contacto</a>
+      {enlaces_der}
       <a class="btn btn--linea" href="#contacto">Reservar</a>
     </nav>
   </div>
@@ -1317,7 +1318,7 @@ def pagina_landing():
 <section class="seccion seccion--crema" id="sobre-mi">
   <div class="contenedor duo">
     <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/sobre-retrato.svg" alt="{TITULAR}" loading="lazy" width="900" height="1200">
+      <img src="assets/img/sara-retrato.jpg" alt="{TITULAR}" loading="lazy" width="900" height="1200">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Sobre mí</span>
