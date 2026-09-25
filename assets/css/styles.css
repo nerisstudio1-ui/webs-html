@@ -274,6 +274,13 @@ p { text-wrap: pretty; }
   color: var(--fg);
   white-space: nowrap;
 }
+.brand__texto em {
+  /* El apellido, en el gris del menú: cabe en la misma línea sin pesar
+     tanto como el resto del nombre. */
+  font-style: normal;
+  font-weight: 400;
+  color: var(--fg-muted);
+}
 .brand__texto span {
   display: block;
   font-family: var(--font-body);
@@ -419,8 +426,8 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
 }
 
 .hero__title {
-  font-size: calc(var(--step-5) * 0.7);
-  line-height: 1.05;
+  font-size: calc(var(--step-5) * 0.58);
+  line-height: 1.08;
   text-align: center;
   letter-spacing: -0.03em;
   color: var(--verde-hondo);
@@ -481,37 +488,6 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
   .hero__fondo { object-fit: cover; }
 }
 
-/* --------------------------------------------------------------------------
-   7. Marquesina
-   -------------------------------------------------------------------------- */
-.marquee {
-  overflow: hidden;
-  padding-block: clamp(1.5rem, 3vw, 2.75rem);
-  background: var(--hueso);
-  border-block: 1px solid var(--line);
-  user-select: none;
-}
-.marquee__track {
-  display: flex;
-  width: max-content;
-  gap: 0;
-  animation: slide 38s linear infinite;
-}
-.marquee:hover .marquee__track { animation-play-state: paused; }
-.marquee__item {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--step-3);
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: var(--verde-hondo);
-  padding-inline: 1.5rem;
-  white-space: nowrap;
-}
-.marquee__item:nth-child(even) {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--verde-claro);
-}
 @keyframes slide { to { translate: -50% 0; } }
 
 /* --------------------------------------------------------------------------
@@ -1272,14 +1248,13 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
     transition-duration: 0.01ms !important;
   }
   .reveal { opacity: 1; translate: none; }
-  .marquee__track { animation: none; }
 }
 
 /* --------------------------------------------------------------------------
    18. Impresión
    -------------------------------------------------------------------------- */
 @media print {
-  .header, .wa, .marquee, .lightbox { display: none !important; }
+  .header, .wa, .lightbox { display: none !important; }
   body { background: #fff; }
   .reveal { opacity: 1; translate: none; }
 }

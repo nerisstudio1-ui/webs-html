@@ -55,8 +55,6 @@
     $$(".lang__btn").forEach(function (b) {
       b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
     });
-
-    pintarMarquesina();
     actualizarContacto();
 
     try { localStorage.setItem("idioma", lang); } catch (e) { /* ignorar */ }
@@ -169,22 +167,6 @@
     reveals.forEach(function (el) { obsReveal.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add("is-visible"); });
-  }
-
-  /* ------------------------------------------------------------------
-     6. Marquesina
-     ------------------------------------------------------------------ */
-  function pintarMarquesina() {
-    var pista = $("#marquee");
-    if (!pista) return;
-    var dic = I18N[idiomaActual] || {};
-    var palabras = [dic["marquee.1"] || "Poesía", dic["marquee.2"] || "Literatura infantil"];
-    var html = "";
-    /* Se duplica el contenido para que el bucle sea continuo (-50%) */
-    for (var i = 0; i < 8; i++) {
-      html += '<span class="marquee__item">' + palabras[i % 2] + "</span>";
-    }
-    pista.innerHTML = html;
   }
 
   /* ------------------------------------------------------------------

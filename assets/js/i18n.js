@@ -35,9 +35,6 @@ window.I18N = {
     "hero.verso": "La vida era más que lo que nos dijeron",
     "hero.verso.fuente": "Ítaca es nunca",
 
-    /* Marquesina */
-    "marquee.1": "Poesía",
-    "marquee.2": "Literatura infantil y juvenil",
 
     /* Sobre mí */
     "sobre.kicker": "Sobre mí",
@@ -274,8 +271,6 @@ window.I18N = {
     "hero.verso": "La vida era más que lo que nos dijeron",
     "hero.verso.fuente": "Ítaca es nunca",
 
-    "marquee.1": "Poetry",
-    "marquee.2": "Children's and young adult literature",
 
     "sobre.kicker": "About me",
     "sobre.titulo": "Before she could read, she learned poems by heart",
