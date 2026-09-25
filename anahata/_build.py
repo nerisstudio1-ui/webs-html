@@ -83,7 +83,7 @@ def aviso():
     return f'''
 <div class="aviso" data-aviso>
   <span>Clases de yoga y pilates en {CIUDAD}, a domicilio y online · Nuevos retiros y talleres cada temporada.
-  <a href="retiros.html">Ver próximas fechas</a></span>
+  <a href="#retiros">Ver próximas fechas</a></span>
   <button class="aviso__cerrar" type="button" aria-label="Cerrar aviso" data-cerrar-aviso>
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
   </button>
@@ -123,12 +123,22 @@ def cabecera(activa, sobre_imagen=False):
   </div>
 </nav>'''
 
-def pie():
-    servicios = "".join(f'<li><a href="{h}">{t}</a></li>' for h, t in [
-        ("servicios.html", "Yoga"), ("servicios.html#pilates", "Pilates Mat"),
-        ("servicios.html#meditacion", "Meditación y pranayamas"),
-        ("servicios.html#alimentacion", "Alimentación saludable"),
-        ("clases.html", "Clases y programas"), ("retiros.html", "Retiros y talleres")])
+def pie(landing=False):
+    if landing:
+        enlaces_nav = [("#inicio", "Inicio"), ("#sobre-mi", "Sobre mí"), ("#servicios", "Servicios"),
+                       ("#programas", "Clases y programas"), ("#retiros", "Retiros y eventos"),
+                       ("#contacto", "Contacto")]
+        enlaces_serv = [("#servicios", "Yoga"), ("#servicios", "Pilates Mat"),
+                        ("#servicios", "Meditación y pranayamas"), ("#servicios", "Alimentación saludable"),
+                        ("#programas", "Clases y programas"), ("#retiros", "Retiros y talleres")]
+    else:
+        enlaces_nav = NAV
+        enlaces_serv = [("servicios.html", "Yoga"), ("servicios.html#pilates", "Pilates Mat"),
+                        ("servicios.html#meditacion", "Meditación y pranayamas"),
+                        ("servicios.html#alimentacion", "Alimentación saludable"),
+                        ("clases.html", "Clases y programas"), ("retiros.html", "Retiros y talleres")]
+    navegacion = "".join('<li><a href="%s">%s</a></li>' % (h, t) for h, t in enlaces_nav)
+    servicios  = "".join('<li><a href="%s">%s</a></li>' % (h, t) for h, t in enlaces_serv)
     return f'''
 <footer class="pie">
   <div class="contenedor">
@@ -144,7 +154,7 @@ def pie():
       </div>
       <div>
         <h4>Navegación</h4>
-        <ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)}</ul>
+        <ul>{navegacion}</ul>
       </div>
       <div>
         <h4>Prácticas</h4>
@@ -935,9 +945,20 @@ def pagina_contacto():
 </main>''' + pie())
 
 # ================================ LEGAL ====================================
+ANCLAS = ["inicio", "sobre-mi", "servicios", "estilos", "beneficios", "modalidades",
+          "programas", "galeria", "empezar", "retiros", "zonas", "opiniones", "faq",
+          "contacto", "formacion"]
+
+def enlaces_desde_legal(html):
+    """En una página legal, las anclas de la landing necesitan la portada delante."""
+    for a in ANCLAS:
+        html = html.replace(f'href="#{a}"', f'href="index.html#{a}"')
+    return html
+
 def pagina_legal(titulo, pagina, desc, cuerpo):
-    return (head(f"{titulo} · {MARCA}", desc, pagina)
-    + aviso() + cabecera("", sobre_imagen=False) + f'''
+    return enlaces_desde_legal(head(f"{titulo} · {MARCA}", desc, pagina)
+    + aviso() + cabecera_landing().replace('class="cabecera cabecera--transparente"',
+                                           'class="cabecera cabecera--solida"') + f'''
 <main id="contenido">
 <section class="seccion">
   <div class="contenedor medida">
@@ -946,7 +967,7 @@ def pagina_legal(titulo, pagina, desc, cuerpo):
     {cuerpo}
   </div>
 </section>
-</main>''' + pie())
+</main>''' + pie(landing=True))
 
 AVISO_LEGAL = f'''
     <p class="nota-formulario" style="background:var(--arena);padding:16px 20px;border-radius:var(--radio-img)">
@@ -1034,6 +1055,20 @@ PASOS = [
     ("Lo vemos juntas", "Elegimos el estilo, el formato y el horario que mejor encajan contigo. Te paso las tarifas sin compromiso."),
     ("Reservas tu plaza", "Y empiezas a practicar. Si es tu primera vez, iremos paso a paso: la práctica se adapta a ti, no al revés."),
 ]
+
+
+def bloque_formacion():
+    items = "".join(f'<span class="zona">{t}</span>' for t, _ in FORMACION[:-1])
+    return f'''
+<section class="seccion seccion--compacta" id="formacion">
+  <div class="contenedor medida texto-centrado">
+    <span class="eyebrow">Formación</span>
+    <h2 style="font-size:clamp(1.5rem,2.2vw,2rem)">Aprendizaje continuo</h2>
+    <p style="margin-top:1rem">Creo en la evolución personal como práctica diaria. Esta es la base desde la que acompaño.</p>
+    <div class="zonas" style="justify-content:center;margin-top:1.5rem">{items}</div>
+    <p class="nota-formulario" style="margin-top:1.2rem">Y ampliando: próximamente en Yogagara (India) y Astrología Psicológica.</p>
+  </div>
+</section>'''
 
 def bloque_estilos_resumen(fondo="seccion--crema"):
     items = "".join(f'''
@@ -1306,6 +1341,7 @@ def pagina_landing():
   </div>
 </section>
 
+{bloque_formacion()}
 {bloque_estilos_resumen("")}
 {bloque_implementos()}
 {bloque_beneficios("seccion--crema")}
@@ -1440,15 +1476,30 @@ def pagina_landing():
 {bloque_newsletter()}
 </main>''' + JSONLD + pie())
 
+
+def enlaces_de_landing(html):
+    """En la landing todo vive en una sola página: los enlaces a páginas
+       internas pasan a ser anclas. Las legales siguen siendo páginas."""
+    cambios = [
+        ("contacto.html#reservar", "#contacto"),
+        ("contacto.html", "#contacto"),
+        ("servicios.html#pilates", "#servicios"),
+        ("servicios.html#meditacion", "#servicios"),
+        ("servicios.html#alimentacion", "#servicios"),
+        ("servicios.html", "#servicios"),
+        ("clases.html", "#programas"),
+        ("retiros.html", "#retiros"),
+        ("sobre-mi.html", "#sobre-mi"),
+        ("index.html", "#inicio"),
+    ]
+    for viejo, nuevo in cambios:
+        html = html.replace(f'href="{viejo}"', f'href="{nuevo}"')
+    return html
+
 # =============================== GENERAR ===================================
 if __name__ == "__main__":
-    escribir("index.html",       pagina_inicio())
-    escribir("landing.html",     pagina_landing())
-    escribir("sobre-mi.html",    pagina_sobre_mi())
-    escribir("servicios.html",   pagina_servicios())
-    escribir("clases.html",      pagina_clases())
-    escribir("retiros.html",     pagina_retiros())
-    escribir("contacto.html",    pagina_contacto())
+    # La landing es la web: se publica como index.html
+    escribir("index.html", enlaces_de_landing(pagina_landing()))
     escribir("aviso-legal.html", pagina_legal("Aviso legal", "aviso-legal.html",
              f"Aviso legal de {MARCA} · {TITULAR}.", AVISO_LEGAL))
     escribir("privacidad.html",  pagina_legal("Política de privacidad y cookies", "privacidad.html",

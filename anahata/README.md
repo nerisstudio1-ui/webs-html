@@ -36,13 +36,7 @@ Diseño minimalista y cercano, con la paleta tomada del logotipo: verde bosque, 
 
 ```
 anahata/
-├── landing.html          Landing de una página (todo en scroll)
-├── index.html            Inicio de la web corporativa
-├── sobre-mi.html         Sobre mí · trayectoria y origen de ANAHATA
-├── servicios.html        Yoga (4 estilos), Pilates, Meditación, Alimentación
-├── clases.html           Clases y programas + preguntas frecuentes
-├── retiros.html          Retiros, eventos y talleres
-├── contacto.html         Formulario, WhatsApp y datos de contacto
+├── index.html            La landing: toda la web en una página
 ├── aviso-legal.html      Aviso legal
 ├── privacidad.html       Política de privacidad y cookies
 ├── assets/
@@ -53,31 +47,29 @@ anahata/
 └── _gen_logo.py          Generador de los SVG del logotipo
 ```
 
-## Dos formatos en el mismo proyecto
+## Una sola página
 
-El proyecto incluye **las dos versiones**, que comparten estilos, logotipo e imágenes:
+La web es **una landing**: todo el contenido vive en `index.html` y se recorre con scroll.
+El menú y los botones usan anclas (`#servicios`, `#contacto`…), no páginas separadas.
 
-- **`landing.html`** — una sola página con todo el contenido en scroll y navegación por anclas.
-  Es la más directa para captar reservas y para enviar por Instagram o WhatsApp.
-- **`index.html` + el resto** — web corporativa de 8 páginas, mejor para posicionamiento (cada
-  servicio tiene su propia URL) y para ir ampliando contenido.
+Sus quince secciones, en orden: portada · manifiesto · sobre mí · servicios · formación ·
+estilos de yoga · pilates con implementos · beneficios · modalidades · programas · galería ·
+cómo empezar · retiros y eventos · zonas · opiniones · preguntas frecuentes · contacto.
 
-Para que la landing sea la página principal del dominio, basta con renombrar:
+Las únicas páginas aparte son las dos legales, obligatorias por ley, que enlazan de vuelta
+a la portada con `index.html#ancla`.
 
-```bash
-mv index.html corporativa.html && mv landing.html index.html
-```
+Para añadir una sección nueva, créala como bloque en `_build.py` (siguiendo el patrón de
+`bloque_beneficios()`, por ejemplo) e insértala en `pagina_landing()`. Si le pones un `id`,
+añádelo también a la lista `ANCLAS` para que los enlaces desde las legales funcionen.
 
-(y después ajustar los enlaces del menú, que en la corporativa apuntan a las páginas internas).
-Si tienes dudas, dímelo y lo dejo montado en un minuto.
-
-## Cómo editar
+## Cómo editar## Cómo editar
 
 Las páginas comparten cabecera, pie y bloques comunes, así que **los textos se editan en `_build.py`**
 y después se regeneran los HTML:
 
 ```bash
-python3 _build.py      # regenera los 8 .html
+python3 _build.py      # regenera index.html y las dos legales
 python3 _gen_logo.py   # solo si se toca el logotipo
 ```
 
