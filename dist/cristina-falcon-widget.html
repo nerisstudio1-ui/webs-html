@@ -135,9 +135,9 @@
   /* Verdes subidos de saturación y de luz respecto a la primera versión:
      en pantalla los anteriores se leían casi como negro y no se percibía
      que fueran verdes. Mismo tono, más cuerpo. */
-  --verde-hondo:   #255647;
-  --verde:         #347461;
-  --verde-claro:   #72AC9A;
+  --verde-hondo:   #0E6B4F;
+  --verde:         #108864;
+  --verde-claro:   #5FBFA0;
   --azul-hondo:    #1B3448;
   --azul:          #2F5975;
   --azul-claro:    #7FA0B7;
@@ -795,6 +795,20 @@
   color: var(--fg-muted);
 }
 #cfm-web .libro__text { font-size: var(--step--1); line-height: 1.7; color: var(--fg-muted); }
+#cfm-web .libro__premios {
+  font-size: var(--step--1);
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+#cfm-web .libro__premios strong {
+  display: block;
+  font-weight: 500;
+  font-size: 0.82em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin-bottom: 0.2rem;
+}
 #cfm-web .libro__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
 /* Las ilustraciones de portada de los poemarios.
@@ -1039,10 +1053,10 @@
 /* --------------------------------------------------------------------------
    12. Vídeos
    -------------------------------------------------------------------------- */
-#cfm-web .videos { background: var(--azul-hondo); color: var(--crema); }
+#cfm-web .videos { background: var(--verde-hondo); color: var(--crema); }
 #cfm-web .videos .section__title, #cfm-web .videos .kicker { color: var(--crema); }
-#cfm-web .videos .kicker { color: var(--azul-claro); }
-#cfm-web .videos .kicker::before { background: color-mix(in srgb, var(--azul-claro) 45%, transparent); }
+#cfm-web .videos .kicker { color: var(--verde-claro); }
+#cfm-web .videos .kicker::before { background: color-mix(in srgb, var(--verde-claro) 45%, transparent); }
 #cfm-web .videos .lead { color: color-mix(in srgb, var(--crema) 75%, transparent); }
 #cfm-web .videos__grid {
   display: grid;
@@ -1060,7 +1074,7 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background: var(--azul);
+  background: var(--verde);
   padding: 0;
 }
 #cfm-web .video__frame img { width: 100%; height: 100%; object-fit: cover; transition: scale 0.6s var(--ease), opacity 0.4s var(--ease); }
@@ -1079,13 +1093,13 @@
   place-items: center;
   border-radius: 50%;
   background: color-mix(in srgb, var(--crema) 92%, transparent);
-  color: var(--azul-hondo);
+  color: var(--verde-hondo);
   transition: scale 0.3s var(--ease);
   pointer-events: none;
 }
 #cfm-web .video__frame:hover .video__play { scale: 1.08; }
 #cfm-web .video__title { font-size: var(--step-1); color: var(--crema); }
-#cfm-web .video__meta { font-size: var(--step--1); letter-spacing: 0.1em; text-transform: uppercase; color: var(--azul-claro); }
+#cfm-web .video__meta { font-size: var(--step--1); letter-spacing: 0.1em; text-transform: uppercase; color: var(--verde-claro); }
 
 /* --------------------------------------------------------------------------
    13. Descargas
@@ -1536,7 +1550,6 @@
         <p class="kicker" data-i18n="obra.kicker">Obra publicada</p>
         <h2 class="section__title" data-i18n="obra.titulo">Los libros</h2>
       </div>
-      <p class="lead" data-i18n="obra.intro">Una obra repartida entre la poesía para adultos y los libros que crecen con quien los lee.</p>
     </div>
 
     <div class="tabs" role="tablist">
@@ -1613,7 +1626,7 @@
             </figcaption>
           </figure>
           <figure class="ilustracion">
-            <img width="1978" height="1414" loading="lazy"
+            <img width="1500" height="828" loading="lazy"
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/borrar-tinta.jpg" alt=""
                  data-i18n-attr="alt:obra.ilus.p2.alt">
             <figcaption>
@@ -1622,7 +1635,7 @@
             </figcaption>
           </figure>
           <figure class="ilustracion">
-            <img width="1072" height="692" loading="lazy"
+            <img width="1008" height="602" loading="lazy"
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/itaca-ballena.jpg" alt=""
                  data-i18n-attr="alt:obra.ilus.p1.alt">
             <figcaption>
@@ -1697,6 +1710,7 @@
         <h3 class="libro__title" data-i18n="libro.i5.titulo">—</h3>
         <p class="libro__meta"  data-i18n="libro.i5.meta">—</p>
         <p class="libro__text"  data-i18n="libro.i5.texto">—</p>
+        <p class="libro__premios" data-i18n-html="libro.i5.premios">—</p>
         <div class="libro__actions">
           <a class="btn btn--ghost btn--sm" href="https://kalandraka.com/letras-en-los-cordones-castellano" target="_blank" rel="noopener" data-i18n="obra.editorial">Ver en la editorial</a>
         </div>
@@ -2287,9 +2301,8 @@ window.I18N = {
     /* Obra */
     "obra.kicker": "Obra publicada",
     "obra.titulo": "Los libros",
-    "obra.intro": "Cuatro poemarios, una veintena de libros para la infancia y la presencia en antologías de poesía venezolana e iberoamericana.",
     "obra.tab.poesia": "Poesía",
-    "obra.ilustraciones.titulo": "Las ilustraciones de portada",
+    "obra.ilustraciones.titulo": "Migración, memoria y viaje",
     "obra.ilustraciones.intro": "Los tres poemarios de Candaya llevan en la cubierta una imagen distinta. Aquí están sueltas, fuera del libro.",
     "obra.ilus.p1.alt": "Ilustración de la portada de Ítaca es nunca: una ballena de acuarela con barcos y olas dibujados dentro",
     "obra.ilus.p1.pie": "Prólogo de Miriam Reyes",
@@ -2310,7 +2323,7 @@ window.I18N = {
     "obra.comprar": "Más información",
     "obra.fragmento": "Fragmento",
     "obra.descargar": "Descargar",
-    "obra.antologias.titulo": "También en antologías",
+    "obra.antologias.titulo": "En antologías",
     "obra.antologias.texto": "En obra. Poesía venezolana 1983-2008 (Equinoccio, Universidad Simón Bolívar) · El corazón de Venezuela. Patria y poesía (Red Nacional de Escritores de Venezuela) · La altura del vuelo, poetas iberoamericanos (Salamanca, 2011) · Ellas, antología de poetas venezolanas (Valencia, Venezuela, 2013) · El puente es la palabra. Antología de poetas venezolanos en la diáspora (2019) · ¡Aquí la Tierra! Poemas para un mundo en apuros (Valparaíso Ediciones, 2020).",
 
     /* Reseñas */
@@ -2467,6 +2480,7 @@ window.I18N = {
     "libro.i5.titulo": "Letras en los cordones",
     "libro.i5.meta": "Infantil · Kalandraka · 2012",
     "libro.i5.texto": "Publicado por Kalandraka Editora (Pontevedra).",
+    "libro.i5.premios": "<strong>Premios</strong>Bienal de Bratislava, 2013<br>Segundo Premio de Álbum Ilustrado, Fundación Caja de Ahorros de Centro (Italia), 2013",
     "libro.i6.titulo": "1, 2, 3, de repente en…",
     "libro.i6.meta": "Colección · Edebé · 2011-2012",
     "libro.i6.texto": "Colección publicada por Edebé y editada también en Estados Unidos (Barron's), Canadá (Heritage), Brasil (Miranda Cultural) y Turquía (Tubitak).",
@@ -2522,9 +2536,8 @@ window.I18N = {
 
     "obra.kicker": "Published work",
     "obra.titulo": "The books",
-    "obra.intro": "Four poetry collections, some twenty books for children, and a presence in anthologies of Venezuelan and Ibero-American poetry.",
     "obra.tab.poesia": "Poetry",
-    "obra.ilustraciones.titulo": "The cover artwork",
+    "obra.ilustraciones.titulo": "Migration, memory and journey",
     "obra.ilustraciones.intro": "Each of the three Candaya collections carries a different image on its cover. Here they are on their own, away from the book.",
     "obra.ilus.p1.alt": "Cover artwork for Ítaca es nunca: a watercolour whale with boats and waves drawn inside it",
     "obra.ilus.p1.pie": "Preface by Miriam Reyes",
@@ -2545,7 +2558,7 @@ window.I18N = {
     "obra.comprar": "More information",
     "obra.fragmento": "Excerpt",
     "obra.descargar": "Download",
-    "obra.antologias.titulo": "Also in anthologies",
+    "obra.antologias.titulo": "In anthologies",
     "obra.antologias.texto": "En obra. Poesía venezolana 1983-2008 (Equinoccio, Universidad Simón Bolívar) · El corazón de Venezuela. Patria y poesía (Red Nacional de Escritores de Venezuela) · La altura del vuelo, Ibero-American poets (Salamanca, 2011) · Ellas, an anthology of Venezuelan women poets (Valencia, Venezuela, 2013) · El puente es la palabra. Venezuelan poets in the diaspora (2019) · ¡Aquí la Tierra! Poemas para un mundo en apuros (Valparaíso Ediciones, 2020).",
 
     "resenas.kicker": "Reviews",
@@ -2692,6 +2705,7 @@ window.I18N = {
     "libro.i5.titulo": "Letras en los cordones",
     "libro.i5.meta": "Children's · Kalandraka · 2012",
     "libro.i5.texto": "Published by Kalandraka Editora (Pontevedra).",
+    "libro.i5.premios": "<strong>Awards</strong>Bratislava Biennial, 2013<br>Second Prize for Picture Book, Fundación Caja de Ahorros de Centro (Italy), 2013",
     "libro.i6.titulo": "1, 2, 3, de repente en…",
     "libro.i6.meta": "Series · Edebé · 2011-2012",
     "libro.i6.texto": "A series published by Edebé and also issued in the United States (Barron's), Canada (Heritage), Brazil (Miranda Cultural) and Turkey (Tubitak).",

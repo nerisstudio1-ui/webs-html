@@ -59,9 +59,8 @@ window.I18N = {
     /* Obra */
     "obra.kicker": "Obra publicada",
     "obra.titulo": "Los libros",
-    "obra.intro": "Cuatro poemarios, una veintena de libros para la infancia y la presencia en antologías de poesía venezolana e iberoamericana.",
     "obra.tab.poesia": "Poesía",
-    "obra.ilustraciones.titulo": "Las ilustraciones de portada",
+    "obra.ilustraciones.titulo": "Migración, memoria y viaje",
     "obra.ilustraciones.intro": "Los tres poemarios de Candaya llevan en la cubierta una imagen distinta. Aquí están sueltas, fuera del libro.",
     "obra.ilus.p1.alt": "Ilustración de la portada de Ítaca es nunca: una ballena de acuarela con barcos y olas dibujados dentro",
     "obra.ilus.p1.pie": "Prólogo de Miriam Reyes",
@@ -82,7 +81,7 @@ window.I18N = {
     "obra.comprar": "Más información",
     "obra.fragmento": "Fragmento",
     "obra.descargar": "Descargar",
-    "obra.antologias.titulo": "También en antologías",
+    "obra.antologias.titulo": "En antologías",
     "obra.antologias.texto": "En obra. Poesía venezolana 1983-2008 (Equinoccio, Universidad Simón Bolívar) · El corazón de Venezuela. Patria y poesía (Red Nacional de Escritores de Venezuela) · La altura del vuelo, poetas iberoamericanos (Salamanca, 2011) · Ellas, antología de poetas venezolanas (Valencia, Venezuela, 2013) · El puente es la palabra. Antología de poetas venezolanos en la diáspora (2019) · ¡Aquí la Tierra! Poemas para un mundo en apuros (Valparaíso Ediciones, 2020).",
 
     /* Reseñas */
@@ -239,6 +238,7 @@ window.I18N = {
     "libro.i5.titulo": "Letras en los cordones",
     "libro.i5.meta": "Infantil · Kalandraka · 2012",
     "libro.i5.texto": "Publicado por Kalandraka Editora (Pontevedra).",
+    "libro.i5.premios": "<strong>Premios</strong>Bienal de Bratislava, 2013<br>Segundo Premio de Álbum Ilustrado, Fundación Caja de Ahorros de Centro (Italia), 2013",
     "libro.i6.titulo": "1, 2, 3, de repente en…",
     "libro.i6.meta": "Colección · Edebé · 2011-2012",
     "libro.i6.texto": "Colección publicada por Edebé y editada también en Estados Unidos (Barron's), Canadá (Heritage), Brasil (Miranda Cultural) y Turquía (Tubitak).",
@@ -294,9 +294,8 @@ window.I18N = {
 
     "obra.kicker": "Published work",
     "obra.titulo": "The books",
-    "obra.intro": "Four poetry collections, some twenty books for children, and a presence in anthologies of Venezuelan and Ibero-American poetry.",
     "obra.tab.poesia": "Poetry",
-    "obra.ilustraciones.titulo": "The cover artwork",
+    "obra.ilustraciones.titulo": "Migration, memory and journey",
     "obra.ilustraciones.intro": "Each of the three Candaya collections carries a different image on its cover. Here they are on their own, away from the book.",
     "obra.ilus.p1.alt": "Cover artwork for Ítaca es nunca: a watercolour whale with boats and waves drawn inside it",
     "obra.ilus.p1.pie": "Preface by Miriam Reyes",
@@ -317,7 +316,7 @@ window.I18N = {
     "obra.comprar": "More information",
     "obra.fragmento": "Excerpt",
     "obra.descargar": "Download",
-    "obra.antologias.titulo": "Also in anthologies",
+    "obra.antologias.titulo": "In anthologies",
     "obra.antologias.texto": "En obra. Poesía venezolana 1983-2008 (Equinoccio, Universidad Simón Bolívar) · El corazón de Venezuela. Patria y poesía (Red Nacional de Escritores de Venezuela) · La altura del vuelo, Ibero-American poets (Salamanca, 2011) · Ellas, an anthology of Venezuelan women poets (Valencia, Venezuela, 2013) · El puente es la palabra. Venezuelan poets in the diaspora (2019) · ¡Aquí la Tierra! Poemas para un mundo en apuros (Valparaíso Ediciones, 2020).",
 
     "resenas.kicker": "Reviews",
@@ -464,6 +463,7 @@ window.I18N = {
     "libro.i5.titulo": "Letras en los cordones",
     "libro.i5.meta": "Children's · Kalandraka · 2012",
     "libro.i5.texto": "Published by Kalandraka Editora (Pontevedra).",
+    "libro.i5.premios": "<strong>Awards</strong>Bratislava Biennial, 2013<br>Second Prize for Picture Book, Fundación Caja de Ahorros de Centro (Italy), 2013",
     "libro.i6.titulo": "1, 2, 3, de repente en…",
     "libro.i6.meta": "Series · Edebé · 2011-2012",
     "libro.i6.texto": "A series published by Edebé and also issued in the United States (Barron's), Canada (Heritage), Brazil (Miranda Cultural) and Turkey (Tubitak).",
