@@ -245,7 +245,10 @@
    SOBRE MÍ
    ========================================================= */
 .cj .about{ display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(36px,5vw,80px); align-items:start; }
-.cj .about__media{ position:sticky; top:120px; }
+/* El retrato se limita a 420 px porque el original mide 428: mostrarlo más
+   grande solo consigue que se vea blando. Cuando llegue en alta se puede
+   subir este tope. */
+.cj .about__media{ position:sticky; top:120px; max-width:420px; }
 .cj .ph--portrait{ aspect-ratio:3/4; }
 .cj .facts{ list-style:none; margin:24px 0 0; padding:0; display:grid; gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); }
 .cj .facts li{ background:var(--bg); padding:16px 18px; display:flex; align-items:baseline; gap:16px; }
