@@ -1222,6 +1222,36 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
 /* --------------------------------------------------------------------------
    15. Pie
    -------------------------------------------------------------------------- */
+/* El aviso legal, dentro de la propia web.
+   Oculto hasta que alguien pincha el enlace del pie: :target lo enseña sin
+   necesidad de JavaScript ni de una segunda página, que dentro de un bloque
+   de WordPress no existiría. */
+.legal-panel { display: none; }
+.legal-panel:target {
+  display: block;
+  padding-block: var(--section);
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+}
+.legal-panel__titulo { font-size: var(--step-3); color: var(--verde-hondo); margin-bottom: 2rem; }
+.legal-panel h2 {
+  font-size: var(--step-0);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin-top: 2.25rem;
+  margin-bottom: 0.6rem;
+}
+.legal-panel p, .legal-panel li {
+  font-size: var(--step--1);
+  line-height: 1.8;
+  color: var(--fg-muted);
+  max-width: 68ch;
+}
+.legal-panel p + p { margin-top: 0.8rem; }
+.legal-panel ul { list-style: none; display: grid; gap: 0.35rem; }
+.legal-panel__cerrar { margin-top: 2.5rem; }
+
 .footer {
   background: var(--verde-hondo);
   color: color-mix(in srgb, var(--crema) 72%, transparent);

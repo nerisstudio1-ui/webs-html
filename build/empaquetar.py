@@ -161,8 +161,6 @@ def construir(widget, destino):
     cuerpo = re.search(r"<body>(.*)</body>", html, re.S).group(1)
     comprobar_etiquetas(cuerpo)
     cuerpo = re.sub(r'\s*<script src="[^"]+"></script>', "", cuerpo)
-    # el aviso legal es otra página: en un solo archivo no existe
-    cuerpo = cuerpo.replace('href="aviso-legal.html"', 'href="#" data-aviso-legal')
 
     css = (fuentes_en_linea(sin_comentarios(leer("assets/css/fonts.css")))
            + "\n" + leer("assets/css/styles.css"))
