@@ -745,7 +745,7 @@ def pagina_landing():
 
     return (head(f"{MARCA} · Yoga, Pilates y Meditación en {CIUDAD} | {TITULAR}",
                  f"Clases de yoga, pilates y meditación en {CIUDAD}, a domicilio, al aire libre y online. Retiros, talleres y programas para tu bienestar integral con {TITULAR}.",
-                 "landing.html")
+                 "")
     + aviso() + cabecera_landing() + f'''
 <main id="contenido">
 
