@@ -11,8 +11,37 @@
    Uso: python3 _wordpress.py
 """
 import base64, re, os
+from _css_ambito import encapsular
 
 MARCADOR = "URL_DE_TUS_IMAGENES"
+AMBITO = "anahata-landing"   # clase que envuelve todo, para no chocar con el tema
+
+# Rompe el contenedor del tema y ocupa el ancho de la ventana.
+ANCHO_COMPLETO = """
+/* --- Ancho completo dentro de WordPress ---------------------------------
+   El tema mete el contenido en una columna estrecha. Estas reglas sacan la
+   landing de esa columna y la llevan de lado a lado de la ventana.
+   Si tu tema ya da ancho completo, puedes borrar este bloque.            */
+.%(a)s{
+  width:100vw; max-width:100vw;
+  margin-left:calc(50%% - 50vw); margin-right:calc(50%% - 50vw);
+  overflow-x:hidden;
+}
+/* El tema suele poner bordes a las imágenes, subrayar los enlaces o dar
+   estilo a los botones. Aquí lo neutralizamos dentro de la landing.      */
+.%(a)s img, .%(a)s svg{ border:0 !important; box-shadow:none !important; border-radius:inherit; }
+.%(a)s a{ text-decoration:none; box-shadow:none; }
+.%(a)s a:hover{ text-decoration:none; }
+.%(a)s button, .%(a)s input, .%(a)s select, .%(a)s textarea{ -webkit-appearance:none; appearance:none; }
+.%(a)s ul, .%(a)s li{ list-style:none; margin:0; padding:0; }
+.%(a)s figure{ margin:0; }
+.%(a)s *{ box-sizing:border-box; }
+.%(a)s .tarjeta__media img, .%(a)s .galeria__item img, .%(a)s .duo__media img,
+.%(a)s .hero__media img, .%(a)s .franja__media img{ border-radius:0; }
+
+/* El tema no debe recortar lo que sobresale */
+.%(a)s-envoltorio{ max-width:none !important; padding-left:0 !important; padding-right:0 !important; }
+""" 
 LOGOS = ("logo-anahata-crema", "logo-anahata", "logo-marca-crema", "logo-marca", "favicon")
 
 def construir():
@@ -25,7 +54,9 @@ def construir():
         with open("assets/fonts/" + m.group(1), "rb") as f:
             return "url(data:font/woff2;base64," + base64.b64encode(f.read()).decode("ascii") + ")"
     fcss = re.sub(r"url\(\.\./fonts/([\w.-]+)\)", incrustar, fcss)
-    css = css.replace('@import url("../fonts/fuentes.css");', fcss)
+    css = css.replace('@import url("../fonts/fuentes.css");', "")
+    # Las tipografías van fuera del ámbito: @font-face es global
+    css = fcss + "\n" + encapsular(css, "." + AMBITO) + (ANCHO_COMPLETO % {"a": AMBITO})
 
     cuerpo = html[html.index("<body>") + 6 : html.rindex("</body>")]
     cuerpo = cuerpo.replace('<a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>', "")
@@ -46,13 +77,17 @@ def construir():
      imágenes, sin barra final. Ejemplo:
      https://tudominio.com/wp-content/uploads/2026/09
   3. Pega todo el contenido en un bloque «HTML personalizado».
+     Va a ancho completo por sí solo: rompe la columna del tema.
+     Los estilos están encapsulados, así que no tocan al resto de la web.
   4. Crea dos páginas de WordPress con los slugs aviso-legal y privacidad.
      Sus textos están en aviso-legal.html y privacidad.html.
 
   Las tipografías van incrustadas: no hay que subir nada más.
 -->
 """
-    salida = cabecera + "<style>\n" + css + "\n</style>\n" + cuerpo.strip() + "\n\n<script>\n" + js + "\n</script>\n"
+    salida = (cabecera + "<style>\n" + css + "\n</style>\n"
+              + f'<div class="{AMBITO}">\n' + cuerpo.strip() + "\n</div>\n"
+              + "\n<script>\n" + js + "\n</script>\n")
     open("anahata-wordpress.html", "w", encoding="utf-8").write(salida)
     n = len(set(re.findall(MARCADOR + r"/([\w.-]+)", salida)))
     print(f"anahata-wordpress.html: {os.path.getsize('anahata-wordpress.html')//1024} KB · {n} imágenes a sustituir")
