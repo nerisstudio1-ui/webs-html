@@ -151,7 +151,7 @@ def pie(landing=False):
 def orn():
     return f'<div class="ornamento">{I["corazon"]}</div>'
 
-def franja_cta(titulo, texto, imagen="retiro-paisaje.jpg"):
+def franja_cta(titulo, texto, imagen="retiro.jpg"):
     return f'''
 <section class="franja">
   <div class="franja__media"><img src="assets/img/{imagen}" alt="" loading="lazy" width="1920" height="900"></div>
@@ -385,7 +385,7 @@ FAQ = [
 
 # ==================== RETIROS, EVENTOS Y TALLERES ==========================
 EVENTOS = [
-    ("retiro-finde.jpg", "Retiros de fin de semana", "Retiro",
+    ("tribu.jpg", "Retiros de fin de semana", "Retiro",
      "Encuentros presenciales donde hacer tribu, para desconectar del ritmo diario y reconectar contigo. Movimiento, descanso, naturaleza y autocuidado profundo, siempre en entornos de naturaleza y silencio."),
     ("evento-brunch.jpg", "Yoga & brunch", "Evento",
      "Una mañana para moverte con calma y compartir mesa después. Práctica suave, respiración y un desayuno saludable en buena compañía."),
@@ -573,7 +573,7 @@ def bloque_implementos():
 <section class="seccion seccion--compacta">
   <div class="contenedor duo">
     <div class="duo__media revelar">
-      <img src="assets/img/detalle-esterillas.jpg" alt="Esterillas y material en una clase de Pilates Mat" loading="lazy" width="1200" height="900">
+      <img src="assets/img/pilates.jpg" alt="Clase de Pilates Mat en el suelo" loading="lazy" width="1200" height="900">
     </div>
     <div class="revelar" data-retardo="100">
       <span class="eyebrow">Pilates Mat</span>
@@ -605,29 +605,6 @@ def bloque_pasos(fondo="seccion--verde"):
   </div>
 </section>'''
 
-GALERIA = [
-    ("programa-sueltas.jpg", "Clase de suelo en ANAHATA"),
-    ("sesion-privada.jpg", "Trabajo sobre fitball en clase"),
-    ("comunidad.jpg", "Alumnas de ANAHATA tras una clase"),
-    ("evento-brunch.jpg", "Mesa compartida en uno de los retiros"),
-]
-
-def bloque_galeria(fondo="seccion--crema"):
-    fotos = "".join(f'''
-      <figure class="galeria__item revelar" data-retardo="{i*70}">
-        <img src="assets/img/{img}" alt="{alt}" loading="lazy" width="1200" height="900">
-      </figure>''' for i, (img, alt) in enumerate(GALERIA))
-    return f'''
-<section class="seccion {fondo}" id="galeria">
-  <div class="contenedor">
-    <div class="medida texto-centrado" style="margin-bottom:clamp(28px,3.5vw,48px)">
-      {orn()}
-      <span class="eyebrow">El espacio y la tribu</span>
-      <h2>Así se vive ANAHATA</h2>
-    </div>
-    <div class="galeria">{fotos}</div>
-  </div>
-</section>'''
 
 def bloque_faq():
     faq = "".join(f'''
@@ -753,7 +730,7 @@ def pagina_landing():
 
 <section class="hero hero--landing" id="inicio">
   <div class="hero__media">
-    <img src="assets/img/hero-inicio.jpg" alt="Clase de Pilates Mat con fitball en ANAHATA" width="1920" height="1280" fetchpriority="high">
+    <img src="assets/img/portada.jpg" alt="Clase de Pilates Mat en el estudio de ANAHATA" width="1920" height="1280" fetchpriority="high">
   </div>
   <div class="contenedor hero__contenido hero__contenido--centrado">
     <img class="hero__logo" src="assets/img/logo-anahata-crema.svg"
@@ -777,9 +754,9 @@ def pagina_landing():
 
 <section class="seccion seccion--crema" id="sobre-mi">
   <div class="contenedor duo">
-    <div class="duo__media revelar">
-      <img src="assets/img/espacio-estudio.jpg" alt="El espacio de ANAHATA, con el rótulo en la cristalera"
-           loading="lazy" width="1200" height="900">
+    <div class="duo__media duo__media--alta revelar">
+      <img src="assets/img/sara.jpg" alt="Sara Viñas con sus alumnas en el estudio"
+           loading="lazy" width="900" height="1200">
     </div>
     <div class="revelar" data-retardo="120">
       <span class="eyebrow">Sobre mí</span>
@@ -830,8 +807,6 @@ def pagina_landing():
   </div>
 </section>
 
-{bloque_galeria("")}
-
 {franja_cta("Tu práctica empieza con una respiración",
             "Cuéntame qué necesitas y encontramos juntas el formato, el estilo y el ritmo que mejor te acompañan.")}
 
@@ -840,7 +815,7 @@ def pagina_landing():
 <section class="seccion" id="retiros">
   <div class="contenedor">
     <figure class="banda-foto revelar">
-      <img src="assets/img/retiro-finde.jpg" alt="Grupo de uno de los retiros de ANAHATA" loading="lazy" width="1400" height="1050">
+      <img src="assets/img/tribu.jpg" alt="Grupo de alumnas y alumnos de ANAHATA" loading="lazy" width="1400" height="1050">
     </figure>
     <div class="medida texto-centrado" style="margin:clamp(40px,5vw,64px) auto clamp(32px,4vw,52px)">
       <span class="eyebrow">Retiros, eventos y talleres</span>
