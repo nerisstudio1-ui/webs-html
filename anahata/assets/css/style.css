@@ -522,12 +522,12 @@ section[id]{ scroll-margin-top:calc(var(--header-h) + 8px); }
 .seccion--verde .paso p{ color:#CFC8BB; }
 
 /* ---------- Galería ---------- */
-.galeria{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(10px,1.4vw,18px); }
-.galeria__item{ margin:0; overflow:hidden; border-radius:var(--radio-img); aspect-ratio:3/4; background:var(--marfil-2); }
+.galeria{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(12px,1.6vw,22px); }
+.galeria__item{ margin:0; overflow:hidden; border-radius:var(--radio-img); aspect-ratio:4/3; background:var(--marfil-2); }
 .galeria__item img{ width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
 .galeria__item:hover img{ transform:scale(1.05); }
-.galeria__item:nth-child(even){ margin-top:clamp(14px,2.4vw,34px); }
-@media (max-width:860px){ .galeria{ grid-template-columns:repeat(2,1fr); } }
+.galeria__item:nth-child(even){ margin-top:clamp(18px,3vw,44px); }
+@media (max-width:640px){ .galeria{ grid-template-columns:1fr; } }
 @media (max-width:460px){ .galeria{ grid-template-columns:1fr; } .galeria__item:nth-child(even){ margin-top:0; } }
 
 /* Banda de foto a lo ancho, para encabezar una sección */

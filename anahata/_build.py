@@ -266,10 +266,7 @@ def bloque_testimonios():
     return f'''
 <section class="seccion seccion--crema" id="opiniones">
   <div class="contenedor">
-    <figure class="banda-foto revelar">
-      <img src="assets/img/comunidad.jpg" alt="Alumnas de ANAHATA tras una clase" loading="lazy" width="1400" height="800">
-    </figure>
-    <div class="texto-centrado medida" style="margin:clamp(40px,5vw,64px) auto clamp(30px,4vw,52px)">
+    <div class="texto-centrado medida" style="margin:0 auto clamp(30px,4vw,52px)">
       {orn()}
       <span class="eyebrow">Opiniones</span>
       <h2>Lo que cuentan quienes practican conmigo</h2>
@@ -574,16 +571,11 @@ def bloque_implementos():
     chips = "".join(f'<span class="zona">{i}</span>' for i in IMPLEMENTOS)
     return f'''
 <section class="seccion seccion--compacta">
-  <div class="contenedor duo">
-    <div class="duo__media revelar">
-      <img src="assets/img/pilates.jpg" alt="Clase de Pilates Mat en el suelo" loading="lazy" width="1200" height="900">
-    </div>
-    <div class="revelar" data-retardo="100">
-      <span class="eyebrow">Pilates Mat</span>
-      <h2>Con implementos, para llegar más lejos</h2>
-      <p style="margin-top:1.1rem">En mis clases incorporo distintos implementos que permiten adaptar la intensidad, profundizar en la técnica y hacer la práctica más dinámica y completa. Ayudan a activar zonas concretas, mejorar la movilidad y acompañar el movimiento de forma segura.</p>
-      <div class="zonas" style="margin-top:1.4rem">{chips}</div>
-    </div>
+  <div class="contenedor medida texto-centrado revelar">
+    <span class="eyebrow">Pilates Mat</span>
+    <h2>Con implementos, para llegar más lejos</h2>
+    <p style="margin-top:1.1rem">En mis clases incorporo distintos implementos que permiten adaptar la intensidad, profundizar en la técnica y hacer la práctica más dinámica y completa. Ayudan a activar zonas concretas, mejorar la movilidad y acompañar el movimiento de forma segura.</p>
+    <div class="zonas" style="justify-content:center;margin-top:1.5rem">{chips}</div>
   </div>
 </section>'''
 
@@ -608,6 +600,32 @@ def bloque_pasos(fondo="seccion--verde"):
   </div>
 </section>'''
 
+
+
+COMUNIDAD = [
+    ("tribu.jpg",     "Grupo de alumnas y alumnos de ANAHATA"),
+    ("comunidad.jpg", "Alumnas de ANAHATA tras una clase"),
+    ("practica.jpg",  "Clase de Pilates Mat en el estudio"),
+    ("circulo.jpg",   "Trabajo de suelo con fitball en grupo"),
+]
+
+def bloque_comunidad():
+    fotos = "".join(f'''
+      <figure class="galeria__item revelar" data-retardo="{i*70}">
+        <img src="assets/img/{img}" alt="{alt}" loading="lazy" width="1200" height="900">
+      </figure>''' for i, (img, alt) in enumerate(COMUNIDAD))
+    return f'''
+<section class="seccion seccion--crema" id="tribu">
+  <div class="contenedor">
+    <div class="medida texto-centrado" style="margin-bottom:clamp(28px,3.5vw,48px)">
+      {orn()}
+      <span class="eyebrow">La tribu</span>
+      <h2>Aquí se hace comunidad</h2>
+      <p class="lead" style="margin-top:1.1rem">Lo que más se repite cuando alguien vuelve no es la postura: es la gente. Estas son las personas que practican en ANAHATA.</p>
+    </div>
+    <div class="galeria">{fotos}</div>
+  </div>
+</section>'''
 
 def bloque_faq():
     faq = "".join(f'''
@@ -814,15 +832,13 @@ def pagina_landing():
             "Cuéntame qué necesitas y encontramos juntas el formato, el estilo y el ritmo que mejor te acompañan.")}
 
 {bloque_pasos()}
+{bloque_comunidad()}
 
 <section class="seccion" id="retiros">
   <div class="contenedor">
-    <figure class="banda-foto revelar">
-      <img src="assets/img/tribu.jpg" alt="Grupo de alumnas y alumnos de ANAHATA" loading="lazy" width="1400" height="1050">
-    </figure>
-    <div class="medida texto-centrado" style="margin:clamp(40px,5vw,64px) auto clamp(32px,4vw,52px)">
+    <div class="medida texto-centrado" style="margin:0 auto clamp(32px,4vw,52px)">
       <span class="eyebrow">Retiros, eventos y talleres</span>
-      <h2>Experiencias para hacer tribu</h2>
+      <h2>Desconecta del ritmo y vuelve a ti</h2>
       <p class="lead" style="margin-top:1.2rem">Encuentros presenciales para desconectar del ritmo diario y reconectar contigo, siempre en entornos de naturaleza y silencio.</p>
     </div>
     <div class="grid grid-3">{eventos}</div>
@@ -846,10 +862,7 @@ def pagina_landing():
 
 <section class="seccion seccion--crema" id="opiniones">
   <div class="contenedor">
-    <figure class="banda-foto revelar">
-      <img src="assets/img/comunidad.jpg" alt="Alumnas de ANAHATA tras una clase" loading="lazy" width="1400" height="800">
-    </figure>
-    <div class="texto-centrado medida" style="margin:clamp(40px,5vw,64px) auto clamp(30px,4vw,52px)">
+    <div class="texto-centrado medida" style="margin:0 auto clamp(30px,4vw,52px)">
       {orn()}
       <span class="eyebrow">Opiniones</span>
       <h2>Lo que cuentan quienes practican conmigo</h2>

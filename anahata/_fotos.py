@@ -13,9 +13,11 @@ TRABAJOS = [
     # Cinco fotos originales → cinco imágenes. Ni una escena repetida.
     ("pilates-fitball.jpg", "portada.jpg",   1920, 1280, 0.46, 0.50, 1.00),  # portada
     ("sara-desierto.jpg",   "sara.jpg",       900, 1200, 0.42, 0.50, 1.00),  # Sara, en «Sobre mí»
-    ("grupo-pequeno.jpg",   "comunidad.jpg", 1400,  800, 0.42, 0.50, 1.00),  # banda de opiniones
-    ("pilates-suelo.jpg",   "pilates.jpg",   1200,  900, 0.45, 0.50, 1.00),  # Pilates con implementos
-    ("grupo-grande.jpg",    "tribu.jpg",     1400,  800, 0.40, 0.50, 1.00),  # banda de retiros
+    ("grupo-pequeno.jpg",   "comunidad.jpg", 1200,  900, 0.46, 0.50, 1.00),
+    # --- comunidad: cuatro miradas al grupo, en 4:3 para que no se corten las caras ---
+    ("grupo-grande.jpg",    "tribu.jpg",     1200,  900, 0.78, 0.50, 1.00),
+    ("pilates-fitball.jpg", "practica.jpg",  1200,  900, 0.46, 0.66, 1.75),
+    ("pilates-suelo.jpg",   "circulo.jpg",   1200,  900, 0.52, 0.30, 1.55),
     ("retiro-mesa.jpg",     "retiro.jpg",    1920,  900, 0.18, 0.50, 1.00),  # banda de llamada a la acción
 ]
 
