@@ -13,9 +13,9 @@
   /* Verdes subidos de saturación y de luz respecto a la primera versión:
      en pantalla los anteriores se leían casi como negro y no se percibía
      que fueran verdes. Mismo tono, más cuerpo. */
-  --verde-hondo:   #0E6B4F;
-  --verde:         #108864;
-  --verde-claro:   #5FBFA0;
+  --verde-hondo:   #006E45;
+  --verde:         #00995C;
+  --verde-claro:   #55C099;
   --azul-hondo:    #1B3448;
   --azul:          #2F5975;
   --azul-claro:    #7FA0B7;
@@ -265,28 +265,24 @@ p { text-wrap: pretty; }
 }
 .brand:hover .brand__marca { rotate: -4deg; }
 .brand__texto {
+  /* Mismo cuerpo, tipografía y color que los enlaces del menú: ella
+     quería que el nombre no pesara más que los apartados. */
   font-family: var(--font-body);
   font-size: var(--step--1);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.2em;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--fg);
+  color: var(--fg-muted);
   white-space: nowrap;
 }
-.brand__texto em {
-  /* El apellido, en el gris del menú: cabe en la misma línea sin pesar
-     tanto como el resto del nombre. */
-  font-style: normal;
-  font-weight: 400;
-  color: var(--fg-muted);
-}
+.brand__texto em { font-style: normal; }
 .brand__texto span {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.6em;
-  letter-spacing: 0.22em;
-  color: var(--fg-muted);
+  font-size: 0.62em;
+  letter-spacing: 0.18em;
+  color: color-mix(in srgb, var(--fg-muted) 70%, transparent);
 }
 
 @media (max-width: 26rem) {
@@ -548,49 +544,41 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
   max-width: 34ch;
 }
 
-/* Dos versos suyos con la foto de las manos en medio.
-   Aquí había cuatro cajas de datos de su trayectoria. */
+/* Dos versos suyos con la foto de las manos entre ellos.
+   En tres columnas no salía: la foto es una franja muy apaisada, y al
+   estrecharla para dejar sitio a los versos quedaba un sello diminuto;
+   al revés, el primer verso —que va en una sola línea— se partía en dos
+   en cualquier pantalla por debajo de 1230 px. Apilado funcionan los
+   dos: la franja se ve como franja y el verso no se rompe nunca. */
 .versos { background: var(--bg-alt); }
 
 .versos__grid {
   display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 52rem) {
-  /* Tres columnas iguales: con «auto» en el centro la foto se iba a la
-     izquierda y el verso de la derecha se quedaba descolgado. */
-  .versos__grid { grid-template-columns: repeat(3, 1fr); }
+  gap: clamp(2rem, 5vw, 3.5rem);
+  justify-items: center;
+  max-width: 54rem;
+  margin-inline: auto;
 }
 
 .verso { margin: 0; text-align: center; }
 .verso blockquote {
-  font-family: var(--font-script);
+  font-family: var(--font-display);
   font-size: var(--step-1);
-  line-height: 1.7;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
   color: var(--accent-deep);
-  /* La manuscrita necesita renglón largo: si se parte cada dos palabras
-     deja de leerse como un verso. */
-  max-width: 24ch;
-  margin: 0 auto;
-}
-.verso figcaption {
-  margin-top: 1rem;
-  font-size: var(--step--1);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
+  margin: 0;
 }
 
-.verso__foto { justify-self: center; }
+.verso__foto { width: 100%; }
 .verso__foto img {
   display: block;
-  width: min(100%, 19rem);
+  width: 100%;
   height: auto;
   border-radius: var(--radius);
-  box-shadow: 0 14px 34px rgb(25 26 23 / 0.16);
 }
+
 
 /* --------------------------------------------------------------------------
    9. Obra publicada
@@ -761,6 +749,92 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
   color: var(--fg-muted);
   font-size: 0.8em;
   letter-spacing: 0.06em;
+}
+
+/* Prólogo y poemas de cada poemario.
+   En <details>, que abre y cierra sin JavaScript: dentro de WordPress
+   cuanto menos dependa de un script, mejor. */
+.lecturas {
+  grid-column: 1 / -1;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  gap: 0.6rem;
+}
+
+.lectura {
+  border-top: 1px solid var(--line);
+}
+.lectura:last-child { border-bottom: 1px solid var(--line); }
+
+.lectura summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+.lectura summary::-webkit-details-marker { display: none; }
+
+.lectura__libro { font-size: var(--step-1); color: var(--verde-hondo); }
+.lectura__abrir {
+  flex: none;
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.lectura__abrir::after { content: " +"; }
+.lectura[open] .lectura__abrir::after { content: " −"; }
+
+.lectura__cuerpo {
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 62ch;
+}
+.lectura__cuerpo p { font-size: var(--step--1); line-height: 1.8; color: var(--fg-muted); }
+.lectura__cuerpo p + p { margin-top: 0.9rem; }
+
+.lectura__rotulo {
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin-bottom: 0.6rem;
+}
+.lectura__rotulo + .lectura__titulo { margin-bottom: 0.1rem; }
+.lectura__titulo {
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  color: var(--fg);
+}
+.lectura__autor {
+  font-style: normal;
+  margin-bottom: 1rem !important;
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+}
+.lectura__nota {
+  margin-top: 1.1rem;
+  font-size: 0.78rem !important;
+  color: color-mix(in srgb, var(--fg-muted) 75%, transparent);
+}
+.lectura__rotulo:not(:first-child) { margin-top: clamp(2rem, 4vw, 2.75rem); }
+
+.poema { margin: 0 0 1.75rem; }
+.poema figcaption {
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  color: var(--verde);
+  margin-bottom: 0.5rem;
+}
+.poema blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--fg);
 }
 
 /* Libro destacado / novedad */

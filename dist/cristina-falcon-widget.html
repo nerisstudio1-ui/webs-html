@@ -135,9 +135,9 @@
   /* Verdes subidos de saturación y de luz respecto a la primera versión:
      en pantalla los anteriores se leían casi como negro y no se percibía
      que fueran verdes. Mismo tono, más cuerpo. */
-  --verde-hondo:   #0E6B4F;
-  --verde:         #108864;
-  --verde-claro:   #5FBFA0;
+  --verde-hondo:   #006E45;
+  --verde:         #00995C;
+  --verde-claro:   #55C099;
   --azul-hondo:    #1B3448;
   --azul:          #2F5975;
   --azul-claro:    #7FA0B7;
@@ -366,28 +366,24 @@
 }
 #cfm-web .brand:hover .brand__marca { rotate: -4deg; }
 #cfm-web .brand__texto {
+  /* Mismo cuerpo, tipografía y color que los enlaces del menú: ella
+     quería que el nombre no pesara más que los apartados. */
   font-family: var(--font-body);
   font-size: var(--step--1);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.2em;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--fg);
+  color: var(--fg-muted);
   white-space: nowrap;
 }
-#cfm-web .brand__texto em {
-  /* El apellido, en el gris del menú: cabe en la misma línea sin pesar
-     tanto como el resto del nombre. */
-  font-style: normal;
-  font-weight: 400;
-  color: var(--fg-muted);
-}
+#cfm-web .brand__texto em { font-style: normal; }
 #cfm-web .brand__texto span {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.6em;
-  letter-spacing: 0.22em;
-  color: var(--fg-muted);
+  font-size: 0.62em;
+  letter-spacing: 0.18em;
+  color: color-mix(in srgb, var(--fg-muted) 70%, transparent);
 }
 
 @media (max-width: 26rem) {
@@ -633,46 +629,38 @@
   max-width: 34ch;
 }
 
-/* Dos versos suyos con la foto de las manos en medio.
-   Aquí había cuatro cajas de datos de su trayectoria. */
+/* Dos versos suyos con la foto de las manos entre ellos.
+   En tres columnas no salía: la foto es una franja muy apaisada, y al
+   estrecharla para dejar sitio a los versos quedaba un sello diminuto;
+   al revés, el primer verso —que va en una sola línea— se partía en dos
+   en cualquier pantalla por debajo de 1230 px. Apilado funcionan los
+   dos: la franja se ve como franja y el verso no se rompe nunca. */
 #cfm-web .versos { background: var(--bg-alt); }
 #cfm-web .versos__grid {
   display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 52rem) {
-  /* Tres columnas iguales: con «auto» en el centro la foto se iba a la
-     izquierda y el verso de la derecha se quedaba descolgado. */
-#cfm-web .versos__grid { grid-template-columns: repeat(3, 1fr); }
+  gap: clamp(2rem, 5vw, 3.5rem);
+  justify-items: center;
+  max-width: 54rem;
+  margin-inline: auto;
 }
 #cfm-web .verso { margin: 0; text-align: center; }
 #cfm-web .verso blockquote {
-  font-family: var(--font-script);
+  font-family: var(--font-display);
   font-size: var(--step-1);
-  line-height: 1.7;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
   color: var(--accent-deep);
-  /* La manuscrita necesita renglón largo: si se parte cada dos palabras
-     deja de leerse como un verso. */
-  max-width: 24ch;
-  margin: 0 auto;
+  margin: 0;
 }
-#cfm-web .verso figcaption {
-  margin-top: 1rem;
-  font-size: var(--step--1);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-}
-#cfm-web .verso__foto { justify-self: center; }
+#cfm-web .verso__foto { width: 100%; }
 #cfm-web .verso__foto img {
   display: block;
-  width: min(100%, 19rem);
+  width: 100%;
   height: auto;
   border-radius: var(--radius);
-  box-shadow: 0 14px 34px rgb(25 26 23 / 0.16);
 }
+
 
 /* --------------------------------------------------------------------------
    9. Obra publicada
@@ -836,6 +824,86 @@
   color: var(--fg-muted);
   font-size: 0.8em;
   letter-spacing: 0.06em;
+}
+
+/* Prólogo y poemas de cada poemario.
+   En <details>, que abre y cierra sin JavaScript: dentro de WordPress
+   cuanto menos dependa de un script, mejor. */
+#cfm-web .lecturas {
+  grid-column: 1 / -1;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  gap: 0.6rem;
+}
+#cfm-web .lectura {
+  border-top: 1px solid var(--line);
+}
+#cfm-web .lectura:last-child { border-bottom: 1px solid var(--line); }
+#cfm-web .lectura summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+#cfm-web .lectura summary::-webkit-details-marker { display: none; }
+#cfm-web .lectura__libro { font-size: var(--step-1); color: var(--verde-hondo); }
+#cfm-web .lectura__abrir {
+  flex: none;
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+#cfm-web .lectura__abrir::after { content: " +"; }
+#cfm-web .lectura[open] .lectura__abrir::after { content: " −"; }
+#cfm-web .lectura__cuerpo {
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 62ch;
+}
+#cfm-web .lectura__cuerpo p { font-size: var(--step--1); line-height: 1.8; color: var(--fg-muted); }
+#cfm-web .lectura__cuerpo p + p { margin-top: 0.9rem; }
+#cfm-web .lectura__rotulo {
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin-bottom: 0.6rem;
+}
+#cfm-web .lectura__rotulo + .lectura__titulo { margin-bottom: 0.1rem; }
+#cfm-web .lectura__titulo {
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  color: var(--fg);
+}
+#cfm-web .lectura__autor {
+  font-style: normal;
+  margin-bottom: 1rem !important;
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+}
+#cfm-web .lectura__nota {
+  margin-top: 1.1rem;
+  font-size: 0.78rem !important;
+  color: color-mix(in srgb, var(--fg-muted) 75%, transparent);
+}
+#cfm-web .lectura__rotulo:not(:first-child) { margin-top: clamp(2rem, 4vw, 2.75rem); }
+#cfm-web .poema { margin: 0 0 1.75rem; }
+#cfm-web .poema figcaption {
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  color: var(--verde);
+  margin-bottom: 0.5rem;
+}
+#cfm-web .poema blockquote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--fg);
 }
 
 /* Libro destacado / novedad */
@@ -1473,11 +1541,10 @@
 
       <figure class="verso reveal">
         <blockquote data-i18n-html="verso.1.texto">—</blockquote>
-        <figcaption data-i18n="verso.1.fuente">—</figcaption>
       </figure>
 
       <div class="verso__foto reveal" style="--delay:90ms">
-        <img src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/13-manos.jpg" width="733" height="867" loading="lazy"
+        <img src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/manos-poema.jpg" width="1800" height="703" loading="lazy"
              alt="" data-i18n-attr="alt:verso.foto">
       </div>
 
@@ -1589,7 +1656,7 @@
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/memoria-sello.jpg" alt=""
                  data-i18n-attr="alt:obra.ilus.p3.alt">
             <figcaption>
-              <strong data-i18n="libro.p3.titulo">—</strong>
+              <strong><a href="#lectura-memoria-errante" data-i18n="libro.p3.titulo">—</a></strong>
               <span data-i18n="obra.ilus.p3.pie">—</span>
             </figcaption>
           </figure>
@@ -1598,7 +1665,7 @@
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/borrar-tinta.jpg" alt=""
                  data-i18n-attr="alt:obra.ilus.p2.alt">
             <figcaption>
-              <strong data-i18n="libro.p2.titulo">—</strong>
+              <strong><a href="#lectura-borrar-el-paisaje" data-i18n="libro.p2.titulo">—</a></strong>
               <span data-i18n="obra.ilus.p2.pie">—</span>
             </figcaption>
           </figure>
@@ -1607,11 +1674,86 @@
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/itaca-ballena.jpg" alt=""
                  data-i18n-attr="alt:obra.ilus.p1.alt">
             <figcaption>
-              <strong data-i18n="libro.p1.titulo">—</strong>
+              <strong><a href="#lectura-itaca-es-nunca" data-i18n="libro.p1.titulo">—</a></strong>
               <span data-i18n="obra.ilus.p1.pie">—</span>
             </figcaption>
           </figure>
         </div>
+
+<!-- lecturas:inicio -->
+        <div class="lecturas">
+        <details class="lectura" id="lectura-memoria-errante">
+          <summary>
+            <span class="lectura__libro" data-i18n="libro.p3.titulo">—</span>
+            <span class="lectura__abrir" data-i18n="lectura.abrir">—</span>
+          </summary>
+          <div class="lectura__cuerpo">
+            <h4 class="lectura__rotulo" data-i18n="lectura.prologo">—</h4>
+            <p class="lectura__titulo">Palabras iniciales</p>
+            <p class="lectura__autor">Ramón Palomares</p>
+            <p>La angustia, el dolor, la protesta dominan en estas páginas de <em>Memoria errante</em>. La poesía de Cristina Falcón Maldonado se debate en la confrontación de su mundo y su existencia —en difícil devenir—, con ese reino perdido que, cada vez más ajeno y distante, apenas alcanza a dejarle ya borrosas huellas.</p>
+            <p>La poeta descubre en su despertar que es una extraña, que su memoria no se reconoce en el entorno, y es entonces cuando, al intentar refundarse en el desconcierto de su nuevo acontecer, inicia la aventura de un rescate de sí misma: volverá a su ser interior, a la sensibilidad que conserva de la tierra donde naciera —un entorno virgen, exaltado en sonidos de modulación silvestre—, a los primeros hallazgos y sorpresas, a los seres dulces y afectuosos que, verdaderos guardianes de su interioridad, la han acompañado siempre.</p>
+            <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
+            <h4 class="lectura__rotulo" data-i18n="lectura.poemas">—</h4>
+            <figure class="poema">
+              <figcaption>VII</figcaption>
+              <blockquote>No menciones<br>la memoria<br>porque en ella pueden encontrar<br>ese reflejo<br>al que han decidido tirarle una piedra.</blockquote>
+            </figure>
+            <figure class="poema">
+              <figcaption>XVI</figcaption>
+              <blockquote>Uno aprende a estar solo<br>como el perro que aprende<br>a no pasar<br>a quedarse afuera.<br><br>Bueno, uno aprende<br>porque no le queda remedio.<br><br>Uno sin embargo<br>aprende a estar solo<br>como el perro que mira<br>desde la intemperie<br>y araña la puerta<br>y no le abre y no le oyen.<br><br>Uno aprende<br>a estar solo<br>o lo que es peor aún<br>a creer que ha aprendido.</blockquote>
+            </figure>
+          </div>
+        </details>
+        <details class="lectura" id="lectura-borrar-el-paisaje">
+          <summary>
+            <span class="lectura__libro" data-i18n="libro.p2.titulo">—</span>
+            <span class="lectura__abrir" data-i18n="lectura.abrir">—</span>
+          </summary>
+          <div class="lectura__cuerpo">
+            <h4 class="lectura__rotulo" data-i18n="lectura.prologo">—</h4>
+            <p class="lectura__titulo">Si después la vida</p>
+            <p class="lectura__autor">Margot Carrillo Pimentel</p>
+            <p>La experiencia del dolor, del desamparo, de lo inasible, se padece, se vive intensamente: palmo a palmo, verso a verso, en <em>Borrar el paisaje</em>. Los ochenta y cinco poemas —sobrios, breves, bien construidos— que componen el libro llevan al lector a exponer, él también, su piel, su equilibrio; a preguntarse si habrá mayor desdicha en el mundo que la de esa voz que padece, que ha perdido casa, memoria, afectos, la vida entera, pues como apunta uno de sus versos, un «callejón sin salida de horizonte» parece negar por completo otro destino que no sea el del vacío, la soledad o el estallido fatal de la memoria.</p>
+            <p>Recurre Cristina Falcón Maldonado a una de las tradiciones más caras a la poesía moderna, aquella en la que la voz se aventura a recorrer los espacios indescifrables de la muerte.</p>
+            <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
+            <h4 class="lectura__rotulo" data-i18n="lectura.poemas">—</h4>
+            <figure class="poema">
+              <figcaption>I</figcaption>
+              <blockquote>Echabas atrás la cabeza<br>cerrando los ojos<br><br>las manos recogían<br>como si fueran de agua<br>tus cabellos.<br><br>Ese gesto tuyo<br>de amarrar con una cinta<br>lo inasible.</blockquote>
+            </figure>
+            <figure class="poema">
+              <figcaption>LXX</figcaption>
+              <blockquote>Tengo que combatir<br>esta tristeza que<br>no ayuda a vivir que<br>no va a hacer que vuelvas.<br><br>Pero cómo decirle a la memoria<br>decirle a ese músculo que late<br>arrítmico<br>a destiempo.<br><br>Cómo silenciar la música<br>borrar el paisaje<br>desvestirse de abrazos.</blockquote>
+            </figure>
+          </div>
+        </details>
+        <details class="lectura" id="lectura-itaca-es-nunca">
+          <summary>
+            <span class="lectura__libro" data-i18n="libro.p1.titulo">—</span>
+            <span class="lectura__abrir" data-i18n="lectura.abrir">—</span>
+          </summary>
+          <div class="lectura__cuerpo">
+            <h4 class="lectura__rotulo" data-i18n="lectura.prologo">—</h4>
+            <p class="lectura__titulo">De lo que no se puede escribir ni callar</p>
+            <p class="lectura__autor">Miriam Reyes</p>
+            <p>Volver a un espacio físico no es volver al lugar del que partimos. Aunque sigan allí «la casa / el yagrumo / el apamate / la tierra roja // la quimera». Aunque sobreviva la madre en él. El lugar del que partimos nunca es un espacio físico. Le pasa como a la persona que fuimos: es otro llamándose igual. Solo existe como sustrato o recuerdo.</p>
+            <p>No vuelves, es otra cosa lo que te sucede cuando trasladas tu cuerpo al espacio que ocupaba el lugar del que partiste. No se conoce toda la profunda complejidad del desarraigo hasta que no se da esta traslación y se comprueba que aquella tierra también te hace extraña, te trata como las tierras extranjeras por las que deambulas, te desconoce, te expulsa.</p>
+            <p>El tema de las raíces es complejo. Parecen tan fuertes, rompiendo las aceras. Nos comparamos con árboles recios, cuando nos parecemos más a plantas domésticas que viven en macetas. Y como las suyas, nuestras raíces son delicadas: cortas un trocito con la uña y la planta agoniza lentamente.</p>
+            <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
+            <h4 class="lectura__rotulo" data-i18n="lectura.poemas">—</h4>
+            <figure class="poema">
+              <figcaption>III</figcaption>
+              <blockquote>País del revés<br>íngrima dignidad<br>resistiendo.<br><br>País a expensas<br><br>penúltimo aliento<br>que nadie cree<br>invisible<br>país<br>famélico<br>aguantas de pie<br>con huecos en la faltriquera.</blockquote>
+            </figure>
+            <figure class="poema">
+              <figcaption>LXIV</figcaption>
+              <blockquote>Ella emprende cada día<br>su viaje para siempre.<br><br>Abre los ojos<br>esboza una sonrisa en lo oscuro.<br><br>No conoce obediencia mayor<br>que su propia desobediencia.</blockquote>
+            </figure>
+          </div>
+        </details>
+        </div>
+        <!-- lecturas:fin -->
       </section>
 
     </div>
@@ -2239,7 +2381,7 @@ window.I18N = {
     /* Hero */
     "hero.titulo": "Cristina Falcón Maldonado",
     "hero.rol": "<strong>Poeta, narradora y traductora</strong>",
-    "hero.centro": "<strong>Venezuela · Italia · España</strong>",
+    "hero.centro": "<strong>Venezuela · España</strong>",
     "hero.libros": "<strong>Poemarios</strong> Libros para niños y jóvenes",
     "hero.sub": "Poeta, narradora y traductora",
     "hero.verso": "La vida era más que lo que nos dijeron",
@@ -2252,9 +2394,8 @@ window.I18N = {
     "sobre.p1": "A Cristina Falcón Maldonado le encantan los pájaros, los árboles, las flores silvestres, las orquídeas de su tierra, las cometas, los globos aerostáticos, las palabras, la poesía, los cuentos, la música, las bibliotecas, las librerías. También las casas en los árboles.",
     "sobre.p2": "Se las enseñó su abuela, quien sin saberlo le abrió el camino para vivir rodeada de palabras, jugando a jugar con ellas, escribiéndolas.",
     "sobre.p3": "Como esos pájaros a los que no se cansa de admirar y observar, hasta soñar con ser uno de ellos, ha emigrado y vivido en diferentes países y ciudades: desde Trujillo, en su Venezuela natal, hasta Bolonia, en Italia, y Motril, Calahonda, Ibiza y Cuenca, en España.",
-    "verso.foto": "Unas manos sosteniendo un poema escrito a mano",
+    "verso.foto": "Dos manos sosteniendo una hoja de papel",
     "verso.2.texto": "Escribo para salvarme<br>a sabiendas de lo inútil.<br><br>Ojalá me vuelva olvido.",
-    "verso.1.fuente": "Ítaca es nunca",
     "verso.1.texto": "La vida era más que lo que nos dijeron",
     "sobre.p4": "Ha realizado talleres de poesía creativa y creación literaria en bibliotecas, en ámbitos educativos y en universidades latinoamericanas y europeas.",
     "sobre.foto": "Cristina Falcón Maldonado",
@@ -2271,15 +2412,19 @@ window.I18N = {
     "obra.ilustraciones.intro": "Los tres poemarios de Candaya llevan en la cubierta una imagen distinta. Aquí están sueltas, fuera del libro.",
     "obra.ilus.p1.alt": "Ilustración de la portada de Ítaca es nunca: una ballena de acuarela con barcos y olas dibujados dentro",
     "obra.ilus.p1.pie": "Prólogo de Miriam Reyes",
+    "lectura.abrir": "Prólogo y poemas",
+    "lectura.prologo": "Prólogo",
+    "lectura.poemas": "Dos poemas",
+    "lectura.fragmento": "Fragmento del prólogo de la edición de Candaya.",
     "obra.ilus.p2.alt": "Ilustración de la portada de Borrar el paisaje: figura recostada dibujada a tinta, con salpicaduras",
     "obra.ilus.p2.pie": "Prólogo de Margot Carrillo Pimentel",
     "obra.ilus.p3.alt": "Ilustración de la portada de Memoria errante: un sello de migración de Venezuela sobre un texto manuscrito",
     "obra.ilus.p3.pie": "Prólogo de Ramón Palomares",
     "obra.tab.infantil": "Literatura infantil y juvenil",
 
-    "obra.novedad.kicker": "Novedad · Noviembre 2026",
-    "obra.novedad.titulo": "Título del nuevo libro",
-    "obra.novedad.texto": "[Pendiente: título, editorial y presentación del libro que se publica en noviembre.]",
+    "obra.novedad.kicker": "Novedad · A fin de cuentos · Noviembre 2026",
+    "obra.novedad.titulo": "Sultán Khan, el tigre blanco del ajedrez",
+    "obra.novedad.texto": "Su nuevo libro para la infancia, que publica A fin de cuentos.",
     "obra.novedad.cta": "Más información",
     "obra.novedad.cta2": "Leer un fragmento",
     "obra.novedad.cover": "Portada del nuevo libro",
@@ -2293,7 +2438,7 @@ window.I18N = {
 
     /* Reseñas */
     "resenas.kicker": "Reseñas",
-    "resenas.titulo": "Lo que se ha escrito sobre mi obra",
+    "resenas.titulo": "Lo que se ha escrito",
     "resenas.intro": "Críticas y reseñas publicadas sobre los libros.",
     /* --- Reseñas de prensa (dossier de Candaya y reseñas recibidas) --- */
     "resena.1.texto": "Acaso lo más meritorio de la obra es su ejemplar, deliberado incumplimiento de lo expuesto en el hermoso título: desde el primer verso la maravilla lírica no solo no borra el paisaje, sino que se dedica a reconstruirlo severamente, con un lenguaje luminoso y certero, y unas metáforas perdurables.",
@@ -2445,7 +2590,7 @@ window.I18N = {
     "libro.i5.titulo": "Letras en los cordones",
     "libro.i5.meta": "Infantil · Kalandraka · 2012",
     "libro.i5.texto": "Publicado por Kalandraka Editora (Pontevedra).",
-    "libro.i5.premios": "<strong>Premios</strong>Bienal de Bratislava, 2013<br>Segundo Premio de Álbum Ilustrado, Fundación Caja de Ahorros de Centro (Italia), 2013",
+    "libro.i5.premios": "<strong>Premios</strong>Bienal de Bratislava, 2013<br>Segundo Premio de Álbum Ilustrado, Fundación Caja de Ahorros de Cento (Italia), 2013",
     "libro.i6.titulo": "1, 2, 3, de repente en…",
     "libro.i6.meta": "Colección · Edebé · 2011-2012",
     "libro.i6.texto": "Colección publicada por Edebé y editada también en Estados Unidos (Barron's), Canadá (Heritage), Brasil (Miranda Cultural) y Turquía (Tubitak).",
@@ -2475,7 +2620,7 @@ window.I18N = {
 
     "hero.titulo": "Cristina Falcón Maldonado",
     "hero.rol": "<strong>Poet, storyteller and translator</strong>",
-    "hero.centro": "<strong>Venezuela · Italy · Spain</strong>",
+    "hero.centro": "<strong>Venezuela · Spain</strong>",
     "hero.libros": "<strong>Poetry collections</strong> Books for children and young readers",
     "hero.sub": "Poet, storyteller and translator",
     "hero.verso": "La vida era más que lo que nos dijeron",
@@ -2487,9 +2632,8 @@ window.I18N = {
     "sobre.p1": "Cristina Falcón Maldonado loves birds, trees, wild flowers, the orchids of her homeland, kites, hot-air balloons, words, poetry, stories, music, libraries, bookshops. Treehouses, too.",
     "sobre.p2": "Her grandmother taught her those poems and, without knowing it, opened the way to a life surrounded by words — playing at playing with them, writing them down.",
     "sobre.p3": "Like those birds she never tires of watching, to the point of dreaming she is one of them, she has emigrated and lived in different countries and cities: from Trujillo, in her native Venezuela, to Bologna, in Italy, and Motril, Calahonda, Ibiza and Cuenca, in Spain.",
-    "verso.foto": "Hands holding a handwritten poem",
+    "verso.foto": "Two hands holding a sheet of paper",
     "verso.2.texto": "I write to save myself<br>knowing full well it is useless.<br><br>May I turn into forgetting.",
-    "verso.1.fuente": "Ítaca es nunca",
     "verso.1.texto": "Life was more than what they told us",
     "sobre.p4": "She has run creative poetry and creative writing workshops in libraries, in schools and at universities across Latin America and Europe.",
     "sobre.foto": "Cristina Falcón Maldonado",
@@ -2504,15 +2648,19 @@ window.I18N = {
     "obra.ilustraciones.intro": "Each of the three Candaya collections carries a different image on its cover. Here they are on their own, away from the book.",
     "obra.ilus.p1.alt": "Cover artwork for Ítaca es nunca: a watercolour whale with boats and waves drawn inside it",
     "obra.ilus.p1.pie": "Preface by Miriam Reyes",
+    "lectura.abrir": "Preface and poems",
+    "lectura.prologo": "Preface",
+    "lectura.poemas": "Two poems",
+    "lectura.fragmento": "An extract from the preface to the Candaya edition. The preface and the poems are given in the original Spanish.",
     "obra.ilus.p2.alt": "Cover artwork for Borrar el paisaje: a reclining figure drawn in ink, with spattered marks",
     "obra.ilus.p2.pie": "Preface by Margot Carrillo Pimentel",
     "obra.ilus.p3.alt": "Cover artwork for Memoria errante: a Venezuelan migration stamp over handwritten text",
     "obra.ilus.p3.pie": "Preface by Ramón Palomares",
     "obra.tab.infantil": "Children's and young adult literature",
 
-    "obra.novedad.kicker": "New · November 2026",
-    "obra.novedad.titulo": "Title of the new book",
-    "obra.novedad.texto": "[Pending: title, publisher and introduction for the book coming out in November.]",
+    "obra.novedad.kicker": "New · A fin de cuentos · November 2026",
+    "obra.novedad.titulo": "Sultán Khan, el tigre blanco del ajedrez",
+    "obra.novedad.texto": "Her new book for children, published by A fin de cuentos.",
     "obra.novedad.cta": "More information",
     "obra.novedad.cta2": "Read an excerpt",
     "obra.novedad.cover": "Cover of the new book",
@@ -2525,7 +2673,7 @@ window.I18N = {
     "obra.antologias.texto": "En obra. Poesía venezolana 1983-2008 (Equinoccio, Universidad Simón Bolívar) · El corazón de Venezuela. Patria y poesía (Red Nacional de Escritores de Venezuela) · La altura del vuelo, Ibero-American poets (Salamanca, 2011) · Ellas, an anthology of Venezuelan women poets (Valencia, Venezuela, 2013) · El puente es la palabra. Venezuelan poets in the diaspora (2019) · ¡Aquí la Tierra! Poemas para un mundo en apuros (Valparaíso Ediciones, 2020).",
 
     "resenas.kicker": "Reviews",
-    "resenas.titulo": "What has been written about my work",
+    "resenas.titulo": "What has been written",
     "resenas.intro": "Published reviews and criticism of the books.",
     "resena.1.texto": "Perhaps the most admirable thing about this book is how exemplary and deliberate its failure to live up to its beautiful title is: from the very first line, the lyric marvel not only fails to erase the landscape — it sets about rebuilding it severely, with luminous, unerring language and metaphors that last.",
     "resena.1.autor": "Jordi Llavina",
@@ -2668,7 +2816,7 @@ window.I18N = {
     "libro.i5.titulo": "Letras en los cordones",
     "libro.i5.meta": "Children's · Kalandraka · 2012",
     "libro.i5.texto": "Published by Kalandraka Editora (Pontevedra).",
-    "libro.i5.premios": "<strong>Awards</strong>Bratislava Biennial, 2013<br>Second Prize for Picture Book, Fundación Caja de Ahorros de Centro (Italy), 2013",
+    "libro.i5.premios": "<strong>Awards</strong>Bratislava Biennial, 2013<br>Second Prize for Picture Book, Fundación Caja de Ahorros de Cento (Italy), 2013",
     "libro.i6.titulo": "1, 2, 3, de repente en…",
     "libro.i6.meta": "Series · Edebé · 2011-2012",
     "libro.i6.texto": "A series published by Edebé and also issued in the United States (Barron's), Canada (Heritage), Brazil (Miranda Cultural) and Turkey (Tubitak).",
