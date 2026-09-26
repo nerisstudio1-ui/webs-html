@@ -57,5 +57,35 @@ def construir():
     n = len(set(re.findall(MARCADOR + r"/([\w.-]+)", salida)))
     print(f"anahata-wordpress.html: {os.path.getsize('anahata-wordpress.html')//1024} KB · {n} imágenes a sustituir")
 
+def todo_incluido():
+    """Variante sin dependencias: también las imágenes van en base64."""
+    from PIL import Image
+    import io
+    LIMITES = {"portada.jpg": 1500, "sara.jpg": 800, "retiro.jpg": 1500}
+    html = open("anahata-wordpress.html", encoding="utf-8").read()
+
+    def incrustar_img(m):
+        nombre = m.group(1)
+        origen = f"assets/img/png/{nombre}" if nombre.endswith(".png") else f"assets/img/{nombre}"
+        if not os.path.exists(origen):
+            print("  falta", origen); return m.group(0)
+        if nombre.endswith(".png"):
+            datos, tipo = open(origen, "rb").read(), "image/png"
+        else:
+            im = Image.open(origen)
+            ancho = LIMITES.get(nombre, 1100)
+            if im.width > ancho:
+                im = im.resize((ancho, round(im.height * ancho / im.width)), Image.LANCZOS)
+            buf = io.BytesIO()
+            im.save(buf, "JPEG", quality=74, optimize=True, progressive=True)
+            datos, tipo = buf.getvalue(), "image/jpeg"
+        return f"data:{tipo};base64," + base64.b64encode(datos).decode("ascii")
+
+    html = re.sub(MARCADOR + r"/([\w.-]+)", incrustar_img, html)
+    open("anahata-wordpress-todo-incluido.html", "w", encoding="utf-8").write(html)
+    print(f"anahata-wordpress-todo-incluido.html: "
+          f"{os.path.getsize('anahata-wordpress-todo-incluido.html')//1024} KB")
+
 if __name__ == "__main__":
     construir()
+    todo_incluido()
