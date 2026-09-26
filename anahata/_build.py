@@ -266,7 +266,10 @@ def bloque_testimonios():
     return f'''
 <section class="seccion seccion--crema" id="opiniones">
   <div class="contenedor">
-    <div class="texto-centrado medida" style="margin-bottom:clamp(30px,4vw,56px)">
+    <figure class="banda-foto revelar">
+      <img src="assets/img/comunidad.jpg" alt="Alumnas de ANAHATA tras una clase" loading="lazy" width="1400" height="800">
+    </figure>
+    <div class="texto-centrado medida" style="margin:clamp(40px,5vw,64px) auto clamp(30px,4vw,52px)">
       {orn()}
       <span class="eyebrow">Opiniones</span>
       <h2>Lo que cuentan quienes practican conmigo</h2>
@@ -755,7 +758,7 @@ def pagina_landing():
 <section class="seccion seccion--crema" id="sobre-mi">
   <div class="contenedor duo">
     <div class="duo__media duo__media--alta revelar">
-      <img src="assets/img/sara.jpg" alt="Sara Viñas con sus alumnas en el estudio"
+      <img src="assets/img/sara.jpg" alt="Sara Viñas practicando yoga al atardecer en el desierto"
            loading="lazy" width="900" height="1200">
     </div>
     <div class="revelar" data-retardo="120">
@@ -843,7 +846,10 @@ def pagina_landing():
 
 <section class="seccion seccion--crema" id="opiniones">
   <div class="contenedor">
-    <div class="texto-centrado medida" style="margin-bottom:clamp(30px,4vw,56px)">
+    <figure class="banda-foto revelar">
+      <img src="assets/img/comunidad.jpg" alt="Alumnas de ANAHATA tras una clase" loading="lazy" width="1400" height="800">
+    </figure>
+    <div class="texto-centrado medida" style="margin:clamp(40px,5vw,64px) auto clamp(30px,4vw,52px)">
       {orn()}
       <span class="eyebrow">Opiniones</span>
       <h2>Lo que cuentan quienes practican conmigo</h2>
