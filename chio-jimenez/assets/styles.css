@@ -146,8 +146,8 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
 
 /* Por encima del desplegable de móvil, que si no los tapa al abrirse. */
 .nav__brand{ position:relative; z-index:2; display:flex; align-items:center; text-decoration:none; flex-shrink:0; }
-.nav__logo{ height:52px; width:auto; transition:height .35s var(--ease); }
-.nav.is-stuck .nav__logo{ height:40px; }
+.nav__logo{ height:72px; width:auto; transition:height .35s var(--ease); }
+.nav.is-stuck .nav__logo{ height:54px; }
 
 .nav__menu{ display:flex; align-items:center; gap:clamp(16px,2.2vw,34px); }
 .nav__menu a{
@@ -599,8 +599,8 @@ h1,h2,h3,h4{ font-family:var(--sans); font-weight:400; line-height:1.06; margin:
   .nav.is-on-dark .nav__menu a{ border-bottom-color:rgba(255,255,255,.11); }
   .nav__menu a{ font-size:16px; letter-spacing:.05em; padding-block:15px; width:100%; border-bottom:1px solid var(--line-soft); }
   .nav__menu a::after{ content:none; }
-  .nav__logo{ height:42px; }
-  .nav.is-stuck .nav__logo{ height:36px; }
+  .nav__logo{ height:54px; }
+  .nav.is-stuck .nav__logo{ height:44px; }
 
   .tile--wide{ grid-column:span 1; aspect-ratio:3/4; }
   .gaze__item{ grid-template-columns:auto 1fr; row-gap:8px; }
