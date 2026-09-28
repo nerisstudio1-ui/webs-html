@@ -20,6 +20,9 @@ CIUDAD    = "Barcelona"
 NIF       = "25199625C"
 DIRECCION = "Carrer Xiprer 30-32, 1º 1ª · 08041 Barcelona"
 GOOGLE_REVIEW = "https://g.page/r/CSeJ0912NzUzEAE/review"
+# Vídeo de portada. Se carga solo en pantallas grandes y sin ahorro de datos;
+# en móvil se queda la fotografía, que pesa mucho menos.
+VIDEO_PORTADA = "https://dodgerblue-hippopotamus-744516.hostingersite.com/wp-content/uploads/2026/09/1000372556.mp4"
 
 # ============================== ICONOS =====================================
 I = {
@@ -151,10 +154,14 @@ def pie(landing=False):
 def orn():
     return f'<div class="ornamento">{I["corazon"]}</div>'
 
-def franja_cta(titulo, texto, imagen="retiro.jpg"):
+def franja_cta(titulo, texto, imagen=None):
+    # Sin imagen: se apoya en el color de marca. Solo hay una foto de retiro
+    # y va en su sección, así que aquí repetiría escena.
+    media = (f'<div class="franja__media"><img src="assets/img/{imagen}" alt="" '
+             f'loading="lazy" width="1920" height="900"></div>') if imagen else ""
     return f'''
-<section class="franja">
-  <div class="franja__media"><img src="assets/img/{imagen}" alt="" loading="lazy" width="1920" height="900"></div>
+<section class="franja{"" if imagen else " franja--lisa"}">
+  {media}
   <div class="contenedor franja__contenido revelar">
     <h2>{titulo}</h2>
     <p class="lead">{texto}</p>
@@ -751,7 +758,10 @@ def pagina_landing():
 
 <section class="hero hero--landing" id="inicio">
   <div class="hero__media">
-    <img src="assets/img/portada.jpg" alt="Clase de Pilates Mat en el estudio de ANAHATA" width="1920" height="1280" fetchpriority="high">
+    <img src="assets/img/portada.jpg" alt="Clase de Pilates Mat en el estudio de ANAHATA"
+         width="1920" height="1280" fetchpriority="high">
+    <video class="hero__video" muted loop playsinline preload="none"
+           poster="assets/img/portada.jpg" data-video="{VIDEO_PORTADA}" aria-hidden="true"></video>
   </div>
   <div class="contenedor hero__contenido hero__contenido--centrado">
     <img class="hero__logo" src="assets/img/logo-anahata-crema.svg"
@@ -836,7 +846,11 @@ def pagina_landing():
 
 <section class="seccion" id="retiros">
   <div class="contenedor">
-    <div class="medida texto-centrado" style="margin:0 auto clamp(32px,4vw,52px)">
+    <figure class="banda-foto revelar">
+      <img src="assets/img/retiro.jpg" alt="Entorno de uno de los retiros de ANAHATA"
+           loading="lazy" width="1400" height="800">
+    </figure>
+    <div class="medida texto-centrado" style="margin:clamp(40px,5vw,64px) auto clamp(32px,4vw,52px)">
       <span class="eyebrow">Retiros, eventos y talleres</span>
       <h2>Desconecta del ritmo y vuelve a ti</h2>
       <p class="lead" style="margin-top:1.2rem">Encuentros presenciales para desconectar del ritmo diario y reconectar contigo, siempre en entornos de naturaleza y silencio.</p>

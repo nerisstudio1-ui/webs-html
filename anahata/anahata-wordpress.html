@@ -292,6 +292,13 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 }
 .anahata-landing .hero__media{ position:absolute; inset:0; }
 .anahata-landing .hero__media img, .anahata-landing .hero__media video{ width:100%; height:100%; object-fit:cover; }
+/* El vídeo se funde sobre la foto cuando está listo para reproducirse */
+.anahata-landing .hero__video{
+  position:absolute; inset:0; opacity:0; transition:opacity 1.2s var(--ease);
+  pointer-events:none;
+}
+.anahata-landing .hero__video.is-visible{ opacity:1; }
+@media (prefers-reduced-motion: reduce){.anahata-landing .hero__video{ display:none; }}
 .anahata-landing .hero__media::after{
   content:""; position:absolute; inset:0;
   background:linear-gradient(95deg, rgba(88,70,56,.42) 0%, rgba(88,70,56,.18) 48%, rgba(88,70,56,0) 82%);
@@ -405,6 +412,9 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 .anahata-landing .carrusel-controles button:hover{ background:var(--tinta); color:var(--marfil); border-color:var(--tinta); }
 /* ---------- Franja ---------- */
 .anahata-landing .franja{ position:relative; overflow:hidden; background:var(--topo); }
+/* Variante sin fotografía: degradado cálido de marca */
+.anahata-landing .franja--lisa{ background:linear-gradient(120deg, var(--topo-oscuro) 0%, var(--topo) 55%, var(--topo-claro) 100%); }
+.anahata-landing .franja--lisa .franja__contenido{ padding-block:clamp(64px,8vw,104px); }
 .anahata-landing .franja__media{ position:absolute; inset:0; }
 .anahata-landing .franja__media img{ width:100%; height:100%; object-fit:cover; }
 .anahata-landing .franja__media::after{ content:""; position:absolute; inset:0; background:rgba(88,70,56,.45); }
@@ -629,7 +639,10 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 
 <section class="hero hero--landing" id="inicio">
   <div class="hero__media">
-    <img src="URL_DE_TUS_IMAGENES/portada.jpg" alt="Clase de Pilates Mat en el estudio de ANAHATA" width="1920" height="1280" fetchpriority="high">
+    <img src="URL_DE_TUS_IMAGENES/portada.jpg" alt="Clase de Pilates Mat en el estudio de ANAHATA"
+         width="1920" height="1280" fetchpriority="high">
+    <video class="hero__video" muted loop playsinline preload="none"
+           poster="URL_DE_TUS_IMAGENES/portada.jpg" data-video="https://dodgerblue-hippopotamus-744516.hostingersite.com/wp-content/uploads/2026/09/1000372556.mp4" aria-hidden="true"></video>
   </div>
   <div class="contenedor hero__contenido hero__contenido--centrado">
     <img class="hero__logo" src="URL_DE_TUS_IMAGENES/logo-anahata-crema.png"
@@ -867,8 +880,8 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
   </div>
 </section>
 
-<section class="franja">
-  <div class="franja__media"><img src="URL_DE_TUS_IMAGENES/retiro.jpg" alt="" loading="lazy" width="1920" height="900"></div>
+<section class="franja franja--lisa">
+  
   <div class="contenedor franja__contenido revelar">
     <h2>Tu práctica empieza con una respiración</h2>
     <p class="lead">Cuéntame qué necesitas y encontramos juntas el formato, el estilo y el ritmo que mejor te acompañan.</p>
@@ -933,7 +946,11 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 
 <section class="seccion" id="retiros">
   <div class="contenedor">
-    <div class="medida texto-centrado" style="margin:0 auto clamp(32px,4vw,52px)">
+    <figure class="banda-foto revelar">
+      <img src="URL_DE_TUS_IMAGENES/retiro.jpg" alt="Entorno de uno de los retiros de ANAHATA"
+           loading="lazy" width="1400" height="800">
+    </figure>
+    <div class="medida texto-centrado" style="margin:clamp(40px,5vw,64px) auto clamp(32px,4vw,52px)">
       <span class="eyebrow">Retiros, eventos y talleres</span>
       <h2>Desconecta del ritmo y vuelve a ti</h2>
       <p class="lead" style="margin-top:1.2rem">Encuentros presenciales para desconectar del ritmo diario y reconectar contigo, siempre en entornos de naturaleza y silencio.</p>
@@ -1326,6 +1343,26 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
       if (boton) { boton.disabled = true; boton.textContent = 'Enviando…'; }
     });
   });
+
+  /* ---- Vídeo de portada ----
+     Solo en pantallas grandes y si el navegador no pide ahorrar datos ni
+     reducir el movimiento. En el resto se queda la fotografía. */
+  var video = document.querySelector('[data-video]');
+  if (video) {
+    var conexion = navigator.connection || {};
+    var puede = window.matchMedia('(min-width: 900px)').matches &&
+                !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+                !conexion.saveData &&
+                !/^(slow-2g|2g|3g)$/.test(conexion.effectiveType || '');
+    if (puede) {
+      video.addEventListener('canplay', function () { video.classList.add('is-visible'); });
+      video.addEventListener('error', function () { video.remove(); });
+      video.src = video.getAttribute('data-video');
+      video.load();
+      var intento = video.play();
+      if (intento && intento.catch) intento.catch(function () { video.remove(); });
+    }
+  }
 
   /* ---- Año actual en el pie ---- */
   document.querySelectorAll('[data-anio]').forEach(function (el) {

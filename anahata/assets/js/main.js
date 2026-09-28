@@ -132,6 +132,26 @@
     });
   });
 
+  /* ---- Vídeo de portada ----
+     Solo en pantallas grandes y si el navegador no pide ahorrar datos ni
+     reducir el movimiento. En el resto se queda la fotografía. */
+  var video = document.querySelector('[data-video]');
+  if (video) {
+    var conexion = navigator.connection || {};
+    var puede = window.matchMedia('(min-width: 900px)').matches &&
+                !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+                !conexion.saveData &&
+                !/^(slow-2g|2g|3g)$/.test(conexion.effectiveType || '');
+    if (puede) {
+      video.addEventListener('canplay', function () { video.classList.add('is-visible'); });
+      video.addEventListener('error', function () { video.remove(); });
+      video.src = video.getAttribute('data-video');
+      video.load();
+      var intento = video.play();
+      if (intento && intento.catch) intento.catch(function () { video.remove(); });
+    }
+  }
+
   /* ---- Año actual en el pie ---- */
   document.querySelectorAll('[data-anio]').forEach(function (el) {
     el.textContent = new Date().getFullYear();

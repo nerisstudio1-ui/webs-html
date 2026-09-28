@@ -234,6 +234,13 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 }
 .hero__media{ position:absolute; inset:0; }
 .hero__media img,.hero__media video{ width:100%; height:100%; object-fit:cover; }
+/* El vídeo se funde sobre la foto cuando está listo para reproducirse */
+.hero__video{
+  position:absolute; inset:0; opacity:0; transition:opacity 1.2s var(--ease);
+  pointer-events:none;
+}
+.hero__video.is-visible{ opacity:1; }
+@media (prefers-reduced-motion: reduce){ .hero__video{ display:none; } }
 .hero__media::after{
   content:""; position:absolute; inset:0;
   background:linear-gradient(95deg, rgba(88,70,56,.42) 0%, rgba(88,70,56,.18) 48%, rgba(88,70,56,0) 82%);
@@ -360,6 +367,9 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 
 /* ---------- Franja ---------- */
 .franja{ position:relative; overflow:hidden; background:var(--topo); }
+/* Variante sin fotografía: degradado cálido de marca */
+.franja--lisa{ background:linear-gradient(120deg, var(--topo-oscuro) 0%, var(--topo) 55%, var(--topo-claro) 100%); }
+.franja--lisa .franja__contenido{ padding-block:clamp(64px,8vw,104px); }
 .franja__media{ position:absolute; inset:0; }
 .franja__media img{ width:100%; height:100%; object-fit:cover; }
 .franja__media::after{ content:""; position:absolute; inset:0; background:rgba(88,70,56,.45); }
