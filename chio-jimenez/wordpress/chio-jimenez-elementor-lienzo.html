@@ -173,8 +173,8 @@
 
 /* Por encima del desplegable de móvil, que si no los tapa al abrirse. */
 .cj .nav__brand{ position:relative; z-index:2; display:flex; align-items:center; text-decoration:none; flex-shrink:0; }
-.cj .nav__logo{ height:72px; width:auto; transition:height .35s var(--ease); }
-.cj .nav.is-stuck .nav__logo{ height:54px; }
+.cj .nav__logo{ height:88px; width:auto; transition:height .35s var(--ease); }
+.cj .nav.is-stuck .nav__logo{ height:64px; }
 
 .cj .nav__menu{ display:flex; align-items:center; gap:clamp(16px,2.2vw,34px); }
 .cj .nav__menu a{
@@ -604,7 +604,7 @@
   .cj .work__cat{ order:-1; }
 }
 
-@media (max-width:860px){
+@media (max-width:1040px){
   .cj .nav__toggle{ display:grid; }
   .cj .nav__menu{
     position:fixed; inset:0 0 auto 0; z-index:1;
@@ -621,8 +621,15 @@
   .cj .nav.is-on-dark .nav__menu a{ border-bottom-color:rgba(255,255,255,.11); }
   .cj .nav__menu a{ font-size:16px; letter-spacing:.05em; padding-block:15px; width:100%; border-bottom:1px solid var(--line-soft); }
   .cj .nav__menu a::after{ content:none; }
-  .cj .nav__logo{ height:54px; }
-  .cj .nav.is-stuck .nav__logo{ height:44px; }
+  /* En móvil el logo manda. El selector de idioma estorbaba, así que se
+     guarda y aparece dentro del desplegable; con el menú abierto el logo
+     se encoge para que quepan los dos. */
+  .cj .nav__logo{ height:82px; }
+  .cj .nav.is-stuck .nav__logo{ height:62px; }
+  .cj .nav.menu-abierto .nav__logo, .cj .nav.menu-abierto.is-stuck .nav__logo{ height:50px; }
+  .cj .lang{ display:none; }
+  .cj .nav__menu.is-open ~ .nav__side .lang{ display:flex; }
+  .cj .nav__side{ gap:12px; }
 
   .cj .tile--wide{ grid-column:span 1; aspect-ratio:3/4; }
   .cj .gaze__item{ grid-template-columns:auto 1fr; row-gap:8px; }
@@ -1408,6 +1415,9 @@ html{ overflow-x:clip; }
 
     toggle.addEventListener('click', function () {
       var open = menu.classList.toggle('is-open');
+      // la cabecera necesita saberlo: con el menú abierto el logo se encoge
+      // para dejar sitio al selector de idioma
+      nav.classList.toggle('menu-abierto', open);
       onScroll();
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
@@ -1416,6 +1426,7 @@ html{ overflow-x:clip; }
     $$('a', menu).forEach(function (a) {
       a.addEventListener('click', function () {
         menu.classList.remove('is-open');
+        nav.classList.remove('menu-abierto');
         toggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });

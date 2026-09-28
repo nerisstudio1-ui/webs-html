@@ -259,6 +259,9 @@
 
     toggle.addEventListener('click', function () {
       var open = menu.classList.toggle('is-open');
+      // la cabecera necesita saberlo: con el menú abierto el logo se encoge
+      // para dejar sitio al selector de idioma
+      nav.classList.toggle('menu-abierto', open);
       onScroll();
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
@@ -267,6 +270,7 @@
     $$('a', menu).forEach(function (a) {
       a.addEventListener('click', function () {
         menu.classList.remove('is-open');
+        nav.classList.remove('menu-abierto');
         toggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
