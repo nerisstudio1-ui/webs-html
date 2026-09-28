@@ -26,7 +26,7 @@ const servidor = http.createServer((req, res) => {
   await new Promise(r => servidor.listen(PUERTO, r));
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   for (const [origen, destino] of [
-    ['biografia.html', 'assets/docs/cristina-falcon-biografia-completa.pdf'],
+    ['biografia.html', 'assets/docs/cristina-falcon-biografia-larga.pdf'],
     ['dossier.html',   'assets/docs/cristina-falcon-dossier-prensa.pdf'],
   ]) {
     const p = await b.newPage();
