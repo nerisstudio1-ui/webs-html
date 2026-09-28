@@ -468,7 +468,12 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 .anahata-landing .acordeon__boton{
   width:100%; display:flex; justify-content:space-between; align-items:center; gap:18px;
   padding:21px 0; text-align:left; font-family:var(--serif); font-size:1.12rem; color:var(--tinta);
+  background:transparent; -webkit-tap-highlight-color:transparent;
 }
+/* Al pulsar no debe quedar ningún fondo: ni el resalte del móvil ni el que
+   algunos temas ponen a los <button>. El aviso visual es el signo + girando. */
+.anahata-landing .acordeon__boton:hover, .anahata-landing .acordeon__boton:focus, .anahata-landing .acordeon__boton:active{ background:transparent; box-shadow:none; }
+.anahata-landing .acordeon__boton:hover span:last-child{ color:var(--topo); }
 .anahata-landing .acordeon__boton span:last-child{ color:var(--melocoton-2); font-size:1.35rem; line-height:1; transition:transform .3s var(--ease); }
 .anahata-landing .acordeon__item.is-abierto .acordeon__boton span:last-child{ transform:rotate(45deg); }
 .anahata-landing .acordeon__panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s var(--ease); }
@@ -595,6 +600,12 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 .anahata-landing button, .anahata-landing input, .anahata-landing select, .anahata-landing textarea{ -webkit-appearance:none; appearance:none; }
 .anahata-landing ul, .anahata-landing li{ list-style:none; margin:0; padding:0; }
 .anahata-landing figure{ margin:0; }
+/* El acordeón no debe teñirse al pulsarlo */
+.anahata-landing .acordeon__boton,
+.anahata-landing .acordeon__boton:hover,
+.anahata-landing .acordeon__boton:focus,
+.anahata-landing .acordeon__boton:active{ background:transparent !important; box-shadow:none !important; }
+.anahata-landing{ -webkit-tap-highlight-color:transparent; }
 .anahata-landing *{ box-sizing:border-box; }
 .anahata-landing .tarjeta__media img, .anahata-landing .galeria__item img, .anahata-landing .duo__media img,
 .anahata-landing .hero__media img, .anahata-landing .franja__media img{ border-radius:0; }
@@ -1345,15 +1356,15 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
   });
 
   /* ---- Vídeo de portada ----
-     Solo en pantallas grandes y si el navegador no pide ahorrar datos ni
-     reducir el movimiento. En el resto se queda la fotografía. */
+     Se carga también en móvil. Se respeta el ahorro de datos, las conexiones
+     lentas y la preferencia de movimiento reducido: en esos casos se queda
+     la fotografía, que pesa mucho menos. */
   var video = document.querySelector('[data-video]');
   if (video) {
     var conexion = navigator.connection || {};
-    var puede = window.matchMedia('(min-width: 900px)').matches &&
-                !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    var puede = !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
                 !conexion.saveData &&
-                !/^(slow-2g|2g|3g)$/.test(conexion.effectiveType || '');
+                !/^(slow-2g|2g)$/.test(conexion.effectiveType || '');
     if (puede) {
       video.addEventListener('canplay', function () { video.classList.add('is-visible'); });
       video.addEventListener('error', function () { video.remove(); });

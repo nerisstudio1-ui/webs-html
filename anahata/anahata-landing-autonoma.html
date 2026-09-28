@@ -449,7 +449,14 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 .acordeon__boton{
   width:100%; display:flex; justify-content:space-between; align-items:center; gap:18px;
   padding:21px 0; text-align:left; font-family:var(--serif); font-size:1.12rem; color:var(--tinta);
+  background:transparent; -webkit-tap-highlight-color:transparent;
 }
+/* Al pulsar no debe quedar ningún fondo: ni el resalte del móvil ni el que
+   algunos temas ponen a los <button>. El aviso visual es el signo + girando. */
+.acordeon__boton:hover,
+.acordeon__boton:focus,
+.acordeon__boton:active{ background:transparent; box-shadow:none; }
+.acordeon__boton:hover span:last-child{ color:var(--topo); }
 .acordeon__boton span:last-child{ color:var(--melocoton-2); font-size:1.35rem; line-height:1; transition:transform .3s var(--ease); }
 .acordeon__item.is-abierto .acordeon__boton span:last-child{ transform:rotate(45deg); }
 .acordeon__panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s var(--ease); }
@@ -1332,15 +1339,15 @@ section[id]{ scroll-margin-top:calc(var(--header-h) + 8px); }
   });
 
   /* ---- Vídeo de portada ----
-     Solo en pantallas grandes y si el navegador no pide ahorrar datos ni
-     reducir el movimiento. En el resto se queda la fotografía. */
+     Se carga también en móvil. Se respeta el ahorro de datos, las conexiones
+     lentas y la preferencia de movimiento reducido: en esos casos se queda
+     la fotografía, que pesa mucho menos. */
   var video = document.querySelector('[data-video]');
   if (video) {
     var conexion = navigator.connection || {};
-    var puede = window.matchMedia('(min-width: 900px)').matches &&
-                !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    var puede = !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
                 !conexion.saveData &&
-                !/^(slow-2g|2g|3g)$/.test(conexion.effectiveType || '');
+                !/^(slow-2g|2g)$/.test(conexion.effectiveType || '');
     if (puede) {
       video.addEventListener('canplay', function () { video.classList.add('is-visible'); });
       video.addEventListener('error', function () { video.remove(); });

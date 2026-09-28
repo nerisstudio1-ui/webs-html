@@ -428,7 +428,14 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 .acordeon__boton{
   width:100%; display:flex; justify-content:space-between; align-items:center; gap:18px;
   padding:21px 0; text-align:left; font-family:var(--serif); font-size:1.12rem; color:var(--tinta);
+  background:transparent; -webkit-tap-highlight-color:transparent;
 }
+/* Al pulsar no debe quedar ningún fondo: ni el resalte del móvil ni el que
+   algunos temas ponen a los <button>. El aviso visual es el signo + girando. */
+.acordeon__boton:hover,
+.acordeon__boton:focus,
+.acordeon__boton:active{ background:transparent; box-shadow:none; }
+.acordeon__boton:hover span:last-child{ color:var(--topo); }
 .acordeon__boton span:last-child{ color:var(--melocoton-2); font-size:1.35rem; line-height:1; transition:transform .3s var(--ease); }
 .acordeon__item.is-abierto .acordeon__boton span:last-child{ transform:rotate(45deg); }
 .acordeon__panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s var(--ease); }

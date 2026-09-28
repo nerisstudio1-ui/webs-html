@@ -35,6 +35,12 @@ ANCHO_COMPLETO = """
 .%(a)s button, .%(a)s input, .%(a)s select, .%(a)s textarea{ -webkit-appearance:none; appearance:none; }
 .%(a)s ul, .%(a)s li{ list-style:none; margin:0; padding:0; }
 .%(a)s figure{ margin:0; }
+/* El acordeón no debe teñirse al pulsarlo */
+.%(a)s .acordeon__boton,
+.%(a)s .acordeon__boton:hover,
+.%(a)s .acordeon__boton:focus,
+.%(a)s .acordeon__boton:active{ background:transparent !important; box-shadow:none !important; }
+.%(a)s{ -webkit-tap-highlight-color:transparent; }
 .%(a)s *{ box-sizing:border-box; }
 .%(a)s .tarjeta__media img, .%(a)s .galeria__item img, .%(a)s .duo__media img,
 .%(a)s .hero__media img, .%(a)s .franja__media img{ border-radius:0; }

@@ -133,15 +133,15 @@
   });
 
   /* ---- Vídeo de portada ----
-     Solo en pantallas grandes y si el navegador no pide ahorrar datos ni
-     reducir el movimiento. En el resto se queda la fotografía. */
+     Se carga también en móvil. Se respeta el ahorro de datos, las conexiones
+     lentas y la preferencia de movimiento reducido: en esos casos se queda
+     la fotografía, que pesa mucho menos. */
   var video = document.querySelector('[data-video]');
   if (video) {
     var conexion = navigator.connection || {};
-    var puede = window.matchMedia('(min-width: 900px)').matches &&
-                !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    var puede = !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
                 !conexion.saveData &&
-                !/^(slow-2g|2g|3g)$/.test(conexion.effectiveType || '');
+                !/^(slow-2g|2g)$/.test(conexion.effectiveType || '');
     if (puede) {
       video.addEventListener('canplay', function () { video.classList.add('is-visible'); });
       video.addEventListener('error', function () { video.remove(); });
