@@ -118,7 +118,8 @@
   document.querySelectorAll('form[data-formulario]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       var aviso = form.querySelector('[data-aviso-form]');
-      // Sin endpoint configurado: evitamos perder el mensaje y avisamos.
+      // Sin destino configurado no se envía a ninguna parte: mejor avisar
+      // que dejar creer al visitante que su mensaje ha salido.
       if (!form.getAttribute('action')) {
         e.preventDefault();
         if (aviso) {
@@ -127,6 +128,9 @@
         }
         return;
       }
+      // El navegador ya valida los campos obligatorios; si falla, no bloqueamos
+      // el botón, porque el formulario no llega a enviarse.
+      if (form.checkValidity && !form.checkValidity()) return;
       var boton = form.querySelector('button[type="submit"]');
       if (boton) { boton.disabled = true; boton.textContent = 'Enviando…'; }
     });
@@ -149,6 +153,22 @@
       video.load();
       var intento = video.play();
       if (intento && intento.catch) intento.catch(function () { video.remove(); });
+    }
+  }
+
+  /* ---- Resultado del envío ----
+     enviar.php devuelve a la web con ?envio=ok o ?envio=error */
+  var resultado = new URLSearchParams(window.location.search).get('envio');
+  if (resultado === 'ok' || resultado === 'error') {
+    var cartel = document.querySelector('[data-envio="' + resultado + '"]');
+    if (cartel) {
+      cartel.hidden = false;
+      cartel.setAttribute('role', 'status');
+      cartel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    // Limpiamos la dirección: al recargar no debe reaparecer el aviso
+    if (window.history.replaceState) {
+      window.history.replaceState({}, '', window.location.pathname + window.location.hash);
     }
   }
 

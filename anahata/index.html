@@ -538,7 +538,20 @@
       </div>
     </div>
     <div class="revelar" data-retardo="120">
-      <form class="formulario tarjeta-texto" data-formulario novalidate>
+      <p class="aviso-envio aviso-envio--ok" data-envio="ok" hidden>
+        ¡Mensaje enviado! Sara te responde en 24-48 h. Si tienes prisa, escríbele por WhatsApp.
+      </p>
+      <p class="aviso-envio aviso-envio--error" data-envio="error" hidden>
+        No hemos podido enviar el mensaje. Escríbele directamente a
+        <a href="mailto:saravgyoga@gmail.com">saravgyoga@gmail.com</a> o por WhatsApp.
+      </p>
+      <form class="formulario tarjeta-texto" data-formulario novalidate
+            action="/enviar.php" method="post">
+        <input type="hidden" name="tipo" value="contacto">
+        <div class="trampa" aria-hidden="true">
+          <label for="web">No rellenes este campo</label>
+          <input id="web" name="web" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <h3>Formulario de contacto</h3>
         <div class="campo--doble">
           <div class="campo"><label for="l-nombre">Nombre y apellidos *</label>
@@ -572,7 +585,9 @@
       <p class="lead" style="margin-top:1rem">Recibe las próximas fechas de clases, retiros y talleres, además de prácticas sencillas para cuidarte en tu día a día.</p>
     </div>
     <div class="revelar" data-retardo="120">
-      <form class="newsletter" data-formulario novalidate>
+      <form class="newsletter" data-formulario novalidate action="/enviar.php" method="post">
+        <input type="hidden" name="tipo" value="newsletter">
+        <div class="trampa" aria-hidden="true"><input name="web" type="text" tabindex="-1" autocomplete="off"></div>
         <label class="solo-lectores" for="news-email">Tu correo electrónico</label>
         <input id="news-email" type="email" name="email" placeholder="tu@email.com" required autocomplete="email">
         <button class="btn btn--oro" type="submit">Suscribirme</button>

@@ -20,9 +20,11 @@ CIUDAD    = "Barcelona"
 NIF       = "25199625C"
 DIRECCION = "Carrer Xiprer 30-32, 1º 1ª · 08041 Barcelona"
 GOOGLE_REVIEW = "https://g.page/r/CSeJ0912NzUzEAE/review"
-# Vídeo de portada. Se carga solo en pantallas grandes y sin ahorro de datos;
-# en móvil se queda la fotografía, que pesa mucho menos.
-VIDEO_PORTADA = "https://dodgerblue-hippopotamus-744516.hostingersite.com/wp-content/uploads/2026/09/1000372556.mp4"
+# Script que recoge los formularios. Vive en la raíz del hosting (enviar.php).
+FORM_ACCION = "/enviar.php"
+# Vídeo de portada. No se carga con ahorro de datos, conexión lenta o si el
+# usuario pide reducir el movimiento: en esos casos se queda la fotografía.
+VIDEO_PORTADA ="https://dodgerblue-hippopotamus-744516.hostingersite.com/wp-content/uploads/2026/09/1000372556.mp4"
 
 # ============================== ICONOS =====================================
 I = {
@@ -303,7 +305,9 @@ def bloque_newsletter():
       <p class="lead" style="margin-top:1rem">Recibe las próximas fechas de clases, retiros y talleres, además de prácticas sencillas para cuidarte en tu día a día.</p>
     </div>
     <div class="revelar" data-retardo="120">
-      <form class="newsletter" data-formulario novalidate>
+      <form class="newsletter" data-formulario novalidate action="{FORM_ACCION}" method="post">
+        <input type="hidden" name="tipo" value="newsletter">
+        <div class="trampa" aria-hidden="true"><input name="web" type="text" tabindex="-1" autocomplete="off"></div>
         <label class="solo-lectores" for="news-email">Tu correo electrónico</label>
         <input id="news-email" type="email" name="email" placeholder="tu@email.com" required autocomplete="email">
         <button class="btn btn--oro" type="submit">Suscribirme</button>
@@ -920,7 +924,20 @@ def pagina_landing():
       </div>
     </div>
     <div class="revelar" data-retardo="120">
-      <form class="formulario tarjeta-texto" data-formulario novalidate>
+      <p class="aviso-envio aviso-envio--ok" data-envio="ok" hidden>
+        ¡Mensaje enviado! Sara te responde en 24-48 h. Si tienes prisa, escríbele por WhatsApp.
+      </p>
+      <p class="aviso-envio aviso-envio--error" data-envio="error" hidden>
+        No hemos podido enviar el mensaje. Escríbele directamente a
+        <a href="mailto:{EMAIL}">{EMAIL}</a> o por WhatsApp.
+      </p>
+      <form class="formulario tarjeta-texto" data-formulario novalidate
+            action="{FORM_ACCION}" method="post">
+        <input type="hidden" name="tipo" value="contacto">
+        <div class="trampa" aria-hidden="true">
+          <label for="web">No rellenes este campo</label>
+          <input id="web" name="web" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <h3>Formulario de contacto</h3>
         <div class="campo--doble">
           <div class="campo"><label for="l-nombre">Nombre y apellidos *</label>

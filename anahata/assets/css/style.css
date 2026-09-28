@@ -397,6 +397,18 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 .consentimiento a{ color:var(--melocoton-2); text-decoration:underline; text-underline-offset:2px; }
 .nota-formulario{ font-size:.78rem; color:var(--suave); }
 
+/* Trampa antirrobots: invisible para las personas, tentadora para los bots */
+.trampa{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+/* Aviso tras enviar el formulario */
+.aviso-envio{
+  border-radius:var(--radio-img); padding:16px 20px; margin-bottom:20px;
+  font-size:.92rem; border:1px solid;
+}
+.aviso-envio--ok{ background:#EDF2E6; border-color:#B9C9A6; color:#3F5230; }
+.aviso-envio--error{ background:#F8ECE6; border-color:#DDBBA8; color:#8A4A2A; }
+.aviso-envio a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
+
 .newsletter{ display:flex; gap:10px; flex-wrap:wrap; max-width:500px; }
 .newsletter input{
   flex:1 1 230px; padding:14px 18px; border-radius:var(--radio-pill);

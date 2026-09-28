@@ -418,6 +418,18 @@ body.menu-abierto .hamburguesa span{ background:var(--tinta) !important; }
 .consentimiento a{ color:var(--melocoton-2); text-decoration:underline; text-underline-offset:2px; }
 .nota-formulario{ font-size:.78rem; color:var(--suave); }
 
+/* Trampa antirrobots: invisible para las personas, tentadora para los bots */
+.trampa{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+/* Aviso tras enviar el formulario */
+.aviso-envio{
+  border-radius:var(--radio-img); padding:16px 20px; margin-bottom:20px;
+  font-size:.92rem; border:1px solid;
+}
+.aviso-envio--ok{ background:#EDF2E6; border-color:#B9C9A6; color:#3F5230; }
+.aviso-envio--error{ background:#F8ECE6; border-color:#DDBBA8; color:#8A4A2A; }
+.aviso-envio a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
+
 .newsletter{ display:flex; gap:10px; flex-wrap:wrap; max-width:500px; }
 .newsletter input{
   flex:1 1 230px; padding:14px 18px; border-radius:var(--radio-pill);
@@ -1098,7 +1110,20 @@ section[id]{ scroll-margin-top:calc(var(--header-h) + 8px); }
       </div>
     </div>
     <div class="revelar" data-retardo="120">
-      <form class="formulario tarjeta-texto" data-formulario novalidate>
+      <p class="aviso-envio aviso-envio--ok" data-envio="ok" hidden>
+        ¡Mensaje enviado! Sara te responde en 24-48 h. Si tienes prisa, escríbele por WhatsApp.
+      </p>
+      <p class="aviso-envio aviso-envio--error" data-envio="error" hidden>
+        No hemos podido enviar el mensaje. Escríbele directamente a
+        <a href="mailto:saravgyoga@gmail.com">saravgyoga@gmail.com</a> o por WhatsApp.
+      </p>
+      <form class="formulario tarjeta-texto" data-formulario novalidate
+            action="/enviar.php" method="post">
+        <input type="hidden" name="tipo" value="contacto">
+        <div class="trampa" aria-hidden="true">
+          <label for="web">No rellenes este campo</label>
+          <input id="web" name="web" type="text" tabindex="-1" autocomplete="off">
+        </div>
         <h3>Formulario de contacto</h3>
         <div class="campo--doble">
           <div class="campo"><label for="l-nombre">Nombre y apellidos *</label>
@@ -1132,7 +1157,9 @@ section[id]{ scroll-margin-top:calc(var(--header-h) + 8px); }
       <p class="lead" style="margin-top:1rem">Recibe las próximas fechas de clases, retiros y talleres, además de prácticas sencillas para cuidarte en tu día a día.</p>
     </div>
     <div class="revelar" data-retardo="120">
-      <form class="newsletter" data-formulario novalidate>
+      <form class="newsletter" data-formulario novalidate action="/enviar.php" method="post">
+        <input type="hidden" name="tipo" value="newsletter">
+        <div class="trampa" aria-hidden="true"><input name="web" type="text" tabindex="-1" autocomplete="off"></div>
         <label class="solo-lectores" for="news-email">Tu correo electrónico</label>
         <input id="news-email" type="email" name="email" placeholder="tu@email.com" required autocomplete="email">
         <button class="btn btn--oro" type="submit">Suscribirme</button>
@@ -1324,7 +1351,8 @@ section[id]{ scroll-margin-top:calc(var(--header-h) + 8px); }
   document.querySelectorAll('form[data-formulario]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       var aviso = form.querySelector('[data-aviso-form]');
-      // Sin endpoint configurado: evitamos perder el mensaje y avisamos.
+      // Sin destino configurado no se envía a ninguna parte: mejor avisar
+      // que dejar creer al visitante que su mensaje ha salido.
       if (!form.getAttribute('action')) {
         e.preventDefault();
         if (aviso) {
@@ -1333,6 +1361,9 @@ section[id]{ scroll-margin-top:calc(var(--header-h) + 8px); }
         }
         return;
       }
+      // El navegador ya valida los campos obligatorios; si falla, no bloqueamos
+      // el botón, porque el formulario no llega a enviarse.
+      if (form.checkValidity && !form.checkValidity()) return;
       var boton = form.querySelector('button[type="submit"]');
       if (boton) { boton.disabled = true; boton.textContent = 'Enviando…'; }
     });
@@ -1355,6 +1386,22 @@ section[id]{ scroll-margin-top:calc(var(--header-h) + 8px); }
       video.load();
       var intento = video.play();
       if (intento && intento.catch) intento.catch(function () { video.remove(); });
+    }
+  }
+
+  /* ---- Resultado del envío ----
+     enviar.php devuelve a la web con ?envio=ok o ?envio=error */
+  var resultado = new URLSearchParams(window.location.search).get('envio');
+  if (resultado === 'ok' || resultado === 'error') {
+    var cartel = document.querySelector('[data-envio="' + resultado + '"]');
+    if (cartel) {
+      cartel.hidden = false;
+      cartel.setAttribute('role', 'status');
+      cartel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    // Limpiamos la dirección: al recargar no debe reaparecer el aviso
+    if (window.history.replaceState) {
+      window.history.replaceState({}, '', window.location.pathname + window.location.hash);
     }
   }
 
