@@ -144,7 +144,6 @@ def html_panel(clave, archivo):
             <p class="lectura__autor">{t['prologo_autor']}</p>
 {parrafos}
             <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
-            <h4 class="lectura__rotulo" data-i18n="lectura.poemas">—</h4>
 {poemas}
           </div>
         </details>"""

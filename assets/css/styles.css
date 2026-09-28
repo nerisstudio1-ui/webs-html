@@ -9,13 +9,17 @@
 :root {
   color-scheme: light;
 
-  /* Paleta — verdes, azules y tierra */
+  /* Paleta — el verde sale de las portadas de sus dos poemarios:
+     #009C9C es el de Borrar el paisaje y #54A8B4 el de Ítaca es nunca.
+     Un esmeralda azulado, que es lo que ella pedía. Para texto se usa el
+     mismo tono más oscuro, porque el de la portada sobre el crema da 3:1
+     y no se lee. */
   /* Verdes subidos de saturación y de luz respecto a la primera versión:
      en pantalla los anteriores se leían casi como negro y no se percibía
      que fueran verdes. Mismo tono, más cuerpo. */
-  --verde-hondo:   #006E45;
-  --verde:         #00995C;
-  --verde-claro:   #55C099;
+  --verde-hondo:   #006B6B;
+  --verde:         #009C9C;
+  --verde-claro:   #8FD2D6;
   --azul-hondo:    #1B3448;
   --azul:          #2F5975;
   --azul-claro:    #7FA0B7;
@@ -259,14 +263,14 @@ p { text-wrap: pretty; }
   flex: none;
 }
 .brand__marca {
+  /* Sola en la cabecera, sin el nombre al lado, aguanta más tamaño y se
+     ve el dibujo, que antes quedaba en un sello. */
   width: auto;
-  height: clamp(3.1rem, 6.5vw, 4.2rem);
+  height: clamp(3.9rem, 8vw, 5.4rem);
   transition: rotate 0.5s var(--ease);
 }
 .brand:hover .brand__marca { rotate: -4deg; }
 .brand__texto {
-  /* Mismo cuerpo, tipografía y color que los enlaces del menú: ella
-     quería que el nombre no pesara más que los apartados. */
   font-family: var(--font-body);
   font-size: var(--step--1);
   font-weight: 400;
@@ -573,9 +577,12 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
 
 .verso__foto { width: 100%; }
 .verso__foto img {
+  /* Algo más pequeña que el ancho del bloque: es un elemento de
+     separación entre los dos poemas, no una imagen protagonista. */
   display: block;
-  width: 100%;
+  width: min(100%, 34rem);
   height: auto;
+  margin-inline: auto;
   border-radius: var(--radius);
 }
 
@@ -821,12 +828,16 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
 }
 .lectura__rotulo:not(:first-child) { margin-top: clamp(2rem, 4vw, 2.75rem); }
 
-.poema { margin: 0 0 1.75rem; }
+/* Los poemas piden aire: entre uno y otro, y entre el número romano y el
+   primer verso. Apretados se leen como un bloque de prosa. */
+.poema { margin: 0 0 clamp(2.75rem, 6vw, 4rem); }
+.poema:first-of-type { margin-top: clamp(2.25rem, 5vw, 3.25rem); }
+.poema:last-child { margin-bottom: 0; }
 .poema figcaption {
   font-size: var(--step--1);
   letter-spacing: 0.16em;
   color: var(--verde);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.4rem;
 }
 .poema blockquote {
   margin: 0;
@@ -1101,21 +1112,48 @@ body.nav-open .burger span::after  { translate: 0 0; rotate: -45deg; }
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
 }
 
+/* La ficha ya no es un enlace entero de descarga: lleva dos acciones,
+   ver y descargar, para no obligar a bajarse un archivo a ciegas. */
 .descarga {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.35rem 1.1rem;
   padding: 1.35rem 1.5rem;
   background: var(--crema);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  text-decoration: none;
-  transition: border-color 0.3s var(--ease), translate 0.3s var(--ease);
+  transition: border-color 0.3s var(--ease);
 }
-.descarga:hover { border-color: var(--verde); translate: 0 -3px; }
-.descarga svg { flex: none; color: var(--tierra); }
+.descarga:hover { border-color: var(--verde); }
+.descarga svg { flex: none; color: var(--tierra); grid-row: span 2; }
 .descarga strong { display: block; font-family: var(--font-display); font-size: var(--step-1); font-weight: 400; color: var(--verde-hondo); }
-.descarga span { font-size: var(--step--1); color: var(--fg-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.descarga__datos > span {
+  display: block;
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+.descarga__acciones {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin-top: 0.85rem;
+}
+.descarga__acciones a {
+  font-size: var(--step--1);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--verde-hondo);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid color-mix(in srgb, var(--verde-hondo) 35%, transparent);
+  transition: border-color 0.25s var(--ease);
+}
+.descarga__acciones a:hover { border-bottom-color: var(--verde-hondo); }
 
 /* --------------------------------------------------------------------------
    14. Contacto

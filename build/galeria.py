@@ -33,7 +33,6 @@ BLOQUES = [
         ('08', '08-itaca-libreria.jpg'),
         ('14', '14-editora-cuadro.jpg'),
         ('01', '01-firmando.jpg'),
-        ('22', '22-presentacion-cuenca.jpg'),
         ('02', '02-casa-america.jpg'),
         ('03', '03-recital.jpg'),
         ('23', '23-aires-poetics.jpg'),
@@ -45,6 +44,9 @@ BLOQUES = [
         ('26', '26-programa-deria.jpg'),
     ]),
     ('infantil', [
+        # La presentación de «De aventuras por Cuenca» con los niños estaba
+        # en poesía, y es un libro infantil.
+        ('22', '22-presentacion-cuenca.jpg'),
         ('15', '15-con-siwar.jpg'),
         ('19', '19-firma-akiara.jpg'),
         ('17', '17-firma-letras.jpg'),

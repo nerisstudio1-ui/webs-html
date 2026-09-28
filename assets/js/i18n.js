@@ -38,7 +38,6 @@ window.I18N = {
 
     /* Sobre mí */
     "sobre.kicker": "Sobre mí",
-    "sobre.titulo": "Antes de aprender a leer, aprendió poesías de memoria",
     "sobre.p1": "A Cristina Falcón Maldonado le encantan los pájaros, los árboles, las flores silvestres, las orquídeas de su tierra, las cometas, los globos aerostáticos, las palabras, la poesía, los cuentos, la música, las bibliotecas, las librerías. También las casas en los árboles.",
     "sobre.p2": "Se las enseñó su abuela, quien sin saberlo le abrió el camino para vivir rodeada de palabras, jugando a jugar con ellas, escribiéndolas.",
     "sobre.p3": "Como esos pájaros a los que no se cansa de admirar y observar, hasta soñar con ser uno de ellos, ha emigrado y vivido en diferentes países y ciudades: desde Trujillo, en su Venezuela natal, hasta Bolonia, en Italia, y Motril, Calahonda, Ibiza y Cuenca, en España.",
@@ -48,7 +47,6 @@ window.I18N = {
     "sobre.p4": "Ha realizado talleres de poesía creativa y creación literaria en bibliotecas, en ámbitos educativos y en universidades latinoamericanas y europeas.",
     "sobre.foto": "Cristina Falcón Maldonado",
     "sobre.foto2": "Cristina en una presentación",
-    "sobre.cta": "Descargar biografía",
 
     /* Trayectoria */
 
@@ -57,12 +55,10 @@ window.I18N = {
     "obra.titulo": "Los libros",
     "obra.tab.poesia": "Poesía",
     "obra.ilustraciones.titulo": "Migración, memoria y viaje",
-    "obra.ilustraciones.intro": "Los tres poemarios de Candaya llevan en la cubierta una imagen distinta. Aquí están sueltas, fuera del libro.",
     "obra.ilus.p1.alt": "Ilustración de la portada de Ítaca es nunca: una ballena de acuarela con barcos y olas dibujados dentro",
     "obra.ilus.p1.pie": "Prólogo de Miriam Reyes",
     "lectura.abrir": "Prólogo y poemas",
     "lectura.prologo": "Prólogo",
-    "lectura.poemas": "Dos poemas",
     "lectura.fragmento": "Fragmento del prólogo de la edición de Candaya.",
     "obra.ilus.p2.alt": "Ilustración de la portada de Borrar el paisaje: figura recostada dibujada a tinta, con salpicaduras",
     "obra.ilus.p2.pie": "Prólogo de Margot Carrillo Pimentel",
@@ -70,9 +66,8 @@ window.I18N = {
     "obra.ilus.p3.pie": "Prólogo de Ramón Palomares",
     "obra.tab.infantil": "Literatura infantil y juvenil",
 
-    "obra.novedad.kicker": "Novedad · A fin de cuentos · Noviembre 2026",
+    "obra.novedad.kicker": "Novedad · LIJ · A fin de cuentos · Noviembre 2026",
     "obra.novedad.titulo": "Sultán Khan, el tigre blanco del ajedrez",
-    "obra.novedad.texto": "Su nuevo libro para la infancia, que publica A fin de cuentos.",
     "obra.novedad.cta": "Más información",
     "obra.novedad.cta2": "Leer un fragmento",
     "obra.novedad.cover": "Portada del nuevo libro",
@@ -177,7 +172,9 @@ window.I18N = {
     "descarga.2.titulo": "Biografía",
     "descarga.2.meta": "PDF · 158 KB",
     "descarga.3.titulo": "Fotografías en alta",
-    "descarga.3.meta": "ZIP · 9.0 MB",
+    "descarga.3.meta": "ZIP · 9.0 MB · 11 fotos con pie y hoja de uso",
+    "descarga.ver": "Ver",
+    "descarga.bajar": "Descargar",
 
     /* Contacto */
     "contacto.kicker": "Contacto",
@@ -276,7 +273,6 @@ window.I18N = {
 
 
     "sobre.kicker": "About me",
-    "sobre.titulo": "Before she could read, she learned poems by heart",
     "sobre.p1": "Cristina Falcón Maldonado loves birds, trees, wild flowers, the orchids of her homeland, kites, hot-air balloons, words, poetry, stories, music, libraries, bookshops. Treehouses, too.",
     "sobre.p2": "Her grandmother taught her those poems and, without knowing it, opened the way to a life surrounded by words — playing at playing with them, writing them down.",
     "sobre.p3": "Like those birds she never tires of watching, to the point of dreaming she is one of them, she has emigrated and lived in different countries and cities: from Trujillo, in her native Venezuela, to Bologna, in Italy, and Motril, Calahonda, Ibiza and Cuenca, in Spain.",
@@ -286,19 +282,16 @@ window.I18N = {
     "sobre.p4": "She has run creative poetry and creative writing workshops in libraries, in schools and at universities across Latin America and Europe.",
     "sobre.foto": "Cristina Falcón Maldonado",
     "sobre.foto2": "Cristina at a book presentation",
-    "sobre.cta": "Download biography",
 
 
     "obra.kicker": "Published work",
     "obra.titulo": "The books",
     "obra.tab.poesia": "Poetry",
     "obra.ilustraciones.titulo": "Migration, memory and journey",
-    "obra.ilustraciones.intro": "Each of the three Candaya collections carries a different image on its cover. Here they are on their own, away from the book.",
     "obra.ilus.p1.alt": "Cover artwork for Ítaca es nunca: a watercolour whale with boats and waves drawn inside it",
     "obra.ilus.p1.pie": "Preface by Miriam Reyes",
     "lectura.abrir": "Preface and poems",
     "lectura.prologo": "Preface",
-    "lectura.poemas": "Two poems",
     "lectura.fragmento": "An extract from the preface to the Candaya edition. The preface and the poems are given in the original Spanish.",
     "obra.ilus.p2.alt": "Cover artwork for Borrar el paisaje: a reclining figure drawn in ink, with spattered marks",
     "obra.ilus.p2.pie": "Preface by Margot Carrillo Pimentel",
@@ -306,9 +299,8 @@ window.I18N = {
     "obra.ilus.p3.pie": "Preface by Ramón Palomares",
     "obra.tab.infantil": "Children's and young adult literature",
 
-    "obra.novedad.kicker": "New · A fin de cuentos · November 2026",
+    "obra.novedad.kicker": "New · Children's · A fin de cuentos · November 2026",
     "obra.novedad.titulo": "Sultán Khan, el tigre blanco del ajedrez",
-    "obra.novedad.texto": "Her new book for children, published by A fin de cuentos.",
     "obra.novedad.cta": "More information",
     "obra.novedad.cta2": "Read an excerpt",
     "obra.novedad.cover": "Cover of the new book",
@@ -407,7 +399,9 @@ window.I18N = {
     "descarga.2.titulo": "Biography",
     "descarga.2.meta": "PDF · 158 KB",
     "descarga.3.titulo": "High-res photographs",
-    "descarga.3.meta": "ZIP · 9.0 MB",
+    "descarga.3.meta": "ZIP · 9.0 MB · 11 photographs with captions and a usage note",
+    "descarga.ver": "View",
+    "descarga.bajar": "Download",
 
     "contacto.kicker": "Contact",
     "contacto.titulo": "Let's talk",

@@ -36,12 +36,11 @@
 <header class="header" id="header">
   <div class="wrap wrap--wide header__inner">
 
+    <!-- Solo la ilustración: el nombre completo y el oficio ya están abajo,
+         en la portada, y repetirlos aquí era decirlo dos veces en la misma
+         pantalla. -->
     <a class="brand" href="#inicio" aria-label="Cristina Falcón Maldonado, escritora">
       <img class="brand__marca" src="assets/img/logo-marca.svg" alt="" width="44" height="87">
-      <span class="brand__texto">
-        Cristina Falcón <em>Maldonado</em>
-        <span data-i18n="brand.rol">Poeta y escritora</span>
-      </span>
     </a>
 
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav"
@@ -126,17 +125,12 @@
       </div>
 
       <div class="sobre__body reveal" style="--delay:120ms">
-        <h2 class="sobre__title" data-i18n="sobre.titulo">—</h2>
-
         <div class="sobre__cols">
           <p data-i18n="sobre.p1">—</p>
           <p data-i18n="sobre.p2">—</p>
           <p data-i18n="sobre.p3">—</p>
           <p data-i18n="sobre.p4">—</p>
         </div>
-
-        <p><a class="btn" href="assets/docs/cristina-falcon-biografia-completa.pdf" download
-              data-i18n="sobre.cta">Descargar biografía</a></p>
       </div>
 
     </div>
@@ -152,8 +146,9 @@
   <div class="wrap">
     <div class="versos__grid">
 
+      <!-- El largo arriba y el de un solo verso al final, que cierra mejor. -->
       <figure class="verso reveal">
-        <blockquote data-i18n-html="verso.1.texto">—</blockquote>
+        <blockquote data-i18n-html="verso.2.texto">—</blockquote>
       </figure>
 
       <div class="verso__foto reveal" style="--delay:90ms">
@@ -162,7 +157,7 @@
       </div>
 
       <figure class="verso reveal" style="--delay:180ms">
-        <blockquote data-i18n-html="verso.2.texto">—</blockquote>
+        <blockquote data-i18n-html="verso.1.texto">—</blockquote>
       </figure>
 
     </div>
@@ -183,7 +178,6 @@
       <div>
         <p class="kicker" data-i18n="obra.novedad.kicker">Novedad · Noviembre 2026</p>
         <h2 data-i18n="obra.novedad.titulo">Título del nuevo libro</h2>
-        <p data-i18n="obra.novedad.texto">[Texto pendiente]</p>
         <div class="libro__actions">
           <a class="btn btn--light" href="#contacto" data-i18n="obra.novedad.cta">Reservar ejemplar</a>
           <!-- TODO: el botón de «leer un fragmento» vuelve cuando exista el
@@ -261,7 +255,6 @@
       <section class="ilustraciones reveal" aria-labelledby="ilustraciones-titulo">
         <h3 class="ilustraciones__titulo" id="ilustraciones-titulo"
             data-i18n="obra.ilustraciones.titulo">Las ilustraciones de portada</h3>
-        <p class="ilustraciones__intro" data-i18n="obra.ilustraciones.intro">—</p>
 
         <div class="ilustraciones__lista">
           <figure class="ilustracion">
@@ -307,7 +300,6 @@
             <p>La angustia, el dolor, la protesta dominan en estas páginas de <em>Memoria errante</em>. La poesía de Cristina Falcón Maldonado se debate en la confrontación de su mundo y su existencia —en difícil devenir—, con ese reino perdido que, cada vez más ajeno y distante, apenas alcanza a dejarle ya borrosas huellas.</p>
             <p>La poeta descubre en su despertar que es una extraña, que su memoria no se reconoce en el entorno, y es entonces cuando, al intentar refundarse en el desconcierto de su nuevo acontecer, inicia la aventura de un rescate de sí misma: volverá a su ser interior, a la sensibilidad que conserva de la tierra donde naciera —un entorno virgen, exaltado en sonidos de modulación silvestre—, a los primeros hallazgos y sorpresas, a los seres dulces y afectuosos que, verdaderos guardianes de su interioridad, la han acompañado siempre.</p>
             <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
-            <h4 class="lectura__rotulo" data-i18n="lectura.poemas">—</h4>
             <figure class="poema">
               <figcaption>VII</figcaption>
               <blockquote>No menciones<br>la memoria<br>porque en ella pueden encontrar<br>ese reflejo<br>al que han decidido tirarle una piedra.</blockquote>
@@ -330,7 +322,6 @@
             <p>La experiencia del dolor, del desamparo, de lo inasible, se padece, se vive intensamente: palmo a palmo, verso a verso, en <em>Borrar el paisaje</em>. Los ochenta y cinco poemas —sobrios, breves, bien construidos— que componen el libro llevan al lector a exponer, él también, su piel, su equilibrio; a preguntarse si habrá mayor desdicha en el mundo que la de esa voz que padece, que ha perdido casa, memoria, afectos, la vida entera, pues como apunta uno de sus versos, un «callejón sin salida de horizonte» parece negar por completo otro destino que no sea el del vacío, la soledad o el estallido fatal de la memoria.</p>
             <p>Recurre Cristina Falcón Maldonado a una de las tradiciones más caras a la poesía moderna, aquella en la que la voz se aventura a recorrer los espacios indescifrables de la muerte.</p>
             <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
-            <h4 class="lectura__rotulo" data-i18n="lectura.poemas">—</h4>
             <figure class="poema">
               <figcaption>I</figcaption>
               <blockquote>Echabas atrás la cabeza<br>cerrando los ojos<br><br>las manos recogían<br>como si fueran de agua<br>tus cabellos.<br><br>Ese gesto tuyo<br>de amarrar con una cinta<br>lo inasible.</blockquote>
@@ -354,7 +345,6 @@
             <p>No vuelves, es otra cosa lo que te sucede cuando trasladas tu cuerpo al espacio que ocupaba el lugar del que partiste. No se conoce toda la profunda complejidad del desarraigo hasta que no se da esta traslación y se comprueba que aquella tierra también te hace extraña, te trata como las tierras extranjeras por las que deambulas, te desconoce, te expulsa.</p>
             <p>El tema de las raíces es complejo. Parecen tan fuertes, rompiendo las aceras. Nos comparamos con árboles recios, cuando nos parecemos más a plantas domésticas que viven en macetas. Y como las suyas, nuestras raíces son delicadas: cortas un trocito con la uña y la planta agoniza lentamente.</p>
             <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
-            <h4 class="lectura__rotulo" data-i18n="lectura.poemas">—</h4>
             <figure class="poema">
               <figcaption>III</figcaption>
               <blockquote>País del revés<br>íngrima dignidad<br>resistiendo.<br><br>País a expensas<br><br>penúltimo aliento<br>que nadie cree<br>invisible<br>país<br>famélico<br>aguantas de pie<br>con huecos en la faltriquera.</blockquote>
@@ -613,11 +603,6 @@
           </button>
           <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
                   aria-label="Ampliar imagen">
-            <img width="1400" height="933" loading="lazy" alt=""
-                 src="assets/img/galeria/22-presentacion-cuenca.jpg" data-i18n-attr="alt:galeria.22">
-          </button>
-          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
-                  aria-label="Ampliar imagen">
             <img width="922" height="615" loading="lazy" alt=""
                  src="assets/img/galeria/02-casa-america.jpg" data-i18n-attr="alt:galeria.02">
           </button>
@@ -661,6 +646,11 @@
       <section class="galeria__bloque reveal">
         <h3 class="galeria__bloque-titulo" data-i18n="galeria.infantil">—</h3>
         <div class="galeria__grid">
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1400" height="933" loading="lazy" alt=""
+                 src="assets/img/galeria/22-presentacion-cuenca.jpg" data-i18n-attr="alt:galeria.22">
+          </button>
           <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
                   aria-label="Ampliar imagen">
             <img width="1050" height="1400" loading="lazy" alt=""
@@ -791,29 +781,49 @@
 
     <div class="descargas__grid reveal">
 
-      <a class="descarga" href="assets/docs/cristina-falcon-dossier-prensa.pdf" download>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        <span>
+      <!-- Dos acciones por ficha: ver antes de bajar. Antes el bloque entero
+           era un enlace de descarga, así que no había forma de saber qué
+           traía sin bajártelo. -->
+      <div class="descarga">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M19 8v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7z"/></svg>
+        <span class="descarga__datos">
           <strong data-i18n="descarga.1.titulo">Dossier de prensa</strong>
           <span data-i18n="descarga.1.meta">PDF · 2 MB</span>
         </span>
-      </a>
+        <span class="descarga__acciones">
+          <a href="assets/docs/cristina-falcon-dossier-prensa.pdf" target="_blank"
+             rel="noopener" data-i18n="descarga.ver">Ver</a>
+          <a href="assets/docs/cristina-falcon-dossier-prensa.pdf" download
+             data-i18n="descarga.bajar">Descargar</a>
+        </span>
+      </div>
 
-      <a class="descarga" href="assets/docs/cristina-falcon-biografia-completa.pdf" download>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        <span>
+      <div class="descarga">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M19 8v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7z"/></svg>
+        <span class="descarga__datos">
           <strong data-i18n="descarga.2.titulo">Biografía</strong>
           <span data-i18n="descarga.2.meta">PDF · 300 KB</span>
         </span>
-      </a>
+        <span class="descarga__acciones">
+          <a href="assets/docs/cristina-falcon-biografia-completa.pdf" target="_blank"
+             rel="noopener" data-i18n="descarga.ver">Ver</a>
+          <a href="assets/docs/cristina-falcon-biografia-completa.pdf" download
+             data-i18n="descarga.bajar">Descargar</a>
+        </span>
+      </div>
 
-      <a class="descarga" href="assets/docs/fotografias.zip" download>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        <span>
+      <!-- El ZIP no se puede previsualizar, así que aquí se dice qué lleva. -->
+      <div class="descarga">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
+        <span class="descarga__datos">
           <strong data-i18n="descarga.3.titulo">Fotografías en alta</strong>
           <span data-i18n="descarga.3.meta">ZIP · 12 MB</span>
         </span>
-      </a>
+        <span class="descarga__acciones">
+          <a href="assets/docs/fotografias.zip" download
+             data-i18n="descarga.bajar">Descargar</a>
+        </span>
+      </div>
 
     </div>
   </div>
