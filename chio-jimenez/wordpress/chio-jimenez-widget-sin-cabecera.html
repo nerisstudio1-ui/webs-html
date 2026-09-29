@@ -2,13 +2,13 @@
      Chío Jiménez · Maquillaje profesional
      Pega TODO este bloque en un widget de HTML personalizado.
 
-     ANTES DE PEGARLO, cambia la línea de abajo por la carpeta donde
-     hayan quedado las imágenes en Medios de WordPress. Es lo único
-     que hay que tocar. La ves abriendo cualquier imagen en Medios y
-     copiando su URL hasta la última barra.
+     El dominio lo detecta solo, así que al cambiar de hosting no hay
+     que tocar nada. Lo único que se indica aquí es la carpeta dentro
+     de Medios: la ves abriendo cualquier foto en Medios y mirando su
+     URL a partir del dominio.
      =================================================================== -->
 <script>
-  window.CJ_IMAGENES = "https://orange-gull-246246.hostingersite.com/wp-content/uploads/2026/09/";
+  window.CJ_IMAGENES = location.origin + "/wp-content/uploads/2026/09/";
 </script>
 
 <style>
@@ -720,8 +720,8 @@ html{ overflow-x:clip; }
   <section class="section" id="sobre-mi">
     <div class="wrap about">
       <div class="about__media">
-        <figure class="ph ph--portrait reveal" data-ph="E7A4563-scaled.jpg">
-          <img data-cj="E7A4563-scaled.jpg" alt="Chío Jiménez, maquilladora profesional" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+        <figure class="ph ph--portrait reveal" data-ph="chio-retrato.jpg">
+          <img data-cj="chio-retrato.jpg" alt="Chío Jiménez, maquilladora profesional" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
         </figure>
         <ul class="facts reveal">
           <li><strong>2008</strong><span data-i18n="facts.start">Inicio de trayectoria</span></li>
@@ -928,14 +928,14 @@ html{ overflow-x:clip; }
           <p data-i18n="featured.paris.d">Dirección de maquillaje para <strong>Leandro Cano</strong> en la Semana de la Alta Costura de París.</p>
         </div>
         <div class="feature__galeria">
-          <figure class="ph" data-ph="image00001-scaled.jpeg">
-            <img data-cj="image00001-scaled.jpeg" alt="Desfile de Leandro Cano en la Semana de la Alta Costura de París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          <figure class="ph" data-ph="paris-01.jpg">
+            <img data-cj="paris-01.jpg" alt="Desfile de Leandro Cano en la Semana de la Alta Costura de París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
           </figure>
-          <figure class="ph" data-ph="image00002-scaled.jpeg">
-            <img data-cj="image00002-scaled.jpeg" alt="Maquillaje para el desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          <figure class="ph" data-ph="paris-02.jpg">
+            <img data-cj="paris-02.jpg" alt="Maquillaje para el desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
           </figure>
-          <figure class="ph" data-ph="image00003-scaled.jpeg">
-            <img data-cj="image00003-scaled.jpeg" alt="Backstage del desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          <figure class="ph" data-ph="paris-03.jpg">
+            <img data-cj="paris-03.jpg" alt="Backstage del desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
           </figure>
         </div>
       </article>

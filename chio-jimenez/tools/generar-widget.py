@@ -12,11 +12,13 @@ AMBITO = '.cj'          # todo queda encerrado aquí dentro
 #                          Elementor): la web va entera, con su menú.
 CON_CABECERA = '--con-cabecera' in sys.argv
 
-# Carpeta de Medios de WordPress donde están las fotos. Se puede cambiar
-# con  --base <url>  sin tocar el archivo.
-BASE_IMAGENES = '"https://orange-gull-246246.hostingersite.com/wp-content/uploads/2026/09/"'
-if '--base' in sys.argv:
-    BASE_IMAGENES = '"%s"' % sys.argv[sys.argv.index('--base') + 1]
+# Carpeta de Medios donde están las fotos. El dominio no se escribe: se
+# toma del propio sitio donde esté pegado el widget, así un cambio de
+# dominio no obliga a regenerar nada. Solo se fija la carpeta.
+RUTA_MEDIOS = '/wp-content/uploads/2026/09/'
+if '--ruta' in sys.argv:
+    RUTA_MEDIOS = sys.argv[sys.argv.index('--ruta') + 1]
+BASE_IMAGENES = 'location.origin + "%s"' % RUTA_MEDIOS
 SALIDA = sys.argv[sys.argv.index('-o')+1] if '-o' in sys.argv else (
     'chio-jimenez-elementor-lienzo.html' if CON_CABECERA else 'chio-jimenez-widget.html')
 
@@ -193,10 +195,10 @@ salida = '''<!-- ===============================================================
      Chío Jiménez · Maquillaje profesional
      Pega TODO este bloque en un widget de HTML personalizado.
 
-     ANTES DE PEGARLO, cambia la línea de abajo por la carpeta donde
-     hayan quedado las imágenes en Medios de WordPress. Es lo único
-     que hay que tocar. La ves abriendo cualquier imagen en Medios y
-     copiando su URL hasta la última barra.
+     El dominio lo detecta solo, así que al cambiar de hosting no hay
+     que tocar nada. Lo único que se indica aquí es la carpeta dentro
+     de Medios: la ves abriendo cualquier foto en Medios y mirando su
+     URL a partir del dominio.
      =================================================================== -->
 <script>
   window.CJ_IMAGENES = %s;
