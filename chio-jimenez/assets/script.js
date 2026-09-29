@@ -427,8 +427,16 @@
   function paint() {
     var p = lb.items[lb.i];
     var title = state.lang === 'en' ? (p.en || p.es) : p.es;
-    $('img', lb.el).src = 'assets/img/' + p.src;
-    $('img', lb.el).alt = title;
+    var imagen = $('img', lb.el);
+    // si la pieza cargó con la otra extensión, aquí hace falta lo mismo
+    imagen.removeAttribute('data-cj-reintento');
+    imagen.onerror = function () {
+      if (imagen.getAttribute('data-cj-reintento')) return;
+      var otra = window.cjOtraExtension && window.cjOtraExtension(imagen.src);
+      if (otra) { imagen.setAttribute('data-cj-reintento', '1'); imagen.src = otra; }
+    };
+    imagen.src = 'assets/img/' + p.src;
+    imagen.alt = title;
     $('.lb__cap', lb.el).textContent = title + ' · ' + catLabel(p.cat);
   }
 

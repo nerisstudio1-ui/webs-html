@@ -680,6 +680,28 @@ html{ overflow-x:clip; }
 
 <div class="cj">
 
+<script>
+// Si una imagen no carga, se prueba con la otra extensión antes de darla
+// por perdida. WordPress y los navegadores convierten a .webp por su
+// cuenta, y así un cambio de extensión no deja huecos en la web.
+window.cjOtraExtension = function (src) {
+  var otra = src.replace(/\.jpe?g($|\?)/i, '.webp$1');
+  if (otra !== src) return otra;
+  otra = src.replace(/\.webp($|\?)/i, '.jpg$1');
+  if (otra !== src) return otra;
+  otra = src.replace(/\.png($|\?)/i, '.webp$1');
+  return otra !== src ? otra : null;
+};
+window.cjFalla = function (img) {
+  if (!img.getAttribute('data-cj-reintento')) {
+    var otra = window.cjOtraExtension(img.getAttribute('src') || '');
+    if (otra) { img.setAttribute('data-cj-reintento', '1'); img.src = otra; return; }
+  }
+  var hueco = img.closest('.ph');
+  if (hueco) hueco.classList.add('is-empty');
+  img.remove();
+};
+</script>
 <a class="skip-link" href="#main" data-i18n="skip">Saltar al contenido</a>
 
 <header class="nav" id="nav">
@@ -716,7 +738,7 @@ html{ overflow-x:clip; }
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
     <figure class="hero__media ph" data-ph="portada-cejas.jpg">
-      <img data-cj="portada-cejas.jpg" alt="Chío Jiménez peinando a una novia el día de la boda" decoding="async" fetchpriority="high" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      <img data-cj="portada-cejas.jpg" alt="Chío Jiménez peinando a una novia el día de la boda" decoding="async" fetchpriority="high" onerror="cjFalla(this)">
     </figure>
     <div class="hero__inner">
       <p class="eyebrow reveal" data-i18n="hero.eyebrow">Maquilladora profesional · Directora de Escuma Granada</p>
@@ -739,8 +761,8 @@ html{ overflow-x:clip; }
   <section class="section" id="sobre-mi">
     <div class="wrap about">
       <div class="about__media">
-        <figure class="ph ph--portrait reveal" data-ph="chio-retrato.jpg">
-          <img data-cj="chio-retrato.jpg" alt="Chío Jiménez, maquilladora profesional" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+        <figure class="ph ph--portrait reveal" data-ph="chio-retrato.webp">
+          <img data-cj="chio-retrato.webp" alt="Chío Jiménez, maquilladora profesional" loading="lazy" decoding="async" onerror="cjFalla(this)">
         </figure>
         <ul class="facts reveal">
           <li><strong>2008</strong><span data-i18n="facts.start">Inicio de trayectoria</span></li>
@@ -767,15 +789,15 @@ html{ overflow-x:clip; }
   <!-- ============ TRÍO DE FOTOS ============ -->
   <div class="trio">
     <figure class="trio__pieza ph reveal" data-ph="creativo-01.jpg">
-      <img data-cj="creativo-01.jpg" alt="Maquillaje creativo con glitter, trabajo de moda de Chío Jiménez" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      <img data-cj="creativo-01.jpg" alt="Maquillaje creativo con glitter, trabajo de moda de Chío Jiménez" loading="lazy" decoding="async" onerror="cjFalla(this)">
       <figcaption data-i18n="trio.moda">Moda y publicaciones</figcaption>
     </figure>
     <figure class="trio__pieza ph reveal" data-ph="nov-01.jpg">
-      <img data-cj="nov-01.jpg" alt="Recogido de novia con horquillas doradas" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      <img data-cj="nov-01.jpg" alt="Recogido de novia con horquillas doradas" loading="lazy" decoding="async" onerror="cjFalla(this)">
       <figcaption data-i18n="trio.novias">Novias y eventos</figcaption>
     </figure>
     <figure class="trio__pieza ph reveal" data-ph="av-02.jpg">
-      <img data-cj="av-02.jpg" alt="Maquillaje en un rodaje" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      <img data-cj="av-02.jpg" alt="Maquillaje en un rodaje" loading="lazy" decoding="async" onerror="cjFalla(this)">
       <figcaption data-i18n="trio.av">Audiovisuales</figcaption>
     </figure>
   </div>
@@ -783,7 +805,7 @@ html{ overflow-x:clip; }
   <!-- ============ FILOSOFÍA ============ -->
   <section class="section section--quote section--dark" id="filosofia">
     <figure class="philo__fondo ph" data-ph="creativo-03.jpg" aria-hidden="true">
-      <img data-cj="creativo-03.jpg" alt="" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+      <img data-cj="creativo-03.jpg" alt="" loading="lazy" decoding="async" onerror="cjFalla(this)">
     </figure>
 
     <div class="wrap philo">
@@ -896,7 +918,7 @@ html{ overflow-x:clip; }
       <!-- La guía publicada -->
       <div class="libro reveal">
         <figure class="libro__portada ph" data-ph="guia-color.jpg">
-          <img data-cj="guia-color.jpg" alt="Portada de Pequeña guía del color para maquilladores, de Chío Jiménez Mejías" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          <img data-cj="guia-color.jpg" alt="Portada de Pequeña guía del color para maquilladores, de Chío Jiménez Mejías" loading="lazy" decoding="async" onerror="cjFalla(this)">
         </figure>
         <div class="libro__texto">
           <p class="eyebrow" data-i18n="libro.eyebrow">Publicación</p>
@@ -947,14 +969,14 @@ html{ overflow-x:clip; }
           <p data-i18n="featured.paris.d">Dirección de maquillaje para <strong>Leandro Cano</strong> en la Semana de la Alta Costura de París.</p>
         </div>
         <div class="feature__galeria">
-          <figure class="ph" data-ph="paris-01.jpg">
-            <img data-cj="paris-01.jpg" alt="Desfile de Leandro Cano en la Semana de la Alta Costura de París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          <figure class="ph" data-ph="paris-01.webp">
+            <img data-cj="paris-01.webp" alt="Desfile de Leandro Cano en la Semana de la Alta Costura de París" loading="lazy" decoding="async" onerror="cjFalla(this)">
           </figure>
-          <figure class="ph" data-ph="paris-02.jpg">
-            <img data-cj="paris-02.jpg" alt="Maquillaje para el desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          <figure class="ph" data-ph="paris-02.webp">
+            <img data-cj="paris-02.webp" alt="Maquillaje para el desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="cjFalla(this)">
           </figure>
-          <figure class="ph" data-ph="paris-03.jpg">
-            <img data-cj="paris-03.jpg" alt="Backstage del desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+          <figure class="ph" data-ph="paris-03.webp">
+            <img data-cj="paris-03.webp" alt="Backstage del desfile de Leandro Cano en París" loading="lazy" decoding="async" onerror="cjFalla(this)">
           </figure>
         </div>
       </article>
@@ -962,7 +984,7 @@ html{ overflow-x:clip; }
       <ul class="works">
         <li class="work work--foto reveal">
           <a class="work__miniatura ph" href="https://www.youtube.com/watch?v=rlheIV7Xw4w" target="_blank" rel="noopener noreferrer" data-ph="toyota.jpg" aria-label="Ver la review en YouTube">
-            <img data-cj="toyota.jpg" alt="Review de Toyota en YouTube presentada por Chío Jiménez" loading="lazy" decoding="async" onerror="this.closest('.ph').classList.add('is-empty');this.remove()">
+            <img data-cj="toyota.jpg" alt="Review de Toyota en YouTube presentada por Chío Jiménez" loading="lazy" decoding="async" onerror="cjFalla(this)">
           </a>
           <span class="work__cat" data-i18n="cat.brand">Publicidad · Marca</span>
           <h3 class="work__client">Toyota España</h3>
@@ -1583,8 +1605,16 @@ html{ overflow-x:clip; }
   function paint() {
     var p = lb.items[lb.i];
     var title = state.lang === 'en' ? (p.en || p.es) : p.es;
-    $('img', lb.el).src = (window.CJ_IMAGENES || '') + p.src;
-    $('img', lb.el).alt = title;
+    var imagen = $('img', lb.el);
+    // si la pieza cargó con la otra extensión, aquí hace falta lo mismo
+    imagen.removeAttribute('data-cj-reintento');
+    imagen.onerror = function () {
+      if (imagen.getAttribute('data-cj-reintento')) return;
+      var otra = window.cjOtraExtension && window.cjOtraExtension(imagen.src);
+      if (otra) { imagen.setAttribute('data-cj-reintento', '1'); imagen.src = otra; }
+    };
+    imagen.src = (window.CJ_IMAGENES || '') + p.src;
+    imagen.alt = title;
     $('.lb__cap', lb.el).textContent = title + ' · ' + catLabel(p.cat);
   }
 
