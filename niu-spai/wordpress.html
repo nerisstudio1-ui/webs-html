@@ -15,13 +15,29 @@
       color-scheme: dark;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    #niu, #niu * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* neutralitza estils del tema de WordPress */
+    #niu h1, #niu p, #niu span, #niu strong, #niu i, #niu nav, #niu footer, #niu button {
+      color: inherit;
+      font-family: inherit;
+      font-style: normal;
+      text-transform: none;
+      letter-spacing: inherit;
+      line-height: inherit;
+      text-shadow: none;
+      box-shadow: none;
+    }
+    #niu img { border: 0; border-radius: 0; box-shadow: none; }
 
     html, body { overflow-x: hidden; }
 
-    body {
-      min-height: 100vh;
-      min-height: 100svh;
+    #niu {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483000;
+      overflow-x: hidden;
+      overflow-y: auto;
+      text-align: left;
       background: var(--blue);
       color: var(--cream);
       font-family: var(--sans);
@@ -30,31 +46,31 @@
     }
 
     /* ---------- Fons: blau Niu amb llum suau que es mou ---------- */
-    .light, .grain, #float {
+    #niu .light, #niu .grain, #niu #float {
       position: fixed;
       inset: 0;
       pointer-events: none;
     }
-    .light { z-index: 0; overflow: hidden; }
-    .light span {
+    #niu .light { z-index: 0; overflow: hidden; }
+    #niu .light span {
       position: absolute;
       border-radius: 50%;
       filter: blur(40px);
       will-change: transform;
     }
-    .light .l1 {
+    #niu .light .l1 {
       width: 80vmax; height: 80vmax;
       top: -35vmax; left: -20vmax;
       background: radial-gradient(circle, rgba(250, 245, 240, .22), transparent 60%);
       animation: glow1 28s ease-in-out infinite alternate;
     }
-    .light .l2 {
+    #niu .light .l2 {
       width: 70vmax; height: 70vmax;
       bottom: -35vmax; right: -25vmax;
       background: radial-gradient(circle, rgba(250, 245, 240, .14), transparent 60%);
       animation: glow2 34s ease-in-out infinite alternate;
     }
-    .light .l3 {
+    #niu .light .l3 {
       width: 60vmax; height: 60vmax;
       top: 30%; left: 40%;
       background: radial-gradient(circle, rgba(31, 63, 115, .45), transparent 60%);
@@ -62,11 +78,11 @@
     }
     @keyframes glow1 { to { transform: translate(14vmax, 10vmax) scale(1.1); } }
     @keyframes glow2 { to { transform: translate(-12vmax, -8vmax) scale(1.12); } }
-    .grain { z-index: 1; opacity: .04; background-size: 180px 180px; }
+    #niu .grain { z-index: 1; opacity: .04; background-size: 180px 180px; }
 
     /* ---------- Serveis que pugen ---------- */
-    #float { z-index: 4; overflow: hidden; }
-    .word {
+    #niu #float { z-index: 4; overflow: hidden; }
+    #niu .word {
       position: absolute;
       bottom: -10vh;
       white-space: nowrap;
@@ -77,7 +93,7 @@
       will-change: transform, opacity;
       animation: rise linear forwards;
     }
-    .word i {
+    #niu .word i {
       display: inline-block;
       font-style: inherit;
       animation: sway 7s ease-in-out infinite alternate;
@@ -94,7 +110,7 @@
     }
 
     /* ---------- Contingut ---------- */
-    main {
+    #niu main {
       position: relative;
       z-index: 5;
       min-height: 100vh;
@@ -106,7 +122,7 @@
       text-align: center;
       padding: 72px 16px 88px;
     }
-    main::before {
+    #niu main::before {
       content: "";
       position: absolute;
       top: 50%; left: 50%;
@@ -119,9 +135,9 @@
       pointer-events: none;
     }
 
-    .logo-wrap { margin-bottom: 22px; }
+    #niu .logo-wrap { margin-bottom: 22px; }
 
-    .logo {
+    #niu .logo {
       position: relative;
       display: block;
       width: clamp(180px, 52vw, 270px);
@@ -131,7 +147,7 @@
       animation: appear 2.4s ease both;
     }
 
-    .tag {
+    #niu .tag {
       font-size: 11px;
       letter-spacing: .42em;
       margin-right: -.42em;
@@ -140,7 +156,7 @@
       animation: appear 2.4s .5s ease both;
     }
 
-    .line {
+    #niu .line {
       width: 1px;
       height: 44px;
       margin: 26px auto;
@@ -149,7 +165,7 @@
       animation: appear 2.4s .8s ease both;
     }
 
-    h1 {
+    #niu h1 {
       font-family: var(--sans);
       font-weight: 300;
       font-size: clamp(1.55rem, 5vw, 2.3rem);
@@ -159,9 +175,9 @@
       text-wrap: balance;
       animation: appear 2.4s 1s ease both;
     }
-    h1 strong { font-weight: 500; }
+    #niu h1 strong { font-weight: 500; }
 
-    .soon {
+    #niu .soon {
       margin-top: 24px;
       display: inline-flex;
       align-items: center;
@@ -172,7 +188,7 @@
       text-transform: uppercase;
       animation: appear 2.4s 1.3s ease both;
     }
-    .soon::before, .soon::after {
+    #niu .soon::before, #niu .soon::after {
       content: "";
       width: 28px;
       height: 1px;
@@ -180,7 +196,7 @@
       opacity: .5;
     }
 
-    .lead {
+    #niu .lead {
       max-width: 410px;
       margin-top: 18px;
       font-size: 16px;
@@ -190,14 +206,14 @@
       animation: appear 2.4s 1.6s ease both;
     }
 
-    .lead strong { font-weight: 500; }
+    #niu .lead strong { font-weight: 500; }
 
     @keyframes appear {
       from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
       to   { opacity: 1; transform: none; filter: none; }
     }
 
-    .lang {
+    #niu .lang {
       position: fixed;
       top: 0; right: 0;
       z-index: 6;
@@ -205,7 +221,7 @@
       gap: 4px;
       padding: calc(18px + env(safe-area-inset-top, 0px)) 16px 0;
     }
-    .lang button {
+    #niu .lang button {
       font: inherit;
       font-size: 11px;
       font-weight: 400;
@@ -216,16 +232,18 @@
       border-radius: 999px;
       padding: 6px 10px 6px 12px;
       cursor: pointer;
+      line-height: 1;
+      min-height: 0;
       transition: color .3s, border-color .3s;
     }
-    .lang button:hover { color: var(--cream); }
-    .lang button[aria-pressed="true"] {
+    #niu .lang button:hover { color: var(--cream); }
+    #niu .lang button[aria-pressed="true"] {
       color: var(--cream);
       border-color: rgba(250, 245, 240, .45);
     }
-    .lang button:focus-visible { outline: 1px solid var(--cream); outline-offset: 2px; }
+    #niu .lang button:focus-visible { outline: 1px solid var(--cream); outline-offset: 2px; }
 
-    footer {
+    #niu footer {
       position: fixed;
       left: 0; right: 0; bottom: 0;
       z-index: 5;
@@ -237,17 +255,18 @@
     }
 
     @media (max-height: 640px) {
-      .logo { width: 170px; }
-      .line { height: 24px; margin: 14px auto; }
-      footer { display: none; }
+      #niu .logo { width: 170px; }
+      #niu .line { height: 24px; margin: 14px auto; }
+      #niu footer { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .word i, .logo, .tag, .line, h1, .soon, .lead { animation: none; }
-      .light span { animation: none; }
+      #niu .word i, #niu .logo, #niu .tag, #niu .line, #niu h1, #niu .soon, #niu .lead { animation: none; }
+      #niu .light span { animation: none; }
     }
   </style>
-<div class="light" aria-hidden="true"><span class="l1"></span><span class="l2"></span><span class="l3"></span></div>
+<div id="niu">
+  <div class="light" aria-hidden="true"><span class="l1"></span><span class="l2"></span><span class="l3"></span></div>
   <div class="grain" id="grain" aria-hidden="true"></div>
   <div id="float" aria-hidden="true"></div>
 
@@ -452,3 +471,4 @@
       startWords();
     }
   </script>
+</div>
