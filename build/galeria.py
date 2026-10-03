@@ -28,6 +28,8 @@ BLOQUES = [
         ('07', '07-paramo.jpg'),
         ('05', '05-festival-trujillo.jpg'),
         ('20', '20-con-ramon-palomares.jpg'),
+        ('27', '27-camino-andes.jpg'),
+        ('28', '28-valle.jpg'),
     ]),
     ('poesia', [
         ('08', '08-itaca-libreria.jpg'),
@@ -38,10 +40,14 @@ BLOQUES = [
         ('23', '23-aires-poetics.jpg'),
         ('24', '24-lectura-barcelona.jpg'),
         ('21', '21-libreria-amigos.jpg'),
+        ('29', '29-mesa-casa-america.jpg'),
+        ('30', '30-presentacion-cuenca-2.jpg'),
+        ('31', '31-lectura-escenario.jpg'),
     ]),
     ('escena', [
         ('25', '25-auditori-montcada.jpg'),
         ('26', '26-programa-deria.jpg'),
+        ('32', '32-cartel-jamais-seul.jpg'),
     ]),
     ('infantil', [
         # La presentación de «De aventuras por Cuenca» con los niños estaba
@@ -53,11 +59,15 @@ BLOQUES = [
         ('18', '18-bolonia-kalandraka.jpg'),
         ('04', '04-bolonia.jpg'),
         ('16', '16-feria-bolonia.jpg'),
+        ('33', '33-stand-kalandraka.jpg'),
+        ('34', '34-mesa-libros.jpg'),
     ]),
     ('cuenca', [
         ('10', '10-cuenca.jpg'),
         ('06', '06-haciendo-papel.jpg'),
         ('09', '09-luna.jpg'),
+        ('35', '35-haciendo-papel-2.jpg'),
+        ('36', '36-con-su-perra.jpg'),
     ]),
 ]
 

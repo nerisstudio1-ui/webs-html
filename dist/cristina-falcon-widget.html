@@ -1356,10 +1356,15 @@
   line-height: 1;
 }
 #cfm-web .footer__marca {
-  width: auto;
-  height: 4.5rem;
-  margin-bottom: 1.25rem;
-  padding: 0.5rem;
+  /* Círculo, no óvalo: el dibujo es más alto que ancho, así que con
+     width:auto el redondeo de 50 % daba una elipse. Caja cuadrada y el
+     dibujo dentro, que ahí abajo sobra sitio para que se vea. */
+  width: clamp(6.5rem, 12vw, 8.5rem);
+  aspect-ratio: 1;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
   background: var(--crema);
   border-radius: 50%;
 }
@@ -1753,9 +1758,8 @@
             <h4 class="lectura__rotulo" data-i18n="lectura.prologo">—</h4>
             <p class="lectura__titulo">Palabras iniciales</p>
             <p class="lectura__autor">Ramón Palomares</p>
-            <p>La angustia, el dolor, la protesta dominan en estas páginas de <em>Memoria errante</em>. La poesía de Cristina Falcón Maldonado se debate en la confrontación de su mundo y su existencia —en difícil devenir—, con ese reino perdido que, cada vez más ajeno y distante, apenas alcanza a dejarle ya borrosas huellas.</p>
-            <p>La poeta descubre en su despertar que es una extraña, que su memoria no se reconoce en el entorno, y es entonces cuando, al intentar refundarse en el desconcierto de su nuevo acontecer, inicia la aventura de un rescate de sí misma: volverá a su ser interior, a la sensibilidad que conserva de la tierra donde naciera —un entorno virgen, exaltado en sonidos de modulación silvestre—, a los primeros hallazgos y sorpresas, a los seres dulces y afectuosos que, verdaderos guardianes de su interioridad, la han acompañado siempre.</p>
-            <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
+            <p>La angustia, el dolor, la protesta dominan en estas páginas de Memoria errante. La poesía de Cristina Falcón Maldonado se debate en la confrontación de su mundo y su existencia –en difícil devenir–, con ese reino perdido que, cada vez más ajeno y distante, apenas alcanza a dejarle ya borrosas huellas. (Mi lectura en principio se extrañó de encontrar experiencias tan desoladoras en este libro que me resulta una hermosa elegía y, desde mi ser interior le pregunto: ¿De dónde has traído, poeta, esta rama de flores tan dolidas? Tal vez usted me respondiera que la memoria tiene su condición de árbol errante. Podríamos entonces recordar unos versos de un poeta brumoso del México antiguo y prehispánico, algo así como: “No es cierto que vinimos a vivir en la tierra/ sólo vinimos a soñar/ en hierba de primavera vinimos a convertirnos”. Y usted quién sabe si me diría que la memoria la hiere con sus imágenes y sus seres errantes.) La poeta descubre en su despertar que es una extraña, que su memoria no se reconoce en el entorno, y es entonces cuando, al intentar refundarse en el desconcierto de su nuevo acontecer, inicia la aventura de un rescate de sí misma: volverá a su ser interior, a la sensibilidad que conserva de la tierra donde naciera –un entorno virgen, exaltado en sonidos de modulación silvestre–, a los primeros hallazgos y sorpresas, a los seres dulces y afectuosos que, verdaderos guardianes de su interioridad, la han acompañado siempre. (Poeta Cristina, quiero decirle en estas breves líneas que creo en su poesía y tengo fe en su condición creadora, no importa de qué madeja venga, de cultivo esmerado –seda o lino– o de algodón silvestre como el que hallamos tantas veces en nuestras sierras. Su Memoria Errante es bella y profunda: ¡cómo irradian esos personajes de ausencia doliente, cómo se iluminan aquellos lugares sagrados que los ojos guardan en lo imposible! Allá están, desandando riscos y hondonadas que el tiempo y la errancia han respetado, los espacios que, en el sufrimiento y la alegría, usted y yo, y muchos, muchos hasta el fin compartimos.) Con la firmeza y la seguridad de quien ha recorrido la experiencia del poema y asumido su difícil condición, Cristina Falcón Maldonado sortea con propiedad el áspero trabajo de cavar incansablemente en la veta de sus vivencias para develar su yo más hechizado y profundo. Los poemas de Memoria errante se convierten así en un tortuoso monólogo acentuadamente dramático –por la intensidad y desnudez de su habla con un fuerte matiz de oralidad–, una dura confidencia que es también una llamativa y necesaria reflexión a propósito del</p>
+            <p>desarraigo que duele y traumatiza “hasta los huesos”. (De todos modos usted no teme, su armonía y su musicalidad se reconocen altivas. Aunque su elegía alcanza niveles de profunda conmoción, advierto una resistencia orgullosa a cuanto de difícil suele sobrevenir a nuestra humana condición.) Al profundizar en su experiencia íntima, Cristina Falcón Maldonado remite, tal vez sin pretenderlo, al drama de tantos seres de nuestro tiempo, obligados a dejar sus tierras y su entorno familiar –geográfico y emocional– para emigrar en busca de un vivir menos tortuoso y más soportable, seres que también deben afrontar el desarraigo como destrucción y reconstrucción de sí mismos. (Queda en estas palabras mi reconocimiento a la audacia, belleza, dignidad e inteligencia con que asume este nuevo desafío de su hermosa y valiente poesía.)</p>
             <figure class="poema">
               <figcaption>VII</figcaption>
               <blockquote>No menciones<br>la memoria<br>porque en ella pueden encontrar<br>ese reflejo<br>al que han decidido tirarle una piedra.</blockquote>
@@ -1775,9 +1779,9 @@
             <h4 class="lectura__rotulo" data-i18n="lectura.prologo">—</h4>
             <p class="lectura__titulo">Si después la vida</p>
             <p class="lectura__autor">Margot Carrillo Pimentel</p>
-            <p>La experiencia del dolor, del desamparo, de lo inasible, se padece, se vive intensamente: palmo a palmo, verso a verso, en <em>Borrar el paisaje</em>. Los ochenta y cinco poemas —sobrios, breves, bien construidos— que componen el libro llevan al lector a exponer, él también, su piel, su equilibrio; a preguntarse si habrá mayor desdicha en el mundo que la de esa voz que padece, que ha perdido casa, memoria, afectos, la vida entera, pues como apunta uno de sus versos, un «callejón sin salida de horizonte» parece negar por completo otro destino que no sea el del vacío, la soledad o el estallido fatal de la memoria.</p>
-            <p>Recurre Cristina Falcón Maldonado a una de las tradiciones más caras a la poesía moderna, aquella en la que la voz se aventura a recorrer los espacios indescifrables de la muerte.</p>
-            <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
+            <p>La experiencia del dolor, del desamparo, de lo inasible, se padece, se vive intensamente: palmo a palmo, verso a verso, en Borrar el paisaje de Cristina Falcón Maldonado (Candaya, Barcelona, 2014). Los ochenta y cinco poemas (sobrios, breves, bien construidos) que componen el libro llevan al lector a exponer, él también, su piel, su equilibrio; a preguntarse si habrá mayor desdicha en el mundo que la de esa voz que padece, que ha perdido casa, memoria, afectos, la vida entera, pues como apunta uno de sus versos, un “callejón sin salida de horizonte” parece negar por completo otro destino que no sea el del vacío, la soledad o el estallido fatal de la memoria. Recurre Cristina Falcón Maldonado a una de las tradiciones más caras a la poesía moderna, aquella en la que la voz se aventura a recorrer los espacios indescifrables de la muerte. Eso que Vladimir Jankélévitch llama “la naturaleza inconcebible del instante mortal”, llega a encontrar en los poemas una suerte de iluminación instantánea, que lleva al lector a la extraña sensación o a la certeza de haber rozado de un modo casi imperceptible la muerte: “Una mosca/ me recuerda que estoy sola./ Mi carne es un despojo/ sobre el que frota sus patas./ No me muevo./ No la siento./ Lo sabe”. En la mayoría de los textos de Cristina Falcón Maldonado el lector vive situaciones límite que bien pudieran tocar los extremos de la plenitud o del vacío; todo ello expresado bajo la premisa de que esa experiencia cristalice en la palabra. Es así como llegamos a decir que Borrar el paisaje no es solo catarsis; es, por encima de todo, escritura; un ejercicio de la palabra que se acerca poética y reflexivamente a la vida, al sentido de decir la vida, o lo que es más complejo aún, a la aventura de encontrar al menos una palabra o una imagen que figure su ausencia. Así como la espera o la ausencia se convierten en una manera de padecimiento similar o mayor al de la muerte, la imposibilidad de volver a vivir la belleza, convierte el tema en desconcierto o desesperanza: “Qué hago ahora con la belleza./ Las ciudades que no verás/ ¿para quién han quedado?/ Para quién entonces/ el río los pájaros para quién”. Frente a la realidad irrevocable, indescriptible de la muerte, la religión ofrece respuestas, o al menos la posibilidad de amainar el terror al vacío con ciertas promesas que llegan a convertir la certeza de la ausencia en la posibilidad de volver a una vida, otra vida feliz,</p>
+            <p>en la que jamás se volverá a experimentar la muerte. Distinta resulta la situación para quien no nombra, no cree o no encuentra respuestas al enigma. La muerte, entonces, se convierte en otra cosa; en un acto cruel en el que se arrebata sigilosa, groseramente la legitimidad de la vida: “Acechas en silencio/ esperas a mi paso/ enseñas tus fauces/ te abalanzas la emprendes/ a dentelladas contra el aire”. Borrar el paisaje ensaya la aproximación a un sentido de la muerte mediante el antiguo arte de la palabra: el símbolo, la metáfora o la alegoría. Vivir el desgarramiento que trae consigo la desaparición del otro será posible mediante la experiencia de la palabra, de una poética de la muerte. Paradójicamente la escritura se convertirá también en una suerte de protección, en la casa que resguarda a ese ser amenazado por la muerte: “Escribo para salvarme a sabiendas de lo inútil/ ojalá me vuelva olvido”. La idea de escribir para “salvarse” contrasta con el deseo de desaparecer: “ojalá me vuelva olvido”. La escritura lleva, más bien, en sí misma la misión de hacer perdurable la palabra, la evanescencia de la voz. El tiempo de la palabra escrita conjura la desaparición, el olvido: de alguna manera, el sentido de la eternidad cristaliza en el texto. ¿Qué sentido podría tener, entonces, el olvido en el poema? A lo largo de la lectura, hemos asistido a la configuración de una voz que sin dejar de acercarse</p>
+            <p>poéticamente al tema de la muerte, tiene conciencia de que esa experiencia le está vedada mientras viva: es otro quien muere, circunstancia que no alivia el padecer: “Vendrán a decirme que te has muerto./ Caeré en picado/ será lenta agonía/ pero no tanto como la espera no./ Peor que la muerte/ la ausencia”. Probablemente los textos de Cristina Falcón Maldonado sean la expresión estética del conjuro que solemos hacer, en la escena de la vida o del poema, ante la certeza de que nos aguarda la nada: “Está el día/ como para volar samuracas/ como para salir al patio./ Alargar el hilo/ a ver si remontan./ A ver / si los sueños”. En una de sus interesantes disertaciones sobre el texto y la lectura, Paul Ricoeur plantea que un buen lector es aquél que afina la escucha hasta llegar a descubrir “la invitación del poema”. En los textos de Cristina Falcón Maldonado esa invitación se cifra en una voz poética para la cual aproximarse al indescifrable sentido de la muerte conlleva un complejo ejercicio de la palabra: palabra que en Borrar el paisaje requiere ser escuchada en sus varios sentidos y tonalidades; pero que, por sobre todas las cosas, demanda un lector, sensible lector, que le sirva de compañía.</p>
             <figure class="poema">
               <figcaption>I</figcaption>
               <blockquote>Echabas atrás la cabeza<br>cerrando los ojos<br><br>las manos recogían<br>como si fueran de agua<br>tus cabellos.<br><br>Ese gesto tuyo<br>de amarrar con una cinta<br>lo inasible.</blockquote>
@@ -1797,10 +1801,24 @@
             <h4 class="lectura__rotulo" data-i18n="lectura.prologo">—</h4>
             <p class="lectura__titulo">De lo que no se puede escribir ni callar</p>
             <p class="lectura__autor">Miriam Reyes</p>
-            <p>Volver a un espacio físico no es volver al lugar del que partimos. Aunque sigan allí «la casa / el yagrumo / el apamate / la tierra roja // la quimera». Aunque sobreviva la madre en él. El lugar del que partimos nunca es un espacio físico. Le pasa como a la persona que fuimos: es otro llamándose igual. Solo existe como sustrato o recuerdo.</p>
-            <p>No vuelves, es otra cosa lo que te sucede cuando trasladas tu cuerpo al espacio que ocupaba el lugar del que partiste. No se conoce toda la profunda complejidad del desarraigo hasta que no se da esta traslación y se comprueba que aquella tierra también te hace extraña, te trata como las tierras extranjeras por las que deambulas, te desconoce, te expulsa.</p>
-            <p>El tema de las raíces es complejo. Parecen tan fuertes, rompiendo las aceras. Nos comparamos con árboles recios, cuando nos parecemos más a plantas domésticas que viven en macetas. Y como las suyas, nuestras raíces son delicadas: cortas un trocito con la uña y la planta agoniza lentamente.</p>
-            <p class="lectura__nota" data-i18n="lectura.fragmento">—</p>
+            <p>Volver a un espacio físico no es volver al lugar del que partimos. Aunque sigan allí «la casa/el yagrumo/el apamate/ la tierra roja// la quimera». Aunque sobreviva la madre en él. El lugar del que partimos nunca es un espacio físico. Le pasa como a la persona que fuimos: es otro llamándose igual. Solo existe como sustrato o recuerdo.</p>
+            <p>No vuelves, es otra cosa lo que te sucede cuando trasladas tu cuerpo al espacio que ocupaba el lugar del que partiste. No se conoce toda la profunda complejidad del desarraigo hasta que no se da esta traslación y se comprueba que aquella tierra también te hace extraña, te trata como las tierras extranjeras por las que deambulas, te desconoce, te expulsa. Ella a ti y tú a ella. Porque tú a ella también la encontrarás extraña.</p>
+            <p>El tema de las raíces es complejo. Parecen tan fuertes, rompiendo las aceras. Nos comparamos con árboles recios, cuando nos parecemos más a plantas domésticas que viven en macetas. Y como las suyas, nuestras raíces son delicadas, cortas un trocito con la uña y la planta agoniza lentamente. Son cosas en las que pienso mientras Ítaca es nunca reverbera en mí. Cuando se da el trasvase del libro al cuerpo y en este</p>
+            <p>nuevo recipiente, muy usado ya, muy lleno de restos, pero con suficientes huecos y recovecos, los poemas resuenan y reverberan manifestando su doble naturaleza lumínica y sonora, no se sabe por dónde puede salir un eco, por dónde un susurro rompe de pronto como un grito, un rayo de luz se transforma en relámpago, o un paso ligero se convierte en pesadas pisadas que hacen vibrar toda la estructura. Cada quien, según su ser, amplificará o tapará un chorro distinto de luz o de voz. En mí, su actividad es frenética: encuentran un espacio idóneo, como supongo que lo encontrarán en cualquiera que desee volver adonde fue y entienda que Ítaca es nunca. Ítaca es nunca. Volver no es una Odisea. No es un camino de aprendizaje: Ítaca es nunca. Me repito obsesivamente ese título que para mí resume una certeza devastadora: Ítaca es nunca (por siempre en nuestra vida).</p>
+            <p>La primera vez que leí este poemario tuve que detenerme antes de acabar la primera parte, «Pero país». El país amado ya no existe y los poemas punzan. Estraga saber. Me tomó desprevenida, no esperaba que me doliese así. Tuve que dejar pasar tiempo hasta volver a él. Se lo dije a su autora en un correo. Me respondió, qué te puedo decir más allá de lo que ya dice el epígrafe de Tranströmer que abre el libro: «¡Demasiado lo que no se puede escribir ni callar!/ Está paralizado por lo que sucede muy lejos/ aunque la prodigiosa mochila late como un corazón». Así es, demasiado. Como demasiados son los paralizados por lo que sucede muy lejos. Demasiados los obligados a «sobrevivir/ de espaldas al animal».</p>
+            <p>No quise preguntar nada y ella no me contó nada, leí y releí este libro sin otras pistas que las que están en sus versos y la guía de los epígrafes que lo acompañan. Con estos materiales construí el relato de mi lectura: la historia de un regreso. Un regreso al país para regresar a la casa, para regresar a la madre. Allí, junto a la madre, que «emprende cada día/ su viaje para siempre», encontré el clímax del relato, la mayor conmoción. Una madre dejando de ser madre, en una casa dejando de ser casa, en un país dejando de ser país. Una tragedia colectiva, histórica, y un drama íntimo. Un viaje, un difícil y doloroso viaje, un viaje imposible de vuelta. Y un después de eso. «La poesía cuenta./ No la muerte». Ya no se vuelve regresando el cuerpo a ninguna parte. Si acaso, se vuelve encontrando en otras personas el lugar. Este es el relato que cupo en mi cuerpo, cada quien leerá según sus cavidades.</p>
+            <p>Pero la poesía no es un relato, la poesía va más allá o más acá de cualquier relato posible. Más adentro, más cerca y más lejos, más profundo, todavía más profundo que donde se alimentan las raíces. Desde la poesía –volviendo al epígrafe de Tranströmer– Cristina Falcón Maldonado logra lo imposible: escribir lo que no se puede escribir ni callar. Construye este libro desde ese exceso de peso, el de una carga que dificulta el camino, pero que no se puede soltar. No se trata de dar circunloquios, al contrario, para escribir lo que no se puede escribir ni callar que cada palabra lleve lo que dice –como apuntaba Cadenas en su «Ars poética». El despojamiento del ser se corresponde en su lenguaje. Decir: País a expensas, y condensar dos décadas de historia.</p>
+            <p>Decir:</p>
+            <p>Muerde la distancia</p>
+            <p>envenena</p>
+            <p>afinca</p>
+            <p>su dentellada</p>
+            <p>de bestia su ojo</p>
+            <p>su herida de par en par</p>
+            <p>su nadie</p>
+            <p>su todo a cuestas.</p>
+            <p>Y dejarnos temblando en ese ojo. Decir: Pero país. Pero casa. Pero madre. Sin posesivos, sin posesiones, sin cópula. Como las ausencias en las que se convierten.</p>
+            <p>Sigo leyendo este libro, que no se me agota, que a cada nueva lectura me deja presentir algo a lo que todavía no había llegado, y lo seguiré leyendo siempre que mi necesidad me lleve a él (y sé que me llevará aún muchas veces). Acompañarlo con estas palabras es para mí un regalo inesperado que debo a la generosidad de su autora. Aquí encuentro una tierra para «amar a sabiendas/ de los días contados», un país, una casa, una madre y un nosotros donde nunca seré extranjera. Miriam Reyes</p>
             <figure class="poema">
               <figcaption>III</figcaption>
               <blockquote>País del revés<br>íngrima dignidad<br>resistiendo.<br><br>País a expensas<br><br>penúltimo aliento<br>que nadie cree<br>invisible<br>país<br>famélico<br>aguantas de pie<br>con huecos en la faltriquera.</blockquote>
@@ -2037,6 +2055,16 @@
             <img width="1181" height="886" loading="lazy" alt=""
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/20-con-ramon-palomares.jpg" data-i18n-attr="alt:galeria.20">
           </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1400" height="1050" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/27-camino-andes.jpg" data-i18n-attr="alt:galeria.27">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1000" height="563" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/28-valle.jpg" data-i18n-attr="alt:galeria.28">
+          </button>
         </div>
       </section>
       <section class="galeria__bloque reveal">
@@ -2082,6 +2110,21 @@
             <img width="1400" height="931" loading="lazy" alt=""
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/21-libreria-amigos.jpg" data-i18n-attr="alt:galeria.21">
           </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1280" height="853" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/29-mesa-casa-america.jpg" data-i18n-attr="alt:galeria.29">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1051" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/30-presentacion-cuenca-2.jpg" data-i18n-attr="alt:galeria.30">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="853" height="1280" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/31-lectura-escenario.jpg" data-i18n-attr="alt:galeria.31">
+          </button>
         </div>
       </section>
       <section class="galeria__bloque reveal">
@@ -2096,6 +2139,11 @@
                   aria-label="Ampliar imagen">
             <img width="1212" height="548" loading="lazy" alt=""
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/26-programa-deria.jpg" data-i18n-attr="alt:galeria.26">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="990" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/32-cartel-jamais-seul.jpg" data-i18n-attr="alt:galeria.32">
           </button>
         </div>
       </section>
@@ -2137,6 +2185,16 @@
             <img width="1050" height="1400" loading="lazy" alt=""
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/16-feria-bolonia.jpg" data-i18n-attr="alt:galeria.16">
           </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1050" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/33-stand-kalandraka.jpg" data-i18n-attr="alt:galeria.33">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="1050" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/34-mesa-libros.jpg" data-i18n-attr="alt:galeria.34">
+          </button>
         </div>
       </section>
       <section class="galeria__bloque reveal">
@@ -2156,6 +2214,16 @@
                   aria-label="Ampliar imagen">
             <img width="473" height="697" loading="lazy" alt=""
                  src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/09-luna.jpg" data-i18n-attr="alt:galeria.09">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="788" height="1400" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/35-haciendo-papel-2.jpg" data-i18n-attr="alt:galeria.35">
+          </button>
+          <button class="galeria__item" data-i18n-attr="aria-label:galeria.ampliar"
+                  aria-label="Ampliar imagen">
+            <img width="531" height="798" loading="lazy" alt=""
+                 src="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/36-con-su-perra.jpg" data-i18n-attr="alt:galeria.36">
           </button>
         </div>
       </section>
@@ -2247,9 +2315,9 @@
           <span data-i18n="descarga.1.meta">PDF · 2 MB</span>
         </span>
         <span class="descarga__acciones">
-          <a href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/cristina-falcon-dossier-prensa.pdf" target="_blank"
+          <a href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/cristina-falcon-dossier.pdf" target="_blank"
              rel="noopener" data-i18n="descarga.ver">Ver</a>
-          <a href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/cristina-falcon-dossier-prensa.pdf" download
+          <a href="https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/09/cristina-falcon-dossier.pdf" download
              data-i18n="descarga.bajar">Descargar</a>
         </span>
       </div>
@@ -2547,7 +2615,6 @@ window.I18N = {
     "obra.ilus.p1.pie": "Prólogo de Miriam Reyes",
     "lectura.abrir": "Prólogo y poemas",
     "lectura.prologo": "Prólogo",
-    "lectura.fragmento": "Fragmento del prólogo de la edición de Candaya.",
     "obra.ilus.p2.alt": "Ilustración de la portada de Borrar el paisaje: figura recostada dibujada a tinta, con salpicaduras",
     "obra.ilus.p2.pie": "Prólogo de Margot Carrillo Pimentel",
     "obra.ilus.p3.alt": "Ilustración de la portada de Memoria errante: un sello de migración de Venezuela sobre un texto manuscrito",
@@ -2626,6 +2693,16 @@ window.I18N = {
     "galeria.24": "Lectura de poesía en Barcelona",
     "galeria.25": "Ante el cartel de Memoria errante en el Auditori de Montcada",
     "galeria.26": "Programa del montaje de Memoria errante por Dèria Teatre",
+    "galeria.27": "En un camino de los Andes venezolanos",
+    "galeria.28": "El valle andino que rodea Trujillo",
+    "galeria.29": "Sus libros en la mesa de Casa de América",
+    "galeria.30": "Presentación en Cuenca, ante la verja de la Fundación Antonio Pérez",
+    "galeria.31": "Leyendo sobre el escenario",
+    "galeria.32": "Cartel de «Jamais seul», de Lamina Teatre",
+    "galeria.33": "En el stand de Kalandraka, en la Feria de Bolonia",
+    "galeria.34": "Mesa con sus libros infantiles en una feria",
+    "galeria.35": "En el taller de fabricación de papel",
+    "galeria.36": "Con su perra",
 
     "obra.editorial": "Ver en la editorial",
     "obra.guia": "Ver la guía de lectura",
@@ -2780,7 +2857,6 @@ window.I18N = {
     "obra.ilus.p1.pie": "Preface by Miriam Reyes",
     "lectura.abrir": "Preface and poems",
     "lectura.prologo": "Preface",
-    "lectura.fragmento": "An extract from the preface to the Candaya edition. The preface and the poems are given in the original Spanish.",
     "obra.ilus.p2.alt": "Cover artwork for Borrar el paisaje: a reclining figure drawn in ink, with spattered marks",
     "obra.ilus.p2.pie": "Preface by Margot Carrillo Pimentel",
     "obra.ilus.p3.alt": "Cover artwork for Memoria errante: a Venezuelan migration stamp over handwritten text",
@@ -2856,6 +2932,16 @@ window.I18N = {
     "galeria.24": "A poetry reading in Barcelona",
     "galeria.25": "In front of the Memoria errante poster at the Auditori in Montcada",
     "galeria.26": "Programme for Dèria Teatre's staging of Memoria errante",
+    "galeria.27": "On a road in the Venezuelan Andes",
+    "galeria.28": "The Andean valley around Trujillo",
+    "galeria.29": "Her books on the table at Casa de América",
+    "galeria.30": "A presentation in Cuenca, by the railings of the Fundación Antonio Pérez",
+    "galeria.31": "Reading on stage",
+    "galeria.32": "Poster for «Jamais seul», by Lamina Teatre",
+    "galeria.33": "At the Kalandraka stand, Bologna Book Fair",
+    "galeria.34": "A table of her children's books at a fair",
+    "galeria.35": "At the papermaking workshop",
+    "galeria.36": "With her dog",
 
     "obra.editorial": "View at the publisher",
     "obra.guia": "View the reading guide",
