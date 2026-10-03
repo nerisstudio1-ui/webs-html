@@ -14,7 +14,7 @@ Genera dos versiones:
       pero todo el CSS va encerrado bajo #cfm-web para que no toque nada
       del tema. Imágenes y vídeos se sirven desde BASE.
 """
-import base64, mimetypes, pathlib, re, sys
+import base64, io, mimetypes, os, pathlib, re, sys
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 ENVOLTORIO = "cfm-web"
@@ -114,6 +114,35 @@ def acotar(css):
 
 
 # --------------------------------------------------------------------- medios
+def leer_ubicaciones():
+    """Dónde vive cada archivo en la biblioteca de medios.
+
+    WordPress reparte lo que subes en carpetas por año y mes, según cuándo
+    lo subes, así que una sola base no sirve: lo de septiembre quedó en
+    /uploads/2026/09/ y lo de octubre en /uploads/2026/10/. En
+    build/medios-url.txt se anota la dirección completa de los que no están
+    en la carpeta por defecto.
+    """
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), "medios-url.txt")
+    if not os.path.exists(f):
+        return {}
+    mapa = {}
+    with io.open(f, encoding="utf-8") as h:
+        for linea in h:
+            linea = linea.split("#")[0].strip()
+            if "=" in linea:
+                nombre, url = linea.split("=", 1)
+                mapa[nombre.strip()] = url.strip()
+    return mapa
+
+
+UBICACIONES = leer_ubicaciones()
+
+
+def url_de(nombre):
+    return UBICACIONES.get(nombre, BASE + nombre)
+
+
 def medios(texto, empotrar_imagenes):
     """Cambia las rutas de assets/img y assets/video.
 
@@ -125,10 +154,10 @@ def medios(texto, empotrar_imagenes):
         if rel.endswith(".svg"):
             return m.group(0).replace(rel, a_datos(rel))
         if rel.startswith(("assets/video/", "assets/docs/")):
-            return m.group(0).replace(rel, BASE + rel.split("/")[-1])
+            return m.group(0).replace(rel, url_de(rel.split("/")[-1]))
         if empotrar_imagenes:
             return m.group(0).replace(rel, a_datos(rel))
-        return m.group(0).replace(rel, BASE + rel.split("/")[-1])
+        return m.group(0).replace(rel, url_de(rel.split("/")[-1]))
     return re.sub(r'(?:src|href|poster)="(assets/(?:img|video|docs)/[^"]+)"', cambio, texto)
 
 

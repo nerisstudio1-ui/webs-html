@@ -1,0 +1,27 @@
+# Dónde vive cada archivo en la biblioteca de medios de WordPress.
+#
+# WordPress guarda lo que subes en carpetas por año y mes, según CUÁNDO lo
+# subes. Lo de septiembre quedó en /uploads/2026/09/ y lo de octubre en
+# /uploads/2026/10/, así que una sola dirección base no vale para todos.
+#
+# Aquí se anota, para cada archivo que no esté en la carpeta por defecto, su
+# dirección completa. Lo que no aparezca usa la base que se le pasa a
+# empaquetar.py.
+#
+# Formato:  nombre-del-archivo = dirección completa
+#
+# Para saber la dirección de uno: Medios → clic en el archivo → copiar el
+# campo «URL del archivo».
+
+# --- subidos en octubre de 2026 -------------------------------------------
+27-camino-andes.jpg          = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/27-camino-andes.jpg
+28-valle.jpg                 = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/28-valle.jpg
+29-mesa-casa-america.jpg     = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/29-mesa-casa-america.jpg
+30-presentacion-cuenca-2.jpg = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/30-presentacion-cuenca-2.jpg
+31-lectura-escenario.jpg     = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/31-lectura-escenario.jpg
+32-cartel-jamais-seul.jpg    = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/32-cartel-jamais-seul.jpg
+33-stand-kalandraka.jpg      = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/33-stand-kalandraka.jpg
+34-mesa-libros.jpg           = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/34-mesa-libros.jpg
+35-haciendo-papel-2.jpg      = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/35-haciendo-papel-2.jpg
+36-con-su-perra.jpg          = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/36-con-su-perra.jpg
+cristina-falcon-dossier.pdf  = https://deepskyblue-salmon-196955.hostingersite.com/wp-content/uploads/2026/10/cristina-falcon-dossier.pdf

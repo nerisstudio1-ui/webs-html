@@ -25,11 +25,14 @@ def main():
 
     html = io.open(WIDGET, encoding='utf-8').read()
     # La BASE es el prefijo común de los medios enlazados: .../uploads/AAAA/MM/
-    bases = set(re.findall(r'https?://[^"\']+?/wp-content/uploads/\d{4}/\d{2}/', html))
-    if len(bases) != 1:
-        sys.exit('Esperaba una sola BASE en el widget, encontré %d: %s' % (len(bases), bases))
-    base = bases.pop()
-    nombres = sorted(set(re.findall(re.escape(base) + r'([A-Za-z0-9._-]+)', html)))
+    # Puede haber más de una carpeta: WordPress reparte las subidas por año
+    # y mes, así que lo de septiembre y lo de octubre viven en sitios
+    # distintos. Los nombres se recogen de todas.
+    bases = sorted(set(re.findall(r'https?://[^"\']+?/wp-content/uploads/\d{4}/\d{2}/', html)))
+    if not bases:
+        sys.exit('No encuentro ninguna carpeta de medios en el widget.')
+    nombres = sorted(set(
+        n for b in bases for n in re.findall(re.escape(b) + r'([A-Za-z0-9._-]+)', html)))
 
     indice = collections.defaultdict(list)
     for carpeta, _, ficheros in os.walk(os.path.join(RAIZ, 'assets')):
@@ -51,7 +54,7 @@ def main():
 
     print('  %s   %d archivos   %d KB' % (
         os.path.relpath(DESTINO, RAIZ), len(nombres), os.path.getsize(DESTINO) // 1024))
-    print('  Para: %s' % base)
+    print('  Carpetas: %s' % ', '.join(b.split('/uploads/')[1] for b in bases))
 
 
 if __name__ == '__main__':
