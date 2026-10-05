@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Niu · Cos i dona</title>
-  <meta name="description" content="Niu · Cos i dona. Espai de benestar conscient per a la dona. Cuidem de tu en cada etapa de la vida. Pròximament.">
+  <meta name="description" content="Niu · Cos i dona. Espai de benestar conscient per a la dona. Cuidem de tu en cada etapa de la vida. Portes obertes el 28 d’octubre i obertura el 2 de novembre.">
   <meta name="theme-color" content="#3868B0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -184,28 +184,46 @@
     }
     #niu h1 strong { font-weight: 500; }
 
-    #niu .soon {
-      margin-top: 24px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 12px;
-      letter-spacing: .38em;
-      margin-right: -.38em;
-      text-transform: uppercase;
+    /* dates: portes obertes i obertura */
+    #niu .dates {
+      margin-top: 30px;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
       animation: appear 2.4s 1.3s ease both;
     }
-    #niu .soon::before, #niu .soon::after {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: currentColor;
-      opacity: .5;
+    #niu .date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 0 clamp(18px, 5vw, 36px);
+      min-width: 0;
+    }
+    #niu .date + .date { border-left: 1px solid rgba(250, 245, 240, .35); }
+    #niu .date .day {
+      font-size: clamp(2.6rem, 9vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1;
+      font-variant-numeric: lining-nums;
+    }
+    #niu .date .month {
+      font-size: 11px;
+      letter-spacing: .32em;
+      margin-right: -.32em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+    }
+    #niu .date .what {
+      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .04em;
     }
 
     #niu .lead {
       max-width: 410px;
-      margin-top: 18px;
+      margin-top: 30px;
       font-size: 16px;
       font-weight: 300;
       line-height: 1.7;
@@ -268,7 +286,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      #niu .word i, #niu .logo, #niu .tag, #niu .line, #niu h1, #niu .soon, #niu .lead { animation: none; }
+      #niu .word i, #niu .logo, #niu .tag, #niu .line, #niu h1, #niu .dates, #niu .lead { animation: none; }
       #niu .light span { animation: none; }
     }
   </style>
@@ -296,7 +314,10 @@
 
     <h1 data-i18n="title">Cuidem de tu en <strong>cada etapa</strong> de la vida</h1>
 
-    <p class="soon" data-i18n="soon">Pròximament</p>
+    <div class="dates">
+      <p class="date"><span class="day">28</span><span class="month" data-i18n="m1">octubre</span><span class="what" data-i18n="d1">Portes obertes</span></p>
+      <p class="date"><span class="day">2</span><span class="month" data-i18n="m2">novembre</span><span class="what" data-i18n="d2">Obertura</span></p>
+    </div>
 
     <p class="lead" data-i18n="lead">Un espai de <strong>benestar conscient</strong> on diferents professionals <strong>t’acompanyem</strong> amb una mirada <strong>integral, propera i personalitzada</strong>.</p>
   </main>
@@ -328,7 +349,8 @@
       ca: {
         tag: 'Cos i dona',
         title: 'Cuidem de tu en <strong>cada etapa</strong> de la vida',
-        soon: 'Pròximament',
+        m1: 'octubre', d1: 'Portes obertes',
+        m2: 'novembre', d2: 'Obertura',
         lead: 'Un espai de <strong>benestar conscient</strong> on diferents professionals <strong>t’acompanyem</strong> amb una mirada <strong>integral, propera i personalitzada</strong>.',
         footer: 'NIU · COS I DONA',
         doc: 'Niu · Cos i dona',
@@ -345,7 +367,8 @@
       es: {
         tag: 'Cos i dona',
         title: 'Cuidamos de ti en <strong>cada etapa</strong> de la vida',
-        soon: 'Próximamente',
+        m1: 'octubre', d1: 'Puertas abiertas',
+        m2: 'noviembre', d2: 'Apertura',
         lead: 'Un espacio de <strong>bienestar consciente</strong> donde diferentes profesionales <strong>te acompañamos</strong> con una mirada <strong>integral, cercana y personalizada</strong>.',
         footer: 'NIU · COS I DONA',
         doc: 'Niu · Cos i dona',
@@ -362,7 +385,8 @@
       en: {
         tag: 'Cos i dona',
         title: 'Caring for you at <strong>every stage</strong> of life',
-        soon: 'Coming soon',
+        m1: 'October', d1: 'Open day',
+        m2: 'November', d2: 'Opening',
         lead: 'A space for <strong>conscious wellbeing</strong> where a team of professionals <strong>supports you</strong> with a <strong>holistic, warm and personalised</strong> approach.',
         footer: 'NIU · COS I DONA',
         doc: 'Niu · Cos i dona',
