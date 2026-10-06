@@ -95,9 +95,9 @@
       padding-top: env(safe-area-inset-top, 0px);
     }
     #niu .top .wrap { display: flex; align-items: center; gap: 24px; height: 68px; }
-    #niu .top .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--blue); }
+    #niu .top .brand { display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: var(--blue); line-height: 1; }
     #niu .top .brand img { width: 64px; }
-    #niu .top .brand span { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; white-space: nowrap; }
+    #niu .top .brand span { font-size: 8.5px; letter-spacing: .32em; margin-right: -.32em; text-transform: uppercase; white-space: nowrap; }
     #niu .menu { display: flex; gap: 26px; margin-left: auto; }
     #niu .menu a { font-size: 14px; font-weight: 400; letter-spacing: .04em; text-decoration: none; color: var(--ink); }
     #niu .menu a:hover { color: var(--blue); }
@@ -123,7 +123,6 @@
       }
       #niu .top.open .menu a { padding: 10px 0; font-size: 17px; }
     }
-    @media (max-width: 420px) { #niu .top .brand span { display: none; } }
 
     /* ---------- Inici ---------- */
     #niu .hero { background: var(--blue); color: var(--cream); overflow: hidden; padding-block: clamp(48px, 8vw, 96px); }
