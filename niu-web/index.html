@@ -182,32 +182,6 @@
       #niu .ideas { grid-template-columns: 1fr; gap: 14px; }
     }
 
-    /* ---------- L'espai (galeria) ---------- */
-    #niu .espai { background: var(--cream); padding-top: 0; }
-    #niu .espai .head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 10px 30px; }
-    #niu .espai .head .hand { font-size: clamp(1.7rem, 4.6vw, 2.6rem); color: var(--blue); line-height: 1.25; max-width: 32ch; text-wrap: balance; }
-    #niu .espai .swipe { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft); display: none; }
-    #niu .gallery { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin-top: 28px; align-items: start; }
-    #niu .gallery figure { position: relative; border-radius: 120px 120px 16px 16px; overflow: hidden; aspect-ratio: 3 / 4; }
-    #niu .gallery figure:nth-child(even) { margin-top: 48px; border-radius: 16px; }
-    #niu .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
-    #niu .gallery figure:hover img { transform: scale(1.05); }
-    #niu .gallery figcaption {
-      position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 14px 12px;
-      font-family: var(--hand); font-size: 1.35rem; color: var(--cream);
-      background: linear-gradient(transparent, rgba(36, 71, 125, .55));
-    }
-    @media (max-width: 860px) {
-      #niu .espai .swipe { display: block; }
-      #niu .gallery {
-        display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px;
-        margin-inline: -20px; padding: 0 20px 8px; scrollbar-width: none;
-      }
-      #niu .gallery::-webkit-scrollbar { display: none; }
-      #niu .gallery figure { flex: 0 0 62%; scroll-snap-align: center; }
-      #niu .gallery figure:nth-child(even) { margin-top: 0; }
-    }
-
     /* ---------- Especialitats ---------- */
     #niu .serveis { background: var(--oat-soft); }
     #niu .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
@@ -216,13 +190,7 @@
       border: 1px solid rgba(56, 104, 176, .35); color: var(--blue); line-height: 1.2;
     }
     #niu .tabs button[aria-selected="true"] { background: var(--blue); color: var(--cream); border-color: var(--blue); }
-    #niu .group-head { display: flex; align-items: center; gap: 22px; margin-top: 28px; }
-    #niu .group-head img { width: 120px; height: 120px; flex: none; object-fit: cover; border-radius: 50%; }
-    #niu .group-intro { color: var(--ink-soft); max-width: 62ch; }
-    @media (max-width: 600px) {
-      #niu .group-head { flex-direction: column; align-items: stretch; gap: 16px; }
-      #niu .group-head img { width: 100%; height: 200px; border-radius: 120px 120px 18px 18px; }
-    }
+    #niu .group-intro { margin-top: 22px; color: var(--ink-soft); max-width: 62ch; }
     #niu .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; margin-top: 28px; }
     #niu .card {
       background: var(--cream); border-radius: var(--radius); padding: 26px 24px 22px;
@@ -325,11 +293,7 @@
     @media (max-width: 520px) { #niu .rules { grid-template-columns: 1fr; } }
 
     /* ---------- Contacte ---------- */
-    #niu .contact { background: var(--blue); color: var(--cream); text-align: center; overflow: hidden; }
-    #niu .contact .bg { position: absolute; inset: 0; z-index: 0; }
-    #niu .contact .bg img { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
-    #niu .contact .bg::after { content: ""; position: absolute; inset: 0; background: var(--blue); mix-blend-mode: multiply; opacity: .92; }
-    #niu .contact .wrap { position: relative; z-index: 1; }
+    #niu .contact { background: var(--blue); color: var(--cream); text-align: center; }
     #niu .contact .hand { font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.2; }
     #niu .contact .intro { margin-inline: auto; color: rgba(250, 245, 240, .85); }
     #niu .contact .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 30px; }
@@ -417,31 +381,13 @@
       </div>
     </section>
 
-    <!-- L'espai -->
-    <section class="espai" aria-labelledby="espai-t">
-      <div class="wrap">
-        <div class="head">
-          <div><p class="eyebrow" data-t="espai.eyebrow"></p><p class="hand" id="espai-t" data-t="espai.title"></p></div>
-          <p class="swipe" data-t="espai.swipe"></p>
-        </div>
-        <div class="gallery">
-          <figure><img src="img/espai-planta.jpg" alt="" width="515" height="1040"><figcaption data-t="espai.w.0"></figcaption></figure>
-          <figure><img src="img/espai-coixi.jpg" alt="" width="520" height="580"><figcaption data-t="espai.w.1"></figcaption></figure>
-          <figure><img src="img/espai-il-lustracio.jpg" alt="" width="520" height="600"><figcaption data-t="espai.w.2"></figcaption></figure>
-          <figure><img src="img/espai-finestra.jpg" alt="" width="520" height="567"><figcaption data-t="espai.w.3"></figcaption></figure>
-          <figure><img src="img/espai-fruita.jpg" alt="" width="520" height="520"><figcaption data-t="espai.w.4"></figcaption></figure>
-          <figure><img src="img/espai-sofa.jpg" alt="" width="900" height="712"><figcaption data-t="espai.w.5"></figcaption></figure>
-        </div>
-      </div>
-    </section>
-
     <!-- Especialitats -->
     <section class="serveis" id="especialitats">
       <div class="wrap">
         <p class="eyebrow" data-t="serv.eyebrow"></p>
         <h2 data-t="serv.title"></h2>
         <div class="tabs" role="tablist"></div>
-        <div class="group-head"><img alt="" width="520" height="600"><p class="group-intro"></p></div>
+        <p class="group-intro"></p>
         <div class="cards"></div>
       </div>
     </section>
@@ -508,7 +454,6 @@
 
     <!-- Contacte -->
     <section class="contact" id="contacte">
-      <div class="bg" aria-hidden="true"><img alt="" width="900" height="712"></div>
       <div class="wrap">
         <p class="hand" data-t="contact.hand"></p>
         <p class="intro" data-t="contact.intro"></p>
@@ -570,9 +515,6 @@
     { id:'aka', name:'Aka Lang', photo:'', classes:[[0,'11:00'],[2,'16:00']] }
   ];
 
-  /* fotos de la galeria (ordre) que es reutilitzen a les pestanyes d'especialitats */
-  const GROUP_PICS = [2, 1, 0];
-
   /* ====== TEXTOS ====== */
   const T = {
     ca: {
@@ -600,7 +542,6 @@
         ],
         alt: 'Il·lustració d’un cos de dona en blau, emmarcada a l’espai de NIU'
       },
-      espai: { eyebrow:'L’espai', title:'Un niu per parar, respirar i tornar a tu', swipe:'Llisca →', w:['Calma','Escolta','Cos','Llum','Cura','Refugi'] },
       serv: {
         eyebrow: 'Especialitats', title: 'Com et podem <strong>acompanyar</strong>',
         groups: [
@@ -734,7 +675,6 @@
         ],
         alt: 'Ilustración de un cuerpo de mujer en azul, enmarcada en el espacio de NIU'
       },
-      espai: { eyebrow:'El espacio', title:'Un nido para parar, respirar y volver a ti', swipe:'Desliza →', w:['Calma','Escucha','Cuerpo','Luz','Cuidado','Refugio'] },
       serv: {
         eyebrow: 'Especialidades', title: 'Cómo te podemos <strong>acompañar</strong>',
         groups: [
@@ -868,7 +808,6 @@
         ],
         alt: 'Blue illustration of a woman’s body, framed in the NIU space'
       },
-      espai: { eyebrow:'The space', title:'A nest to pause, breathe and come back to yourself', swipe:'Swipe →', w:['Calm','Listening','Body','Light','Care','Refuge'] },
       serv: {
         eyebrow: 'Specialities', title: 'How we can <strong>support you</strong>',
         groups: [
@@ -997,7 +936,6 @@
     $('.tabs').innerHTML = g.map((x, i) =>
       `<button type="button" role="tab" aria-selected="${i === group}" data-g="${i}">${esc(x.name)}</button>`).join('');
     $('.group-intro').textContent = g[group].intro;
-    $('.group-head img').src = $$('.gallery img')[GROUP_PICS[group]].src;
     $('.cards').innerHTML = g[group].items.map((x) =>
       `<article class="card"><h3>${esc(x.n)}</h3><p>${esc(x.d)}</p><p class="who">${esc(x.who)}</p></article>`).join('');
     $$('.tabs button').forEach((b) => b.addEventListener('click', () => { group = +b.dataset.g; renderServices(T[lang]); }));
@@ -1080,7 +1018,6 @@
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
-  $('.contact .bg img').src = $$('.gallery img')[5].src;
   $$('.year').forEach((el) => { el.textContent = new Date().getFullYear(); });
   setLang(initialLang(), false);
 
