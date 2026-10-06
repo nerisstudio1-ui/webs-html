@@ -113,8 +113,9 @@
 
     @media (max-width: 960px) {
       #niu .menu, #niu .top .btn { display: none; }
-      #niu .burger { display: block; }
-      #niu .top .lang { margin-left: 0; }
+      #niu .burger { display: block; margin-left: 0; }
+      #niu .top .wrap { position: relative; justify-content: space-between; }
+      #niu .top .lang { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
       #niu .top.open .menu {
         display: flex; flex-direction: column; gap: 4px;
         position: absolute; left: 0; right: 0; top: 100%;
