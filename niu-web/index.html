@@ -192,13 +192,20 @@
     }
     #niu .tabs button[aria-selected="true"] { background: var(--blue); color: var(--cream); border-color: var(--blue); }
     #niu .group-intro { margin-top: 22px; color: var(--ink-soft); max-width: 62ch; }
-    #niu .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; margin-top: 28px; }
+    #niu .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; margin-top: 28px; align-items: start; }
     #niu .card {
       background: var(--cream); border-radius: var(--radius); padding: 26px 24px 22px;
       display: flex; flex-direction: column; gap: 10px; min-width: 0;
     }
     #niu .card h3 { font-size: 1.2rem; font-weight: 500; line-height: 1.3; color: var(--blue); }
     #niu .card p { font-size: 15px; color: var(--ink-soft); }
+    #niu .card .hrs { font-size: 13px; line-height: 1.55; color: var(--ink); background: var(--oat-soft); border-radius: 12px; padding: 10px 12px; }
+    #niu .card .hrs b { display: block; font-weight: 500; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); margin-bottom: 2px; }
+    #niu .prices { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 4px; }
+    #niu .prices td { padding: 6px 0; border-bottom: 1px solid var(--oat); vertical-align: top; }
+    #niu .prices td.d { color: var(--ink-soft); white-space: nowrap; padding: 6px 10px; text-align: right; }
+    #niu .prices td.p { font-weight: 500; color: var(--blue); white-space: nowrap; text-align: right; }
+    #niu .prices tr.extra td { font-size: 13px; color: var(--ink-soft); padding-top: 2px; }
     #niu .card .who { margin-top: auto; padding-top: 10px; font-size: 13px; letter-spacing: .06em; color: var(--ink); border-top: 1px solid var(--oat); }
 
     /* ---------- Equip ---------- */
@@ -243,7 +250,15 @@
     #niu .k-ioga { background: var(--oat); color: var(--ink); }
     #niu .k-mater { background: var(--blue-light); color: var(--blue-deep); }
     #niu .gap-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; opacity: .55; margin: 14px 0 8px; }
-    #niu .consult { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; padding: 22px 26px; border: 1px solid rgba(250, 245, 240, .3); border-radius: var(--radius); }
+    #niu .horari .sub { margin-top: 44px; font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 300; }
+    #niu .horari .sub strong { font-weight: 500; }
+    #niu .horari .sub-cons { margin-top: 72px; padding-top: 48px; border-top: 1px solid rgba(250, 245, 240, .25); }
+    #niu .cslot { background: rgba(250, 245, 240, .1); border: 1px solid rgba(250, 245, 240, .28); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; line-height: 1.3; }
+    #niu .cslot .n { display: block; font-size: 14.5px; font-weight: 500; }
+    #niu .cslot .w { display: block; font-size: 13px; color: rgba(250, 245, 240, .78); margin-top: 2px; }
+    #niu .cslot.indiba { background: var(--blue-light); border-color: var(--blue-light); color: var(--blue-deep); }
+    #niu .cslot.indiba .w { color: var(--blue-deep); }
+    #niu .consult { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; padding: 22px 26px; border: 1px solid rgba(250, 245, 240, .3); border-radius: var(--radius); }
     #niu .consult strong { font-weight: 500; }
     @media (max-width: 900px) {
       #niu .week { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
@@ -408,10 +423,13 @@
       <div class="wrap">
         <p class="eyebrow" data-t="sched.eyebrow"></p>
         <h2 data-t="sched.title"></h2>
+        <h3 class="sub" data-t="sched.movTitle"></h3>
         <p class="intro" data-t="sched.intro"></p>
         <div class="legend"></div>
-        <div class="week"></div>
+        <div class="week week-mov"></div>
+        <h3 class="sub sub-cons" data-t="sched.consTitle"></h3>
         <div class="consult"><p data-t="sched.consult"></p><a class="btn btn-cream wa" href="#" target="_blank" rel="noopener" data-t="cta"></a></div>
+        <div class="week week-cons"></div>
       </div>
     </section>
 
@@ -488,22 +506,32 @@
 
   /* ====== HORARI SALA DE MOVIMENT · dia 0 = dilluns ====== */
   const SESSIONS = [
-    [0,'07:00','08:00','barre'],[0,'08:00','09:00','tonif'],[0,'09:30','10:30','barre'],[0,'11:00','12:00','ioga'],
-    [0,'16:00','17:00','embaras'],[0,'17:00','18:00','postpart'],[0,'18:00','19:00','barre'],[0,'19:00','20:00','tonif'],
-    [1,'07:00','08:00','reformer'],[1,'08:00','09:00','reformer'],[1,'09:30','10:30','reformer'],[1,'11:00','12:00','terap'],
-    [1,'12:00','13:00','condic'],[1,'16:00','17:00','reformer'],[1,'17:00','18:00','reformer'],
-    [2,'07:00','08:00','tonif'],[2,'08:00','09:00','barre'],[2,'09:30','10:30','tonif'],[2,'11:00','12:00','postpart'],
-    [2,'12:00','13:00','embaras'],[2,'16:00','17:00','ioga'],
-    [3,'07:00','08:00','reformer'],[3,'08:00','09:00','reformer'],[3,'09:30','10:30','reformer'],[3,'11:00','12:00','terap'],
-    [3,'16:00','17:00','reformer'],[3,'17:00','18:00','reformer'],[3,'18:00','19:00','tonif'],[3,'19:00','20:00','barre'],
+    [0,'07:00','08:00','barre'],[0,'08:00','09:00','tonif'],[0,'09:30','10:30','barre'],[0,'11:00','12:30','ioga'],
+    [0,'16:00','17:00','embaras'],[0,'17:00','18:00','core'],[0,'18:00','19:00','barre'],[0,'19:00','20:00','tonif'],
+    [1,'07:00','08:00','reformer'],[1,'08:00','09:00','reformer'],[1,'09:30','10:30','reformer'],[1,'11:00','12:00','condic'],
+    [1,'12:00','13:00','mobilitat'],[1,'16:00','17:00','reformer'],[1,'17:00','18:00','reformer'],[1,'18:00','19:00','reformer'],
+    [1,'19:00','20:00','barre'],
+    [2,'07:00','08:00','tonif'],[2,'08:00','09:00','barre'],[2,'09:30','10:30','tonif'],[2,'11:00','12:00','embaras'],
+    [2,'12:00','13:00','core'],[2,'16:00','17:30','ioga'],[2,'18:00','19:00','barre'],[2,'19:00','20:00','tonif'],
+    [3,'07:00','08:00','reformer'],[3,'08:00','09:00','reformer'],[3,'09:30','10:30','reformer'],[3,'12:00','13:00','mobilitat'],
+    [3,'16:00','17:00','reformer'],[3,'17:00','18:00','reformer'],[3,'18:00','19:00','reformer'],[3,'19:00','20:00','barre'],
     [4,'09:30','11:00','psicomot'],[4,'16:00','17:00','condic'],[4,'17:00','18:30','educacio']
   ];
-  const KIND = { barre:'pilates', tonif:'pilates', reformer:'pilates', terap:'pilates', ioga:'ioga',
+  const KIND = { barre:'pilates', tonif:'pilates', reformer:'pilates', mobilitat:'pilates', ioga:'ioga', core:'mater',
                  embaras:'mater', postpart:'mater', condic:'mater', psicomot:'mater', educacio:'mater' };
+
+  /* ====== CONSULTES · [dia, 'm' (9–14 h) | 't' (15–20 h), servei, professional] ====== */
+  const CONSULTES = [
+    [0,'m','indiba',''],[0,'m','marti','Martí Parets'],[0,'t','ester','Ester Congost'],[0,'t','marti','Martí Parets'],
+    [1,'m','yaiza','Yaiza González'],[1,'m','henar','Henar Ruiz'],[1,'t','nicola','Nicola Hälbig'],[1,'t','genovart','Marta Genovart'],[1,'t','indiba',''],
+    [2,'m','forteza','Marta Forteza'],[2,'m','ester','Ester Congost'],[2,'t','forteza','Marta Forteza'],[2,'t','genovart','Marta Genovart'],[2,'t','indiba',''],
+    [3,'m','indiba',''],[3,'m','marti','Martí Parets'],[3,'t','henar','Henar Ruiz'],[3,'t','marti','Martí Parets'],
+    [4,'m','laura','Laura Rodríguez'],[4,'m','romero','Marta Romero'],[4,'t','yaiza','Yaiza González'],[4,'t','romero','Marta Romero']
+  ];
 
   /* ====== EQUIP · consulta: [dia, 'm' (9–14 h) | 't' (15–20 h)] ====== */
   const TEAM = [
-    { id:'aida', name:'Aida Alcolea', photo:'img/equip-aida.jpg', days:[[0,'m'],[3,'m']] },
+    { id:'aida', name:'Aida Alcolea', photo:'img/equip-aida.jpg' },
     { id:'marta-forteza', name:'Marta Forteza', photo:'img/equip-marta-forteza.jpg', days:[[2,'m'],[2,'t']] },
     { id:'yaiza', name:'Yaiza González', photo:'', days:[[1,'m'],[4,'t']] },
     { id:'ester', name:'Ester Congost', photo:'img/equip-ester.jpg', days:[[0,'t'],[2,'m']] },
@@ -556,17 +584,20 @@
           { name:'Teràpies', intro:'Per alleujar el dolor, recuperar-te d’una lesió o simplement regalar-te un moment de cura.', items:[
             { n:'Fisioteràpia general', d:'Dolor cervical i lumbar, ATM, contractures i lesions, rehabilitació postoperatòria, teràpia manual i punció seca.', who:'Henar Ruiz' },
             { n:'Nutrició', d:'Canvis d’hàbits sense dietes estrictes: control de pes saludable, nutrició en patologies cròniques i plans personalitzats.', who:'Nicola Hälbig' },
-            { n:'Quiromassatge', d:'Massatge descontracturant i relaxant, drenatge limfàtic i maderoteràpia.', who:'Marta Genovart' },
+            { n:'Quiromassatge', d:'Massatges i maderoteràpia adaptats a les teves necessitats.', who:'Marta Genovart', prices:[
+              ['Massatge descontracturant',"60’",'40 €'],['Massatge de descàrrega de cames',"60’",'40 €'],['+ pressoteràpia',"20’",'+10 €'],
+              ['Massatge relaxant',"60’",'40 €'],['Massatge relaxant',"90’",'60 €'],['Maderoteràpia, 2 zones',"60’",'40 €'],['Maderoteràpia, 4 zones',"90’",'60 €']] },
             { n:'Recuperació esportiva i biodescodificació', d:'Massatge esportiu, mobilitat i reeducació postural, coaching i biodescodificació emocional.', who:'Martí Parets' },
-            { n:'INDIBA i pressoteràpia', d:'Radiofreqüència per reafirmar, tractar la cel·lulitis i cicatrius, i botes de compressió per activar la circulació.', who:'Aida Alcolea' }
+            { n:'INDIBA i pressoteràpia', d:'Radiofreqüència per reafirmar, tractar la cel·lulitis i cicatrius, i botes de compressió per activar la circulació.', who:'', hours:true }
           ]},
           { name:'Moviment', intro:'Sessions en petit grup i mensualitats. No cal experiència prèvia: adaptem cada classe al teu nivell.', items:[
             { n:'Pilates Reformer', d:'Màquina amb carro i molles per treballar força, control i mobilitat amb molta precisió.', who:'Aida Alcolea' },
             { n:'Pilates Tonificació', d:'Baix impacte i moviments controlats per millorar el to muscular, la postura i l’estabilitat.', who:'Aida Alcolea' },
-            { n:'Pilates terapèutic', d:'Control postural, respiració i musculatura profunda per prevenir i recuperar-te de lesions.', who:'Henar Ruiz' },
+            { n:'Mobilitat', d:'Moviment conscient per guanyar amplitud, alliberar tensions i cuidar les articulacions.', who:'' },
+            { n:'Core i sòl pelvià', d:'Enfortiment de la musculatura profunda i del sòl pelvià, amb respiració i control.', who:'' },
             { n:'Barre', d:'Treball a la barra amb blocs més dinàmics, sempre de baix impacte per a les articulacions.', who:'Aida Alcolea' },
             { n:'Ioga', d:'Hatha ioga per a totes, tinguis o no experiència: un treball complet de cos, ment i ànima.', who:'Aka Lang' },
-            { n:'Embaràs i postpart', d:'Funcional per a embarassades, condicionament físic i pelvià per al part i funcional postpart amb el teu nadó.', who:'Yaiza González · Henar Ruiz' },
+            { n:'Embaràs', d:'Funcional per a embarassades i condicionament físic i pelvià per al part.', who:'' },
             { n:'Criança', d:'Psicomotricitat i criança per a nadons de 0 a 12 mesos i educació per al naixement i la criança.', who:'Laura Rodríguez · Yaiza González' }
           ]}
         ]
@@ -574,7 +605,7 @@
       team: {
         eyebrow: 'L’equip', title: 'Professionals que comparteixen <strong>una mateixa mirada</strong>',
         intro: 'Escoltar, acompanyar i cuidar les dones des d’una mirada integral. Cada professional ha estat triada una a una, per com treballa i per com està amb les persones.',
-        consult: 'Consulta', classes: 'Classes', soon: 'Foto molt aviat',
+        consult: 'Consulta', classes: 'Classes', soon: 'Foto molt aviat', hours: 'Horari',
         m: '9–14 h', t: '15–20 h',
         people: {
           'aida': { role:'Fundadora · Pilates i INDIBA', q:'NIU és la manera que he trobat d’unir tot allò que sóc: el cos, el moviment i els drets de les dones.' },
@@ -592,14 +623,18 @@
       },
       days: ['Dilluns','Dimarts','Dimecres','Dijous','Divendres'],
       sched: {
-        eyebrow: 'Horari', title: 'Sala de <strong>moviment</strong>',
-        intro: 'Classes de 55 minuts en petit grup, de dilluns a divendres. Totes les embarassades poden participar a les classes adaptant-ne el contingut.',
-        kinds: { pilates:'Pilates i Barre', ioga:'Ioga', mater:'Embaràs, postpart i criança' },
-        names: { barre:'Barre', tonif:'Pilates Tonificació', reformer:'Pilates Reformer', terap:'Pilates terapèutic', ioga:'Ioga',
+        eyebrow: 'Horari', title: 'Classes i <strong>consultes</strong>',
+        intro: 'Classes en petit grup, de dilluns a divendres. Totes les embarassades poden participar a les classes adaptant-ne el contingut.',
+        kinds: { pilates:'Pilates, Barre i Mobilitat', ioga:'Ioga', mater:'Sòl pelvià, embaràs i criança' },
+        names: { barre:'Barre', tonif:'Pilates Tonificació', reformer:'Pilates Reformer', mobilitat:'Mobilitat', core:'Core i sòl pelvià', ioga:'Ioga',
                  embaras:'Funcional embarassades', postpart:'Funcional postpart amb nadó', condic:'Condicionament físic i pelvià per al part',
                  psicomot:'Psicomotricitat i criança', educacio:'Educació per al naixement i la criança' },
         morning: 'Matí', afternoon: 'Tarda',
-        consult: '<strong>Consultes</strong> de dilluns a divendres, de 9 a 14 h i de 15 a 20 h. Trobaràs el dia de cada professional a l’apartat Equip.'
+        consult: '<strong>Consultes</strong> de dilluns a divendres: matins de 9 a 14 h i tardes de 15 a 20 h.',
+        consTitle: 'Qui passa consulta <strong>cada dia</strong>',
+        cons: { indiba:'INDIBA i pressoteràpia', marti:'Recuperació esportiva', ester:'Fisioteràpia de sòl pelvià', yaiza:'Llevadora', henar:'Fisioteràpia general',
+                nicola:'Nutrició', genovart:'Quiromassatge', forteza:'Ginecologia i obstetrícia', laura:'Fisioteràpia pediàtrica', romero:'Psicologia perinatal' },
+        movTitle: 'Sala de moviment'
       },
       tall: {
         eyebrow: 'Tallers', title: 'Un taller <strong>cada mes</strong>',
@@ -689,17 +724,20 @@
           { name:'Terapias', intro:'Para aliviar el dolor, recuperarte de una lesión o simplemente regalarte un momento de cuidado.', items:[
             { n:'Fisioterapia general', d:'Dolor cervical y lumbar, ATM, contracturas y lesiones, rehabilitación postoperatoria, terapia manual y punción seca.', who:'Henar Ruiz' },
             { n:'Nutrición', d:'Cambios de hábitos sin dietas estrictas: control de peso saludable, nutrición en patologías crónicas y planes personalizados.', who:'Nicola Hälbig' },
-            { n:'Quiromasaje', d:'Masaje descontracturante y relajante, drenaje linfático y maderoterapia.', who:'Marta Genovart' },
+            { n:'Quiromasaje', d:'Masajes y maderoterapia adaptados a tus necesidades.', who:'Marta Genovart', prices:[
+              ['Masaje descontracturante',"60’",'40 €'],['Masaje de descarga de piernas',"60’",'40 €'],['+ presoterapia',"20’",'+10 €'],
+              ['Masaje relajante',"60’",'40 €'],['Masaje relajante',"90’",'60 €'],['Maderoterapia, 2 zonas',"60’",'40 €'],['Maderoterapia, 4 zonas',"90’",'60 €']] },
             { n:'Recuperación deportiva y biodescodificación', d:'Masaje deportivo, movilidad y reeducación postural, coaching y biodescodificación emocional.', who:'Martí Parets' },
-            { n:'INDIBA y presoterapia', d:'Radiofrecuencia para reafirmar, tratar la celulitis y cicatrices, y botas de compresión para activar la circulación.', who:'Aida Alcolea' }
+            { n:'INDIBA y presoterapia', d:'Radiofrecuencia para reafirmar, tratar la celulitis y cicatrices, y botas de compresión para activar la circulación.', who:'', hours:true }
           ]},
           { name:'Movimiento', intro:'Sesiones en grupo reducido y mensualidades. No hace falta experiencia previa: adaptamos cada clase a tu nivel.', items:[
             { n:'Pilates Reformer', d:'Máquina con carro y muelles para trabajar fuerza, control y movilidad con mucha precisión.', who:'Aida Alcolea' },
             { n:'Pilates Tonificación', d:'Bajo impacto y movimientos controlados para mejorar el tono muscular, la postura y la estabilidad.', who:'Aida Alcolea' },
-            { n:'Pilates terapéutico', d:'Control postural, respiración y musculatura profunda para prevenir y recuperarte de lesiones.', who:'Henar Ruiz' },
+            { n:'Movilidad', d:'Movimiento consciente para ganar amplitud, liberar tensiones y cuidar las articulaciones.', who:'' },
+            { n:'Core y suelo pélvico', d:'Fortalecimiento de la musculatura profunda y del suelo pélvico, con respiración y control.', who:'' },
             { n:'Barre', d:'Trabajo en la barra con bloques más dinámicos, siempre de bajo impacto para las articulaciones.', who:'Aida Alcolea' },
             { n:'Yoga', d:'Hatha yoga para todas, tengas o no experiencia: un trabajo completo de cuerpo, mente y alma.', who:'Aka Lang' },
-            { n:'Embarazo y posparto', d:'Funcional para embarazadas, acondicionamiento físico y pélvico para el parto y funcional posparto con tu bebé.', who:'Yaiza González · Henar Ruiz' },
+            { n:'Embarazo', d:'Funcional para embarazadas y acondicionamiento físico y pélvico para el parto.', who:'' },
             { n:'Crianza', d:'Psicomotricidad y crianza para bebés de 0 a 12 meses y educación para el nacimiento y la crianza.', who:'Laura Rodríguez · Yaiza González' }
           ]}
         ]
@@ -707,7 +745,7 @@
       team: {
         eyebrow: 'El equipo', title: 'Profesionales que comparten <strong>una misma mirada</strong>',
         intro: 'Escuchar, acompañar y cuidar a las mujeres desde una mirada integral. Cada profesional ha sido elegida una a una, por cómo trabaja y por cómo está con las personas.',
-        consult: 'Consulta', classes: 'Clases', soon: 'Foto muy pronto',
+        consult: 'Consulta', classes: 'Clases', soon: 'Foto muy pronto', hours: 'Horario',
         m: '9–14 h', t: '15–20 h',
         people: {
           'aida': { role:'Fundadora · Pilates e INDIBA', q:'NIU es la manera que he encontrado de unir todo lo que soy: el cuerpo, el movimiento y los derechos de las mujeres.' },
@@ -725,14 +763,18 @@
       },
       days: ['Lunes','Martes','Miércoles','Jueves','Viernes'],
       sched: {
-        eyebrow: 'Horario', title: 'Sala de <strong>movimiento</strong>',
-        intro: 'Clases de 55 minutos en grupo reducido, de lunes a viernes. Todas las embarazadas pueden participar en las clases adaptando el contenido.',
-        kinds: { pilates:'Pilates y Barre', ioga:'Yoga', mater:'Embarazo, posparto y crianza' },
-        names: { barre:'Barre', tonif:'Pilates Tonificación', reformer:'Pilates Reformer', terap:'Pilates terapéutico', ioga:'Yoga',
+        eyebrow: 'Horario', title: 'Clases y <strong>consultas</strong>',
+        intro: 'Clases en grupo reducido, de lunes a viernes. Todas las embarazadas pueden participar en las clases adaptando el contenido.',
+        kinds: { pilates:'Pilates, Barre y Movilidad', ioga:'Yoga', mater:'Suelo pélvico, embarazo y crianza' },
+        names: { barre:'Barre', tonif:'Pilates Tonificación', reformer:'Pilates Reformer', mobilitat:'Movilidad', core:'Core y suelo pélvico', ioga:'Yoga',
                  embaras:'Funcional embarazadas', postpart:'Funcional posparto con bebé', condic:'Acondicionamiento físico y pélvico para el parto',
                  psicomot:'Psicomotricidad y crianza', educacio:'Educación para el nacimiento y la crianza' },
         morning: 'Mañana', afternoon: 'Tarde',
-        consult: '<strong>Consultas</strong> de lunes a viernes, de 9 a 14 h y de 15 a 20 h. Encontrarás el día de cada profesional en el apartado Equipo.'
+        consult: '<strong>Consultas</strong> de lunes a viernes: mañanas de 9 a 14 h y tardes de 15 a 20 h.',
+        consTitle: 'Quién pasa consulta <strong>cada día</strong>',
+        cons: { indiba:'INDIBA y presoterapia', marti:'Recuperación deportiva', ester:'Fisioterapia de suelo pélvico', yaiza:'Matrona', henar:'Fisioterapia general',
+                nicola:'Nutrición', genovart:'Quiromasaje', forteza:'Ginecología y obstetricia', laura:'Fisioterapia pediátrica', romero:'Psicología perinatal' },
+        movTitle: 'Sala de movimiento'
       },
       tall: {
         eyebrow: 'Talleres', title: 'Un taller <strong>cada mes</strong>',
@@ -822,17 +864,20 @@
           { name:'Therapies', intro:'To ease pain, recover from an injury or simply give yourself a moment of care.', items:[
             { n:'General physiotherapy', d:'Neck and lower back pain, TMJ, muscle injuries, post-surgery rehab, manual therapy and dry needling.', who:'Henar Ruiz' },
             { n:'Nutrition', d:'Changing habits without strict diets: healthy weight, nutrition for chronic conditions and personalised plans.', who:'Nicola Hälbig' },
-            { n:'Massage therapy', d:'Deep tissue and relaxing massage, lymphatic drainage and wood therapy.', who:'Marta Genovart' },
+            { n:'Massage therapy', d:'Massage and wood therapy adapted to your needs.', who:'Marta Genovart', prices:[
+              ['Deep tissue massage',"60’",'€40'],['Leg relief massage',"60’",'€40'],['+ pressotherapy',"20’",'+€10'],
+              ['Relaxing massage',"60’",'€40'],['Relaxing massage',"90’",'€60'],['Wood therapy, 2 areas',"60’",'€40'],['Wood therapy, 4 areas',"90’",'€60']] },
             { n:'Sports recovery and biodecoding', d:'Sports massage, mobility and postural re-education, coaching and emotional biodecoding.', who:'Martí Parets' },
-            { n:'INDIBA and pressotherapy', d:'Radiofrequency to firm the skin and treat cellulite and scars, and compression boots to boost circulation.', who:'Aida Alcolea' }
+            { n:'INDIBA and pressotherapy', d:'Radiofrequency to firm the skin and treat cellulite and scars, and compression boots to boost circulation.', who:'', hours:true }
           ]},
           { name:'Movement', intro:'Small-group sessions on a monthly plan. No experience needed: we adapt every class to your level.', items:[
             { n:'Reformer Pilates', d:'A machine with a sliding carriage and springs to build strength, control and mobility with precision.', who:'Aida Alcolea' },
             { n:'Pilates Toning', d:'Low impact, controlled movement to improve muscle tone, posture and stability.', who:'Aida Alcolea' },
-            { n:'Therapeutic Pilates', d:'Posture, breathing and deep core work to prevent and recover from injuries.', who:'Henar Ruiz' },
+            { n:'Mobility', d:'Mindful movement to gain range, release tension and look after your joints.', who:'' },
+            { n:'Core and pelvic floor', d:'Strengthening your deep core and pelvic floor, with breathing and control.', who:'' },
             { n:'Barre', d:'Barre work with more dynamic blocks, always low impact on the joints.', who:'Aida Alcolea' },
             { n:'Yoga', d:'Hatha yoga for everyone, whatever your experience: complete work for body, mind and soul.', who:'Aka Lang' },
-            { n:'Pregnancy and postpartum', d:'Functional training for pregnancy, physical and pelvic preparation for birth, and postpartum training with your baby.', who:'Yaiza González · Henar Ruiz' },
+            { n:'Pregnancy', d:'Functional training for pregnancy and physical and pelvic preparation for birth.', who:'' },
             { n:'Parenting', d:'Baby movement and parenting group (0–12 months) and birth and parenting education.', who:'Laura Rodríguez · Yaiza González' }
           ]}
         ]
@@ -840,7 +885,7 @@
       team: {
         eyebrow: 'Our team', title: 'Professionals who share <strong>the same view</strong>',
         intro: 'Listening to, supporting and caring for women from a holistic perspective. Each professional was chosen one by one, for how they work and how they are with people.',
-        consult: 'Appointments', classes: 'Classes', soon: 'Photo coming soon',
+        consult: 'Appointments', classes: 'Classes', soon: 'Photo coming soon', hours: 'Hours',
         m: '9am–2pm', t: '3–8pm',
         people: {
           'aida': { role:'Founder · Pilates and INDIBA', q:'NIU is how I found a way to bring together everything I am: the body, movement and women’s rights.' },
@@ -858,14 +903,18 @@
       },
       days: ['Monday','Tuesday','Wednesday','Thursday','Friday'],
       sched: {
-        eyebrow: 'Timetable', title: 'Movement <strong>studio</strong>',
-        intro: '55-minute small-group classes, Monday to Friday. Pregnant women can join every class, with adapted exercises.',
-        kinds: { pilates:'Pilates and Barre', ioga:'Yoga', mater:'Pregnancy, postpartum and parenting' },
-        names: { barre:'Barre', tonif:'Pilates Toning', reformer:'Reformer Pilates', terap:'Therapeutic Pilates', ioga:'Yoga',
+        eyebrow: 'Timetable', title: 'Classes and <strong>appointments</strong>',
+        intro: 'Small-group classes, Monday to Friday. Pregnant women can join every class, with adapted exercises.',
+        kinds: { pilates:'Pilates, Barre and Mobility', ioga:'Yoga', mater:'Pelvic floor, pregnancy and parenting' },
+        names: { barre:'Barre', tonif:'Pilates Toning', reformer:'Reformer Pilates', mobilitat:'Mobility', core:'Core and pelvic floor', ioga:'Yoga',
                  embaras:'Pregnancy functional', postpart:'Postpartum functional with baby', condic:'Physical and pelvic preparation for birth',
                  psicomot:'Baby movement and parenting', educacio:'Birth and parenting education' },
         morning: 'Morning', afternoon: 'Afternoon',
-        consult: '<strong>Appointments</strong> Monday to Friday, 9am–2pm and 3–8pm. You’ll find each professional’s days in the Team section.'
+        consult: '<strong>Appointments</strong> Monday to Friday: mornings 9am–2pm and afternoons 3–8pm.',
+        consTitle: 'Who sees clients <strong>each day</strong>',
+        cons: { indiba:'INDIBA and pressotherapy', marti:'Sports recovery', ester:'Pelvic floor physiotherapy', yaiza:'Midwife', henar:'General physiotherapy',
+                nicola:'Nutrition', genovart:'Massage therapy', forteza:'Gynaecology and obstetrics', laura:'Paediatric physiotherapy', romero:'Perinatal psychology' },
+        movTitle: 'Movement studio'
       },
       tall: {
         eyebrow: 'Workshops', title: 'One workshop <strong>every month</strong>',
@@ -933,12 +982,17 @@
   }
 
   function renderServices(t) {
+    t = t || T[lang];
     const g = t.serv.groups;
     $('.tabs').innerHTML = g.map((x, i) =>
       `<button type="button" role="tab" aria-selected="${i === group}" data-g="${i}">${esc(x.name)}</button>`).join('');
     $('.group-intro').textContent = g[group].intro;
     $('.cards').innerHTML = g[group].items.map((x) =>
-      `<article class="card"><h3>${esc(x.n)}</h3><p>${esc(x.d)}</p><p class="who">${esc(x.who)}</p></article>`).join('');
+      `<article class="card"><h3>${esc(x.n)}</h3><p>${esc(x.d)}</p>` +
+      (x.prices ? `<table class="prices">${x.prices.map((r) =>
+        `<tr${r[0].startsWith('+') ? ' class="extra"' : ''}><td>${esc(r[0])}</td><td class="d">${esc(r[1])}</td><td class="p">${esc(r[2])}</td></tr>`).join('')}</table>` : '') +
+      (x.hours ? `<p class="hrs"><b>${esc(t.team.hours)}</b>${slots(t, CONSULTES.filter((c) => c[2] === 'indiba').map((c) => [c[0], c[1]]))}</p>` : '') +
+      (x.who ? `<p class="who">${esc(x.who)}</p>` : '') + `</article>`).join('');
     $$('.tabs button').forEach((b) => b.addEventListener('click', () => { group = +b.dataset.g; renderServices(T[lang]); }));
   }
 
@@ -965,19 +1019,29 @@
         : `<span class="soon">${esc(t.team.soon)}</span>`;
       const when = m.days
         ? `<p class="when"><b>${esc(t.team.consult)}</b>${slots(t, m.days)}</p>`
-        : `<p class="when"><b>${esc(t.team.classes)}</b>${m.classes.map(([d, h]) => t.days[d] + ' · ' + h + ' h').join('<br>')}</p>`;
+        : m.classes ? `<p class="when"><b>${esc(t.team.classes)}</b>${m.classes.map(([d, h]) => t.days[d] + ' · ' + h + ' h').join('<br>')}</p>` : '';
       return `<article class="member"><div class="ph">${ph}</div><h3>${esc(m.name)}</h3><p class="role">${esc(p.role)}</p><p class="quote">${esc(p.q)}</p>${when}</article>`;
     }).join('');
 
     $('.legend').innerHTML = Object.entries(t.sched.kinds).map(([k, v]) =>
       `<span><i class="k-${k}"></i>${esc(v)}</span>`).join('');
-    $('.week').innerHTML = t.days.map((dn, d) => {
+    $('.week-mov').innerHTML = t.days.map((dn, d) => {
       const list = SESSIONS.filter((s) => s[0] === d);
       const am = list.filter((s) => s[1] < '14:00'), pm = list.filter((s) => s[1] >= '14:00');
       const cell = (s) => `<div class="slot k-${KIND[s[3]]}"><span class="t">${s[1]}–${s[2]}</span><span class="n">${esc(t.sched.names[s[3]])}</span></div>`;
       return `<div class="dayc"><h3>${esc(dn)}</h3>` +
         (am.length ? `<p class="gap-label">${esc(t.sched.morning)}</p>` + am.map(cell).join('') : '') +
         (pm.length ? `<p class="gap-label">${esc(t.sched.afternoon)}</p>` + pm.map(cell).join('') : '') + `</div>`;
+    }).join('');
+
+    $('.week-cons').innerHTML = t.days.map((dn, d) => {
+      const part = (sl, label) => {
+        const list = CONSULTES.filter((c) => c[0] === d && c[1] === sl);
+        if (!list.length) return '';
+        return `<p class="gap-label">${esc(label)} · ${esc(t.team[sl])}</p>` + list.map((c) =>
+          `<div class="cslot${c[2] === 'indiba' ? ' indiba' : ''}"><span class="n">${esc(t.sched.cons[c[2]])}</span>${c[3] ? `<span class="w">${esc(c[3])}</span>` : ''}</div>`).join('');
+      };
+      return `<div class="dayc"><h3>${esc(dn)}</h3>${part('m', t.sched.morning)}${part('t', t.sched.afternoon)}</div>`;
     }).join('');
 
     $('.chips').innerHTML = t.tall.items.map((x) => `<li>${esc(x)}</li>`).join('');
