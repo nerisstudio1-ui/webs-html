@@ -23,7 +23,7 @@
      y manda sobre el WhatsApp */
   var RESERVAS_URL = '';
 
-  var VERSION = 'v5 · 2026-08-24';
+  var VERSION = 'v6 · 2026-10-14 · fotos reales';
 
   /* Si esto se ejecuta, el aviso sobra */
   var aviso = document.getElementById('aviso-js');
