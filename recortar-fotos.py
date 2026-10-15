@@ -40,5 +40,6 @@ recorta('3.jpg', 'est-2.webp',      1.33,    900,  0.45)   # el material, de cer
 recorta('4.jpg', 'est-3.webp',      1.33,    900,  0.88)   # la esterilla con el logo
 recorta('5.jpg', 'est-4.webp',      0.80,    800,  0.60)   # la sala, en vertical
 
-# Ojo: retrato.webp (la foto de "Hola, soy Rocío") sigue siendo una imagen de banco.
-# En cuanto llegue la foto real de Rocío, se recorta aquí a 0.80 y se guarda como retrato.webp.
+# La foto de Rocío para "Hola, soy Rocío". El original ya viene en 4:5, que es
+# justo la proporción del hueco, así que no hay que recortar nada.
+recorta('rocio.jpg', 'retrato.webp',  0.80,   1100,  0.50)
