@@ -43,4 +43,4 @@ recorta('5.jpg', 'est-4.webp',      0.80,    800,  0.60)   # la sala, en vertica
 # La foto de Rocío para "Hola, soy Rocío". El original ya viene en 4:5, que es
 # justo la proporción del hueco, así que no hay que recortar nada.
 recorta('rocio.jpg',    'retrato.webp', 0.80,   1100,  0.50)
-recorta('rocio-8.jpg',  'faq.webp',     0.80,   1100,  0.50)   # Rocío en plancha lateral
+recorta('rocio-13.jpg', 'faq.webp',     0.80,   1100,  0.50)   # Rocío en la barra, de espaldas
