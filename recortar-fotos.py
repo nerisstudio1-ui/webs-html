@@ -31,7 +31,7 @@ def recorta(origen, destino, ratio, ancho, foco=0.5, calidad=72):
 
 #        origen     destino         ratio   ancho  foco
 recorta('5.jpg', 'hero.webp',       1.50,   1600,  0.40)   # la sala entera (cabecera y franja)
-recorta('rocio-8.jpg',  'barre.webp',   1.777,  1600,  0.55)   # Rocío en plancha lateral
+recorta('rocio-10.jpg', 'barre.webp',   1.777,  1600,  0.62)   # Rocío con la barra de peso
 recorta('rocio-11.jpg', 'clases.webp',  0.833,  1050,  0.35)   # Rocío en la barra
 recorta('rocio-7.jpg',  'fitness.webp', 1.777,  1600,  0.76)   # Rocío en plancha
 recorta('2.jpg', 'calma.webp',      0.80,   1100,  0.50)   # los espejos dorados
@@ -43,4 +43,4 @@ recorta('5.jpg', 'est-4.webp',      0.80,    800,  0.60)   # la sala, en vertica
 # La foto de Rocío para "Hola, soy Rocío". El original ya viene en 4:5, que es
 # justo la proporción del hueco, así que no hay que recortar nada.
 recorta('rocio.jpg',    'retrato.webp', 0.80,   1100,  0.50)
-recorta('rocio-10.jpg', 'faq.webp',     0.80,   1100,  0.50)   # Rocío con la barra de peso
+recorta('rocio-8.jpg',  'faq.webp',     0.80,   1100,  0.50)   # Rocío en plancha lateral
