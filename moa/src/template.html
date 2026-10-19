@@ -144,8 +144,10 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 /* Hero */
 .hero{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:74px}
 .hero-media{position:relative;overflow:hidden;min-height:520px}
-.hero-media .ph{position:absolute;inset:-8% 0;height:116%;transform:scale(1.18);transition:transform 2.4s var(--ease) 1s}
-.loaded .hero-media .ph{transform:scale(1)}
+.hero-layer{position:absolute;inset:-8% 0;height:116%;transform:scale(1.18);transition:transform 2.4s var(--ease) 1s}
+.loaded .hero-layer{transform:scale(1)}
+.hero-layer .ph,.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-video{background:transparent}
 .hero-panel{background:var(--arena);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 6vw;position:relative;overflow:hidden}
 .hero-firma{width:min(250px,60%);margin-bottom:2.2rem;opacity:0;transform:translateY(20px);transition:all 1s var(--ease) 1.2s}
 .loaded .hero-firma{opacity:1;transform:none}
@@ -458,7 +460,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .reveal,.hero-fade,.hero-firma{opacity:1!important;transform:none!important}
   .clip .ph{clip-path:none!important}
   [data-split] .w>span,.hero h1 .line>span{transform:none!important}
-  .media .ph,.hero-media .ph{transform:none!important}
+  .media .ph,.hero-layer{transform:none!important}
   .squiggle path{stroke-dashoffset:0!important}
   .rv-row{overflow-x:auto}
 }
@@ -501,7 +503,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <!-- INICI -->
 <section class="hero" id="inici">
   <div class="hero-media">
-    <div class="ph" data-speed="-0.12" data-label="{{ph_hero}}"></div>
+    <div class="hero-layer" data-speed="-0.12">
+      <div class="ph" data-label="{{ph_hero}}"></div>
+      <!-- Vídeo de portada: basta con dejar el archivo en fotos/portada.mp4 (en silencio y en bucle). Si no existe, se ve el hueco de foto. -->
+      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="fotos/portada.mp4" type="video/mp4"></video>
+    </div>
   </div>
   <div class="hero-panel">
     <img class="hero-firma" src="assets/logos-moa/moa-firma-{{lang}}-violeta.svg" alt="{{firma_alt}}" width="250" height="100">
@@ -868,6 +874,10 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   document.getElementById('waFloat').href = waLink(T.waDefault);
   window.addEventListener('load', function(){ document.body.classList.add('loaded'); });
   setTimeout(function(){ document.body.classList.add('loaded'); }, 1500);
+
+  // Vídeo de portada: quieto si el dispositivo pide reducir movimiento
+  var heroVideo = document.getElementById('heroVideo');
+  if (reduce) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
 
   // Menú móvil
   var menuBtn = document.getElementById('menuBtn');
