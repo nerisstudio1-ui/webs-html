@@ -18,7 +18,7 @@ TEXT = {
   "nav_contact": "Contacte", "nav_cta": "Vull començar",
 
   "ph_hero": "Foto: persona entrenant amb llum natural", "ph_intro_a": "Foto: grup entrenant",
-  "ph_intro_b": "Foto: material i exercici", "ph_who": "Foto: entrenament acompanyat", "ph_patricia": "La Patricia Dorado somrient en un congost de muntanya",
+  "ph_intro_b": "Foto: material i exercici", "ph_patricia": "La Patricia Dorado somrient en un congost de muntanya",
 
   "hero_l1": "El teu ritme.", "hero_l2": "El teu moviment.",
   "hero_sub": "Entrenament adaptat a tu.",
@@ -108,6 +108,7 @@ TEXT = {
   "com_motto": "El teu ritme, els teus objectius, el teu camí. I si avancem junts, <em>molt millor.</em>",
   "rv_note": "Ressenyes de Google, en la llengua original.",
   "ig_fallback": "Mira'ns entrenant en grup a Instagram", "ig_caption": "Una sessió d'entrenament en grup.",
+  "ig2_fallback": "Mira el vídeo a Instagram", "ig2_caption": "Entrenant a MOA.",
 
   "ct_eyebrow": "Contacte", "ct_title": "Parlem?",
   "ct_lead": "No cal que sàpigues quin servei triar. Explica'ns què busques i ho mirem junts. Per als grups, quan confirmem plaça i horari, t'incorpores directament.",
@@ -157,7 +158,7 @@ TEXT = {
   "nav_contact": "Contacto", "nav_cta": "Quiero empezar",
 
   "ph_hero": "Foto: persona entrenando con luz natural", "ph_intro_a": "Foto: grupo entrenando",
-  "ph_intro_b": "Foto: material y ejercicio", "ph_who": "Foto: entrenamiento acompañado", "ph_patricia": "Patricia Dorado sonriendo en un barranco de montaña",
+  "ph_intro_b": "Foto: material y ejercicio", "ph_patricia": "Patricia Dorado sonriendo en un barranco de montaña",
 
   "hero_l1": "Tu ritmo.", "hero_l2": "Tu movimiento.",
   "hero_sub": "Entrenamiento adaptado a ti.",
@@ -247,6 +248,7 @@ TEXT = {
   "com_motto": "Tu ritmo, tus objetivos, tu camino. Y si avanzamos juntos, <em>mucho mejor.</em>",
   "rv_note": "Reseñas de Google.",
   "ig_fallback": "Míranos entrenar en grupo en Instagram", "ig_caption": "Una sesión de entrenamiento en grupo.",
+  "ig2_fallback": "Mira el vídeo en Instagram", "ig2_caption": "Entrenando en MOA.",
 
   "ct_eyebrow": "Contacto", "ct_title": "¿Hablamos?",
   "ct_lead": "No hace falta que sepas qué servicio elegir. Cuéntanos qué buscas y lo vemos juntos. Para los grupos, en cuanto confirmemos plaza y horario, te incorporas directamente.",
@@ -296,7 +298,7 @@ TEXT = {
   "nav_contact": "Contact", "nav_cta": "Get started",
 
   "ph_hero": "Photo: person training in natural light", "ph_intro_a": "Photo: group training",
-  "ph_intro_b": "Photo: equipment and exercise", "ph_who": "Photo: coached session", "ph_patricia": "Patricia Dorado smiling in a mountain gorge",
+  "ph_intro_b": "Photo: equipment and exercise", "ph_patricia": "Patricia Dorado smiling in a mountain gorge",
 
   "hero_l1": "Your pace.", "hero_l2": "Your movement.",
   "hero_sub": "Training that adapts to you.",
@@ -386,6 +388,7 @@ TEXT = {
   "com_motto": "Your pace, your goals, your path. And if we move forward together, <em>even better.</em>",
   "rv_note": "Google reviews, shown in their original Spanish.",
   "ig_fallback": "Watch us train as a group on Instagram", "ig_caption": "A group training session.",
+  "ig2_fallback": "Watch the video on Instagram", "ig2_caption": "Training at MOA.",
 
   "ct_eyebrow": "Contact", "ct_title": "Let's talk",
   "ct_lead": "You don't need to know which service to choose. Tell us what you're looking for and we'll figure it out together. For groups, once we confirm a place and time, you can join straight away.",

@@ -345,6 +345,9 @@ blockquote.instagram-media{display:grid;place-items:center;aspect-ratio:4/5;padd
 blockquote.instagram-media a{display:grid;justify-items:center;gap:18px;font-weight:600;color:var(--carbon);text-decoration:none}
 blockquote.instagram-media a::before{content:"";width:74px;height:74px;border-radius:50%;background:var(--violeta) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='%23FEF7E5'/%3E%3C/svg%3E") center/34px no-repeat;transition:transform .35s var(--ease)}
 blockquote.instagram-media a:hover::before{transform:scale(1.08)}
+.ig-left{justify-self:center}
+.ig-left figcaption{margin-top:48px}
+.ig-left::before{background:var(--verde);transform:rotate(-3deg);inset:-18px 18px 18px -18px}
 .ig-video figcaption{margin-top:34px;font-size:.8rem;color:var(--gris);text-align:center}
 .community-head p{color:var(--gris)}
 .mantras{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.4rem}
@@ -601,7 +604,10 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <!-- PER A QUI -->
 <section class="who pad" id="per-a-qui">
   <div class="wrap who-grid">
-    <div class="media clip" data-speed="0.06"><div class="ph" data-label="Foto: entrenament acompanyat"></div></div>
+    <figure class="ig-video ig-left reveal">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZpPGpHIbvv/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"><a href="https://www.instagram.com/p/DZpPGpHIbvv/" target="_blank" rel="noopener">Mira el vídeo a Instagram →</a></blockquote>
+      <figcaption>Entrenant a MOA.</figcaption>
+    </figure>
     <div class="who-copy">
       <span class="eyebrow reveal">Per a qui és</span>
       <h2 data-split>Comença des d'on ets</h2>
@@ -1016,8 +1022,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     });
   }
 
-  // Vídeo de Instagram: el script se carga solo cuando la sección se acerca
-  var ig = document.getElementById('igVideo');
+  // Vídeos de Instagram: el script se carga solo cuando el primero se acerca
   function loadIg(){
     if (document.getElementById('igScript')) return;
     var sc = document.createElement('script');
@@ -1026,9 +1031,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   }
   if ('IntersectionObserver' in window) {
     var igo = new IntersectionObserver(function(entries){
-      if (entries[0].isIntersecting) { loadIg(); igo.disconnect(); }
+      if (entries.some(function(e){ return e.isIntersecting; })) { loadIg(); igo.disconnect(); }
     }, {rootMargin:'600px 0px'});
-    igo.observe(ig);
+    document.querySelectorAll('.ig-video').forEach(function(v){ igo.observe(v); });
   } else { loadIg(); }
 
   // Preseleccionar servicio en el formulario
