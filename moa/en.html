@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOA · Moviment i Salut · Personal training in Martorell</title>
+<meta name="description" content="MOA is training that adapts to the person, in Martorell (Barcelona): personal, small-group, at home, online and via app. A project by Patricia Dorado Trainer. Step by step, at your pace.">
+<meta property="og:title" content="MOA · Moviment i Salut · Personal training in Martorell">
+<meta property="og:description" content="Your pace. Your movement. Training that adapts to you.">
+<meta property="og:locale" content="en_GB">
+<meta name="theme-color" content="#9242F3">
+<link rel="alternate" hreflang="ca" href="index.html">
+<link rel="alternate" hreflang="es" href="es.html">
+<link rel="alternate" hreflang="en" href="en.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<!--
+  ARCHIVO GENERADO. No editar a mano: los cambios van en src/template.html (diseño)
+  o en src/i18n.py (textos) y después se ejecuta: python3 build.py
+
+  CÓMO CAMBIAR LAS FOTOS (en src/template.html)
+  Cada hueco de foto es un <div class="ph" data-label="...">.
+  Para poner una foto real, sustitúyelo por:
+    <img class="ph" src="fotos/mi-foto.jpg" alt="Descripción de la foto">
+-->
+<style>
+:root{
+  --crema:#FEF7E5;
+  --arena:#F3E9D1;
+  --arena-2:#E9DCBC;
+  --violeta:#9242F3;
+  --violeta-osc:#7428D6;
+  --verde:#3BC65F;
+  --carbon:#2B2D2B;
+  --blanco:#FFFFFF;
+  --gris:#5E605E;
+  --linea:rgba(43,45,43,.14);
+  --radius:22px;
+  --wrap:1240px;
+  --titulo:"Bricolage Grotesque",system-ui,sans-serif;
+  --texto:"Montserrat",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;font-family:var(--texto);font-size:16px;line-height:1.7;color:var(--carbon);background:var(--crema);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+p{margin:0 0 1em}
+[hidden]{display:none!important}
+h1,h2,h3{font-family:var(--titulo);margin:0;letter-spacing:-.015em}
+.up{text-transform:uppercase}
+h2{font-size:clamp(2.1rem,4.6vw,3.6rem);font-weight:700;line-height:.98;text-transform:uppercase}
+h3{font-size:1.35rem;font-weight:700;line-height:1.1;text-transform:uppercase}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+section{position:relative}
+.pad{padding:120px 0}
+.eyebrow{display:block;font-weight:600;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--violeta);margin-bottom:1.1rem}
+.muted{color:var(--gris)}
+.lead{font-size:1.05rem;color:var(--gris);max-width:58ch}
+.violeta{color:var(--violeta)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--violeta);outline-offset:3px}
+
+/* Intro de carga */
+.intro{position:fixed;inset:0;z-index:100;background:var(--violeta);display:grid;place-items:center;animation:introOut .8s var(--ease) 1.05s forwards;pointer-events:none}
+.intro img{width:92px;animation:introArrow 1s var(--ease) both}
+@keyframes introArrow{0%{transform:translateY(40px);opacity:0}45%{transform:none;opacity:1}100%{transform:translateY(-14px);opacity:1}}
+@keyframes introOut{to{transform:translateY(-100%)}}
+
+/* Barra de progreso */
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--violeta),var(--verde))}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;font-family:var(--texto);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;padding:1.15em 1.9em;border-radius:10px;border:1.5px solid var(--carbon);color:var(--carbon);background:transparent;text-decoration:none;cursor:pointer;position:relative;overflow:hidden;isolation:isolate;transition:color .35s var(--ease),border-color .35s var(--ease);will-change:transform}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--carbon);transform:translateY(101%);transition:transform .45s var(--ease)}
+.btn:hover{color:var(--crema)}
+.btn:hover::before{transform:none}
+.btn-fill{background:var(--violeta);border-color:var(--violeta);color:var(--crema)}
+.btn-fill::before{background:var(--carbon)}
+.btn-light{border-color:var(--crema);color:var(--crema)}
+.btn-light::before{background:var(--crema)}
+.btn-light:hover{color:var(--carbon)}
+.btn-wa{background:#1E8E50;border-color:#1E8E50;color:#fff}
+.btn svg{width:1.2em;height:1.2em;flex:none}
+.link-arrow{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:3px}
+.link-arrow span{transition:transform .3s var(--ease)}
+.link-arrow:hover span{transform:translateX(5px)}
+
+/* Cabecera */
+.header{position:fixed;inset:0 0 auto;z-index:50;transition:transform .45s var(--ease),background .3s ease,box-shadow .3s ease}
+.header.scrolled{background:rgba(254,247,229,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linea)}
+.header.hide{transform:translateY(-100%)}
+.header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:74px;gap:20px;max-width:1400px}
+.nav-left{display:flex;gap:24px}
+.nav-left a{font-size:.78rem;font-weight:500;letter-spacing:.06em;text-decoration:none;position:relative}
+.nav-left a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav-left a:hover::after{transform:scaleX(1);transform-origin:left}
+.brand img{height:30px;width:auto}
+.nav-right{display:flex;justify-content:flex-end;align-items:center;gap:18px}
+.langs{display:flex;gap:2px;font-size:.74rem;font-weight:600;letter-spacing:.08em}
+.langs a{text-decoration:none;padding:.35em .5em;border-radius:6px;color:var(--gris)}
+.langs a[aria-current]{color:var(--carbon);background:var(--arena-2)}
+.langs a:hover{color:var(--violeta)}
+.ig{display:grid;place-items:center;width:30px;height:30px}
+.ig svg{width:18px;height:18px}
+.nav-right .btn{padding:.9em 1.3em;font-size:.68rem}
+.menu-btn{display:none;background:none;border:0;padding:8px;cursor:pointer;justify-self:end}
+.menu-btn span{display:block;width:26px;height:2px;background:var(--carbon);margin:6px 0;transition:transform .3s var(--ease),opacity .3s}
+.menu-open .menu-btn span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.menu-open .menu-btn span:nth-child(2){opacity:0}
+.menu-open .menu-btn span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:45;background:var(--violeta);color:var(--crema);display:flex;flex-direction:column;justify-content:center;padding:90px 28px 40px;clip-path:circle(0% at calc(100% - 44px) 37px);transition:clip-path .7s var(--ease);visibility:hidden}
+.menu-open .mobile-menu{clip-path:circle(150% at calc(100% - 44px) 37px);visibility:visible}
+.mobile-menu a.big{font-family:var(--titulo);font-weight:700;font-size:clamp(2.2rem,10vw,3.4rem);text-transform:uppercase;text-decoration:none;line-height:1.15;opacity:0;transform:translateY(30px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.menu-open .mobile-menu a.big{opacity:1;transform:none;transition-delay:calc(.15s + var(--i)*.06s)}
+.mobile-menu .langs{margin-top:34px;font-size:.9rem}
+.mobile-menu .langs a{color:rgba(254,247,229,.7)}
+.mobile-menu .langs a[aria-current]{background:var(--crema);color:var(--violeta)}
+.menu-open .header{background:transparent;box-shadow:none}
+.menu-open .menu-btn span{background:var(--crema)}
+.menu-open .brand img{filter:brightness(0) invert(96%) sepia(8%) saturate(500%)}
+
+/* Huecos de foto */
+.ph{display:block;width:100%;height:100%;object-fit:cover;position:relative;background:
+  radial-gradient(110% 80% at 15% 0%,rgba(59,198,95,.32),transparent 60%),
+  radial-gradient(90% 80% at 100% 100%,rgba(146,66,243,.28),transparent 60%),
+  #E6DABD}
+div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;transform:translateX(-50%);white-space:nowrap;padding:.35em .9em;border-radius:999px;background:rgba(254,247,229,.92);font-size:.72rem;font-weight:500;color:var(--gris)}
+.media{position:relative;overflow:hidden;border-radius:var(--radius)}
+.media .ph{transform:scale(1.12);transition:transform 1.6s var(--ease)}
+.media.in .ph{transform:scale(1)}
+
+/* Reveals */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.clip .ph{clip-path:inset(100% 0 0 0);transition:clip-path 1.2s var(--ease) var(--d,0s),transform 1.6s var(--ease) var(--d,0s)}
+.clip.in .ph{clip-path:inset(0 0 0 0)}
+[data-split] .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em;margin-bottom:-.06em}
+[data-split] .w>span{display:inline-block;transform:translateY(105%);transition:transform .9s var(--ease);transition-delay:calc(var(--i)*.045s)}
+[data-split].in .w>span{transform:none}
+
+/* Hero */
+.hero{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:74px}
+.hero-media{position:relative;overflow:hidden;min-height:520px}
+.hero-media .ph{position:absolute;inset:-8% 0;height:116%;transform:scale(1.18);transition:transform 2.4s var(--ease) 1s}
+.loaded .hero-media .ph{transform:scale(1)}
+.hero-panel{background:var(--arena);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 6vw;position:relative;overflow:hidden}
+.hero-firma{width:min(250px,60%);margin-bottom:2.2rem;opacity:0;transform:translateY(20px);transition:all 1s var(--ease) 1.2s}
+.loaded .hero-firma{opacity:1;transform:none}
+.hero h1{font-size:clamp(2.6rem,5.4vw,4.9rem);font-weight:800;line-height:.95;text-transform:uppercase;margin-bottom:1.5rem}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.08em}
+.hero h1 .line>span{display:inline-block;position:relative;transform:translateY(110%);transition:transform 1.1s var(--ease)}
+.loaded .hero h1 .line>span{transform:none}
+.hero h1 .line:nth-child(1)>span{transition-delay:1.15s}
+.hero h1 .line:nth-child(2)>span{transition-delay:1.27s}
+.squiggle{position:absolute;left:-2%;bottom:-.12em;width:104%;height:.32em;overflow:visible}
+.squiggle path{fill:none;stroke:var(--violeta);stroke-width:7;stroke-linecap:round;stroke-dasharray:620;stroke-dashoffset:620;transition:stroke-dashoffset 1.2s var(--ease) 2s}
+.loaded .squiggle path{stroke-dashoffset:0}
+.hero .sub{font-family:var(--titulo);font-size:1.3rem;font-weight:500;margin-bottom:.8rem}
+.hero .lead{margin:0 auto 2rem;font-size:.98rem}
+.hero-fade{opacity:0;transform:translateY(16px);transition:all 1s var(--ease) 1.6s}
+.loaded .hero-fade{opacity:1;transform:none}
+.hero-ctas{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:22px}
+.badge{position:absolute;left:50%;bottom:70px;width:132px;height:132px;margin-left:-66px;border-radius:50%;background:var(--crema);z-index:2;box-shadow:0 18px 40px -24px rgba(43,45,43,.45)}
+.badge svg.ring{width:100%;height:100%;animation:spin 16s linear infinite}
+.badge svg.ring text{font-family:var(--texto);font-size:9.6px;font-weight:600;letter-spacing:.24em;fill:var(--carbon)}
+.badge img{position:absolute;inset:0;margin:auto;width:40px;height:auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Marquee */
+.marquee{overflow:hidden;white-space:nowrap;padding:34px 0;user-select:none}
+.mq-track{display:inline-flex;align-items:center;will-change:transform}
+.mq-item{display:inline-flex;align-items:center;gap:.45em;font-family:var(--titulo);font-weight:800;text-transform:uppercase;font-size:clamp(3.6rem,10vw,9rem);line-height:1;letter-spacing:-.02em;padding-right:.45em}
+.mq-item img{height:.62em;width:auto;flex:none}
+.mq-soft{color:var(--arena-2)}
+.mq-soft .mq-item:nth-child(even){color:var(--violeta)}
+.mq-green{background:var(--verde);color:var(--carbon)}
+.mq-outline .mq-item{color:transparent;-webkit-text-stroke:2px var(--carbon)}
+.mq-outline .mq-item:nth-child(even){color:var(--carbon);-webkit-text-stroke:0}
+
+/* Intro (soluciones) */
+.intro-sec{padding:70px 0 130px}
+.intro-grid{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:50px;align-items:center}
+.intro-grid .media{aspect-ratio:4/5}
+.intro-grid .media.a{margin-top:120px;max-width:260px;width:100%}
+.intro-grid .media.b{margin-top:-60px;max-width:280px;width:100%;justify-self:end}
+.intro-copy{text-align:center}
+.intro-copy h2{margin-bottom:1.4rem}
+.intro-copy p{color:var(--gris);font-size:.98rem;margin:0 auto 2rem;max-width:52ch}
+
+/* Significado MOA */
+.meaning{background:var(--carbon);color:var(--crema);overflow:hidden;padding:120px 0}
+.meaning .eyebrow{color:var(--verde)}
+.meaning h2{max-width:14ch}
+.letters{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:70px}
+.letter{will-change:transform}
+.letter b{display:block;font-family:var(--titulo);font-weight:800;font-size:clamp(7rem,19vw,17rem);line-height:.8;letter-spacing:-.04em}
+.letter:nth-child(1) b{color:var(--verde)}
+.letter:nth-child(2) b{color:var(--violeta)}
+.letter:nth-child(3) b{color:var(--crema)}
+.letter h3{margin:1.6rem 0 .5rem;font-size:1.5rem}
+.letter p{color:rgba(254,247,229,.72);max-width:30ch;margin:0}
+
+/* Cómo funciona */
+.how{background:var(--arena)}
+.how-head{text-align:center;margin-bottom:64px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;padding-top:34px}
+.steps-line{position:absolute;left:0;right:0;top:0;height:3px;border-radius:3px;background:var(--arena-2);overflow:hidden}
+.steps-line i{position:absolute;inset:0;background:linear-gradient(90deg,var(--violeta),var(--verde));transform-origin:left;transform:scaleX(0)}
+.step{background:var(--crema);border-radius:var(--radius);padding:30px 26px 34px;transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .5s var(--ease)}
+.step:hover{transform:translateY(-8px);box-shadow:0 30px 50px -35px rgba(43,45,43,.5)}
+.step small{display:block;font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#9C917A;margin-bottom:.9rem}
+.step h3{margin-bottom:.8rem}
+.step p{font-size:.9rem;color:var(--gris);margin:0}
+.step:hover small{color:var(--violeta)}
+.how-note{margin:60px auto 0;text-align:center;font-family:var(--titulo);font-weight:500;font-size:clamp(1.4rem,2.6vw,2rem)}
+
+/* Servicios (scroll horizontal) */
+.services{background:var(--crema)}
+.hs-sticky{padding:110px 0 90px}
+.hs-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+.hs-count{font-family:var(--titulo);font-weight:700;font-size:1.1rem;letter-spacing:.06em}
+.hs-count b{font-size:2.4rem;color:var(--violeta)}
+.hs-hint{display:flex;align-items:center;gap:10px;font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gris)}
+.hs-hint i{display:block;width:46px;height:1.5px;background:currentColor;position:relative;overflow:hidden}
+.hs-hint i::after{content:"";position:absolute;inset:0;background:var(--violeta);animation:hint 1.6s var(--ease) infinite}
+@keyframes hint{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.hs-track{display:flex;gap:22px;padding:0 28px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.hs-track::-webkit-scrollbar{display:none}
+.svc{flex:0 0 min(420px,82vw);min-height:500px;scroll-snap-align:start;border-radius:28px;padding:34px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--arena)}
+.svc:nth-child(2){background:var(--violeta);color:var(--crema)}
+.svc:nth-child(3){background:var(--verde)}
+.svc:nth-child(4){background:var(--carbon);color:var(--crema)}
+.svc:nth-child(5){background:var(--blanco)}
+.svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
+.svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
+.svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem}
+.svc .price{font-family:var(--titulo);font-weight:700;font-size:1.5rem;margin-bottom:1.3rem}
+.svc .price small{font-family:var(--texto);font-weight:500;font-size:.78rem;opacity:.8}
+.svc .link-arrow{align-self:flex-start}
+.svc .shape{position:absolute;right:-30px;top:-30px;width:150px;opacity:.14;transition:transform .8s var(--ease)}
+.svc:hover .shape{transform:translateY(-12px) rotate(-6deg)}
+.services.is-pinned .hs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:74px 0 0}
+.services.is-pinned .hs-track{overflow:visible;scroll-snap-type:none;will-change:transform;padding:0 max(28px,calc((100vw - var(--wrap))/2 + 28px))}
+
+/* Para quién */
+.who{background:var(--crema)}
+.who-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+.who-grid .media{aspect-ratio:4/5}
+.who-copy .eyebrow{color:#9C917A}
+.who-copy h2{margin-bottom:1.8rem}
+.who-list{list-style:none;padding:0;margin:0 0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:12px 30px}
+.who-list li{position:relative;padding-left:22px;font-size:.9rem;line-height:1.5}
+.who-list li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:50%;background:var(--carbon)}
+.who-list li:nth-child(4n+2)::before,.who-list li:nth-child(4n+3)::before{background:var(--violeta)}
+.who-callout{font-family:var(--titulo);font-weight:600;font-size:1.5rem;line-height:1.2;margin-bottom:1.8rem}
+
+/* Cifras */
+.stats{background:var(--violeta);color:var(--crema);padding:80px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.stat{border-left:1.5px solid rgba(254,247,229,.3);padding-left:22px}
+.stat b{display:block;font-family:var(--titulo);font-weight:800;font-size:clamp(3rem,6vw,5rem);line-height:1}
+.stat span{display:block;font-size:.88rem;opacity:.85;max-width:22ch;margin-top:.6rem}
+
+/* Test */
+.quiz-sec{background:var(--arena)}
+.quiz{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+.quiz-intro h2{margin-bottom:1.2rem}
+.quiz-progress{display:flex;gap:8px;margin-top:28px;max-width:260px}
+.quiz-progress i{flex:1;height:4px;border-radius:4px;background:var(--arena-2);overflow:hidden;position:relative}
+.quiz-progress i::after{content:"";position:absolute;inset:0;background:var(--violeta);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.quiz-progress i.on::after{transform:none}
+.quiz form{background:var(--crema);border-radius:28px;padding:44px;min-height:420px}
+.q{display:none;border:0;margin:0;padding:0;min-width:0}
+.q.active{display:block;animation:qIn .55s var(--ease)}
+@keyframes qIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+.q legend{font-family:var(--titulo);font-weight:700;text-transform:uppercase;font-size:1.5rem;line-height:1.1;margin-bottom:1.4rem;padding:0}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:14px;padding:16px 20px;border:1.5px solid var(--linea);border-radius:14px;cursor:pointer;font-weight:500;font-size:.95rem;transition:border-color .25s,background .25s,transform .25s var(--ease)}
+.opt:hover{border-color:var(--carbon);transform:translateX(4px)}
+.opt input{accent-color:var(--violeta);width:18px;height:18px;flex:none}
+.opt:has(input:checked){border-color:var(--violeta);background:rgba(146,66,243,.08)}
+.quiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+.quiz-nav .btn:disabled{opacity:.35;cursor:not-allowed}
+.result{display:none}
+.result.active{display:block;animation:qIn .55s var(--ease)}
+.result h3{font-size:2rem;margin:.2rem 0 .8rem}
+.result p{color:var(--gris)}
+.result .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.4rem}
+.link-btn{background:none;border:0;padding:0;font:inherit;font-size:.88rem;color:var(--gris);text-decoration:underline;cursor:pointer}
+
+/* Tarifas */
+.prices-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:start;margin-top:56px}
+.price-list{border-top:1.5px solid var(--carbon)}
+.price-row{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 14px;border-bottom:1px solid var(--linea);position:relative;isolation:isolate}
+.price-row::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--arena);transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);border-radius:14px}
+.price-row:hover::before{transform:none}
+.price-row h3{font-size:1.05rem}
+.price-row small{display:block;color:var(--gris);font-size:.84rem;margin-top:4px;max-width:46ch}
+.price-row .amount{font-family:var(--titulo);font-weight:800;font-size:2rem;white-space:nowrap;text-align:right;line-height:1}
+.price-row .amount small{font-family:var(--texto);font-weight:500;font-size:.76rem;text-align:right;margin:4px 0 0}
+.price-row.block{display:block}
+.group-prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.group-prices div{background:var(--crema);border:1px solid var(--linea);border-radius:14px;padding:14px 10px;text-align:center;transition:transform .35s var(--ease),background .35s}
+.group-prices div:hover{transform:translateY(-4px);background:var(--verde)}
+.group-prices b{display:block;font-family:var(--titulo);font-weight:800;font-size:1.6rem;line-height:1.1}
+.group-prices span{font-size:.76rem;color:var(--gris);line-height:1.3;display:block}
+.price-note{font-size:.84rem;color:var(--gris);margin:16px 14px 0}
+.schedule{background:var(--carbon);color:var(--crema);border-radius:28px;padding:38px 34px;position:sticky;top:100px}
+.schedule h3{font-size:1.6rem;margin-bottom:.4rem}
+.schedule>p{color:rgba(254,247,229,.7);font-size:.9rem}
+.slots{list-style:none;padding:0;margin:22px 0;display:grid;gap:10px}
+.slots li{display:flex;justify-content:space-between;align-items:center;gap:12px;background:rgba(254,247,229,.07);border-radius:14px;padding:14px 18px;font-size:.92rem;font-weight:500;transition:background .3s}
+.slots li:hover{background:rgba(254,247,229,.14)}
+.slots time{font-family:var(--titulo);font-weight:700;font-size:1.25rem;color:var(--verde);white-space:nowrap}
+.schedule .others{border-top:1px solid rgba(254,247,229,.16);padding-top:18px;font-size:.88rem;color:rgba(254,247,229,.82)}
+.schedule .others p{margin:0 0 .6em}
+.schedule .btn{margin-top:14px}
+
+/* Patricia */
+.behind{background:var(--arena)}
+.behind-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:start}
+.behind-visual .media{aspect-ratio:4/5;border-radius:999px 999px var(--radius) var(--radius)}
+.pdt{display:flex;align-items:center;gap:16px;margin-top:24px;font-size:.84rem;color:var(--gris)}
+.pdt img{width:150px;height:auto}
+.behind-copy h2{margin-bottom:1.6rem}
+.behind-copy p{color:#434543}
+.quote{margin:2rem 0;padding:0 0 0 24px;border-left:4px solid var(--violeta);font-family:var(--titulo);font-weight:500;font-size:1.45rem;line-height:1.3}
+.timeline{list-style:none;padding:0;margin:2.2rem 0 0;display:grid;gap:0;border-top:1px solid var(--linea)}
+.timeline li{display:grid;grid-template-columns:60px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--linea)}
+.timeline b{font-family:var(--titulo);font-weight:800;font-size:1.4rem;color:var(--violeta)}
+.timeline strong{display:block;font-size:.95rem;line-height:1.35}
+.timeline span{font-size:.86rem;color:var(--gris)}
+
+/* Comunidad */
+.community{background:var(--crema);padding:120px 0 100px;overflow:hidden}
+.community-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:60px}
+.community-head p{color:var(--gris)}
+.mantras{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.4rem}
+.mantras span{border:1.5px solid var(--carbon);border-radius:999px;padding:.4em 1.1em;font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .3s,color .3s}
+.mantras span:hover{background:var(--carbon);color:var(--crema)}
+.motto{font-family:var(--titulo);font-weight:700;text-transform:uppercase;font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.05}
+.motto em{font-style:normal;color:var(--violeta)}
+.reviews{display:grid;gap:20px}
+.rv-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rv-track{display:flex;gap:20px;width:max-content;animation:rv 60s linear infinite}
+.rv-row.rev .rv-track{animation-direction:reverse;animation-duration:70s}
+.rv-row:hover .rv-track{animation-play-state:paused}
+@keyframes rv{to{transform:translateX(calc(-50% - 10px))}}
+.review{width:380px;flex:none;background:var(--arena);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:transform .4s var(--ease),background .4s}
+.review:hover{transform:translateY(-6px) rotate(-.6deg);background:var(--blanco)}
+.review .stars{color:var(--violeta);letter-spacing:.2em;font-size:.9rem;margin-bottom:.8rem}
+.review p{font-size:.9rem;flex:1;margin-bottom:1.2rem}
+.review footer{font-weight:600;font-size:.86rem}
+.review footer small{display:block;font-weight:400;color:var(--gris)}
+.rv-note{text-align:center;font-size:.8rem;color:var(--gris);margin-top:26px}
+
+/* Contacto */
+.contact{background:var(--carbon);color:var(--crema)}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px}
+.contact .eyebrow{color:var(--verde)}
+.contact h2{margin-bottom:1.3rem}
+.contact .lead{color:rgba(254,247,229,.72)}
+.contact-list{list-style:none;padding:0;margin:2.2rem 0 0;border-top:1px solid rgba(254,247,229,.16)}
+.contact-list li{border-bottom:1px solid rgba(254,247,229,.16)}
+.contact-list a,.contact-list div{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 4px;text-decoration:none;font-weight:600;transition:padding .35s var(--ease),color .3s}
+.contact-list a:hover{padding-left:14px;color:var(--verde)}
+.contact-list small{font-weight:400;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(254,247,229,.55)}
+.form{background:var(--crema);color:var(--carbon);border-radius:28px;padding:40px}
+.form h3{font-size:1.6rem;margin-bottom:.4rem}
+.form>p{color:var(--gris);font-size:.88rem}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label{font-weight:600;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+.field input,.field select,.field textarea{font:inherit;font-size:1rem;padding:14px 16px;border:1.5px solid var(--linea);border-radius:12px;background:var(--blanco);color:var(--carbon);width:100%;transition:border-color .25s,box-shadow .25s}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--violeta);outline:none;box-shadow:0 0 0 4px rgba(146,66,243,.14)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--gris);margin:6px 0 20px}
+.check input{margin-top:4px;accent-color:var(--violeta)}
+.form-actions{display:flex;flex-wrap:wrap;gap:12px}
+.form-actions .btn{flex:1 1 220px}
+.form-error{color:#A3122A;font-size:.88rem;font-weight:500;min-height:1.4em;margin:10px 0 0}
+
+/* Pie */
+.footer{background:var(--carbon);color:rgba(254,247,229,.65);padding:30px 0 34px;font-size:.84rem}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;padding:50px 0 40px;border-top:1px solid rgba(254,247,229,.14);border-bottom:1px solid rgba(254,247,229,.14)}
+.footer-firma{width:min(320px,100%)}
+.footer-claim{font-family:var(--titulo);font-weight:700;text-transform:uppercase;font-size:1.6rem;line-height:1.1;color:var(--crema);margin:0;text-align:right}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:26px}
+.footer-bottom .convive{display:flex;align-items:center;gap:12px}
+.footer-bottom .convive img{height:34px;width:auto}
+.footer .langs a{color:rgba(254,247,229,.6)}
+.footer .langs a[aria-current]{background:rgba(254,247,229,.12);color:var(--crema)}
+.footer a{text-decoration:none}
+
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:40;width:58px;height:58px;border-radius:50%;background:#1E8E50;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.45);transition:transform .3s var(--ease)}
+.wa-float:hover{transform:scale(1.08) rotate(-8deg)}
+.wa-float svg{width:28px;height:28px}
+
+/* Responsive */
+@media (max-width:1020px){
+  .nav-left,.nav-right{display:none}
+  .header .wrap{grid-template-columns:1fr auto}
+  .menu-btn{display:block}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-media{min-height:62vh;order:2}
+  .hero-panel{padding:70px 28px 90px}
+  .intro-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .intro-copy{grid-column:1/-1;grid-row:1}
+  .intro-grid .media.a{margin-top:30px;max-width:none}
+  .intro-grid .media.b{margin-top:80px;max-width:none}
+  .letters,.stats-grid{grid-template-columns:1fr}
+  .letters{gap:50px}
+  .stats-grid{grid-template-columns:1fr 1fr;row-gap:40px}
+  .steps{grid-template-columns:1fr 1fr}
+  .who-grid,.quiz,.prices-grid,.behind-grid,.contact-grid,.community-head{grid-template-columns:minmax(0,1fr);gap:50px}
+  .who-grid .media,.behind-visual{max-width:460px}
+  .schedule{position:static}
+}
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .pad{padding:84px 0}
+  .wrap{padding:0 18px}
+  .hs-track{padding:0 18px}
+  .hero-panel{padding:56px 18px 80px}
+  .badge{width:104px;height:104px;left:auto;right:16px;bottom:16px;margin-left:0}
+  .steps,.who-list,.row2{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
+  .stat{padding-left:14px}
+  .quiz form,.form{padding:28px 20px}
+  .price-row{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 6px}
+  .price-row .amount,.price-row .amount small{text-align:left}
+  .group-prices b{font-size:1.3rem}
+  .schedule{padding:28px 22px}
+  .review{width:300px}
+  .footer-claim{text-align:left}
+  .marquee{padding:22px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .intro{display:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.hero-fade,.hero-firma{opacity:1!important;transform:none!important}
+  .clip .ph{clip-path:none!important}
+  [data-split] .w>span,.hero h1 .line>span{transform:none!important}
+  .media .ph,.hero-media .ph{transform:none!important}
+  .squiggle path{stroke-dashoffset:0!important}
+  .rv-row{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="intro" aria-hidden="true"><img src="assets/logos-moa/moa-simbolo-crema.svg" alt=""></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="header" id="header">
+  <div class="wrap">
+    <nav class="nav-left" aria-label="Main">
+      <a href="#serveis">Services</a>
+      <a href="#metode">How we work</a>
+      <a href="#tarifes">Pricing</a>
+      <a href="#patricia">Patricia</a>
+    </nav>
+    <a href="#inici" class="brand" aria-label="MOA, go to home"><img src="assets/logos-moa/moa-logo-violeta.svg" alt="MOA" width="92" height="30"></a>
+    <div class="nav-right">
+      <nav class="langs" aria-label="Idioma / Language"><a href="index.html" hreflang="ca" lang="ca" title="Català">CA</a><a href="es.html" hreflang="es" lang="es" title="Castellano">ES</a><a href="en.html" hreflang="en" lang="en" title="English" aria-current="true">EN</a></nav>
+      <a class="ig" href="https://www.instagram.com/moa.salut/" target="_blank" rel="noopener" aria-label="Instagram @moa.salut"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="#contacte" class="btn">Get started</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="big" style="--i:0" href="#serveis">Services</a>
+  <a class="big" style="--i:1" href="#metode">How we work</a>
+  <a class="big" style="--i:2" href="#tarifes">Pricing</a>
+  <a class="big" style="--i:3" href="#patricia">Patricia</a>
+  <a class="big" style="--i:4" href="#contacte">Contact</a>
+  <nav class="langs" aria-label="Idioma / Language"><a href="index.html" hreflang="ca" lang="ca" title="Català">CA</a><a href="es.html" hreflang="es" lang="es" title="Castellano">ES</a><a href="en.html" hreflang="en" lang="en" title="English" aria-current="true">EN</a></nav>
+</div>
+
+<main>
+
+<!-- INICI -->
+<section class="hero" id="inici">
+  <div class="hero-media">
+    <div class="ph" data-speed="-0.12" data-label="Photo: person training in natural light"></div>
+  </div>
+  <div class="hero-panel">
+    <img class="hero-firma" src="assets/logos-moa/moa-firma-en-violeta.svg" alt="MOA · Movement, Origin, Action" width="250" height="100">
+    <h1>
+      <span class="line"><span>Your pace.<svg class="squiggle" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C 60 2, 110 18, 160 9 S 250 4, 296 11"/></svg></span></span>
+      <span class="line"><span>Your movement.</span></span>
+    </h1>
+    <p class="sub hero-fade">Training that adapts to you.</p>
+    <p class="lead hero-fade">Everyone has their own story, needs and pace. At MOA we listen before we plan, and we stay by your side so that moving makes sense in your life.</p>
+    <div class="hero-ctas hero-fade">
+      <a href="#contacte" class="btn magnetic">Get started</a>
+      <a href="#test" class="link-arrow">Which training is right for me? <span>→</span></a>
+    </div>
+  </div>
+  <div class="badge" aria-hidden="true">
+    <svg class="ring" viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#circ">STEP BY STEP · AT YOUR PACE · STEP BY STEP · AT YOUR PACE ·</textPath></text></svg>
+    <img src="assets/logos-moa/moa-simbolo-violeta.svg" alt="" width="40" height="42">
+  </div>
+</section>
+
+<!-- MARQUESINA -->
+<div class="marquee mq-soft" data-marquee aria-hidden="true">
+  <div class="mq-track">
+    <span class="mq-item">Movement <img src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""></span>
+    <span class="mq-item">Origin <img src="assets/logos-moa/moa-simbolo-verde.svg" alt=""></span>
+    <span class="mq-item">Action <img src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""></span>
+    <span class="mq-item">Step by step <img src="assets/logos-moa/moa-simbolo-verde.svg" alt=""></span>
+  </div>
+</div>
+
+<!-- PRESENTACIÓ -->
+<section class="intro-sec">
+  <div class="wrap intro-grid">
+    <div class="media a clip" data-speed="0.08"><div class="ph" data-label="Photo: group training"></div></div>
+    <div class="intro-copy">
+      <span class="eyebrow reveal">Moviment i Salut</span>
+      <h2 data-split>Training made to measure</h2>
+      <p class="reveal">MOA is a space and a community for training away from the conventional gym. Before planning anything, we listen: where you're starting from, what you need and what your day-to-day looks like. Then we adapt the exercise to you, not you to the exercise. No rush, and no miracle promises.</p>
+      <a href="#contacte" class="btn magnetic reveal">Let's talk</a>
+    </div>
+    <div class="media b clip" style="--d:.15s" data-speed="-0.1"><div class="ph" data-label="Photo: equipment and exercise"></div></div>
+  </div>
+</section>
+
+<!-- SIGNIFICAT -->
+<section class="meaning" id="moa">
+  <div class="wrap">
+    <span class="eyebrow reveal">Moviment · Origen · Acció</span>
+    <h2 data-split>Movement starts with you.</h2>
+    <div class="letters" id="letters">
+      <article class="letter" data-from="-1"><b>M</b><h3>Movement</h3><p>The body, exercise and the ability to move.</p></article>
+      <article class="letter" data-from="0"><b>O</b><h3>Origin</h3><p>Your story, your needs and your starting point.</p></article>
+      <article class="letter" data-from="1"><b>A</b><h3>Action</h3><p>Putting it into practice, moving forward and building change.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- COM FUNCIONA -->
+<section class="how pad" id="metode">
+  <div class="wrap">
+    <div class="how-head">
+      <span class="eyebrow reveal">How we work</span>
+      <h2 data-split>How it works</h2>
+      <p class="lead reveal" style="margin:1.2rem auto 0">We don't believe in one-size-fits-all routines. First we get to know you; then we get moving.</p>
+    </div>
+    <div class="steps" id="steps">
+      <div class="steps-line" aria-hidden="true"><i></i></div>
+      <article class="step reveal"><small>Step 1</small><h3>Discovery</h3><p>It all starts with a conversation: what brought you here, what you'd like to achieve and what your daily life is like.</p></article>
+      <article class="step reveal" style="--d:.08s"><small>Step 2</small><h3>Assessment</h3><p>We see where we're starting from. Not to find what you do wrong, but what we can improve and how.</p></article>
+      <article class="step reveal" style="--d:.16s"><small>Step 3</small><h3>Planning</h3><p>A programme designed for you, where every exercise has a reason and fits into your life.</p></article>
+      <article class="step reveal" style="--d:.24s"><small>Step 4</small><h3>Support</h3><p>We see how you respond and adjust. What you need today may not be what you need in a few months.</p></article>
+    </div>
+    <p class="how-note reveal">No rush. <span class="violeta">Every step forward counts.</span></p>
+  </div>
+</section>
+
+<!-- SERVEIS -->
+<section class="services" id="serveis">
+  <div class="hs-sticky">
+    <div class="wrap hs-head">
+      <div>
+        <span class="eyebrow">Services</span>
+        <h2 data-split>Five ways to train</h2>
+      </div>
+      <div>
+        <div class="hs-count" aria-hidden="true"><b id="hsNow">01</b> / 05</div>
+        <div class="hs-hint">Scroll <i></i></div>
+      </div>
+    </div>
+    <div class="hs-track" id="hsTrack">
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>Shared personal training</h3><p>Very small groups. Everyone follows their own tailored programme while sharing the space and the moment. Because training together is motivating too.</p><div class="price">€25 <small>/ session</small></div><a href="#contacte" class="link-arrow" data-servicio="Shared personal training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>Group training</h3><p>We train together, but everyone finds their own level within each exercise. We share the effort and enjoy the moment.</p><div class="price">From €35 <small>/ month</small></div><a href="#contacte" class="link-arrow" data-servicio="Group training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>Home training</h3><p>We bring the session to your home when getting out isn't easy, or when you want to make the most of your time.</p><div class="price">From €35 <small>/ session</small></div><a href="#contacte" class="link-arrow" data-servicio="Home training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>Online personal training</h3><p>A personalised plan and professional follow-up, wherever you are. Training that evolves with you.</p><div class="price">€35 <small>/ session</small></div><a href="#contacte" class="link-arrow" data-servicio="Online personal training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>App-based personal training</h3><p>Train on your own and at your pace, with every session explained step by step and our ongoing follow-up.</p><div class="price">From €65 <small>/ month</small></div><a href="#contacte" class="link-arrow" data-servicio="App-based personal training">Ask about it <span>→</span></a></article>
+    </div>
+  </div>
+</section>
+
+<!-- PER A QUI -->
+<section class="who pad" id="per-a-qui">
+  <div class="wrap who-grid">
+    <div class="media clip" data-speed="0.06"><div class="ph" data-label="Photo: coached session"></div></div>
+    <div class="who-copy">
+      <span class="eyebrow reveal">Who it's for</span>
+      <h2 data-split>Start where you are</h2>
+      <ul class="who-list reveal">
+        <li>You want to start exercising and don't know where to begin.</li><li>You haven't trained in a while.</li><li>You want to improve your strength, mobility or stamina.</li><li>You want to regain abilities after an injury or a health issue.</li>
+        <li>You need exercise adapted to your circumstances.</li><li>You want more independence and a better quality of life.</li><li>You like training in a group, but at your own level.</li><li>You simply want to feel better and enjoy moving.</li>
+      </ul>
+      <p class="who-callout reveal">You don't need to be fit to get started.</p>
+      <a href="#test" class="btn magnetic reveal">Take the quiz</a>
+    </div>
+  </div>
+</section>
+
+<!-- XIFRES -->
+<section class="stats" aria-label="MOA in numbers">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><b data-count="10" data-prefix="+">+10</b><span>years as a personal trainer</span></div>
+    <div class="stat reveal" style="--d:.08s"><b data-count="5">5</b><span>ways to train</span></div>
+    <div class="stat reveal" style="--d:.16s"><b data-count="3">3</b><span>formats: in person, at home and online</span></div>
+    <div class="stat reveal" style="--d:.24s"><b data-count="100" data-suffix="%">100%</b><span>training adapted to you</span></div>
+  </div>
+</section>
+
+<!-- TEST -->
+<section class="quiz-sec pad" id="test">
+  <div class="wrap quiz">
+    <div class="quiz-intro">
+      <span class="eyebrow reveal">Quick quiz</span>
+      <h2 data-split>Which training is right for me?</h2>
+      <p class="lead reveal" style="margin-top:1.2rem">Three questions to point you in the right direction. In the end, the best thing is always to talk it through.</p>
+      <div class="quiz-progress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    </div>
+    <form id="quiz" class="reveal" novalidate>
+      <fieldset class="q active">
+        <legend>How would you like to train?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="como" value="grupo"> In a group, with a good vibe</label>
+          <label class="opt"><input type="radio" name="como" value="personal"> With one-to-one attention</label>
+          <label class="opt"><input type="radio" name="como" value="solo"> On my own, with a plan made for me</label>
+        </div>
+      </fieldset>
+      <fieldset class="q">
+        <legend>Where suits you best?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="donde" value="martorell"> In person, in Martorell</label>
+          <label class="opt"><input type="radio" name="donde" value="casa"> At my home</label>
+          <label class="opt"><input type="radio" name="donde" value="distancia"> Remotely, wherever I am</label>
+        </div>
+      </fieldset>
+      <fieldset class="q">
+        <legend>Anything we should take into account?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="nota" value="empezar"> I'm just starting or haven't trained in a while</label>
+          <label class="opt"><input type="radio" name="nota" value="salud"> I'm coming back from an injury or a health issue</label>
+          <label class="opt"><input type="radio" name="nota" value="tiempo"> I'm short on time</label>
+          <label class="opt"><input type="radio" name="nota" value="nada"> Nothing special, I just want to move!</label>
+        </div>
+      </fieldset>
+      <div class="quiz-nav" id="quizNav">
+        <button type="button" class="btn" id="qBack" hidden>Back</button>
+        <button type="button" class="btn btn-fill" id="qNext" disabled>Next</button>
+      </div>
+      <div class="result" id="result" aria-live="polite">
+        <span class="eyebrow">Your match</span>
+        <h3 id="resTitle"></h3>
+        <p id="resText"></p>
+        <p>This is just a guide: tell us about yourself and we'll work out which option makes most sense for you.</p>
+        <div class="btns">
+          <a class="btn btn-wa" id="resWa" href="https://wa.me/34677851211" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>Chat on WhatsApp</a>
+          <a class="btn" href="#contacte" id="resForm">Send a message</a>
+        </div>
+        <p style="margin-top:1.2rem"><button type="button" class="link-btn" id="qRestart">Take the quiz again</button></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- TARIFES -->
+<section class="pad" id="tarifes">
+  <div class="wrap">
+    <span class="eyebrow reveal">Pricing and timetable</span>
+    <h2 data-split>Clear, no small print</h2>
+    <p class="lead reveal" style="margin-top:1.2rem">Some classes have a fixed timetable, some options let you choose when to train, and others we arrange directly with you.</p>
+    <div class="prices-grid">
+      <div class="reveal">
+        <div class="price-list">
+          <div class="price-row"><div><h3>Shared personal training</h3><small>Very small groups, training tailored to each person.</small></div><div class="amount">25 €<small>/ session</small></div></div>
+          <div class="price-row block"><div><h3>Group training</h3><small>Monthly fee based on sessions per week.</small></div>
+            <div class="group-prices">
+              <div><b>35 €</b><span>1 session<br>per week</span></div>
+              <div><b>65 €</b><span>2 sessions<br>per week</span></div>
+              <div><b>75 €</b><span>3 sessions<br>per week</span></div>
+            </div>
+          </div>
+          <div class="price-row"><div><h3>Home training</h3><small>Estimated price depending on travel time.</small></div><div class="amount"><small style="margin:0 0 4px">from</small>35 €<small>/ session</small></div></div>
+          <div class="price-row"><div><h3>Online personal training</h3><small>Personalised plan and remote follow-up.</small></div><div class="amount">35 €<small>/ session</small></div></div>
+          <div class="price-row"><div><h3>App-based personal training</h3><small>Includes a personalised plan, follow-up and adjustments as you progress.</small></div><div class="amount"><small style="margin:0 0 4px">from</small>65 €<small>/ month</small></div></div>
+        </div>
+        <p class="price-note">Prices may be subject to change.</p>
+      </div>
+      <aside class="schedule reveal" style="--d:.1s" aria-labelledby="horaris">
+        <h3 id="horaris">Group timetable</h3>
+        <p>Current regular times.</p>
+        <ul class="slots">
+          <li><span>Monday and Wednesday</span><time>19:00 – 20:00</time></li>
+          <li><span>Tuesday and Thursday</span><time>17:00 – 18:00</time></li>
+          <li><span>Tuesday and Thursday</span><time>19:00 – 20:00</time></li>
+        </ul>
+        <div class="others">
+          <p><strong>Prefer mornings?</strong> If there's enough demand, we'll open morning groups.</p>
+          <p><strong>App:</strong> you set your own schedule.</p>
+          <p><strong>Other options:</strong> we agree the timetable with you.</p>
+        </div>
+        <a href="#contacte" class="btn btn-fill" data-servicio="Group training">Ask about places</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- PATRICIA -->
+<section class="behind pad" id="patricia">
+  <div class="wrap behind-grid">
+    <div class="behind-visual">
+      <div class="media clip"><div class="ph" data-label="Professional photo of Patricia"></div></div>
+      <div class="pdt reveal"><img src="assets/pdt-logo-negro.svg" alt="Patricia Dorado Trainer" width="150" height="64"><span>MOA · A project by Patricia Dorado Trainer</span></div>
+    </div>
+    <div class="behind-copy">
+      <span class="eyebrow reveal">Who's behind it</span>
+      <h2 data-split>Hi, I'm Patricia Dorado.</h2>
+      <p class="reveal">Sport has been part of my life since I was very small: judo and swimming at 5, handball at 7 and, over the years, a black belt in judo. I'm also passionate about hiking, climbing, canyoning, scuba diving and trail running.</p>
+      <p class="reveal">I started out as a handball coach and judo teacher, and for years I taught group classes in gyms. While studying, I discovered that exercise can help someone regain strength and mobility and, ultimately, <strong>feel capable again</strong>.</p>
+      <blockquote class="quote reveal">Every person is a world of their own. What I love most about my job is finding out what each person needs and adapting the training so that it makes sense for them.</blockquote>
+      <p class="reveal">After more than 10 years as a personal trainer, MOA is the next stage of my project: a space of our own and a community, with the same philosophy as always.</p>
+      <ol class="timeline reveal">
+        <li><b>01</b><div><strong>Higher Diploma in Physical and Sports Activities</strong><span>While teaching group classes at different centres.</span></div></li>
+        <li><b>02</b><div><strong>Degree in Physical Activity and Sport Sciences, INEFC Barcelona</strong><span>Combined with work.</span></div></li>
+        <li><b>03</b><div><strong>Master's in Exercise Prescription and Health, INEFC Barcelona</strong><span>Exercise for health and recovery.</span></div></li>
+        <li><b>04</b><div><strong>More than 10 years as a personal trainer</strong><span>And now, MOA.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNITAT -->
+<section class="community" id="opinions">
+  <div class="wrap community-head">
+    <div>
+      <span class="eyebrow reveal">Community</span>
+      <h2 data-split>The Tortuguitas</h2>
+      <p class="reveal" style="margin-top:1.2rem">Over time, the people who train with us have become a community: the Tortuguitas, our little turtles. Each has their own goals, pace and path. But we all share one thing: the drive to keep moving forward.</p>
+      <div class="mantras reveal"><span>Step by step</span><span>Keep swimming</span><span>Movement is life</span></div>
+    </div>
+    <p class="motto reveal">Your pace, your goals, your path. And if we move forward together, <em>even better.</em></p>
+  </div>
+  <div class="reviews" aria-label="Client reviews">
+    <div class="rv-row"><div class="rv-track">
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Hace ya dos años que empecé a entrenar con Patri. Desde el minuto uno, me sentí muy a gusto y acompañada. Llevo un entrenamiento personalizado que me permite trabajar a mi ritmo y que se ajusta perfectamente a mis objetivos. Es una profesional de 10, con un trato excepcional.</p><footer>Mar Camacho Sánchez<small>Google</small></footer></article>
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Hace años que entreno con Patri y no cambiaría por nada! He hecho todas las modalidades posibles: presencial, a domicilio y online. Patri ha adaptado los entrenamientos al milímetro, retando y escuchando siempre a mi cuerpo. También agradezco el trato cálido y la comunidad que crea.</p><footer>Núria Domingo Dorado<small>Google</small></footer></article>
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Tengo fibromialgia y la atención que me ha dado es 100% personalizada. Gracias a ella he mejorado muchísimo mi calidad de vida, he ganado fuerza y constancia, y sobre todo he recuperado la confianza en mí misma. ¡Entrenadora de 10!</p><footer>Warfy Game<small>Google</small></footer></article>
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Conocimos a Patricia hace cuatro años porque vino para la recuperación de mi madre y la experiencia fue de diez tanto en el trato profesional como humano. ¡¡¡Una gran profesional!!!</p><footer>Mercedes Hernández Ventura<small>Google</small></footer></article>
+    </div></div>
+    <div class="rv-row rev"><div class="rv-track">
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>De haberla conocido antes, antes habría empezado a entrenar con ella. Es más que una entrenadora, es educadora física y se nota en sus entrenos, su metodología y en la forma de enseñarnos.</p><footer>Juana Dz<small>Google</small></footer></article>
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Llevo entrenando con Patri tiempo y se ven resultados, además son entrenamientos personalizados, que muchas veces esa esencia se pierde y ella lo mantiene siempre. 10 de 10 siempre.</p><footer>Nuria SB<small>Google</small></footer></article>
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Una gran entrenadora, motivacional y con amplios recursos. Patri me ayudó a superar unas pruebas físicas, teniendo en cuenta, en todo momento, mis temores a causa de una lesión antigua. 100% recomendable.</p><footer>Inmaculada C. López Arroyo<small>Google</small></footer></article>
+    </div></div>
+  </div>
+  <p class="rv-note">Google reviews, shown in their original Spanish.</p>
+</section>
+
+<!-- MARQUESINA FINAL -->
+<div class="marquee mq-green" data-marquee data-dir="-1" aria-hidden="true">
+  <div class="mq-track">
+    <span class="mq-item">Start where you are <img src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""></span>
+    <span class="mq-item">Step by step <img src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""></span>
+  </div>
+</div>
+
+<!-- CONTACTE -->
+<section class="contact pad" id="contacte">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow reveal">Contact</span>
+      <h2 data-split>Let's talk</h2>
+      <p class="lead reveal">You don't need to know which service to choose. Tell us what you're looking for and we'll figure it out together. For groups, once we confirm a place and time, you can join straight away.</p>
+      <ul class="contact-list reveal">
+        <li><a href="https://wa.me/34677851211" target="_blank" rel="noopener"><span>677 85 12 11</span><small>Phone and WhatsApp</small></a></li>
+        <li><a href="mailto:patriciadoradotrainer@gmail.com"><span>patriciadoradotrainer@gmail.com</span><small>Email</small></a></li>
+        <li><a href="https://www.instagram.com/moa.salut/" target="_blank" rel="noopener"><span>@moa.salut</span><small>Instagram</small></a></li>
+        <li><a href="https://www.instagram.com/patriciadoradotrainer/" target="_blank" rel="noopener"><span>@patriciadoradotrainer</span><small>Instagram</small></a></li>
+        <li><div><span>Martorell (Barcelona)</span><small>In person, at home and online</small></div></li>
+      </ul>
+    </div>
+    <form class="form reveal" id="contactForm" novalidate>
+      <h3>Tell us what you're looking for</h3>
+      <p>When you send it, WhatsApp or your email app will open with the message ready to go.</p>
+      <div class="row2">
+        <div class="field"><label for="f-nombre">Name</label><input id="f-nombre" name="nombre" autocomplete="name" required></div>
+        <div class="field"><label for="f-tel">Phone (optional)</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field">
+        <label for="f-servicio">What are you interested in?</label>
+        <select id="f-servicio" name="servicio">
+          <option>I'm not sure yet, I'd like some guidance</option>
+          <option>Shared personal training</option>
+          <option>Group training</option>
+          <option>Home training</option>
+          <option>Online personal training</option>
+          <option>App-based personal training</option>
+        </select>
+      </div>
+      <div class="field"><label for="f-msg">What would you like to achieve?</label><textarea id="f-msg" name="mensaje" placeholder="Your goals, how active you are now, your availability or anything else we should know." required></textarea></div>
+      <label class="check"><input type="checkbox" id="f-ok" required> I agree that MOA may use this information only to reply to my enquiry.</label>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-wa" data-via="wa">Send via WhatsApp</button>
+        <button type="submit" class="btn btn-fill" data-via="mail">Send by email</button>
+      </div>
+      <p class="form-error" id="formError" role="alert"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <img class="footer-firma" src="assets/logos-moa/moa-firma-en-crema.svg" alt="MOA · Movement, Origin, Action" width="320" height="127">
+      <p class="footer-claim">Step by step.<br>At your pace.</p>
+    </div>
+    <div class="footer-bottom">
+      <div class="convive"><span>A project by</span><img src="assets/pdt-logo-blanco.svg" alt="Patricia Dorado Trainer" width="79" height="34"></div>
+      <nav class="langs" aria-label="Idioma / Language"><a href="index.html" hreflang="ca" lang="ca" title="Català">CA</a><a href="es.html" hreflang="es" lang="es" title="Castellano">ES</a><a href="en.html" hreflang="en" lang="en" title="English" aria-current="true">EN</a></nav>
+      <span>© <span id="year">2026</span> MOA · Moviment i Salut · Martorell</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="https://wa.me/34677851211" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>
+</a>
+
+<script>
+(function(){
+  var T = {"menuOpen": "Open menu", "menuClose": "Close menu", "waDefault": "Hi! I'd like some information about training at MOA.", "quizNext": "Next", "quizResult": "See my result", "services": {"compartido": {"t": "Shared personal training", "d": "One-to-one attention and a plan for you, in very small groups with a great atmosphere."}, "grupal": {"t": "Group training", "d": "We train together and everyone adapts the exercises to their level. Great for building consistency."}, "domicilio": {"t": "Home training", "d": "We bring the training to your home, adapted to how you feel and the space you have."}, "online": {"t": "Online personal training", "d": "A personalised plan with remote follow-up that evolves with you."}, "app": {"t": "App-based personal training", "d": "Train whenever and wherever you like, with sessions explained step by step and your progress followed up."}}, "labels": {"como": {"grupo": "in a group", "personal": "with one-to-one attention", "solo": "on my own with a plan"}, "donde": {"martorell": "in person in Martorell", "casa": "at home", "distancia": "remotely"}, "nota": {"empezar": "I'm just starting or haven't trained in a while", "salud": "I'm coming back from an injury or health issue", "tiempo": "I'm short on time", "nada": "nothing special"}}, "quizWa": "Hi! I took the quiz on the MOA website and got \"{s}\". I'd like to train {como}, {donde}, and {nota}. Can we talk?", "errFields": "Please write your name and tell us a little about what you're looking for.", "errConsent": "Please tick the box so we can receive your enquiry.", "msgHello": "Hi! I'm {n}.", "msgInterest": "I'm interested in:", "msgPhone": "My phone:", "mailSubject": "Enquiry from the MOA website:"};
+  var PHONE = '34677851211';
+  var EMAIL = 'patriciadoradotrainer@gmail.com';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+  function waLink(text){ return 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text); }
+  function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('waFloat').href = waLink(T.waDefault);
+  window.addEventListener('load', function(){ document.body.classList.add('loaded'); });
+  setTimeout(function(){ document.body.classList.add('loaded'); }, 1500);
+
+  // Menú móvil
+  var menuBtn = document.getElementById('menuBtn');
+  function setMenu(open){
+    document.body.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? T.menuClose : T.menuOpen);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  menuBtn.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
+  document.querySelectorAll('#mobileMenu a.big').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+  // Titulares palabra a palabra
+  document.querySelectorAll('[data-split]').forEach(function(el){
+    var i = 0;
+    (function walk(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(child){
+        if (child.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(function(part){
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var w = document.createElement('span'); w.className = 'w';
+            var s = document.createElement('span'); s.textContent = part; s.style.setProperty('--i', i++);
+            w.appendChild(s); frag.appendChild(w);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1 && child.tagName !== 'BR') { walk(child); }
+      });
+    })(el);
+  });
+
+  // Aparición al entrar en pantalla
+  var revealEls = document.querySelectorAll('.reveal,.clip,.media,[data-split]');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.15, rootMargin:'0px 0px -60px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else { revealEls.forEach(function(el){ el.classList.add('in'); }); }
+
+  // Contadores
+  var counters = document.querySelectorAll('[data-count]');
+  function runCounter(el){
+    var end = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '', t0 = null;
+    function tick(t){
+      if (!t0) t0 = t;
+      var p = clamp((t - t0) / 1600, 0, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(end * e) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if ('IntersectionObserver' in window && !reduce) {
+    var co = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { runCounter(e.target); co.unobserve(e.target); } });
+    }, {threshold:.6});
+    counters.forEach(function(el){ el.textContent = (el.dataset.prefix || '') + '0' + (el.dataset.suffix || ''); co.observe(el); });
+  }
+
+  // Marquesinas: se duplican para hacer el bucle
+  var marquees = [].map.call(document.querySelectorAll('[data-marquee]'), function(m){
+    var track = m.querySelector('.mq-track'), items = track.innerHTML;
+    while (track.scrollWidth < window.innerWidth * 1.5) track.insertAdjacentHTML('beforeend', items);
+    track.insertAdjacentHTML('beforeend', track.innerHTML);
+    return {track:track, x:0, dir:+(m.dataset.dir || 1), half:track.scrollWidth / 2};
+  });
+  document.querySelectorAll('.rv-track').forEach(function(t){ t.insertAdjacentHTML('beforeend', t.innerHTML); });
+  window.addEventListener('resize', function(){ marquees.forEach(function(m){ m.half = m.track.scrollWidth / 2; }); });
+
+  // Servicios: scroll horizontal anclado en pantallas grandes
+  var svcSec = document.getElementById('serveis'), track = document.getElementById('hsTrack'), hsNow = document.getElementById('hsNow');
+  var cards = track.querySelectorAll('.svc'), pinned = false, hsDist = 0;
+  function setupPin(){
+    pinned = !reduce && window.innerWidth > 1020;
+    svcSec.classList.toggle('is-pinned', pinned);
+    if (pinned) {
+      track.style.transform = '';
+      hsDist = Math.max(0, track.scrollWidth - window.innerWidth);
+      svcSec.style.height = (window.innerHeight + hsDist) + 'px';
+    } else { svcSec.style.height = ''; track.style.transform = ''; }
+  }
+  setupPin();
+  window.addEventListener('resize', setupPin);
+  track.addEventListener('scroll', function(){
+    if (pinned) return;
+    var idx = Math.round(track.scrollLeft / (cards[0].offsetWidth + 22));
+    hsNow.textContent = '0' + (clamp(idx, 0, cards.length - 1) + 1);
+  }, {passive:true});
+
+  // Bucle de animación ligado al scroll
+  var header = document.getElementById('header'), bar = document.getElementById('progress');
+  var parallax = document.querySelectorAll('[data-speed]');
+  var letters = document.querySelectorAll('#letters .letter'), lettersBox = document.getElementById('letters');
+  var steps = document.getElementById('steps'), stepsFill = steps.querySelector('.steps-line i');
+  var lastY = window.scrollY, vel = 0, scrollDir = 1;
+
+  function frame(){
+    var y = window.scrollY, vh = window.innerHeight, dy = y - lastY;
+    lastY = y;
+    var max = document.documentElement.scrollHeight - vh;
+    bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    header.classList.toggle('scrolled', y > 30);
+    if (!document.body.classList.contains('menu-open')) header.classList.toggle('hide', dy > 4 && y > 300 ? true : dy < -4 ? false : header.classList.contains('hide'));
+
+    if (!reduce) {
+      if (Math.abs(dy) > .5) scrollDir = dy > 0 ? 1 : -1;
+      vel += (Math.abs(dy) - vel) * .12;
+      marquees.forEach(function(m){
+        m.x -= (0.6 + vel * .35) * m.dir * scrollDir;
+        if (m.x <= -m.half) m.x += m.half;
+        if (m.x > 0) m.x -= m.half;
+        m.track.style.transform = 'translate3d(' + m.x + 'px,0,0)';
+      });
+
+      parallax.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var off = (r.top + r.height / 2 - vh / 2) * +el.dataset.speed;
+        el.style.translate = '0 ' + off.toFixed(1) + 'px';
+      });
+
+      var lr = lettersBox.getBoundingClientRect();
+      var lp = clamp((vh - lr.top) / (vh * .75), 0, 1), le = 1 - Math.pow(1 - lp, 3);
+      letters.forEach(function(l){
+        var from = +l.dataset.from;
+        l.style.transform = 'translate3d(' + ((1 - le) * from * 30) + 'vw,' + ((1 - le) * (from === 0 ? 120 : 40)) + 'px,0)';
+        l.style.opacity = .15 + le * .85;
+      });
+
+      var sr = steps.getBoundingClientRect();
+      stepsFill.style.transform = 'scaleX(' + clamp((vh * .85 - sr.top) / (sr.height + vh * .3), 0, 1) + ')';
+
+      if (pinned) {
+        var p = clamp((y - svcSec.offsetTop) / (svcSec.offsetHeight - vh), 0, 1);
+        track.style.transform = 'translate3d(' + (-p * hsDist) + 'px,0,0)';
+        hsNow.textContent = '0' + (Math.min(cards.length - 1, Math.floor(p * cards.length)) + 1);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // Botones magnéticos
+  if (finePointer && !reduce) {
+    document.querySelectorAll('.magnetic').forEach(function(b){
+      b.addEventListener('mousemove', function(e){
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .25) + 'px,' + ((e.clientY - r.top - r.height / 2) * .35) + 'px)';
+      });
+      b.addEventListener('mouseleave', function(){ b.style.transform = ''; });
+    });
+  }
+
+  // Preseleccionar servicio en el formulario
+  var select = document.getElementById('f-servicio');
+  function preselect(name){
+    for (var i = 0; i < select.options.length; i++) if (select.options[i].text === name) select.selectedIndex = i;
+  }
+  document.querySelectorAll('[data-servicio]').forEach(function(el){
+    el.addEventListener('click', function(){ preselect(el.getAttribute('data-servicio')); });
+  });
+
+  // Test
+  var quiz = document.getElementById('quiz'), qSteps = quiz.querySelectorAll('.q');
+  var bars = document.querySelectorAll('.quiz-progress i');
+  var back = document.getElementById('qBack'), next = document.getElementById('qNext');
+  var qNav = document.getElementById('quizNav'), result = document.getElementById('result');
+  var current = 0;
+  function val(n){ var c = quiz.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : null; }
+  function recommend(como, donde, nota){
+    if (donde === 'casa') return 'domicilio';
+    if (donde === 'distancia') return como === 'solo' ? 'app' : 'online';
+    if (como === 'solo') return 'app';
+    if (como === 'grupo') return nota === 'salud' ? 'compartido' : 'grupal';
+    return 'compartido';
+  }
+  function show(i){
+    current = i;
+    qSteps.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    bars.forEach(function(b, k){ b.classList.toggle('on', k <= i); });
+    back.hidden = i === 0;
+    next.textContent = i === qSteps.length - 1 ? T.quizResult : T.quizNext;
+    next.disabled = !qSteps[i].querySelector('input:checked');
+  }
+  quiz.addEventListener('change', function(){ next.disabled = !qSteps[current].querySelector('input:checked'); });
+  back.addEventListener('click', function(){ show(current - 1); });
+  next.addEventListener('click', function(){
+    if (current < qSteps.length - 1) { show(current + 1); return; }
+    var como = val('como'), donde = val('donde'), nota = val('nota');
+    var s = T.services[recommend(como, donde, nota)];
+    document.getElementById('resTitle').textContent = s.t;
+    document.getElementById('resText').textContent = s.d;
+    document.getElementById('resWa').href = waLink(T.quizWa.replace('{s}', s.t).replace('{como}', T.labels.como[como]).replace('{donde}', T.labels.donde[donde]).replace('{nota}', T.labels.nota[nota]));
+    document.getElementById('resForm').onclick = function(){ preselect(s.t); };
+    qSteps.forEach(function(st){ st.classList.remove('active'); });
+    qNav.hidden = true; result.classList.add('active');
+  });
+  document.getElementById('qRestart').addEventListener('click', function(){
+    quiz.reset(); result.classList.remove('active'); qNav.hidden = false; show(0);
+  });
+
+  // Formulario: abre WhatsApp o el email con el mensaje escrito
+  var form = document.getElementById('contactForm'), errorEl = document.getElementById('formError'), via = 'wa';
+  form.querySelectorAll('[data-via]').forEach(function(b){ b.addEventListener('click', function(){ via = b.getAttribute('data-via'); }); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nombre = form.nombre.value.trim(), tel = form.telefono.value.trim(), servicio = form.servicio.value, msg = form.mensaje.value.trim();
+    if (!nombre || !msg) { errorEl.textContent = T.errFields; return; }
+    if (!document.getElementById('f-ok').checked) { errorEl.textContent = T.errConsent; return; }
+    errorEl.textContent = '';
+    var text = T.msgHello.replace('{n}', nombre) + '\n\n' + T.msgInterest + ' ' + servicio + '\n\n' + msg + (tel ? '\n\n' + T.msgPhone + ' ' + tel : '');
+    if (via === 'wa') window.open(waLink(text), '_blank', 'noopener');
+    else window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(T.mailSubject + ' ' + servicio) + '&body=' + encodeURIComponent(text);
+  });
+})();
+</script>
+</body>
+</html>
