@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOA · Moviment i Salut · Entrenamiento adaptado en Martorell</title>
+<meta name="description" content="MOA es entrenamiento adaptado a la persona en Martorell (Barcelona): personal, grupal, a domicilio, online y por app. Un proyecto de Patricia Dorado Trainer. Paso a paso, a tu ritmo.">
+<meta property="og:title" content="MOA · Moviment i Salut">
+<meta property="og:description" content="Tu ritmo. Tu movimiento. Entrenamiento adaptado a ti.">
+<meta name="theme-color" content="#9242F3">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<!--
+  CÓMO CAMBIAR LAS FOTOS
+  Cada hueco de foto es un <figure class="ph" data-label="...">.
+  Para poner una foto real, sustituye el <figure> entero por:
+    <img class="ph" src="fotos/mi-foto.jpg" alt="Descripción de la foto">
+  manteniendo las clases extra que tuviera (por ejemplo "ph hero-photo").
+  Estilo de foto del brandbook: luz natural, contexto real y diversidad de edades y cuerpos.
+-->
+<style>
+:root{
+  /* Paleta del brandbook de MOA (edición 04) */
+  --crema:#FEF7E5;
+  --violeta:#9242F3;
+  --verde:#3BC65F;
+  --carbon:#2B2D2B;
+  --blanco:#FFFFFF;
+  --violeta-osc:#7428D6;
+  --violeta-suave:#EFE3FD;
+  --verde-suave:#DDF5E3;
+  --gris:#5E605E;
+  --linea:#EADFC4;
+  --radius:28px;
+  --wrap:1180px;
+  --titulo:"Bricolage Grotesque",system-ui,sans-serif;
+  --texto:"Montserrat",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:var(--texto);font-size:16.5px;line-height:1.7;color:var(--carbon);background:var(--crema);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--titulo);font-weight:600;line-height:1.05;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(2.2rem,4.8vw,3.5rem)}
+h3{font-size:1.4rem;line-height:1.2}
+p{margin:0 0 1em}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+section{position:relative;padding:110px 0}
+.eyebrow{display:block;font-family:var(--texto);font-weight:600;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--violeta);margin-bottom:1rem}
+.lead{font-size:1.1rem;color:var(--gris);max-width:60ch}
+.violeta{color:var(--violeta)}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;font-family:var(--texto);font-weight:600;font-size:.98rem;padding:1em 1.7em;border-radius:999px;border:2px solid transparent;text-decoration:none;cursor:pointer;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease;line-height:1.2}
+.btn:hover{transform:translateY(-2px)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--violeta);outline-offset:3px}
+.btn-violeta{background:var(--violeta);color:var(--crema)}
+.btn-violeta:hover{background:var(--violeta-osc);box-shadow:0 14px 30px -14px rgba(146,66,243,.8)}
+.btn-carbon{background:var(--carbon);color:var(--crema)}
+.btn-borde{border-color:var(--carbon);color:var(--carbon);background:transparent}
+.btn-borde:hover{background:var(--carbon);color:var(--crema)}
+.btn-crema{background:var(--crema);color:var(--carbon)}
+.btn-wa{background:#1E8E50;color:#fff}
+.btn svg{width:1.15em;height:1.15em;flex:none}
+.arrow{display:inline-block;width:.9em;height:.9em}
+
+/* Cabecera */
+.header{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s ease,box-shadow .3s ease}
+.header.scrolled,.header.menu-open{background:rgba(254,247,229,.95);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linea)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.brand img{height:34px;width:auto}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a{text-decoration:none;font-size:.92rem;font-weight:500}
+.nav a:not(.btn):hover{color:var(--violeta)}
+.nav .btn{padding:.7em 1.3em;font-size:.9rem}
+.menu-btn{display:none;background:none;border:0;padding:8px;cursor:pointer}
+.menu-btn span{display:block;width:26px;height:2.5px;background:var(--carbon);margin:6px 0;border-radius:2px;transition:transform .25s ease,opacity .25s ease}
+.menu-open .menu-btn span:nth-child(1){transform:translateY(8.5px) rotate(45deg)}
+.menu-open .menu-btn span:nth-child(2){opacity:0}
+.menu-open .menu-btn span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}
+
+/* Hero */
+.hero{padding:150px 0 100px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero-firma{width:min(420px,90%);margin-bottom:2.4rem}
+.hero h1{font-size:clamp(3rem,6.6vw,5.4rem);margin-bottom:1rem}
+.hero .sub{font-family:var(--titulo);font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:400;margin-bottom:1.2rem}
+.hero .lead{margin-bottom:2rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px}
+.hero-visual{position:relative;padding:0 0 0 30px;isolation:isolate}
+.hero-photo{aspect-ratio:4/5}
+.hero-badge{position:absolute;left:0;top:58%;background:var(--violeta);color:var(--crema);border-radius:22px;padding:16px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 20px 40px -20px rgba(43,45,43,.5)}
+.hero-badge img{width:38px;height:auto}
+.hero-badge strong{display:block;font-family:var(--titulo);font-size:1.25rem;line-height:1.1}
+.hero-badge span{font-size:.86rem;opacity:.9}
+.hero-strokes{position:absolute;right:-10px;top:-50px;width:130px;z-index:-1}
+
+/* Huecos de foto */
+.ph{margin:0;position:relative;display:flex;align-items:flex-end;overflow:hidden;width:100%;object-fit:cover;background:
+  radial-gradient(110% 80% at 15% 0%,rgba(59,198,95,.38),transparent 60%),
+  radial-gradient(90% 80% at 100% 100%,rgba(146,66,243,.32),transparent 60%),
+  #EFE6CF;border-radius:var(--radius)}
+.ph.arch{border-radius:999px 999px 28px 28px}
+figure.ph::after{content:attr(data-label);margin:18px auto 22px;padding:.4em .9em;border-radius:999px;background:rgba(254,247,229,.92);font-size:.78rem;font-weight:500;color:var(--gris);text-align:center}
+
+/* Significado MOA */
+.meaning{background:var(--blanco);padding:90px 0}
+.meaning-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.letter{border-radius:var(--radius);padding:34px 30px;background:var(--crema);position:relative;overflow:hidden}
+.letter b{display:block;font-family:var(--titulo);font-size:5.4rem;line-height:.9;font-weight:700;margin-bottom:1rem}
+.letter:nth-child(1) b{color:var(--verde)}
+.letter:nth-child(2) b{color:var(--violeta)}
+.letter:nth-child(3) b{color:var(--carbon)}
+.letter h3{margin-bottom:.2rem}
+.letter small{display:block;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);margin-bottom:.8rem}
+.letter p{color:var(--gris);margin:0}
+
+/* Qué es MOA (verde) */
+.about-moa{background:var(--verde);color:var(--carbon);overflow:hidden}
+.about-moa .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-moa .eyebrow{color:var(--carbon)}
+.about-moa h2{margin-bottom:1.5rem}
+.about-moa p{font-size:1.06rem;max-width:56ch}
+.pillars{list-style:none;padding:0;margin:2rem 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.pillars li{background:var(--carbon);color:var(--crema);border-radius:999px;padding:.55em 1.2em;font-weight:600;font-size:.92rem}
+.about-photos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.about-photos .ph{aspect-ratio:3/4}
+.about-photos .ph:nth-child(2){margin-top:60px}
+
+/* Servicios */
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:56px;flex-wrap:wrap}
+.section-head .lead{margin:0}
+.services{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.service{grid-column:span 2;background:var(--blanco);border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
+.service:nth-child(4),.service:nth-child(5){grid-column:span 3}
+.service:hover{transform:translateY(-4px);box-shadow:0 26px 50px -34px rgba(43,45,43,.5)}
+.service .icon{width:56px;height:56px;border-radius:999px 999px 14px 14px;display:grid;place-items:center;background:var(--verde-suave);margin-bottom:22px}
+.service:nth-child(even) .icon{background:var(--violeta-suave)}
+.service .icon svg{width:28px;height:28px}
+.service h3{margin-bottom:.7rem}
+.service p{color:var(--gris);font-size:.95rem}
+.service details{margin-top:auto;border-top:1px solid var(--linea);padding-top:14px}
+.service summary{cursor:pointer;font-weight:600;font-size:.9rem;list-style:none;display:flex;align-items:center;justify-content:space-between}
+.service summary::-webkit-details-marker{display:none}
+.service summary::after{content:"+";font-family:var(--titulo);font-size:1.5rem;font-weight:400;transition:transform .2s ease}
+.service details[open] summary::after{transform:rotate(45deg)}
+.service details p{margin:12px 0 0}
+.service .price{display:inline-block;margin-top:14px;font-weight:600;color:var(--violeta);font-size:.95rem}
+
+/* Cómo trabajamos */
+.method{background:var(--blanco)}
+.method-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;position:relative}
+.mstep .num{width:80px;height:88px;border-radius:999px 999px 18px 18px;background:var(--crema);display:grid;place-items:center;font-family:var(--titulo);font-size:2.2rem;font-weight:600;margin-bottom:24px;color:var(--carbon)}
+.mstep:nth-child(1) .num{background:var(--verde)}
+.mstep:nth-child(2) .num{background:var(--violeta);color:var(--crema)}
+.mstep:nth-child(3) .num{background:var(--carbon);color:var(--crema)}
+.mstep:nth-child(4) .num{background:var(--verde)}
+.mstep h3{margin-bottom:.35rem}
+.mstep .tag{font-weight:600;color:var(--violeta);font-size:.92rem;margin-bottom:.6rem;display:block}
+.mstep p{color:var(--gris);font-size:.95rem}
+.method-note{margin:60px auto 0;text-align:center;font-family:var(--titulo);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;max-width:28ch}
+
+/* Para quién */
+.who .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.who-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.who-list li{background:var(--blanco);border-radius:20px;padding:16px 18px 16px 54px;position:relative;font-size:.95rem;line-height:1.45}
+.who-list li::before{content:"";position:absolute;left:18px;top:15px;width:22px;height:24px;border-radius:999px 999px 6px 6px;background:var(--verde)}
+.who-list li:nth-child(even)::before{background:var(--violeta)}
+.who-callout{margin-top:2rem;font-family:var(--titulo);font-size:2rem;line-height:1.15}
+
+/* Test */
+.quiz-section{background:var(--violeta);color:var(--crema)}
+.quiz{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+.quiz-intro .eyebrow{color:var(--crema);opacity:.85}
+.quiz-intro p{color:rgba(254,247,229,.88)}
+.quiz-intro h2{margin-bottom:1.2rem}
+.quiz-progress{display:flex;gap:8px;margin-top:28px;max-width:280px}
+.quiz-progress i{flex:1;height:6px;border-radius:6px;background:rgba(254,247,229,.25);transition:background .3s ease}
+.quiz-progress i.on{background:var(--verde)}
+.quiz form{background:var(--crema);color:var(--carbon);border-radius:36px;padding:44px}
+.q{display:none;border:0;margin:0;padding:0;min-width:0}
+.q.active{display:block;animation:fade .35s ease}
+.q legend{font-family:var(--titulo);font-weight:600;font-size:1.6rem;margin-bottom:1.2rem;padding:0}
+.opts{display:grid;gap:12px}
+.opt{display:flex;align-items:center;gap:14px;padding:16px 20px;border:1.5px solid var(--linea);background:var(--blanco);border-radius:18px;cursor:pointer;transition:border-color .2s ease,background .2s ease;font-weight:500}
+.opt:hover{border-color:var(--violeta)}
+.opt input{accent-color:var(--violeta);width:18px;height:18px;flex:none}
+.opt:has(input:checked){border-color:var(--violeta);background:var(--violeta-suave)}
+.quiz-nav{display:flex;justify-content:space-between;margin-top:22px;gap:12px}
+.quiz-nav .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.result{display:none;animation:fade .35s ease}
+.result.active{display:block}
+.result h3{font-size:2rem;margin:.2rem 0 .8rem}
+.result p{color:var(--gris)}
+.result .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.4rem}
+.link-btn{background:none;border:0;padding:0;font:inherit;color:var(--gris);text-decoration:underline;cursor:pointer}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Tarifas y horarios */
+.price-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;align-items:start}
+.price-card{background:var(--blanco);border-radius:var(--radius);padding:12px 32px}
+.price-row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:22px 0;border-bottom:1px dashed var(--linea)}
+.price-row:last-of-type{border-bottom:0}
+.price-row h3{font-size:1.15rem;font-family:var(--texto);font-weight:600;letter-spacing:0}
+.price-row small{display:block;color:var(--gris);font-size:.86rem;margin-top:4px;max-width:42ch}
+.price-row .amount{font-family:var(--titulo);font-weight:600;font-size:1.9rem;white-space:nowrap;text-align:right;line-height:1.1}
+.price-row .amount small{font-family:var(--texto);font-weight:500;font-size:.8rem;text-align:right;margin:0}
+.price-row.block{display:block}
+.group-prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.group-prices div{background:var(--verde-suave);border-radius:18px;padding:14px 10px;text-align:center}
+.group-prices b{display:block;font-family:var(--titulo);font-size:1.7rem;font-weight:600;line-height:1.1}
+.group-prices span{font-size:.8rem;color:var(--gris)}
+.price-note{font-size:.86rem;color:var(--gris);margin:0 0 20px}
+.schedule{background:var(--carbon);color:var(--crema);border-radius:var(--radius);padding:36px 32px}
+.schedule h3{font-size:1.8rem;margin-bottom:.3rem}
+.schedule > p{color:rgba(254,247,229,.75);font-size:.93rem}
+.slots{list-style:none;padding:0;margin:22px 0;display:grid;gap:10px}
+.slots li{display:flex;justify-content:space-between;align-items:center;gap:12px;background:rgba(254,247,229,.08);border-radius:16px;padding:14px 18px;font-weight:500;font-size:.95rem}
+.slots time{font-family:var(--titulo);font-size:1.3rem;font-weight:600;color:var(--verde);white-space:nowrap}
+.schedule .others{border-top:1px solid rgba(254,247,229,.18);padding-top:18px;font-size:.9rem;color:rgba(254,247,229,.85)}
+.schedule .others p{margin:0 0 .6em}
+.schedule .btn{margin-top:12px}
+
+/* Quién está detrás */
+.behind{background:var(--blanco)}
+.behind .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start}
+.behind-visual{position:sticky;top:110px}
+.behind-visual .ph{aspect-ratio:4/5}
+.pdt-logo{width:200px;margin:26px 0 8px}
+.behind-visual figcaption{font-size:.86rem;color:var(--gris)}
+.behind h2{margin-bottom:1.6rem}
+.behind blockquote{margin:2rem 0;padding:1.5rem 1.7rem;background:var(--violeta-suave);border-radius:24px;font-family:var(--titulo);font-size:1.45rem;line-height:1.3;color:var(--violeta-osc)}
+.timeline{list-style:none;margin:2.2rem 0 0;padding:0;display:grid;gap:16px}
+.timeline li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start}
+.timeline .dot{width:44px;height:48px;border-radius:999px 999px 12px 12px;display:grid;place-items:center;background:var(--crema);font-family:var(--titulo);font-weight:600}
+.timeline strong{display:block;line-height:1.35}
+.timeline span{color:var(--gris);font-size:.92rem}
+
+/* Comunidad y opiniones */
+.community{background:var(--carbon);color:var(--crema)}
+.community-head{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end;margin-bottom:56px}
+.community .eyebrow{color:var(--verde)}
+.community h2{margin-bottom:1.3rem}
+.community p{color:rgba(254,247,229,.78);max-width:54ch}
+.mantras{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.6rem}
+.mantras span{border:1.5px solid rgba(254,247,229,.3);border-radius:999px;padding:.45em 1.1em;font-size:.88rem;font-weight:500}
+.community-motto{font-family:var(--titulo);font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15}
+.community-motto em{font-style:normal;color:var(--verde)}
+.reviews-bar{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px;flex-wrap:wrap}
+.stars{display:flex;align-items:center;gap:10px;font-size:.9rem;color:rgba(254,247,229,.8)}
+.carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 24px 10px;margin:0 -24px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.carousel{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.review{flex:0 0 min(400px,84%);scroll-snap-align:start;background:var(--crema);color:var(--carbon);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column}
+.review .q-mark{font-family:var(--titulo);font-size:4.2rem;line-height:.6;height:30px;color:var(--violeta)}
+.community .review p{font-size:.95rem;flex:1;color:var(--carbon);max-width:none}
+.review footer{display:flex;align-items:center;gap:12px;margin-top:10px;padding-top:16px;border-top:1px solid var(--linea)}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:600;background:var(--verde);color:var(--carbon);flex:none}
+.review:nth-child(even) .avatar{background:var(--violeta);color:var(--crema)}
+.review footer small{display:block;color:var(--gris);font-size:.8rem}
+.carousel-ctrl{display:flex;gap:10px}
+.round{width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(254,247,229,.5);background:transparent;color:var(--crema);cursor:pointer;display:grid;place-items:center;transition:background .2s ease,color .2s ease}
+.round:hover{background:var(--crema);color:var(--carbon)}
+.round svg{width:20px;height:20px}
+
+/* Contacto */
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px}
+.contact h2{margin-bottom:1.2rem}
+.contact-list{list-style:none;padding:0;margin:2rem 0;display:grid;gap:14px}
+.contact-list a,.contact-list div{display:flex;align-items:center;gap:16px;text-decoration:none;font-weight:600}
+.contact-list .ic{width:50px;height:54px;border-radius:999px 999px 14px 14px;background:var(--blanco);display:grid;place-items:center;flex:none;transition:background .2s ease}
+.contact-list .ic svg{width:22px;height:22px}
+.contact-list small{display:block;color:var(--gris);font-size:.8rem;font-weight:400}
+.contact-list a:hover .ic{background:var(--verde)}
+.form{background:var(--blanco);border-radius:36px;padding:40px}
+.form h3{font-size:1.7rem;margin-bottom:.4rem}
+.form > p{color:var(--gris);font-size:.93rem}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field label{font-weight:600;font-size:.88rem}
+.field input,.field select,.field textarea{font:inherit;font-size:1rem;padding:14px 16px;border:1.5px solid var(--linea);border-radius:14px;background:var(--crema);color:var(--carbon);width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--violeta);outline:none;box-shadow:0 0 0 4px rgba(146,66,243,.15)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.84rem;color:var(--gris);margin:6px 0 20px}
+.check input{margin-top:4px;accent-color:var(--violeta)}
+.form-actions{display:flex;flex-wrap:wrap;gap:12px}
+.form-actions .btn{flex:1 1 220px;white-space:nowrap}
+.form-error{color:#A3122A;font-size:.9rem;font-weight:500;min-height:1.4em;margin:10px 0 0}
+
+/* Pie */
+.footer{background:var(--carbon);color:rgba(254,247,229,.7);padding:70px 0 34px;font-size:.88rem}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(254,247,229,.14)}
+.footer-firma{width:min(340px,100%)}
+.footer-claim{font-family:var(--titulo);font-size:1.6rem;color:var(--crema);line-height:1.2;margin:0}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:28px}
+.footer-bottom .convive{display:flex;align-items:center;gap:14px}
+.footer-bottom .convive img{height:38px;width:auto}
+.footer nav{display:flex;gap:20px;flex-wrap:wrap}
+.footer a{text-decoration:none}
+.footer a:hover{color:var(--crema)}
+
+/* WhatsApp flotante */
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:40;width:60px;height:60px;border-radius:50%;background:#1E8E50;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.45);transition:transform .2s ease}
+.wa-float:hover{transform:scale(1.07)}
+.wa-float svg{width:30px;height:30px}
+
+/* Animaciones de entrada */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+/* Responsive */
+@media (max-width:1020px){
+  .nav{position:fixed;inset:76px 0 auto;background:var(--crema);flex-direction:column;align-items:stretch;gap:0;padding:6px 24px 26px;box-shadow:0 24px 30px -24px rgba(0,0,0,.3);transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+  .nav a:not(.btn){padding:14px 0;border-bottom:1px solid var(--linea)}
+  .nav .btn{margin-top:16px}
+  .menu-open .nav{transform:none;opacity:1;pointer-events:auto}
+  .menu-btn{display:block}
+  .hero .wrap,.about-moa .wrap,.who .wrap,.quiz,.price-grid,.behind .wrap,.contact .wrap,.community-head{grid-template-columns:minmax(0,1fr)}
+  .hero-visual{max-width:420px;margin:0 auto;width:100%}
+  .behind-visual{position:static;max-width:420px}
+  .services{grid-template-columns:1fr 1fr}
+  .service,.service:nth-child(4),.service:nth-child(5){grid-column:span 1}
+  .service:nth-child(5){grid-column:1/-1}
+  .method-steps{grid-template-columns:1fr 1fr;row-gap:44px}
+  .meaning-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  section{padding:80px 0}
+  .wrap{padding:0 16px}
+  .hero{padding-top:116px}
+  .hero-firma{width:260px}
+  .hero-visual{padding-left:0}
+  .hero-badge{left:-6px}
+  .hero-strokes{right:0;width:100px}
+  .group-prices b{font-size:1.4rem}
+  .services,.method-steps,.who-list,.row2{grid-template-columns:1fr}
+  .service:nth-child(5){grid-column:auto}
+  .about-photos .ph:nth-child(2){margin-top:30px}
+  .quiz form{padding:28px 20px;border-radius:28px}
+  .form{padding:28px 20px;border-radius:28px}
+  .price-card{padding:6px 20px}
+  .price-row{flex-direction:column;gap:6px}
+  .price-row .amount,.price-row .amount small{text-align:left}
+  .schedule{padding:28px 22px}
+  .carousel{padding:6px 16px 10px;margin:0 -16px}
+  .letter b{font-size:4.4rem}
+  .who-callout{font-size:1.7rem}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap">
+    <a href="#inicio" class="brand" aria-label="MOA, ir al inicio">
+      <img src="assets/logos-moa/moa-logo-violeta.svg" alt="MOA" width="104" height="34">
+    </a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#que-es">Qué es MOA</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#como-trabajamos">Cómo trabajamos</a>
+      <a href="#tarifas">Tarifas y horarios</a>
+      <a href="#patricia">Quién está detrás</a>
+      <a href="#contacto" class="btn btn-violeta">Quiero empezar</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+<!-- INICIO -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div class="reveal">
+      <img class="hero-firma" src="assets/logos-moa/moa-firma-es-verde.svg" alt="MOA · Movimiento, Origen, Acción" width="420" height="167">
+      <h1>Tu ritmo.<br>Tu movimiento.</h1>
+      <p class="sub">Entrenamiento adaptado a ti.</p>
+      <p class="lead">Cada persona tiene una historia, unas necesidades y un ritmo. En MOA escuchamos antes de planificar y te acompañamos para que moverte tenga sentido en tu vida. En Martorell, a domicilio u online.</p>
+      <div class="hero-ctas">
+        <a href="#contacto" class="btn btn-violeta">Quiero empezar</a>
+        <a href="#test" class="btn btn-borde">¿Qué entrenamiento es para mí?</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <svg class="hero-strokes" viewBox="0 0 150 130" aria-hidden="true" fill="none" stroke-width="13" stroke-linecap="round">
+        <path d="M14 120V44a16 16 0 0 1 32 0" stroke="#3BC65F"/>
+        <path d="M60 120V34a16 16 0 0 1 32 0" stroke="#9242F3"/>
+        <path d="M106 120V24a16 16 0 0 1 32 0" stroke="#3BC65F"/>
+      </svg>
+      <figure class="ph arch hero-photo" data-label="Foto: persona entrenando con luz natural"></figure>
+      <div class="hero-badge">
+        <img src="assets/logos-moa/moa-simbolo-crema.svg" alt="" width="38" height="40">
+        <div><strong>Paso a paso.</strong><span>A tu ritmo.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNIFICADO -->
+<section class="meaning" aria-labelledby="significado">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Moviment · Origen · Acció</span>
+      <h2 id="significado">El movimiento empieza en ti.</h2>
+    </div>
+    <div class="meaning-grid">
+      <article class="letter reveal"><b>M</b><h3>Movimiento</h3><small>Moviment</small><p>El cuerpo, el ejercicio y la capacidad de moverse.</p></article>
+      <article class="letter reveal"><b>O</b><h3>Origen</h3><small>Origen</small><p>Tu historia, tus necesidades y tu punto de partida.</p></article>
+      <article class="letter reveal"><b>A</b><h3>Acción</h3><small>Acció</small><p>Llevarlo a la práctica, avanzar y construir cambios.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ ES MOA -->
+<section class="about-moa" id="que-es">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Qué es MOA</span>
+      <h2>Que moverse forme parte de la vida.</h2>
+      <p>MOA · Moviment i Salut es un espacio y una comunidad para entrenar lejos del concepto de gimnasio convencional. Un lugar cercano y cómodo, donde el ejercicio se adapta a la persona, y no la persona al ejercicio.</p>
+      <p>Aquí vienen personas que quieren cuidar su salud, ganar fuerza y movilidad o recuperar capacidades. Personas que nunca encontraron su sitio en un gimnasio, que llevan tiempo sin moverse o que simplemente quieren que el movimiento forme parte de su día a día.</p>
+      <p>No buscamos el cuerpo perfecto ni resultados milagro. Buscamos que subas las escaleras sin ahogarte, que lleves la compra sin esfuerzo, que pierdas el miedo a moverte y que te sientas a gusto con tu cuerpo.</p>
+      <ul class="pillars" aria-label="Nuestra forma de trabajar">
+        <li>Escuchar</li><li>Conocer el origen</li><li>Adaptar</li><li>Acompañar</li>
+      </ul>
+    </div>
+    <div class="about-photos reveal">
+      <figure class="ph arch" data-label="Foto: grupo entrenando"></figure>
+      <figure class="ph" data-label="Foto: material y ejercicio"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Servicios</span>
+        <h2>Cinco formas de entrenar.<br>Una misma manera de acompañarte.</h2>
+      </div>
+      <p class="lead">Elige la que mejor encaje con tus objetivos, tu disponibilidad y tu momento. Si no lo tienes claro, lo hablamos.</p>
+    </div>
+    <div class="services">
+      <article class="service reveal">
+        <div class="icon"><svg viewBox="0 0 28 28" fill="none" stroke="#2B2D2B" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><circle cx="19" cy="8" r="3.2"/><path d="M3 23c0-4 2.7-7 6-7s6 3 6 7M13 23c0-4 2.7-7 6-7s6 3 6 7"/></svg></div>
+        <h3>Entrenamiento personal compartido</h3>
+        <p>Grupos muy reducidos. Cada persona con un entrenamiento adaptado a sus objetivos, aunque compartamos espacio y momento.</p>
+        <details><summary>Saber más</summary>
+          <p>El entrenamiento personal no tiene por qué ser aburrido ni solitario. Compartir el proceso con personas con las que conectas también motiva. Cada persona trabaja según sus necesidades, disfrutando de algo importante: entrenar juntos.</p>
+        </details>
+        <span class="price">25 € / sesión</span>
+      </article>
+      <article class="service reveal">
+        <div class="icon"><svg viewBox="0 0 28 28" fill="none" stroke="#2B2D2B" stroke-width="2" stroke-linecap="round"><circle cx="14" cy="7" r="3"/><circle cx="5.5" cy="11" r="2.4"/><circle cx="22.5" cy="11" r="2.4"/><path d="M8 24c0-4 2.7-7 6-7s6 3 6 7M1.5 22c0-3 1.8-5 4-5M26.5 22c0-3-1.8-5-4-5"/></svg></div>
+        <h3>Entrenamiento grupal</h3>
+        <p>Entrenamos juntos, pero cada persona encuentra su propio nivel dentro de cada ejercicio.</p>
+        <details><summary>Saber más</summary>
+          <p>Un mismo movimiento puede tener diferentes opciones, intensidades o dificultades. Compartimos el esfuerzo, nos motivamos y hacemos que entrenar sea un momento para disfrutar y desconectar, siempre respetando tu ritmo.</p>
+        </details>
+        <span class="price">Desde 35 € / mes</span>
+      </article>
+      <article class="service reveal">
+        <div class="icon"><svg viewBox="0 0 28 28" fill="none" stroke="#2B2D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 14 4l11 9"/><path d="M6 11v13h16V11"/><path d="M11 24v-7h6v7"/></svg></div>
+        <h3>Entrenamiento a domicilio</h3>
+        <p>Llevamos el entrenamiento a tu casa cuando desplazarte no es fácil o quieres aprovechar al máximo tu tiempo.</p>
+        <details><summary>Saber más</summary>
+          <p>Pensado si te estás recuperando de un proceso de salud, tienes movilidad reducida o tu día a día no te deja perder tiempo en desplazamientos. Cada sesión se prepara según cómo te encuentras, tus objetivos y el espacio y material disponibles.</p>
+        </details>
+        <span class="price">Desde 35 € / sesión</span>
+      </article>
+      <article class="service reveal">
+        <div class="icon"><svg viewBox="0 0 28 28" fill="none" stroke="#2B2D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="22" height="15" rx="2.5"/><path d="M10 24h8M14 20v4"/><circle cx="14" cy="11" r="2.4"/><path d="M10 17c.6-1.8 2.1-3 4-3s3.4 1.2 4 3"/></svg></div>
+        <h3>Entrenamiento personal online</h3>
+        <p>Un plan individualizado y acompañamiento profesional, estés donde estés.</p>
+        <details><summary>Saber más</summary>
+          <p>Partimos de tus objetivos, tu nivel, tu disponibilidad y tu día a día. Aunque no entrenemos en el mismo sitio, no estás solo: seguimos tu evolución, resolvemos dudas y ajustamos lo que haga falta. Un entrenamiento que evoluciona contigo.</p>
+        </details>
+        <span class="price">35 € / sesión</span>
+      </article>
+      <article class="service reveal">
+        <div class="icon"><svg viewBox="0 0 28 28" fill="none" stroke="#2B2D2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="14" height="23" rx="3"/><path d="M12 22h4"/><path d="M10.5 13.5l2.5 2.5 4.5-5"/></svg></div>
+        <h3>Entrenamiento personal a través de app</h3>
+        <p>Entrena por tu cuenta y a tu ritmo, con un plan hecho para ti. Nada de rutinas genéricas.</p>
+        <details><summary>Saber más</summary>
+          <p>En la app tienes tus sesiones explicadas paso a paso, con los ejercicios y las indicaciones. Registras lo que haces y ves cómo evolucionas, y nosotros revisamos tu progreso y hacemos los cambios que necesites. Tú eliges cuándo y dónde.</p>
+        </details>
+        <span class="price">Desde 65 € / mes</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO TRABAJAMOS -->
+<section class="method" id="como-trabajamos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Cómo trabajamos</span>
+        <h2>El entrenamiento<br>se adapta a ti.</h2>
+      </div>
+      <p class="lead">No creemos en las rutinas que sirven para todo el mundo. Antes de decirte qué hacer, queremos conocerte, saber de dónde partes y entender qué necesitas.</p>
+    </div>
+    <div class="method-steps">
+      <div class="mstep reveal">
+        <div class="num">1</div>
+        <h3>Nos conocemos</h3>
+        <span class="tag">Todo empieza hablando.</span>
+        <p>Qué te trae hasta aquí, qué te gustaría conseguir, cómo es tu día a día y tu experiencia con el ejercicio.</p>
+      </div>
+      <div class="mstep reveal">
+        <div class="num">2</div>
+        <h3>Valoramos</h3>
+        <span class="tag">Vemos desde dónde partimos.</span>
+        <p>Tu estado físico, tus capacidades y lo que hay que trabajar. No buscamos lo que haces mal, sino qué podemos mejorar.</p>
+      </div>
+      <div class="mstep reveal">
+        <div class="num">3</div>
+        <h3>Planificamos</h3>
+        <span class="tag">Cada ejercicio tiene un porqué.</span>
+        <p>Según tus objetivos, nivel, disponibilidad y circunstancias. No se trata de hacer más, sino de que tenga sentido en tu vida.</p>
+      </div>
+      <div class="mstep reveal">
+        <div class="num">4</div>
+        <h3>Acompañamos y ajustamos</h3>
+        <span class="tag">Avanzamos juntos.</span>
+        <p>Vemos cómo respondes, qué funciona y qué cambiar. Lo que necesitas hoy puede no ser lo mismo dentro de unos meses.</p>
+      </div>
+    </div>
+    <p class="method-note reveal">Sin prisas. <span class="violeta">Cada avance también cuenta.</span></p>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="who" id="para-quien">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">¿Para quién es?</span>
+      <h2>Para personas distintas, con puntos de partida distintos.</h2>
+      <p class="who-callout">No necesitas estar en forma para empezar. <span class="violeta">Empieza desde donde estás.</span></p>
+    </div>
+    <ul class="who-list reveal">
+      <li>Quieres empezar a hacer ejercicio y no sabes por dónde.</li>
+      <li>Llevas tiempo sin entrenar.</li>
+      <li>Quieres mejorar tu fuerza, movilidad, resistencia o condición física.</li>
+      <li>Quieres recuperar capacidades tras una lesión o un proceso de salud.</li>
+      <li>Necesitas adaptar el ejercicio a tus circunstancias.</li>
+      <li>Quieres ganar autonomía y calidad de vida.</li>
+      <li>Buscas un entrenamiento individualizado.</li>
+      <li>Te gusta entrenar en grupo, pero a tu nivel.</li>
+      <li>Simplemente quieres sentirte mejor y disfrutar de moverte.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TEST -->
+<section class="quiz-section" id="test">
+  <div class="wrap">
+    <div class="quiz">
+      <div class="quiz-intro reveal">
+        <span class="eyebrow">Test rápido</span>
+        <h2>¿Qué entrenamiento es para mí?</h2>
+        <p>Tres preguntas para orientarte. Al final, lo mejor siempre es hablarlo y verlo juntos.</p>
+        <div class="quiz-progress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <form id="quiz" class="reveal" novalidate>
+        <fieldset class="q active">
+          <legend>¿Cómo te gustaría entrenar?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="como" value="grupo"> En grupo, con buen ambiente</label>
+            <label class="opt"><input type="radio" name="como" value="personal"> Con atención individual</label>
+            <label class="opt"><input type="radio" name="como" value="solo"> Por mi cuenta, con un plan hecho para mí</label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend>¿Dónde te encaja mejor?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="donde" value="martorell"> Presencial, en Martorell</label>
+            <label class="opt"><input type="radio" name="donde" value="casa"> En mi casa</label>
+            <label class="opt"><input type="radio" name="donde" value="distancia"> A distancia, desde donde esté</label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend>¿Hay algo que debamos tener en cuenta?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="nota" value="empezar"> Quiero empezar o llevo tiempo sin entrenar</label>
+            <label class="opt"><input type="radio" name="nota" value="salud"> Vengo de una lesión o un proceso de salud</label>
+            <label class="opt"><input type="radio" name="nota" value="tiempo"> Tengo poco tiempo</label>
+            <label class="opt"><input type="radio" name="nota" value="nada"> Nada en especial, ¡quiero moverme!</label>
+          </div>
+        </fieldset>
+        <div class="quiz-nav" id="quizNav">
+          <button type="button" class="btn btn-borde" id="qBack" hidden>Atrás</button>
+          <button type="button" class="btn btn-violeta" id="qNext" disabled>Siguiente</button>
+        </div>
+        <div class="result" id="result" aria-live="polite">
+          <span class="eyebrow">Te encaja</span>
+          <h3 id="resTitle"></h3>
+          <p id="resText"></p>
+          <p>Es solo una orientación: cuéntanos tu caso y vemos qué opción tiene más sentido para ti.</p>
+          <div class="btns">
+            <a class="btn btn-wa" id="resWa" href="https://wa.me/34677851211" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>Hablarlo por WhatsApp</a>
+            <a class="btn btn-borde" href="#contacto" id="resForm">Escribir un mensaje</a>
+          </div>
+          <p style="margin-top:1.2rem"><button type="button" class="link-btn" id="qRestart">Repetir el test</button></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFAS Y HORARIOS -->
+<section id="tarifas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Tarifas y horarios</span>
+        <h2>Claro y sin letra pequeña.</h2>
+      </div>
+      <p class="lead">Hay clases con horario fijo, opciones en las que tú eliges cuándo entrenar y otras que organizamos directamente contigo.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <div class="price-row">
+          <div><h3>Entrenamiento personal compartido</h3><small>Grupos muy reducidos, entrenamiento adaptado a cada persona.</small></div>
+          <div class="amount">25 €<small>/ sesión</small></div>
+        </div>
+        <div class="price-row block">
+          <div><h3>Entrenamiento grupal</h3><small>Cuota mensual según las sesiones por semana.</small></div>
+          <div class="group-prices">
+            <div><b>35 €</b><span>1 sesión<br>por semana</span></div>
+            <div><b>65 €</b><span>2 sesiones<br>por semana</span></div>
+            <div><b>75 €</b><span>3 sesiones<br>por semana</span></div>
+          </div>
+        </div>
+        <div class="price-row">
+          <div><h3>Entrenamiento a domicilio</h3><small>Precio estimado según el tiempo de desplazamiento.</small></div>
+          <div class="amount"><small>desde</small>35 €<small>/ sesión</small></div>
+        </div>
+        <div class="price-row">
+          <div><h3>Entrenamiento personal online</h3><small>Plan individualizado y seguimiento a distancia.</small></div>
+          <div class="amount">35 €<small>/ sesión</small></div>
+        </div>
+        <div class="price-row">
+          <div><h3>Entrenamiento personal a través de app</h3><small>Incluye planificación individualizada, seguimiento y ajustes según tu evolución.</small></div>
+          <div class="amount"><small>desde</small>65 €<small>/ mes</small></div>
+        </div>
+        <p class="price-note">Tarifas sujetas a posibles cambios.</p>
+      </div>
+      <aside class="schedule reveal" aria-labelledby="horarios-title">
+        <h3 id="horarios-title">Horarios de los grupos</h3>
+        <p>Horarios habituales a día de hoy.</p>
+        <ul class="slots">
+          <li><span>Lunes y miércoles</span><time>19:00 – 20:00</time></li>
+          <li><span>Martes y jueves</span><time>17:00 – 18:00</time></li>
+          <li><span>Martes y jueves</span><time>19:00 – 20:00</time></li>
+        </ul>
+        <div class="others">
+          <p><strong>¿Prefieres por la mañana?</strong> Si hay suficiente demanda, abrimos grupos de mañana.</p>
+          <p><strong>App:</strong> el horario lo marcas tú.</p>
+          <p><strong>Resto de modalidades:</strong> el horario lo acordamos contigo.</p>
+        </div>
+        <a href="#contacto" class="btn btn-violeta" data-servicio="Entrenamiento grupal">Preguntar por plazas</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉN ESTÁ DETRÁS -->
+<section class="behind" id="patricia">
+  <div class="wrap">
+    <figure class="behind-visual reveal" style="margin:0">
+      <figure class="ph arch" data-label="Foto profesional de Patricia"></figure>
+      <img class="pdt-logo" src="assets/pdt-logo-negro.svg" alt="Patricia Dorado Trainer" width="200" height="86">
+      <figcaption>MOA · Un proyecto de Patricia Dorado Trainer</figcaption>
+    </figure>
+    <div class="reveal">
+      <span class="eyebrow">Quién está detrás</span>
+      <h2>Hola, soy Patricia Dorado.</h2>
+      <p>El deporte forma parte de mi vida desde muy pequeña. Empecé con el judo y la natación a los 5 años y con el balonmano a los 7, y llegué a cinturón negro de judo. También me apasionan el senderismo, la escalada, el barranquismo, el submarinismo y el trail running.</p>
+      <p>Mis primeros pasos fueron como entrenadora de balonmano y profesora de judo, y durante años di clases colectivas en gimnasios municipales y privados. En la carrera descubrí que el ejercicio podía ser mucho más que mejorar la condición física: podía ayudar a alguien a recuperar fuerza y movilidad después de una lesión y, en definitiva, a <strong>volver a sentirse capaz</strong>.</p>
+      <blockquote>Cada persona es un mundo. Lo que más me gusta de mi trabajo es descubrir qué necesita cada una y adaptar el entrenamiento para que tenga sentido para ella.</blockquote>
+      <p>Después de más de 10 años como entrenadora personal, MOA es la nueva etapa de mi proyecto: un espacio propio y una comunidad, con la misma filosofía de siempre. Me importa la persona que hay detrás del entrenamiento.</p>
+      <ol class="timeline">
+        <li><span class="dot">1</span><div><strong>CFGS en Animación de Actividades Físico-Deportivas</strong><span>Mientras daba clases colectivas en distintos centros.</span></div></li>
+        <li><span class="dot">2</span><div><strong>Grado en Ciencias de la Actividad Física y el Deporte, INEFC Barcelona</strong><span>Compaginado con el trabajo.</span></div></li>
+        <li><span class="dot">3</span><div><strong>Máster en Prescripción de Ejercicio Físico y Salud, INEFC Barcelona</strong><span>Ejercicio para la salud y la recuperación.</span></div></li>
+        <li><span class="dot">4</span><div><strong>Más de 10 años como entrenadora personal</strong><span>Y ahora, MOA.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDAD Y OPINIONES -->
+<section class="community" id="opiniones">
+  <div class="wrap">
+    <div class="community-head">
+      <div class="reveal">
+        <span class="eyebrow">Comunidad</span>
+        <h2>Las Tortuguitas</h2>
+        <p>Con el tiempo, las personas que entrenan con nosotros se han convertido en una comunidad. Cada una tiene sus objetivos, su ritmo y su camino. Pero compartimos algo: las ganas de seguir avanzando.</p>
+        <div class="mantras" aria-label="Nuestros lemas">
+          <span>Step by step</span><span>Keep swimming</span><span>El movimiento es vida</span>
+        </div>
+      </div>
+      <p class="community-motto reveal">Tu ritmo, tus objetivos, tu camino. Y si avanzamos juntos, <em>mucho mejor.</em></p>
+    </div>
+    <div class="reviews-bar reveal">
+      <div class="stars">
+        <svg viewBox="0 0 100 20" width="100" height="20" aria-hidden="true"><g fill="#3BC65F"><path id="st" d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 14.6 4.6 17.5l1.2-6L1.3 7.3l6.1-.7z"/><use href="#st" x="20"/><use href="#st" x="40"/><use href="#st" x="60"/><use href="#st" x="80"/></g></svg>
+        Reseñas de Google
+      </div>
+      <div class="carousel-ctrl">
+        <button class="round" id="prev" aria-label="Opinión anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="round" id="next" aria-label="Opinión siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="carousel reveal" id="carousel" tabindex="0" aria-label="Opiniones de clientes">
+      <article class="review"><div class="q-mark">“</div><p>Hace ya dos años que empecé a entrenar con Patri. Desde el minuto uno me sentí muy a gusto y acompañada. Llevo un entrenamiento personalizado que me permite trabajar a mi ritmo y que se ajusta perfectamente a mis objetivos. Es una profesional de 10, con un trato excepcional. Ir a entrenar con ella supone no solo mantener un ejercicio físico regular, sino también un bienestar emocional por el acompañamiento y el buen ambiente que crea.</p><footer><span class="avatar">M</span><div><strong>Mar Camacho Sánchez</strong><small>Google</small></div></footer></article>
+      <article class="review"><div class="q-mark">“</div><p>Hace años que entreno con Patri ¡y no cambiaría por nada! He hecho todas las modalidades posibles: presencial, a domicilio y online. En los últimos dos años mi situación de salud y movilidad ha ido cambiando y Patri ha adaptado los entrenamientos al milímetro, retando y escuchando siempre a mi cuerpo. También agradezco el trato cálido y la comunidad que crea.</p><footer><span class="avatar">N</span><div><strong>Núria Domingo Dorado</strong><small>Google</small></div></footer></article>
+      <article class="review"><div class="q-mark">“</div><p>Tengo fibromialgia y la atención que me ha dado es 100% personalizada: se adapta a cada una de mis dolencias y limitaciones sin excepción. Gracias a ella he mejorado muchísimo mi calidad de vida, he ganado fuerza y constancia, y sobre todo he recuperado la confianza en mí misma. ¡Entrenadora de 10!</p><footer><span class="avatar">W</span><div><strong>Warfy Game</strong><small>Google</small></div></footer></article>
+      <article class="review"><div class="q-mark">“</div><p>De haberla conocido antes, antes habría empezado a entrenar con ella. Es más que una entrenadora, es educadora física y se nota en sus entrenos, su metodología y en la forma de enseñarnos. Si tuviera que volver a elegir un sitio donde mejorar mi salud, sin duda volvería con ella.</p><footer><span class="avatar">J</span><div><strong>Juana Dz</strong><small>Google</small></div></footer></article>
+      <article class="review"><div class="q-mark">“</div><p>Una gran entrenadora, motivacional y con amplios recursos. Patri me ayudó a superar unas pruebas físicas teniendo en cuenta, en todo momento, mis temores a causa de una lesión antigua. Su experiencia, sus conocimientos y su personalidad hacen que sea una entrenadora personal 100% recomendable.</p><footer><span class="avatar">I</span><div><strong>Inmaculada C. López Arroyo</strong><small>Google</small></div></footer></article>
+      <article class="review"><div class="q-mark">“</div><p>Llevo tiempo entrenando con Patri y se ven resultados. Además son entrenamientos personalizados, una esencia que muchas veces se pierde y ella mantiene siempre. 10 de 10.</p><footer><span class="avatar">N</span><div><strong>Nuria SB</strong><small>Google</small></div></footer></article>
+      <article class="review"><div class="q-mark">“</div><p>Conocimos a Patricia hace cuatro años, cuando vino para la recuperación de mi madre, y la experiencia fue de diez tanto en el trato profesional como humano. ¡Una gran profesional!</p><footer><span class="avatar">M</span><div><strong>Mercedes Hernández Ventura</strong><small>Google</small></div></footer></article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2>Empieza desde donde estás.</h2>
+      <p class="lead">No hace falta que sepas qué servicio elegir. Cuéntanos qué buscas y lo vemos juntos. Para los grupos, en cuanto confirmemos plaza y horario, te incorporas directamente.</p>
+      <ul class="contact-list">
+        <li><a href="https://wa.me/34677851211" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="#2B2D2B" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg></span><span>677 85 12 11<small>Teléfono y WhatsApp</small></span></a></li>
+        <li><a href="mailto:patriciadoradotrainer@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2B2D2B" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg></span><span>patriciadoradotrainer@gmail.com<small>Email</small></span></a></li>
+        <li><a href="https://www.instagram.com/moa.salut/" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2B2D2B" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#2B2D2B"/></svg></span><span>@moa.salut<small>Instagram de MOA</small></span></a></li>
+        <li><a href="https://www.instagram.com/patriciadoradotrainer/" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2B2D2B" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#2B2D2B"/></svg></span><span>@patriciadoradotrainer<small>Instagram de Patricia</small></span></a></li>
+        <li><div><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2B2D2B" stroke-width="1.8" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span>Martorell (Barcelona)<small>Presencial, a domicilio y online</small></span></div></li>
+      </ul>
+    </div>
+    <form class="form reveal" id="contactForm" novalidate>
+      <h3>Cuéntanos qué buscas</h3>
+      <p>Al enviar se abrirá WhatsApp o tu email con el mensaje ya escrito.</p>
+      <div class="row2">
+        <div class="field"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" autocomplete="name" required></div>
+        <div class="field"><label for="f-tel">Teléfono (opcional)</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field">
+        <label for="f-servicio">¿Qué te interesa?</label>
+        <select id="f-servicio" name="servicio">
+          <option>Aún no lo sé, quiero que me orientéis</option>
+          <option>Entrenamiento personal compartido</option>
+          <option>Entrenamiento grupal</option>
+          <option>Entrenamiento a domicilio</option>
+          <option>Entrenamiento personal online</option>
+          <option>Entrenamiento personal a través de app</option>
+        </select>
+      </div>
+      <div class="field"><label for="f-msg">¿Qué te gustaría conseguir?</label><textarea id="f-msg" name="mensaje" placeholder="Tus objetivos, cómo te mueves ahora, tu disponibilidad o cualquier cosa a tener en cuenta." required></textarea></div>
+      <label class="check"><input type="checkbox" id="f-ok" required> Acepto que MOA use estos datos solo para responder a mi consulta.</label>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-wa" data-via="wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>Enviar por WhatsApp</button>
+        <button type="submit" class="btn btn-carbon" data-via="mail">Enviar por email</button>
+      </div>
+      <p class="form-error" id="formError" role="alert"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <img class="footer-firma" src="assets/logos-moa/moa-firma-ca-crema.svg" alt="MOA · Moviment, Origen, Acció" width="340" height="135">
+      <p class="footer-claim">Pas a pas.<br>Al teu ritme.</p>
+    </div>
+    <div class="footer-bottom">
+      <div class="convive">
+        <span>Un proyecto de</span>
+        <img src="assets/pdt-logo-blanco.svg" alt="Patricia Dorado Trainer" width="88" height="38">
+      </div>
+      <nav aria-label="Pie de página">
+        <a href="#servicios">Servicios</a>
+        <a href="#tarifas">Tarifas</a>
+        <a href="#contacto">Contacto</a>
+        <a href="https://www.instagram.com/moa.salut/" target="_blank" rel="noopener">@moa.salut</a>
+      </nav>
+      <span>© <span id="year">2026</span> MOA · Moviment i Salut · Martorell</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34677851211?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20los%20entrenamientos%20de%20MOA." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>
+</a>
+
+<script>
+(function(){
+  var PHONE = '34677851211';
+  var EMAIL = 'patriciadoradotrainer@gmail.com';
+  function waLink(text){ return 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text); }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Cabecera y menú móvil
+  var header = document.querySelector('.header');
+  var menuBtn = document.getElementById('menuBtn');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 20); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  function setMenu(open){
+    header.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  }
+  menuBtn.addEventListener('click', function(){ setMenu(!header.classList.contains('menu-open')); });
+  document.querySelectorAll('#nav a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+  // Animaciones al entrar en pantalla
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  } else { items.forEach(function(el){ el.classList.add('in'); }); }
+
+  // Carrusel de opiniones
+  var car = document.getElementById('carousel');
+  function step(dir){ var card = car.querySelector('.review'); car.scrollBy({left: dir * (card.offsetWidth + 20), behavior:'smooth'}); }
+  document.getElementById('prev').addEventListener('click', function(){ step(-1); });
+  document.getElementById('next').addEventListener('click', function(){ step(1); });
+
+  // Preseleccionar servicio en el formulario desde otros botones
+  var select = document.getElementById('f-servicio');
+  function preselect(name){
+    for (var i = 0; i < select.options.length; i++) if (select.options[i].text === name) select.selectedIndex = i;
+  }
+  document.querySelectorAll('[data-servicio]').forEach(function(el){
+    el.addEventListener('click', function(){ preselect(el.getAttribute('data-servicio')); });
+  });
+
+  // Test "¿Qué entrenamiento es para mí?"
+  var quiz = document.getElementById('quiz');
+  var steps = quiz.querySelectorAll('.q');
+  var bars = document.querySelectorAll('.quiz-progress i');
+  var back = document.getElementById('qBack'), next = document.getElementById('qNext');
+  var nav = document.getElementById('quizNav'), result = document.getElementById('result');
+  var current = 0;
+  var SERVICES = {
+    compartido:{t:'Entrenamiento personal compartido', d:'Atención individual y un plan para ti, en grupos muy reducidos y con buen ambiente.'},
+    grupal:{t:'Entrenamiento grupal', d:'Entrenamos juntos y cada persona adapta los ejercicios a su nivel. Ideal para coger constancia.'},
+    domicilio:{t:'Entrenamiento a domicilio', d:'Llevamos el entrenamiento a tu casa, adaptado a cómo te encuentras y al espacio que tengas.'},
+    online:{t:'Entrenamiento personal online', d:'Un plan individualizado con seguimiento a distancia, que evoluciona contigo.'},
+    app:{t:'Entrenamiento personal a través de app', d:'Entrenas cuando y donde quieras, con tus sesiones explicadas paso a paso y seguimiento de tu evolución.'}
+  };
+  var LABELS = {
+    como:{grupo:'en grupo', personal:'con atención individual', solo:'por mi cuenta con un plan'},
+    donde:{martorell:'presencial en Martorell', casa:'en casa', distancia:'a distancia'},
+    nota:{empezar:'quiero empezar o llevo tiempo sin entrenar', salud:'vengo de una lesión o proceso de salud', tiempo:'tengo poco tiempo', nada:'nada en especial'}
+  };
+  function val(name){ var c = quiz.querySelector('input[name="'+name+'"]:checked'); return c ? c.value : null; }
+  function recommend(como, donde, nota){
+    if (donde === 'casa') return 'domicilio';
+    if (donde === 'distancia') return como === 'solo' ? 'app' : 'online';
+    if (como === 'solo') return 'app';
+    if (como === 'grupo') return nota === 'salud' ? 'compartido' : 'grupal';
+    return 'compartido';
+  }
+  function show(i){
+    current = i;
+    steps.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    bars.forEach(function(b, k){ b.classList.toggle('on', k <= i); });
+    back.hidden = i === 0;
+    next.textContent = i === steps.length - 1 ? 'Ver resultado' : 'Siguiente';
+    next.disabled = !steps[i].querySelector('input:checked');
+  }
+  quiz.addEventListener('change', function(){ next.disabled = !steps[current].querySelector('input:checked'); });
+  back.addEventListener('click', function(){ show(current - 1); });
+  next.addEventListener('click', function(){
+    if (current < steps.length - 1) { show(current + 1); return; }
+    var como = val('como'), donde = val('donde'), nota = val('nota');
+    var s = SERVICES[recommend(como, donde, nota)];
+    document.getElementById('resTitle').textContent = s.t;
+    document.getElementById('resText').textContent = s.d;
+    document.getElementById('resWa').href = waLink(
+      'Hola, he hecho el test de la web de MOA y me sale "' + s.t + '". ' +
+      'Me gustaría entrenar ' + LABELS.como[como] + ', ' + LABELS.donde[donde] + ', y ' + LABELS.nota[nota] + '. ¿Lo hablamos?'
+    );
+    document.getElementById('resForm').onclick = function(){ preselect(s.t); };
+    steps.forEach(function(st){ st.classList.remove('active'); });
+    nav.hidden = true; result.classList.add('active');
+  });
+  document.getElementById('qRestart').addEventListener('click', function(){
+    quiz.reset(); result.classList.remove('active'); nav.hidden = false; show(0);
+  });
+
+  // Formulario de contacto: abre WhatsApp o el email con el mensaje escrito
+  var form = document.getElementById('contactForm');
+  var errorEl = document.getElementById('formError');
+  var via = 'wa';
+  form.querySelectorAll('[data-via]').forEach(function(b){ b.addEventListener('click', function(){ via = b.getAttribute('data-via'); }); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nombre = form.nombre.value.trim(), tel = form.telefono.value.trim();
+    var servicio = form.servicio.value, msg = form.mensaje.value.trim();
+    if (!nombre || !msg) { errorEl.textContent = 'Escribe tu nombre y cuéntanos un poco qué buscas.'; return; }
+    if (!document.getElementById('f-ok').checked) { errorEl.textContent = 'Marca la casilla para poder enviar la consulta.'; return; }
+    errorEl.textContent = '';
+    var text = 'Hola, soy ' + nombre + '.\n\nMe interesa: ' + servicio + '\n\n' + msg + (tel ? '\n\nMi teléfono: ' + tel : '');
+    if (via === 'wa') {
+      window.open(waLink(text), '_blank', 'noopener');
+    } else {
+      window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Consulta desde la web de MOA: ' + servicio) + '&body=' + encodeURIComponent(text);
+    }
+  });
+})();
+</script>
+</body>
+</html>
