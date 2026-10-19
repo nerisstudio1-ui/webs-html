@@ -107,6 +107,7 @@ TEXT = {
   "mantra_3": "El moviment és vida",
   "com_motto": "El teu ritme, els teus objectius, el teu camí. I si avancem junts, <em>molt millor.</em>",
   "rv_note": "Ressenyes de Google, en la llengua original.",
+  "ig_fallback": "Mira'ns entrenant en grup a Instagram", "ig_caption": "Una sessió d'entrenament en grup.",
 
   "ct_eyebrow": "Contacte", "ct_title": "Parlem?",
   "ct_lead": "No cal que sàpigues quin servei triar. Explica'ns què busques i ho mirem junts. Per als grups, quan confirmem plaça i horari, t'incorpores directament.",
@@ -245,6 +246,7 @@ TEXT = {
   "mantra_3": "El movimiento es vida",
   "com_motto": "Tu ritmo, tus objetivos, tu camino. Y si avanzamos juntos, <em>mucho mejor.</em>",
   "rv_note": "Reseñas de Google.",
+  "ig_fallback": "Míranos entrenar en grupo en Instagram", "ig_caption": "Una sesión de entrenamiento en grupo.",
 
   "ct_eyebrow": "Contacto", "ct_title": "¿Hablamos?",
   "ct_lead": "No hace falta que sepas qué servicio elegir. Cuéntanos qué buscas y lo vemos juntos. Para los grupos, en cuanto confirmemos plaza y horario, te incorporas directamente.",
@@ -383,6 +385,7 @@ TEXT = {
   "mantra_3": "Movement is life",
   "com_motto": "Your pace, your goals, your path. And if we move forward together, <em>even better.</em>",
   "rv_note": "Google reviews, shown in their original Spanish.",
+  "ig_fallback": "Watch us train as a group on Instagram", "ig_caption": "A group training session.",
 
   "ct_eyebrow": "Contact", "ct_title": "Let's talk",
   "ct_lead": "You don't need to know which service to choose. Tell us what you're looking for and we'll figure it out together. For groups, once we confirm a place and time, you can join straight away.",

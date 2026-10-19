@@ -336,7 +336,16 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 
 /* Comunidad */
 .community{background:var(--crema);padding:120px 0 100px;overflow:hidden}
-.community-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:60px}
+.community-head{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center;margin-bottom:70px}
+.community-head .motto{margin-top:2.4rem}
+.ig-video{margin:0;justify-self:end;width:100%;max-width:400px;position:relative;isolation:isolate}
+.ig-video::before{content:"";position:absolute;inset:-18px -18px 18px 18px;border-radius:30px;background:var(--violeta);z-index:-1;transform:rotate(3deg)}
+.ig-video .instagram-media{margin:0!important;min-width:0!important;width:100%!important;max-width:none!important;border:0!important;border-radius:22px!important;box-shadow:0 30px 60px -36px rgba(43,45,43,.6)!important;overflow:hidden;background:var(--blanco)}
+blockquote.instagram-media{display:grid;place-items:center;aspect-ratio:4/5;padding:30px;text-align:center}
+blockquote.instagram-media a{display:grid;justify-items:center;gap:18px;font-weight:600;color:var(--carbon);text-decoration:none}
+blockquote.instagram-media a::before{content:"";width:74px;height:74px;border-radius:50%;background:var(--violeta) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='%23FEF7E5'/%3E%3C/svg%3E") center/34px no-repeat;transition:transform .35s var(--ease)}
+blockquote.instagram-media a:hover::before{transform:scale(1.08)}
+.ig-video figcaption{margin-top:34px;font-size:.8rem;color:var(--gris);text-align:center}
 .community-head p{color:var(--gris)}
 .mantras{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.4rem}
 .mantras span{border:1.5px solid var(--carbon);border-radius:999px;padding:.4em 1.1em;font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .3s,color .3s}
@@ -417,6 +426,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
   .steps{grid-template-columns:1fr 1fr}
   .who-grid,.quiz,.prices-grid,.behind-grid,.contact-grid,.community-head{grid-template-columns:minmax(0,1fr);gap:50px}
   .who-grid .media,.behind-visual{max-width:460px}
+  .ig-video{justify-self:center;max-width:360px}
   .schedule{position:static}
 }
 @media (max-width:640px){
@@ -743,8 +753,12 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
       <h2 data-split>Las Tortuguitas</h2>
       <p class="reveal" style="margin-top:1.2rem">Con el tiempo, las personas que entrenan con nosotros se han convertido en una comunidad. Cada una tiene sus objetivos, su ritmo y su camino. Pero compartimos algo: las ganas de seguir avanzando.</p>
       <div class="mantras reveal"><span>Step by step</span><span>Keep swimming</span><span>El movimiento es vida</span></div>
+      <p class="motto reveal">Tu ritmo, tus objetivos, tu camino. Y si avanzamos juntos, <em>mucho mejor.</em></p>
     </div>
-    <p class="motto reveal">Tu ritmo, tus objetivos, tu camino. Y si avanzamos juntos, <em>mucho mejor.</em></p>
+    <figure class="ig-video reveal" id="igVideo">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DFdp2oqOZEO/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"><a href="https://www.instagram.com/p/DFdp2oqOZEO/" target="_blank" rel="noopener">Míranos entrenar en grupo en Instagram →</a></blockquote>
+      <figcaption>Una sesión de entrenamiento en grupo.</figcaption>
+    </figure>
   </div>
   <div class="reviews" aria-label="Opiniones de clientes">
     <div class="rv-row"><div class="rv-track">
@@ -1001,6 +1015,21 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
       b.addEventListener('mouseleave', function(){ b.style.transform = ''; });
     });
   }
+
+  // Vídeo de Instagram: el script se carga solo cuando la sección se acerca
+  var ig = document.getElementById('igVideo');
+  function loadIg(){
+    if (document.getElementById('igScript')) return;
+    var sc = document.createElement('script');
+    sc.id = 'igScript'; sc.async = true; sc.src = 'https://www.instagram.com/embed.js';
+    document.body.appendChild(sc);
+  }
+  if ('IntersectionObserver' in window) {
+    var igo = new IntersectionObserver(function(entries){
+      if (entries[0].isIntersecting) { loadIg(); igo.disconnect(); }
+    }, {rootMargin:'600px 0px'});
+    igo.observe(ig);
+  } else { loadIg(); }
 
   // Preseleccionar servicio en el formulario
   var select = document.getElementById('f-servicio');
