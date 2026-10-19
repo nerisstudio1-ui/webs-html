@@ -10,6 +10,10 @@ Web de una sola página para MOA, el proyecto de Patricia Dorado Trainer en Mart
 
 Cada página enlaza a las otras dos con el selector CA · ES · EN de la cabecera, el menú móvil y el pie.
 
+## WordPress
+
+`wordpress/moa-wordpress-ca.html`, `-es.html` y `-en.html` son la misma web lista para pegar en un bloque de **HTML personalizado**, con todo dentro y los estilos encapsulados para que el tema no la descoloque. Instrucciones en `wordpress/INSTALACION.md`. Se regeneran con `python3 build_wordpress.py` (después de `build.py`).
+
 ## Cómo editar
 
 Los tres HTML se generan automáticamente; no se editan a mano.
