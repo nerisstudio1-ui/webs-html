@@ -18,7 +18,7 @@ TEXT = {
   "nav_contact": "Contacte", "nav_cta": "Vull començar",
 
   "ph_hero": "Foto: persona entrenant amb llum natural", "ph_intro_a": "Foto: grup entrenant",
-  "ph_intro_b": "Foto: material i exercici", "ph_who": "Foto: entrenament acompanyat", "ph_patricia": "Foto professional de la Patricia",
+  "ph_intro_b": "Foto: material i exercici", "ph_who": "Foto: entrenament acompanyat", "ph_patricia": "La Patricia Dorado somrient en un congost de muntanya",
 
   "hero_l1": "El teu ritme.", "hero_l2": "El teu moviment.",
   "hero_sub": "Entrenament adaptat a tu.",
@@ -156,7 +156,7 @@ TEXT = {
   "nav_contact": "Contacto", "nav_cta": "Quiero empezar",
 
   "ph_hero": "Foto: persona entrenando con luz natural", "ph_intro_a": "Foto: grupo entrenando",
-  "ph_intro_b": "Foto: material y ejercicio", "ph_who": "Foto: entrenamiento acompañado", "ph_patricia": "Foto profesional de Patricia",
+  "ph_intro_b": "Foto: material y ejercicio", "ph_who": "Foto: entrenamiento acompañado", "ph_patricia": "Patricia Dorado sonriendo en un barranco de montaña",
 
   "hero_l1": "Tu ritmo.", "hero_l2": "Tu movimiento.",
   "hero_sub": "Entrenamiento adaptado a ti.",
@@ -294,7 +294,7 @@ TEXT = {
   "nav_contact": "Contact", "nav_cta": "Get started",
 
   "ph_hero": "Photo: person training in natural light", "ph_intro_a": "Photo: group training",
-  "ph_intro_b": "Photo: equipment and exercise", "ph_who": "Photo: coached session", "ph_patricia": "Professional photo of Patricia",
+  "ph_intro_b": "Photo: equipment and exercise", "ph_who": "Photo: coached session", "ph_patricia": "Patricia Dorado smiling in a mountain gorge",
 
   "hero_l1": "Your pace.", "hero_l2": "Your movement.",
   "hero_sub": "Training that adapts to you.",
