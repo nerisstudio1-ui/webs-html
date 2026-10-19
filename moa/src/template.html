@@ -172,8 +172,8 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 /* Marquee */
 .marquee{overflow:hidden;white-space:nowrap;padding:34px 0;user-select:none}
 .mq-track{display:inline-flex;align-items:center;will-change:transform}
-.mq-item{display:inline-flex;align-items:center;gap:.45em;font-family:var(--titulo);font-weight:800;text-transform:uppercase;font-size:clamp(3.6rem,10vw,9rem);line-height:1;letter-spacing:-.02em;padding-right:.45em}
-.mq-item img{height:.62em;width:auto;flex:none}
+.mq-item{display:inline-flex;align-items:center;font-family:var(--titulo);font-weight:800;text-transform:uppercase;font-size:clamp(3.6rem,10vw,9rem);line-height:1;letter-spacing:.015em;word-spacing:.08em}
+.mq-item img{height:.62em;width:auto;max-width:none;flex:none;margin:0 .55em}
 .mq-soft{color:var(--arena-2)}
 .mq-soft .mq-item:nth-child(even){color:var(--violeta)}
 .mq-green{background:var(--verde);color:var(--carbon)}
