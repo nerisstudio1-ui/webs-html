@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academia Hellins · Móstoles</title>
+<meta name="description" content="Academia Hellins en Móstoles: inglés para todos los niveles, preparación de exámenes Cambridge y TOEIC, apoyo al bilingüismo y refuerzo escolar. Te hacemos bilingüe desde 1 año.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1b1a5c;
+    --navy-2:#2a2980;
+    --lime:#cfdc3f;
+    --lavender:#a99bf2;
+    --lavender-soft:#e4e2fb;
+    --orange:#ee8a3a;
+    --cream:#f7f4ee;
+    --white:#ffffff;
+    --text:#1b1a5c;
+    --muted:#4b4a7a;
+    --radius:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'DM Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);line-height:1.55;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.1}
+  .container{width:min(1180px,100% - 32px);margin-inline:auto}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--navy);padding:12px 22px;border-radius:999px;font-weight:700;font-size:.95rem;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(27,26,92,.18)}
+  .btn .dot{width:26px;height:26px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-size:.85rem}
+  .btn-navy{background:var(--navy);color:var(--white)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:88vh;display:flex;flex-direction:column;color:var(--white);
+    background:linear-gradient(100deg,rgba(27,26,92,.88) 0%,rgba(27,26,92,.55) 45%,rgba(27,26,92,.15) 100%),url('img/fachada.jpg') center/cover no-repeat}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:16px}
+  .nav-links{display:flex;gap:6px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);padding:6px;border-radius:999px}
+  .nav-links a{padding:8px 16px;border-radius:999px;font-size:.92rem;font-weight:500}
+  .nav-links a:hover,.nav-links a.active{background:var(--white);color:var(--navy)}
+  .brand{font-family:'Fraunces',serif;font-weight:800;font-size:1.7rem;letter-spacing:-.5px}
+  .brand span{color:var(--lime)}
+  .menu-toggle{display:none;background:var(--white);color:var(--navy);border:0;border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer}
+  .hero-body{flex:1;display:flex;align-items:center;padding:40px 0 80px}
+  .hero h1{font-size:clamp(2.6rem,6.5vw,5.2rem);max-width:820px;font-weight:800;letter-spacing:-1px}
+  .hero h1 .indent{display:block;padding-left:clamp(20px,8vw,120px)}
+  .hero h1 em{font-style:normal;color:var(--lime)}
+  .hero p{max-width:520px;margin:22px 0 30px;font-size:1.1rem;opacity:.92}
+  .shape{position:absolute;pointer-events:none}
+  .shape.leaf{width:90px;height:90px;background:var(--orange);border-radius:0 100% 0 100%;top:38%;left:4%;opacity:.95}
+  .shape.flower{width:70px;height:70px;top:30%;right:8%}
+
+  /* ---------- PILLS ---------- */
+  .pills{background:var(--cream);padding:34px 0 10px}
+  .pills .container{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .pill{padding:12px 26px;border-radius:999px;font-family:'Fraunces',serif;font-weight:600;font-size:1rem}
+  .pill.o{background:var(--orange);color:var(--white)}
+  .pill.l{background:var(--lavender);color:var(--white)}
+  .pill.g{background:var(--lime);color:var(--navy)}
+  .pill.s{background:var(--lavender-soft);color:var(--navy)}
+
+  /* ---------- STATS ---------- */
+  .stats{padding:40px 0 60px}
+  .stats .container{display:grid;grid-template-columns:repeat(3,1fr);text-align:center}
+  .stat{padding:10px 24px}
+  .stat + .stat{border-left:1.5px solid rgba(27,26,92,.2)}
+  .stat strong{display:block;font-family:'Fraunces',serif;font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:700;white-space:nowrap}
+  .stat span{color:var(--muted);font-size:.95rem}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{background:var(--navy);color:var(--white);overflow:hidden;padding:18px 0;white-space:nowrap}
+  .marquee-track{display:inline-flex;gap:50px;animation:scroll 22s linear infinite;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.6rem,3.5vw,2.6rem)}
+  .marquee-track span::after{content:"✦";color:var(--lime);margin-left:50px;font-size:.7em}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ---------- FEATURES ---------- */
+  .features{background:var(--lavender-soft);padding:80px 0}
+  .features .container{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .feature .icon{width:76px;height:76px;margin-bottom:18px}
+  .feature .num{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;margin-left:12px;vertical-align:bottom}
+  .feature .head{display:flex;align-items:flex-end}
+  .feature h3{font-size:1.25rem;margin-bottom:8px}
+  .feature p{color:var(--muted)}
+
+  /* ---------- PROGRAMS ---------- */
+  section.block{padding:90px 0}
+  .section-title{text-align:center;max-width:700px;margin:0 auto 50px}
+  .section-title h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
+  .section-title p{color:var(--muted);font-size:1.05rem}
+  .programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .prog{border-radius:var(--radius);padding:28px;min-height:270px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;transition:transform .25s}
+  .prog:hover{transform:translateY(-6px)}
+  .prog h3{font-size:1.4rem;margin-bottom:10px}
+  .prog p{font-size:.97rem}
+  .prog .btn{align-self:flex-start;font-size:.88rem;padding:9px 10px 9px 18px}
+  .prog.lime{background:var(--lime)}
+  .prog.lav{background:var(--lavender);color:var(--white)}
+  .prog.lav p{color:#fff}
+  .prog.ora{background:var(--orange);color:var(--white)}
+  .prog.navy{background:var(--navy);color:var(--white)}
+  .prog.soft{background:var(--lavender-soft)}
+  .prog.photo{padding:0;overflow:hidden;background:url('img/fachada.jpg') 70% center/cover}
+  .prog.logo{background:var(--white) url('img/logo.jpg') center/contain no-repeat}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .tags span{background:rgba(255,255,255,.25);padding:4px 12px;border-radius:999px;font-size:.82rem;font-weight:700}
+  .prog.lime .tags span,.prog.soft .tags span{background:rgba(27,26,92,.1)}
+
+  /* ---------- LEVELS (cards like testimonials) ---------- */
+  .levels{background:var(--lavender);padding:90px 0}
+  .levels .section-title,.levels .section-title p{color:var(--white)}
+  .level-list{display:grid;gap:26px;max-width:960px;margin:0 auto}
+  .level{display:grid;grid-template-columns:260px 1fr;gap:26px;align-items:center;background:var(--cream);border-radius:var(--radius);padding:20px;position:relative}
+  .level:nth-child(even){grid-template-columns:1fr 260px}
+  .level:nth-child(even) .level-visual{order:2}
+  .level-visual{height:200px;border-radius:16px;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:800;font-size:4rem;color:var(--white);position:relative;overflow:hidden}
+  .level-visual small{position:absolute;bottom:14px;left:16px;font-size:.85rem;font-family:'DM Sans';font-weight:700;letter-spacing:.5px;text-transform:uppercase;opacity:.9}
+  .level-text{padding:10px 16px}
+  .level-text h3{font-size:1.5rem;margin-bottom:8px}
+  .level-text p{color:var(--muted)}
+  .chip{display:inline-block;margin-top:14px;background:var(--lime);padding:6px 16px;border-radius:999px;font-weight:700;font-size:.85rem}
+
+  /* ---------- PHOTO BAND ---------- */
+  .band{height:420px;background:linear-gradient(0deg,rgba(27,26,92,.55),rgba(27,26,92,.1)),url('img/fachada.jpg') center 40%/cover;display:flex;align-items:flex-end}
+  .band h2{color:var(--white);font-size:clamp(2rem,5vw,3.6rem);padding-bottom:40px;max-width:700px}
+  .band h2 em{font-style:normal;color:var(--lime)}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:820px;margin:0 auto;display:grid;gap:14px}
+  details{background:var(--lavender-soft);border-radius:16px;padding:18px 22px;transition:background .2s}
+  details[open]{background:var(--white);box-shadow:0 6px 24px rgba(27,26,92,.08)}
+  summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--lavender)}
+  details[open] summary::after{content:"–"}
+  details p{margin-top:12px;color:var(--muted)}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--lime);padding:80px 0}
+  .contact .container{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+  .contact h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:16px}
+  .contact-card{background:var(--white);border-radius:var(--radius);padding:30px;display:grid;gap:16px}
+  .contact-row{display:flex;gap:14px;align-items:center}
+  .contact-row .ic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:1.2rem}
+  .contact-row strong{display:block}
+  .contact-row span{color:var(--muted);font-size:.95rem}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy);color:var(--white);padding:60px 0 30px}
+  .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+  footer p,footer li{opacity:.8;font-size:.92rem}
+  footer h4{font-size:.95rem;margin-bottom:10px;color:var(--lime)}
+  footer ul{list-style:none;display:grid;gap:6px}
+  footer a:hover{color:var(--lime)}
+  .copy{border-top:1px solid rgba(255,255,255,.15);margin-top:40px;padding-top:20px;font-size:.85rem;opacity:.6;text-align:center}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .features .container,.programs-grid{grid-template-columns:1fr 1fr}
+    .contact .container,.foot{grid-template-columns:1fr}
+    .band{background-attachment:scroll}
+  }
+  @media (max-width:700px){
+    .nav-links{display:none;position:absolute;top:76px;left:16px;right:16px;flex-direction:column;background:var(--navy);border-radius:20px;padding:10px;z-index:10}
+    .nav-links.open{display:flex}
+    .menu-toggle{display:block}
+    .stats .container,.features .container,.programs-grid{grid-template-columns:1fr}
+    .stat + .stat{border-left:0;border-top:1.5px solid rgba(27,26,92,.2)}
+    .level,.level:nth-child(even){grid-template-columns:1fr}
+    .level:nth-child(even) .level-visual{order:0}
+    .shape{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <div class="container">
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#cursos">Cursos</a>
+        <a href="#niveles">Niveles</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">Menú</button>
+      <a href="#inicio" class="brand">Hellins<span>.</span></a>
+    </nav>
+  </div>
+  <div class="shape leaf"></div>
+  <svg class="shape flower" viewBox="0 0 100 100" aria-hidden="true"><g fill="#cfdc3f"><circle cx="50" cy="22" r="22"/><circle cx="78" cy="50" r="22"/><circle cx="50" cy="78" r="22"/><circle cx="22" cy="50" r="22"/></g></svg>
+  <div class="hero-body">
+    <div class="container">
+      <h1>Te hacemos <em>bilingüe</em><span class="indent">desde 1 año.</span></h1>
+      <p>Academia de idiomas y refuerzo escolar en Móstoles. Inglés para todos los niveles, preparación de exámenes oficiales y apoyo al bilingüismo con horarios flexibles.</p>
+      <a href="#cursos" class="btn">Ver cursos <span class="dot">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- PILLS -->
+<div class="pills">
+  <div class="container">
+    <span class="pill o">Horarios flexibles</span>
+    <span class="pill l">Apoyo al bilingüismo</span>
+    <span class="pill g">Técnicas de estudio</span>
+    <span class="pill s">Exámenes oficiales</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stat reveal"><strong>Desde 1 año</strong><span>Inglés desde la primera infancia hasta adultos.</span></div>
+    <div class="stat reveal"><strong>KET → C1</strong><span>Cambridge (KET, PET, First, Advanced) y TOEIC.</span></div>
+    <div class="stat reveal"><strong>Todas las materias</strong><span>Refuerzo en Primaria, ESO y Bachillerato.</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Te hacemos bilingüe</span><span>Academia Hellins</span><span>Móstoles</span><span>Te hacemos bilingüe</span><span>Academia Hellins</span><span>Móstoles</span>
+    <span>Te hacemos bilingüe</span><span>Academia Hellins</span><span>Móstoles</span><span>Te hacemos bilingüe</span><span>Academia Hellins</span><span>Móstoles</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div class="feature reveal">
+      <div class="head">
+        <svg class="icon" viewBox="0 0 100 100" aria-hidden="true"><path d="M100 0 A100 100 0 0 0 0 100 L100 100 Z" fill="#a99bf2"/></svg>
+        <span class="num">01</span>
+      </div>
+      <h3>Inglés para todos los niveles</h3>
+      <p>Desde bebés de 1 año hasta adultos. Grupos reducidos y clases adaptadas a cada edad y objetivo.</p>
+    </div>
+    <div class="feature reveal">
+      <div class="head">
+        <svg class="icon" viewBox="0 0 100 100" aria-hidden="true"><path fill="#cfdc3f" d="M50 0l9 17 19-6-1 20 19 6-12 16 12 16-19 6 1 20-19-6-9 17-9-17-19 6 1-20-19-6 12-16L4 37l19-6-1-20 19 6z"/></svg>
+        <span class="num">02</span>
+      </div>
+      <h3>Horarios flexibles</h3>
+      <p>Nos adaptamos a tu agenda y a la de tus hijos para que el aprendizaje encaje en el día a día.</p>
+    </div>
+    <div class="feature reveal">
+      <div class="head">
+        <svg class="icon" viewBox="0 0 100 100" aria-hidden="true"><g fill="#ee8a3a"><circle cx="27" cy="27" r="23"/><circle cx="73" cy="27" r="23"/><circle cx="27" cy="73" r="23"/><circle cx="73" cy="73" r="23"/></g></svg>
+        <span class="num">03</span>
+      </div>
+      <h3>Resultados reales</h3>
+      <p>Preparación de KET, PET, First, Advanced y TOEIC, más técnicas de estudio para rendir en el cole.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="block" id="cursos">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>Nuestros cursos</h2>
+      <p>Idiomas, exámenes oficiales y refuerzo escolar en un mismo centro. Elige el programa que mejor encaja contigo.</p>
+    </div>
+    <div class="programs-grid">
+      <article class="prog lime reveal">
+        <div>
+          <h3>Inglés infantil</h3>
+          <p>Te hacemos bilingüe desde 1 año. Aprendizaje a través del juego, canciones y rutinas en inglés.</p>
+        </div>
+        <a href="#contacto" class="btn">Más info <span class="dot" style="background:var(--navy);color:#fff">→</span></a>
+      </article>
+      <article class="prog photo reveal" aria-label="Fachada de Academia Hellins"></article>
+      <article class="prog lav reveal">
+        <div>
+          <h3>Exámenes oficiales</h3>
+          <p>Preparación específica con simulacros y estrategias de examen.</p>
+          <div class="tags"><span>KET</span><span>PET</span><span>First</span><span>Advanced</span><span>TOEIC</span></div>
+        </div>
+        <a href="#contacto" class="btn">Más info <span class="dot">→</span></a>
+      </article>
+      <article class="prog logo reveal" aria-label="Logo de Academia Hellins Móstoles"></article>
+      <article class="prog ora reveal">
+        <div>
+          <h3>Refuerzo escolar</h3>
+          <p>Refuerzo para todas las materias en Primaria, E.S.O. y Bachillerato, con técnicas de estudio.</p>
+          <div class="tags"><span>Primaria</span><span>E.S.O.</span><span>Bachillerato</span></div>
+        </div>
+        <a href="#contacto" class="btn">Más info <span class="dot">→</span></a>
+      </article>
+      <article class="prog soft reveal">
+        <div>
+          <h3>Apoyo al bilingüismo</h3>
+          <p>Acompañamos a alumnos de colegios bilingües en las asignaturas que se imparten en inglés.</p>
+        </div>
+        <a href="#contacto" class="btn btn-navy">Más info <span class="dot">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- LEVELS -->
+<section class="levels" id="niveles">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>Un camino para cada edad</h2>
+      <p>Acompañamos a cada alumno desde sus primeras palabras en inglés hasta su certificado oficial.</p>
+    </div>
+    <div class="level-list">
+      <div class="level reveal">
+        <div class="level-visual" style="background:var(--orange)">1+<small>Peques</small></div>
+        <div class="level-text">
+          <h3>Primera infancia</h3>
+          <p>Exposición temprana al inglés en un entorno cercano y divertido, para que lo vivan como algo natural.</p>
+          <span class="chip">Desde 1 año</span>
+        </div>
+      </div>
+      <div class="level reveal">
+        <div class="level-visual" style="background:var(--navy)">ABC<small>Colegio</small></div>
+        <div class="level-text">
+          <h3>Primaria, ESO y Bachillerato</h3>
+          <p>Inglés por niveles, apoyo al bilingüismo y refuerzo de todas las materias con técnicas de estudio.</p>
+          <span class="chip">Refuerzo escolar</span>
+        </div>
+      </div>
+      <div class="level reveal">
+        <div class="level-visual" style="background:var(--lime);color:var(--navy)">B2<small>Jóvenes y adultos</small></div>
+        <div class="level-text">
+          <h3>Certificados y adultos</h3>
+          <p>Preparación de KET, PET, First, Advanced y TOEIC para estudios, trabajo o crecimiento personal.</p>
+          <span class="chip">Cambridge · TOEIC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO BAND -->
+<section class="band">
+  <div class="container"><h2>Tu academia en <em>Móstoles</em>.</h2></div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="container">
+    <div class="section-title reveal"><h2>Preguntas frecuentes</h2></div>
+    <div class="faq-list">
+      <details class="reveal"><summary>¿Desde qué edad pueden empezar?</summary><p>Desde 1 año. Nuestro lema es «te hacemos bilingüe desde 1 año»: cuanto antes empiezan, más natural les resulta el idioma.</p></details>
+      <details class="reveal"><summary>¿Qué exámenes oficiales preparáis?</summary><p>Preparamos los exámenes de Cambridge KET, PET, First y Advanced, además del TOEIC.</p></details>
+      <details class="reveal"><summary>¿Dais clases de refuerzo de otras asignaturas?</summary><p>Sí, ofrecemos refuerzo para todas las materias en Primaria, E.S.O. y Bachillerato, junto con técnicas de estudio.</p></details>
+      <details class="reveal"><summary>Mi hijo va a un colegio bilingüe, ¿podéis ayudarle?</summary><p>Sí. Nuestro apoyo al bilingüismo está pensado para alumnos que estudian asignaturas en inglés en el colegio.</p></details>
+      <details class="reveal"><summary>¿Los horarios son flexibles?</summary><p>Sí, trabajamos con horarios flexibles. Llámanos y buscamos juntos el que mejor te encaje.</p></details>
+      <details class="reveal"><summary>¿Cómo puedo apuntarme o pedir información?</summary><p>Llámanos al 91 071 23 98 o al 695 90 52 43, o pásate por la academia en Móstoles.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="reveal">
+      <h2>¿Empezamos?</h2>
+      <p style="font-size:1.1rem;max-width:460px;margin-bottom:26px">Cuéntanos qué necesitas y te asesoramos sobre el curso o nivel más adecuado.</p>
+      <a href="tel:+34910712398" class="btn btn-navy">Llamar ahora <span class="dot">→</span></a>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-row"><div class="ic" style="background:var(--lavender-soft)">☎</div><div><strong>Teléfono</strong><span><a href="tel:+34910712398">91 071 23 98</a></span></div></div>
+      <div class="contact-row"><div class="ic" style="background:#fde3cf">✆</div><div><strong>Móvil / WhatsApp</strong><span><a href="tel:+34695905243">695 90 52 43</a></span></div></div>
+      <div class="contact-row"><div class="ic" style="background:#eef4b8">⌖</div><div><strong>Dónde estamos</strong><span>Móstoles, Madrid</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="brand" style="margin-bottom:10px">Hellins<span>.</span></div>
+        <p>Academia de idiomas y refuerzo escolar en Móstoles. Te hacemos bilingüe desde 1 año.</p>
+      </div>
+      <div>
+        <h4>Explora</h4>
+        <ul><li><a href="#cursos">Cursos</a></li><li><a href="#niveles">Niveles</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contacto">Contacto</a></li></ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul><li><a href="tel:+34910712398">91 071 23 98</a></li><li><a href="tel:+34695905243">695 90 52 43</a></li><li>Móstoles, Madrid</li></ul>
+      </div>
+    </div>
+    <div class="copy">© <span id="year"></span> Academia Hellins · Móstoles</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.getElementById('menuToggle'), links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
