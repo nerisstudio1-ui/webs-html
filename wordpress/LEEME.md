@@ -9,7 +9,7 @@ Tema a medida con el diseño de la web (estilo elvee.es), preparado para WooComm
    - métodos de pago: **WooCommerce → Ajustes → Pagos** (tarjeta con Stripe o Redsys y transferencia bancaria);
    - envíos: crea una zona "España peninsular" con **Envío gratuito**.
 2. **Apariencia → Temas → Añadir nuevo → Subir tema** y sube `maison-reformer-theme.zip`. Actívalo.
-3. Ve a **Apariencia → Maison Reformer** y pulsa **Importar contenido**. Se crean:
+3. El contenido se importa **automáticamente** al activar el tema (y los productos, en cuanto WooCommerce esté activo; basta con entrar en el escritorio). Puedes comprobarlo o repetirlo en **Apariencia → Maison Reformer → Importar / completar contenido**. Se crean:
    - las páginas Inicio, Sobre nosotros, FAQs, Contacto, Envíos, Garantía, Devoluciones, Maison Care y Privacidad, con los textos del briefing;
    - la portada, los menús principal y del pie;
    - las 6 categorías y los 7 productos con foto, descripción, colores (Negro / Gris / Mocca) y accesorios.

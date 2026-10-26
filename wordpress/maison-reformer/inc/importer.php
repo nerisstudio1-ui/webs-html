@@ -15,42 +15,147 @@ function maison_importer_menu() {
 	add_theme_page( __( 'Maison Reformer', 'maison' ), __( 'Maison Reformer', 'maison' ), 'manage_options', 'maison-setup', 'maison_importer_page' );
 }
 
+/*
+ * Importación automática: al activar el tema y, si falta algo (por ejemplo,
+ * WooCommerce se activó después), la próxima vez que un administrador entra
+ * en el escritorio. Cada parte se marca como hecha para no repetirla.
+ */
+add_action( 'after_switch_theme', 'maison_auto_import' );
+add_action( 'admin_init', 'maison_auto_import', 20 );
+function maison_auto_import() {
+	if ( wp_doing_ajax() || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$need_pages    = ! get_option( 'maison_pages_imported' );
+	$need_products = class_exists( 'WooCommerce' ) && ! get_option( 'maison_products_imported' );
+	if ( ! $need_pages && ! $need_products ) {
+		return;
+	}
+	// Evita que dos pestañas importen a la vez.
+	if ( get_transient( 'maison_import_lock' ) ) {
+		return;
+	}
+	set_transient( 'maison_import_lock', 1, 5 * MINUTE_IN_SECONDS );
+	$log = maison_do_import( $need_pages, $need_products );
+	delete_transient( 'maison_import_lock' );
+	set_transient( 'maison_import_log', $log, HOUR_IN_SECONDS );
+}
+
+/**
+ * Ejecuta la importación y devuelve un registro legible.
+ * Los errores se capturan para no romper el escritorio.
+ */
+function maison_do_import( $pages_too = true, $products_too = true ) {
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	if ( function_exists( 'set_time_limit' ) ) {
+		@set_time_limit( 300 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+	}
+
+	$log = array();
+	try {
+		if ( $pages_too ) {
+			$pages = maison_import_pages( $log );
+			maison_import_menus( $pages, $log );
+			update_option( 'maison_pages_imported', 1 );
+		}
+		if ( $products_too && class_exists( 'WooCommerce' ) ) {
+			maison_import_products( $log );
+			// El menú se creó antes que la tienda: corrige el enlace "Producto".
+			maison_fix_shop_menu_items();
+			update_option( 'maison_products_imported', 1 );
+		}
+		update_option( 'maison_imported', 1 );
+		flush_rewrite_rules();
+	} catch ( Throwable $e ) {
+		$log[] = '<strong>Error:</strong> ' . esc_html( $e->getMessage() );
+		update_option( 'maison_import_error', $e->getMessage() );
+	}
+	return $log;
+}
+
+/** Sustituye los enlaces provisionales del menú por la página de la tienda. */
+function maison_fix_shop_menu_items() {
+	$shop = function_exists( 'wc_get_page_id' ) ? wc_get_page_id( 'shop' ) : 0;
+	if ( $shop <= 0 ) {
+		return;
+	}
+	foreach ( array( 'Menú principal', 'Pie · Maison' ) as $name ) {
+		$menu = wp_get_nav_menu_object( $name );
+		if ( ! $menu ) {
+			continue;
+		}
+		foreach ( (array) wp_get_nav_menu_items( $menu->term_id ) as $item ) {
+			if ( 'custom' === $item->type && in_array( $item->title, array( 'Producto', 'Equipamiento' ), true ) ) {
+				wp_update_nav_menu_item(
+					$menu->term_id,
+					$item->ID,
+					array(
+						'menu-item-title'     => $item->title,
+						'menu-item-object'    => 'page',
+						'menu-item-object-id' => $shop,
+						'menu-item-type'      => 'post_type',
+						'menu-item-status'    => 'publish',
+						'menu-item-position'  => $item->menu_order,
+					)
+				);
+			}
+		}
+	}
+}
+
 add_action( 'admin_notices', 'maison_importer_notice' );
 function maison_importer_notice() {
-	if ( get_option( 'maison_imported' ) || ! current_user_can( 'manage_options' ) ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
 	$screen = get_current_screen();
 	if ( $screen && 'appearance_page_maison-setup' === $screen->id ) {
 		return;
 	}
-	printf(
-		'<div class="notice notice-info"><p>%s <a class="button button-primary" href="%s">%s</a></p></div>',
-		esc_html__( 'Tema Maison Reformer activado. Importa las páginas, menús y productos para empezar.', 'maison' ),
-		esc_url( admin_url( 'themes.php?page=maison-setup' ) ),
-		esc_html__( 'Importar contenido', 'maison' )
-	);
+	$log = get_transient( 'maison_import_log' );
+	if ( $log ) {
+		delete_transient( 'maison_import_log' );
+		printf(
+			'<div class="notice notice-success is-dismissible"><p><strong>%s</strong><br>%s</p></div>',
+			esc_html__( 'Maison Reformer: contenido importado.', 'maison' ),
+			wp_kses_post( implode( '<br>', $log ) )
+		);
+	}
+	if ( ! class_exists( 'WooCommerce' ) && ! get_option( 'maison_products_imported' ) ) {
+		printf(
+			'<div class="notice notice-warning"><p>%s</p></div>',
+			esc_html__( 'Maison Reformer: instala y activa WooCommerce para que se creen los productos automáticamente.', 'maison' )
+		);
+	}
 }
 
 function maison_importer_page() {
 	$log = get_transient( 'maison_import_log' );
 	delete_transient( 'maison_import_log' );
+	$err = get_option( 'maison_import_error' );
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Maison Reformer · Contenido inicial', 'maison' ); ?></h1>
-		<p><?php esc_html_e( 'Crea las páginas (Inicio, Sobre nosotros, FAQs, Contacto, Envíos, Garantía, Devoluciones, Maison Care y Privacidad), los menús y la portada.', 'maison' ); ?></p>
-		<?php if ( class_exists( 'WooCommerce' ) ) : ?>
-			<p><?php esc_html_e( 'También crea las categorías y los 7 productos (The Icon, The Maison, The Cadillac, Wunda Chair, Ladder Barrel, Spine Corrector y Wall Tower) con sus fotos, colores y descripciones. Los precios quedan vacíos ("Precio por confirmar") hasta que los rellenes.', 'maison' ); ?></p>
-		<?php else : ?>
-			<p><strong><?php esc_html_e( 'Activa WooCommerce antes de importar para que se creen también los productos.', 'maison' ); ?></strong></p>
+		<table class="widefat striped" style="max-width:640px;margin:20px 0">
+			<tbody>
+				<tr><td><?php esc_html_e( 'Páginas, menús y portada', 'maison' ); ?></td><td><?php echo get_option( 'maison_pages_imported' ) ? '✅ ' . esc_html__( 'Importado', 'maison' ) : '— ' . esc_html__( 'Pendiente', 'maison' ); ?></td></tr>
+				<tr><td><?php esc_html_e( 'WooCommerce', 'maison' ); ?></td><td><?php echo class_exists( 'WooCommerce' ) ? '✅ ' . esc_html__( 'Activo', 'maison' ) : '⚠️ ' . esc_html__( 'No está activo', 'maison' ); ?></td></tr>
+				<tr><td><?php esc_html_e( 'Categorías y 7 productos', 'maison' ); ?></td><td><?php echo get_option( 'maison_products_imported' ) ? '✅ ' . esc_html__( 'Importado', 'maison' ) : '— ' . esc_html__( 'Pendiente', 'maison' ); ?></td></tr>
+			</tbody>
+		</table>
+		<?php if ( $err ) : ?>
+			<div class="notice notice-error"><p><?php echo esc_html( sprintf( /* translators: %s: error */ __( 'Último error al importar: %s', 'maison' ), $err ) ); ?></p></div>
 		<?php endif; ?>
 		<?php if ( $log ) : ?>
 			<div class="notice notice-success"><p><?php echo wp_kses_post( implode( '<br>', $log ) ); ?></p></div>
 		<?php endif; ?>
+		<p><?php esc_html_e( 'El botón vuelve a comprobar todo y crea lo que falte (páginas, menús, categorías y productos). Lo que ya existe no se duplica ni se sobrescribe.', 'maison' ); ?></p>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<input type="hidden" name="action" value="maison_import">
 			<?php wp_nonce_field( 'maison_import' ); ?>
-			<?php submit_button( __( 'Importar contenido', 'maison' ) ); ?>
+			<?php submit_button( __( 'Importar / completar contenido', 'maison' ) ); ?>
 		</form>
 	</div>
 	<?php
@@ -62,20 +167,11 @@ function maison_run_import() {
 		wp_die( esc_html__( 'No tienes permisos.', 'maison' ) );
 	}
 	check_admin_referer( 'maison_import' );
-
-	require_once ABSPATH . 'wp-admin/includes/image.php';
-	require_once ABSPATH . 'wp-admin/includes/file.php';
-	require_once ABSPATH . 'wp-admin/includes/media.php';
-
-	$log   = array();
-	$pages = maison_import_pages( $log );
-	maison_import_menus( $pages, $log );
-	if ( class_exists( 'WooCommerce' ) ) {
-		maison_import_products( $log );
+	delete_option( 'maison_import_error' );
+	$log = maison_do_import( true, true );
+	if ( ! $log ) {
+		$log[] = __( 'Todo estaba ya creado: no había nada nuevo que importar.', 'maison' );
 	}
-	update_option( 'maison_imported', 1 );
-	flush_rewrite_rules();
-
 	set_transient( 'maison_import_log', $log, 300 );
 	wp_safe_redirect( admin_url( 'themes.php?page=maison-setup' ) );
 	exit;
