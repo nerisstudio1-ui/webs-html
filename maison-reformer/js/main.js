@@ -21,14 +21,20 @@
   }
   function priceText(p) { return p.price ? p.price : "Precio por confirmar"; }
 
-  /* Menú móvil */
+  /* Cabecera: menú móvil y fondo sólido al hacer scroll en la portada */
+  var header = $(".header");
   var toggle = $(".menu-toggle");
   if (toggle) {
     toggle.addEventListener("click", function () {
-      var nav = $(".nav");
-      var open = nav.classList.toggle("open");
+      var open = $(".nav").classList.toggle("open");
+      header.classList.toggle("menu-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
+  }
+  if (document.body.classList.contains("home")) {
+    var onScroll = function () { header.classList.toggle("solid", window.scrollY > 40); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }
 
   /* Año del pie */
@@ -37,36 +43,31 @@
 
   function card(p) {
     return '<a class="card" href="producto.html?p=' + p.id + '">' +
-      '<figure><img src="' + p.image + '" alt="' + esc(p.fullName) + '" loading="lazy"></figure>' +
-      '<div class="eyebrow card-cat">' + esc(catName(p.category)) + "</div>" +
-      "<h3>" + esc(p.fullName) + "</h3>" +
-      '<div class="price">' + priceText(p) + "</div></a>";
-  }
-
-  function sidebar(active) {
-    var html = "<h2>Equipamiento</h2><ul>" +
-      '<li><a href="productos.html"' + (active ? "" : ' class="active"') + ">Todo el equipamiento</a></li>";
-    categories.forEach(function (c) {
-      html += '<li><a href="productos.html?cat=' + c.id + '"' + (c.id === active ? ' class="active"' : "") + ">" + esc(c.name) + "</a></li>";
-    });
-    return html + "</ul>";
+      "<figure>" + (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") +
+      '<img src="' + p.image + '" alt="' + esc(p.fullName) + '" loading="lazy"></figure>' +
+      '<div class="meta"><div class="name">' + esc(p.fullName) + "</div>" +
+      "<div>" + esc(catName(p.category)) + "</div>" +
+      "<div>" + priceText(p) + "</div></div></a>";
   }
 
   /* Colección en la página de inicio */
   var home = $("[data-home-grid]");
-  if (home) home.innerHTML = products.map(card).join("");
+  if (home) home.innerHTML = products.slice(0, 4).map(card).join("");
 
   /* Catálogo */
   var catalog = $("[data-catalog]");
   if (catalog) {
     var cat = params.get("cat");
     if (cat && !catName(cat)) cat = null;
-    $("[data-side]").innerHTML = sidebar(cat);
+    var filters = '<a href="productos.html"' + (cat ? "" : ' class="active"') + ">Todo</a>";
+    categories.forEach(function (c) {
+      filters += '<a href="productos.html?cat=' + c.id + '"' + (c.id === cat ? ' class="active"' : "") + ">" + esc(c.name) + "</a>";
+    });
+    $("[data-filters]").innerHTML = filters;
     var list = products.filter(function (p) { return !cat || p.category === cat; });
     catalog.innerHTML = list.length ? list.map(card).join("") : '<p class="empty">Próximamente.</p>';
-    var crumb = $("[data-crumb]");
     if (cat) {
-      crumb.innerHTML = '<a href="index.html">Inicio</a> / <a href="productos.html">Equipamiento</a> / ' + esc(catName(cat));
+      $("[data-cat-title]").textContent = catName(cat);
       document.title = catName(cat) + " · Maison Reformer";
     }
   }
@@ -76,19 +77,26 @@
   if (view) {
     var p = products.filter(function (x) { return x.id === params.get("p"); })[0] || products[0];
     document.title = p.fullName + " · Maison Reformer";
-    $("[data-side]").innerHTML = sidebar(p.category);
-    $("[data-crumb]").innerHTML = '<a href="index.html">Inicio</a> / <a href="productos.html">Equipamiento</a> / ' +
-      '<a href="productos.html?cat=' + p.category + '">' + esc(catName(p.category)) + "</a> / " + esc(p.fullName);
-
-    var icon = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h8"/></svg>';
     var color = p.defaultColor || "";
     var swatchColors = { Negro: "#1d1b1a", Gris: "#9a9894", Mocca: "#8a6e5c" };
+    var images = [p.image].concat(p.gallery || []);
 
-    var html = '<div class="product">' +
-      '<div class="gallery"><figure' + (p.portrait ? ' class="tall"' : "") + '><img src="' + p.image + '" alt="' + esc(p.fullName) + '"></figure></div>' +
-      '<div class="buy"><div class="brandline">Maison Reformer</div>' +
+    var html = '<div class="product"><div class="gallery"><div class="slides">' +
+      images.map(function (src, i) {
+        return '<figure class="slide' + (i === 0 ? " on" : "") + (p.portrait ? " contain" : "") + '"><img src="' + src + '" alt="' + esc(p.fullName) + '"></figure>';
+      }).join("") + "</div>";
+    if (images.length > 1) {
+      html += '<button class="arrow prev" type="button" aria-label="Anterior" data-slide="-1">‹</button>' +
+        '<button class="arrow next" type="button" aria-label="Siguiente" data-slide="1">›</button>' +
+        '<div class="count"><span data-slide-n>1</span> / ' + images.length + "</div>";
+    }
+    html += '</div><div class="buy"><div class="buy-inner">' +
+      '<nav class="crumbs center" aria-label="Ruta"><a href="productos.html">Equipamiento</a> / <a href="productos.html?cat=' + p.category + '">' + esc(catName(p.category)) + "</a></nav>" +
       "<h1>" + esc(p.fullName) + "</h1>" +
-      '<div class="price">' + priceText(p) + '</div><div class="vat">+ IVA</div><hr>';
+      '<div class="price">' + priceText(p) + '</div><div class="vat">+ IVA · Envío gratuito a península</div><hr>' +
+      '<div class="buy-row"><div class="qty"><button type="button" data-qty="-1" aria-label="Restar">−</button>' +
+      '<input type="number" value="1" min="1" aria-label="Cantidad" data-qty-input><button type="button" data-qty="1" aria-label="Sumar">+</button></div>' +
+      '<button type="button" class="btn" data-add>Añadir al carrito</button></div>';
 
     if (p.colors.length) {
       html += '<div class="label">Color: <span data-color>' + esc(color) + "</span></div>" +
@@ -96,36 +104,48 @@
         p.colors.map(function (c) {
           return '<button type="button" class="swatch" data-swatch="' + c + '" aria-pressed="' + (c === color) + '">' +
             '<i style="background:' + swatchColors[c] + '"></i>' + c + "</button>";
-        }).join("") + "</div><hr>";
+        }).join("") + "</div>";
     }
 
-    html += '<div class="buy-row"><div class="qty"><button type="button" data-qty="-1" aria-label="Restar">−</button>' +
-      '<input type="number" value="1" min="1" aria-label="Cantidad" data-qty-input><button type="button" data-qty="1" aria-label="Sumar">+</button></div>' +
-      '<button type="button" class="btn" data-add>Añadir al carrito</button></div>' +
-      '<p class="ship">Fecha prevista de envío: por confirmar</p>' +
-      '<a class="btn btn-outline chat" data-chat href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Chatea con nosotros</a>' +
-      '<p class="chat-note">Te ayudamos a elegir tu equipo</p>' +
-      '<div class="toast" data-toast role="status"></div></div></div>';
+    html += '<p class="ship">Fecha prevista de envío: por confirmar</p>' +
+      '<a class="btn btn-line btn-block chat" data-chat href="#">Chatea con nosotros</a>' +
+      '<div class="toast" data-toast role="status"></div>';
 
     html += '<div class="acc">' +
-      "<details open><summary>" + icon + "Descripción</summary><div class=\"body\">" +
+      '<details open><summary>Descripción</summary><div class="body">' +
       p.description.map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("") + "</div></details>";
-
     if (p.accessories) {
-      html += "<details open><summary>" + icon + "Accesorios incluidos</summary><div class=\"body\"><ul class=\"chips\">" +
+      html += '<details><summary>Accesorios incluidos</summary><div class="body"><ul class="chips">' +
         p.accessories.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ul></div></details>";
     }
-
-    html += "<details><summary>" + icon + 'Ficha técnica · Medidas y características</summary><div class="body">' +
+    html += '<details><summary>Ficha técnica · Medidas y características</summary><div class="body">' +
       "<p>La ficha técnica completa estará disponible próximamente. Si necesitas las medidas o características del equipo, escríbenos y te la enviamos.</p>" +
-      '<p><a class="dl" href="contacto.html?asunto=' + encodeURIComponent("Ficha técnica · " + p.fullName) + '">Solicitar ficha técnica →</a></p></div></details>' +
-      "<details><summary>" + icon + 'Cuidados y mantenimiento</summary><div class="body">' +
+      '<p><a href="contacto.html?asunto=' + encodeURIComponent("Ficha técnica · " + p.fullName) + '">Solicitar ficha técnica →</a></p></div></details>' +
+      '<details><summary>Cuidados y mantenimiento</summary><div class="body">' +
       "<p>Mantén tu equipo en un espacio interior, protegido de la humedad. Limpia guías y raíles semanalmente, la tapicería después de cada uso con un paño de microfibra ligeramente humedecido y revisa periódicamente muelles, mosquetones y enganches.</p>" +
-      '<p><a class="dl" href="maison-care.html">Ver la guía Maison Care →</a></p></div></details></div>';
+      '<p><a href="maison-care.html">Ver la guía Maison Care →</a></p></div></details>' +
+      '<details><summary>Envíos y entregas</summary><div class="body">' +
+      "<p>Envío estándar gratuito a España peninsular, con entrega a pie de calle en 24-48 horas laborables para productos en stock. Entrega interior y montaje disponibles bajo presupuesto.</p>" +
+      '<p><a href="envios.html">Política de envíos y entregas →</a></p></div></details></div>';
+    html += "</div></div></div>";
 
     view.innerHTML = html;
 
+    var related = $("[data-related]");
+    if (related) {
+      related.innerHTML = products.filter(function (x) { return x.id !== p.id; }).slice(0, 4).map(card).join("");
+    }
+
+    var slide = 0;
     view.addEventListener("click", function (e) {
+      var arrow = e.target.closest("[data-slide]");
+      if (arrow) {
+        var slides = view.querySelectorAll(".slide");
+        slides[slide].classList.remove("on");
+        slide = (slide + parseInt(arrow.getAttribute("data-slide"), 10) + slides.length) % slides.length;
+        slides[slide].classList.add("on");
+        $("[data-slide-n]").textContent = slide + 1;
+      }
       var sw = e.target.closest("[data-swatch]");
       if (sw) {
         color = sw.getAttribute("data-swatch");
@@ -148,18 +168,30 @@
     });
 
     var chat = $("[data-chat]");
-    var chatText = "Hola, me interesa " + p.fullName + (color ? " en " + color : "") + ".";
     chat.href = WHATSAPP
-      ? "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(chatText)
+      ? "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hola, me interesa " + p.fullName + ".")
       : "contacto.html?asunto=" + encodeURIComponent("Consulta · " + p.fullName);
     if (WHATSAPP) { chat.target = "_blank"; chat.rel = "noopener"; }
+  }
+
+  /* Aparición suave de bloques al hacer scroll */
+  var reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
   /* Formulario de contacto: abre el correo del cliente con el mensaje preparado */
   var form = $("[data-contact-form]");
   if (form) {
-    var asunto = params.get("asunto");
-    if (asunto) form.asunto.value = asunto;
+    if (params.get("asunto")) form.asunto.value = params.get("asunto");
+    if (params.get("email")) form.email.value = params.get("email");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var msg = $("[data-form-msg]");

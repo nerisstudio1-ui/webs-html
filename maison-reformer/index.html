@@ -8,57 +8,134 @@
   <link rel="icon" type="image/png" href="img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200;6..72,300&family=Red+Hat+Text:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <div class="topbar">Bienvenida a Maison · Equipamiento de Pilates</div>
+<body class="home">
+  <div class="topbar">Bienvenida a Maison · Equipamiento de Pilates con envío gratuito a España peninsular</div>
   <header class="header">
     <div class="wrap">
-      <a class="brand" href="index.html"><img src="img/logo.png" alt="Maison Reformer" width="190" height="53"></a>
-      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
-      <nav class="nav" aria-label="Principal">
-        <ul>
-        <li><a href="index.html" aria-current="page">Inicio</a></li>
-        <li><a href="productos.html">Producto</a></li>
-        <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
-        <li><a href="faqs.html">FAQs</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
+      <div class="header-left">
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+        <nav class="nav" aria-label="Principal">
+          <ul>
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="productos.html">Producto</a></li>
+          <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <a class="brand" href="index.html"><img class="logo-dark" src="img/logo.png" alt="Maison Reformer" width="150" height="42"><img class="logo-light" src="img/logo-light.png" alt="" width="150" height="42"></a>
+      <div class="header-tools">
+        <a href="contacto.html" aria-label="Contacto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></a>
+        <a class="keep" href="productos.html" aria-label="Equipamiento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <img src="img/cadillac.jpg" alt="Reformer Cadillac de Maison Reformer en madera natural" fetchpriority="high">
-      <div class="hero-caption">Madera natural. Esencia Maison.</div>
-    </section>
-
-    <section class="tagline">
-      El arte de moverse bien
-      <small>Equipamiento de Pilates que combina calidad, diseño y funcionalidad.</small>
-    </section>
-
-    <section class="collection">
-      <div class="wrap">
-        <h2>Nuestro equipamiento</h2>
-        <div class="grid" data-home-grid></div>
-        <p class="center" style="margin-top:50px"><a class="btn" href="productos.html">Ver todo el equipamiento</a></p>
+      <img src="img/the-icon.jpg" alt="Reformer The Icon de Maison Reformer en madera natural" fetchpriority="high">
+      <div class="hero-text">
+        <h1>Madera natural. Esencia Maison.</h1>
+        <p>Equipamiento de Pilates</p>
       </div>
+    </section>
+
+    <div class="marquee" aria-label="Ventajas"><div class="marquee-track"><span>Envío gratuito a España peninsular  ·  Entrega en 24/48 h laborables  ·  Garantía legal de 3 años  ·  Asesoramiento personalizado  ·  Envío gratuito a España peninsular  ·  Entrega en 24/48 h laborables  ·  Garantía legal de 3 años  ·  Asesoramiento personalizado  ·  Envío gratuito a España peninsular  ·  Entrega en 24/48 h laborables  ·  Garantía legal de 3 años  ·  Asesoramiento personalizado  ·  </span><span aria-hidden="true">Envío gratuito a España peninsular  ·  Entrega en 24/48 h laborables  ·  Garantía legal de 3 años  ·  Asesoramiento personalizado  ·  Envío gratuito a España peninsular  ·  Entrega en 24/48 h laborables  ·  Garantía legal de 3 años  ·  Asesoramiento personalizado  ·  Envío gratuito a España peninsular  ·  Entrega en 24/48 h laborables  ·  Garantía legal de 3 años  ·  Asesoramiento personalizado  ·  </span></div></div>
+
+    <section class="section">
+      <div class="wrap">
+        <h2 class="section-title">El arte de moverse bien</h2>
+        <div class="grid" data-home-grid></div>
+      </div>
+    </section>
+
+    <section class="banner">
+      <img src="img/cadillac.jpg" alt="Reformer Cadillac de Maison Reformer" loading="lazy">
+      <div class="inner reveal">
+        <h2 class="big-title">Equipa tu estudio con nosotros</h2>
+        <p>Te asesoramos para encontrar el equipamiento que mejor se adapta a tu espacio, con entrega interior y montaje bajo petición.</p>
+        <a class="btn btn-ghost" href="contacto.html?asunto=Equipar%20mi%20estudio">Hablemos de tu proyecto</a>
+      </div>
+    </section>
+
+    <section class="split">
+      <figure><img src="img/the-maison.jpg" alt="Reformer plegable The Maison" loading="lazy"></figure>
+      <div class="copy reveal">
+        <div class="eyebrow">Reformer The Maison</div>
+        <h2 class="big-title">Un espacio de calma en tu hogar</h2>
+        <p>Diseño plegable, estructura de madera y tapizado cálido para integrar Pilates en tu día a día sin renunciar al espacio.</p>
+        <a class="btn btn-line" href="producto.html?p=the-maison">Descubrir</a>
+      </div>
+    </section>
+
+    <section class="mosaic">
+      <figure><img src="img/wall-tower.jpg" alt="Wall Tower de Maison Reformer" loading="lazy"></figure>
+      <figure><img src="img/wunda-chair.jpg" alt="Wunda Chair de Maison Reformer" loading="lazy"></figure>
+      <figure><img src="img/ladder-barrel.jpg" alt="Ladder Barrel de Maison Reformer" loading="lazy"></figure>
+    </section>
+
+    <section class="split reverse">
+      <figure><img src="img/spine-corrector.jpg" alt="Spine Corrector de Maison Reformer" loading="lazy"></figure>
+      <div class="copy reveal">
+        <div class="eyebrow">Sobre nosotros</div>
+        <h2 class="big-title">Calidad y diseño con un propósito</h2>
+        <p>Equipamiento de Pilates que combina calidad, diseño y funcionalidad, acompañado de una atención a la altura de cada inversión.</p>
+        <a class="btn btn-line" href="sobre-nosotros.html">Conócenos</a>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2 class="big-title">Hablemos de tu proyecto</h2>
+      <p>Déjanos tu email y te ayudamos a elegir tu equipo.</p>
+      <form class="pill" action="contacto.html" method="get">
+        <input type="email" name="email" placeholder="Dirección de correo electrónico" aria-label="Email" required>
+        <button type="submit" aria-label="Enviar">→</button>
+      </form>
     </section>
   </main>
 
   <footer class="footer">
-    <a class="brand" href="index.html"><img src="img/logo-light.png" alt="Maison Reformer" width="170" height="48"></a>
-    <ul>
-      <li><a href="envios.html">Política de envíos y entregas</a></li>
-      <li><a href="garantia.html">Garantía</a></li>
-      <li><a href="devoluciones.html">Política de devoluciones</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-    <p class="motto">Una casa para tu movimiento</p>
-    <p class="legal">© <span data-year>2026</span> Maison Reformer · <a href="maison-care.html">Maison Care</a> · <a href="privacidad.html">Privacidad</a></p>
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html" style="justify-self:start"><img src="img/logo-light.png" alt="Maison Reformer" width="160" height="45"></a>
+        <p class="motto">Una casa para tu movimiento.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Información</h4>
+          <ul>
+            <li><a href="envios.html">Política de envíos y entregas</a></li>
+            <li><a href="garantia.html">Garantía</a></li>
+            <li><a href="devoluciones.html">Política de devoluciones</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Maison</h4>
+          <ul>
+            <li><a href="productos.html">Equipamiento</a></li>
+            <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="maison-care.html">Maison Care</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:maisonreformer@gmail.com">maisonreformer@gmail.com</a></li>
+            <li><a href="contacto.html">+34 XXX XXX XXX</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Maison Reformer</span>
+      <span><a href="privacidad.html">Política de privacidad</a><a href="envios.html">Envíos</a><a href="devoluciones.html">Devoluciones</a></span>
+    </div>
   </footer>
   <script src="js/products.js"></script>
   <script src="js/main.js"></script>
