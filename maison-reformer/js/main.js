@@ -52,7 +52,7 @@
 
   /* Colección en la página de inicio */
   var home = $("[data-home-grid]");
-  if (home) home.innerHTML = products.slice(0, 4).map(card).join("");
+  if (home) home.innerHTML = products.map(card).join("");
 
   /* Catálogo */
   var catalog = $("[data-catalog]");
@@ -185,6 +185,54 @@
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* Carrusel de la colección */
+  var carousel = $("[data-carousel]");
+  if (carousel) {
+    var slideBy = function (dir) {
+      var item = carousel.querySelector(".card");
+      var step = item ? item.getBoundingClientRect().width + 16 : carousel.clientWidth * 0.8;
+      carousel.scrollBy({ left: dir * step, behavior: "smooth" });
+    };
+    $("[data-carousel-prev]").addEventListener("click", function () { slideBy(-1); });
+    $("[data-carousel-next]").addEventListener("click", function () { slideBy(1); });
+  }
+
+  /* Cifras que cuentan al aparecer */
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length && "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        co.unobserve(en.target);
+        var el = en.target, end = parseInt(el.getAttribute("data-count"), 10), t0 = null;
+        var tick = function (t) {
+          if (!t0) t0 = t;
+          var k = Math.min(1, (t - t0) / 1400);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3)));
+          if (k < 1) requestAnimationFrame(tick);
+        };
+        el.textContent = "0";
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (el) { co.observe(el); });
+  }
+
+  /* Parallax suave en las bandas de imagen */
+  var plx = document.querySelectorAll("[data-parallax]");
+  if (plx.length && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var onPlx = function () {
+      plx.forEach(function (img) {
+        var r = img.parentNode.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        var p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+        img.style.transform = "translateY(" + (p * -12) + "%)";
+      });
+    };
+    window.addEventListener("scroll", onPlx, { passive: true });
+    onPlx();
   }
 
   /* Formulario de contacto: abre el correo del cliente con el mensaje preparado */

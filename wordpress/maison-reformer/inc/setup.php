@@ -45,7 +45,7 @@ add_action( 'wp_enqueue_scripts', 'maison_assets' );
 function maison_assets() {
 	wp_enqueue_style(
 		'maison-fonts',
-		'https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200;6..72,300&family=Red+Hat+Text:wght@400;500&display=swap',
+		'https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;1,6..72,200&family=Montserrat:wght@300;400;500&display=swap',
 		array(),
 		null
 	);
@@ -88,6 +88,12 @@ function maison_page_url( $slug, $fallback = '' ) {
 		return get_permalink( $page );
 	}
 	return $fallback ? $fallback : home_url( '/' . $slug . '/' );
+}
+
+/** URL de un producto por su slug, o de la tienda si aún no existe. */
+function maison_product_url( $slug ) {
+	$post = get_page_by_path( $slug, OBJECT, 'product' );
+	return $post ? get_permalink( $post ) : maison_page_url( 'productos' );
 }
 
 /** URL de la página de contacto con un asunto ya rellenado. */
