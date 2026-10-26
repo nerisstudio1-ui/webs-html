@@ -17,8 +17,8 @@ function maison_setup() {
 	add_theme_support(
 		'woocommerce',
 		array(
-			'thumbnail_image_width' => 800,
-			'single_image_width'    => 1400,
+			'thumbnail_image_width' => 1000,
+			'single_image_width'    => 1600,
 			'product_grid'          => array( 'default_columns' => 4, 'default_rows' => 3 ),
 		)
 	);

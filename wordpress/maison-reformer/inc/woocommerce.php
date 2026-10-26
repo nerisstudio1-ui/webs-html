@@ -38,6 +38,24 @@ function maison_loop_category() {
 	}
 }
 
+// Miniaturas sin recortar y con resolución suficiente para pantallas retina.
+add_filter( 'woocommerce_get_image_size_thumbnail', 'maison_thumbnail_size' );
+function maison_thumbnail_size( $size ) {
+	return array(
+		'width'  => 1000,
+		'height' => 0,
+		'crop'   => 0,
+	);
+}
+add_filter( 'woocommerce_get_image_size_single', 'maison_single_size' );
+function maison_single_size( $size ) {
+	return array(
+		'width'  => 1600,
+		'height' => 0,
+		'crop'   => 0,
+	);
+}
+
 add_filter( 'loop_shop_columns', 'maison_loop_columns' );
 function maison_loop_columns() {
 	return 4;

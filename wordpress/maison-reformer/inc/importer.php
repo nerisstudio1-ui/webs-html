@@ -28,7 +28,8 @@ function maison_auto_import() {
 	}
 	$need_pages    = ! get_option( 'maison_pages_imported' );
 	$need_products = class_exists( 'WooCommerce' ) && ! get_option( 'maison_products_imported' );
-	if ( ! $need_pages && ! $need_products ) {
+	$need_images   = (int) get_option( 'maison_images_ver', 1 ) < MAISON_IMAGES_VER;
+	if ( ! $need_pages && ! $need_products && ! $need_images ) {
 		return;
 	}
 	// Evita que dos pestañas importen a la vez.
@@ -36,7 +37,10 @@ function maison_auto_import() {
 		return;
 	}
 	set_transient( 'maison_import_lock', 1, 5 * MINUTE_IN_SECONDS );
-	$log = maison_do_import( $need_pages, $need_products );
+	$log = ( $need_pages || $need_products ) ? maison_do_import( $need_pages, $need_products ) : array();
+	if ( $need_images ) {
+		maison_refresh_images( $log );
+	}
 	delete_transient( 'maison_import_lock' );
 	set_transient( 'maison_import_log', $log, HOUR_IN_SECONDS );
 }
@@ -73,6 +77,41 @@ function maison_do_import( $pages_too = true, $products_too = true ) {
 		update_option( 'maison_import_error', $e->getMessage() );
 	}
 	return $log;
+}
+
+/** Versión de las fotos incluidas en el tema; al subirla se reemplazan las ya importadas. */
+if ( ! defined( 'MAISON_IMAGES_VER' ) ) {
+	define( 'MAISON_IMAGES_VER', 2 );
+}
+
+/**
+ * Sustituye las fotos importadas por las del tema (mejor calidad) y
+ * regenera sus tamaños, sin cambiar las URLs ni los productos.
+ */
+function maison_refresh_images( &$log ) {
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	$ids = get_posts(
+		array(
+			'post_type'   => 'attachment',
+			'post_status' => 'inherit',
+			'meta_key'    => '_maison_source', // phpcs:ignore WordPress.DB.SlowDBQuery
+			'numberposts' => -1,
+			'fields'      => 'ids',
+		)
+	);
+	$done = 0;
+	foreach ( $ids as $id ) {
+		$src  = MAISON_DIR . '/assets/img/' . get_post_meta( $id, '_maison_source', true );
+		$path = get_attached_file( $id );
+		if ( $path && file_exists( $src ) && copy( $src, $path ) ) {
+			wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $path ) );
+			++$done;
+		}
+	}
+	update_option( 'maison_images_ver', MAISON_IMAGES_VER );
+	if ( $done ) {
+		$log[] = sprintf( 'Fotos actualizadas a mayor calidad: %d', $done );
+	}
 }
 
 /** Sustituye los enlaces provisionales del menú por la página de la tienda. */
