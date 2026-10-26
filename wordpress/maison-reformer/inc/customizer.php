@@ -27,6 +27,12 @@ function maison_defaults() {
 		'mosaic1'       => maison_img( 'wall-tower.jpg' ),
 		'mosaic2'       => maison_img( 'wunda-chair.jpg' ),
 		'mosaic3'       => maison_img( 'ladder-barrel.jpg' ),
+		'instagram_url'    => '',
+		'instagram_handle' => '@maisonreformer',
+		'insta1'        => maison_img( 'hero.jpg' ),
+		'insta2'        => maison_img( 'wall-tower.jpg' ),
+		'insta3'        => maison_img( 'ladder-barrel.jpg' ),
+		'insta4'        => maison_img( 'wunda-chair.jpg' ),
 		'email'         => 'maisonreformer@gmail.com',
 		'phone'         => '+34 XXX XXX XXX',
 		'whatsapp'      => '',
@@ -55,6 +61,8 @@ function maison_customize_register( $wp_customize ) {
 				'email'    => array( __( 'Email de contacto (recibe el formulario)', 'maison' ), 'email' ),
 				'phone'    => array( __( 'Teléfono', 'maison' ), 'text' ),
 				'whatsapp' => array( __( 'WhatsApp (formato 34600000000)', 'maison' ), 'text' ),
+				'instagram_url'    => array( __( 'Instagram: enlace al perfil', 'maison' ), 'url' ),
+				'instagram_handle' => array( __( 'Instagram: nombre (@usuario)', 'maison' ), 'text' ),
 				'motto'    => array( __( 'Lema del pie', 'maison' ), 'text' ),
 			),
 		),
@@ -72,6 +80,10 @@ function maison_customize_register( $wp_customize ) {
 				'banner_text'   => array( __( 'Banda: texto', 'maison' ), 'textarea' ),
 				'banner_image'  => array( __( 'Banda: imagen', 'maison' ), 'image' ),
 				'split1_image'  => array( __( '"Para tu hogar": imagen', 'maison' ), 'image' ),
+				'insta1'        => array( __( 'Instagram: foto 1', 'maison' ), 'image' ),
+				'insta2'        => array( __( 'Instagram: foto 2', 'maison' ), 'image' ),
+				'insta3'        => array( __( 'Instagram: foto 3', 'maison' ), 'image' ),
+				'insta4'        => array( __( 'Instagram: foto 4', 'maison' ), 'image' ),
 				'spotlight_image' => array( __( 'Producto destacado (The Icon): imagen', 'maison' ), 'image' ),
 			),
 		),
@@ -81,7 +93,7 @@ function maison_customize_register( $wp_customize ) {
 		$wp_customize->add_section( $section_id, array( 'title' => $section['title'], 'panel' => 'maison' ) );
 		foreach ( $section['fields'] as $key => $field ) {
 			list( $label, $type ) = $field;
-			$sanitize = 'image' === $type ? 'esc_url_raw' : ( 'email' === $type ? 'sanitize_email' : ( 'textarea' === $type ? 'sanitize_textarea_field' : 'sanitize_text_field' ) );
+			$sanitize = ( 'image' === $type || 'url' === $type ) ? 'esc_url_raw' : ( 'email' === $type ? 'sanitize_email' : ( 'textarea' === $type ? 'sanitize_textarea_field' : 'sanitize_text_field' ) );
 			$wp_customize->add_setting(
 				'maison_' . $key,
 				array(

@@ -3,7 +3,7 @@ Theme Name: Maison Reformer
 Theme URI: https://maisonreformer.com
 Author: Neris Studio
 Description: Tema a medida para Maison Reformer, equipamiento de Pilates en madera natural. Compatible con WooCommerce. Incluye importador de contenido en Apariencia → Maison Reformer.
-Version: 1.3.0
+Version: 1.4.0
 Requires at least: 6.2
 Requires PHP: 7.4
 WC requires at least: 8.0
@@ -685,6 +685,53 @@ strong, b { font-weight: 500; }
 @media (max-width: 900px) { .product { grid-template-columns: 1fr; } }
 
 /* =========================================================================
+   v5 · Instagram, foto principal en móvil y correcciones de móvil
+   ========================================================================= */
+:root { --brown: #3a2a22; }
+
+/* Bloque de Instagram en marrón oscuro */
+.insta { background: var(--brown); color: #f3ebe2; padding: 90px var(--side) 100px; }
+.insta-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.insta-title { margin: 0; font-family: var(--sans); font-weight: 400; font-size: 13px; letter-spacing: var(--caps); text-transform: uppercase; }
+.insta-handle { font-family: var(--serif); font-weight: 200; font-size: clamp(26px, 2.6vw, 36px); text-decoration: none; font-style: italic; }
+.insta-handle:hover { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.insta-grid a { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #4a382e; }
+.insta-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.2, .7, .2, 1), opacity .4s; }
+.insta-grid a:hover img { transform: scale(1.05); opacity: .9; }
+.faq-teaser { padding-bottom: 110px; }
+.cta { border-top: 0; }
+
+@media (max-width: 900px) {
+  /* Las reglas de ordenador no deben pisar el móvil */
+  .spotlight { grid-template-columns: 1fr; gap: 36px; padding: 90px var(--gutter); }
+  .spotlight-img img { aspect-ratio: 3 / 2; }
+  .duo { padding: 0 var(--gutter); }
+  .insta-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  /* Foto principal: se ve el reformer completo y el texto va debajo */
+  .hero { height: auto; min-height: 0; max-height: none; display: flex; flex-direction: column; padding-top: 64px; background: var(--brown); }
+  .hero img.hero-img { position: relative; inset: auto; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 60%; animation: none; }
+  .hero::after { display: none; }
+  .hero-text { position: relative; inset: auto; padding: 38px var(--gutter) 46px; justify-content: flex-start; }
+  .hero h1 { font-size: 40px; }
+  .hero .hero-lead { display: block; font-size: 13px; margin: 18px 0 26px; color: rgba(255, 255, 255, .78); }
+  .hero-actions { margin-top: 0; }
+  .home .header:not(.solid):not(.menu-open) { background: var(--brown); }
+
+  .insta { padding: 64px var(--gutter) 70px; }
+  .insta-head { flex-direction: column; gap: 8px; margin-bottom: 28px; }
+  .insta-title { font-size: 11px; }
+  .faq-teaser { padding-bottom: 70px; }
+  .cta { padding: 80px 24px 90px; }
+  .cta .big-title { font-size: 36px; }
+  .statement-text { font-size: 24px; }
+  .spotlight-copy .big-title { font-size: 46px; }
+}
+
+/* =========================================================================
    WordPress
    ========================================================================= */
 .screen-reader-text { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -710,6 +757,9 @@ strong, b { font-weight: 500; }
 .prose details p { margin: -4px 0 24px; }
 .page-head .eyebrow { margin-bottom: 14px; }
 .page-hero img { height: 100% !important; }
+@media (max-width: 760px) {
+  .admin-bar.home .hero { padding-top: 110px; }
+}
 @media (max-width: 782px) {
   .admin-bar .header, .admin-bar.home .header, .admin-bar.home .header.solid { top: 46px; }
 }
@@ -824,7 +874,7 @@ strong, b { font-weight: 500; }
 }
 @media (max-width: 900px) {
   .woocommerce ul.products, ul.products { grid-template-columns: repeat(2, 1fr); gap: 30px 12px; }
-  .single-product div.product { grid-template-columns: 1fr; gap: 0; padding: 0; margin-top: 0; }
+  .single-product div.product { grid-template-columns: 1fr !important; gap: 0; padding: 0; margin-top: 0; }
   .single-product .related, .single-product .upsells { padding: 70px var(--gutter); }
   .single-product div.product .woocommerce-product-gallery { position: relative; top: 0; }
   .single-product div.product .summary { padding: 40px 20px 60px; }

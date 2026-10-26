@@ -175,6 +175,21 @@ while ( have_posts() ) :
 endwhile;
 ?>
 
+<?php
+$insta_url = maison_mod( 'instagram_url' ) ? maison_mod( 'instagram_url' ) : 'https://www.instagram.com/';
+?>
+<section class="insta">
+	<div class="insta-head">
+		<p class="insta-title"><?php esc_html_e( 'Síguenos en Instagram', 'maison' ); ?></p>
+		<a class="insta-handle" href="<?php echo esc_url( $insta_url ); ?>" target="_blank" rel="noopener"><?php echo esc_html( maison_mod( 'instagram_handle' ) ); ?></a>
+	</div>
+	<div class="insta-grid">
+		<?php foreach ( array( 'insta1', 'insta2', 'insta3', 'insta4' ) as $i => $key ) : ?>
+			<a class="reveal" style="--d:<?php echo esc_attr( $i / 10 ); ?>s" href="<?php echo esc_url( $insta_url ); ?>" target="_blank" rel="noopener"><img src="<?php echo esc_url( maison_mod( $key ) ); ?>" alt="" loading="lazy"></a>
+		<?php endforeach; ?>
+	</div>
+</section>
+
 <section class="cta">
 	<h2 class="big-title reveal"><?php esc_html_e( 'Hablemos de tu proyecto', 'maison' ); ?></h2>
 	<p><?php esc_html_e( 'Déjanos tu email y te ayudamos a elegir tu equipo.', 'maison' ); ?></p>

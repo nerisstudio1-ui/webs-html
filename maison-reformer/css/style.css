@@ -670,3 +670,50 @@ strong, b { font-weight: 500; }
 @media (max-width: 760px) { .hero-text { padding: 0 var(--gutter) 44px; } }
 .product { grid-template-columns: 1.25fr 1fr; }
 @media (max-width: 900px) { .product { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   v5 · Instagram, foto principal en móvil y correcciones de móvil
+   ========================================================================= */
+:root { --brown: #3a2a22; }
+
+/* Bloque de Instagram en marrón oscuro */
+.insta { background: var(--brown); color: #f3ebe2; padding: 90px var(--side) 100px; }
+.insta-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.insta-title { margin: 0; font-family: var(--sans); font-weight: 400; font-size: 13px; letter-spacing: var(--caps); text-transform: uppercase; }
+.insta-handle { font-family: var(--serif); font-weight: 200; font-size: clamp(26px, 2.6vw, 36px); text-decoration: none; font-style: italic; }
+.insta-handle:hover { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.insta-grid a { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #4a382e; }
+.insta-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.2, .7, .2, 1), opacity .4s; }
+.insta-grid a:hover img { transform: scale(1.05); opacity: .9; }
+.faq-teaser { padding-bottom: 110px; }
+.cta { border-top: 0; }
+
+@media (max-width: 900px) {
+  /* Las reglas de ordenador no deben pisar el móvil */
+  .spotlight { grid-template-columns: 1fr; gap: 36px; padding: 90px var(--gutter); }
+  .spotlight-img img { aspect-ratio: 3 / 2; }
+  .duo { padding: 0 var(--gutter); }
+  .insta-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  /* Foto principal: se ve el reformer completo y el texto va debajo */
+  .hero { height: auto; min-height: 0; max-height: none; display: flex; flex-direction: column; padding-top: 64px; background: var(--brown); }
+  .hero img.hero-img { position: relative; inset: auto; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 60%; animation: none; }
+  .hero::after { display: none; }
+  .hero-text { position: relative; inset: auto; padding: 38px var(--gutter) 46px; justify-content: flex-start; }
+  .hero h1 { font-size: 40px; }
+  .hero .hero-lead { display: block; font-size: 13px; margin: 18px 0 26px; color: rgba(255, 255, 255, .78); }
+  .hero-actions { margin-top: 0; }
+  .home .header:not(.solid):not(.menu-open) { background: var(--brown); }
+
+  .insta { padding: 64px var(--gutter) 70px; }
+  .insta-head { flex-direction: column; gap: 8px; margin-bottom: 28px; }
+  .insta-title { font-size: 11px; }
+  .faq-teaser { padding-bottom: 70px; }
+  .cta { padding: 80px 24px 90px; }
+  .cta .big-title { font-size: 36px; }
+  .statement-text { font-size: 24px; }
+  .spotlight-copy .big-title { font-size: 46px; }
+}
