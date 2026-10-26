@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto · Maison Reformer</title>
+  <meta name="description" content="Hablemos de tu proyecto: te ayudamos a encontrar el equipamiento de Pilates para tu espacio.">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="topbar">Bienvenida a Maison · Equipamiento de Pilates</div>
+  <header class="header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="img/logo.png" alt="Maison Reformer" width="190" height="53"></a>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+      <nav class="nav" aria-label="Principal">
+        <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Producto</a></li>
+        <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="contacto.html" aria-current="page">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="eyebrow">Estamos para ayudarte</div>
+      <h1>Hablemos de tu proyecto.</h1>
+      <p>Cuéntanos qué necesitas y te ayudaremos a encontrar el equipamiento para tu espacio.</p>
+    </section>
+    <section class="contact">
+      <form class="form" data-contact-form novalidate>
+        <div><label for="nombre">Nombre *</label><input type="text" id="nombre" name="nombre" autocomplete="given-name" required></div>
+        <div><label for="apellidos">Apellidos *</label><input type="text" id="apellidos" name="apellidos" autocomplete="family-name" required></div>
+        <div><label for="email">Email *</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+        <div><label for="telefono">Teléfono</label><input type="tel" id="telefono" name="telefono" autocomplete="tel"></div>
+        <div class="full"><label for="asunto">Asunto *</label><input type="text" id="asunto" name="asunto" required></div>
+        <div class="full"><label for="mensaje">Mensaje *</label><textarea id="mensaje" name="mensaje" placeholder="Cuéntanos cómo podemos ayudarte…" required></textarea></div>
+        <label class="check full"><input type="checkbox" name="privacidad" required> <span>He leído y acepto la <a href="privacidad.html">política de privacidad</a>.</span></label>
+        <p class="req full">* Campos obligatorios</p>
+        <div class="full"><button type="submit" class="btn btn-block">Enviar mensaje <span aria-hidden="true">⟶</span></button></div>
+        <p class="form-msg full" data-form-msg role="status"></p>
+      </form>
+
+      <div class="contact-data">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M5 3h3l2 5-2.5 1.5a11 11 0 0 0 7 7L16 14l5 2v3a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>
+          <div class="eyebrow">Teléfono</div>
+          <a href="tel:+34XXXXXXXXX">+34 XXX XXX XXX</a>
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 6 9 7 9-7"/></svg>
+          <div class="eyebrow">Email</div>
+          <a href="mailto:maisonreformer@gmail.com">maisonreformer@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand" href="index.html"><img src="img/logo-light.png" alt="Maison Reformer" width="170" height="48"></a>
+    <ul>
+      <li><a href="envios.html">Política de envíos y entregas</a></li>
+      <li><a href="garantia.html">Garantía</a></li>
+      <li><a href="devoluciones.html">Política de devoluciones</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <p class="motto">Una casa para tu movimiento</p>
+    <p class="legal">© <span data-year>2026</span> Maison Reformer · <a href="maison-care.html">Maison Care</a> · <a href="privacidad.html">Privacidad</a></p>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
