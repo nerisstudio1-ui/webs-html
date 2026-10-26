@@ -3,7 +3,7 @@ Theme Name: Maison Reformer
 Theme URI: https://maisonreformer.com
 Author: Neris Studio
 Description: Tema a medida para Maison Reformer, equipamiento de Pilates en madera natural. Compatible con WooCommerce. Incluye importador de contenido en Apariencia → Maison Reformer.
-Version: 1.1.0
+Version: 1.2.0
 Requires at least: 6.2
 Requires PHP: 7.4
 WC requires at least: 8.0
@@ -633,6 +633,58 @@ strong, b { font-weight: 500; }
 @media (max-width: 1080px) and (min-width: 761px) { .header .wrap { grid-template-columns: 1fr auto; } .brand { justify-self: start; order: -1; } .header-left { order: 1; justify-self: end; } .header-tools { display: none; } }
 
 /* =========================================================================
+   v4 · Contenido centrado y proporciones más contenidas en ordenador
+   ========================================================================= */
+:root {
+  --max: 1200px;
+  --side: max(var(--gutter), calc((100vw - var(--max)) / 2));
+}
+.wrap { max-width: calc(var(--max) + var(--gutter) * 2); }
+.header .wrap { max-width: none; padding: 0 var(--side); }
+.footer { padding-left: var(--side); padding-right: var(--side); }
+
+/* Hero: a sangre pero menos alto */
+.hero { height: min(84vh, 760px); min-height: 520px; }
+
+/* Ventajas alineadas con el contenido */
+.perks { max-width: var(--max); margin: 0 auto; border-bottom: 0; }
+.perks + .statement { border-top: 1px solid var(--line); max-width: var(--max); margin: 0 auto; }
+
+/* Carrusel: 4 piezas a la vista, alineado con la columna */
+.carousel { padding: 0 var(--side) 10px; scroll-padding: 0 var(--side); grid-auto-columns: calc((min(100vw - var(--gutter) * 2, var(--max)) - 48px) / 4); }
+
+/* Bloques de imagen dentro de la columna y más bajos */
+.duo { padding: 0 var(--side); gap: 20px; }
+.duo-tile { aspect-ratio: 4 / 3; }
+.duo-text { left: 32px; bottom: 30px; }
+.spotlight { padding: 140px var(--side); gap: 80px; grid-template-columns: 1.1fr 1fr; }
+.banner { margin: 0 var(--side); min-height: min(62vh, 560px); }
+.banner.parallax img { height: 140%; top: -20%; }
+.page-hero { height: min(50vh, 460px); }
+
+/* Ficha de producto centrada */
+.product { max-width: calc(var(--max) + var(--gutter) * 2); margin: 30px auto 0; padding: 0 var(--gutter); gap: 70px; }
+.gallery { top: 110px; }
+.buy { padding: 40px 0 90px; }
+
+@media (max-width: 900px) {
+  .carousel { grid-auto-columns: 62%; }
+  .duo-tile { aspect-ratio: 4 / 5; }
+  .banner { margin: 0; }
+  .product { gap: 0; padding: 0; margin-top: 0; }
+  .buy { padding: 40px 20px 70px; }
+}
+@media (max-width: 760px) {
+  .carousel { grid-auto-columns: 82%; }
+  .hero { height: 88vh; }
+}
+.hero-text { padding: 0 var(--side); }
+.duo-tile::after { background: linear-gradient(0deg, rgba(35, 26, 19, .55) 0%, rgba(35, 26, 19, 0) 55%); }
+@media (max-width: 760px) { .hero-text { padding: 0 var(--gutter) 44px; } }
+.product { grid-template-columns: 1.25fr 1fr; }
+@media (max-width: 900px) { .product { grid-template-columns: 1fr; } }
+
+/* =========================================================================
    WordPress
    ========================================================================= */
 .screen-reader-text { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -761,12 +813,19 @@ strong, b { font-weight: 500; }
   border: 1px solid #cfc6bc !important; border-radius: 0 !important; padding: 12px 14px; font-family: var(--sans);
 }
 
+/* Ficha centrada en ordenador (v4) */
+.single-product div.product { max-width: calc(var(--max) + var(--gutter) * 2); margin: 30px auto 0; padding: 0 var(--gutter); gap: 70px; grid-template-columns: 1.25fr 1fr; }
+.single-product div.product .woocommerce-product-gallery { top: 110px; }
+.single-product div.product .summary { padding: 40px 0 90px; }
+.single-product .related, .single-product .upsells { padding: 90px 0; }
+
 @media (max-width: 1100px) {
   .woocommerce ul.products, ul.products { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 900px) {
   .woocommerce ul.products, ul.products { grid-template-columns: repeat(2, 1fr); gap: 30px 12px; }
-  .single-product div.product { grid-template-columns: 1fr; }
+  .single-product div.product { grid-template-columns: 1fr; gap: 0; padding: 0; margin-top: 0; }
+  .single-product .related, .single-product .upsells { padding: 70px var(--gutter); }
   .single-product div.product .woocommerce-product-gallery { position: relative; top: 0; }
   .single-product div.product .summary { padding: 40px 20px 60px; }
 }
