@@ -126,34 +126,30 @@
     }
 
     /* ---------- Inici ---------- */
-    #niu .hero { background: var(--blue); color: var(--cream); overflow: hidden; padding-block: clamp(48px, 8vw, 96px); }
-    #niu .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 80px); align-items: center; position: relative; z-index: 2; }
-    #niu .hero .hello { font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--blue-light); }
-    #niu .hero h1 { font-weight: 300; font-size: clamp(2.3rem, 5.6vw, 4rem); line-height: 1.1; margin-top: 10px; text-wrap: balance; }
-    #niu .hero .lead { margin-top: 22px; max-width: 46ch; font-size: 18px; color: rgba(250, 245, 240, .86); }
-    #niu .hero .lead strong { font-weight: 500; color: var(--cream); }
-    #niu .hero .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
-    #niu .hero .photo { position: relative; justify-self: center; width: min(100%, 420px); }
-    #niu .hero .photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 999px 999px 24px 24px; }
-    #niu .hero .photo .note {
-      position: absolute; left: -26px; bottom: 34px; padding: 14px 18px; max-width: 220px;
-      background: var(--cream); color: var(--blue); border-radius: 16px;
-      font-size: 14px; line-height: 1.35;
-    }
-    #niu .hero .photo .note strong { display: block; font-weight: 500; font-size: 15px; }
-
-    #niu .dates { display: flex; flex-wrap: wrap; gap: 0; margin-top: 44px; border-top: 1px solid rgba(250, 245, 240, .25); padding-top: 26px; }
-    #niu .date { display: flex; align-items: center; gap: 14px; padding-right: 28px; margin-right: 28px; }
-    #niu .date + .date { border-left: 1px solid rgba(250, 245, 240, .25); padding-left: 28px; margin-right: 0; }
-    #niu .date .day { font-size: 2.9rem; font-weight: 300; line-height: 1; }
+    #niu .hero { background: var(--cream); color: var(--blue); overflow: hidden; padding-block: clamp(56px, 9vw, 112px); border-bottom: 1px solid rgba(56, 104, 176, .12); }
+    #niu .hero .wrap { position: relative; z-index: 2; max-width: 900px; text-align: center; }
+    #niu .hero .hello { font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--blue); opacity: .75; }
+    #niu .hero h1 { font-weight: 300; font-size: clamp(2.4rem, 6vw, 4.4rem); line-height: 1.08; margin-top: 10px; text-wrap: balance; color: var(--blue); }
+    #niu .hero .lead { margin: 24px auto 0; max-width: 52ch; font-size: 18px; color: var(--ink-soft); }
+    #niu .hero .lead strong { font-weight: 500; color: var(--blue); }
+    #niu .hero .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 34px; }
+    #niu .dates { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px 0; margin-top: 46px; }
+    #niu .date { display: flex; align-items: center; gap: 14px; padding: 0 30px; text-align: left; }
+    #niu .date + .date { border-left: 1px solid rgba(56, 104, 176, .3); }
+    #niu .date .day { font-size: 3rem; font-weight: 300; line-height: 1; }
     #niu .date .txt { display: flex; flex-direction: column; line-height: 1.3; }
-    #niu .date .month { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: rgba(250, 245, 240, .7); }
+    #niu .date .month { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--ink-soft); }
     #niu .date .what { font-weight: 500; font-size: 16px; }
+    #niu .promo {
+      display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 4px 8px; margin-top: 30px;
+      padding: 10px 20px; border-radius: 999px; background: var(--blue-light); color: var(--blue-deep); font-size: 14.5px; line-height: 1.4;
+    }
+    #niu .promo strong { font-weight: 500; }
 
     #niu .float { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
     #niu .word {
       position: absolute; bottom: -60px; white-space: nowrap;
-      font-family: var(--hand); color: var(--cream); opacity: 0;
+      font-family: var(--hand); color: var(--blue); opacity: 0;
       animation: niuRise linear forwards; will-change: transform, opacity;
     }
     @keyframes niuRise {
@@ -161,18 +157,18 @@
       15% { opacity: var(--o); } 80% { opacity: var(--o); }
       100% { transform: translateY(-110vh); opacity: 0; }
     }
-
-    @media (max-width: 820px) {
-      #niu .hero .wrap { grid-template-columns: 1fr; }
-      #niu .hero .photo { width: min(100%, 340px); }
-      #niu .hero .photo .note { left: auto; right: -8px; bottom: 18px; }
-      #niu .date, #niu .date + .date { padding: 0; margin: 0; border: 0; }
-      #niu .dates { gap: 22px 36px; }
+    @media (max-width: 820px) { #niu .float { display: none; } }
+    @media (max-width: 560px) {
+      #niu .dates { flex-wrap: nowrap; }
+      #niu .date { padding: 0 14px; gap: 10px; }
+      #niu .date .day { font-size: 2.3rem; }
+      #niu .date .what { font-size: 14px; }
+      #niu .date .month { font-size: 10px; letter-spacing: .2em; }
     }
 
     /* ---------- Qui som ---------- */
     #niu .about .wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
-    #niu .about .pic img { width: 100%; border-radius: 24px; aspect-ratio: 520 / 667; object-fit: cover; }
+    #niu .about .pic img { width: 100%; border-radius: 200px 200px 24px 24px; aspect-ratio: 760 / 975; object-fit: cover; }
     #niu .ideas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 40px; }
     #niu .idea { border-top: 1px solid rgba(56, 104, 176, .3); padding-top: 16px; }
     #niu .idea .hand { color: var(--blue); font-size: 1.35rem; line-height: 1.3; }
@@ -237,33 +233,39 @@
     #niu .horari .eyebrow { color: var(--blue-light); }
     #niu .horari .intro { color: rgba(250, 245, 240, .82); }
     #niu .horari .intro strong { color: var(--cream); }
-    #niu .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 26px; font-size: 14px; }
-    #niu .legend span { display: inline-flex; align-items: center; gap: 8px; }
-    #niu .legend i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
-    #niu .week { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
-    #niu .dayc { min-width: 0; }
-    #niu .dayc h3 { font-size: 12px; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid rgba(250, 245, 240, .3); margin-bottom: 10px; }
-    #niu .slot { border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; line-height: 1.3; }
-    #niu .slot .t { display: block; font-size: 12px; letter-spacing: .06em; font-variant-numeric: tabular-nums; opacity: .8; }
-    #niu .slot .n { display: block; font-size: 14.5px; font-weight: 500; }
-    #niu .k-pilates { background: var(--cream); color: var(--blue); }
-    #niu .k-ioga { background: var(--oat); color: var(--ink); }
-    #niu .k-mater { background: var(--blue-light); color: var(--blue-deep); }
-    #niu .gap-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; opacity: .55; margin: 14px 0 8px; }
+    #niu .tt { margin-top: 26px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
+    #niu .tt table { width: 100%; min-width: 780px; border-collapse: separate; border-spacing: 6px; table-layout: fixed; }
+    #niu .tt th { font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; text-align: left; padding: 0 4px 8px; border-bottom: 1px solid rgba(250, 245, 240, .3); }
+    #niu .tt th.h, #niu .tt td.h { width: 84px; }
+    #niu .tt td { vertical-align: top; padding: 0; }
+    #niu .tt td.h { position: sticky; left: 0; z-index: 1; background: var(--blue); font-size: 13px; font-variant-numeric: tabular-nums; color: rgba(250, 245, 240, .85); padding: 9px 4px 0; }
+    #niu .tt td.h small { display: block; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+    #niu .tt tr.sep td { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: rgba(250, 245, 240, .6); padding: 14px 4px 2px; }
+    #niu .cl { border-radius: 10px; padding: 8px 10px; font-size: 13.5px; font-weight: 500; line-height: 1.3; height: 100%; }
+    #niu .cl + .cl { margin-top: 6px; }
+    #niu .cl small { display: block; font-size: 12px; font-weight: 400; opacity: .8; margin-top: 2px; }
+    #niu .tt-hint { display: none; margin-top: 18px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: rgba(250, 245, 240, .7); }
+    @media (max-width: 820px) {
+      #niu .tt-hint { display: block; }
+      #niu .tt { margin-inline: -20px; padding-inline: 14px; }
+      #niu .tt table { min-width: 700px; }
+      #niu .tt th.h, #niu .tt td.h { width: 58px; }
+    }
+    #niu .c1 { background: #FAF5F0; color: #3868B0; }
+    #niu .c2 { background: #ACC5E0; color: #1f3d6e; }
+    #niu .c3 { background: #E0DACB; color: #3a3426; }
+    #niu .c4 { background: #D3E2CC; color: #2f4a33; }
+    #niu .c5 { background: #F2D4CC; color: #6b3a2c; }
+    #niu .c6 { background: #DCD3EE; color: #45336b; }
+    #niu .c7 { background: #F5E4B5; color: #5e4810; }
+    #niu .c8 { background: #C6E4DE; color: #1f4d47; }
+    #niu .c9 { background: #F6D9BF; color: #6b4127; }
+    #niu .c10 { background: #C9D6F2; color: #2a3f7a; }
     #niu .horari .sub { margin-top: 44px; font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 300; }
     #niu .horari .sub strong { font-weight: 500; }
-    #niu .horari .sub-cons { margin-top: 72px; padding-top: 48px; border-top: 1px solid rgba(250, 245, 240, .25); }
-    #niu .cslot { background: rgba(250, 245, 240, .1); border: 1px solid rgba(250, 245, 240, .28); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; line-height: 1.3; }
-    #niu .cslot .n { display: block; font-size: 14.5px; font-weight: 500; }
-    #niu .cslot .w { display: block; font-size: 13px; color: rgba(250, 245, 240, .78); margin-top: 2px; }
-    #niu .cslot.indiba { background: var(--blue-light); border-color: var(--blue-light); color: var(--blue-deep); }
-    #niu .cslot.indiba .w { color: var(--blue-deep); }
-    #niu .consult { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; padding: 22px 26px; border: 1px solid rgba(250, 245, 240, .3); border-radius: var(--radius); }
+    #niu .horari .sub-cons { margin-top: 64px; padding-top: 44px; border-top: 1px solid rgba(250, 245, 240, .25); }
+    #niu .consult { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; padding: 20px 24px; border: 1px solid rgba(250, 245, 240, .3); border-radius: var(--radius); }
     #niu .consult strong { font-weight: 500; }
-    @media (max-width: 900px) {
-      #niu .week { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
-    }
-    @media (max-width: 520px) { #niu .week { grid-template-columns: 1fr; } }
 
     /* ---------- Tallers + Així anem ---------- */
     #niu .duo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); }
@@ -273,9 +275,11 @@
     #niu .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
     #niu .chips li { font-size: 14px; padding: 7px 14px; border-radius: 999px; background: var(--cream); color: var(--blue-deep); }
     #niu .tallers .small { margin-top: 20px; font-size: 14px; }
-    #niu .obra .pics { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 190px 190px; gap: 10px; margin-top: 24px; }
+    #niu .obra-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+    #niu .obra .pics { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 240px 240px; gap: 10px; }
+    @media (max-width: 860px) { #niu .obra-grid { grid-template-columns: 1fr; } #niu .obra .pics { grid-template-rows: 200px 200px; } }
     #niu .obra .pics img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
-    #niu .obra .pics img:first-child { grid-row: span 2; }
+    #niu .obra .pics img:first-child { grid-column: span 2; }
     #niu .steps { margin-top: 22px; display: grid; gap: 10px; }
     #niu .step { display: flex; align-items: center; gap: 12px; font-size: 15px; }
     #niu .step i { width: 22px; height: 22px; border-radius: 50%; flex: none; border: 1.5px solid var(--blue); position: relative; }
@@ -368,17 +372,14 @@
           <h1 data-t="hero.title"></h1>
           <p class="lead" data-t="hero.lead"></p>
           <div class="actions">
-            <a class="btn btn-cream wa" href="#" target="_blank" rel="noopener" data-t="hero.btn1"></a>
+            <a class="btn btn-blue wa" href="#" target="_blank" rel="noopener" data-t="hero.btn1"></a>
             <a class="btn btn-line" href="#especialitats" data-go="especialitats" data-t="hero.btn2"></a>
           </div>
           <div class="dates">
             <p class="date"><span class="day">28</span><span class="txt"><span class="month" data-t="dates.m1"></span><span class="what" data-t="dates.d1"></span></span></p>
             <p class="date"><span class="day">2</span><span class="txt"><span class="month" data-t="dates.m2"></span><span class="what" data-t="dates.d2"></span></span></p>
           </div>
-        </div>
-        <div class="photo">
-          <img src="img/hero.jpg" alt="" width="760" height="950" data-t-alt="hero.alt">
-          <p class="note" data-t="hero.promo"></p>
+          <p class="promo" data-t="hero.promo"></p>
         </div>
       </div>
     </section>
@@ -386,7 +387,7 @@
     <!-- Qui som -->
     <section class="about" id="qui-som">
       <div class="wrap">
-        <div class="pic"><img src="img/detall.jpg" alt="" width="520" height="667" data-t-alt="about.alt"></div>
+        <div class="pic"><img src="img/qui-som.jpg" alt="" width="760" height="975" data-t-alt="about.alt"></div>
         <div>
           <p class="eyebrow" data-t="about.eyebrow"></p>
           <h2 data-t="about.title"></h2>
@@ -425,33 +426,27 @@
         <h2 data-t="sched.title"></h2>
         <h3 class="sub" data-t="sched.movTitle"></h3>
         <p class="intro" data-t="sched.intro"></p>
-        <div class="legend"></div>
-        <div class="week week-mov"></div>
+        <p class="tt-hint" data-t="sched.hint"></p>
+        <div class="tt tt-mov"></div>
         <h3 class="sub sub-cons" data-t="sched.consTitle"></h3>
         <div class="consult"><p data-t="sched.consult"></p><a class="btn btn-cream wa" href="#" target="_blank" rel="noopener" data-t="cta"></a></div>
-        <div class="week week-cons"></div>
+        <p class="tt-hint" data-t="sched.hint"></p>
+        <div class="tt tt-cons"></div>
       </div>
     </section>
 
-    <!-- Tallers + Així anem -->
-    <section class="mes" id="tallers">
-      <div class="wrap duo">
-        <div class="tallers">
-          <p class="eyebrow" data-t="tall.eyebrow"></p>
-          <h2 data-t="tall.title"></h2>
-          <p class="intro" data-t="tall.intro"></p>
-          <ul class="chips" data-list="tall.items"></ul>
-          <p class="small" data-t="tall.small"></p>
-        </div>
-        <div class="obra">
+    <!-- Així anem -->
+    <section class="obra" id="espai">
+      <div class="wrap obra-grid">
+        <div>
           <p class="eyebrow" data-t="obra.eyebrow"></p>
           <h2 data-t="obra.title"></h2>
-          <div class="pics">
-            <img src="img/obra-1.jpg" alt="" width="640" height="480" data-t-alt="obra.alt">
-            <img src="img/obra-2.jpg" alt="" width="480" height="600" data-t-alt="obra.alt">
-            <img src="img/obra-3.jpg" alt="" width="480" height="600" data-t-alt="obra.alt">
-          </div>
           <div class="steps" data-list="obra.steps"></div>
+        </div>
+        <div class="pics">
+          <img src="img/espai-1.jpg" alt="" width="1100" height="619" data-t-alt="obra.alt">
+          <img src="img/espai-2.jpg" alt="" width="640" height="800" data-t-alt="obra.alt">
+          <img src="img/espai-3.jpg" alt="" width="640" height="800" data-t-alt="obra.alt">
         </div>
       </div>
     </section>
@@ -482,7 +477,7 @@
         </div>
         <div class="info">
           <div><b data-t="contact.where"></b><p>Plaça Nova, 1<br>07140 Sencelles, Mallorca</p><p><a href="https://www.google.com/maps/search/?api=1&amp;query=Pla%C3%A7a+Nova+1+07140+Sencelles" target="_blank" rel="noopener" data-t="contact.map"></a></p></div>
-          <div><b data-t="contact.talk"></b><p><a class="wa" href="#" target="_blank" rel="noopener">639 588 991</a></p><p><a href="mailto:a.alcolea.ribas@gmail.com">a.alcolea.ribas@gmail.com</a></p></div>
+          <div><b data-t="contact.talk"></b><p><a class="wa" href="#" target="_blank" rel="noopener">646 570 812</a></p><p><a href="mailto:info@niucosidona.com">info@niucosidona.com</a></p></div>
           <div><b data-t="contact.hours"></b><p data-t="contact.hoursTxt"></p></div>
           <div><b data-t="contact.park"></b><p data-t="contact.parkTxt"></p></div>
         </div>
@@ -502,7 +497,7 @@
 <script>
 (function () {
   /* ====== DADES DE CONTACTE (canviar aquí quan tingueu la línia del centre) ====== */
-  const WHATSAPP = '34639588991';
+  const WHATSAPP = '34646570812';
 
   /* ====== HORARI SALA DE MOVIMENT · dia 0 = dilluns ====== */
   const SESSIONS = [
@@ -520,6 +515,10 @@
   const KIND = { barre:'pilates', tonif:'pilates', reformer:'pilates', mobilitat:'pilates', ioga:'ioga', core:'mater',
                  embaras:'mater', postpart:'mater', condic:'mater', psicomot:'mater', educacio:'mater' };
 
+  /* colors: un per a cada classe i un per a cada consulta */
+  const CLASS_COLOR = { reformer:'c1', tonif:'c2', barre:'c3', mobilitat:'c4', ioga:'c5', core:'c6', embaras:'c7', condic:'c8', psicomot:'c9', educacio:'c10' };
+  const CONS_COLOR = { indiba:'c2', marti:'c3', ester:'c6', yaiza:'c7', henar:'c4', nicola:'c8', genovart:'c5', forteza:'c1', laura:'c9', romero:'c10' };
+
   /* ====== CONSULTES · [dia, 'm' (9–14 h) | 't' (15–20 h), servei, professional] ====== */
   const CONSULTES = [
     [0,'m','indiba',''],[0,'m','marti','Martí Parets'],[0,'t','ester','Ester Congost'],[0,'t','marti','Martí Parets'],
@@ -533,7 +532,7 @@
   const TEAM = [
     { id:'aida', name:'Aida Alcolea', photo:'img/equip-aida.jpg' },
     { id:'marta-forteza', name:'Marta Forteza', photo:'img/equip-marta-forteza.jpg', days:[[2,'m'],[2,'t']] },
-    { id:'yaiza', name:'Yaiza González', photo:'', days:[[1,'m'],[4,'t']] },
+    { id:'yaiza', name:'Yaiza González', photo:'img/equip-yaiza.jpg', days:[[1,'m'],[4,'t']] },
     { id:'ester', name:'Ester Congost', photo:'img/equip-ester.jpg', days:[[0,'t'],[2,'m']] },
     { id:'marta-romero', name:'Marta Romero', photo:'img/equip-marta-romero.jpg', days:[[4,'m'],[4,'t']] },
     { id:'laura', name:'Laura Rodríguez', photo:'img/equip-laura.jpg', days:[[4,'m']] },
@@ -541,7 +540,7 @@
     { id:'nicola', name:'Nicola Hälbig', photo:'img/equip-nicola.jpg', days:[[1,'t']] },
     { id:'marta-genovart', name:'Marta Genovart', photo:'img/equip-marta-genovart.jpg', days:[[1,'t'],[2,'t']] },
     { id:'marti', name:'Martí Parets', photo:'img/equip-marti.jpg', days:[[0,'m'],[0,'t'],[3,'m'],[3,'t']] },
-    { id:'aka', name:'Aka Lang', photo:'', classes:[[0,'11:00'],[2,'16:00']] }
+    { id:'aka', name:'Aka Lang', photo:'img/equip-aka.jpg', classes:[[0,'11:00'],[2,'16:00']] }
   ];
 
   /* ====== TEXTOS ====== */
@@ -555,7 +554,7 @@
         title: 'Cuidem de tu en <strong>cada etapa</strong> de la vida',
         lead: 'Un espai de <strong>benestar conscient per a la dona</strong> a Sencelles, on diferents professionals treballem de manera coordinada per oferir-te una <strong>atenció integral, propera i personalitzada</strong>.',
         btn1: 'Demana la teva primera visita', btn2: 'Descobreix les especialitats',
-        promo: '<strong>Bo de benvinguda</strong>Un regal per a les 30 primeres reserves.',
+        promo: '<strong>Bo de benvinguda</strong> Un regal per a les 30 primeres reserves.',
         alt: 'Aida Alcolea, fundadora de NIU, a l’espai'
       },
       dates: { m1:'octubre', d1:'Portes obertes', m2:'novembre', d2:'Obertura' },
@@ -569,7 +568,7 @@
           { t:'Acompanyament real', d:'Que cap dona hagi de recórrer sola el seu camí de salut.' },
           { t:'Espai i calma', d:'Un lloc on parar, respirar i reconnectar amb una mateixa.' }
         ],
-        alt: 'Il·lustració d’un cos de dona en blau, emmarcada a l’espai de NIU'
+        alt: 'L’espai de NIU, amb parets de pedra i llum càlida'
       },
       serv: {
         eyebrow: 'Especialitats', title: 'Com et podem <strong>acompanyar</strong>',
@@ -634,22 +633,16 @@
         consTitle: 'Qui passa consulta <strong>cada dia</strong>',
         cons: { indiba:'INDIBA i pressoteràpia', marti:'Recuperació esportiva', ester:'Fisioteràpia de sòl pelvià', yaiza:'Llevadora', henar:'Fisioteràpia general',
                 nicola:'Nutrició', genovart:'Quiromassatge', forteza:'Ginecologia i obstetrícia', laura:'Fisioteràpia pediàtrica', romero:'Psicologia perinatal' },
-        movTitle: 'Sala de moviment'
-      },
-      tall: {
-        eyebrow: 'Tallers', title: 'Un taller <strong>cada mes</strong>',
-        intro: 'Trobades petites per aprendre, compartir i fer comunitat al voltant de la salut femenina, la maternitat i la criança.',
-        items: ['Massatge infantil','Moviment lliure','Com manejar els mocs','Desenvolupament de 0 a 36 mesos','Primers auxilis','Preparació al naixement'],
-        small: 'Divendres a la tarda o dissabte al matí. Anunciarem les dates a Instagram.'
+        movTitle: 'Sala de moviment', hint: 'Llisca per veure tota la setmana →'
       },
       obra: {
-        eyebrow: 'Així anem', title: 'L’espai de la <strong>Plaça Nova</strong>',
+        eyebrow: 'Així anem', title: 'L’espai de la <strong>Plaça Nova</strong>, gairebé a punt',
         steps: [
-          { t:'Obra de l’espai', d:'En marxa', s:'now' },
-          { t:'Portes obertes', d:'28 d’octubre', s:'' },
+          { t:'Obra de l’espai', d:'Feta', s:'done' },
+          { t:'Portes obertes', d:'28 d’octubre', s:'now' },
           { t:'Obrim NIU', d:'2 de novembre', s:'' }
         ],
-        alt: 'L’espai de NIU en obres'
+        alt: 'L’espai de NIU, gairebé acabat'
       },
       faq: {
         eyebrow: 'Preguntes freqüents', title: 'Tens <strong>dubtes</strong>?',
@@ -668,12 +661,9 @@
         ]
       },
       rules: [
-        { t:'Puntualitat', d:'Arriba 5 minuts abans. Si fas tard, la sessió es pot escurçar per no afectar la resta.' },
         { t:'Cancel·lacions', d:'Avisa’ns amb un mínim de 12 hores. Fora d’aquest termini es perd la sessió, excepte causa justificada.' },
         { t:'Salut', d:'Explica’ns qualsevol condició mèdica, lesió, embaràs o tractament per adaptar l’acompanyament.' },
-        { t:'Material i espai', d:'Cuida el material i els espais comuns i segueix les indicacions de les professionals.' },
         { t:'Confidencialitat', d:'Tota la informació personal i de salut es tracta amb absoluta confidencialitat.' },
-        { t:'Convivència', d:'NIU és un espai de calma i respecte: mantenim un to i un volum adequats.' }
       ],
       contact: {
         hand: 'Comença avui a cuidar-te',
@@ -695,7 +685,7 @@
         title: 'Cuidamos de ti en <strong>cada etapa</strong> de la vida',
         lead: 'Un espacio de <strong>bienestar consciente para la mujer</strong> en Sencelles, donde diferentes profesionales trabajamos de forma coordinada para ofrecerte una <strong>atención integral, cercana y personalizada</strong>.',
         btn1: 'Pide tu primera visita', btn2: 'Descubre las especialidades',
-        promo: '<strong>Bono de bienvenida</strong>Un regalo para las 30 primeras reservas.',
+        promo: '<strong>Bono de bienvenida</strong> Un regalo para las 30 primeras reservas.',
         alt: 'Aida Alcolea, fundadora de NIU, en el espacio'
       },
       dates: { m1:'octubre', d1:'Puertas abiertas', m2:'noviembre', d2:'Apertura' },
@@ -709,7 +699,7 @@
           { t:'Acompañamiento real', d:'Que ninguna mujer tenga que recorrer sola su camino de salud.' },
           { t:'Espacio y calma', d:'Un lugar donde parar, respirar y reconectar contigo misma.' }
         ],
-        alt: 'Ilustración de un cuerpo de mujer en azul, enmarcada en el espacio de NIU'
+        alt: 'El espacio de NIU, con paredes de piedra y luz cálida'
       },
       serv: {
         eyebrow: 'Especialidades', title: 'Cómo te podemos <strong>acompañar</strong>',
@@ -774,22 +764,16 @@
         consTitle: 'Quién pasa consulta <strong>cada día</strong>',
         cons: { indiba:'INDIBA y presoterapia', marti:'Recuperación deportiva', ester:'Fisioterapia de suelo pélvico', yaiza:'Matrona', henar:'Fisioterapia general',
                 nicola:'Nutrición', genovart:'Quiromasaje', forteza:'Ginecología y obstetricia', laura:'Fisioterapia pediátrica', romero:'Psicología perinatal' },
-        movTitle: 'Sala de movimiento'
-      },
-      tall: {
-        eyebrow: 'Talleres', title: 'Un taller <strong>cada mes</strong>',
-        intro: 'Encuentros pequeños para aprender, compartir y hacer comunidad alrededor de la salud femenina, la maternidad y la crianza.',
-        items: ['Masaje infantil','Movimiento libre','Cómo manejar los mocos','Desarrollo de 0 a 36 meses','Primeros auxilios','Preparación al nacimiento'],
-        small: 'Viernes por la tarde o sábado por la mañana. Anunciaremos las fechas en Instagram.'
+        movTitle: 'Sala de movimiento', hint: 'Desliza para ver toda la semana →'
       },
       obra: {
-        eyebrow: 'Así vamos', title: 'El espacio de la <strong>Plaça Nova</strong>',
+        eyebrow: 'Así vamos', title: 'El espacio de la <strong>Plaça Nova</strong>, casi a punto',
         steps: [
-          { t:'Obra del espacio', d:'En marcha', s:'now' },
-          { t:'Puertas abiertas', d:'28 de octubre', s:'' },
+          { t:'Obra del espacio', d:'Hecha', s:'done' },
+          { t:'Puertas abiertas', d:'28 de octubre', s:'now' },
           { t:'Abrimos NIU', d:'2 de noviembre', s:'' }
         ],
-        alt: 'El espacio de NIU en obras'
+        alt: 'El espacio de NIU, casi terminado'
       },
       faq: {
         eyebrow: 'Preguntas frecuentes', title: '¿Tienes <strong>dudas</strong>?',
@@ -808,12 +792,9 @@
         ]
       },
       rules: [
-        { t:'Puntualidad', d:'Llega 5 minutos antes. Si llegas tarde, la sesión puede acortarse para no afectar al resto.' },
         { t:'Cancelaciones', d:'Avísanos con un mínimo de 12 horas. Fuera de ese plazo se pierde la sesión, salvo causa justificada.' },
         { t:'Salud', d:'Cuéntanos cualquier condición médica, lesión, embarazo o tratamiento para adaptar el acompañamiento.' },
-        { t:'Material y espacio', d:'Cuida el material y los espacios comunes y sigue las indicaciones de las profesionales.' },
         { t:'Confidencialidad', d:'Toda la información personal y de salud se trata con absoluta confidencialidad.' },
-        { t:'Convivencia', d:'NIU es un espacio de calma y respeto: mantenemos un tono y un volumen adecuados.' }
       ],
       contact: {
         hand: 'Empieza hoy a cuidarte',
@@ -835,7 +816,7 @@
         title: 'Caring for you at <strong>every stage</strong> of life',
         lead: 'A space for <strong>conscious wellbeing for women</strong> in Sencelles, where a team of professionals works together to offer you <strong>holistic, warm and personalised care</strong>.',
         btn1: 'Book your first visit', btn2: 'Explore our specialities',
-        promo: '<strong>Welcome gift</strong>For our first 30 bookings.',
+        promo: '<strong>Welcome gift</strong> for our first 30 bookings.',
         alt: 'Aida Alcolea, founder of NIU, in the space'
       },
       dates: { m1:'October', d1:'Open day', m2:'November', d2:'Opening' },
@@ -849,7 +830,7 @@
           { t:'Real support', d:'No woman should have to walk her health journey alone.' },
           { t:'Space and calm', d:'A place to pause, breathe and reconnect with yourself.' }
         ],
-        alt: 'Blue illustration of a woman’s body, framed in the NIU space'
+        alt: 'The NIU space, with stone walls and warm light'
       },
       serv: {
         eyebrow: 'Specialities', title: 'How we can <strong>support you</strong>',
@@ -914,22 +895,16 @@
         consTitle: 'Who sees clients <strong>each day</strong>',
         cons: { indiba:'INDIBA and pressotherapy', marti:'Sports recovery', ester:'Pelvic floor physiotherapy', yaiza:'Midwife', henar:'General physiotherapy',
                 nicola:'Nutrition', genovart:'Massage therapy', forteza:'Gynaecology and obstetrics', laura:'Paediatric physiotherapy', romero:'Perinatal psychology' },
-        movTitle: 'Movement studio'
-      },
-      tall: {
-        eyebrow: 'Workshops', title: 'One workshop <strong>every month</strong>',
-        intro: 'Small gatherings to learn, share and build community around women’s health, motherhood and parenting.',
-        items: ['Baby massage','Free movement','Dealing with a stuffy nose','Development from 0 to 36 months','First aid','Birth preparation'],
-        small: 'Friday afternoon or Saturday morning. Dates will be announced on Instagram.'
+        movTitle: 'Movement studio', hint: 'Swipe to see the whole week →'
       },
       obra: {
-        eyebrow: 'Work in progress', title: 'Our space on <strong>Plaça Nova</strong>',
+        eyebrow: 'Almost there', title: 'Our space on <strong>Plaça Nova</strong> is nearly ready',
         steps: [
-          { t:'Building the space', d:'In progress', s:'now' },
-          { t:'Open day', d:'28 October', s:'' },
+          { t:'Building the space', d:'Done', s:'done' },
+          { t:'Open day', d:'28 October', s:'now' },
           { t:'NIU opens', d:'2 November', s:'' }
         ],
-        alt: 'The NIU space under construction'
+        alt: 'The NIU space, nearly finished'
       },
       faq: {
         eyebrow: 'FAQ', title: 'Any <strong>questions</strong>?',
@@ -948,12 +923,9 @@
         ]
       },
       rules: [
-        { t:'Punctuality', d:'Please arrive 5 minutes early. If you are late, your session may be shortened so others aren’t affected.' },
         { t:'Cancellations', d:'Let us know at least 12 hours in advance. Later cancellations lose the session, unless there is a justified reason.' },
         { t:'Health', d:'Tell us about any medical condition, injury, pregnancy or treatment so we can adapt your care.' },
-        { t:'Equipment and space', d:'Please look after the equipment and shared spaces and follow the professionals’ guidance.' },
         { t:'Confidentiality', d:'All personal and health information is treated in the strictest confidence.' },
-        { t:'Respect', d:'NIU is a calm, respectful space: we keep voices and volume low.' }
       ],
       contact: {
         hand: 'Start caring for yourself today',
@@ -1015,7 +987,7 @@
     $('.team-grid').innerHTML = TEAM.map((m) => {
       const p = t.team.people[m.id];
       const ph = m.photo
-        ? `<img src="${m.photo}" alt="${esc(m.name)}" width="440" height="550">`
+        ? `<img src="${m.photo}" alt="${esc(m.name)}" width="640" height="800">`
         : `<span class="soon">${esc(t.team.soon)}</span>`;
       const when = m.days
         ? `<p class="when"><b>${esc(t.team.consult)}</b>${slots(t, m.days)}</p>`
@@ -1023,28 +995,28 @@
       return `<article class="member"><div class="ph">${ph}</div><h3>${esc(m.name)}</h3><p class="role">${esc(p.role)}</p><p class="quote">${esc(p.q)}</p>${when}</article>`;
     }).join('');
 
-    $('.legend').innerHTML = Object.entries(t.sched.kinds).map(([k, v]) =>
-      `<span><i class="k-${k}"></i>${esc(v)}</span>`).join('');
-    $('.week-mov').innerHTML = t.days.map((dn, d) => {
-      const list = SESSIONS.filter((s) => s[0] === d);
-      const am = list.filter((s) => s[1] < '14:00'), pm = list.filter((s) => s[1] >= '14:00');
-      const cell = (s) => `<div class="slot k-${KIND[s[3]]}"><span class="t">${s[1]}–${s[2]}</span><span class="n">${esc(t.sched.names[s[3]])}</span></div>`;
-      return `<div class="dayc"><h3>${esc(dn)}</h3>` +
-        (am.length ? `<p class="gap-label">${esc(t.sched.morning)}</p>` + am.map(cell).join('') : '') +
-        (pm.length ? `<p class="gap-label">${esc(t.sched.afternoon)}</p>` + pm.map(cell).join('') : '') + `</div>`;
-    }).join('');
+    /* horari de la sala, en files per hora */
+    const starts = [...new Set(SESSIONS.map((x) => x[1]))].sort();
+    const dur = (a, b) => (+b.slice(0, 2) * 60 + +b.slice(3)) - (+a.slice(0, 2) * 60 + +a.slice(3));
+    let rows = '', pmDone = false;
+    starts.forEach((h, n) => {
+      if (n === 0) rows += `<tr class="sep"><td colspan="6">${esc(t.sched.morning)}</td></tr>`;
+      if (!pmDone && h >= '14:00') { pmDone = true; rows += `<tr class="sep"><td colspan="6">${esc(t.sched.afternoon)}</td></tr>`; }
+      rows += `<tr><td class="h">${h}</td>` + t.days.map((_, d) => {
+        const x = SESSIONS.find((y) => y[0] === d && y[1] === h);
+        if (!x) return '<td></td>';
+        const extra = dur(x[1], x[2]) !== 60 ? `<small>${x[1]}–${x[2]}</small>` : '';
+        return `<td><div class="cl ${CLASS_COLOR[x[3]]}">${esc(t.sched.names[x[3]])}${extra}</div></td>`;
+      }).join('') + '</tr>';
+    });
+    $('.tt-mov').innerHTML = `<table><thead><tr><th class="h"></th>${t.days.map((d) => `<th>${esc(d)}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
 
-    $('.week-cons').innerHTML = t.days.map((dn, d) => {
-      const part = (sl, label) => {
-        const list = CONSULTES.filter((c) => c[0] === d && c[1] === sl);
-        if (!list.length) return '';
-        return `<p class="gap-label">${esc(label)} · ${esc(t.team[sl])}</p>` + list.map((c) =>
-          `<div class="cslot${c[2] === 'indiba' ? ' indiba' : ''}"><span class="n">${esc(t.sched.cons[c[2]])}</span>${c[3] ? `<span class="w">${esc(c[3])}</span>` : ''}</div>`).join('');
-      };
-      return `<div class="dayc"><h3>${esc(dn)}</h3>${part('m', t.sched.morning)}${part('t', t.sched.afternoon)}</div>`;
-    }).join('');
+    /* consultes: matí i tarda, una fila cadascun */
+    const crow = (sl, label) => `<tr><td class="h">${esc(label)}<small>${esc(t.team[sl])}</small></td>` + t.days.map((_, d) =>
+      '<td>' + CONSULTES.filter((c) => c[0] === d && c[1] === sl).map((c) =>
+        `<div class="cl ${CONS_COLOR[c[2]]}">${esc(t.sched.cons[c[2]])}${c[3] ? `<small>${esc(c[3])}</small>` : ''}</div>`).join('') + '</td>').join('') + '</tr>';
+    $('.tt-cons').innerHTML = `<table><thead><tr><th class="h"></th>${t.days.map((d) => `<th>${esc(d)}</th>`).join('')}</tr></thead><tbody>${crow('m', t.sched.morning)}${crow('t', t.sched.afternoon)}</tbody></table>`;
 
-    $('.chips').innerHTML = t.tall.items.map((x) => `<li>${esc(x)}</li>`).join('');
     $('.steps').innerHTML = t.obra.steps.map((x) =>
       `<p class="step ${x.s}"><i></i><b>${esc(x.t)}</b><span class="d">${esc(x.d)}</span></p>`).join('');
     $('.faq-list').innerHTML = t.faq.items.map((x) =>
@@ -1097,13 +1069,14 @@
     el.textContent = words[wi++ % words.length];
     const depth = Math.random();
     el.style.fontSize = (16 + depth * 22) * Math.min(1, innerWidth / 700 + 0.35) + 'px';
-    el.style.setProperty('--o', (0.12 + depth * 0.22).toFixed(2));
+    el.style.setProperty('--o', (0.1 + depth * 0.18).toFixed(2));
     el.style.animationDuration = (26 - depth * 10) + 's';
     if (delay) el.style.animationDelay = delay + 's';
     layer.appendChild(el);
     const W = layer.clientWidth, w = el.offsetWidth;
-    const x0 = W > 820 ? W * 0.55 : 0;
-    el.style.left = Math.max(x0 + 12, Math.min(x0 + Math.random() * (W - x0) - w / 2, W - w - 12)) + 'px';
+    let x = Math.random() * W - w / 2;
+    if (W > 820) x = (Math.random() < .5 ? Math.random() * .2 : .8 + Math.random() * .2) * W - w / 2;
+    el.style.left = Math.max(12, Math.min(x, W - w - 12)) + 'px';
     el.addEventListener('animationend', () => el.remove());
   }
   if (!reduce) {
