@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://activam.es/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://activam.es/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://activam.es/ca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://activam.es/en/"/>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://activam.es/ca/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://activam.es/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://activam.es/ca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://activam.es/en/"/>
+    <lastmod>2026-10-28</lastmod>
+  </url>
+  <url>
+    <loc>https://activam.es/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://activam.es/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://activam.es/ca/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://activam.es/en/"/>
     <lastmod>2026-10-28</lastmod>
   </url>
 </urlset>
