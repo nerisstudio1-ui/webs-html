@@ -166,6 +166,8 @@
     font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(31,29,26,.45);
   }
   .ph.has-img::after { display: none; }
+  .ph--brand { background: var(--burgundy); display: grid; place-items: center; }
+  .ph--brand img { width: 55%; height: auto; }
 
   /* ---- Header ---- */
   header {
@@ -260,7 +262,8 @@
   /* ---- Instagram ---- */
   .insta { padding: 96px 0; background: var(--cream); }
   .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
-  .insta-grid .ph { aspect-ratio: 1; border-radius: 12px; }
+  .insta-grid .ph { aspect-ratio: 1; border-radius: 12px; width: 100%; height: auto; object-fit: cover; transition: opacity .2s; }
+  .insta-grid a:hover .ph { opacity: .85; }
   .insta .center { text-align: center; margin-top: 36px; }
 
   /* ---- FAQ ---- */
@@ -318,6 +321,7 @@
     .nav ul.open { display: flex; }
     .nav ul a { display: block; padding: 12px 0; font-size: 1rem; }
     .logo { text-align: center; }
+    .logo img { height: 34px; margin: 0 auto; }
     .nav-right .btn { display: none; }
     .hero { grid-template-columns: 1fr; }
     .hero .ph { min-height: 320px; order: 2; }
@@ -365,7 +369,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="ph" style="--img:url(img/hero.jpg)" data-label="Foto hero: entrenamiento personal" role="img" aria-label="Entrenador personal guiando un ejercicio en Activa'M Sant Andreu"></div>
+    <div class="ph" style="--img:url(img/hero.jpg); background-position: center 35%" data-label="Foto hero: entrenamiento personal" role="img" aria-label="Recepción de Activa'M en el Carrer de Malats, Sant Andreu"></div>
     <div class="hero-copy">
       <h1>
         <span class="underline">Entrenamiento
@@ -389,14 +393,14 @@
   <!-- INTRO -->
   <section class="intro" id="nosotros">
     <div class="wrap intro-grid">
-      <div class="ph" style="--img:url(img/intro-1.jpg)" data-label="Foto: fisioterapia" role="img" aria-label="Sesión de fisioterapia activa"></div>
+      <div class="ph" style="--img:url(img/intro-1.jpg)" data-label="Foto: fisioterapia" role="img" aria-label="Profesional de Activa'M con la camiseta del centro"></div>
       <div class="intro-copy">
         <span class="eyebrow">Desde 2013 en Sant Andreu</span>
         <h2>Activando la salud del barrio</h2>
         <p>En Activa'M encontrarás un equipo multidisciplinar de entrenadores, fisioterapeutas y nutricionistas que te ayudarán, cada uno en su especialidad, según lo que necesites. Tanto si quieres ponerte en forma como si vienes a recuperarte de una lesión, diseñamos un plan pensado solo para ti.</p>
         <a class="btn" href="#servicios">Descubre los servicios</a>
       </div>
-      <div class="ph" style="--img:url(img/intro-2.jpg)" data-label="Foto: entrenamiento" role="img" aria-label="Entrenamiento de fuerza en Activa'M"></div>
+      <div class="ph" style="--img:url(img/intro-2.jpg)" data-label="Foto: entrenamiento" role="img" aria-label="Zona de mancuernas y sala de entrenamiento"></div>
     </div>
   </section>
 
@@ -426,7 +430,8 @@
           </div>
         </a>
         <a class="service" id="nutricion" href="https://wa.me/34626660770?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20nutrici%C3%B3n" target="_blank" rel="noopener">
-          <div class="ph" style="--img:url(img/nutricion.jpg)" data-label="Foto: nutrición"></div>
+          <!-- Sin foto de nutrición todavía: bloque de marca. Cuando haya foto: <div class="ph" style="--img:url(img/nutricion.jpg)"></div> -->
+          <div class="ph ph--brand" aria-hidden="true"><img src="img/simbolo-beige.png" alt="" width="900" height="496"></div>
           <div class="service-body">
             <h3>Nutrición</h3>
             <p>Planes de alimentación personalizados: nutrición deportiva, educación nutricional, pérdida de peso y aumento de masa muscular.</p>
@@ -434,7 +439,7 @@
           </div>
         </a>
         <a class="service" id="entrenamientos-en-grupo" href="https://www.activampilates.cat/" target="_blank" rel="noopener">
-          <div class="ph" style="--img:url(img/grupo.jpg)" data-label="Foto: clase en grupo"></div>
+          <div class="ph" style="--img:url(img/grupo.jpg)" data-label=""></div>
           <div class="service-body">
             <h3>Entrenamientos en grupo</h3>
             <p>Pilates, hipopresivos y tonificación en grupos reducidos en nuestro centro Activa'M Pilates.</p>
@@ -472,7 +477,7 @@
   <!-- POR QUÉ -->
   <section class="about">
     <div class="wrap about-grid">
-      <div class="ph" style="--img:url(img/equipo.jpg)" data-label="Foto: equipo" role="img" aria-label="Equipo de Activa'M"></div>
+      <div class="ph" style="--img:url(img/equipo.jpg)" data-label="Foto: equipo" role="img" aria-label="Pared de la recepción con el logo de Activa'M"></div>
       <div class="about-copy">
         <span class="eyebrow">Por qué Activa'M</span>
         <h2>Una forma diferente de recuperarte</h2>
@@ -516,8 +521,12 @@
       </div>
       <!-- Sustituir este bloque por el widget de feed (Behold / LightWidget / Elfsight) cuando tengamos acceso a la cuenta -->
       <div class="insta-grid" id="instagram-feed">
-        <div class="ph" data-label=""></div><div class="ph" data-label=""></div><div class="ph" data-label=""></div>
-        <div class="ph" data-label=""></div><div class="ph" data-label=""></div><div class="ph" data-label=""></div>
+        <a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img class="ph" src="img/insta-1.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a>
+        <a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img class="ph" src="img/insta-2.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a>
+        <a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img class="ph" src="img/insta-3.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a>
+        <a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img class="ph" src="img/insta-4.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a>
+        <a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img class="ph" src="img/insta-5.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a>
+        <a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img class="ph" src="img/insta-6.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a>
       </div>
       <div class="center"><a class="btn" href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">Ver perfil</a></div>
     </div>
