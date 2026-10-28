@@ -3,7 +3,7 @@ Theme Name: Maison Reformer
 Theme URI: https://maisonreformer.com
 Author: Neris Studio
 Description: Tema a medida para Maison Reformer, equipamiento de Pilates en madera natural. Compatible con WooCommerce. Incluye importador de contenido en Apariencia → Maison Reformer.
-Version: 1.6.0
+Version: 1.7.0
 Requires at least: 6.2
 Requires PHP: 7.4
 WC requires at least: 8.0
@@ -742,6 +742,21 @@ strong, b { font-weight: 500; }
 @media (max-width: 760px) { .hero img.hero-img { object-position: 50% 50%; } }
 .hero::after { background: linear-gradient(90deg, rgba(40, 30, 22, .66) 0%, rgba(40, 30, 22, .38) 38%, rgba(40, 30, 22, 0) 62%), linear-gradient(180deg, rgba(40, 30, 22, .35) 0%, rgba(40, 30, 22, 0) 22%); }
 
+/* v8 · Foto principal entera, sin recortes: la cabecera ya no va encima */
+.home .header, .home .header.solid { position: sticky; top: 0; background: var(--paper); color: var(--ink); box-shadow: 0 1px 0 var(--line); }
+.home .header .logo-dark { display: block; }
+.home .header .logo-light { display: none; }
+.home .topbar { display: block; }
+.hero { height: auto; min-height: 0; max-height: none; aspect-ratio: 1491 / 1024; }
+.hero img.hero-img { animation: none; object-fit: cover; object-position: 50% 50%; }
+@media (max-width: 760px) {
+  .home .header, .home .header:not(.solid):not(.menu-open) { background: var(--paper); color: var(--ink); }
+  .home .topbar { display: none; }
+  .hero { aspect-ratio: auto; padding-top: 0; }
+  .hero img.hero-img { aspect-ratio: 1491 / 1024; object-position: 50% 50%; }
+}
+.scroll-cue { display: none; }
+
 /* =========================================================================
    WordPress
    ========================================================================= */
@@ -774,6 +789,12 @@ strong, b { font-weight: 500; }
 @media (max-width: 782px) {
   .admin-bar .header, .admin-bar.home .header, .admin-bar.home .header.solid { top: 46px; }
 }
+
+/* v8 admin: la cabecera de la portada ya no flota sobre la foto */
+.admin-bar.home .header, .admin-bar.home .header.solid { top: 32px; }
+@media (max-width: 782px) { .admin-bar.home .header, .admin-bar.home .header.solid { top: 46px; } }
+@media (max-width: 760px) { .admin-bar.home .hero { padding-top: 0 !important; } }
+@media (max-width: 600px) { .admin-bar.home .header, .admin-bar.home .header.solid { top: 0; } }
 
 /* =========================================================================
    WooCommerce
