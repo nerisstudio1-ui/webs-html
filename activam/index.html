@@ -7,7 +7,8 @@
 <meta name="description" content="Centro de entrenamiento personal, rehabilitación, fisioterapia y nutrición en Sant Andreu, Barcelona. Fisios especializados en ejercicio y entrenadores en readaptación desde 2013. Cita previa por WhatsApp, de 7 a 22 h.">
 <link rel="canonical" href="https://activam.es/">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#e9e3da">
+<meta name="theme-color" content="#49252f">
+<link rel="icon" type="image/png" href="img/simbolo-burdeos.png">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
@@ -36,7 +37,7 @@
       "description": "Centro de entrenamiento personal, rehabilitación, fisioterapia y nutrición en Sant Andreu (Barcelona). Fisioterapeutas especializados en ejercicio y entrenadores especializados en readaptación.",
       "url": "https://activam.es/",
       "image": "https://activam.es/img/og.jpg",
-      "logo": "https://activam.es/img/logo.png",
+      "logo": "https://activam.es/img/logo-burdeos.png",
       "telephone": "+34626660770",
       "email": "info@activam.es",
       "foundingDate": "2013",
@@ -104,14 +105,21 @@
 <style>
   /* ---- Tokens: cambiar aquí los colores de marca ---- */
   :root {
-    --sand: #e9e3da;
-    --sand-2: #ddd4c7;
-    --stone: #c9bdad;
-    --cream: #f6f3ee;
-    --ink: #1f1d1a;
-    --ink-soft: #57524b;
-    --accent: #7d8f72;      /* verde salvia: salud */
-    --accent-ink: #4f5e47;
+    /* Paleta de la propuesta de marca */
+    --burgundy: #49252f;
+    --beige: #e8d4bb;
+    --taupe: #a59584;
+    --graphite: #333333;
+    --black: #111312;
+    /* Derivados */
+    --sand: #f1e6d7;
+    --sand-2: var(--beige);
+    --stone: var(--taupe);
+    --cream: #faf6f0;
+    --ink: var(--graphite);
+    --ink-soft: #5e5650;
+    --accent: var(--burgundy);
+    --accent-ink: var(--burgundy);
     --wa: #25d366;
     --radius: 22px;
     --font: "Gotham Rounded", "Nunito", "Varela Round", system-ui, sans-serif;
@@ -130,7 +138,7 @@
   }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
-  h1, h2, h3 { font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.05; margin: 0; }
+  h1, h2, h3 { color: var(--burgundy); font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.05; margin: 0; }
   h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
   p { margin: 0; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
@@ -138,14 +146,14 @@
 
   .btn {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 26px; border: 1.5px solid var(--ink); border-radius: 6px;
+    padding: 14px 26px; border: 1.5px solid var(--burgundy); border-radius: 6px;
     font: 700 .78rem/1 var(--font); letter-spacing: .1em; text-transform: uppercase;
-    text-decoration: none; color: var(--ink); background: transparent;
+    text-decoration: none; color: var(--burgundy); background: transparent;
     transition: background .2s, color .2s;
   }
-  .btn:hover { background: var(--ink); color: var(--cream); }
-  .btn--solid { background: var(--ink); color: var(--cream); }
-  .btn--solid:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+  .btn:hover { background: var(--burgundy); color: var(--cream); }
+  .btn--solid { background: var(--burgundy); color: var(--cream); }
+  .btn--solid:hover { background: var(--black); border-color: var(--black); }
   .btn svg { width: 18px; height: 18px; }
 
   /* Placeholder de foto: se ve el degradado hasta que exista el archivo */
@@ -169,8 +177,9 @@
   .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; }
   .nav ul a { font-size: .82rem; font-weight: 600; text-decoration: none; color: var(--ink-soft); }
   .nav ul a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
-  .logo { font-weight: 800; font-size: 1.6rem; letter-spacing: .01em; text-decoration: none; }
-  .logo span { color: var(--accent); }
+  .logo { display: block; text-decoration: none; }
+  .logo img { height: 44px; width: auto; }
+  footer .logo img { height: 96px; }
   .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 14px; }
   .nav-right .social { display: flex; gap: 12px; }
   .nav-right .social a { display: grid; place-items: center; width: 22px; height: 22px; color: var(--ink-soft); }
@@ -197,7 +206,7 @@
     font-weight: 900; text-transform: uppercase; font-size: clamp(3.4rem, 9vw, 7.5rem); line-height: 1.05;
     color: var(--stone); white-space: nowrap;
   }
-  .marquee-track svg { width: .55em; height: .55em; color: var(--accent); flex: none; }
+  .marquee-track svg { width: .55em; height: .55em; color: var(--burgundy); flex: none; }
   @keyframes scroll { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
@@ -223,9 +232,10 @@
   .service .more { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); }
 
   /* ---- Steps ---- */
-  .steps { background: var(--sand-2); padding: 96px 0; }
+  .steps { background: var(--burgundy); padding: 96px 0; }
+  .steps .section-head h2 { color: var(--beige); }
   .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .step { background: var(--sand); border-radius: var(--radius); padding: 30px 28px 34px; }
+  .step { background: var(--cream); border-radius: var(--radius); padding: 30px 28px 34px; }
   .step .eyebrow { color: var(--stone); }
   .step h3 { font-size: 1.3rem; margin-bottom: 12px; }
   .step p { font-size: .9rem; color: var(--ink-soft); }
@@ -237,7 +247,7 @@
   .about-copy p { color: var(--ink-soft); margin: 20px 0 28px; }
   .checks { list-style: none; padding: 0; margin: 0 0 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; }
   .checks li { position: relative; padding-left: 18px; font-size: .88rem; }
-  .checks li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+  .checks li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--burgundy); }
   .stats { display: flex; gap: 40px; margin-bottom: 34px; }
   .stats strong { display: block; font-size: 2.2rem; font-weight: 900; line-height: 1; }
   .stats span { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); }
@@ -275,13 +285,12 @@
   .map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; filter: grayscale(.6) sepia(.15); }
 
   /* ---- Footer ---- */
-  footer { background: var(--ink); color: var(--sand); padding: 60px 0 34px; font-size: .85rem; }
+  footer { background: var(--burgundy); color: var(--beige); padding: 60px 0 34px; font-size: .85rem; }
   .foot { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
-  footer .logo { color: var(--cream); }
   footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-  footer a { text-decoration: none; color: var(--sand); opacity: .85; }
+  footer a { text-decoration: none; color: var(--beige); opacity: .85; }
   footer a:hover { opacity: 1; }
-  .legal { margin-top: 44px; padding-top: 22px; border-top: 1px solid #3a3733; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; opacity: .6; font-size: .75rem; }
+  .legal { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(232,212,187,.2); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; opacity: .6; font-size: .75rem; }
 
   /* ---- WhatsApp flotante ---- */
   .wa-float {
@@ -341,7 +350,7 @@
       <li><a href="#preguntas">FAQ</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <a class="logo" href="#inicio" aria-label="Activa'M, inicio">ACTIVA'<span>M</span></a>
+    <a class="logo" href="#inicio"><img src="img/logotipo-burdeos.png" alt="Activa'M · Entrenament personal &amp; rehabilitació" width="1200" height="243"></a>
     <div class="nav-right">
       <div class="social">
         <a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
@@ -579,7 +588,7 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <a class="logo" href="#inicio">ACTIVA'<span>M</span></a>
+        <a class="logo" href="#inicio"><img src="img/logo-beige.png" alt="Activa'M"  width="1200" height="679"></a>
         <p style="margin-top:10px;max-width:280px;opacity:.75">Entrenamiento personal, rehabilitación y nutrición en Sant Andreu desde 2013.</p>
       </div>
       <ul>
