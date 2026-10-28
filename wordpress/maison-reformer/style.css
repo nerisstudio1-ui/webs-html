@@ -3,7 +3,7 @@ Theme Name: Maison Reformer
 Theme URI: https://maisonreformer.com
 Author: Neris Studio
 Description: Tema a medida para Maison Reformer, equipamiento de Pilates en madera natural. Compatible con WooCommerce. Incluye importador de contenido en Apariencia → Maison Reformer.
-Version: 1.7.0
+Version: 1.8.0
 Requires at least: 6.2
 Requires PHP: 7.4
 WC requires at least: 8.0
@@ -756,6 +756,21 @@ strong, b { font-weight: 500; }
   .hero img.hero-img { aspect-ratio: 1491 / 1024; object-position: 50% 50%; }
 }
 .scroll-cue { display: none; }
+
+/* v9 · Móvil: sin bloque marrón, el texto va encima de la foto */
+@media (max-width: 760px) {
+  .hero { background: transparent; display: block; }
+  .hero::after { display: block; background: linear-gradient(0deg, rgba(35, 26, 19, .72) 0%, rgba(35, 26, 19, .35) 45%, rgba(35, 26, 19, 0) 75%); }
+  .hero-text { position: absolute; inset: 0; z-index: 1; justify-content: flex-end; padding: 0 var(--gutter) 22px; }
+  .hero .hero-eyebrow { font-size: 9px; margin-bottom: 8px; }
+  .hero h1 { font-size: clamp(28px, 7.4vw, 40px); }
+  .hero .hero-lead { font-size: 12px; line-height: 1.6; margin: 10px 0 14px; max-width: 420px; }
+  .hero-actions .btn { height: 40px; padding: 0 18px; font-size: 9.5px; }
+}
+@media (max-width: 480px) {
+  .hero .hero-lead { display: none; }
+  .hero-actions { margin-top: 14px; }
+}
 
 /* =========================================================================
    WordPress
