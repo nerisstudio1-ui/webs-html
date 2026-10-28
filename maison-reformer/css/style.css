@@ -717,3 +717,9 @@ strong, b { font-weight: 500; }
   .statement-text { font-size: 24px; }
   .spotlight-copy .big-title { font-size: 46px; }
 }
+
+/* v6 · Catálogo con fotos más grandes: 3 por fila */
+.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 24px; }
+.card .meta .name { font-size: 11px; }
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 14px; } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }

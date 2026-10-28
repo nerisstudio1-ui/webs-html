@@ -115,6 +115,33 @@
   enhanceQty(document);
   if (window.jQuery) window.jQuery(document.body).on("updated_cart_totals", function () { enhanceQty(document); });
 
+  /* Ficha sin precio: elegir color y cantidad para pedir presupuesto */
+  $$("[data-quote-form]").forEach(function (form) {
+    var label = $("[data-quote-color]", form);
+    var link = $("[data-quote-link]", form);
+    var qty = $("[data-quote-qty]", form);
+    function color() {
+      var on = $('[data-quote-swatch][aria-pressed="true"]', form);
+      return on ? on.getAttribute("data-quote-swatch") : "";
+    }
+    function update() {
+      var n = Math.max(1, parseInt(qty && qty.value, 10) || 1);
+      var subject = "Presupuesto · " + form.getAttribute("data-product") + (color() ? " (" + color() + ")" : "") + " × " + n;
+      var url = new URL(form.getAttribute("data-url"), location.href);
+      url.searchParams.set("asunto", subject);
+      link.href = url.toString();
+    }
+    $$("[data-quote-swatch]", form).forEach(function (b) {
+      b.addEventListener("click", function () {
+        $$("[data-quote-swatch]", form).forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        if (label) label.textContent = b.getAttribute("data-quote-swatch");
+        update();
+      });
+    });
+    if (qty) { qty.addEventListener("change", update); qty.addEventListener("input", update); }
+    update();
+  });
+
   /* Selectores de variación como muestras de color */
   var colors = window.MAISON_SWATCHES || {};
   function slug(s) {

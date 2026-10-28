@@ -3,7 +3,7 @@ Theme Name: Maison Reformer
 Theme URI: https://maisonreformer.com
 Author: Neris Studio
 Description: Tema a medida para Maison Reformer, equipamiento de Pilates en madera natural. Compatible con WooCommerce. Incluye importador de contenido en Apariencia → Maison Reformer.
-Version: 1.4.0
+Version: 1.5.0
 Requires at least: 6.2
 Requires PHP: 7.4
 WC requires at least: 8.0
@@ -731,6 +731,12 @@ strong, b { font-weight: 500; }
   .spotlight-copy .big-title { font-size: 46px; }
 }
 
+/* v6 · Catálogo con fotos más grandes: 3 por fila */
+.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 24px; }
+.card .meta .name { font-size: 11px; }
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 14px; } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
 /* =========================================================================
    WordPress
    ========================================================================= */
@@ -849,7 +855,27 @@ strong, b { font-weight: 500; }
 .single-product .woocommerce-variation-availability { font-size: 12px; }
 .swatches.static .swatch { cursor: default; }
 .swatch:disabled { opacity: .35; cursor: not-allowed; }
-.quote-btn { margin-top: 24px; }
+.quote-row { display: flex; gap: 12px; margin-top: 24px; }
+.quote-row .btn { flex: 1; }
+.quote-form .swatch { cursor: pointer; }
+
+/* Catálogo: fotos grandes, 3 por fila (refuerzo frente a los estilos de WooCommerce) */
+.woocommerce ul.products, .woocommerce-page ul.products { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 56px 24px !important; }
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product,
+.woocommerce ul.products[class*="columns-"] li.product, .woocommerce-page ul.products[class*="columns-"] li.product {
+  width: 100% !important; max-width: none !important; min-width: 0; float: none !important; margin: 0 !important; clear: none !important;
+  display: block !important; padding: 0 !important; gap: 0 !important; grid-template-columns: none !important;
+}
+.woocommerce ul.products li.product > a, .woocommerce ul.products li.product .woocommerce-LoopProduct-link { display: block !important; width: 100% !important; }
+.woocommerce ul.products li.product a img { width: 100% !important; max-width: none !important; height: auto !important; aspect-ratio: 4 / 3 !important; object-fit: cover; margin-bottom: 18px !important; }
+.woocommerce ul.products li.product .woocommerce-loop-product__title { font-size: 11px !important; letter-spacing: var(--caps); }
+.woocommerce ul.products li.product .loop-cat, .woocommerce ul.products li.product .price { font-size: 12px !important; letter-spacing: .02em; }
+@media (max-width: 900px) {
+  .woocommerce ul.products, .woocommerce-page ul.products { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 36px 14px !important; }
+}
+@media (max-width: 560px) {
+  .woocommerce ul.products, .woocommerce-page ul.products { grid-template-columns: 1fr !important; }
+}
 .single-product .acc .body p { margin: 0 0 10px; }
 .single-product .related, .single-product .upsells { grid-column: 1 / -1; padding: 90px var(--gutter); }
 .single-product .related > h2, .single-product .upsells > h2 { font-family: var(--serif); font-weight: 200; font-size: 26px; text-align: center; margin: 0 0 34px; color: var(--ink-soft); }

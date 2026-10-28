@@ -114,19 +114,33 @@ function maison_maybe_quote_mode() {
 
 function maison_quote_button() {
 	global $product;
-	$colors = maison_product_colors( $product );
+	$colors   = maison_product_colors( $product );
+	$defaults = $product->get_default_attributes();
+	$current  = isset( $defaults['color'] ) && in_array( $defaults['color'], $colors, true ) ? $defaults['color'] : ( $colors ? $colors[0] : '' );
+
+	echo '<div class="quote-form" data-quote-form data-product="' . esc_attr( $product->get_name() ) . '" data-url="' . esc_url( maison_page_url( 'contacto' ) ) . '">';
 	if ( $colors ) {
-		echo '<div class="label">' . esc_html__( 'Colores disponibles', 'maison' ) . '</div><div class="swatches static">';
+		echo '<div class="label">' . esc_html__( 'Color', 'maison' ) . ': <span data-quote-color>' . esc_html( $current ) . '</span></div>';
+		echo '<div class="swatches" role="group" aria-label="' . esc_attr__( 'Color de tapizado', 'maison' ) . '">';
 		foreach ( $colors as $color ) {
-			printf( '<span class="swatch"><i style="background:%s"></i>%s</span>', esc_attr( maison_swatch_color( $color ) ), esc_html( $color ) );
+			printf(
+				'<button type="button" class="swatch" data-quote-swatch="%1$s" aria-pressed="%2$s"><i style="background:%3$s"></i>%4$s</button>',
+				esc_attr( $color ),
+				$color === $current ? 'true' : 'false',
+				esc_attr( maison_swatch_color( $color ) ),
+				esc_html( $color )
+			);
 		}
 		echo '</div>';
 	}
+	echo '<div class="quote-row">';
+	echo '<div class="quantity"><input type="number" class="input-text qty text" value="1" min="1" step="1" inputmode="numeric" aria-label="' . esc_attr__( 'Cantidad', 'maison' ) . '" data-quote-qty></div>';
 	printf(
-		'<a class="btn btn-block quote-btn" href="%s">%s</a>',
+		'<a class="btn quote-btn" data-quote-link href="%s">%s</a>',
 		esc_url( maison_contact_url( sprintf( /* translators: %s: producto */ __( 'Presupuesto · %s', 'maison' ), $product->get_name() ) ) ),
 		esc_html__( 'Solicitar presupuesto', 'maison' )
 	);
+	echo '</div></div>';
 }
 
 /** Colores de tapizado del producto (atributo "Color"). */
@@ -298,8 +312,8 @@ function maison_related_heading() {
 
 add_filter( 'woocommerce_output_related_products_args', 'maison_related_args' );
 function maison_related_args( $args ) {
-	$args['posts_per_page'] = 4;
-	$args['columns']        = 4;
+	$args['posts_per_page'] = 3;
+	$args['columns']        = 3;
 	return $args;
 }
 

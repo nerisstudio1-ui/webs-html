@@ -133,7 +133,7 @@
 
     var related = $("[data-related]");
     if (related) {
-      related.innerHTML = products.filter(function (x) { return x.id !== p.id; }).slice(0, 4).map(card).join("");
+      related.innerHTML = products.filter(function (x) { return x.id !== p.id; }).slice(0, 3).map(card).join("");
     }
 
     var slide = 0;

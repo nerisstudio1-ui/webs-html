@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MAISON_VERSION', '1.4.0' );
+define( 'MAISON_VERSION', '1.5.0' );
 define( 'MAISON_DIR', get_template_directory() );
 define( 'MAISON_URI', get_template_directory_uri() );
 
