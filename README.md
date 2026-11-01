@@ -7,10 +7,11 @@ cierra con la oferta, que entra como una tarjeta más de la cinta y se endereza.
 Duración 12 s · 30 fps · sin audio.
 
 ```
-0,0 – 1,3 s   el gancho: 299 € a pantalla completa
-1,3 – 7,8 s   nueve webs suben por la cinta (la prueba)
+0,0 – 1,3 s   el gancho se monta solo y el 299 € entra de golpe
+1,3 – 7,8 s   nueve webs suben por la cinta, scrolleando (la prueba)
+     ~4,9 s   una de ellas se pone de frente un momento
 7,8 – 8,9 s   la cinta acelera y las saca de cuadro
-7,8 – 12,0 s  cierre: 299 €, qué incluye y llamada a la acción
+7,8 – 12,0 s  cierre: aterriza con rebote, 299 € y llamada a la acción
 ```
 
 ## Qué hay aquí
@@ -73,6 +74,16 @@ ffmpeg se busca solo; si tienes uno concreto: `FFMPEG=/ruta/a/ffmpeg npm run ren
 - **Movimiento.** Una sola cinta. El gancho, las webs y la oferta van todos
   sobre ella; la oferta es el último objeto de la cinta y por eso frena y se
   gira en vez de aparecer de la nada.
+- **Las webs están vivas.** Cada tarjeta es una ventana de 760 px sobre una
+  página de 900, y la página se desplaza dentro de su tarjeta mientras cruza
+  el cuadro. No son capturas quietas: se ven como pantallas en uso, y además
+  da tiempo a enseñar más de cada web.
+- **Destello.** Una banda de luz cruza cada tarjeta al pasar por el centro,
+  en modo `screen`, para que se lean como objetos físicos y no como recortes
+  pegados sobre el azul.
+- **Momento héroe.** Hacia los 4,9 s una de las webs se endereza, se acerca a
+  cámara y vuelve a la fila. Rompe el metrónomo de la cinta y da un respiro
+  antes del cierre. Se elige con la constante `HERO` en `src/ad.js`.
 
 ## Cambiar cosas
 

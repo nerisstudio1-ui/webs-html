@@ -43,6 +43,19 @@ const AD = (() => {
   const OVERLAP = 0.64;   // centre-to-centre gap as a fraction of card height
   const SWEEP_TOP = 1.55; // speed the belt accelerates to on the way out
 
+  /* The card is a window onto a taller page. Showing 760 of the site's 900
+     authored pixels leaves 140 to travel, so each card scrolls its own site as
+     it crosses the frame: the mock sites read as live pages rather than
+     screenshots, and the viewer sees more of each one. */
+  const SITE_H = 900;
+  const VIEW_H = 760;
+
+  /* One card squares up to the camera as it passes the middle — a beat that
+     says "look at this one" and breaks the metronome of the belt. */
+  const HERO = 3;         // index into the site list (cadencia)
+  const HERO_HOLD = 0.46; // seconds either side of centre
+  let heroAt = 0;         // solved in buildCards once the speed is known
+
   /* Cruise speed is solved rather than fixed, so the ninth card reaches the
      middle of the frame exactly as the flow ends — on every aspect ratio. */
   let cruise = 0;
@@ -66,7 +79,21 @@ const AD = (() => {
   const easeOutQuad = (u) => u * (2 - u);
   const easeOutCubic = (u) => 1 - Math.pow(1 - u, 3);
   const easeInCubic = (u) => u * u * u;
+  const easeInOut = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+  /* Overshoots its target and settles — what makes the offer land instead of
+     arrive. Kept mild on purpose; a big bounce reads as a template. */
+  const easeOutBack = (u, s) => {
+    const c1 = s == null ? 1.10 : s;
+    const c3 = c1 + 1;
+    const p = u - 1;
+    return 1 + c3 * p * p * p + c1 * p * p;
+  };
   const span = (t, a, b) => clamp01((t - a) / (b - a));
+  /* 0 at the edges, 1 in the middle — for beats that rise and fall. */
+  const bump = (t, centre, half) => {
+    const d = Math.abs(t - centre) / half;
+    return d >= 1 ? 0 : easeInOut(1 - d);
+  };
 
   let stage, conveyor, offer, hook, capEl;
   let fmt, W, H;
@@ -77,12 +104,48 @@ const AD = (() => {
 
   /* ---- the hook -------------------------------------------------------- */
 
+  /* Each part is animated separately off the clock rather than arriving as one
+     block: the eye gets led down to the number instead of being handed the
+     whole card at once. Elements are cached because seek() runs 360 times a
+     render and querying every frame is wasted work. */
+  let hookParts = null;
+
   function buildHook() {
     hook.innerHTML = `
       <div class="l1"><span>Tu web profesional</span><span><i>por solo</i></span></div>
       <div class="amount">299&thinsp;€</div>
       <div class="rule"></div>
       <div class="l3">Diseño a medida y en marcha en <b>7 días</b>.</div>`;
+
+    hookParts = {
+      lines: Array.from(hook.querySelectorAll('.l1 span')),
+      amount: hook.querySelector('.amount'),
+      rule: hook.querySelector('.rule'),
+      sub: hook.querySelector('.l3'),
+    };
+  }
+
+  function drawHook(t) {
+    const p = hookParts;
+    if (!p) return;
+
+    p.lines.forEach((el, i) => {
+      const u = easeOutCubic(span(t, 0.06 + i * 0.11, 0.56 + i * 0.11));
+      el.style.opacity = u.toFixed(3);
+      el.style.transform = `translateY(${((1 - u) * H * 0.030).toFixed(1)}px)`;
+    });
+
+    // The number punches in slightly oversized and settles.
+    const au = span(t, 0.26, 0.86);
+    const ae = easeOutBack(au, 1.25);
+    p.amount.style.opacity = clamp01(au * 2.2).toFixed(3);
+    p.amount.style.transform = `scale(${(0.86 + 0.14 * ae).toFixed(4)})`;
+
+    p.rule.style.transform = `scaleX(${easeOutCubic(span(t, 0.46, 1.00)).toFixed(4)})`;
+
+    const su = easeOutCubic(span(t, 0.62, 1.12));
+    p.sub.style.opacity = su.toFixed(3);
+    p.sub.style.transform = `translateY(${((1 - su) * H * 0.018).toFixed(1)}px)`;
   }
 
   /* ---- conveyor -------------------------------------------------------- */
@@ -96,7 +159,7 @@ const AD = (() => {
       const wf = CARD_W + ((i * 37) % 5) * 0.016;
       const cw = W * wf;
       const scale = cw / 1440;
-      const ch = 900 * scale;
+      const ch = VIEW_H * scale;
 
       const el = document.createElement('div');
       el.className = 'ad-card';
@@ -105,14 +168,24 @@ const AD = (() => {
 
       const inner = document.createElement('div');
       inner.className = 'ad-site ' + site.id;
-      inner.style.transform = `scale(${scale})`;
       inner.innerHTML = site.html;
       el.appendChild(inner);
+
+      // Specular band that crosses the card as it passes — the cue that these
+      // are physical objects catching light, not flat images pasted on blue.
+      const glare = document.createElement('div');
+      glare.className = 'glare';
+      el.appendChild(glare);
+
       conveyor.appendChild(el);
 
       return {
         el,
+        inner,
+        glare,
         h: ch,
+        scale,
+        hero: i === HERO,
         caption: CAPTIONS[site.id] || site.id,
         dx: (((i * 53) % 7) - 3) * W * 0.028,
         rz: -7.4 + (((i * 29) % 5) - 2) * 0.55,
@@ -128,6 +201,9 @@ const AD = (() => {
     first = H + cardH * 1.05;
     const distance = (first - H * 0.5) + (cards.length - 1) * slot;
     cruise = distance / (T.flowEnd - T.beltStart);
+
+    // When the hero card's centre crosses the middle of the frame.
+    heroAt = T.beltStart + (first + HERO * slot - H * 0.5) / cruise;
 
     // Style tags for the mock sites. init() can be called again to switch
     // format in place, so this is injected once rather than once per call.
@@ -176,15 +252,14 @@ const AD = (() => {
   function seek(t) {
     t = Math.max(0, Math.min(DURATION, t));
 
-    /* Hook: holds, then accelerates off the top so it reads as the first thing
-       on the belt rather than a title card bolted to the front. */
+    /* Hook: assembles, holds, then accelerates off the top so it reads as the
+       first thing on the belt rather than a title card bolted to the front. */
     const hookGone = t >= T.hookGone;
     hook.style.visibility = hookGone ? 'hidden' : 'visible';
     if (!hookGone) {
+      drawHook(t);
       const hu = span(t, T.hookOut, T.hookGone);
       hook.style.transform = `translate3d(0, ${(-easeInCubic(hu) * H * 1.25).toFixed(1)}px, 0)`;
-      const r = hook.querySelector('.rule');
-      if (r) r.style.transform = `scaleX(${easeOutCubic(span(t, 0.18, 0.75)).toFixed(4)})`;
     }
 
     const belt = beltDistance(t);
@@ -203,9 +278,29 @@ const AD = (() => {
       c.el.style.visibility = visible ? 'visible' : 'hidden';
       if (!visible) continue;
 
+      // How far this card has crossed the frame: 0 entering at the bottom,
+      // 1 leaving at the top. Drives the page scroll and the light band.
+      const p = clamp01((H + c.h / 2 - centre) / (H + c.h));
+
+      // The site scrolls inside its own window as the card travels.
+      c.inner.style.transform =
+        `scale(${c.scale}) translateY(${(-(SITE_H - VIEW_H) * p).toFixed(1)}px)`;
+
+      // The band sweeps across while the card is around the middle of frame.
+      const g = -115 + 230 * easeInOut(span(p, 0.22, 0.70));
+      c.glare.style.transform = `translateX(${g.toFixed(1)}%)`;
+
+      // Hero beat: this one straightens up and steps toward the camera as it
+      // passes, then falls back into the rhythm of the belt.
+      const h = c.hero ? bump(t, heroAt, HERO_HOLD) : 0;
+      const k = 1 - h;
+
       c.el.style.transform =
-        `translate3d(calc(-50% + ${c.dx.toFixed(1)}px), ${top.toFixed(1)}px, 0)` +
-        ` rotateZ(${c.rz}deg) rotateY(${c.ry}deg) rotateX(${c.rx}deg)`;
+        `translate3d(calc(-50% + ${(c.dx * k).toFixed(1)}px), ${top.toFixed(1)}px, 0)` +
+        ` scale(${(1 + 0.065 * h).toFixed(4)})` +
+        ` rotateZ(${(c.rz * k).toFixed(2)}deg)` +
+        ` rotateY(${(c.ry * k).toFixed(2)}deg)` +
+        ` rotateX(${(c.rx * k).toFixed(2)}deg)`;
 
       const d = Math.abs(centre - H * 0.5);
       if (d < nearestDist) { nearestDist = d; nearest = c; }
@@ -214,10 +309,12 @@ const AD = (() => {
     /* The offer brakes from belt speed to a standstill and untilts as it
        arrives — the last thing on the conveyor turns to face you. */
     const pu = span(t, T.plateIn, T.plateSet);
-    const travel = easeOutQuad(pu);
+    // Overshoots the centre by a hair and settles back: the offer lands rather
+    // than drifts to a stop.
+    const travel = pu >= 1 ? 1 : easeOutBack(easeOutQuad(pu), 0.9);
     const top = plate.start + (plate.end - plate.start) * travel;
     const tilt = 1 - easeOutCubic(span(t, T.plateIn + 0.4, T.plateSet));
-    const lift = 1 - 0.06 * (1 - travel);
+    const lift = 1 - 0.06 * (1 - clamp01(travel));
 
     offer.style.visibility = t >= T.plateIn ? 'visible' : 'hidden';
     offer.style.transform =

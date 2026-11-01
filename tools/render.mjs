@@ -9,7 +9,7 @@
 import { launch } from './browser.mjs';
 import { spawn } from 'node:child_process';
 import { mkdir, rm, readdir } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -25,14 +25,29 @@ const FORMATS = {
   '1x1':  { w: 1080, h: 1080, label: 'feed-1x1' },
 };
 
+/* Find an ffmpeg. A system one is preferred; failing that, the binary that
+   ships with imageio-ffmpeg, whose path moves with the Python version, so it
+   is globbed rather than hardcoded. */
 function ffmpegPath() {
   if (process.env.FFMPEG) return process.env.FFMPEG;
-  const candidates = [
-    '/usr/local/lib/python3.11/dist-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2',
-    '/usr/bin/ffmpeg',
-    '/usr/local/bin/ffmpeg',
-  ];
-  return candidates.find((p) => existsSync(p)) || 'ffmpeg';
+
+  for (const p of ['/usr/bin/ffmpeg', '/usr/local/bin/ffmpeg']) {
+    if (existsSync(p)) return p;
+  }
+
+  const roots = ['/usr/local/lib', '/usr/lib'];
+  for (const root of roots) {
+    if (!existsSync(root)) continue;
+    for (const py of readdirSync(root).filter((d) => d.startsWith('python'))) {
+      for (const pkgs of ['site-packages', 'dist-packages']) {
+        const dir = path.join(root, py, pkgs, 'imageio_ffmpeg', 'binaries');
+        if (!existsSync(dir)) continue;
+        const bin = readdirSync(dir).find((f) => f.startsWith('ffmpeg-'));
+        if (bin) return path.join(dir, bin);
+      }
+    }
+  }
+  return 'ffmpeg';
 }
 
 function run(cmd, args) {

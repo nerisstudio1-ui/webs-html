@@ -108,16 +108,43 @@
   border-radius: 16px;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
   pointer-events: none;
+  z-index: 4;
 }
 
-/* The mock site is authored at a real desktop size and scaled down bodily,
-   so its internal proportions and type sizes stay truthful. */
+/* Specular band, swept across by JS as the card crosses the frame. Screen
+   blending keeps it reading as light on glass rather than white paint, and it
+   is inset beyond the card so the band is fully off-screen at either end. */
+/* Full card width so a translateX of ±110% carries the band cleanly on and off
+   it, and taller than the card so the diagonal never clips at the corners. */
+.ad-card .glare {
+  position: absolute;
+  inset: -35% 0;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  will-change: transform;
+  background: linear-gradient(
+    102deg,
+    rgba(255, 255, 255, 0) 34%,
+    rgba(255, 255, 255, 0.10) 43%,
+    rgba(255, 255, 255, 0.46) 50%,
+    rgba(255, 255, 255, 0.10) 57%,
+    rgba(255, 255, 255, 0) 66%
+  );
+}
+
+/* The mock site is authored at a real desktop size and scaled down bodily, so
+   its internal proportions and type sizes stay truthful. It is taller than the
+   card on purpose: the card is a window, and JS scrolls the page inside it. */
 .ad-site {
   width: 1440px;
   height: 900px;
   transform-origin: 0 0;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
+  will-change: transform;
 }
 
 /* --- the hook ------------------------------------------------------------
@@ -146,8 +173,13 @@
   letter-spacing: -0.025em;
 }
 
-#hook .l1 span { display: block; }
+/* Opacity and transform are written per frame by drawHook(); the initial
+   values here keep frame 0 from flashing the assembled state. */
+#hook .l1 span { display: block; opacity: 0; }
 #hook .l1 i { font-style: italic; }
+#hook .amount,
+#hook .l3 { opacity: 0; }
+#hook .amount { transform-origin: 0 50%; }
 
 #hook .amount {
   font-weight: 900;
