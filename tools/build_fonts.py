@@ -45,6 +45,10 @@ FACES = [
     ("Outfit-Bold.ttf", "Outfit", 700, "normal"),
     ("Lora-Regular.ttf", "Lora", 400, "normal"),
     ("Lora-Bold.ttf", "Lora", 700, "normal"),
+    # Handwriting, for the script annotations the reference sites use.
+    ("NothingYouCouldDo-Regular.ttf", "Hand", 400, "normal"),
+    # A high-contrast display serif for the oversized headlines.
+    ("Gloock-Regular.ttf", "Gloock", 400, "normal"),
     ("DMMono-Regular.ttf", "DM Mono", 400, "normal"),
 ]
 
