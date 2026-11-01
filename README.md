@@ -4,14 +4,14 @@ Anuncio para Facebook hecho **en HTML** y exportado a MP4. Arranca con el precio
 a pantalla completa, pasa nueve webs inclinadas en 3D sobre azul eléctrico, y
 cierra con la oferta, que entra como una tarjeta más de la cinta y se endereza.
 
-Duración 12 s · 30 fps · sin audio.
+Duración 14 s · 30 fps · sin audio.
 
 ```
-0,0 – 1,3 s   el gancho se monta solo y el 299 € entra de golpe
-1,3 – 7,8 s   nueve webs suben por la cinta, scrolleando (la prueba)
-     ~4,9 s   una de ellas se pone de frente un momento
-7,8 – 8,9 s   la cinta acelera y las saca de cuadro
-7,8 – 12,0 s  cierre: aterriza con rebote, 299 € y llamada a la acción
+0,0 – 1,3 s   el gancho se monta solo: 3 plazas, TU WEB PROFESIONAL, desde 299 €
+1,3 – 8,2 s   ocho webs suben por la cinta, scrolleando (la prueba)
+     ~5,2 s   una de ellas se pone de frente un momento
+8,2 – 9,3 s   la cinta acelera y las saca de cuadro
+8,2 – 14,0 s  cierre: qué incluye, qué no, y el botón de WhatsApp
 ```
 
 ## Qué hay aquí
@@ -65,9 +65,9 @@ ffmpeg se busca solo; si tienes uno concreto: `FFMPEG=/ruta/a/ffmpeg npm run ren
 
 ## Diseño
 
-- **Color.** Azul eléctrico `#0B1BC4` como fondo de todo el vídeo, con caída a
-  `#061073` en las esquinas. Blanco para las tarjetas. Un único color chillón,
-  el lima `#D6FF3D`, y se gasta entero en el precio.
+- **Color.** Sacado de nerisstudio.com para que el anuncio y la web vayan a
+  juego: navy `#0A1C45` de fondo, periwinkle `#8097FA` para el precio, verde
+  WhatsApp `#1BD85B` para la llamada a la acción y blanco para las tarjetas.
 - **Tipografía.** Montserrat en todo el anuncio: 900 para el precio, 700 para
   los titulares, 700 cursiva para las frases que venden, 500 para el texto
   corrido. Geist Mono solo en las etiquetas pequeñas de las esquinas.
@@ -98,14 +98,16 @@ llegue al centro justo al acabar la parte de muestra.
 
 ## Dos avisos antes de publicarlo
 
-**Las webs son inventadas.** Casa Bruma, Volta, Ferra y las demás no existen;
-están hechas para el anuncio. Así el vídeo dice «hacemos webs así» sin
+**Las webs son inventadas.** Flow, Casa Olmo, Piel, Brasa y las demás no
+existen; están hechas para el anuncio, siguiendo el lenguaje visual del
+porfolio de nerisstudio.com (fondo crema, foto grande, tipografía de display
+encima, un bloque de color terroso). Así el vídeo dice «hacemos webs así» sin
 atribuir ninguna a un cliente concreto. Si las cambias por trabajos reales,
 pide permiso a cada cliente antes de enseñarlos.
 
 **Las imágenes están dibujadas por código, no son fotos.** En el entorno donde
 se construyó esto no hay acceso a bancos de imágenes, así que cada escena —la
-taza de café, la pista de pádel, el escenario, el atardecer— está pintada en
+taza de café, la piscina, el paisaje, los botes de cosmética— está pintada en
 canvas con `src/art.js`. Quedan bien y hacen que cada web se distinga, pero son
 ilustraciones. Si quieres fotografías de verdad, hay que meter archivos en el
 proyecto y sustituir las llamadas a `ART.bg(...)` en `src/sites.js` por rutas a

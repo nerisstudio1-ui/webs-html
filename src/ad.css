@@ -3,12 +3,11 @@
 
    Design plan
    -----------
-   Colour   ground #0C0C10 graphite, lifted to #1A1A20 behind the belt ·
-            paper #FFFFFF for the cards and the offer · one blue, at two
-            values: #5C8BFF on the dark ground, #0B1BC4 on white. A dark
-            ground makes the mock sites read as lit screens, which is the
-            whole point of a reel of websites; a flat colour competed with
-            them instead.
+   Colour   Taken from nerisstudio.com so the ad and the site are the same
+            brand: navy #0A1C45 ground, periwinkle #8097FA for the price,
+            WhatsApp green #1BD85B for the call to action, blush #F2E1D9 and
+            paper #FFFFFF for the cards. A dark navy makes the mock sites read
+            as lit screens, which is the whole point of a reel of websites.
    Type     Montserrat throughout — 900 for the hook and the price, 700 for
             headings, 700 italic for the phrases that do the selling, 500 for
             running text. Geist Mono only for the pinned micro-labels.
@@ -27,10 +26,14 @@
 :root {
   --paper: #ffffff;
   --ink: #0a0d1f;
-  --ground: #0c0c10;      /* the frame */
-  --ground-lift: #1c1c24; /* soft pool of light behind the belt */
-  --blue: #0b1bc4;        /* accent on white — the offer plate */
-  --blue-bright: #5c8bff; /* the same hue raised to carry on the dark ground */
+  /* Sampled from nerisstudio.com. */
+  --ground: #0a1c45;        /* the frame — the studio's navy */
+  --ground-lift: #152b61;   /* pool of light where the belt passes */
+  --blue: #1b2e6b;          /* deep navy for type on white */
+  --blue-bright: #8097fa;   /* periwinkle — the price, on navy */
+  --green: #1bd85b;         /* the WhatsApp button */
+  --green-deep: #0f9c3e;
+  --blush: #f2e1d9;
 
   /* Overwritten by the format the page is loaded with. */
   --W: 1080px;
@@ -71,8 +74,8 @@
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(86% 52% at 50% 44%, var(--ground-lift) 0%, rgba(28, 28, 36, 0) 72%),
-    radial-gradient(70% 40% at 18% 8%, rgba(92, 139, 255, 0.14) 0%, rgba(92, 139, 255, 0) 70%),
+    radial-gradient(86% 54% at 50% 44%, var(--ground-lift) 0%, rgba(21, 43, 97, 0) 72%),
+    radial-gradient(74% 42% at 16% 6%, rgba(128, 151, 250, 0.16) 0%, rgba(128, 151, 250, 0) 70%),
     var(--ground);
 }
 
@@ -99,9 +102,9 @@
      nothing darker to cast onto. The depth comes from the long shadow plus
      the rim light in ::after below. */
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.55),
-    0 24px 44px rgba(0, 0, 0, 0.55),
-    0 80px 120px -30px rgba(0, 0, 0, 0.8);
+    0 2px 6px rgba(2, 8, 26, 0.55),
+    0 24px 44px rgba(2, 8, 26, 0.58),
+    0 80px 120px -30px rgba(1, 5, 18, 0.82);
 }
 
 /* Rim light: a bright hairline along the top edge fading to nothing at the
@@ -139,6 +142,48 @@
   );
 }
 
+/* Browser chrome, as on the mockups on nerisstudio.com: the traffic lights and
+   a menu mark are what make a rectangle read as a website rather than a poster.
+   Sized off the card so it stays in proportion at any format. */
+.ad-chrome {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--chrome);
+  z-index: 2;
+  background: #eceef2;
+  border-bottom: 1px solid rgba(10, 20, 45, 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(var(--chrome) * 0.46);
+}
+
+.ad-chrome .dots { display: flex; gap: calc(var(--chrome) * 0.20); }
+
+.ad-chrome .dots i {
+  width: calc(var(--chrome) * 0.235);
+  height: calc(var(--chrome) * 0.235);
+  border-radius: 50%;
+  background: #cfd4dc;
+}
+
+.ad-chrome .dots i:nth-child(1) { background: #ff5f57; }
+.ad-chrome .dots i:nth-child(2) { background: #febc2e; }
+.ad-chrome .dots i:nth-child(3) { background: #28c840; }
+
+.ad-chrome .menu {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--chrome) * 0.13);
+}
+
+.ad-chrome .menu i {
+  width: calc(var(--chrome) * 0.46);
+  height: calc(var(--chrome) * 0.075);
+  background: #9aa2b1;
+  border-radius: 99px;
+}
+
 /* The mock site is authored at a real desktop size and scaled down bodily, so
    its internal proportions and type sizes stay truthful. It is taller than the
    card on purpose: the card is a window, and JS scrolls the page inside it. */
@@ -173,10 +218,37 @@
 }
 
 #hook .l1 {
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.098);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+/* The availability pill is lifted straight from the site: it is the line that
+   makes the offer feel finite rather than permanent. */
+#hook .plazas {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 0.014);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  padding: calc(var(--u) * 0.013) calc(var(--u) * 0.026);
+  font-size: calc(var(--u) * 0.0215);
   font-weight: 700;
-  font-size: calc(var(--u) * 0.070);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  margin-bottom: calc(var(--u) * 0.012);
+}
+
+#hook .plazas i {
+  width: calc(var(--u) * 0.016);
+  height: calc(var(--u) * 0.016);
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 calc(var(--u) * 0.02) var(--green);
 }
 
 /* Opacity and transform are written per frame by drawHook(); the initial
@@ -189,9 +261,10 @@
 
 #hook .amount {
   font-weight: 900;
-  font-size: calc(var(--u) * 0.295);
-  line-height: 0.88;
-  letter-spacing: -0.05em;
+  font-size: calc(var(--u) * 0.098);
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
   color: var(--blue-bright);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -213,6 +286,13 @@
 }
 
 #hook .l3 b { font-weight: 700; }
+
+/* "desde" rides at the same weight but smaller, so the number still leads. */
+#hook .amount em {
+  font-style: normal;
+  font-size: 0.62em;
+  color: #c3cefd;
+}
 
 /* --- pinned micro-labels ------------------------------------------------ */
 
@@ -253,9 +333,9 @@
   color: var(--ink);
   will-change: transform;
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.55),
-    0 28px 52px rgba(0, 0, 0, 0.58),
-    0 90px 140px -30px rgba(0, 0, 0, 0.85),
+    0 2px 6px rgba(2, 8, 26, 0.55),
+    0 28px 52px rgba(2, 8, 26, 0.6),
+    0 90px 140px -30px rgba(1, 5, 18, 0.88),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: calc(var(--u) * 0.056) calc(var(--u) * 0.054) calc(var(--u) * 0.048);
 }
@@ -299,9 +379,23 @@
   gap: calc(var(--u) * 0.03);
 }
 
-#offer .amount {
+/* Price lockup: "desde" is a label above the number, not a word beside it —
+   set inline it fights the figure for the same line and wins on width. */
+#offer .price { display: flex; flex-direction: column; }
+
+#offer .price .from {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: calc(var(--u) * 0.0145);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8b92a8;
+  margin-bottom: calc(var(--u) * 0.008);
+}
+
+#offer .price .num {
   font-weight: 900;
-  font-size: calc(var(--u) * 0.180);
+  font-size: calc(var(--u) * 0.150);
   line-height: 0.88;
   letter-spacing: -0.05em;
   color: var(--blue);
@@ -311,58 +405,132 @@
 
 #offer .terms {
   text-align: right;
-  font-size: calc(var(--u) * 0.0210);
-  line-height: 1.45;
+  font-size: calc(var(--u) * 0.0205);
+  line-height: 1.4;
   font-weight: 500;
   color: #5b6072;
-  padding-bottom: calc(var(--u) * 0.014);
+  padding-bottom: calc(var(--u) * 0.012);
+  max-width: 11ch;
 }
 
 #offer .terms b { color: var(--ink); font-weight: 700; }
 #offer .terms i { font-style: italic; font-weight: 700; color: var(--ink); }
 
+/* What is and is not included, side by side. Separating them is the honest
+   way to show an exclusion: buried in one list it reads as a gotcha. */
+#offer .cols {
+  display: grid;
+  grid-template-columns: 1.38fr 1fr;
+  gap: calc(var(--u) * 0.030);
+  margin-top: calc(var(--u) * 0.030);
+}
+
+#offer .col.out {
+  border-left: 1px solid rgba(10, 20, 45, 0.14);
+  padding-left: calc(var(--u) * 0.028);
+}
+
+#offer .col h3 {
+  margin: 0 0 calc(var(--u) * 0.014);
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: calc(var(--u) * 0.0145);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+#offer .col.out h3 { color: #8b92a8; }
+
 #offer ul {
   list-style: none;
-  margin: calc(var(--u) * 0.032) 0 0;
+  margin: 0;
   padding: 0;
   display: grid;
-  gap: calc(var(--u) * 0.013);
+  gap: calc(var(--u) * 0.012);
 }
 
 #offer li {
   display: grid;
-  grid-template-columns: calc(var(--u) * 0.024) 1fr;
+  grid-template-columns: calc(var(--u) * 0.022) 1fr;
   align-items: baseline;
-  gap: calc(var(--u) * 0.013);
-  font-size: calc(var(--u) * 0.0240);
+  gap: calc(var(--u) * 0.012);
+  font-size: calc(var(--u) * 0.0225);
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.34;
 }
 
 #offer li i:first-child {
   font-style: normal;
-  color: var(--blue);
+  color: var(--green-deep);
   font-weight: 900;
 }
+
+#offer .col.out li { color: #5b6072; }
+#offer .col.out li i:first-child { color: #b4bac9; }
 
 #offer li b { font-weight: 700; }
 #offer li em { font-style: italic; font-weight: 700; }
 
+/* The studio's own button: WhatsApp green, centred, with the glyph drawn as a
+   mark rather than an icon font so it needs no network. */
 #offer .cta {
-  margin-top: calc(var(--u) * 0.036);
+  margin-top: calc(var(--u) * 0.034);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: calc(var(--u) * 0.02);
-  background: var(--blue);
-  color: var(--paper);
+  justify-content: center;
+  gap: calc(var(--u) * 0.018);
+  background: var(--green);
+  color: #06301a;
   border-radius: 999px;
   padding: calc(var(--u) * 0.026) calc(var(--u) * 0.036);
-  font-size: calc(var(--u) * 0.0280);
+  font-size: calc(var(--u) * 0.0275);
   font-weight: 700;
+  letter-spacing: -0.005em;
 }
 
-#offer .cta .arrow { color: #8fb0ff; font-weight: 900; }
+#offer .cta .wa {
+  width: calc(var(--u) * 0.040);
+  height: calc(var(--u) * 0.040);
+  border-radius: 50%;
+  background: #06301a;
+  position: relative;
+  flex: none;
+}
+
+/* Handset: a rounded bar with a notch, enough to read as the WhatsApp mark at
+   this size without tracing their logo. */
+#offer .cta .wa::before {
+  content: '';
+  position: absolute;
+  left: 28%;
+  top: 24%;
+  width: 44%;
+  height: 52%;
+  border-radius: 22% 22% 30% 30%;
+  background: var(--green);
+}
+
+#offer .cta .wa::after {
+  content: '';
+  position: absolute;
+  left: 22%;
+  bottom: 17%;
+  width: 22%;
+  height: 22%;
+  background: var(--green);
+  border-radius: 0 60% 0 60%;
+}
+
+#offer .foot {
+  margin-top: calc(var(--u) * 0.018);
+  text-align: center;
+  font-size: calc(var(--u) * 0.0185);
+  font-weight: 500;
+  color: #7c8398;
+}
+
+#offer .cta .arrow { color: #eafff1; font-weight: 900; }
 
 /* Staggered reveal inside the plate; driven from JS, not CSS animation, so it
    stays on the deterministic timeline. */

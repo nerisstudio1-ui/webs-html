@@ -421,9 +421,17 @@ const ART = (() => {
   function clinic(ctx, w, h, rand, o) {
     const wall = o.wall || '#e8f1f5';
     const hz = h * 0.70;
-    vgrad(ctx, w, hz, [[0, '#ffffff'], [1, shade(wall, -0.06)]]);
-    ctx.fillStyle = shade(wall, -0.18);
+    vgrad(ctx, w, hz, [[0, '#ffffff'], [1, shade(wall, -0.10)]]);
+    // Floor with a reflected sheen, so the room has a ground rather than a band.
+    const fl = ctx.createLinearGradient(0, hz, 0, h);
+    fl.addColorStop(0, shade(wall, -0.30));
+    fl.addColorStop(0.45, shade(wall, -0.16));
+    fl.addColorStop(1, shade(wall, -0.34));
+    ctx.fillStyle = fl;
     ctx.fillRect(0, hz, w, h - hz);
+    // Corner, to break the flat back wall.
+    ctx.fillStyle = 'rgba(30,60,75,0.07)';
+    ctx.fillRect(0, 0, w * 0.17, hz);
 
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(w * 0.04, h * 0.08, w * 0.36, h * 0.5);
@@ -522,7 +530,191 @@ const ART = (() => {
     ctx.restore();
   }
 
-  const SCENES = { hills, coffee, room, court, dish, stage, facade, knit, clinic, shop };
+  /* Pool water seen from above: caustics are the whole tell. Without the
+     bright wavering net on the surface this is just a blue rectangle. */
+  function water(ctx, w, h, rand, o) {
+    const deep = o.deep || '#0d6f82';
+    const shallow = o.shallow || '#4fc3c9';
+    vgrad(ctx, w, h, [[0, shade(shallow, 0.18)], [0.45, shallow], [1, deep]]);
+
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < 90; i++) {
+      const x = rand() * w;
+      const y = rand() * h;
+      const len = w * (0.05 + rand() * 0.16);
+      const thick = Math.max(1.5, h * (0.004 + rand() * 0.009));
+      ctx.globalAlpha = 0.10 + rand() * 0.26;
+      ctx.strokeStyle = 'rgba(226,255,255,1)';
+      ctx.lineWidth = thick;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      // Each caustic is a short wobbling arc, not a straight line.
+      let px = x, py = y;
+      const steps = 4;
+      for (let k = 1; k <= steps; k++) {
+        px += (len / steps) * (0.6 + rand() * 0.8);
+        py += (rand() - 0.5) * h * 0.035;
+        ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Surface sheen from the top-left, and depth falling away at the bottom.
+    glow(ctx, w * 0.18, h * 0.08, Math.max(w, h) * 0.6, 'rgba(255,255,255,0.30)', 0.8);
+    const dg = ctx.createLinearGradient(0, h * 0.5, 0, h);
+    dg.addColorStop(0, 'rgba(0,30,45,0)');
+    dg.addColorStop(1, 'rgba(0,30,45,0.45)');
+    ctx.fillStyle = dg;
+    ctx.fillRect(0, h * 0.5, w, h * 0.5);
+  }
+
+  /* Rolling hills with cypresses and a farmhouse — the Tuscan postcard. The
+     cypresses are what place it; the same hills without them read as anywhere. */
+  function tuscan(ctx, w, h, rand, o) {
+    vgrad(ctx, w, h, [[0, '#8fb3d4'], [0.30, '#cfd9d8'], [0.46, '#e8dcb6'], [0.52, '#c9c88d']]);
+    glow(ctx, w * 0.74, h * 0.20, h * 0.8, 'rgba(255,238,186,0.95)', 0.85);
+
+    const bands = [
+      { y: 0.50, c: '#b6b273' },
+      { y: 0.60, c: '#93a159' },
+      { y: 0.72, c: '#67813f' },
+      { y: 0.86, c: '#43602c' },
+    ];
+    bands.forEach((band, i) => {
+      ctx.beginPath();
+      ctx.moveTo(0, h);
+      ctx.lineTo(0, h * band.y);
+      const phase = rand() * 5;
+      for (let x = 0; x <= w; x += w / 40) {
+        const k = x / w;
+        const y = h * band.y - Math.sin(k * (2.2 + i * 0.7) + phase) * h * (0.045 - i * 0.006);
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(w, h);
+      ctx.closePath();
+      ctx.fillStyle = band.c;
+      ctx.fill();
+    });
+
+    // Farmhouse on the second ridge.
+    const fx = w * (0.22 + rand() * 0.2), fy = h * 0.58;
+    ctx.fillStyle = '#e8ddc6';
+    ctx.fillRect(fx, fy - h * 0.065, w * 0.075, h * 0.065);
+    ctx.fillStyle = '#9a5f43';
+    ctx.beginPath();
+    ctx.moveTo(fx - w * 0.006, fy - h * 0.065);
+    ctx.lineTo(fx + w * 0.0375, fy - h * 0.095);
+    ctx.lineTo(fx + w * 0.081, fy - h * 0.065);
+    ctx.closePath();
+    ctx.fill();
+
+    // Low sun raking across the hills: without it the bands read as flat paper.
+    const rake = ctx.createLinearGradient(w, h * 0.25, 0, h);
+    rake.addColorStop(0, 'rgba(255,214,140,0.42)');
+    rake.addColorStop(0.45, 'rgba(255,214,140,0.08)');
+    rake.addColorStop(1, 'rgba(40,30,10,0.30)');
+    ctx.fillStyle = rake;
+    ctx.fillRect(0, h * 0.44, w, h * 0.56);
+
+    // Cypress line along the track.
+    for (let i = 0; i < 9; i++) {
+      const t = i / 8;
+      const cx = w * (0.52 + t * 0.44);
+      const cy = h * (0.62 + t * 0.2);
+      const ch2 = h * (0.12 + t * 0.10);
+      ctx.fillStyle = i % 2 ? '#2f4a2c' : '#38562f';
+      ctx.beginPath();
+      ctx.ellipse(cx, cy - ch2 / 2, ch2 * 0.17, ch2 / 2, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  /* A row of product bottles on a plinth — the skincare shot. */
+  function bottles(ctx, w, h, rand, o) {
+    const bgc = o.wall || '#e9d9d2';
+    vgrad(ctx, w, h, [[0, shade(bgc, 0.10)], [0.72, bgc], [1, shade(bgc, -0.14)]]);
+    glow(ctx, w * 0.5, h * 0.12, Math.max(w, h) * 0.62, 'rgba(255,250,244,0.55)', 0.8);
+
+    const tones = o.tones || ['#6d2b24', '#8a3b2d', '#a9564a', '#5c2420'];
+    const n = o.count || 4;
+    const slotW = w / (n + 1);
+    const baseY = h * 0.80;
+    for (let i = 0; i < n; i++) {
+      const cx = slotW * (i + 1);
+      const bw = slotW * (0.42 + ((i * 7) % 3) * 0.05);
+      const bh = h * (0.40 + ((i * 11) % 4) * 0.045);
+      const col = tones[i % tones.length];
+
+      ctx.save();
+      ctx.filter = `blur(${(w * 0.012).toFixed(1)}px)`;
+      ctx.fillStyle = 'rgba(60,30,25,0.35)';
+      ctx.beginPath();
+      ctx.ellipse(cx + bw * 0.1, baseY + h * 0.012, bw * 0.75, h * 0.02, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // Body, with a highlight down one side and a cap on top.
+      const g = ctx.createLinearGradient(cx - bw / 2, 0, cx + bw / 2, 0);
+      g.addColorStop(0, shade(col, -0.22));
+      g.addColorStop(0.3, shade(col, 0.16));
+      g.addColorStop(0.62, col);
+      g.addColorStop(1, shade(col, -0.3));
+      ctx.fillStyle = g;
+      roundRect(ctx, cx - bw / 2, baseY - bh, bw, bh, bw * 0.16);
+      ctx.fill();
+
+      ctx.fillStyle = shade(col, -0.4);
+      roundRect(ctx, cx - bw * 0.19, baseY - bh - h * 0.045, bw * 0.38, h * 0.05, bw * 0.07);
+      ctx.fill();
+
+      ctx.fillStyle = 'rgba(255,255,255,0.72)';
+      roundRect(ctx, cx - bw * 0.30, baseY - bh * 0.62, bw * 0.60, bh * 0.20, bw * 0.04);
+      ctx.fill();
+    }
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  /* Macro skin: a warm field with freckle speckle and a soft falloff. Abstract
+     on purpose — close enough to read as a beauty crop, never a face. */
+  function macro(ctx, w, h, rand, o) {
+    const skin = o.skin || '#e0a883';
+    vgrad(ctx, w, h, [[0, shade(skin, 0.18)], [0.55, skin], [1, shade(skin, -0.28)]]);
+
+    for (let i = 0; i < 260; i++) {
+      const x = rand() * w, y = rand() * h;
+      const r = Math.min(w, h) * (0.004 + rand() * 0.012);
+      ctx.globalAlpha = 0.07 + rand() * 0.16;
+      ctx.fillStyle = rand() > 0.5 ? '#8a4f32' : '#b06f48';
+      ctx.beginPath();
+      ctx.ellipse(x, y, r, r * (0.7 + rand() * 0.5), 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    glow(ctx, w * 0.3, h * 0.24, Math.max(w, h) * 0.5, 'rgba(255,236,214,0.6)', 0.7);
+    ctx.save();
+    ctx.filter = `blur(${(w * 0.035).toFixed(1)}px)`;
+    ctx.fillStyle = 'rgba(70,32,18,0.4)';
+    ctx.fillRect(0, h * 0.84, w, h * 0.16);
+    ctx.restore();
+  }
+
+  const SCENES = {
+    hills, coffee, room, court, dish, stage, facade, knit, clinic, shop,
+    water, tuscan, bottles, macro,
+  };
 
   /* ---- photographic grading -------------------------------------------- */
 

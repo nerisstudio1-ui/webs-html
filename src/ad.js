@@ -14,7 +14,9 @@ const AD = (() => {
     '1x1':  { w: 1080, h: 1080, name: 'Feed 1:1' },
   };
 
-  const DURATION = 12.0;
+  /* 14 s rather than 12: the offer now carries what is and is not included,
+     and that needs time on screen to be read rather than glimpsed. */
+  const DURATION = 14.0;
 
   /* Beat sheet, in seconds.
    *
@@ -27,15 +29,15 @@ const AD = (() => {
     beltStart: 0.90,  // belt starts under the hook, so the first card is already
                       // arriving as the hook clears — otherwise there is a beat
                       // of empty ground between the two
-    flowEnd: 7.80,    // conveyor stops cruising
-    sweepEnd: 8.90,   // last site card has left the top
-    plateIn: 7.80,    // the offer enters on the belt behind the last card
-    plateSet: 9.30,   // offer has braked to centre and squared up to camera
+    flowEnd: 8.20,    // conveyor stops cruising
+    sweepEnd: 9.30,   // last site card has left the top
+    plateIn: 8.20,    // the offer enters on the belt behind the last card
+    plateSet: 9.70,   // offer has braked to centre and squared up to camera
     // The plate's contents fill in while it is still travelling, so it never
     // sits centred with an empty lower half waiting to be populated.
-    ruleIn: 8.50,
-    listIn: 8.65,
-    ctaIn: 9.10,
+    ruleIn: 8.90,
+    listIn: 9.05,
+    ctaIn: 9.55,
   };
 
   /* Geometry. */
@@ -112,12 +114,14 @@ const AD = (() => {
 
   function buildHook() {
     hook.innerHTML = `
-      <div class="l1"><span>Tu web profesional</span><span><i>por solo</i></span></div>
-      <div class="amount">299&thinsp;€</div>
+      <div class="plazas"><i></i>3 plazas disponibles</div>
+      <div class="l1"><span>Tu web profesional</span></div>
+      <div class="amount">desde 299&thinsp;€</div>
       <div class="rule"></div>
-      <div class="l3">Diseño a medida y en marcha en <b>7 días</b>.</div>`;
+      <div class="l3"><b>Diseño a medida</b> para atraer clientes y crecer.</div>`;
 
     hookParts = {
+      plazas: hook.querySelector('.plazas'),
       lines: Array.from(hook.querySelectorAll('.l1 span')),
       amount: hook.querySelector('.amount'),
       rule: hook.querySelector('.rule'),
@@ -128,6 +132,10 @@ const AD = (() => {
   function drawHook(t) {
     const p = hookParts;
     if (!p) return;
+
+    const zu = easeOutCubic(span(t, 0.0, 0.42));
+    p.plazas.style.opacity = zu.toFixed(3);
+    p.plazas.style.transform = `translateY(${((1 - zu) * H * 0.014).toFixed(1)}px)`;
 
     p.lines.forEach((el, i) => {
       const u = easeOutCubic(span(t, 0.06 + i * 0.11, 0.56 + i * 0.11));
@@ -161,13 +169,26 @@ const AD = (() => {
       const scale = cw / 1440;
       const ch = VIEW_H * scale;
 
+      // Browser chrome sits above the page and the page starts below it, so
+      // the card reads as a window onto a site — the way the mockups on
+      // nerisstudio.com are presented.
+      const chromeH = Math.round(cw * 0.042);
+
       const el = document.createElement('div');
       el.className = 'ad-card';
       el.style.width = cw + 'px';
-      el.style.height = ch + 'px';
+      el.style.height = ch + chromeH + 'px';
+      el.style.setProperty('--chrome', chromeH + 'px');
+
+      const chrome = document.createElement('div');
+      chrome.className = 'ad-chrome';
+      chrome.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>' +
+                         '<span class="menu"><i></i><i></i><i></i></span>';
+      el.appendChild(chrome);
 
       const inner = document.createElement('div');
       inner.className = 'ad-site ' + site.id;
+      inner.style.top = chromeH + 'px';
       inner.innerHTML = site.html;
       el.appendChild(inner);
 
@@ -183,7 +204,7 @@ const AD = (() => {
         el,
         inner,
         glare,
-        h: ch,
+        h: ch + chromeH,
         scale,
         hero: i === HERO,
         caption: CAPTIONS[site.id] || site.id,
@@ -230,19 +251,31 @@ const AD = (() => {
 
   function buildOffer() {
     offer.innerHTML = `
-      <div class="eyebrow">Neris Studio · Diseño y desarrollo web</div>
-      <h2>Tu web, <i>lista en 7 días</i></h2>
+      <div class="eyebrow">Oferta especial · 3 plazas disponibles</div>
+      <h2>Tu web profesional, <i>lista en 2 semanas</i></h2>
       <div class="rule"></div>
       <div class="lock">
-        <div class="amount">299&thinsp;€</div>
-        <div class="terms"><b>Pago único.</b><br><i>Sin cuotas ni permanencia.</i></div>
+        <div class="price"><span class="from">desde</span><span class="num">299&thinsp;€</span></div>
+        <div class="terms"><b>Pago único.</b> <i>Sin permanencia.</i></div>
       </div>
-      <ul>
-        <li class="stagger"><i>—</i><span>Diseño <b>a medida</b>, no una plantilla</span></li>
-        <li class="stagger"><i>—</i><span>Dominio y alojamiento <b>del primer año</b></span></li>
-        <li class="stagger"><i>—</i><span>Textos, formulario y <em>visible en Google</em></span></li>
-      </ul>
-      <div class="cta stagger"><span>Pide la tuya en neris.studio</span><span class="arrow">→</span></div>`;
+      <div class="cols">
+        <div class="col stagger">
+          <h3>Incluye</h3>
+          <ul>
+            <li><i>—</i><span>Diseño <b>a medida</b>, no una plantilla</span></li>
+            <li><i>—</i><span>Textos, fotos y formulario de contacto</span></li>
+            <li><i>—</i><span>Adaptada a móvil y <em>visible en Google</em></span></li>
+          </ul>
+        </div>
+        <div class="col out stagger">
+          <h3>No incluye</h3>
+          <ul>
+            <li><i>+</i><span><b>Dominio y alojamiento</b>, se contratan aparte</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta stagger"><span class="wa"></span><span>Quiero información por WhatsApp</span></div>
+      <div class="foot stagger">Sin compromiso · Te respondemos personalmente</div>`;
 
     staggered = Array.from(offer.querySelectorAll('.stagger'));
   }
