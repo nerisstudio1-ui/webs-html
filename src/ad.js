@@ -45,11 +45,12 @@ const AD = (() => {
   const OVERLAP = 0.64;   // centre-to-centre gap as a fraction of card height
   const SWEEP_TOP = 1.55; // speed the belt accelerates to on the way out
 
-  /* The card is a window onto a taller page. Showing 760 of the site's 900
-     authored pixels leaves 140 to travel, so each card scrolls its own site as
-     it crosses the frame: the mock sites read as live pages rather than
-     screenshots, and the viewer sees more of each one. */
-  const SITE_H = 900;
+  /* The card is a window onto a much taller page. Each site is authored at
+     1240 px and the card shows 760 of them, so as a card crosses the frame it
+     scrolls through header, hero, content and footer — the arc a real page has
+     when you scroll it. A short page that barely moved was half of why these
+     read as mockups rather than sites. */
+  const SITE_H = 1240;
   const VIEW_H = 760;
 
   /* One card squares up to the camera as it passes the middle — a beat that

@@ -189,7 +189,7 @@
    card on purpose: the card is a window, and JS scrolls the page inside it. */
 .ad-site {
   width: 1440px;
-  height: 900px;
+  height: 1240px;
   transform-origin: 0 0;
   position: absolute;
   top: 0;

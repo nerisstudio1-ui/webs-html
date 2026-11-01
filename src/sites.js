@@ -20,14 +20,55 @@ const SITES = (() => {
 
   /* Shared skeleton: every site gets the same quiet top bar, so the cards read
      as a set of sites by one studio rather than nine unrelated things. */
+  /* Shared skeleton. Beyond the top bar this now carries the furniture every
+     real site has and no mockup ever does: a footer with link columns, legal
+     small print, a cookie notice, star ratings. Their absence was a big part
+     of why these read as pictures of websites rather than websites. */
   const base = `
     .st{display:flex;flex-direction:column}
     .st .bar{display:flex;align-items:center;justify-content:space-between;
-      padding:30px 54px;flex:none}
+      padding:26px 54px;flex:none}
     .st .wm{font-size:21px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
     .st .nv{display:flex;gap:30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.62}
     .st .pill{border:1px solid currentColor;border-radius:999px;padding:10px 22px;
-      font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}`;
+      font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+    .st .stars{display:inline-flex;align-items:center;gap:7px;font-size:13px}
+    .st .stars b{letter-spacing:.1em;color:#e8a33d}
+    .st .ft{margin-top:auto;flex:none;border-top:1px solid rgba(0,0,0,.1);
+      padding:34px 54px 0;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px}
+    .st .ft h5{font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+      opacity:.5;margin:0 0 14px;font-weight:600}
+    .st .ft a{display:block;font-size:14px;opacity:.72;margin-bottom:9px;text-decoration:none;color:inherit}
+    .st .ft .about{font-size:14px;line-height:1.65;opacity:.68;max-width:30ch}
+    .st .ft .soc{display:flex;gap:9px;margin-top:16px}
+    .st .ft .soc i{width:28px;height:28px;border-radius:50%;border:1px solid currentColor;opacity:.4;display:block}
+    .st .legal{display:flex;justify-content:space-between;padding:22px 54px 26px;
+      font-size:12px;opacity:.45}
+    .st .cookie{position:absolute;left:28px;right:28px;top:648px;z-index:6;
+      background:#fff;color:#1a1a1a;border-radius:10px;padding:16px 20px;display:flex;
+      align-items:center;gap:18px;box-shadow:0 10px 30px rgba(0,0,0,.18);font-size:13px}
+    .st .cookie p{flex:1;line-height:1.5;opacity:.75}
+    .st .cookie .b1{background:#1a1a1a;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600;white-space:nowrap}
+    .st .cookie .b2{padding:10px 14px;opacity:.6;white-space:nowrap}
+    .st .badges{display:flex;gap:26px;align-items:center;padding:18px 54px;
+      font-size:13px;opacity:.62;flex:none}
+    .st .badges span{display:flex;align-items:center;gap:9px}
+    .st .badges i{width:22px;height:14px;border-radius:3px;background:currentColor;opacity:.35;display:block}`;
+
+  /* Footer markup, shared. Written once so the eight sites stay consistent the
+     way a single studio's work would be. */
+  const foot = (cols, legal) => `
+    <div class="ft">
+      <div><h5>${cols.brand}</h5><div class="about">${cols.about}</div>
+        <div class="soc"><i></i><i></i><i></i></div></div>
+      ${cols.groups.map((g) => `<div><h5>${g.h}</h5>${g.items.map((i) => `<a>${i}</a>`).join('')}</div>`).join('')}
+    </div>
+    <div class="legal"><span>${legal}</span><span>Aviso legal · Privacidad · Cookies</span></div>`;
+
+  const cookie = `
+    <div class="cookie"><p>Usamos cookies propias y de terceros para medir el tráfico.</p>
+      <span class="b2">Configurar</span><span class="b1">Aceptar todas</span></div>`;
+
 
   /* ---------------------------------------------------------------- 1 */
   const flow = () => ({
@@ -66,7 +107,11 @@ const SITES = (() => {
       <div style="background-image:${bg('water', 9, 460, 300, { shallow: '#5fcfd2', deep: '#115f73' })}"></div>
       <div style="background-image:${bg('room', 13, 460, 300, { wall: '#ded6c6', floor: '#9b7b56', object: '#3f5450' })}"></div>
       <div style="background-image:${bg('macro', 17, 460, 300, { skin: '#d9a98b' })}"></div></div>
-    <div class="meta"><span>Reformer · Mat · Yoga</span><span>Valencia — Ruzafa</span></div>`,
+    <div class="meta"><span>Reformer · Mat · Yoga</span><span>Valencia — Ruzafa</span></div>
+    <div class="badges"><span><i></i>Bono 10 clases desde 95 €</span>
+      <span class="stars"><b>★★★★★</b>4,9 · 212 reseñas en Google</span></div>
+    ${foot({"brand": "Flow Estudio", "about": "Pilates reformer, mat y yoga en grupos de seis personas. Calle Cuba 34, Valencia.", "groups": [{"h": "Clases", "items": ["Reformer", "Mat", "Yoga", "Embarazo"]}, {"h": "Estudio", "items": ["Horarios", "Precios", "Equipo"]}, {"h": "Contacto", "items": ["960 41 22 08", "hola@flowestudio.es"]}]}, "© 2026 Flow Estudio SL")}
+    ${cookie}`,
   });
 
   /* ---------------------------------------------------------------- 2 */
@@ -100,7 +145,8 @@ const SITES = (() => {
         <p>Chimenea en cada una, vistas al valle y absolutamente nada que hacer.</p></div>
       <div class="side">
         <div style="background-image:${bg('room', 21, 440, 190, { wall: '#e0d7c2', floor: '#8a6440', object: '#45503a' })}"></div>
-        <div style="background-image:${bg('dish', 23, 440, 190, { table: '#241a10', plate: '#3f3528' })}"></div></div></div>`,
+        <div style="background-image:${bg('dish', 23, 440, 190, { table: '#241a10', plate: '#3f3528' })}"></div></div></div>
+    ${foot({"brand": "Casa Olmo", "about": "Casa rural de siete habitaciones en la Sierra de Gredos. Registro turístico AV-0412.", "groups": [{"h": "La casa", "items": ["Estancias", "Termas", "Mesa", "Galería"]}, {"h": "Reservas", "items": ["Disponibilidad", "Condiciones", "Bonos regalo"]}, {"h": "Cómo llegar", "items": ["Navarredonda", "A 2 h de Madrid"]}]}, "© 2026 Casa Olmo")}`,
   });
 
   /* ---------------------------------------------------------------- 3 */
@@ -132,7 +178,11 @@ const SITES = (() => {
       <div class="blk"><p>Seis fórmulas cortas, sin perfume y con lo que de verdad hace algo.
         Fabricadas en Alicante.</p><div class="btn">Ver la rutina</div></div></div>
     <div class="shelf" style="background-image:${bg('bottles', 7, 980, 330)}"></div>
-    <div class="meta"><span>Envío en 24 h</span><span>Muestras gratis en cada pedido</span></div>`,
+    <div class="meta"><span>Envío en 24 h</span><span>Muestras gratis en cada pedido</span></div>
+    <div class="badges"><span><i></i><i></i>Pago seguro</span><span><i></i>Envío en 24 h</span>
+      <span class="stars"><b>★★★★★</b>4,8 · 1.340 valoraciones</span></div>
+    ${foot({"brand": "Piel", "about": "Cosmética corta, sin perfume y fabricada en Alicante. Cruelty free.", "groups": [{"h": "Tienda", "items": ["Rutina", "Limpieza", "Hidratación", "Packs"]}, {"h": "Ayuda", "items": ["Envíos", "Devoluciones", "Contacto"]}, {"h": "Nosotras", "items": ["Fórmulas", "Ingredientes", "Diario"]}]}, "© 2026 Piel Laboratorios SL · CIF B-54xxxxxx")}
+    ${cookie}`,
   });
 
   /* ---------------------------------------------------------------- 4 */
@@ -173,7 +223,8 @@ const SITES = (() => {
       <div><div class="d"><div><div class="n">Sepia y su tinta</div>
         <div class="s">Guisantes del Maresme</div></div><div class="dot"></div><div class="p">18 €</div></div>
         <div class="d"><div><div class="n">Costilla de vaca vieja</div>
-        <div class="s">Cuarenta días de maduración</div></div><div class="dot"></div><div class="p">26 €</div></div></div></div>`,
+        <div class="s">Cuarenta días de maduración</div></div><div class="dot"></div><div class="p">26 €</div></div></div></div>
+    ${foot({"brand": "Brasa", "about": "Cocina de fuego en el Carmen. Servicio de martes a sábado, comidas y cenas.", "groups": [{"h": "Carta", "items": ["Menú degustación", "A la carta", "Bodega"]}, {"h": "Reservas", "items": ["Mesa", "Grupos", "Eventos"]}, {"h": "Dónde", "items": ["Calle Roteros 9", "963 92 14 70"]}]}, "© 2026 Brasa · Valencia")}`,
   });
 
   /* ---------------------------------------------------------------- 5 */
@@ -204,7 +255,8 @@ const SITES = (() => {
       <div style="background-image:${bg('hills', 31, 400, 260, { sky: ['#0a0c1e', '#3a2047', '#9a4a4a', '#e39a66'], ridge: '#0b0a12' })}"></div>
       <div style="background-image:${bg('tuscan', 37, 400, 260)}"></div>
       <div style="background-image:${bg('water', 41, 400, 260, { shallow: '#3f93a8', deep: '#0b3d52' })}"></div>
-      <div style="background-image:${bg('room', 43, 400, 260, { wall: '#3c3a38', floor: '#262320', object: '#15130f', light: '#fff0d4' })}"></div></div>`,
+      <div style="background-image:${bg('room', 43, 400, 260, { wall: '#3c3a38', floor: '#262320', object: '#15130f', light: '#fff0d4' })}"></div></div>
+    ${foot({"brand": "Lumen", "about": "Fotografía de paisaje, bodas y editorial. Trabajo en toda la península.", "groups": [{"h": "Trabajo", "items": ["Series", "Bodas", "Editorial"]}, {"h": "Tienda", "items": ["Copias", "Ediciones", "Libros"]}, {"h": "Contacto", "items": ["hola@lumen.photo", "Disponibilidad"]}]}, "© 2026 Lumen")}`,
   });
 
   /* ---------------------------------------------------------------- 6 */
@@ -243,7 +295,10 @@ const SITES = (() => {
       <div class="p"><div class="im" style="background-image:${bg('knit', 61, 380, 300, { yarn: '#2c3d5c' })}"></div>
         <div class="n">Chaleco Sella</div><div class="m">Algodón orgánico</div><div class="pr">64,00 €</div></div>
       <div class="p"><div class="im" style="background-image:${bg('shop', 67, 380, 300, { wall: '#efe6d8' })}"></div>
-        <div class="n">La colección</div><div class="m">42 prendas</div><div class="pr">Ver todo</div></div></div>`,
+        <div class="n">La colección</div><div class="m">42 prendas</div><div class="pr">Ver todo</div></div></div>
+    <div class="badges"><span><i></i><i></i>Pago en 3 plazos</span><span><i></i>Devolución gratis 30 días</span>
+      <span class="stars"><b>★★★★☆</b>4,6 · 2.118 valoraciones</span></div>
+    ${foot({"brand": "Ovillo", "about": "Punto hecho en Asturias con lana merina y alpaca. Tienda en Gijón y online.", "groups": [{"h": "Tienda", "items": ["Jerséis", "Cárdigans", "Lanas", "Rebajas"]}, {"h": "Ayuda", "items": ["Guía de tallas", "Envíos", "Cambios"]}, {"h": "Taller", "items": ["Cursos", "Patrones", "Reparaciones"]}]}, "© 2026 Ovillo · Hecho en Asturias")}`,
   });
 
   /* ---------------------------------------------------------------- 7 */
@@ -285,7 +340,11 @@ const SITES = (() => {
       <div class="c"><div class="im" style="background-image:${bg('coffee', 79, 240, 240, { table: '#5a3a1e', crema: '#c98b46' })}"></div>
         <div><b>Kenia Nyeri</b><span>Lavado · 250 g</span><i>13,20 €</i></div></div>
       <div class="c"><div class="im" style="background-image:${bg('bottles', 83, 240, 240, { wall: '#e4d8c6', tones: ['#6b4423', '#8a5a2b', '#3d2a18', '#a07440'] })}"></div>
-        <div><b>Molinillo cónico</b><span>Acero y nogal</span><i>89,00 €</i></div></div></div>`,
+        <div><b>Molinillo cónico</b><span>Acero y nogal</span><i>89,00 €</i></div></div></div>
+    <div class="badges"><span><i></i>Tostamos los martes</span><span><i></i>Envío gratis desde 35 €</span>
+      <span class="stars"><b>★★★★★</b>4,9 · 806 reseñas</span></div>
+    ${foot({"brand": "Tinta & Grano", "about": "Tostadero propio en Benimaclet. Café de especialidad y cursos de cata.", "groups": [{"h": "Café", "items": ["Orígenes", "Suscripción", "Molido", "Cápsulas"]}, {"h": "Aprender", "items": ["Cursos", "Métodos", "Blog"]}, {"h": "Pedidos", "items": ["Envíos", "Devoluciones", "Mayorista"]}]}, "© 2026 Tinta & Grano SL")}
+    ${cookie}`,
   });
 
   /* ---------------------------------------------------------------- 8 */
@@ -320,7 +379,11 @@ const SITES = (() => {
       <div class="blk"><div><h3>Dieciocho años<br>en el barrio</h3>
         <p>Urgencias todos los días y financiación sin intereses hasta doce meses.</p></div>
         <div class="btn">Ver tratamientos</div></div></div>
-    <div class="strip"><span>Lunes a viernes · 9:00 – 20:30</span><b>Calle Cádiz 48, Valencia</b></div>`,
+    <div class="strip"><span>Lunes a viernes · 9:00 – 20:30</span><b>Calle Cádiz 48, Valencia</b></div>
+    <div class="badges"><span><i></i>Financiación sin intereses</span><span><i></i>Urgencias 24 h</span>
+      <span class="stars"><b>★★★★★</b>4,9 · 612 reseñas en Google</span></div>
+    ${foot({"brand": "Clínica Meridiana", "about": "Odontología y estética dental en Ruzafa desde 2008. Dir. médica Dra. E. Soler, col. 46-xxxx.", "groups": [{"h": "Tratamientos", "items": ["Implantes", "Ortodoncia", "Estética", "Infantil"]}, {"h": "Clínica", "items": ["Equipo", "Instalaciones", "Precios"]}, {"h": "Cita", "items": ["960 22 14 08", "Calle Cádiz 48"]}]}, "© 2026 Clínica Meridiana · Registro sanitario 46-C-xxxx")}
+    ${cookie}`,
   });
 
   const list = [flow, olmo, piel, brasa, tinta, ovillo, lumen, meridiana];
