@@ -228,16 +228,43 @@
   border-radius: 16px;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
   pointer-events: none;
+  z-index: 4;
 }
 
-/* The mock site is authored at a real desktop size and scaled down bodily,
-   so its internal proportions and type sizes stay truthful. */
+/* Specular band, swept across by JS as the card crosses the frame. Screen
+   blending keeps it reading as light on glass rather than white paint, and it
+   is inset beyond the card so the band is fully off-screen at either end. */
+/* Full card width so a translateX of ±110% carries the band cleanly on and off
+   it, and taller than the card so the diagonal never clips at the corners. */
+.ad-card .glare {
+  position: absolute;
+  inset: -35% 0;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  will-change: transform;
+  background: linear-gradient(
+    102deg,
+    rgba(255, 255, 255, 0) 34%,
+    rgba(255, 255, 255, 0.10) 43%,
+    rgba(255, 255, 255, 0.46) 50%,
+    rgba(255, 255, 255, 0.10) 57%,
+    rgba(255, 255, 255, 0) 66%
+  );
+}
+
+/* The mock site is authored at a real desktop size and scaled down bodily, so
+   its internal proportions and type sizes stay truthful. It is taller than the
+   card on purpose: the card is a window, and JS scrolls the page inside it. */
 .ad-site {
   width: 1440px;
   height: 900px;
   transform-origin: 0 0;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
+  will-change: transform;
 }
 
 /* --- the hook ------------------------------------------------------------
@@ -266,8 +293,13 @@
   letter-spacing: -0.025em;
 }
 
-#hook .l1 span { display: block; }
+/* Opacity and transform are written per frame by drawHook(); the initial
+   values here keep frame 0 from flashing the assembled state. */
+#hook .l1 span { display: block; opacity: 0; }
 #hook .l1 i { font-style: italic; }
+#hook .amount,
+#hook .l3 { opacity: 0; }
+#hook .amount { transform-origin: 0 50%; }
 
 #hook .amount {
   font-weight: 900;
@@ -710,9 +742,10 @@ pre {
     <h1>Webs como estas,<br><em>a 299 €</em></h1>
     <p class="standfirst">
       Hecho en HTML, sin editor de vídeo. Arranca con el precio a pantalla
-      completa, nueve webs pasan inclinadas sobre azul eléctrico, y el cierre
-      entra como una tarjeta más de la cinta. Se exporta a MP4 en los cuatro
-      formatos que sirve Meta.
+      completa, nueve webs pasan inclinadas sobre azul eléctrico —desplazándose
+      dentro de su propia tarjeta, con un destello al cruzar— y el cierre entra
+      como una tarjeta más de la cinta. Se exporta a MP4 en los cuatro formatos
+      que sirve Meta.
     </p>
   </header>
 
@@ -748,13 +781,15 @@ pre {
     <h2>Cómo está montado</h2>
     <div class="beats">
       <div class="beat"><span class="tc">0,0 – 1,3 s</span>
-        <div><b>El gancho</b><p>El precio ocupa la pantalla entera desde el fotograma cero. En un feed que se pasa con el pulgar, esto es lo único que ve mucha gente.</p></div></div>
+        <div><b>El gancho</b><p>Se monta solo: entran las dos líneas, el 299 € aparece de golpe y algo pasado de tamaño, la barra lima barre y cae el subtítulo. En un feed que se pasa con el pulgar, esto es lo único que ve mucha gente.</p></div></div>
       <div class="beat"><span class="tc">1,3 – 7,8 s</span>
-        <div><b>La prueba</b><p>Nueve webs de sectores distintos suben por la cinta: hotel, café, pádel, clínica, restaurante, tienda, arquitectura, fotografía y sala de conciertos.</p></div></div>
+        <div><b>La prueba</b><p>Nueve webs de sectores distintos suben por la cinta: hotel, café, pádel, clínica, restaurante, tienda, arquitectura, fotografía y sala de conciertos. Cada una va <b>desplazándose dentro de su tarjeta</b>, así que se leen como pantallas en uso, no como capturas quietas.</p></div></div>
+      <div class="beat"><span class="tc">~4,9 s</span>
+        <div><b>Momento héroe</b><p>Una de las webs se endereza, se acerca a cámara y vuelve a la fila. Rompe el ritmo justo antes de que empiece la cuenta atrás al cierre.</p></div></div>
       <div class="beat"><span class="tc">7,8 – 8,9 s</span>
         <div><b>Barrido</b><p>La cinta acelera y saca las tarjetas por arriba.</p></div></div>
       <div class="beat"><span class="tc">7,8 – 12,0 s</span>
-        <div><b>Cierre</b><p>La oferta llega como una tarjeta más, frena y se endereza. 299 €, qué incluye y la llamada a la acción, en pantalla casi tres segundos.</p></div></div>
+        <div><b>Cierre</b><p>La oferta llega como una tarjeta más, frena, se endereza y <b>aterriza con un rebote corto</b>. 299 €, qué incluye y la llamada a la acción, en pantalla casi tres segundos.</p></div></div>
     </div>
   </section>
 
@@ -1863,6 +1898,19 @@ const AD = (() => {
   const OVERLAP = 0.64;   // centre-to-centre gap as a fraction of card height
   const SWEEP_TOP = 1.55; // speed the belt accelerates to on the way out
 
+  /* The card is a window onto a taller page. Showing 760 of the site's 900
+     authored pixels leaves 140 to travel, so each card scrolls its own site as
+     it crosses the frame: the mock sites read as live pages rather than
+     screenshots, and the viewer sees more of each one. */
+  const SITE_H = 900;
+  const VIEW_H = 760;
+
+  /* One card squares up to the camera as it passes the middle — a beat that
+     says "look at this one" and breaks the metronome of the belt. */
+  const HERO = 3;         // index into the site list (cadencia)
+  const HERO_HOLD = 0.46; // seconds either side of centre
+  let heroAt = 0;         // solved in buildCards once the speed is known
+
   /* Cruise speed is solved rather than fixed, so the ninth card reaches the
      middle of the frame exactly as the flow ends — on every aspect ratio. */
   let cruise = 0;
@@ -1886,7 +1934,21 @@ const AD = (() => {
   const easeOutQuad = (u) => u * (2 - u);
   const easeOutCubic = (u) => 1 - Math.pow(1 - u, 3);
   const easeInCubic = (u) => u * u * u;
+  const easeInOut = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+  /* Overshoots its target and settles — what makes the offer land instead of
+     arrive. Kept mild on purpose; a big bounce reads as a template. */
+  const easeOutBack = (u, s) => {
+    const c1 = s == null ? 1.10 : s;
+    const c3 = c1 + 1;
+    const p = u - 1;
+    return 1 + c3 * p * p * p + c1 * p * p;
+  };
   const span = (t, a, b) => clamp01((t - a) / (b - a));
+  /* 0 at the edges, 1 in the middle — for beats that rise and fall. */
+  const bump = (t, centre, half) => {
+    const d = Math.abs(t - centre) / half;
+    return d >= 1 ? 0 : easeInOut(1 - d);
+  };
 
   let stage, conveyor, offer, hook, capEl;
   let fmt, W, H;
@@ -1897,12 +1959,48 @@ const AD = (() => {
 
   /* ---- the hook -------------------------------------------------------- */
 
+  /* Each part is animated separately off the clock rather than arriving as one
+     block: the eye gets led down to the number instead of being handed the
+     whole card at once. Elements are cached because seek() runs 360 times a
+     render and querying every frame is wasted work. */
+  let hookParts = null;
+
   function buildHook() {
     hook.innerHTML = `
       <div class="l1"><span>Tu web profesional</span><span><i>por solo</i></span></div>
       <div class="amount">299&thinsp;€</div>
       <div class="rule"></div>
       <div class="l3">Diseño a medida y en marcha en <b>7 días</b>.</div>`;
+
+    hookParts = {
+      lines: Array.from(hook.querySelectorAll('.l1 span')),
+      amount: hook.querySelector('.amount'),
+      rule: hook.querySelector('.rule'),
+      sub: hook.querySelector('.l3'),
+    };
+  }
+
+  function drawHook(t) {
+    const p = hookParts;
+    if (!p) return;
+
+    p.lines.forEach((el, i) => {
+      const u = easeOutCubic(span(t, 0.06 + i * 0.11, 0.56 + i * 0.11));
+      el.style.opacity = u.toFixed(3);
+      el.style.transform = `translateY(${((1 - u) * H * 0.030).toFixed(1)}px)`;
+    });
+
+    // The number punches in slightly oversized and settles.
+    const au = span(t, 0.26, 0.86);
+    const ae = easeOutBack(au, 1.25);
+    p.amount.style.opacity = clamp01(au * 2.2).toFixed(3);
+    p.amount.style.transform = `scale(${(0.86 + 0.14 * ae).toFixed(4)})`;
+
+    p.rule.style.transform = `scaleX(${easeOutCubic(span(t, 0.46, 1.00)).toFixed(4)})`;
+
+    const su = easeOutCubic(span(t, 0.62, 1.12));
+    p.sub.style.opacity = su.toFixed(3);
+    p.sub.style.transform = `translateY(${((1 - su) * H * 0.018).toFixed(1)}px)`;
   }
 
   /* ---- conveyor -------------------------------------------------------- */
@@ -1916,7 +2014,7 @@ const AD = (() => {
       const wf = CARD_W + ((i * 37) % 5) * 0.016;
       const cw = W * wf;
       const scale = cw / 1440;
-      const ch = 900 * scale;
+      const ch = VIEW_H * scale;
 
       const el = document.createElement('div');
       el.className = 'ad-card';
@@ -1925,14 +2023,24 @@ const AD = (() => {
 
       const inner = document.createElement('div');
       inner.className = 'ad-site ' + site.id;
-      inner.style.transform = `scale(${scale})`;
       inner.innerHTML = site.html;
       el.appendChild(inner);
+
+      // Specular band that crosses the card as it passes — the cue that these
+      // are physical objects catching light, not flat images pasted on blue.
+      const glare = document.createElement('div');
+      glare.className = 'glare';
+      el.appendChild(glare);
+
       conveyor.appendChild(el);
 
       return {
         el,
+        inner,
+        glare,
         h: ch,
+        scale,
+        hero: i === HERO,
         caption: CAPTIONS[site.id] || site.id,
         dx: (((i * 53) % 7) - 3) * W * 0.028,
         rz: -7.4 + (((i * 29) % 5) - 2) * 0.55,
@@ -1948,6 +2056,9 @@ const AD = (() => {
     first = H + cardH * 1.05;
     const distance = (first - H * 0.5) + (cards.length - 1) * slot;
     cruise = distance / (T.flowEnd - T.beltStart);
+
+    // When the hero card's centre crosses the middle of the frame.
+    heroAt = T.beltStart + (first + HERO * slot - H * 0.5) / cruise;
 
     // Style tags for the mock sites. init() can be called again to switch
     // format in place, so this is injected once rather than once per call.
@@ -1996,15 +2107,14 @@ const AD = (() => {
   function seek(t) {
     t = Math.max(0, Math.min(DURATION, t));
 
-    /* Hook: holds, then accelerates off the top so it reads as the first thing
-       on the belt rather than a title card bolted to the front. */
+    /* Hook: assembles, holds, then accelerates off the top so it reads as the
+       first thing on the belt rather than a title card bolted to the front. */
     const hookGone = t >= T.hookGone;
     hook.style.visibility = hookGone ? 'hidden' : 'visible';
     if (!hookGone) {
+      drawHook(t);
       const hu = span(t, T.hookOut, T.hookGone);
       hook.style.transform = `translate3d(0, ${(-easeInCubic(hu) * H * 1.25).toFixed(1)}px, 0)`;
-      const r = hook.querySelector('.rule');
-      if (r) r.style.transform = `scaleX(${easeOutCubic(span(t, 0.18, 0.75)).toFixed(4)})`;
     }
 
     const belt = beltDistance(t);
@@ -2023,9 +2133,29 @@ const AD = (() => {
       c.el.style.visibility = visible ? 'visible' : 'hidden';
       if (!visible) continue;
 
+      // How far this card has crossed the frame: 0 entering at the bottom,
+      // 1 leaving at the top. Drives the page scroll and the light band.
+      const p = clamp01((H + c.h / 2 - centre) / (H + c.h));
+
+      // The site scrolls inside its own window as the card travels.
+      c.inner.style.transform =
+        `scale(${c.scale}) translateY(${(-(SITE_H - VIEW_H) * p).toFixed(1)}px)`;
+
+      // The band sweeps across while the card is around the middle of frame.
+      const g = -115 + 230 * easeInOut(span(p, 0.22, 0.70));
+      c.glare.style.transform = `translateX(${g.toFixed(1)}%)`;
+
+      // Hero beat: this one straightens up and steps toward the camera as it
+      // passes, then falls back into the rhythm of the belt.
+      const h = c.hero ? bump(t, heroAt, HERO_HOLD) : 0;
+      const k = 1 - h;
+
       c.el.style.transform =
-        `translate3d(calc(-50% + ${c.dx.toFixed(1)}px), ${top.toFixed(1)}px, 0)` +
-        ` rotateZ(${c.rz}deg) rotateY(${c.ry}deg) rotateX(${c.rx}deg)`;
+        `translate3d(calc(-50% + ${(c.dx * k).toFixed(1)}px), ${top.toFixed(1)}px, 0)` +
+        ` scale(${(1 + 0.065 * h).toFixed(4)})` +
+        ` rotateZ(${(c.rz * k).toFixed(2)}deg)` +
+        ` rotateY(${(c.ry * k).toFixed(2)}deg)` +
+        ` rotateX(${(c.rx * k).toFixed(2)}deg)`;
 
       const d = Math.abs(centre - H * 0.5);
       if (d < nearestDist) { nearestDist = d; nearest = c; }
@@ -2034,10 +2164,12 @@ const AD = (() => {
     /* The offer brakes from belt speed to a standstill and untilts as it
        arrives — the last thing on the conveyor turns to face you. */
     const pu = span(t, T.plateIn, T.plateSet);
-    const travel = easeOutQuad(pu);
+    // Overshoots the centre by a hair and settles back: the offer lands rather
+    // than drifts to a stop.
+    const travel = pu >= 1 ? 1 : easeOutBack(easeOutQuad(pu), 0.9);
     const top = plate.start + (plate.end - plate.start) * travel;
     const tilt = 1 - easeOutCubic(span(t, T.plateIn + 0.4, T.plateSet));
-    const lift = 1 - 0.06 * (1 - travel);
+    const lift = 1 - 0.06 * (1 - clamp01(travel));
 
     offer.style.visibility = t >= T.plateIn ? 'visible' : 'hidden';
     offer.style.transform =
