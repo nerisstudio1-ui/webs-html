@@ -1,62 +1,77 @@
 /* The mock sites that ride the conveyor.
  *
- * These follow the house style of the work shown on nerisstudio.com: cream
- * grounds, a large photographic hero, display type set big and allowed to
- * overlap the image, one earthy accent block, and a small grid of supporting
- * photos. No dashboards, no stat bands, no listing tables — those read as
- * software screens, and the studio's portfolio is editorial.
+ * Built to the references the studio sent: the current "creative studio"
+ * house style. Its grammar, and what every site below is made of:
  *
- * Two display registers, used deliberately: Instrument Serif for the places
- * that want elegance (villa, restaurant, photography) and Montserrat 900 caps
- * for the places that want volume (pilates, skincare). The italic serif stands
- * in for the script accent the real portfolio uses.
+ *   · cream grounds, with pastel blocks — sage, lavender, blush, chartreuse,
+ *     deep olive — rather than saturated brand colours
+ *   · a display serif and its italic mixed inside the same sentence, which is
+ *     the single most characteristic move of the look
+ *   · scrolling marquee strips of repeated text
+ *   · pill buttons with an arrow
+ *   · photographs in arches, rounded cards, or tilted with a white border
+ *   · handwritten annotations with a curved arrow
+ *   · rotated sticker badges
+ *   · testimonial cards, star ratings, stat rows
  *
- * Each site is authored at 1440x900 and scaled down bodily by the card, so
- * the proportions and type sizes stay truthful. The card shows 760 of those
- * 900 pixels and scrolls the rest as it crosses the frame. */
+ * Plus the furniture any real site drags along — footer columns, legal line,
+ * cookie notice — because its absence was reading as "mockup".
+ *
+ * Each site is authored at 1440x1240 and scaled down bodily by the card. The
+ * card shows 760 of those pixels and scrolls the rest as it crosses frame. */
 
 const SITES = (() => {
   const bg = (scene, seed, w, h, opts) => ART.bg(scene, seed, w, h, opts);
 
-  /* Shared skeleton: every site gets the same quiet top bar, so the cards read
-     as a set of sites by one studio rather than nine unrelated things. */
-  /* Shared skeleton. Beyond the top bar this now carries the furniture every
-     real site has and no mockup ever does: a footer with link columns, legal
-     small print, a cookie notice, star ratings. Their absence was a big part
-     of why these read as pictures of websites rather than websites. */
+  /* Shared grammar. Every site gets these, so the eight read as one studio's
+     work rather than eight unrelated pages. */
   const base = `
-    .st{display:flex;flex-direction:column}
+    .st{display:flex;flex-direction:column;font-family:'Work Sans',sans-serif}
     .st .bar{display:flex;align-items:center;justify-content:space-between;
-      padding:26px 54px;flex:none}
-    .st .wm{font-size:21px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
-    .st .nv{display:flex;gap:30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.62}
-    .st .pill{border:1px solid currentColor;border-radius:999px;padding:10px 22px;
-      font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+      padding:24px 52px;flex:none}
+    .st .wm{font-family:'Gloock',serif;font-size:27px;letter-spacing:-.01em}
+    .st .nv{display:flex;gap:26px;font-size:13.5px;opacity:.68}
+    .st .btnp{display:inline-flex;align-items:center;gap:10px;border-radius:999px;
+      padding:13px 26px;font-size:14px;font-weight:600;white-space:nowrap}
+    .st .btnp::after{content:'→';font-size:15px}
+    .st .ghost{border:1px solid currentColor;border-radius:999px;padding:11px 22px;
+      font-size:13px;font-weight:600}
+    /* Marquee: a band of repeated text, the way these sites separate sections. */
+    .st .mq{overflow:hidden;white-space:nowrap;padding:13px 0;flex:none;text-align:center}
+    .st .mq span{font-size:15px;letter-spacing:.02em;font-style:italic;font-family:'Lora',serif}
+    .st .mq b{font-weight:400;opacity:.45;margin:0 16px}
+    /* Sticker: a rotated pill, as if slapped on the page. */
+    .st .stick{display:inline-block;background:#141414;color:#fff;border-radius:999px;
+      padding:9px 20px;font-size:12px;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;transform:rotate(-2.2deg)}
+    /* Handwritten aside plus its curved arrow. */
+    .st .hand{font-family:'Hand',cursive;font-size:26px;line-height:1.25;opacity:.8}
+    .st .arrow{font-family:'Hand',cursive;font-size:40px;opacity:.6;display:block}
+    .st .arch{border-radius:999px 999px 14px 14px;background-size:cover;background-position:center}
+    .st .stats{display:flex;gap:56px;justify-content:center;padding:26px 0;flex:none}
+    .st .stats b{display:block;font-family:'Gloock',serif;font-size:44px;font-style:italic;font-weight:400}
+    .st .stats span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
     .st .stars{display:inline-flex;align-items:center;gap:7px;font-size:13px}
-    .st .stars b{letter-spacing:.1em;color:#e8a33d}
+    .st .stars b{letter-spacing:.1em;color:#c58a2e}
     .st .ft{margin-top:auto;flex:none;border-top:1px solid rgba(0,0,0,.1);
-      padding:34px 54px 0;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px}
+      padding:32px 52px 0;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
     .st .ft h5{font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-      opacity:.5;margin:0 0 14px;font-weight:600}
-    .st .ft a{display:block;font-size:14px;opacity:.72;margin-bottom:9px;text-decoration:none;color:inherit}
-    .st .ft .about{font-size:14px;line-height:1.65;opacity:.68;max-width:30ch}
-    .st .ft .soc{display:flex;gap:9px;margin-top:16px}
-    .st .ft .soc i{width:28px;height:28px;border-radius:50%;border:1px solid currentColor;opacity:.4;display:block}
-    .st .legal{display:flex;justify-content:space-between;padding:22px 54px 26px;
-      font-size:12px;opacity:.45}
-    .st .cookie{position:absolute;left:28px;right:28px;top:648px;z-index:6;
-      background:#fff;color:#1a1a1a;border-radius:10px;padding:16px 20px;display:flex;
-      align-items:center;gap:18px;box-shadow:0 10px 30px rgba(0,0,0,.18);font-size:13px}
+      opacity:.5;margin:0 0 13px;font-weight:600}
+    .st .ft a{display:block;font-size:13.5px;opacity:.72;margin-bottom:8px;text-decoration:none;color:inherit}
+    .st .ft .about{font-size:13.5px;line-height:1.65;opacity:.68;max-width:30ch}
+    .st .ft .soc{display:flex;gap:9px;margin-top:15px}
+    .st .ft .soc i{width:27px;height:27px;border-radius:50%;border:1px solid currentColor;opacity:.4;display:block}
+    .st .legal{display:flex;justify-content:space-between;padding:20px 52px 24px;font-size:12px;opacity:.45}
+    .st .cookie{position:absolute;left:26px;right:26px;top:1086px;z-index:6;background:#fff;
+      color:#1a1a1a;border-radius:12px;padding:15px 19px;display:flex;align-items:center;gap:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.16);font-size:13px}
     .st .cookie p{flex:1;line-height:1.5;opacity:.75}
-    .st .cookie .b1{background:#1a1a1a;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600;white-space:nowrap}
-    .st .cookie .b2{padding:10px 14px;opacity:.6;white-space:nowrap}
-    .st .badges{display:flex;gap:26px;align-items:center;padding:18px 54px;
-      font-size:13px;opacity:.62;flex:none}
-    .st .badges span{display:flex;align-items:center;gap:9px}
-    .st .badges i{width:22px;height:14px;border-radius:3px;background:currentColor;opacity:.35;display:block}`;
+    .st .cookie .b1{background:#141414;color:#fff;padding:10px 17px;border-radius:999px;font-weight:600;white-space:nowrap}
+    .st .cookie .b2{padding:10px 13px;opacity:.6;white-space:nowrap}`;
 
-  /* Footer markup, shared. Written once so the eight sites stay consistent the
-     way a single studio's work would be. */
+  const marquee = (text, times) =>
+    `<div class="mq"><span>${Array(times || 5).fill(text).join('<b>✦</b>')}</span></div>`;
+
   const foot = (cols, legal) => `
     <div class="ft">
       <div><h5>${cols.brand}</h5><div class="about">${cols.about}</div>
@@ -69,320 +84,439 @@ const SITES = (() => {
     <div class="cookie"><p>Usamos cookies propias y de terceros para medir el tráfico.</p>
       <span class="b2">Configurar</span><span class="b1">Aceptar todas</span></div>`;
 
-
-  /* ---------------------------------------------------------------- 1 */
+  /* ---------------------------------------------------------------- 1
+     Knockout wordmark across a photograph, as in the yoga reference. */
   const flow = () => ({
     id: 'flow',
-    css: `${base.replace(/\.st/g, '.flow')}
-    .flow{background:#f2eee4;color:#1d2420;font-family:'Work Sans',sans-serif}
-    .flow .hero{position:relative;height:452px;margin:0 54px;overflow:hidden;flex:none}
+    css: `${base.replace(/\.st(?![\w-])/g, '.flow')}
+    .flow{background:#f3f0e8;color:#1d1c18}
+    .flow .wm{font-size:24px}
+    .flow .hero{position:relative;height:396px;margin:0 52px;overflow:hidden;flex:none;border-radius:14px}
     .flow .hero .im{position:absolute;inset:0;background-size:cover;background-position:center}
-    .flow .hero .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,40,46,.3),rgba(8,40,46,.12))}
-    .flow .big{position:absolute;left:0;right:0;top:92px;text-align:center;
-      font-family:'Montserrat',sans-serif;font-weight:900;font-size:186px;line-height:.8;
-      letter-spacing:.012em;color:#f6f3ea;text-transform:uppercase}
-    .flow .scr{position:absolute;left:0;right:0;top:206px;text-align:center;
-      font-family:'Instrument Serif',serif;font-style:italic;font-size:132px;color:#f2eee4}
-    .flow .cap{position:absolute;left:34px;bottom:30px;right:34px;display:flex;
-      justify-content:space-between;align-items:flex-end;color:#f6f3ea}
-    .flow .cap p{font-size:19px;line-height:1.4;max-width:30ch;font-weight:500}
-    .flow .cap .btn{background:#f6f3ea;color:#16302f;padding:16px 30px;border-radius:999px;
-      font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-    .flow .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:26px 54px 0}
-    .flow .grid div{height:206px;background-size:cover;background-position:center}
-    .flow .meta{display:flex;justify-content:space-between;padding:20px 54px;
-      font-size:13px;letter-spacing:.1em;text-transform:uppercase;opacity:.55}`,
+    .flow .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,.25),rgba(20,18,14,.5))}
+    .flow .ko{z-index:2}
+    .flow .ko{position:absolute;left:0;right:0;bottom:-26px;text-align:center;
+      font-family:'Gloock',serif;font-size:250px;line-height:.8;color:#f3f0e8;letter-spacing:-.045em}
+    .flow .tag{text-align:center;font-size:17px;opacity:.62;padding:22px 0 0;flex:none}
+    .flow .mid{text-align:center;padding:30px 52px 0;flex:none}
+    .flow .mid h2{font-family:'Gloock',serif;font-size:62px;line-height:1.08;font-weight:400;max-width:17ch;margin:14px auto 0}
+    .flow .mid h2 em{font-style:italic}
+    .flow .mid p{font-size:16px;line-height:1.6;opacity:.66;max-width:52ch;margin:18px auto 0}
+    .flow .tabs{display:flex;gap:12px;justify-content:center;padding:26px 0 0;flex:none}
+    .flow .tabs span{border-radius:999px;padding:11px 24px;font-size:14px;opacity:.6}
+    .flow .tabs .on{background:#e3e0d6;opacity:1;font-weight:600}
+    .flow .low{display:grid;grid-template-columns:1fr 1fr;gap:38px;padding:30px 52px 0;align-items:center;flex:none}
+    .flow .low h3{font-family:'Gloock',serif;font-size:34px;font-weight:400;margin-bottom:12px}
+    .flow .low h3 em{font-style:italic}
+    .flow .low p{font-size:15px;line-height:1.65;opacity:.68}
+    .flow .low .btnp{background:#1d1c18;color:#f3f0e8;margin-top:18px}
+    .flow .low .arch{height:260px}
+    .flow .mq{background:#1d1c18;color:#f3f0e8;margin-top:28px}`,
     html: `
-    <div class="bar"><div class="wm">Flow</div>
+    <div class="bar"><div class="wm">flow</div>
       <div class="nv"><span>Clases</span><span>Horarios</span><span>Bonos</span><span>Estudio</span></div>
-      <div class="pill">Primera clase gratis</div></div>
+      <div class="ghost">Primera clase gratis</div></div>
     <div class="hero">
-      <div class="im" style="background-image:${bg('water', 3, 980, 520)}"></div>
-      <div class="tint"></div>
-      <div class="big">Pilates</div>
-      <div class="scr">&amp; yoga</div>
-      <div class="cap"><p>Clases reducidas en pleno centro, de siete de la mañana a diez de la noche.</p>
-        <div class="btn">Reservar plaza</div></div></div>
-    <div class="grid">
-      <div style="background-image:${bg('water', 9, 460, 300, { shallow: '#5fcfd2', deep: '#115f73' })}"></div>
-      <div style="background-image:${bg('room', 13, 460, 300, { wall: '#ded6c6', floor: '#9b7b56', object: '#3f5450' })}"></div>
-      <div style="background-image:${bg('macro', 17, 460, 300, { skin: '#d9a98b' })}"></div></div>
-    <div class="meta"><span>Reformer · Mat · Yoga</span><span>Valencia — Ruzafa</span></div>
-    <div class="badges"><span><i></i>Bono 10 clases desde 95 €</span>
-      <span class="stars"><b>★★★★★</b>4,9 · 212 reseñas en Google</span></div>
-    ${foot({"brand": "Flow Estudio", "about": "Pilates reformer, mat y yoga en grupos de seis personas. Calle Cuba 34, Valencia.", "groups": [{"h": "Clases", "items": ["Reformer", "Mat", "Yoga", "Embarazo"]}, {"h": "Estudio", "items": ["Horarios", "Precios", "Equipo"]}, {"h": "Contacto", "items": ["960 41 22 08", "hola@flowestudio.es"]}]}, "© 2026 Flow Estudio SL")}
+      <div class="im" style="background-image:${bg('room', 3, 980, 460, { wall: '#6a6358', floor: '#3b3229', object: '#20241f', light: '#ffeccb' })}"></div>
+      <div class="ko">flow</div></div>
+    <div class="tag">Encuentra tu centro. Respira, muévete, transforma.</div>
+    <div class="mid">
+      <span class="stars"><b>★★★★★</b>4,97 sobre 5 · 212 reseñas</span>
+      <h2>Tres formas de moverte, <em>una misma</em> manera de cuidarte</h2>
+      <p>Reformer, pilates máquina y yoga en grupos de seis. Toca una para ver cuál te encaja.</p></div>
+    <div class="tabs"><span>Hot mat</span><span class="on">Flow yoga</span><span>Reformer</span></div>
+    <div class="low">
+      <div><h3>Flow <em>yoga</em></h3>
+        <p>Prácticas con atención a la respiración y al movimiento, pensadas para asentarte. Todos los niveles.</p>
+        <div class="btnp">Reservar plaza</div></div>
+      <div class="arch" style="background-image:${bg('water', 9, 520, 420, { shallow: '#8fc6c0', deep: '#2e6e74' })}"></div></div>
+    ${marquee('estudio en Ruzafa', 4)}
+    ${foot({ brand: 'Flow Estudio', about: 'Pilates reformer, mat y yoga en grupos de seis personas. Calle Cuba 34, Valencia.',
+      groups: [{ h: 'Clases', items: ['Reformer', 'Mat', 'Yoga', 'Embarazo'] },
+               { h: 'Estudio', items: ['Horarios', 'Precios', 'Equipo'] },
+               { h: 'Contacto', items: ['960 41 22 08', 'hola@flowestudio.es'] }] },
+      '© 2026 Flow Estudio SL')}
     ${cookie}`,
   });
 
-  /* ---------------------------------------------------------------- 2 */
+  /* ---------------------------------------------------------------- 2
+     Split colour block and serif/italic headline, as in the first reference. */
   const olmo = () => ({
     id: 'olmo',
-    css: `${base.replace(/\.st/g, '.olmo')}
-    .olmo{background:#f7f2e7;color:#2b2a20;font-family:'Work Sans',sans-serif}
-    .olmo .wm{font-family:'Instrument Serif',serif;font-size:28px;letter-spacing:.06em;text-transform:none;font-weight:400}
-    .olmo .head{text-align:center;padding:14px 54px 26px;flex:none}
-    .olmo .head .kick{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#8d8571}
-    .olmo .head h1{font-family:'Instrument Serif',serif;font-size:82px;line-height:1.02;
-      font-weight:400;letter-spacing:.06em;text-transform:uppercase;margin:16px 0 0}
-    .olmo .head h1 em{font-style:italic;text-transform:none;letter-spacing:0}
-    .olmo .shot{height:386px;margin:0 54px;background-size:cover;background-position:center;flex:none}
-    .olmo .split{display:grid;grid-template-columns:1fr 1fr;margin:18px 54px 0;flex:none}
-    .olmo .blk{background:#4e5b36;color:#f2efe2;padding:40px 44px;display:flex;
-      flex-direction:column;justify-content:center;gap:16px}
-    .olmo .blk h3{font-family:'Instrument Serif',serif;font-size:38px;font-weight:400}
-    .olmo .blk p{font-size:16px;line-height:1.6;opacity:.82;max-width:34ch}
-    .olmo .side{display:grid;grid-template-rows:1fr 1fr;gap:8px;padding-left:8px}
-    .olmo .side div{background-size:cover;background-position:center}`,
+    css: `${base.replace(/\.st(?![\w-])/g, '.olmo')}
+    .olmo{background:#f8f4ea;color:#23251c}
+    .olmo .split{display:grid;grid-template-columns:1.08fr 1fr;height:392px;flex:none}
+    .olmo .split .im{background-size:cover;background-position:center;border-right:3px solid #23251c}
+    .olmo .blk{background:#dff07f;padding:46px 46px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+    .olmo .blk .kick{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+    .olmo .blk h1{font-family:'Gloock',serif;font-size:50px;line-height:1.1;font-weight:400}
+    .olmo .blk h1 em{font-style:italic}
+    .olmo .blk h1 b{font-weight:400;text-transform:uppercase;font-family:'Work Sans',sans-serif;
+      font-size:.82em;letter-spacing:-.02em}
+    .olmo .blk p{font-size:14.5px;line-height:1.62;opacity:.8;max-width:34ch}
+    .olmo .blk .btnp{background:#c3c9f5;color:#23251c;align-self:flex-start;margin-top:4px}
+    .olmo .mid{text-align:center;padding:34px 52px 0;flex:none;position:relative}
+    .olmo .mid h2{font-family:'Gloock',serif;font-size:58px;line-height:1.05;font-weight:400;margin-top:18px}
+    .olmo .mid h2 em{font-style:italic}
+    .olmo .mid p{font-size:15px;line-height:1.65;opacity:.68;max-width:50ch;margin:16px auto 0}
+    .olmo .mid .hand{position:absolute;right:76px;top:84px;transform:rotate(-7deg);width:172px;text-align:left}
+    .olmo .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:28px 52px 0;flex:none}
+    .olmo .cards > div{border-radius:14px;overflow:hidden;background:#eef0e2;padding:0 0 18px}
+    .olmo .cards .ph{height:160px;background-size:cover;background-position:center}
+    .olmo .cards h4{font-family:'Gloock',serif;font-size:21px;font-weight:400;margin:14px 18px 6px}
+    .olmo .cards p{font-size:13px;line-height:1.5;opacity:.66;margin:0 18px}
+    .olmo .mq{background:#23251c;color:#f8f4ea;margin-top:28px}`,
     html: `
     <div class="bar"><div class="wm">Casa Olmo</div>
-      <div class="nv"><span>La casa</span><span>Estancias</span><span>Mesa</span></div>
-      <div class="pill">Reservar</div></div>
-    <div class="head"><div class="kick">Sierra de Gredos · Ávila</div>
-      <h1>Tu <em>refugio</em><br>en la sierra</h1></div>
-    <div class="shot" style="background-image:${bg('tuscan', 5, 980, 480)}"></div>
+      <div class="nv"><span>La casa</span><span>Estancias</span><span>Mesa</span><span>Termas</span></div>
+      <div class="ghost">Reservar</div></div>
     <div class="split">
-      <div class="blk"><h3>Siete estancias</h3>
-        <p>Chimenea en cada una, vistas al valle y absolutamente nada que hacer.</p></div>
-      <div class="side">
-        <div style="background-image:${bg('room', 21, 440, 190, { wall: '#e0d7c2', floor: '#8a6440', object: '#45503a' })}"></div>
-        <div style="background-image:${bg('dish', 23, 440, 190, { table: '#241a10', plate: '#3f3528' })}"></div></div></div>
-    ${foot({"brand": "Casa Olmo", "about": "Casa rural de siete habitaciones en la Sierra de Gredos. Registro turístico AV-0412.", "groups": [{"h": "La casa", "items": ["Estancias", "Termas", "Mesa", "Galería"]}, {"h": "Reservas", "items": ["Disponibilidad", "Condiciones", "Bonos regalo"]}, {"h": "Cómo llegar", "items": ["Navarredonda", "A 2 h de Madrid"]}]}, "© 2026 Casa Olmo")}`,
+      <div class="im" style="background-image:${bg('tuscan', 5, 760, 440)}"></div>
+      <div class="blk"><div class="kick">¿Prisa? Nunca oímos hablar de ella.</div>
+        <h1>Siete habitaciones que <b>PIDEN</b> <em>quedarse</em>.</h1>
+        <p>Chimenea en cada una, vistas al valle y absolutamente nada que hacer. A dos horas de Madrid.</p>
+        <div class="btnp">Ver disponibilidad</div></div></div>
+    <div class="mid"><span class="stick">Sierra de Gredos · Ávila</span>
+      <h2>Échale un <em>vistazo</em><br>a la casa</h2>
+      <p>Una casa de piedra rehabilitada en 2019, con siete estancias, termas al aire libre y mesa compartida a las nueve.</p>
+      <div class="hand">lo de la mesa<br>compartida engancha<span class="arrow">↙</span></div></div>
+    <div class="cards">
+      <div><div class="ph" style="background-image:${bg('room', 21, 440, 220, { wall: '#e0d7c2', floor: '#8a6440', object: '#45503a' })}"></div>
+        <h4>Las estancias</h4><p>Siete, todas distintas, todas con chimenea.</p></div>
+      <div><div class="ph" style="background-image:${bg('dish', 23, 440, 220, { table: '#241a10', plate: '#3f3528' })}"></div>
+        <h4>La mesa</h4><p>Menú corto con lo que llega de la huerta.</p></div>
+      <div><div class="ph" style="background-image:${bg('water', 27, 440, 220, { shallow: '#9ec4bd', deep: '#2f5b56' })}"></div>
+        <h4>Las termas</h4><p>Agua caliente al aire libre, de sol a sol.</p></div></div>
+    ${marquee('despacio, que hay prisa', 4)}
+    ${foot({ brand: 'Casa Olmo', about: 'Casa rural de siete habitaciones en la Sierra de Gredos. Registro turístico AV-0412.',
+      groups: [{ h: 'La casa', items: ['Estancias', 'Termas', 'Mesa', 'Galería'] },
+               { h: 'Reservas', items: ['Disponibilidad', 'Condiciones', 'Bonos regalo'] },
+               { h: 'Cómo llegar', items: ['Navarredonda', 'A 2 h de Madrid'] }] },
+      '© 2026 Casa Olmo')}`,
   });
 
-  /* ---------------------------------------------------------------- 3 */
+  /* ---------------------------------------------------------------- 3
+     Blush wellness page: arch photo, stats in italic serif. */
   const piel = () => ({
     id: 'piel',
-    css: `${base.replace(/\.st/g, '.piel')}
-    .piel{background:#efe4dd;color:#3a211c;font-family:'Work Sans',sans-serif}
-    .piel .claim{padding:10px 54px 26px;flex:none}
-    .piel .claim h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:76px;
-      line-height:.96;letter-spacing:-.03em;text-transform:uppercase;max-width:19ch}
-    .piel .claim h1 span{color:#8a3b2d}
-    .piel .row{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;margin:0 54px;flex:none}
-    .piel .row .im{height:330px;background-size:cover;background-position:center}
-    .piel .blk{background:#6d2b24;color:#f3e7e1;padding:36px 38px;display:flex;
-      flex-direction:column;justify-content:space-between}
-    .piel .blk p{font-size:17px;line-height:1.6;opacity:.86}
-    .piel .blk .btn{align-self:flex-start;background:#f3e7e1;color:#6d2b24;padding:15px 28px;
-      border-radius:999px;font-size:14px;font-weight:700}
-    .piel .shelf{height:250px;margin:16px 54px 0;background-size:cover;background-position:center;flex:none}
-    .piel .meta{display:flex;justify-content:space-between;padding:18px 54px;font-size:13px;
-      letter-spacing:.1em;text-transform:uppercase;opacity:.55}`,
+    css: `${base.replace(/\.st(?![\w-])/g, '.piel')}
+    .piel{background:#f6efe9;color:#2e211d}
+    .piel .hero{position:relative;height:374px;margin:0 52px;border-radius:18px;overflow:hidden;flex:none}
+    .piel .hero .im{position:absolute;inset:0;background-size:cover;background-position:center}
+    .piel .hero .tint{position:absolute;inset:0;background:linear-gradient(90deg,rgba(60,36,30,.42),rgba(60,36,30,.04))}
+    .piel .hero .tx{position:absolute;left:46px;top:50%;transform:translateY(-50%);color:#fff7f2;width:52%}
+    .piel .hero h1{font-family:'Gloock',serif;font-size:50px;line-height:1.08;font-weight:400}
+    .piel .hero h1 em{font-style:italic}
+    .piel .hero .btnp{background:#fff7f2;color:#2e211d;margin-top:22px}
+    .piel .mid{text-align:center;padding:34px 52px 0;flex:none}
+    .piel .mid h2{font-family:'Gloock',serif;font-size:52px;line-height:1.14;font-weight:400;max-width:21ch;margin:0 auto}
+    .piel .mid h2 em{font-style:italic}
+    .piel .mid h2 i{font-style:normal;background:#e8cfc4;border-radius:999px;padding:0 14px}
+    .piel .stats b{color:#8c4a3a}
+    .piel .row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:12px 52px 0;flex:none}
+    .piel .row > div{background:#efe2da;border-radius:16px;padding:22px;text-align:center}
+    .piel .row .ph{height:150px;border-radius:12px;background-size:cover;background-position:center;margin-bottom:14px}
+    .piel .row h4{font-family:'Gloock',serif;font-size:20px;font-weight:400}
+    .piel .row span{font-size:13px;opacity:.6;display:block;margin-top:4px}
+    .piel .mq{background:#8c4a3a;color:#f6efe9;margin-top:30px}`,
     html: `
     <div class="bar"><div class="wm">Piel</div>
-      <div class="nv"><span>Rutina</span><span>Productos</span><span>Diario</span></div>
-      <div class="pill">Cesta · 2</div></div>
-    <div class="claim"><h1>No necesitas más cremas. <span>Solo mejores.</span></h1></div>
+      <div class="nv"><span>Rutina</span><span>Productos</span><span>Ingredientes</span><span>Diario</span></div>
+      <div class="ghost">Cesta · 2</div></div>
+    <div class="hero">
+      <div class="im" style="background-image:${bg('macro', 11, 980, 440)}"></div>
+      <div class="tint"></div>
+      <div class="tx"><h1>Encuentra tu <em>equilibrio</em> con Piel</h1>
+        <div class="btnp">Ver la rutina</div></div></div>
+    <div class="mid"><h2>No necesitas <i>más</i> cremas. <em>Solo mejores.</em></h2></div>
+    <div class="stats">
+      <div><b>6</b><span>fórmulas</span></div>
+      <div><b>0</b><span>perfume</span></div>
+      <div><b>4,8</b><span>sobre 5</span></div></div>
     <div class="row">
-      <div class="im" style="background-image:${bg('macro', 11, 700, 420)}"></div>
-      <div class="blk"><p>Seis fórmulas cortas, sin perfume y con lo que de verdad hace algo.
-        Fabricadas en Alicante.</p><div class="btn">Ver la rutina</div></div></div>
-    <div class="shelf" style="background-image:${bg('bottles', 7, 980, 330)}"></div>
-    <div class="meta"><span>Envío en 24 h</span><span>Muestras gratis en cada pedido</span></div>
-    <div class="badges"><span><i></i><i></i>Pago seguro</span><span><i></i>Envío en 24 h</span>
-      <span class="stars"><b>★★★★★</b>4,8 · 1.340 valoraciones</span></div>
-    ${foot({"brand": "Piel", "about": "Cosmética corta, sin perfume y fabricada en Alicante. Cruelty free.", "groups": [{"h": "Tienda", "items": ["Rutina", "Limpieza", "Hidratación", "Packs"]}, {"h": "Ayuda", "items": ["Envíos", "Devoluciones", "Contacto"]}, {"h": "Nosotras", "items": ["Fórmulas", "Ingredientes", "Diario"]}]}, "© 2026 Piel Laboratorios SL · CIF B-54xxxxxx")}
+      <div><div class="ph" style="background-image:${bg('bottles', 7, 420, 300)}"></div>
+        <h4>Limpieza</h4><span>Gel suave · 150 ml</span></div>
+      <div><div class="ph" style="background-image:${bg('bottles', 13, 420, 300, { tones: ['#a9674a', '#c08a63', '#8d5339', '#d0a07a'] })}"></div>
+        <h4>Hidratación</h4><span>Crema ligera · 50 ml</span></div>
+      <div><div class="ph" style="background-image:${bg('macro', 17, 420, 300, { skin: '#d8a083' })}"></div>
+        <h4>Protección</h4><span>SPF 50 · 50 ml</span></div></div>
+    ${marquee('fabricado en Alicante', 4)}
+    ${foot({ brand: 'Piel', about: 'Cosmética corta, sin perfume y fabricada en Alicante. Cruelty free.',
+      groups: [{ h: 'Tienda', items: ['Rutina', 'Limpieza', 'Hidratación', 'Packs'] },
+               { h: 'Ayuda', items: ['Envíos', 'Devoluciones', 'Contacto'] },
+               { h: 'Nosotras', items: ['Fórmulas', 'Ingredientes', 'Diario'] }] },
+      '© 2026 Piel Laboratorios SL · CIF B-54xxxxxx')}
     ${cookie}`,
   });
 
-  /* ---------------------------------------------------------------- 4 */
+  /* ---------------------------------------------------------------- 4
+     Deep olive restaurant, serif display over a dark photograph. */
   const brasa = () => ({
     id: 'brasa',
-    css: `${base.replace(/\.st/g, '.brasa')}
-    .brasa{background:#15100b;color:#f0e6d4;font-family:'Work Sans',sans-serif}
-    .brasa .wm{font-family:'Instrument Serif',serif;font-size:30px;letter-spacing:.04em;
-      text-transform:none;font-weight:400}
-    .brasa .pill{border-color:#c79a4a;color:#c79a4a}
-    .brasa .hero{position:relative;height:430px;margin:0 54px;overflow:hidden;flex:none}
+    css: `${base.replace(/\.st(?![\w-])/g, '.brasa')}
+    .brasa{background:#f4efe3;color:#22220f}
+    .brasa .hero{position:relative;height:402px;margin:0 52px;border-radius:16px;overflow:hidden;flex:none}
     .brasa .hero .im{position:absolute;inset:0;background-size:cover;background-position:center}
-    .brasa .hero .tint{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,10,7,.9) 28%,rgba(14,10,7,.1))}
-    .brasa .hero .tx{position:absolute;left:44px;top:50%;transform:translateY(-50%)}
-    .brasa .hero .kick{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#c79a4a;margin-bottom:18px}
-    .brasa h1{font-family:'Instrument Serif',serif;font-size:92px;line-height:.96;font-weight:400}
-    .brasa h1 em{font-style:italic;color:#c79a4a}
-    .brasa .menu{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;padding:28px 54px 0;flex:none}
-    .brasa .d{display:flex;align-items:baseline;gap:14px;padding:15px 0;border-top:1px solid #2a2015}
-    .brasa .d .n{font-family:'Instrument Serif',serif;font-size:25px;white-space:nowrap}
-    .brasa .d .dot{flex:1;border-bottom:1px dotted #4b3c28;transform:translateY(-6px)}
-    .brasa .d .p{font-size:19px;color:#c79a4a;font-variant-numeric:tabular-nums}
-    .brasa .d .s{font-size:13px;color:#8e8069;margin-top:4px}`,
+    .brasa .hero .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,18,8,.5),rgba(18,18,8,.08) 46%,rgba(18,18,8,.72))}
+    .brasa .hero h1{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+      text-align:center;font-family:'Gloock',serif;font-size:84px;line-height:1;color:#f4efe3;font-weight:400}
+    .brasa .hero h1 em{font-style:italic;color:#dfe08a}
+    .brasa .hero .stick{position:absolute;left:36px;top:30px;background:#dfe08a;color:#22220f}
+    .brasa .mid{display:grid;grid-template-columns:1fr 1.1fr;gap:42px;padding:34px 52px 0;align-items:center;flex:none}
+    .brasa .mid h2{font-family:'Gloock',serif;font-size:42px;line-height:1.12;font-weight:400}
+    .brasa .mid h2 em{font-style:italic}
+    .brasa .mid p{font-size:15px;line-height:1.68;opacity:.7;margin-top:14px}
+    .brasa .mid .btnp{background:#3c4a1e;color:#f4efe3;margin-top:18px}
+    .brasa .menu{background:#3c4a1e;color:#eef0dd;border-radius:16px;padding:26px 30px}
+    .brasa .d{display:flex;align-items:baseline;gap:12px;padding:12px 0;border-top:1px solid rgba(238,240,221,.16)}
+    .brasa .d:first-child{border-top:0}
+    .brasa .d .n{font-family:'Gloock',serif;font-size:20px;white-space:nowrap}
+    .brasa .d .dot{flex:1;border-bottom:1px dotted rgba(238,240,221,.3);transform:translateY(-5px)}
+    .brasa .d .p{font-size:17px;color:#dfe08a;font-variant-numeric:tabular-nums}
+    .brasa .d .s{font-size:12.5px;opacity:.62;margin-top:3px}
+    .brasa .mq{background:#22220f;color:#f4efe3;margin-top:30px}`,
     html: `
     <div class="bar"><div class="wm">Brasa</div>
       <div class="nv"><span>Carta</span><span>Bodega</span><span>La casa</span></div>
-      <div class="pill">Reservar mesa</div></div>
+      <div class="ghost">Reservar mesa</div></div>
     <div class="hero">
-      <div class="im" style="background-image:${bg('dish', 29, 980, 480, { table: '#1b120b', plate: '#3a2f24', food: ['#e0761f', '#a8461a', '#f0b94a'] })}"></div>
+      <div class="im" style="background-image:${bg('dish', 29, 980, 460, { table: '#1b120b', plate: '#3a2f24', food: ['#e0761f', '#a8461a', '#f0b94a'] })}"></div>
       <div class="tint"></div>
-      <div class="tx"><div class="kick">Menú de temporada · marzo</div>
-        <h1>Brasa, <em>sal</em><br>y poco más</h1></div></div>
-    <div class="menu">
-      <div><div class="d"><div><div class="n">Anchoa curada en casa</div>
-        <div class="s">Pan de cristal, mantequilla ahumada</div></div><div class="dot"></div><div class="p">9 €</div></div>
-        <div class="d"><div><div class="n">Alcachofa a la brasa</div>
-        <div class="s">Yema curada y avellana</div></div><div class="dot"></div><div class="p">14 €</div></div></div>
-      <div><div class="d"><div><div class="n">Sepia y su tinta</div>
-        <div class="s">Guisantes del Maresme</div></div><div class="dot"></div><div class="p">18 €</div></div>
-        <div class="d"><div><div class="n">Costilla de vaca vieja</div>
-        <div class="s">Cuarenta días de maduración</div></div><div class="dot"></div><div class="p">26 €</div></div></div></div>
-    ${foot({"brand": "Brasa", "about": "Cocina de fuego en el Carmen. Servicio de martes a sábado, comidas y cenas.", "groups": [{"h": "Carta", "items": ["Menú degustación", "A la carta", "Bodega"]}, {"h": "Reservas", "items": ["Mesa", "Grupos", "Eventos"]}, {"h": "Dónde", "items": ["Calle Roteros 9", "963 92 14 70"]}]}, "© 2026 Brasa · Valencia")}`,
+      <span class="stick">Menú de marzo</span>
+      <h1>Brasa, <em>sal</em><br>y poco más</h1></div>
+    <div class="mid">
+      <div><h2>Cinco pases que <em>cambian</em> cada semana</h2>
+        <p>Según lo que llega de la lonja y de la huerta de El Palmar. Servicio de martes a sábado.</p>
+        <div class="btnp">Ver el menú completo</div></div>
+      <div class="menu">
+        <div class="d"><div><div class="n">Anchoa curada en casa</div><div class="s">Pan de cristal, mantequilla ahumada</div></div><div class="dot"></div><div class="p">9 €</div></div>
+        <div class="d"><div><div class="n">Alcachofa a la brasa</div><div class="s">Yema curada y avellana</div></div><div class="dot"></div><div class="p">14 €</div></div>
+        <div class="d"><div><div class="n">Sepia y su tinta</div><div class="s">Guisantes del Maresme</div></div><div class="dot"></div><div class="p">18 €</div></div>
+        <div class="d"><div><div class="n">Costilla de vaca vieja</div><div class="s">Cuarenta días de maduración</div></div><div class="dot"></div><div class="p">26 €</div></div></div></div>
+    ${marquee('menú completo 58 € · maridaje 24 €', 3)}
+    ${foot({ brand: 'Brasa', about: 'Cocina de fuego en el Carmen. Servicio de martes a sábado, comidas y cenas.',
+      groups: [{ h: 'Carta', items: ['Menú degustación', 'A la carta', 'Bodega'] },
+               { h: 'Reservas', items: ['Mesa', 'Grupos', 'Eventos'] },
+               { h: 'Dónde', items: ['Calle Roteros 9', '963 92 14 70'] }] },
+      '© 2026 Brasa · Valencia')}`,
   });
 
-  /* ---------------------------------------------------------------- 5 */
-  const lumen = () => ({
-    id: 'lumen',
-    css: `${base.replace(/\.st/g, '.lumen')}
-    .lumen{background:#0e0d0c;color:#fff;font-family:'Work Sans',sans-serif;position:relative}
-    .lumen .full{position:absolute;inset:0;background-size:cover;background-position:center}
-    .lumen .sc{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,6,8,.5),rgba(6,6,8,0) 36%,rgba(6,6,8,.78))}
-    .lumen .bar,.lumen .mid,.lumen .thumbs{position:relative;z-index:2}
-    .lumen .mid{flex:1;display:flex;flex-direction:column;justify-content:center;
-      align-items:center;text-align:center;padding:0 54px}
-    .lumen .kick{font-size:12px;letter-spacing:.32em;text-transform:uppercase;opacity:.74;margin-bottom:22px}
-    .lumen h1{font-family:'Instrument Serif',serif;font-size:118px;line-height:.94;font-weight:400}
-    .lumen h1 em{font-style:italic}
-    .lumen .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 54px 40px}
-    .lumen .thumbs div{height:150px;background-size:cover;background-position:center;opacity:.72}
-    .lumen .thumbs div:first-child{opacity:1;box-shadow:0 0 0 2px #fff}`,
-    html: `
-    <div class="full" style="background-image:${bg('hills', 31, 980, 620, { sky: ['#0a0c1e', '#3a2047', '#9a4a4a', '#e39a66'], ridge: '#0b0a12' })}"></div>
-    <div class="sc"></div>
-    <div class="bar"><div class="wm">Lumen</div>
-      <div class="nv"><span>Series</span><span>Bodas</span><span>Editorial</span><span>Copias</span></div>
-      <div class="pill">Disponibilidad</div></div>
-    <div class="mid"><div class="kick">Serie 04 — Costa Brava, invierno</div>
-      <h1>La luz <em>que queda</em></h1></div>
-    <div class="thumbs">
-      <div style="background-image:${bg('hills', 31, 400, 260, { sky: ['#0a0c1e', '#3a2047', '#9a4a4a', '#e39a66'], ridge: '#0b0a12' })}"></div>
-      <div style="background-image:${bg('tuscan', 37, 400, 260)}"></div>
-      <div style="background-image:${bg('water', 41, 400, 260, { shallow: '#3f93a8', deep: '#0b3d52' })}"></div>
-      <div style="background-image:${bg('room', 43, 400, 260, { wall: '#3c3a38', floor: '#262320', object: '#15130f', light: '#fff0d4' })}"></div></div>
-    ${foot({"brand": "Lumen", "about": "Fotografía de paisaje, bodas y editorial. Trabajo en toda la península.", "groups": [{"h": "Trabajo", "items": ["Series", "Bodas", "Editorial"]}, {"h": "Tienda", "items": ["Copias", "Ediciones", "Libros"]}, {"h": "Contacto", "items": ["hola@lumen.photo", "Disponibilidad"]}]}, "© 2026 Lumen")}`,
-  });
-
-  /* ---------------------------------------------------------------- 6 */
+  /* ---------------------------------------------------------------- 5
+     Shop page with lavender block and testimonials. */
   const ovillo = () => ({
     id: 'ovillo',
-    css: `${base.replace(/\.st/g, '.ovillo')}
-    .ovillo{background:#f8f3eb;color:#2b2119;font-family:'Work Sans',sans-serif}
-    .ovillo .promo{display:grid;grid-template-columns:1fr 1.15fr;margin:0 54px;flex:none;height:360px}
-    .ovillo .pc{background:#a8412a;color:#fdf6ee;padding:44px 42px;display:flex;
-      flex-direction:column;justify-content:center;gap:18px}
-    .ovillo .pc h1{font-family:'Instrument Serif',serif;font-size:66px;line-height:1;font-weight:400}
+    css: `${base.replace(/\.st(?![\w-])/g, '.ovillo')}
+    .ovillo{background:#f7f3ec;color:#2a2118}
+    .ovillo .mq.top{background:#141414;color:#f7f3ec}
+    .ovillo .promo{display:grid;grid-template-columns:1fr 1fr;gap:0;height:340px;margin:0 52px;flex:none}
+    .ovillo .pc{background:#d3cbf2;padding:40px 42px;display:flex;flex-direction:column;
+      justify-content:center;gap:15px;border-radius:16px 0 0 16px}
+    .ovillo .pc h1{font-family:'Gloock',serif;font-size:50px;line-height:1.08;font-weight:400}
     .ovillo .pc h1 em{font-style:italic}
-    .ovillo .pc p{font-size:17px;opacity:.86;max-width:28ch}
-    .ovillo .pc .btn{align-self:flex-start;background:#fdf6ee;color:#a8412a;padding:15px 30px;
-      border-radius:999px;font-weight:700;font-size:15px}
-    .ovillo .ps{background-size:cover;background-position:center}
-    .ovillo .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:24px 54px 0}
-    .ovillo .p .im{height:224px;background-size:cover;background-position:center}
-    .ovillo .p .n{font-size:17px;font-weight:600;margin:12px 0 2px}
-    .ovillo .p .m{font-size:13px;color:#8b7768}
-    .ovillo .p .pr{margin-top:7px;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}`,
+    .ovillo .pc p{font-size:14.5px;line-height:1.6;opacity:.78;max-width:30ch}
+    .ovillo .pc .btnp{background:#2a2118;color:#f7f3ec;align-self:flex-start}
+    .ovillo .ps{background-size:cover;background-position:center;border-radius:0 16px 16px 0}
+    .ovillo .shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:28px 52px 0;flex:none}
+    .ovillo .p .im{height:190px;border-radius:12px;background-size:cover;background-position:center}
+    .ovillo .p .n{font-size:16px;font-weight:600;margin:11px 0 2px}
+    .ovillo .p .m{font-size:12.5px;opacity:.6}
+    .ovillo .p .pr{margin-top:6px;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+    .ovillo .tst{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:30px 52px 0;flex:none}
+    .ovillo .tst > div{background:#edf0e0;border-radius:16px;padding:22px}
+    .ovillo .tst p{font-family:'Lora',serif;font-size:15px;line-height:1.6;font-style:italic}
+    .ovillo .tst .who{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:12.5px;opacity:.65}
+    .ovillo .tst .av{width:30px;height:30px;border-radius:50%;background-size:cover;background-position:center;flex:none}`,
     html: `
+    ${marquee('rebajas de invierno · hasta −40 %', 4).replace('class="mq"', 'class="mq top"')}
     <div class="bar"><div class="wm">Ovillo</div>
       <div class="nv"><span>Punto</span><span>Lanas</span><span>Patrones</span><span>Talleres</span></div>
-      <div class="pill">Cesta · 3</div></div>
+      <div class="ghost">Cesta · 3</div></div>
     <div class="promo">
       <div class="pc"><h1>Rebajas de <em>invierno</em></h1>
-        <p>Hasta un 40 % en lana merina y alpaca hilada en Asturias.</p>
-        <div class="btn">Ver rebajas</div></div>
-      <div class="ps" style="background-image:${bg('knit', 47, 760, 400, { yarn: '#b8452f' })}"></div></div>
-    <div class="grid">
-      <div class="p"><div class="im" style="background-image:${bg('knit', 53, 380, 300, { yarn: '#c2955c' })}"></div>
+        <p>Hasta un 40 % en lana merina y alpaca hilada en Asturias. Hasta fin de existencias.</p>
+        <div class="btnp">Ver rebajas</div></div>
+      <div class="ps" style="background-image:${bg('knit', 47, 700, 400, { yarn: '#9c5a44' })}"></div></div>
+    <div class="shelf">
+      <div class="p"><div class="im" style="background-image:${bg('knit', 53, 380, 280, { yarn: '#c2955c' })}"></div>
         <div class="n">Jersey Duna</div><div class="m">Merina · trenzado</div><div class="pr">79,00 €</div></div>
-      <div class="p"><div class="im" style="background-image:${bg('knit', 59, 380, 300, { yarn: '#3f5b46' })}"></div>
+      <div class="p"><div class="im" style="background-image:${bg('knit', 59, 380, 280, { yarn: '#3f5b46' })}"></div>
         <div class="n">Cárdigan Ría</div><div class="m">Lana y alpaca</div><div class="pr">118,00 €</div></div>
-      <div class="p"><div class="im" style="background-image:${bg('knit', 61, 380, 300, { yarn: '#2c3d5c' })}"></div>
+      <div class="p"><div class="im" style="background-image:${bg('knit', 61, 380, 280, { yarn: '#2c3d5c' })}"></div>
         <div class="n">Chaleco Sella</div><div class="m">Algodón orgánico</div><div class="pr">64,00 €</div></div>
-      <div class="p"><div class="im" style="background-image:${bg('shop', 67, 380, 300, { wall: '#efe6d8' })}"></div>
+      <div class="p"><div class="im" style="background-image:${bg('shop', 67, 380, 280, { wall: '#efe6d8' })}"></div>
         <div class="n">La colección</div><div class="m">42 prendas</div><div class="pr">Ver todo</div></div></div>
-    <div class="badges"><span><i></i><i></i>Pago en 3 plazos</span><span><i></i>Devolución gratis 30 días</span>
-      <span class="stars"><b>★★★★☆</b>4,6 · 2.118 valoraciones</span></div>
-    ${foot({"brand": "Ovillo", "about": "Punto hecho en Asturias con lana merina y alpaca. Tienda en Gijón y online.", "groups": [{"h": "Tienda", "items": ["Jerséis", "Cárdigans", "Lanas", "Rebajas"]}, {"h": "Ayuda", "items": ["Guía de tallas", "Envíos", "Cambios"]}, {"h": "Taller", "items": ["Cursos", "Patrones", "Reparaciones"]}]}, "© 2026 Ovillo · Hecho en Asturias")}`,
+    <div class="tst">
+      <div><p>“Llegó en dos días y la lana es exactamente la del catálogo.”</p>
+        <div class="who"><span class="av" style="background-image:${bg('macro', 71, 90, 90, { skin: '#d9a98b' })}"></span>Marta R. · Gijón</div></div>
+      <div><p>“El cárdigan tiene tres inviernos y está igual que el primer día.”</p>
+        <div class="who"><span class="av" style="background-image:${bg('macro', 73, 90, 90, { skin: '#c08f6e' })}"></span>Lucía P. · Bilbao</div></div>
+      <div><p>“Cambié la talla sin preguntas y sin pagar el envío.”</p>
+        <div class="who"><span class="av" style="background-image:${bg('macro', 79, 90, 90, { skin: '#e0b391' })}"></span>Nuria S. · Madrid</div></div></div>
+    ${foot({ brand: 'Ovillo', about: 'Punto hecho en Asturias con lana merina y alpaca. Tienda en Gijón y online.',
+      groups: [{ h: 'Tienda', items: ['Jerséis', 'Cárdigans', 'Lanas', 'Rebajas'] },
+               { h: 'Ayuda', items: ['Guía de tallas', 'Envíos', 'Cambios'] },
+               { h: 'Taller', items: ['Cursos', 'Patrones', 'Reparaciones'] }] },
+      '© 2026 Ovillo · Hecho en Asturias')}`,
   });
 
-  /* ---------------------------------------------------------------- 7 */
+  /* ---------------------------------------------------------------- 6
+     Coffee shop: sage block, product row, handwritten aside. */
   const tinta = () => ({
     id: 'tinta',
-    css: `${base.replace(/\.st/g, '.tinta')}
-    .tinta{background:#f6f1e6;color:#241a10;font-family:'Work Sans',sans-serif}
-    .tinta .wm{font-family:'Lora',serif;font-size:25px;letter-spacing:.02em;text-transform:none;font-weight:700}
-    .tinta .hero{display:grid;grid-template-columns:1fr 1fr;height:432px;margin:0 54px;flex:none}
-    .tinta .cp{display:flex;flex-direction:column;justify-content:center;gap:20px;padding-right:44px}
-    .tinta .badge{align-self:flex-start;background:#241a10;color:#f0c45c;font-size:11px;font-weight:700;
-      letter-spacing:.2em;text-transform:uppercase;padding:9px 16px;border-radius:999px}
-    .tinta h1{font-family:'Lora',serif;font-size:74px;line-height:1.02;font-weight:700;letter-spacing:-.025em}
-    .tinta h1 span{color:#8a3a12}
-    .tinta .sub{font-size:17px;line-height:1.6;color:#6b5946;max-width:30ch}
-    .tinta .buy{display:flex;align-items:center;gap:20px}
-    .tinta .btn{background:#8a3a12;color:#fff;padding:17px 34px;border-radius:999px;font-size:15px;font-weight:700}
-    .tinta .price{font-family:'Lora',serif;font-size:30px;font-weight:700}
-    .tinta .shot{background-size:cover;background-position:center}
-    .tinta .row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:24px 54px 0}
-    .tinta .c{display:flex;gap:16px;align-items:center}
-    .tinta .c .im{width:104px;height:104px;flex:none;background-size:cover;background-position:center}
-    .tinta .c b{display:block;font-family:'Lora',serif;font-size:18px}
-    .tinta .c span{font-size:13px;color:#8a7a63}
-    .tinta .c i{font-style:normal;font-size:16px;font-weight:700;display:block;margin-top:5px}`,
+    css: `${base.replace(/\.st(?![\w-])/g, '.tinta')}
+    .tinta{background:#f7f3e8;color:#241c12}
+    .tinta .hero{display:grid;grid-template-columns:1fr 1fr;height:386px;margin:0 52px;flex:none}
+    .tinta .cp{background:#c9d4ac;border-radius:16px 0 0 16px;padding:42px 40px;
+      display:flex;flex-direction:column;justify-content:center;gap:15px;position:relative}
+    .tinta .cp h1{font-family:'Gloock',serif;font-size:54px;line-height:1.04;font-weight:400}
+    .tinta .cp h1 em{font-style:italic}
+    .tinta .cp p{font-size:14.5px;line-height:1.62;opacity:.78;max-width:30ch}
+    .tinta .cp .btnp{background:#241c12;color:#f7f3e8;align-self:flex-start}
+    .tinta .cp .stick{position:absolute;right:28px;top:26px;transform:rotate(3deg)}
+    .tinta .sh{background-size:cover;background-position:center;border-radius:0 16px 16px 0}
+    .tinta .mid{text-align:center;padding:32px 52px 0;flex:none;position:relative}
+    .tinta .mid h2{font-family:'Gloock',serif;font-size:46px;font-weight:400;line-height:1.1}
+    .tinta .mid h2 em{font-style:italic}
+    .tinta .mid .hand{position:absolute;left:80px;top:40px;transform:rotate(-6deg);width:164px;text-align:left}
+    .tinta .row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:24px 52px 0;flex:none}
+    .tinta .c{display:flex;gap:15px;align-items:center;background:#efe9da;border-radius:14px;padding:16px}
+    .tinta .c .im{width:84px;height:84px;flex:none;border-radius:10px;background-size:cover;background-position:center}
+    .tinta .c b{display:block;font-family:'Gloock',serif;font-size:18px;font-weight:400}
+    .tinta .c span{font-size:12.5px;opacity:.6}
+    .tinta .c i{font-style:normal;font-size:15px;font-weight:700;display:block;margin-top:5px}
+    .tinta .mq{background:#241c12;color:#f7f3e8;margin-top:30px}`,
     html: `
     <div class="bar"><div class="wm">Tinta &amp; Grano</div>
-      <div class="nv"><span>Café</span><span>Suscripción</span><span>Cursos</span></div>
-      <div class="pill">Cesta · 2</div></div>
+      <div class="nv"><span>Café</span><span>Suscripción</span><span>Cursos</span><span>Tostadero</span></div>
+      <div class="ghost">Cesta · 2</div></div>
     <div class="hero">
-      <div class="cp"><div class="badge">Tueste de la semana</div>
-        <h1>Etiopía<br><span>Guji Natural</span></h1>
-        <div class="sub">Melocotón, jazmín y un final largo a té negro. Tostado el martes, en tu casa el jueves.</div>
-        <div class="buy"><div class="btn">Añadir a la cesta</div><div class="price">14,50 €</div></div></div>
-      <div class="shot" style="background-image:${bg('coffee', 71, 700, 460, { table: '#4a2b17', crema: '#b06a30', saucer: '#f3ece0' })}"></div></div>
+      <div class="cp"><span class="stick">Tueste de la semana</span>
+        <h1>Etiopía<br><em>Guji Natural</em></h1>
+        <p>Melocotón, jazmín y un final largo a té negro. Tostado el martes, en tu casa el jueves.</p>
+        <div class="btnp">Añadir a la cesta · 14,50 €</div></div>
+      <div class="sh" style="background-image:${bg('coffee', 71, 700, 440, { table: '#4a2b17', crema: '#b06a30', saucer: '#f3ece0' })}"></div></div>
+    <div class="mid"><h2>También te <em>gustará</em></h2>
+      <div class="hand">este es el que<br>más repetimos<span class="arrow">↘</span></div></div>
     <div class="row">
-      <div class="c"><div class="im" style="background-image:${bg('coffee', 73, 240, 240, { table: '#2f1d12', crema: '#8e5326' })}"></div>
+      <div class="c"><div class="im" style="background-image:${bg('coffee', 73, 200, 200, { table: '#2f1d12', crema: '#8e5326' })}"></div>
         <div><b>Colombia Huila</b><span>Lavado · 250 g</span><i>11,00 €</i></div></div>
-      <div class="c"><div class="im" style="background-image:${bg('coffee', 79, 240, 240, { table: '#5a3a1e', crema: '#c98b46' })}"></div>
+      <div class="c"><div class="im" style="background-image:${bg('coffee', 79, 200, 200, { table: '#5a3a1e', crema: '#c98b46' })}"></div>
         <div><b>Kenia Nyeri</b><span>Lavado · 250 g</span><i>13,20 €</i></div></div>
-      <div class="c"><div class="im" style="background-image:${bg('bottles', 83, 240, 240, { wall: '#e4d8c6', tones: ['#6b4423', '#8a5a2b', '#3d2a18', '#a07440'] })}"></div>
+      <div class="c"><div class="im" style="background-image:${bg('bottles', 83, 200, 200, { wall: '#e4d8c6', tones: ['#6b4423', '#8a5a2b', '#3d2a18', '#a07440'] })}"></div>
         <div><b>Molinillo cónico</b><span>Acero y nogal</span><i>89,00 €</i></div></div></div>
-    <div class="badges"><span><i></i>Tostamos los martes</span><span><i></i>Envío gratis desde 35 €</span>
-      <span class="stars"><b>★★★★★</b>4,9 · 806 reseñas</span></div>
-    ${foot({"brand": "Tinta & Grano", "about": "Tostadero propio en Benimaclet. Café de especialidad y cursos de cata.", "groups": [{"h": "Café", "items": ["Orígenes", "Suscripción", "Molido", "Cápsulas"]}, {"h": "Aprender", "items": ["Cursos", "Métodos", "Blog"]}, {"h": "Pedidos", "items": ["Envíos", "Devoluciones", "Mayorista"]}]}, "© 2026 Tinta & Grano SL")}
+    ${marquee('tostamos los martes', 4)}
+    ${foot({ brand: 'Tinta &amp; Grano', about: 'Tostadero propio en Benimaclet. Café de especialidad y cursos de cata.',
+      groups: [{ h: 'Café', items: ['Orígenes', 'Suscripción', 'Molido', 'Cápsulas'] },
+               { h: 'Aprender', items: ['Cursos', 'Métodos', 'Blog'] },
+               { h: 'Pedidos', items: ['Envíos', 'Devoluciones', 'Mayorista'] }] },
+      '© 2026 Tinta &amp; Grano SL')}
     ${cookie}`,
   });
 
-  /* ---------------------------------------------------------------- 8 */
+  /* ---------------------------------------------------------------- 7
+     Photographer: big display over a full-bleed photograph. */
+  const lumen = () => ({
+    id: 'lumen',
+    css: `${base.replace(/\.st(?![\w-])/g, '.lumen')}
+    .lumen{background:#efece4;color:#1b1a18}
+    .lumen .hero{position:relative;height:408px;margin:0 52px;border-radius:16px;overflow:hidden;flex:none}
+    .lumen .hero .im{position:absolute;inset:0;background-size:cover;background-position:center}
+    .lumen .hero .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,12,18,.42),rgba(14,12,18,.6))}
+    .lumen .hero .tx{position:absolute;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;color:#f3f0e8;text-align:center}
+    .lumen .hero .kick{font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;opacity:.8;margin-bottom:16px}
+    .lumen .hero h1{font-family:'Gloock',serif;font-size:76px;line-height:1.02;font-weight:400;max-width:15ch}
+    .lumen .hero h1 em{font-style:italic}
+    .lumen .big{text-align:center;font-family:'Gloock',serif;font-size:96px;line-height:1;
+      font-weight:400;padding:28px 0 0;flex:none;letter-spacing:-.02em}
+    .lumen .big em{font-style:italic;color:#8d9ab4}
+    .lumen .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:24px 52px 0;flex:none}
+    .lumen .grid > div{height:184px;border-radius:12px;background-size:cover;background-position:center}
+    .lumen .grid > div:nth-child(2){border-radius:999px 999px 12px 12px}
+    .lumen .say{display:grid;grid-template-columns:1fr 1fr;gap:38px;padding:30px 52px 0;align-items:center;flex:none}
+    .lumen .say p{font-family:'Lora',serif;font-style:italic;font-size:21px;line-height:1.6}
+    .lumen .say .btnp{background:#1b1a18;color:#efece4;margin-top:16px}
+    .lumen .mq{background:#1b1a18;color:#efece4;margin-top:28px}`,
+    html: `
+    <div class="bar"><div class="wm">Lumen</div>
+      <div class="nv"><span>Series</span><span>Bodas</span><span>Editorial</span><span>Copias</span></div>
+      <div class="ghost">Disponibilidad</div></div>
+    <div class="hero">
+      <div class="im" style="background-image:${bg('hills', 31, 980, 470, { sky: ['#101430', '#44274f', '#a3524a', '#e8a470'], ridge: '#0d0c14' })}"></div>
+      <div class="tint"></div>
+      <div class="tx"><div class="kick">Serie 04 — Costa Brava, invierno</div>
+        <h1>La luz <em>que queda</em></h1></div></div>
+    <div class="big">Mira <em>el</em> trabajo</div>
+    <div class="grid">
+      <div style="background-image:${bg('tuscan', 37, 400, 260)}"></div>
+      <div style="background-image:${bg('water', 41, 400, 300, { shallow: '#5f9fb0', deep: '#113d52' })}"></div>
+      <div style="background-image:${bg('room', 43, 400, 260, { wall: '#3c3a38', floor: '#262320', object: '#15130f', light: '#fff0d4' })}"></div>
+      <div style="background-image:${bg('hills', 47, 400, 260, { sky: ['#1b2340', '#4e3a5e', '#b06a52', '#f0bd86'], ridge: '#141726' })}"></div></div>
+    <div class="say">
+      <div><p>“Nos devolvió fotos que no sabíamos que queríamos hasta que las vimos.”</p>
+        <div class="btnp">Ver disponibilidad 2026</div></div>
+      <span class="stars"><b>★★★★★</b>5,0 · 48 bodas fotografiadas</span></div>
+    ${marquee('disponible en toda la península', 4)}
+    ${foot({ brand: 'Lumen', about: 'Fotografía de paisaje, bodas y editorial. Trabajo en toda la península.',
+      groups: [{ h: 'Trabajo', items: ['Series', 'Bodas', 'Editorial'] },
+               { h: 'Tienda', items: ['Copias', 'Ediciones', 'Libros'] },
+               { h: 'Contacto', items: ['hola@lumen.photo', 'Disponibilidad'] }] },
+      '© 2026 Lumen')}`,
+  });
+
+  /* ---------------------------------------------------------------- 8
+     Clinic, kept soft: sage block, arch photo, testimonial row. */
   const meridiana = () => ({
     id: 'meridiana',
-    css: `${base.replace(/\.st/g, '.meridiana')}
-    .meridiana{background:#f4f1ec;color:#1d2a30;font-family:'Work Sans',sans-serif}
-    .meridiana .pill{background:#2f6f73;color:#f4f1ec;border-color:#2f6f73;font-weight:700}
-    .meridiana .head{padding:12px 54px 24px;flex:none}
-    .meridiana h1{font-family:'Instrument Serif',serif;font-size:84px;line-height:1.0;font-weight:400;max-width:17ch}
-    .meridiana h1 em{font-style:italic;color:#2f6f73}
-    .meridiana .sub{font-size:18px;line-height:1.6;color:#5d6b70;max-width:44ch;margin-top:18px}
-    .meridiana .row{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin:0 54px;flex:none}
-    .meridiana .row .im{height:324px;background-size:cover;background-position:center}
-    .meridiana .blk{background:#2f6f73;color:#eef5f4;padding:34px 36px;display:flex;
-      flex-direction:column;justify-content:space-between}
-    .meridiana .blk h3{font-family:'Instrument Serif',serif;font-size:34px;font-weight:400}
-    .meridiana .blk p{font-size:15px;line-height:1.6;opacity:.86}
-    .meridiana .blk .btn{align-self:flex-start;background:#eef5f4;color:#2f6f73;padding:14px 26px;
-      border-radius:999px;font-weight:700;font-size:14px}
-    .meridiana .strip{display:flex;justify-content:space-between;padding:22px 54px;
-      font-size:14px;color:#5d6b70}
-    .meridiana .strip b{color:#1d2a30}`,
+    css: `${base.replace(/\.st(?![\w-])/g, '.meridiana')}
+    .meridiana{background:#f4f3ed;color:#1f2a24}
+    .meridiana .top{display:grid;grid-template-columns:1.05fr 1fr;gap:38px;padding:14px 52px 0;align-items:center;flex:none}
+    .meridiana .top h1{font-family:'Gloock',serif;font-size:58px;line-height:1.06;font-weight:400;margin-top:16px}
+    .meridiana .top h1 em{font-style:italic;color:#5c7a5e}
+    .meridiana .top p{font-size:15.5px;line-height:1.68;opacity:.7;margin-top:16px;max-width:36ch}
+    .meridiana .top .btnp{background:#1f2a24;color:#f4f3ed;margin-top:20px}
+    .meridiana .top .arch{height:328px}
+    .meridiana .band{background:#cfdcc6;margin:30px 52px 0;border-radius:18px;padding:28px 36px;
+      display:flex;justify-content:space-between;align-items:center;flex:none}
+    .meridiana .band h3{font-family:'Gloock',serif;font-size:32px;font-weight:400;max-width:16ch}
+    .meridiana .band h3 em{font-style:italic}
+    .meridiana .band .btnp{background:#1f2a24;color:#f4f3ed}
+    .meridiana .stats b{color:#5c7a5e}
+    .meridiana .tst{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:8px 52px 0;flex:none}
+    .meridiana .tst > div{background:#eaeade;border-radius:16px;padding:20px}
+    .meridiana .tst p{font-family:'Lora',serif;font-style:italic;font-size:14.5px;line-height:1.6}
+    .meridiana .tst .who{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12.5px;opacity:.65}
+    .meridiana .tst .av{width:28px;height:28px;border-radius:50%;background-size:cover;flex:none}
+    .meridiana .mq{background:#1f2a24;color:#f4f3ed;margin-top:28px}`,
     html: `
     <div class="bar"><div class="wm">Meridiana</div>
-      <div class="nv"><span>Tratamientos</span><span>Equipo</span><span>Precios</span></div>
-      <div class="pill">Pedir cita</div></div>
-    <div class="head"><h1>Tu primera cita, <em>sin coste</em></h1>
-      <div class="sub">Diagnóstico completo y presupuesto cerrado por escrito. Sin sorpresas después.</div></div>
-    <div class="row">
-      <div class="im" style="background-image:${bg('clinic', 89, 700, 420, { wall: '#eaf0f0', accent: '#2f6f73' })}"></div>
-      <div class="blk"><div><h3>Dieciocho años<br>en el barrio</h3>
-        <p>Urgencias todos los días y financiación sin intereses hasta doce meses.</p></div>
-        <div class="btn">Ver tratamientos</div></div></div>
-    <div class="strip"><span>Lunes a viernes · 9:00 – 20:30</span><b>Calle Cádiz 48, Valencia</b></div>
-    <div class="badges"><span><i></i>Financiación sin intereses</span><span><i></i>Urgencias 24 h</span>
-      <span class="stars"><b>★★★★★</b>4,9 · 612 reseñas en Google</span></div>
-    ${foot({"brand": "Clínica Meridiana", "about": "Odontología y estética dental en Ruzafa desde 2008. Dir. médica Dra. E. Soler, col. 46-xxxx.", "groups": [{"h": "Tratamientos", "items": ["Implantes", "Ortodoncia", "Estética", "Infantil"]}, {"h": "Clínica", "items": ["Equipo", "Instalaciones", "Precios"]}, {"h": "Cita", "items": ["960 22 14 08", "Calle Cádiz 48"]}]}, "© 2026 Clínica Meridiana · Registro sanitario 46-C-xxxx")}
+      <div class="nv"><span>Tratamientos</span><span>Equipo</span><span>Precios</span><span>Blog</span></div>
+      <div class="ghost">Pedir cita</div></div>
+    <div class="top">
+      <div><span class="stick">Primera cita sin coste</span>
+        <h1>Cuidarte los dientes <em>sin sustos</em> en la factura</h1>
+        <p>Diagnóstico completo con radiografía y presupuesto cerrado por escrito antes de empezar.</p>
+        <div class="btnp">Pedir cita online</div></div>
+      <div class="arch" style="background-image:${bg('clinic', 89, 560, 440, { wall: '#e8efe6', accent: '#5c7a5e' })}"></div></div>
+    <div class="band"><h3>Dieciocho años <em>en el mismo barrio</em></h3>
+      <div class="btnp">Conocer al equipo</div></div>
+    <div class="stats">
+      <div><b>4,9</b><span>612 reseñas</span></div>
+      <div><b>24 h</b><span>urgencias</span></div>
+      <div><b>0 %</b><span>financiación</span></div></div>
+    <div class="tst">
+      <div><p>“Me dijeron el precio antes de tocarme nada. Eso ya es raro.”</p>
+        <div class="who"><span class="av" style="background-image:${bg('macro', 91, 90, 90, { skin: '#d9a98b' })}"></span>Javier M.</div></div>
+      <div><p>“Fui de urgencias un domingo y me atendieron en media hora.”</p>
+        <div class="who"><span class="av" style="background-image:${bg('macro', 97, 90, 90, { skin: '#c08f6e' })}"></span>Pilar A.</div></div>
+      <div><p>“Llevo con ellos desde que abrieron. Nunca me han vendido de más.”</p>
+        <div class="who"><span class="av" style="background-image:${bg('macro', 101, 90, 90, { skin: '#e0b391' })}"></span>Rosa T.</div></div></div>
+    ${marquee('Ruzafa · Valencia', 5)}
+    ${foot({ brand: 'Clínica Meridiana', about: 'Odontología y estética dental en Ruzafa desde 2008. Dir. médica Dra. E. Soler, col. 46-xxxx.',
+      groups: [{ h: 'Tratamientos', items: ['Implantes', 'Ortodoncia', 'Estética', 'Infantil'] },
+               { h: 'Clínica', items: ['Equipo', 'Instalaciones', 'Precios'] },
+               { h: 'Cita', items: ['960 22 14 08', 'Calle Cádiz 48'] }] },
+      '© 2026 Clínica Meridiana · Registro sanitario 46-C-xxxx')}
     ${cookie}`,
   });
 
