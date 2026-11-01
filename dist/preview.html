@@ -1738,9 +1738,281 @@ const ART = (() => {
     ctx.restore();
   }
 
+  /* ---- figures ---------------------------------------------------------
+   * The reference sites are full of people in warm interiors, and an interior
+   * with nobody in it reads as an empty render. These draw a person as soft
+   * simplified masses — head, torso, limbs — with no facial features, then let
+   * the grading blur them like a shot at a wide aperture. At the size a card
+   * shows them that is enough to read as somebody in the room, and it avoids
+   * the uncanny mess that detail at this scale would produce. */
+
+  /* Draw the people and props on their own layer, shade that layer through
+     itself, then composite it back with a blur. Flat vector shapes dropped
+     straight onto the background read as an illustration; the same shapes
+     modelled with light and thrown slightly out of focus read as someone
+     photographed at a wide aperture, which is what the references are. */
+  function subjects(ctx, w, h, blurPx, draw) {
+    const cv = document.createElement('canvas');
+    cv.width = w; cv.height = h;
+    const c2 = cv.getContext('2d');
+
+    draw(c2);
+
+    // Model the forms: light from the upper left, shadow falling to the lower
+    // right. source-atop confines both to the shapes just drawn.
+    c2.globalCompositeOperation = 'source-atop';
+    const lit = c2.createLinearGradient(0, 0, w * 0.9, h);
+    lit.addColorStop(0, 'rgba(255,244,228,0.42)');
+    lit.addColorStop(0.42, 'rgba(255,244,228,0.05)');
+    lit.addColorStop(1, 'rgba(22,14,8,0.42)');
+    c2.fillStyle = lit;
+    c2.fillRect(0, 0, w, h);
+
+    const floorShade = c2.createLinearGradient(0, h * 0.45, 0, h);
+    floorShade.addColorStop(0, 'rgba(0,0,0,0)');
+    floorShade.addColorStop(1, 'rgba(30,18,10,0.38)');
+    c2.fillStyle = floorShade;
+    c2.fillRect(0, h * 0.45, w, h * 0.55);
+    c2.globalCompositeOperation = 'source-over';
+
+    ctx.save();
+    ctx.filter = `blur(${blurPx.toFixed(2)}px)`;
+    ctx.drawImage(cv, 0, 0);
+    ctx.restore();
+    // A faint sharp pass keeps edges from dissolving completely.
+    ctx.save();
+    ctx.globalAlpha = 0.3;
+    ctx.drawImage(cv, 0, 0);
+    ctx.restore();
+  }
+
+  function limb(ctx, x1, y1, x2, y2, w, fill) {
+    ctx.strokeStyle = fill;
+    ctx.lineWidth = w;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+  }
+
+  /* Seated, three-quarters on — the pose in most of the references. */
+  function seated(ctx, cx, by, s, o) {
+    const skin = o.skin || '#c98f68';
+    const cloth = o.cloth || '#6d82b5';
+    const hair = o.hair || '#2b1f1a';
+
+    // Legs, crossed at the ankle.
+    limb(ctx, cx - s * 0.08, by - s * 0.62, cx + s * 0.30, by - s * 0.14, s * 0.17, cloth);
+    limb(ctx, cx + s * 0.30, by - s * 0.14, cx - s * 0.02, by - s * 0.02, s * 0.15, cloth);
+    limb(ctx, cx - s * 0.12, by - s * 0.60, cx + s * 0.16, by - s * 0.06, s * 0.16, cloth);
+
+    // Torso.
+    ctx.fillStyle = cloth;
+    ctx.beginPath();
+    ctx.moveTo(cx - s * 0.24, by - s * 0.60);
+    ctx.quadraticCurveTo(cx - s * 0.30, by - s * 1.04, cx - s * 0.13, by - s * 1.12);
+    ctx.lineTo(cx + s * 0.14, by - s * 1.12);
+    ctx.quadraticCurveTo(cx + s * 0.29, by - s * 1.02, cx + s * 0.22, by - s * 0.60);
+    ctx.closePath();
+    ctx.fill();
+
+    // Arm resting forward.
+    limb(ctx, cx + s * 0.16, by - s * 1.00, cx + s * 0.34, by - s * 0.70, s * 0.11, cloth);
+    limb(ctx, cx + s * 0.34, by - s * 0.70, cx + s * 0.30, by - s * 0.46, s * 0.09, skin);
+
+    // Neck and head.
+    limb(ctx, cx, by - s * 1.10, cx + s * 0.02, by - s * 1.22, s * 0.12, skin);
+    ellipse(ctx, cx + s * 0.03, by - s * 1.36, s * 0.155, s * 0.18, skin);
+    // Hair, as a mass behind and over the head.
+    ctx.fillStyle = hair;
+    ctx.beginPath();
+    ctx.ellipse(cx + s * 0.01, by - s * 1.40, s * 0.195, s * 0.205, 0, Math.PI * 0.86, Math.PI * 2.22);
+    ctx.fill();
+    ellipse(ctx, cx - s * 0.16, by - s * 1.22, s * 0.085, s * 0.16, hair);
+  }
+
+  /* Lying back on a mat, seen from the side — the yoga studio. */
+  function reclining(ctx, cx, by, s, o) {
+    const cloth = o.cloth || '#8f9a86';
+    const skin = o.skin || '#c98f68';
+    limb(ctx, cx - s * 0.55, by, cx + s * 0.12, by - s * 0.05, s * 0.16, cloth);
+    limb(ctx, cx + s * 0.12, by - s * 0.05, cx + s * 0.46, by - s * 0.42, s * 0.14, cloth);
+    ellipse(ctx, cx - s * 0.66, by - s * 0.06, s * 0.12, s * 0.13, skin);
+    ctx.fillStyle = o.hair || '#241a14';
+    ctx.beginPath();
+    ctx.ellipse(cx - s * 0.70, by - s * 0.08, s * 0.14, s * 0.15, 0, Math.PI * 0.4, Math.PI * 1.7);
+    ctx.fill();
+  }
+
+  /* A potted fig against a wall, with the hard shadow these shoots always have. */
+  function pottedPlant(ctx, x, by, s, o) {
+    ctx.save();
+    ctx.filter = `blur(${(s * 0.10).toFixed(1)}px)`;
+    ctx.fillStyle = 'rgba(40,34,26,0.30)';
+    ctx.beginPath();
+    ctx.ellipse(x + s * 0.30, by + s * 0.03, s * 0.52, s * 0.09, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.fillStyle = o.pot || '#c9b8a2';
+    ctx.beginPath();
+    ctx.moveTo(x - s * 0.26, by - s * 0.40);
+    ctx.lineTo(x + s * 0.26, by - s * 0.40);
+    ctx.lineTo(x + s * 0.19, by);
+    ctx.lineTo(x - s * 0.19, by);
+    ctx.closePath();
+    ctx.fill();
+
+    const leaf = o.leaf || '#3f5c3a';
+    for (let i = 0; i < 9; i++) {
+      const a = -Math.PI / 2 + (i - 4) * 0.30;
+      const len = s * (0.75 + (i % 3) * 0.22);
+      const tx = x + Math.cos(a) * len * 0.72;
+      const ty = by - s * 0.40 + Math.sin(a) * len;
+      limb(ctx, x, by - s * 0.40, tx, ty, s * 0.045, shade(leaf, -0.2));
+      ctx.save();
+      ctx.translate(tx, ty);
+      ctx.rotate(a + Math.PI / 2);
+      ellipse(ctx, 0, 0, s * 0.17, s * 0.26, i % 2 ? leaf : shade(leaf, 0.12));
+      ctx.restore();
+    }
+  }
+
+  /* Warm studio with arches — the wellness shot. */
+  function studio(ctx, w, h, rand, o) {
+    const wall = o.wall || '#e8d3c8';
+    vgrad(ctx, w, h, [[0, shade(wall, 0.12)], [0.68, wall], [1, shade(wall, -0.16)]]);
+
+    // Two arches, offset, as backdrop flats.
+    [[0.30, 0.58, shade(wall, -0.10)], [0.66, 0.70, shade(wall, 0.10)]].forEach(([fx, fh, c]) => {
+      const aw = w * 0.30, ax = w * fx - aw / 2, ab = h * 0.78, ah = h * fh;
+      ctx.fillStyle = c;
+      ctx.beginPath();
+      ctx.moveTo(ax, ab);
+      ctx.lineTo(ax, ab - ah + aw / 2);
+      ctx.arc(ax + aw / 2, ab - ah + aw / 2, aw / 2, Math.PI, 0);
+      ctx.lineTo(ax + aw, ab);
+      ctx.closePath();
+      ctx.fill();
+    });
+
+    ctx.fillStyle = shade(wall, -0.22);
+    ctx.fillRect(0, h * 0.78, w, h * 0.22);
+
+    glow(ctx, w * 0.2, h * 0.1, Math.max(w, h) * 0.7, 'rgba(255,240,228,0.55)', 0.85);
+
+    subjects(ctx, w, h, Math.max(w, h) * 0.006, (c) => {
+      ellipse(c, w * 0.26, h * 0.76, w * 0.13, h * 0.11, o.pouf || '#c3a278');
+      ellipse(c, w * 0.235, h * 0.73, w * 0.085, h * 0.065, shade(o.pouf || '#c3a278', 0.14));
+      pottedPlant(c, w * 0.84, h * 0.80, Math.min(w, h) * 0.20, { pot: '#cbb49c', leaf: '#45613c' });
+      seated(c, w * 0.58, h * 0.79, Math.min(w, h) * 0.215, o);
+    });
+  }
+
+  /* Yoga room: wood floor, mats, tall windows, bodies on the ground. */
+  function mat(ctx, w, h, rand, o) {
+    const wall = o.wall || '#ded5c6';
+    vgrad(ctx, w, h, [[0, shade(wall, 0.10)], [1, shade(wall, -0.12)]]);
+
+    // Windows down one side.
+    for (let i = 0; i < 3; i++) {
+      const wx = w * (0.52 + i * 0.17);
+      ctx.fillStyle = 'rgba(255,250,236,0.92)';
+      ctx.fillRect(wx, h * 0.06, w * 0.125, h * 0.56);
+      ctx.strokeStyle = shade(wall, -0.45);
+      ctx.lineWidth = Math.max(1.5, w * 0.004);
+      ctx.strokeRect(wx, h * 0.06, w * 0.125, h * 0.56);
+    }
+    glow(ctx, w * 0.72, h * 0.3, Math.max(w, h) * 0.6, 'rgba(255,246,224,0.6)', 0.85);
+
+    // Floor.
+    const fy = h * 0.62;
+    const fg = ctx.createLinearGradient(0, fy, 0, h);
+    fg.addColorStop(0, shade(o.floor || '#b58f5f', -0.18));
+    fg.addColorStop(1, shade(o.floor || '#b58f5f', 0.10));
+    ctx.fillStyle = fg;
+    ctx.fillRect(0, fy, w, h - fy);
+    ctx.strokeStyle = 'rgba(70,48,24,0.16)';
+    ctx.lineWidth = 1;
+    for (let i = 1; i < 8; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, fy + (h - fy) * (i / 8));
+      ctx.lineTo(w, fy + (h - fy) * (i / 8));
+      ctx.stroke();
+    }
+
+    subjects(ctx, w, h, Math.max(w, h) * 0.007, (c) => {
+      [[0.26, 0.80, 0.26], [0.60, 0.90, 0.30]].forEach(([fx, fy2, sc], i) => {
+        c.fillStyle = i ? '#8a9a86' : '#a8a093';
+        c.beginPath();
+        c.ellipse(w * fx, h * fy2 + h * 0.03, w * 0.19, h * 0.025, 0, 0, Math.PI * 2);
+        c.fill();
+        reclining(c, w * fx, h * fy2, Math.min(w, h) * sc,
+          { cloth: i ? '#7e8c92' : '#b08a74', skin: '#c08a63', hair: '#2a1d16' });
+      });
+      pottedPlant(c, w * 0.10, h * 0.70, Math.min(w, h) * 0.17, { pot: '#b9a992', leaf: '#4b6b41' });
+    });
+  }
+
+  /* Seated on a velvet chair beside a plant — the portrait shot. */
+  function chair(ctx, w, h, rand, o) {
+    const wall = o.wall || '#ece4d6';
+    vgrad(ctx, w, h, [[0, shade(wall, 0.10)], [0.72, wall], [1, shade(wall, -0.20)]]);
+    glow(ctx, w * 0.26, h * 0.12, Math.max(w, h) * 0.62, 'rgba(255,246,230,0.6)', 0.85);
+    ctx.fillStyle = shade(wall, -0.26);
+    ctx.fillRect(0, h * 0.80, w, h * 0.20);
+
+    // Chair: back, seat, two legs.
+    const cx = w * 0.50, by = h * 0.80, s = Math.min(w, h) * 0.34;
+    const vel = o.velvet || '#3f5a43';
+    ctx.save();
+    ctx.filter = `blur(${(w * 0.016).toFixed(1)}px)`;
+    ctx.fillStyle = 'rgba(40,34,26,0.34)';
+    ctx.beginPath();
+    ctx.ellipse(cx + s * 0.12, by + s * 0.04, s * 0.72, s * 0.10, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    subjects(ctx, w, h, Math.max(w, h) * 0.005, (c) => {
+      c.fillStyle = shade(vel, -0.12);
+      roundRect(c, cx - s * 0.56, by - s * 1.05, s * 1.12, s * 0.62, s * 0.14);
+      c.fill();
+      c.fillStyle = vel;
+      roundRect(c, cx - s * 0.60, by - s * 0.52, s * 1.20, s * 0.30, s * 0.10);
+      c.fill();
+      c.fillStyle = shade(vel, -0.4);
+      c.fillRect(cx - s * 0.50, by - s * 0.24, s * 0.08, s * 0.24);
+      c.fillRect(cx + s * 0.42, by - s * 0.24, s * 0.08, s * 0.24);
+      seated(c, cx, by - s * 0.44, s * 0.92, o);
+      pottedPlant(c, w * 0.13, h * 0.82, Math.min(w, h) * 0.19, { pot: '#c6b49b', leaf: '#41603a' });
+    });
+  }
+
+  /* Folded linen, close up — the fabric crops in the references. */
+  function linen(ctx, w, h, rand, o) {
+    const c = o.cloth || '#b9c6d6';
+    vgrad(ctx, w, h, [[0, shade(c, 0.16)], [1, shade(c, -0.22)]]);
+    for (let i = 0; i < 16; i++) {
+      const y = (i / 16) * h + (rand() - 0.5) * h * 0.04;
+      const g = ctx.createLinearGradient(0, y - h * 0.05, 0, y + h * 0.05);
+      g.addColorStop(0, 'rgba(255,255,255,0)');
+      g.addColorStop(0.45, `rgba(255,255,255,${(0.10 + rand() * 0.16).toFixed(3)})`);
+      g.addColorStop(0.55, `rgba(0,0,0,${(0.06 + rand() * 0.12).toFixed(3)})`);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.save();
+      ctx.translate(w / 2, y);
+      ctx.rotate((rand() - 0.5) * 0.18);
+      ctx.fillRect(-w, -h * 0.06, w * 2, h * 0.12);
+      ctx.restore();
+    }
+    glow(ctx, w * 0.3, h * 0.2, Math.max(w, h) * 0.55, 'rgba(255,252,246,0.42)', 0.8);
+  }
+
   const SCENES = {
     hills, coffee, room, court, dish, stage, facade, knit, clinic, shop,
-    water, tuscan, bottles, macro,
+    water, tuscan, bottles, macro, studio, mat, chair, linen,
   };
 
   /* ---- photographic grading -------------------------------------------- */
@@ -1895,7 +2167,7 @@ const SITES = (() => {
     .flow .wm{font-size:24px}
     .flow .hero{position:relative;height:396px;margin:0 52px;overflow:hidden;flex:none;border-radius:14px}
     .flow .hero .im{position:absolute;inset:0;background-size:cover;background-position:center}
-    .flow .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,.25),rgba(20,18,14,.5))}
+    .flow .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,16,12,.42),rgba(18,16,12,.66))}
     .flow .ko{z-index:2}
     .flow .ko{position:absolute;left:0;right:0;bottom:-26px;text-align:center;
       font-family:'Gloock',serif;font-size:250px;line-height:.8;color:#f3f0e8;letter-spacing:-.045em}
@@ -1919,7 +2191,7 @@ const SITES = (() => {
       <div class="nv"><span>Clases</span><span>Horarios</span><span>Bonos</span><span>Estudio</span></div>
       <div class="ghost">Primera clase gratis</div></div>
     <div class="hero">
-      <div class="im" style="background-image:${bg('room', 3, 980, 460, { wall: '#6a6358', floor: '#3b3229', object: '#20241f', light: '#ffeccb' })}"></div>
+      <div class="im" style="background-image:${bg('mat', 3, 980, 460, { wall: '#9a9183', floor: '#8a6a44' })}"></div>
       <div class="ko">flow</div></div>
     <div class="tag">Encuentra tu centro. Respira, muévete, transforma.</div>
     <div class="mid">
@@ -1983,7 +2255,7 @@ const SITES = (() => {
       <p>Una casa de piedra rehabilitada en 2019, con siete estancias, termas al aire libre y mesa compartida a las nueve.</p>
       <div class="hand">lo de la mesa<br>compartida engancha<span class="arrow">↙</span></div></div>
     <div class="cards">
-      <div><div class="ph" style="background-image:${bg('room', 21, 440, 220, { wall: '#e0d7c2', floor: '#8a6440', object: '#45503a' })}"></div>
+      <div><div class="ph" style="background-image:${bg('chair', 21, 440, 260, { wall: '#e6ddc9', velvet: '#5c6b47', cloth: '#9a7c5e', skin: '#c99064' })}"></div>
         <h4>Las estancias</h4><p>Siete, todas distintas, todas con chimenea.</p></div>
       <div><div class="ph" style="background-image:${bg('dish', 23, 440, 220, { table: '#241a10', plate: '#3f3528' })}"></div>
         <h4>La mesa</h4><p>Menú corto con lo que llega de la huerta.</p></div>
@@ -2040,7 +2312,7 @@ const SITES = (() => {
         <h4>Limpieza</h4><span>Gel suave · 150 ml</span></div>
       <div><div class="ph" style="background-image:${bg('bottles', 13, 420, 300, { tones: ['#a9674a', '#c08a63', '#8d5339', '#d0a07a'] })}"></div>
         <h4>Hidratación</h4><span>Crema ligera · 50 ml</span></div>
-      <div><div class="ph" style="background-image:${bg('macro', 17, 420, 300, { skin: '#d8a083' })}"></div>
+      <div><div class="ph" style="background-image:${bg('linen', 17, 420, 300, { cloth: '#e3cdc0' })}"></div>
         <h4>Protección</h4><span>SPF 50 · 50 ml</span></div></div>
     ${marquee('fabricado en Alicante', 4)}
     ${foot({ brand: 'Piel', about: 'Cosmética corta, sin perfume y fabricada en Alicante. Cruelty free.',
@@ -2145,7 +2417,7 @@ const SITES = (() => {
         <div class="n">Cárdigan Ría</div><div class="m">Lana y alpaca</div><div class="pr">118,00 €</div></div>
       <div class="p"><div class="im" style="background-image:${bg('knit', 61, 380, 280, { yarn: '#2c3d5c' })}"></div>
         <div class="n">Chaleco Sella</div><div class="m">Algodón orgánico</div><div class="pr">64,00 €</div></div>
-      <div class="p"><div class="im" style="background-image:${bg('shop', 67, 380, 280, { wall: '#efe6d8' })}"></div>
+      <div class="p"><div class="im" style="background-image:${bg('linen', 67, 380, 280, { cloth: '#cdd3c4' })}"></div>
         <div class="n">La colección</div><div class="m">42 prendas</div><div class="pr">Ver todo</div></div></div>
     <div class="tst">
       <div><p>“Llegó en dos días y la lana es exactamente la del catálogo.”</p>
@@ -2252,7 +2524,7 @@ const SITES = (() => {
     <div class="grid">
       <div style="background-image:${bg('tuscan', 37, 400, 260)}"></div>
       <div style="background-image:${bg('water', 41, 400, 300, { shallow: '#5f9fb0', deep: '#113d52' })}"></div>
-      <div style="background-image:${bg('room', 43, 400, 260, { wall: '#3c3a38', floor: '#262320', object: '#15130f', light: '#fff0d4' })}"></div>
+      <div style="background-image:${bg('chair', 43, 400, 260, { wall: '#d8cfc0', velvet: '#43523f', cloth: '#8d94a8', skin: '#bf8a62' })}"></div>
       <div style="background-image:${bg('hills', 47, 400, 260, { sky: ['#1b2340', '#4e3a5e', '#b06a52', '#f0bd86'], ridge: '#141726' })}"></div></div>
     <div class="say">
       <div><p>“Nos devolvió fotos que no sabíamos que queríamos hasta que las vimos.”</p>
@@ -2299,7 +2571,7 @@ const SITES = (() => {
         <h1>Cuidarte los dientes <em>sin sustos</em> en la factura</h1>
         <p>Diagnóstico completo con radiografía y presupuesto cerrado por escrito antes de empezar.</p>
         <div class="btnp">Pedir cita online</div></div>
-      <div class="arch" style="background-image:${bg('clinic', 89, 560, 440, { wall: '#e8efe6', accent: '#5c7a5e' })}"></div></div>
+      <div class="arch" style="background-image:${bg('studio', 89, 560, 440, { wall: '#dfe4d6', pouf: '#b6ab8c', cloth: '#6d8268', skin: '#c08a63' })}"></div></div>
     <div class="band"><h3>Dieciocho años <em>en el mismo barrio</em></h3>
       <div class="btnp">Conocer al equipo</div></div>
     <div class="stats">
