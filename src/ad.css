@@ -3,18 +3,19 @@
 
    Design plan
    -----------
-   Colour   ground #0B1BC4 (electric blue) falling off to #061073 at the
-            corners · paper #FFFFFF · ink #0A0D1F · lime #D6FF3D for the price
-            alone. The blue is the whole frame, not an accent: in a feed of
-            white cards a saturated blue block is what stops the thumb. The
-            lime is the single loud note and it is spent on the number.
+   Colour   ground #0C0C10 graphite, lifted to #1A1A20 behind the belt ·
+            paper #FFFFFF for the cards and the offer · one blue, at two
+            values: #5C8BFF on the dark ground, #0B1BC4 on white. A dark
+            ground makes the mock sites read as lit screens, which is the
+            whole point of a reel of websites; a flat colour competed with
+            them instead.
    Type     Montserrat throughout — 900 for the hook and the price, 700 for
             headings, 700 italic for the phrases that do the selling, 500 for
             running text. Geist Mono only for the pinned micro-labels.
    Layout   Three beats on one plane. A hook card that owns the first second,
             a conveyor of site cards on a shared 3D tilt travelling bottom to
-            top over the blue, and the offer arriving as one last card on that
-            same belt before it straightens to face the viewer.
+            top over the graphite, and the offer arriving as one last card on
+            that same belt before it straightens to face the viewer.
 
    The piece is a single deterministic timeline: nothing animates on its own,
    every frame is a pure function of `t`. That is what lets tools/render.mjs
@@ -26,10 +27,10 @@
 :root {
   --paper: #ffffff;
   --ink: #0a0d1f;
-  --blue: #0b1bc4;
-  --blue-deep: #061073;
-  --blue-lift: #2f4dff;
-  --lime: #d6ff3d;
+  --ground: #0c0c10;      /* the frame */
+  --ground-lift: #1c1c24; /* soft pool of light behind the belt */
+  --blue: #0b1bc4;        /* accent on white — the offer plate */
+  --blue-bright: #5c8bff; /* the same hue raised to carry on the dark ground */
 
   /* Overwritten by the format the page is loaded with. */
   --W: 1080px;
@@ -59,19 +60,20 @@
   transform-origin: 0 0;
   isolation: isolate;
   font-family: 'Montserrat', system-ui, sans-serif;
-  background: var(--blue);
+  background: var(--ground);
 }
 
-/* Corner falloff keeps a flat fill from reading as a colour swatch, and gives
-   the white cards something to separate from. */
+/* A soft pool of light where the belt passes, falling off to near-black at the
+   corners. Flat graphite would read as a dead background; this gives the white
+   cards something to emerge from and sink back into. */
 #ground {
   position: absolute;
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(120% 80% at 22% 10%, var(--blue-lift) 0%, rgba(47, 77, 255, 0) 58%),
-    radial-gradient(120% 90% at 82% 96%, var(--blue-deep) 0%, rgba(6, 16, 115, 0) 62%),
-    var(--blue);
+    radial-gradient(86% 52% at 50% 44%, var(--ground-lift) 0%, rgba(28, 28, 36, 0) 72%),
+    radial-gradient(70% 40% at 18% 8%, rgba(92, 139, 255, 0.14) 0%, rgba(92, 139, 255, 0) 70%),
+    var(--ground);
 }
 
 /* --- conveyor ----------------------------------------------------------- */
@@ -93,20 +95,24 @@
   overflow: hidden;
   background: #fff;
   will-change: transform;
-  /* Tuned for the blue ground, not for white: a neutral grey shadow over
-     saturated blue goes muddy, so these are blue-black. */
+  /* On a near-black ground a shadow alone cannot separate a card — there is
+     nothing darker to cast onto. The depth comes from the long shadow plus
+     the rim light in ::after below. */
   box-shadow:
-    0 2px 4px rgba(3, 8, 46, 0.22),
-    0 20px 36px rgba(3, 8, 46, 0.30),
-    0 70px 100px -26px rgba(2, 5, 32, 0.55);
+    0 2px 6px rgba(0, 0, 0, 0.55),
+    0 24px 44px rgba(0, 0, 0, 0.55),
+    0 80px 120px -30px rgba(0, 0, 0, 0.8);
 }
 
+/* Rim light: a bright hairline along the top edge fading to nothing at the
+   bottom, which is what reads as an edge catching light on a dark ground. */
 .ad-card::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 16px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.14);
   pointer-events: none;
   z-index: 4;
 }
@@ -186,14 +192,14 @@
   font-size: calc(var(--u) * 0.295);
   line-height: 0.88;
   letter-spacing: -0.05em;
-  color: var(--lime);
+  color: var(--blue-bright);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
 #hook .rule {
   height: calc(var(--u) * 0.007);
-  background: var(--lime);
+  background: var(--blue-bright);
   width: 100%;
   transform-origin: 0 50%;
 }
@@ -217,17 +223,17 @@
   font-size: calc(var(--W) * 0.0135);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 0 1px 6px rgba(2, 5, 32, 0.55);
+  color: rgba(255, 255, 255, 0.86);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75);
 }
 
 .hud.tl { top: calc(var(--W) * 0.024); left: calc(var(--W) * 0.028); }
 .hud.tr { top: calc(var(--W) * 0.024); right: calc(var(--W) * 0.028); }
-.hud.tr b { color: var(--lime); font-weight: 700; }
+.hud.tr b { color: var(--blue-bright); font-weight: 700; }
 .hud.br {
   bottom: calc(var(--W) * 0.024);
   right: calc(var(--W) * 0.028);
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(255, 255, 255, 0.62);
   font-variant-numeric: tabular-nums;
 }
 
@@ -247,9 +253,10 @@
   color: var(--ink);
   will-change: transform;
   box-shadow:
-    0 2px 4px rgba(3, 8, 46, 0.22),
-    0 24px 44px rgba(3, 8, 46, 0.32),
-    0 80px 120px -26px rgba(2, 5, 32, 0.6);
+    0 2px 6px rgba(0, 0, 0, 0.55),
+    0 28px 52px rgba(0, 0, 0, 0.58),
+    0 90px 140px -30px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: calc(var(--u) * 0.056) calc(var(--u) * 0.054) calc(var(--u) * 0.048);
 }
 
@@ -355,7 +362,7 @@
   font-weight: 700;
 }
 
-#offer .cta .arrow { color: var(--lime); font-weight: 900; }
+#offer .cta .arrow { color: #8fb0ff; font-weight: 900; }
 
 /* Staggered reveal inside the plate; driven from JS, not CSS animation, so it
    stays on the deterministic timeline. */

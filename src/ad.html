@@ -11,10 +11,10 @@
      itself, which also has to render inside the preview page and inside the
      renderer's bare viewport. */
   html, body { margin: 0; height: 100%; overflow: hidden; }
-  body { background: #050a3a; font-family: 'Montserrat', system-ui, sans-serif; }
+  body { background: #050505; font-family: 'Montserrat', system-ui, sans-serif; }
   #host { width: 100vw; height: 100vh; }
 
-  body.is-rendering { background: #0b1bc4; }
+  body.is-rendering { background: #0c0c10; }
   body.is-rendering #controls { display: none; }
 
   #controls {
@@ -31,7 +31,7 @@
   }
   #controls button:hover { background: rgba(255, 255, 255, 0.12); }
   #controls button[aria-pressed='true'] { background: #f4f4f2; color: #101010; }
-  #controls button:focus-visible { outline: 2px solid #d6ff3d; outline-offset: 2px; }
+  #controls button:focus-visible { outline: 2px solid #5c8bff; outline-offset: 2px; }
   #controls .sep { width: 1px; height: 18px; background: rgba(255, 255, 255, 0.2); margin: 0 4px; }
   #controls .time { color: #8f8d89; padding: 0 10px; font-variant-numeric: tabular-nums; }
 </style>
