@@ -554,7 +554,7 @@ def jsonld(t, lang):
                 "address": {"@type": "PostalAddress", "streetAddress": "Carrer de Malats, 22", "addressLocality": "Barcelona",
                             "addressRegion": "Barcelona", "postalCode": "08030", "addressCountry": "ES"},
                 "areaServed": ["Sant Andreu", "Barcelona"],
-                "knowsLanguage": ["es", "ca", "en"],
+                "knowsLanguage": ["es", "ca"],
                 "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
                                                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                                                "opens": "07:00", "closes": "22:00"}],
@@ -572,6 +572,10 @@ def jsonld(t, lang):
         ],
     }
     return json.dumps(data, ensure_ascii=False, indent=2)
+
+
+# La web se publica solo en castellano y catalán (los textos en inglés se conservan por si se recuperan).
+LANGS.pop("en")
 
 
 def render(lang, t, template):
