@@ -78,14 +78,14 @@
   header { position: sticky; top: 0; z-index: 50; background: rgba(236,229,218,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
   .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 64px; }
   .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; }
-  .nav ul a { font-size: .8rem; text-decoration: none; color: var(--ink-soft); }
+  .nav ul a { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--ink-soft); }
   .nav ul a:hover { color: var(--burgundy); }
   .logo img { height: 34px; width: auto; }
   .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
   .langs { display: flex; gap: 2px; font-size: .72rem; font-weight: 600; }
   .langs a { text-decoration: none; color: var(--taupe); padding: 3px 6px; }
   .langs a[aria-current] { color: var(--burgundy); text-decoration: underline; text-underline-offset: 4px; }
-  .nav-right .btn { padding: 9px 16px; font-size: .76rem; }
+  .nav-right .btn { padding: 9px 16px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
   .menu-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
   .menu-toggle span { display: block; width: 22px; height: 1.5px; background: var(--burgundy); margin: 5px 0; }
 
@@ -345,7 +345,7 @@
       </div>
       <div class="svc-grid">
         <article class="svc" id="{{id_pt}}">
-          <img class="svc-img" src="{{base}}img/ia-entrenamiento.svg" alt="" width="600" height="450" loading="lazy">
+          <img class="svc-img" src="{{base}}img/svc-entrenamiento.jpg" alt="{{alt_svc_pt}}" width="600" height="450" loading="lazy">
           <h3>{{pt_title_em}}</h3>
           <details open><summary>{{lbl_start}}</summary><p>{{pt_short}}</p></details>
           <details><summary>{{lbl_how}}</summary><p>{{pt_long}}</p></details>
@@ -353,7 +353,7 @@
           <a class="btn btn--solid" href="{{wa_pt}}" target="_blank" rel="noopener">{{cta_short}} {{arrow}}</a>
         </article>
         <article class="svc" id="{{id_rehab}}">
-          <img class="svc-img" src="{{base}}img/ia-rehabilitacion.svg" alt="" width="600" height="450" loading="lazy">
+          <img class="svc-img" src="{{base}}img/svc-rehabilitacion.jpg" alt="{{alt_svc_rh}}" width="600" height="450" loading="lazy">
           <h3>{{rh_title_em}}</h3>
           <details open><summary>{{lbl_start}}</summary><p>{{rh_short}}</p></details>
           <details><summary>{{lbl_how}}</summary><p>{{rh_long}}</p></details>
@@ -361,7 +361,7 @@
           <a class="btn btn--solid" href="{{wa_rh}}" target="_blank" rel="noopener">{{cta_short}} {{arrow}}</a>
         </article>
         <article class="svc" id="{{id_nutri}}">
-          <img class="svc-img" src="{{base}}img/ia-nutricion.svg" alt="" width="600" height="450" loading="lazy">
+          <img class="svc-img" src="{{base}}img/svc-nutricion.jpg" alt="{{alt_svc_nu}}" width="600" height="450" loading="lazy">
           <h3>{{nu_title_em}}</h3>
           <details open><summary>{{lbl_start}}</summary><p>{{nu_short}}</p></details>
           <details><summary>{{lbl_how}}</summary><p>{{nu_long}}</p></details>
@@ -421,8 +421,7 @@
         <div><span class="kicker">@activamstandreu</span><h2>{{insta_h2_em}}</h2></div>
         <div><a class="btn" href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">{{insta_cta}} {{arrow}}</a></div>
       </div>
-      <!-- Sustituir por el widget de feed (Behold / LightWidget / Elfsight) cuando tengamos acceso a la cuenta -->
-      <div class="insta-grid" id="instagram-feed">{{insta}}</div>
+      {{insta_block}}
     </div>
   </section>
 
@@ -432,7 +431,7 @@
         <div><span class="kicker">{{google_icon}} Google</span><h2>{{rev_h2_em}}</h2></div>
         <p>{{rev_p}}</p>
       </div>
-      <div class="rev-grid">{{reviews_html}}</div>
+      {{reviews_block}}
       <div class="rev-btns">
         <a class="btn btn--solid" href="{{maps_url}}" target="_blank" rel="noopener">{{rev_all}} {{arrow}}</a>
         <a class="btn" href="{{maps_url}}" target="_blank" rel="noopener">{{rev_leave}} {{arrow}}</a>

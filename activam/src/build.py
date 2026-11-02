@@ -502,6 +502,27 @@ for _code, _extra in EXTRA_REV.items():
     LANGS[_code].update(_extra)
 
 
+# ---- Widgets sincronizados (pegar aquí el código que da cada servicio) ----
+# Instagram (p. ej. Behold.so o LightWidget): feed que se actualiza solo con las publicaciones de la cuenta.
+INSTAGRAM_WIDGET = ""
+# Reseñas de Google (p. ej. Trustindex o Elfsight): se actualizan solas desde la ficha de Google.
+GOOGLE_REVIEWS_WIDGET = ""
+
+ALT_SVC = {
+    "es": dict(alt_svc_pt="Entrenador de Activa'M guiando a una clienta en la sala de entrenamiento",
+               alt_svc_rh="Fisioterapeuta tratando la espalda de una paciente en camilla",
+               alt_svc_nu="Plato saludable con ensalada verde, aguacate y tomate"),
+    "ca": dict(alt_svc_pt="Entrenador d'Activa'M guiant una clienta a la sala d'entrenament",
+               alt_svc_rh="Fisioterapeuta tractant l'esquena d'una pacient a la llitera",
+               alt_svc_nu="Plat saludable amb amanida verda, alvocat i tomàquet"),
+    "en": dict(alt_svc_pt="Activa'M trainer guiding a client in the training room",
+               alt_svc_rh="Physiotherapist treating a patient's back on a treatment table",
+               alt_svc_nu="Healthy plate with green salad, avocado and tomato"),
+}
+for _code, _extra in ALT_SVC.items():
+    LANGS[_code].update(_extra)
+
+
 def em_last(text):
     """Pone en cursiva la última palabra (o las dos últimas si la última es corta)."""
     words = text.split(" ")
@@ -579,6 +600,7 @@ def render(lang, t, template):
         f'<blockquote>{html.escape(r["text"])}</blockquote>'
         f'<footer><span class="avatar">{html.escape(r["name"][0])}</span><span><strong>{html.escape(r["name"])}</strong>Google</span></footer></article>'
         for r in REVIEWS)
+    v["reviews_block"] = GOOGLE_REVIEWS_WIDGET or f'<div class="rev-grid">{v["reviews_html"]}</div>'
     v["feats"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["feats"])
     v["fw_rows"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["fw_cards"])
     v["method_cards"] = "".join(
@@ -602,6 +624,7 @@ def render(lang, t, template):
         f'<details{" open" if i == 0 else ""}><summary>{q}</summary><p>{a}</p></details>'
         for i, (q, a) in enumerate(t["faq"]))
     v["legal_links"] = " · ".join(f'<a href="{h}">{l}</a>' for h, l in t["legal"])
+    v["insta_block"] = INSTAGRAM_WIDGET or f'<div class="insta-grid" id="instagram-feed">{v["insta"]}</div>'
     v["jsonld"] = jsonld(t, lang)
 
     out = template

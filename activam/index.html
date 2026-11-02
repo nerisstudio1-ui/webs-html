@@ -251,14 +251,14 @@
   header { position: sticky; top: 0; z-index: 50; background: rgba(236,229,218,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
   .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 64px; }
   .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; }
-  .nav ul a { font-size: .8rem; text-decoration: none; color: var(--ink-soft); }
+  .nav ul a { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--ink-soft); }
   .nav ul a:hover { color: var(--burgundy); }
   .logo img { height: 34px; width: auto; }
   .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
   .langs { display: flex; gap: 2px; font-size: .72rem; font-weight: 600; }
   .langs a { text-decoration: none; color: var(--taupe); padding: 3px 6px; }
   .langs a[aria-current] { color: var(--burgundy); text-decoration: underline; text-underline-offset: 4px; }
-  .nav-right .btn { padding: 9px 16px; font-size: .76rem; }
+  .nav-right .btn { padding: 9px 16px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
   .menu-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
   .menu-toggle span { display: block; width: 22px; height: 1.5px; background: var(--burgundy); margin: 5px 0; }
 
@@ -518,7 +518,7 @@
       </div>
       <div class="svc-grid">
         <article class="svc" id="entrenamiento-personal">
-          <img class="svc-img" src="img/ia-entrenamiento.svg" alt="" width="600" height="450" loading="lazy">
+          <img class="svc-img" src="img/svc-entrenamiento.jpg" alt="Entrenador de Activa'M guiando a una clienta en la sala de entrenamiento" width="600" height="450" loading="lazy">
           <h3>Entrenamiento <em>personal</em></h3>
           <details open><summary>Para empezar</summary><p>Un plan individualizado según tus objetivos, tu nivel y tu salud, y un entrenador a tu lado en cada sesión.</p></details>
           <details><summary>Cómo trabajamos</summary><p>Tu entrenador personal diseña un plan a medida a partir de tu punto de partida y de lo que quieres conseguir. Te acompaña en cada sesión para que entrenes con buena técnica y de forma segura, va ajustando el plan según tu evolución y te prepara una rutina personalizada para que también puedas entrenar fuera del centro.</p></details>
@@ -526,7 +526,7 @@
           <a class="btn btn--solid" href="https://wa.me/34626660770?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20entrenamiento%20personal" target="_blank" rel="noopener">Pide cita <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
         <article class="svc" id="rehabilitacion">
-          <img class="svc-img" src="img/ia-rehabilitacion.svg" alt="" width="600" height="450" loading="lazy">
+          <img class="svc-img" src="img/svc-rehabilitacion.jpg" alt="Fisioterapeuta tratando la espalda de una paciente en camilla" width="600" height="450" loading="lazy">
           <h3>Rehabilitación</h3>
           <details open><summary>Para empezar</summary><p>¿Lesión o dolor? Te recuperas a través del trabajo muscular, con fisios especializados en ejercicio y entrenadores en readaptación.</p></details>
           <details><summary>Cómo trabajamos</summary><p>No hacemos una rehabilitación convencional: estamos especializados en un proceso mucho más eficaz, a través del trabajo muscular y el ejercicio guiado. Fisioterapeutas especializados en ejercicio y entrenadores especializados en readaptación te acompañan desde la valoración hasta que vuelves a tu actividad con seguridad, y te ayudan a no volver a lesionarte.</p></details>
@@ -534,7 +534,7 @@
           <a class="btn btn--solid" href="https://wa.me/34626660770?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20rehabilitaci%C3%B3n" target="_blank" rel="noopener">Pide cita <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
         <article class="svc" id="nutricion">
-          <img class="svc-img" src="img/ia-nutricion.svg" alt="" width="600" height="450" loading="lazy">
+          <img class="svc-img" src="img/svc-nutricion.jpg" alt="Plato saludable con ensalada verde, aguacate y tomate" width="600" height="450" loading="lazy">
           <h3>Nutrición</h3>
           <details open><summary>Para empezar</summary><p>Planes de alimentación personalizados: nutrición deportiva, educación nutricional, pérdida de peso y masa muscular.</p></details>
           <details><summary>Cómo trabajamos</summary><p>Nuestros dietistas-nutricionistas elaboran un plan de alimentación adaptado a ti, a tus objetivos y a tu día a día, y lo coordinan con tu entrenamiento para que los resultados lleguen antes y se mantengan.</p></details>
@@ -594,7 +594,6 @@
         <div><span class="kicker">@activamstandreu</span><h2>Síguenos en <em>Instagram</em></h2></div>
         <div><a class="btn" href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">Ver perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
-      <!-- Sustituir por el widget de feed (Behold / LightWidget / Elfsight) cuando tengamos acceso a la cuenta -->
       <div class="insta-grid" id="instagram-feed"><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="img/insta-1.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="img/insta-2.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="img/insta-3.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="img/insta-4.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="img/insta-5.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="img/insta-6.jpg" alt="Instalaciones de Activa'M en Sant Andreu" width="600" height="600" loading="lazy"></a></div>
     </div>
   </section>
