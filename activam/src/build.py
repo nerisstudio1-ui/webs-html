@@ -441,6 +441,42 @@ ICONS["arrow"] = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
                   'stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>')
 
 
+EXTRA_BOOK = {
+    "es": dict(
+        id_book="cita", book_h2_em="Pide tu cita <em>en 30 segundos</em>",
+        book_p="Elige qué necesitas y te abrimos WhatsApp con el mensaje listo. Te proponemos día y hora.",
+        f_service="¿Qué necesitas?", f_when="¿Cuándo te va mejor?", f_name="Tu nombre", f_name_ph="Nombre",
+        f_msg="Cuéntanos algo más (opcional)", f_msg_ph="Ej.: tengo una molestia en la rodilla…",
+        f_submit="Enviar por WhatsApp", f_note="Atendemos de 7 a 22 h, siempre con cita previa.",
+        f_tpl="Hola Activa'M, soy {name}. Me interesa: {service}. Me va mejor: {when}. {msg}", f_any="sin preferencia",
+        whens=["Mañana (7–14 h)", "Tarde (14–22 h)", "Indiferente"], svc_chip_extra="Aún no lo sé",
+        step1_cta="Da el primer paso", float_label="¿Hablamos?",
+    ),
+    "ca": dict(
+        id_book="cita", book_h2_em="Demana cita <em>en 30 segons</em>",
+        book_p="Tria què necessites i t'obrim WhatsApp amb el missatge a punt. Et proposem dia i hora.",
+        f_service="Què necessites?", f_when="Quan et va millor?", f_name="El teu nom", f_name_ph="Nom",
+        f_msg="Explica'ns alguna cosa més (opcional)", f_msg_ph="Ex.: tinc una molèstia al genoll…",
+        f_submit="Enviar per WhatsApp", f_note="Atenem de 7 a 22 h, sempre amb cita prèvia.",
+        f_tpl="Hola Activa'M, soc {name}. M'interessa: {service}. Em va millor: {when}. {msg}", f_any="sense preferència",
+        whens=["Matí (7–14 h)", "Tarda (14–22 h)", "Indiferent"], svc_chip_extra="Encara no ho sé",
+        step1_cta="Fes el primer pas", float_label="En parlem?",
+    ),
+    "en": dict(
+        id_book="book", book_h2_em="Book in <em>30 seconds</em>",
+        book_p="Choose what you need and we'll open WhatsApp with your message ready. We'll suggest a day and time.",
+        f_service="What do you need?", f_when="When suits you best?", f_name="Your name", f_name_ph="Name",
+        f_msg="Anything else? (optional)", f_msg_ph="E.g. I have some knee pain…",
+        f_submit="Send on WhatsApp", f_note="Open 7 am to 10 pm, by appointment only.",
+        f_tpl="Hi Activa'M, I'm {name}. I'm interested in: {service}. Best time: {when}. {msg}", f_any="no preference",
+        whens=["Morning (7 am–2 pm)", "Afternoon (2–10 pm)", "Any time"], svc_chip_extra="Not sure yet",
+        step1_cta="Take the first step", float_label="Let's talk",
+    ),
+}
+for _code, _extra in EXTRA_BOOK.items():
+    LANGS[_code].update(_extra)
+
+
 def em_last(text):
     """Pone en cursiva la última palabra (o las dos últimas si la última es corta)."""
     words = text.split(" ")
@@ -505,6 +541,12 @@ def render(lang, t, template):
     v["marquee"] = "<span>" + "".join(f"{w} <i></i> " for w in t["marquee_words"]) + "</span>"
     for key in ("pt_title", "rh_title", "nu_title", "gr_title"):
         v[key + "_em"] = em_last(t[key])
+    v["book_h2_em"] = t["book_h2_em"]
+    chip = lambda name, val, checked=False: (f'<label><input type="radio" name="{name}" value="{val}"'
+                                            + (' checked' if checked else '') + f'><span>{val}</span></label>')
+    v["f_services"] = "".join(chip("service", x, i == 0) for i, x in
+                              enumerate([t["pt_title"], t["rh_title"], t["nu_title"], t["gr_title"], t["svc_chip_extra"]]))
+    v["f_whens"] = "".join(chip("when", x, i == 2) for i, x in enumerate(t["whens"]))
     v["feats"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["feats"])
     v["fw_rows"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["fw_cards"])
     v["method_cards"] = "".join(
