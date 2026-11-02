@@ -477,6 +477,31 @@ for _code, _extra in EXTRA_BOOK.items():
     LANGS[_code].update(_extra)
 
 
+# Reseñas reales de Google: añadir aquí {"name": ..., "stars": 5, "text": ...} tal cual aparecen en Google.
+# Mientras la lista esté vacía, la sección muestra solo los botones a la ficha de Google.
+REVIEWS = []
+
+MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Activa%27M%20Carrer%20de%20Malats%2022%20Barcelona"
+GOOGLE_ICON = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h5.9c-.3 1.4-1 2.5-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.7 3.2-8z"/>'
+               '<path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8C3.9 20.6 7.7 23 12 23z"/>'
+               '<path fill="#FBBC05" d="M5.8 14.2c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2V7H2.1C1.4 8.5 1 10.2 1 12s.4 3.5 1.1 5l3.7-2.8z"/>'
+               '<path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2C17.5 2.1 15 1 12 1 7.7 1 3.9 3.4 2.1 7l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg>')
+
+EXTRA_REV = {
+    "es": dict(id_reviews="opiniones", rev_h2_em="Lo que dicen <em>de nosotros</em>",
+               rev_p="Lee lo que opinan quienes ya entrenan y se recuperan con nosotros en Sant Andreu.",
+               rev_all="Ver todas las reseñas en Google", rev_leave="Deja tu reseña"),
+    "ca": dict(id_reviews="opinions", rev_h2_em="El que diuen <em>de nosaltres</em>",
+               rev_p="Llegeix què en pensen els qui ja entrenen i es recuperen amb nosaltres a Sant Andreu.",
+               rev_all="Veure totes les ressenyes a Google", rev_leave="Deixa la teva ressenya"),
+    "en": dict(id_reviews="reviews", rev_h2_em="What people <em>say about us</em>",
+               rev_p="Read what people who already train and recover with us in Sant Andreu have to say.",
+               rev_all="Read all reviews on Google", rev_leave="Leave a review"),
+}
+for _code, _extra in EXTRA_REV.items():
+    LANGS[_code].update(_extra)
+
+
 def em_last(text):
     """Pone en cursiva la última palabra (o las dos últimas si la última es corta)."""
     words = text.split(" ")
@@ -513,7 +538,7 @@ def jsonld(t, lang):
                                                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                                                "opens": "07:00", "closes": "22:00"}],
                 "sameAs": ["https://www.facebook.com/activamsantandreu/", "https://x.com/ActivamStAndreu",
-                           "https://www.activampilates.cat/", "https://mtb.activam.es/"],
+                           "https://www.activampilates.cat/"],
                 "hasOfferCatalog": {"@type": "OfferCatalog", "name": plain(t["svc_h2"]), "itemListElement": [
                     {"@type": "Offer", "itemOffered": {"@type": "Service", "name": n, "description": plain(d)}}
                     for n, d in zip(t["svc_names"], [t["pt_short"], t["rh_short"], t["nu_short"], t["gr_short"]])]},
@@ -547,6 +572,13 @@ def render(lang, t, template):
     v["f_services"] = "".join(chip("service", x, i == 0) for i, x in
                               enumerate([t["pt_title"], t["rh_title"], t["nu_title"], t["gr_title"], t["svc_chip_extra"]]))
     v["f_whens"] = "".join(chip("when", x, i == 2) for i, x in enumerate(t["whens"]))
+    v["maps_url"] = MAPS_URL
+    v["google_icon"] = GOOGLE_ICON
+    v["reviews_html"] = "".join(
+        f'<article class="rev"><span class="stars" aria-label="{r["stars"]}/5">{"★" * r["stars"]}</span>'
+        f'<blockquote>{html.escape(r["text"])}</blockquote>'
+        f'<footer><span class="avatar">{html.escape(r["name"][0])}</span><span><strong>{html.escape(r["name"])}</strong>Google</span></footer></article>'
+        for r in REVIEWS)
     v["feats"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["feats"])
     v["fw_rows"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["fw_cards"])
     v["method_cards"] = "".join(

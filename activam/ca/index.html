@@ -82,8 +82,7 @@
       "sameAs": [
         "https://www.facebook.com/activamsantandreu/",
         "https://x.com/ActivamStAndreu",
-        "https://www.activampilates.cat/",
-        "https://mtb.activam.es/"
+        "https://www.activampilates.cat/"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -354,6 +353,20 @@
   .insta-grid img { aspect-ratio: 1; width: 100%; height: auto; object-fit: cover; border-radius: 16px; transition: opacity .2s; }
   .insta-grid a:hover img { opacity: .85; }
 
+  /* ---- Reviews ---- */
+  .reviews { padding: 0 0 110px; }
+  .reviews .kicker { display: inline-flex; align-items: center; gap: 8px; }
+  .reviews .kicker svg { width: 16px; height: 16px; }
+  .rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .rev-grid:empty { display: none; }
+  .rev { background: var(--card); border-radius: 22px; padding: 28px 26px; display: flex; flex-direction: column; gap: 16px; }
+  .rev .stars { color: #e0a63a; letter-spacing: 2px; font-size: 1rem; }
+  .rev blockquote { margin: 0; font-size: .95rem; line-height: 1.6; color: var(--ink); flex: 1; }
+  .rev footer { display: flex; align-items: center; gap: 12px; padding: 0; background: none; color: var(--ink-soft); font-size: .82rem; }
+  .rev .avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--beige); color: var(--burgundy); font-weight: 700; }
+  .rev strong { display: block; color: var(--burgundy); font-size: .9rem; }
+  .rev-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+
   /* ---- FAQ ---- */
   .faq { padding: 100px 0 110px; background: var(--bg-2); }
   .faq-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
@@ -436,6 +449,7 @@
     .group { grid-template-columns: 1fr; }
     .method-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
     .insta-grid { grid-template-columns: repeat(3, 1fr); }
+    .rev-grid { grid-template-columns: 1fr; }
     .insta .split-head > div:last-child { text-align: left; }
     .video-frame { aspect-ratio: 16/10; }
   }
@@ -577,20 +591,6 @@
     </div>
   </section>
 
-  <section class="more">
-    <div class="wrap">
-      <div class="more-grid">
-        <a class="more-card" href="https://www.activampilates.cat/" target="_blank" rel="noopener">
-          <span class="kicker">activampilates.cat</span><h3>Activa'M <em>Pilates</em></h3><p>El nostre centre de grups reduïts al carrer Gran de Sant Andreu, 346: Pilates Reformer, Pilates MAT, tonificació i força, i grups per a embarassades.</p>
-          <span class="btn">Visitar web <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <a class="more-card" href="https://mtb.activam.es/" target="_blank" rel="noopener">
-          <span class="kicker">mtb.activam.es</span><h3>MTB <em>Xperience</em></h3><p>Rutes en bicicleta de muntanya per Barcelona i Beseit, amb la mateixa filosofia: moure's, gaudir i cuidar-se.</p>
-          <span class="btn">Visitar web <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </section>
 
   <section class="insta">
     <div class="wrap">
@@ -600,6 +600,20 @@
       </div>
       <!-- Sustituir por el widget de feed (Behold / LightWidget / Elfsight) cuando tengamos acceso a la cuenta -->
       <div class="insta-grid" id="instagram-feed"><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="../img/insta-1.jpg" alt="Instal·lacions d'Activa'M a Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="../img/insta-2.jpg" alt="Instal·lacions d'Activa'M a Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="../img/insta-3.jpg" alt="Instal·lacions d'Activa'M a Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="../img/insta-4.jpg" alt="Instal·lacions d'Activa'M a Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="../img/insta-5.jpg" alt="Instal·lacions d'Activa'M a Sant Andreu" width="600" height="600" loading="lazy"></a><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><img src="../img/insta-6.jpg" alt="Instal·lacions d'Activa'M a Sant Andreu" width="600" height="600" loading="lazy"></a></div>
+    </div>
+  </section>
+
+  <section class="reviews" id="opinions">
+    <div class="wrap">
+      <div class="split-head">
+        <div><span class="kicker"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h5.9c-.3 1.4-1 2.5-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.7 3.2-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8C3.9 20.6 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.8 14.2c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2V7H2.1C1.4 8.5 1 10.2 1 12s.4 3.5 1.1 5l3.7-2.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2C17.5 2.1 15 1 12 1 7.7 1 3.9 3.4 2.1 7l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg> Google</span><h2>El que diuen <em>de nosaltres</em></h2></div>
+        <p>Llegeix què en pensen els qui ja entrenen i es recuperen amb nosaltres a Sant Andreu.</p>
+      </div>
+      <div class="rev-grid"></div>
+      <div class="rev-btns">
+        <a class="btn btn--solid" href="https://www.google.com/maps/search/?api=1&query=Activa%27M%20Carrer%20de%20Malats%2022%20Barcelona" target="_blank" rel="noopener">Veure totes les ressenyes a Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Activa%27M%20Carrer%20de%20Malats%2022%20Barcelona" target="_blank" rel="noopener">Deixa la teva ressenya <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
   </section>
 
@@ -657,7 +671,6 @@
           <li><a href="#rehabilitacio">Rehabilitació</a></li>
           <li><a href="#nutricio">Nutrició</a></li>
           <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">Entrenaments en grup</a></li>
-          <li><a href="https://mtb.activam.es/" target="_blank" rel="noopener">MTB Xperience</a></li>
         </ul>
       </div>
       <div>
