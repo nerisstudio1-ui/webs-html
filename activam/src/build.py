@@ -582,9 +582,8 @@ def render(lang, t, template):
     v["feats"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["feats"])
     v["fw_rows"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["fw_cards"])
     v["method_cards"] = "".join(
-        f'<article class="mcard"><div class="ph" style="--img:url({base}img/{img}.jpg)"></div>'
-        f'<span class="num">0{i}</span><h3>{h}</h3><p>{p}</p></article>'
-        for i, ((_, h, p), img) in enumerate(zip(t["steps"], t["method_photos"]), 1))
+        f'<article class="mcard"><span class="num">0{i}</span><h3>{h}</h3><p>{p}</p></article>'
+        for i, (_, h, p) in enumerate(t["steps"], 1))
     for key in ("pt_list", "rh_list", "nu_list", "why_list"):
         v[key] = lis(t[key])
     v.update(ICONS)

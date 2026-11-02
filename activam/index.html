@@ -229,9 +229,9 @@
   body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15.5px; font-weight: 500; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.1; letter-spacing: -.015em; margin: 0; color: var(--burgundy); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.08; letter-spacing: .01em; text-transform: uppercase; margin: 0; color: var(--burgundy); }
   h1 em, h2 em, h3 em { font-style: normal; color: var(--taupe); }
-  h2 { font-size: clamp(2.1rem, 4vw, 3.1rem); }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
   p { margin: 0; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
   .kicker { display: block; font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; }
@@ -266,19 +266,12 @@
   .hero { position: relative; min-height: min(86vh, 720px); display: flex; align-items: center; background: var(--img) center/cover; color: var(--card); }
   .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(43,22,28,.78) 0%, rgba(43,22,28,.45) 45%, rgba(43,22,28,.05) 80%); }
   .hero .wrap { position: relative; width: 100%; }
-  .hero h1 { color: var(--card); font-size: clamp(2.3rem, 4.4vw, 3.7rem); max-width: 760px; }
+  .hero h1 { color: var(--card); font-size: clamp(2.1rem, 4vw, 3.4rem); max-width: 820px; }
   .hero h1 em { color: var(--beige); }
   .hero p { max-width: 460px; margin: 22px 0 8px; color: rgba(251,248,243,.88); }
   .hero .kicker { color: rgba(251,248,243,.75); margin: 28px 0 12px; }
   .hero-btns { display: flex; flex-wrap: wrap; gap: 10px; }
 
-  /* ---- Marquee ---- */
-  .marquee { overflow: hidden; background: var(--burgundy); color: var(--beige); padding: 14px 0; }
-  .marquee-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
-  .marquee-track span { display: flex; align-items: center; gap: 22px; padding-right: 22px; font-family: var(--serif); font-weight: 600; font-size: 1.2rem; white-space: nowrap; }
-  .marquee-track i { width: 10px; height: 10px; border: 1px solid var(--beige); border-radius: 50%; flex: none; }
-  @keyframes scroll { to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
   /* ---- Intro ---- */
   .intro { padding: 110px 0; }
@@ -298,8 +291,10 @@
   .split-head { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 56px; }
   .split-head p { color: var(--ink-soft); }
   .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .svc { background: var(--card); border-radius: 22px; padding: 28px 26px 26px; display: flex; flex-direction: column; }
-  .svc h3 { font-size: 1.5rem; margin-bottom: 22px; }
+  .svc { background: var(--card); border-radius: 22px; padding: 14px 14px 26px; display: flex; flex-direction: column; }
+  .svc > *:not(.svc-img) { margin-left: 12px; margin-right: 12px; }
+  .svc-img { width: 100%; height: auto; aspect-ratio: 4/3; border-radius: 14px; margin-bottom: 22px; }
+  .svc h3 { font-size: 1.3rem; margin-bottom: 22px; }
   .svc details { border-top: 1px solid var(--line); }
   .svc details:last-of-type { border-bottom: 1px solid var(--line); }
   .svc summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 13px 0; font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
@@ -321,9 +316,9 @@
   .center-head { text-align: center; max-width: 760px; margin: 0 auto 60px; }
   .center-head p { margin-top: 16px; color: var(--ink-soft); }
   .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .mcard .ph { aspect-ratio: 4/4.4; border-radius: 24px; background: var(--img) center/cover; margin-bottom: 20px; }
-  .mcard .num { font-family: var(--serif); font-weight: 700; font-size: 1.1rem; color: var(--taupe); }
-  .mcard h3 { font-size: 1.4rem; margin: 2px 0 8px; }
+  .mcard { background: var(--card); border-radius: 22px; padding: 34px 30px 36px; }
+  .mcard .num { display: block; font-family: var(--serif); font-weight: 700; font-size: 3rem; line-height: 1; color: var(--beige); margin-bottom: 18px; }
+  .mcard h3 { font-size: 1.25rem; margin: 2px 0 8px; }
   .mcard p { font-size: .86rem; color: var(--ink-soft); }
 
   /* ---- For whom ---- */
@@ -373,7 +368,7 @@
   .faq-side p { margin: 20px 0 28px; color: var(--ink-soft); }
   .faq details { border-top: 1px solid var(--line); }
   .faq details:last-child { border-bottom: 1px solid var(--line); }
-  .faq summary { cursor: pointer; list-style: none; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-family: var(--serif); font-weight: 600; font-size: 1.12rem; line-height: 1.3; color: var(--burgundy); }
+  .faq summary { cursor: pointer; list-style: none; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-family: var(--serif); font-weight: 700; font-size: 1rem; line-height: 1.3; text-transform: uppercase; letter-spacing: .01em; color: var(--burgundy); }
   .faq summary::-webkit-details-marker { display: none; }
   .faq summary::after { content: "+"; font-family: var(--sans); font-size: 1.2rem; font-weight: 300; transition: transform .2s; }
   .faq details[open] summary::after { transform: rotate(45deg); }
@@ -382,7 +377,7 @@
   /* ---- Footer ---- */
   footer { background: var(--burgundy); color: var(--beige); padding: 100px 0 34px; }
   .foot-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-bottom: 90px; }
-  .foot-cta h2 { color: var(--card); font-size: clamp(2.4rem, 5vw, 4rem); }
+  .foot-cta h2 { color: var(--card); font-size: clamp(2.2rem, 4.5vw, 3.6rem); }
   .foot-cta h2 em { color: var(--beige); }
   .foot-cta .book h2 { color: var(--burgundy); font-size: 1.7rem; }
   .foot-cta .book h2 em { color: var(--taupe); }
@@ -500,8 +495,6 @@
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Entrenamiento personal <i></i> Rehabilitación <i></i> Nutrición <i></i> Sant Andreu desde 2013 <i></i> </span><span>Entrenamiento personal <i></i> Rehabilitación <i></i> Nutrición <i></i> Sant Andreu desde 2013 <i></i> </span></div></div>
-
   <section class="intro" id="nosotros">
     <div class="wrap intro-grid">
       <div class="stack">
@@ -525,6 +518,7 @@
       </div>
       <div class="svc-grid">
         <article class="svc" id="entrenamiento-personal">
+          <img class="svc-img" src="img/ia-entrenamiento.svg" alt="" width="600" height="450" loading="lazy">
           <h3>Entrenamiento <em>personal</em></h3>
           <details open><summary>Para empezar</summary><p>Un plan individualizado según tus objetivos, tu nivel y tu salud, y un entrenador a tu lado en cada sesión.</p></details>
           <details><summary>Cómo trabajamos</summary><p>Tu entrenador personal diseña un plan a medida a partir de tu punto de partida y de lo que quieres conseguir. Te acompaña en cada sesión para que entrenes con buena técnica y de forma segura, va ajustando el plan según tu evolución y te prepara una rutina personalizada para que también puedas entrenar fuera del centro.</p></details>
@@ -532,6 +526,7 @@
           <a class="btn btn--solid" href="https://wa.me/34626660770?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20entrenamiento%20personal" target="_blank" rel="noopener">Pide cita <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
         <article class="svc" id="rehabilitacion">
+          <img class="svc-img" src="img/ia-rehabilitacion.svg" alt="" width="600" height="450" loading="lazy">
           <h3>Rehabilitación</h3>
           <details open><summary>Para empezar</summary><p>¿Lesión o dolor? Te recuperas a través del trabajo muscular, con fisios especializados en ejercicio y entrenadores en readaptación.</p></details>
           <details><summary>Cómo trabajamos</summary><p>No hacemos una rehabilitación convencional: estamos especializados en un proceso mucho más eficaz, a través del trabajo muscular y el ejercicio guiado. Fisioterapeutas especializados en ejercicio y entrenadores especializados en readaptación te acompañan desde la valoración hasta que vuelves a tu actividad con seguridad, y te ayudan a no volver a lesionarte.</p></details>
@@ -539,6 +534,7 @@
           <a class="btn btn--solid" href="https://wa.me/34626660770?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20rehabilitaci%C3%B3n" target="_blank" rel="noopener">Pide cita <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
         <article class="svc" id="nutricion">
+          <img class="svc-img" src="img/ia-nutricion.svg" alt="" width="600" height="450" loading="lazy">
           <h3>Nutrición</h3>
           <details open><summary>Para empezar</summary><p>Planes de alimentación personalizados: nutrición deportiva, educación nutricional, pérdida de peso y masa muscular.</p></details>
           <details><summary>Cómo trabajamos</summary><p>Nuestros dietistas-nutricionistas elaboran un plan de alimentación adaptado a ti, a tus objetivos y a tu día a día, y lo coordinan con tu entrenamiento para que los resultados lleguen antes y se mantengan.</p></details>
@@ -561,7 +557,7 @@
   <section class="method" id="como-funciona">
     <div class="wrap">
       <div class="center-head"><span class="kicker">Cómo funciona</span><h2>El método detrás <em>del movimiento</em></h2></div>
-      <div class="method-grid"><article class="mcard"><div class="ph" style="--img:url(img/insta-1.jpg)"></div><span class="num">01</span><h3>Escríbenos</h3><p>Mándanos un WhatsApp, cuéntanos qué necesitas y concertamos tu primera cita. Atendemos de 7 a 22 h.</p></article><article class="mcard"><div class="ph" style="--img:url(img/detalle-rehabilitacion.jpg)"></div><span class="num">02</span><h3>Valoración</h3><p>Conocemos tu historial, tus objetivos y tu punto de partida para saber qué profesional y qué plan encajan contigo.</p></article><article class="mcard"><div class="ph" style="--img:url(img/detalle-fuerza.jpg)"></div><span class="num">03</span><h3>Plan y seguimiento</h3><p>Entrenas, te recuperas o mejoras tu alimentación con un plan a medida y ajustes continuos según tu evolución.</p></article></div>
+      <div class="method-grid"><article class="mcard"><span class="num">01</span><h3>Escríbenos</h3><p>Mándanos un WhatsApp, cuéntanos qué necesitas y concertamos tu primera cita. Atendemos de 7 a 22 h.</p></article><article class="mcard"><span class="num">02</span><h3>Valoración</h3><p>Conocemos tu historial, tus objetivos y tu punto de partida para saber qué profesional y qué plan encajan contigo.</p></article><article class="mcard"><span class="num">03</span><h3>Plan y seguimiento</h3><p>Entrenas, te recuperas o mejoras tu alimentación con un plan a medida y ajustes continuos según tu evolución.</p></article></div>
       <div class="center-cta"><a class="btn btn--solid" href="#cita">Da el primer paso <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
   </section>

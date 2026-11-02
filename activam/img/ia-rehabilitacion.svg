@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" role="img" aria-label="Ilustración de rehabilitación: banda elástica, rodillo y pulso">
+  <rect width="600" height="450" fill="#f1e6d7"/>
+  <circle cx="170" cy="150" r="140" fill="#e8d4bb"/>
+  <circle cx="500" cy="380" r="120" fill="#e4d6c3"/>
+  <path d="M0 360h600" stroke="#a59584" stroke-width="2" opacity=".5"/>
+  <!-- pulso -->
+  <path d="M60 110h120l22-42 34 96 28-70 16 16h260" fill="none" stroke="#49252f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="540" cy="110" r="9" fill="#49252f"/>
+  <!-- banda elástica -->
+  <ellipse cx="400" cy="235" rx="120" ry="62" fill="none" stroke="#49252f" stroke-width="22" transform="rotate(-14 400 235)"/>
+  <ellipse cx="400" cy="235" rx="120" ry="62" fill="none" stroke="#e8d4bb" stroke-width="4" opacity=".4" transform="rotate(-14 400 235)"/>
+  <!-- rodillo -->
+  <g transform="translate(220 318) rotate(-6)">
+    <rect x="-140" y="-38" width="280" height="76" rx="38" fill="#a59584"/>
+    <path d="M-95 -38v76M-50 -38v76M-5 -38v76M40 -38v76M85 -38v76" stroke="#8e7e6e" stroke-width="6"/>
+    <ellipse cx="140" cy="0" rx="18" ry="38" fill="#c2b3a2"/>
+    <ellipse cx="140" cy="0" rx="7" ry="15" fill="#8e7e6e"/>
+  </g>
+  <!-- cruz salud -->
+  <g transform="translate(95 225)">
+    <rect x="-9" y="-26" width="18" height="52" rx="6" fill="#49252f"/>
+    <rect x="-26" y="-9" width="52" height="18" rx="6" fill="#49252f"/>
+  </g>
+</svg>
