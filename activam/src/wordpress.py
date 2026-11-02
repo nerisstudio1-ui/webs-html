@@ -103,8 +103,10 @@ def main():
     template = (build.SRC / "template.html").read_text()
     OUT.mkdir(exist_ok=True)
     for lang, t in build.LANGS.items():
-        (OUT / f"{lang}.html").write_text(to_wordpress(lang, t, template))
-        print("ok", f"wordpress/{lang}.html")
+        code = to_wordpress(lang, t, template)
+        (OUT / f"{lang}.html").write_text(code)
+        (OUT / f"codigo-{lang}.txt").write_text(code)
+        print("ok", f"wordpress/{lang}.html", f"wordpress/codigo-{lang}.txt")
 
     used = set()
     for f in OUT.glob("*.html"):
