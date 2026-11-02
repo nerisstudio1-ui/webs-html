@@ -382,6 +382,72 @@ for _code, _extra in EXTRA.items():
     LANGS[_code].update(_extra)
 
 
+EXTRA_RWC = {
+    "es": dict(
+        hero_h1_em="Entrenamiento personal y rehabilitación <em>en Sant Andreu</em>",
+        intro_lead="Activa'M es un centro de entrenamiento personal, rehabilitación y nutrición en Sant Andreu (Barcelona). "
+                   "Desde 2013 ayudamos al barrio a moverse mejor, recuperarse de lesiones y ganar salud.",
+        feats=[("Atención individualizada", "Cada persona tiene su plan, su ritmo y un profesional pendiente de su evolución."),
+               ("Equipo multidisciplinar", "Entrenadores, fisioterapeutas y nutricionistas que trabajan juntos sobre tu caso."),
+               ("Rehabilitación activa", "Te recuperas a través del trabajo muscular y el ejercicio guiado, no solo con camilla.")],
+        svc_q="¿Qué servicio es <em>para ti?</em>",
+        lbl_start="Para empezar", lbl_how="Cómo trabajamos",
+        method_h2="El método detrás <em>del movimiento</em>",
+        method_photos=["insta-1", "detalle-rehabilitacion", "detalle-fuerza"],
+        fw_h2_em="Activa'M es <em>para ti si…</em>",
+        video_h2_em="Conoce <em>el centro</em>", insta_h2_em="Síguenos en <em>Instagram</em>",
+        faq_h2_em="Preguntas <em>frecuentes</em>", cta_h2_em="¿Listo para <em>activarte?</em>",
+        directions="Cómo llegar",
+        marquee_words=["Entrenamiento personal", "Rehabilitación", "Nutrición", "Sant Andreu desde 2013"],
+    ),
+    "ca": dict(
+        hero_h1_em="Entrenament personal i rehabilitació <em>a Sant Andreu</em>",
+        intro_lead="Activa'M és un centre d'entrenament personal, rehabilitació i nutrició a Sant Andreu (Barcelona). "
+                   "Des del 2013 ajudem el barri a moure's millor, recuperar-se de lesions i guanyar salut.",
+        feats=[("Atenció individualitzada", "Cada persona té el seu pla, el seu ritme i un professional pendent de la seva evolució."),
+               ("Equip multidisciplinari", "Entrenadors, fisioterapeutes i nutricionistes que treballen junts sobre el teu cas."),
+               ("Rehabilitació activa", "Et recuperes a través del treball muscular i l'exercici guiat, no només amb llitera.")],
+        svc_q="Quin servei és <em>per a tu?</em>",
+        lbl_start="Per començar", lbl_how="Com treballem",
+        method_h2="El mètode darrere <em>del moviment</em>",
+        method_photos=["insta-1", "detalle-rehabilitacion", "detalle-fuerza"],
+        fw_h2_em="Activa'M és <em>per a tu si…</em>",
+        video_h2_em="Coneix <em>el centre</em>", insta_h2_em="Segueix-nos a <em>Instagram</em>",
+        faq_h2_em="Preguntes <em>freqüents</em>", cta_h2_em="A punt per <em>activar-te?</em>",
+        directions="Com arribar-hi",
+        marquee_words=["Entrenament personal", "Rehabilitació", "Nutrició", "Sant Andreu des del 2013"],
+    ),
+    "en": dict(
+        hero_h1_em="Personal training &amp; rehabilitation <em>in Sant Andreu</em>",
+        intro_lead="Activa'M is a personal training, rehabilitation and nutrition centre in Sant Andreu, Barcelona. "
+                   "Since 2013 we've been helping the neighbourhood move better, recover from injuries and get healthier.",
+        feats=[("One-to-one attention", "Everyone gets their own plan, their own pace and a professional following their progress."),
+               ("Multidisciplinary team", "Trainers, physiotherapists and nutritionists working on your case together."),
+               ("Active rehabilitation", "You recover through muscle work and guided exercise, not just on the treatment table.")],
+        svc_q="Which service is <em>right for you?</em>",
+        lbl_start="Getting started", lbl_how="How we work",
+        method_h2="The method behind <em>the movement</em>",
+        method_photos=["insta-1", "detalle-rehabilitacion", "detalle-fuerza"],
+        fw_h2_em="Activa'M is <em>for you if…</em>",
+        video_h2_em="See <em>the centre</em>", insta_h2_em="Follow us on <em>Instagram</em>",
+        faq_h2_em="Frequently asked <em>questions</em>", cta_h2_em="Ready to <em>get active?</em>",
+        directions="Get directions",
+        marquee_words=["Personal training", "Rehabilitation", "Nutrition", "Sant Andreu since 2013"],
+    ),
+}
+for _code, _extra in EXTRA_RWC.items():
+    LANGS[_code].update(_extra)
+ICONS["arrow"] = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
+                  'stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>')
+
+
+def em_last(text):
+    """Pone en cursiva la última palabra (o las dos últimas si la última es corta)."""
+    words = text.split(" ")
+    n = 2 if len(words) > 2 and len(words[-1]) <= 3 else 1
+    return " ".join(words[:-n]) + " <em>" + " ".join(words[-n:]) + "</em>" if len(words) > 1 else f"<em>{text}</em>"
+
+
 def lis(items):
     return "".join(f"<li>{i}</li>" for i in items)
 
@@ -436,7 +502,15 @@ def render(lang, t, template):
         f'<a href="{base}{o["path"]}" hreflang="{code}" lang="{code}"'
         + (' aria-current="page"' if code == lang else "") + f'>{o["label"]}</a>'
         for code, o in LANGS.items())
-    v["marquee"] = "<span>" + "".join(f"{w} {STAR} " for w in t["marquee_words"]) + "</span>"
+    v["marquee"] = "<span>" + "".join(f"{w} <i></i> " for w in t["marquee_words"]) + "</span>"
+    for key in ("pt_title", "rh_title", "nu_title", "gr_title"):
+        v[key + "_em"] = em_last(t[key])
+    v["feats"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["feats"])
+    v["fw_rows"] = "".join(f"<li><div><strong>{h}</strong><p>{p}</p></div></li>" for h, p in t["fw_cards"])
+    v["method_cards"] = "".join(
+        f'<article class="mcard"><div class="ph" style="--img:url({base}img/{img}.jpg)"></div>'
+        f'<span class="num">0{i}</span><h3>{h}</h3><p>{p}</p></article>'
+        for i, ((_, h, p), img) in enumerate(zip(t["steps"], t["method_photos"]), 1))
     for key in ("pt_list", "rh_list", "nu_list", "why_list"):
         v[key] = lis(t[key])
     v.update(ICONS)

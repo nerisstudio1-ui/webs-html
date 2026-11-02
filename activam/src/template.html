@@ -26,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {{jsonld}}
@@ -36,265 +36,211 @@
   :root {
     /* Paleta de la propuesta de marca */
     --burgundy: #49252f;
-    --burgundy-2: #5a2f3a;
     --beige: #e8d4bb;
     --taupe: #a59584;
-    --graphite: #333333;
     /* Derivados */
-    --cream: #f6f1ea;
-    --card: #fffdf9;
-    --line: #e6dccf;
-    --ink: #2a2124;
-    --ink-soft: #6b5f5a;
+    --bg: #ece5da;
+    --bg-2: #e4dacb;
+    --card: #fbf8f3;
+    --line: rgba(73,37,47,.16);
+    --ink: #2b2326;
+    --ink-soft: #6c6058;
     --wa: #25d366;
-    --r-lg: 22px;
-    --r-md: 16px;
-    --head: "Barlow Condensed", "Arial Narrow", sans-serif;
-    --body: "Barlow", system-ui, sans-serif;
-    --max: 1200px;
+    --serif: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+    --max: 1160px;
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
-  h1, h2, h3 { font-family: var(--head); font-weight: 700; text-transform: uppercase; line-height: 1; letter-spacing: .005em; margin: 0; color: var(--burgundy); }
-  h2 { font-size: clamp(2.1rem, 4.2vw, 3.2rem); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.04; letter-spacing: -.01em; margin: 0; color: var(--burgundy); }
+  h1 em, h2 em, h3 em { font-style: italic; }
+  h2 { font-size: clamp(2.4rem, 4.6vw, 3.6rem); }
   p { margin: 0; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-  .dark { background: var(--burgundy); color: var(--beige); }
-  .dark h2, .dark h3 { color: var(--card); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+  .kicker { display: block; font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; }
+  .lead { font-family: var(--serif); font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.3; color: var(--burgundy); }
 
-  .eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 600; color: var(--taupe); margin-bottom: 12px; }
-  .eyebrow::before { content: "«"; }
-  .eyebrow::after { content: "»"; }
-  .dark .eyebrow { color: var(--beige); opacity: .8; }
-
-  /* Botón pill + círculo con flecha */
-  .pill { display: inline-flex; align-items: center; gap: 0; text-decoration: none; font-weight: 600; font-size: .86rem; }
-  .pill span { padding: 11px 20px; border-radius: 999px; background: var(--card); color: var(--burgundy); border: 1px solid var(--line); }
-  .pill i { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--burgundy); color: var(--beige); margin-left: -4px; transition: transform .2s; }
-  .pill i svg { width: 16px; height: 16px; }
-  .pill:hover i { transform: translateX(3px); }
-  .pill--dark span { background: var(--burgundy); color: var(--beige); border-color: var(--burgundy); }
-  .pill--dark i { background: var(--beige); color: var(--burgundy); }
-  .dark .pill span { background: rgba(232,212,187,.12); color: var(--beige); border-color: rgba(232,212,187,.3); }
-  .dark .pill i { background: var(--beige); color: var(--burgundy); }
-  .pill--dark span, .dark .pill--dark span { background: var(--burgundy); color: var(--beige); border-color: var(--burgundy); }
-  .pill--dark i, .dark .pill--dark i { background: var(--beige); color: var(--burgundy); }
-  .panel-main .pill--dark i { background: var(--card); }
-  .ask .pill i { background: var(--beige); color: var(--burgundy); }
-
-  /* Caja CTA tipo "book a call" */
-  .cta-box { display: inline-flex; flex-direction: column; gap: 14px; padding: 18px 18px 18px 20px; border-radius: var(--r-md); background: var(--burgundy); color: var(--beige); text-decoration: none; min-width: 240px; transition: transform .2s; }
-  .cta-box:hover { transform: translateY(-3px); }
-  .cta-box .wa { display: flex; align-items: center; gap: 8px; font-size: .78rem; opacity: .85; }
-  .cta-box .wa svg { width: 20px; height: 20px; color: var(--wa); }
-  .cta-box .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; }
-  .cta-box strong { font-family: var(--head); font-size: 1.15rem; text-transform: uppercase; line-height: 1.05; }
-  .cta-box .arrow { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: var(--beige); color: var(--burgundy); flex: none; }
-  .cta-box .arrow svg { width: 16px; height: 16px; }
-  .cta-box--light { background: var(--beige); color: var(--burgundy); }
-  .cta-box--light .arrow { background: var(--burgundy); color: var(--beige); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 999px; font: 500 .82rem var(--sans); text-decoration: none; border: 1px solid var(--burgundy); color: var(--burgundy); background: transparent; transition: background .2s, color .2s; white-space: nowrap; }
+  .btn svg { width: 14px; height: 14px; }
+  .btn:hover { background: var(--burgundy); color: var(--card); }
+  .btn--solid { background: var(--burgundy); color: var(--card); }
+  .btn--solid:hover { background: #2f161d; }
+  .btn--light { background: var(--card); border-color: var(--card); color: var(--burgundy); }
+  .btn--light:hover { background: var(--beige); border-color: var(--beige); color: var(--burgundy); }
+  .btn--ghost { border-color: rgba(251,248,243,.7); color: var(--card); }
+  .btn--ghost:hover { background: rgba(251,248,243,.15); color: var(--card); }
 
   /* ---- Header ---- */
-  header { position: sticky; top: 0; z-index: 50; background: rgba(246,241,234,.94); backdrop-filter: blur(10px); }
-  .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px; }
-  .logo img { height: 40px; width: auto; }
-  .nav-links { display: flex; align-items: center; gap: 26px; }
+  header { position: sticky; top: 0; z-index: 50; background: rgba(236,229,218,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 64px; }
   .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; }
-  .nav ul a { font-size: .86rem; font-weight: 500; text-decoration: none; color: var(--ink-soft); }
+  .nav ul a { font-size: .8rem; text-decoration: none; color: var(--ink-soft); }
   .nav ul a:hover { color: var(--burgundy); }
-  .langs { display: flex; gap: 2px; font-size: .74rem; font-weight: 700; }
-  .langs a { text-decoration: none; color: var(--taupe); padding: 4px 7px; border-radius: 999px; }
-  .langs a:hover { color: var(--burgundy); }
-  .langs a[aria-current] { color: var(--burgundy); background: var(--beige); }
+  .logo img { height: 34px; width: auto; }
+  .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
+  .langs { display: flex; gap: 2px; font-size: .72rem; font-weight: 600; }
+  .langs a { text-decoration: none; color: var(--taupe); padding: 3px 6px; }
+  .langs a[aria-current] { color: var(--burgundy); text-decoration: underline; text-underline-offset: 4px; }
+  .nav-right .btn { padding: 9px 16px; font-size: .76rem; }
   .menu-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
-  .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--burgundy); margin: 5px 0; border-radius: 2px; }
+  .menu-toggle span { display: block; width: 22px; height: 1.5px; background: var(--burgundy); margin: 5px 0; }
 
-  /* ---- Hero bento ---- */
-  .hero { padding: 8px 0 90px; }
-  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .hero-left { display: grid; grid-template-rows: auto 1fr; gap: 14px; }
-  .hero-top { display: grid; grid-template-columns: 150px 1fr; gap: 14px; }
-  .loc { position: relative; border-radius: var(--r-md); overflow: hidden; min-height: 150px; background: var(--img) center/cover; color: var(--card); }
-  .loc::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(73,37,47,.75), rgba(73,37,47,0) 60%); }
-  .loc span { position: relative; display: flex; align-items: center; gap: 6px; padding: 12px; font-size: .78rem; font-weight: 600; }
-  .loc svg { width: 14px; height: 14px; }
-  .trust { border-radius: var(--r-md); background: var(--card); border: 1px solid var(--line); padding: 18px 20px; display: flex; align-items: center; gap: 16px; }
-  .trust img { width: 54px; height: auto; flex: none; }
-  .trust p { font-size: .86rem; color: var(--ink-soft); }
-  .trust strong { color: var(--burgundy); }
-  .hero-card { border-radius: var(--r-lg); background: var(--card); border: 1px solid var(--line); padding: 40px 36px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px; }
-  .hero-card h1 { font-size: clamp(2.6rem, 5vw, 4.3rem); }
-  .hero-card p { margin-top: 16px; color: var(--ink-soft); max-width: 440px; }
-  .hero-photo { position: relative; border-radius: var(--r-lg); overflow: hidden; min-height: 520px; background: var(--img) center 35%/cover; }
-  .hero-photo .tag { position: absolute; left: 18px; bottom: 18px; right: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .hero-photo .tag span { background: rgba(255,253,249,.92); color: var(--burgundy); font-size: .78rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; }
+  /* ---- Hero ---- */
+  .hero { position: relative; min-height: min(86vh, 720px); display: flex; align-items: center; background: var(--img) center/cover; color: var(--card); }
+  .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(43,22,28,.78) 0%, rgba(43,22,28,.45) 45%, rgba(43,22,28,.05) 80%); }
+  .hero .wrap { position: relative; width: 100%; }
+  .hero h1 { color: var(--card); font-size: clamp(2.6rem, 5vw, 4.2rem); max-width: 760px; }
+  .hero p { max-width: 460px; margin: 22px 0 8px; color: rgba(251,248,243,.88); }
+  .hero .kicker { color: rgba(251,248,243,.75); margin: 28px 0 12px; }
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 10px; }
 
-  /* ---- Services bento (dark) ---- */
-  .services { padding: 90px 0; }
-  .sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px; }
-  .sec-head h2 { max-width: 640px; }
-  .sec-center { text-align: center; margin: 0 auto 44px; max-width: 720px; }
-  .sec-center p { margin-top: 14px; color: var(--ink-soft); }
-  .dark .sec-center p { color: rgba(232,212,187,.8); }
-  .bento { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 14px; }
-  .tile { border-radius: var(--r-md); padding: 26px 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 230px; text-decoration: none; transition: transform .2s; border: 1px solid rgba(232,212,187,.22); }
-  .tile:hover { transform: translateY(-3px); }
-  .tile .ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: rgba(232,212,187,.14); color: var(--beige); }
-  .tile .ico svg { width: 20px; height: 20px; }
-  .tile h3 { font-size: 1.5rem; color: var(--beige); margin-bottom: 8px; }
-  .tile p { font-size: .88rem; color: rgba(232,212,187,.8); }
-  .tile--hi { background: var(--beige); border-color: var(--beige); }
-  .tile--hi .ico { background: var(--burgundy); color: var(--beige); }
-  .tile--hi h3 { color: var(--burgundy); }
-  .tile--hi p { color: var(--ink-soft); }
-  .tile-photo { grid-row: span 2; grid-column: 2; position: relative; border-radius: var(--r-md); overflow: hidden; background: var(--img) center/cover; min-height: 460px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; text-decoration: none; }
-  .tile-photo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(40,18,24,.9), rgba(40,18,24,0) 60%); }
-  .tile-photo > * { position: relative; }
-  .tile-photo small { color: var(--beige); opacity: .85; font-size: .78rem; display: block; margin-bottom: 14px; }
-  .tile-photo h3 { color: var(--card); font-size: 1.5rem; margin-bottom: 8px; }
-  .tile-photo p { color: rgba(255,253,249,.85); font-size: .88rem; }
+  /* ---- Marquee ---- */
+  .marquee { overflow: hidden; background: var(--burgundy); color: var(--beige); padding: 14px 0; }
+  .marquee-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+  .marquee-track span { display: flex; align-items: center; gap: 22px; padding-right: 22px; font-family: var(--serif); font-size: 1.35rem; white-space: nowrap; }
+  .marquee-track i { width: 10px; height: 10px; border: 1px solid var(--beige); border-radius: 50%; flex: none; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
-  /* ---- About + stats ---- */
-  .about { padding: 100px 0; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
-  .about-photo { border-radius: var(--r-lg); aspect-ratio: 4/4.2; background: var(--img) center/cover; }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-top: 24px; border-top: 1px solid var(--line); margin-bottom: 44px; }
-  .stats strong { display: block; font-family: var(--head); font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1; color: var(--burgundy); }
-  .stats span { font-size: .8rem; color: var(--ink-soft); }
-  .statement { font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: clamp(1.35rem, 2.3vw, 1.75rem); line-height: 1.2; color: var(--burgundy); margin-bottom: 26px; }
-  .checks { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
-  .checks li { position: relative; padding-left: 26px; font-size: .9rem; }
-  .checks li::before { content: ""; position: absolute; left: 0; top: .2em; width: 16px; height: 16px; border-radius: 50%; background: var(--beige) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2349252f' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center/10px no-repeat; }
+  /* ---- Intro ---- */
+  .intro { padding: 110px 0; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .stack { position: relative; height: 540px; }
+  .stack img { position: absolute; width: 58%; height: auto; object-fit: cover; border-radius: 26px; box-shadow: 0 20px 40px -24px rgba(43,22,28,.45); }
+  .stack img:first-child { left: 0; top: 0; }
+  .stack img:last-child { right: 0; bottom: 0; border: 6px solid var(--bg); }
+  .feats { list-style: none; margin: 34px 0 0; padding: 0; }
+  .feats li { display: grid; grid-template-columns: 22px 1fr; gap: 16px; padding: 20px 0; border-top: 1px solid var(--line); }
+  .feats li::before { content: ""; width: 12px; height: 12px; margin-top: 5px; border: 1px solid var(--burgundy); border-radius: 50%; }
+  .feats strong { display: block; font-size: .86rem; font-weight: 600; color: var(--burgundy); margin-bottom: 4px; }
+  .feats p { font-size: .84rem; color: var(--ink-soft); }
 
-  /* ---- How it works (dark, tabs) ---- */
-  .how { padding: 90px 0; }
-  .tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; width: fit-content; margin: 0 auto 34px; padding: 5px; border: 1px solid rgba(232,212,187,.3); border-radius: 999px; }
-  .tabs button { font: 600 .84rem var(--body); color: var(--beige); background: none; border: 0; padding: 9px 18px; border-radius: 999px; cursor: pointer; }
-  .tabs button[aria-selected="true"] { background: var(--beige); color: var(--burgundy); }
-  .how-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-  .steps-card { background: var(--card); color: var(--ink); border-radius: var(--r-md); padding: 10px 24px; }
-  .steps-card .step { padding: 20px 0; border-bottom: 1px solid var(--line); }
-  .steps-card .step:last-child { border-bottom: 0; }
-  .steps-card h3 { font-size: 1.25rem; color: var(--burgundy); margin-bottom: 6px; }
-  .steps-card p { font-size: .86rem; color: var(--ink-soft); }
-  .panel { display: contents; }
-  .panel[hidden] { display: none; }
-  .panel-main { background: var(--beige); color: var(--ink); border-radius: var(--r-md); padding: 28px 26px; display: flex; flex-direction: column; gap: 16px; }
-  .panel-main h3 { font-size: 1.8rem; color: var(--burgundy); }
-  .panel-main p { font-size: .92rem; color: var(--ink-soft); }
-  .panel-main .pill { margin-top: auto; }
-  .panel-side { background: var(--card); color: var(--ink); border-radius: var(--r-md); overflow: hidden; display: flex; flex-direction: column; }
-  .panel-side .ph { aspect-ratio: 16/10; background: var(--img) center/cover; }
-  .panel-side .ph--brand { background: var(--burgundy); display: grid; place-items: center; }
-  .panel-side .ph--brand img { width: 45%; }
-  .panel-side .body { padding: 22px 24px 26px; }
-  .panel-side h4 { margin: 0 0 14px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--taupe); }
-  .panel-side .checks { grid-template-columns: 1fr; margin: 0; }
+  /* ---- Services ---- */
+  .services { padding: 40px 0 110px; }
+  .split-head { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 56px; }
+  .split-head p { color: var(--ink-soft); }
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .svc { background: var(--card); border-radius: 22px; padding: 28px 26px 26px; display: flex; flex-direction: column; }
+  .svc h3 { font-size: 1.75rem; margin-bottom: 22px; }
+  .svc details { border-top: 1px solid var(--line); }
+  .svc details:last-of-type { border-bottom: 1px solid var(--line); }
+  .svc summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 13px 0; font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
+  .svc summary::-webkit-details-marker { display: none; }
+  .svc summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-3px); transition: transform .2s; }
+  .svc details[open] summary::after { transform: rotate(-135deg) translateY(-1px); }
+  .svc details p, .svc details ul { font-size: .84rem; color: var(--ink-soft); padding: 0 0 16px; }
+  .svc details ul { margin: 0; padding-left: 16px; display: grid; gap: 4px; }
+  .svc .btn { margin-top: 26px; align-self: flex-start; }
+  .group { margin-top: 16px; display: grid; grid-template-columns: 1.2fr 1fr; border-radius: 22px; overflow: hidden; background: var(--card); text-decoration: none; }
+  .group .ph { min-height: 320px; background: var(--img) center/cover; }
+  .group .body { padding: 40px 38px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+  .group h3 { font-size: 2.2rem; }
+  .group p { color: var(--ink-soft); font-size: .9rem; }
+  .group .btn { align-self: flex-start; margin-top: 8px; }
 
-  /* ---- For whom (cards with photo) ---- */
-  .forwhom { padding: 100px 0; }
-  .cards4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .pcard { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; display: flex; flex-direction: column; }
-  .pcard .ph { aspect-ratio: 4/3; background: var(--img) center/cover; }
-  .pcard .body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-  .pcard h3 { font-size: 1.15rem; }
-  .pcard p { font-size: .86rem; color: var(--ink-soft); flex: 1; }
-  .pcard a { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .82rem; font-weight: 600; color: var(--burgundy); text-decoration: none; }
-  .pcard a i { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--beige); }
-  .pcard a i svg { width: 13px; height: 13px; }
+  /* ---- Method ---- */
+  .method { padding: 100px 0; background: var(--bg-2); }
+  .center-head { text-align: center; max-width: 760px; margin: 0 auto 60px; }
+  .center-head p { margin-top: 16px; color: var(--ink-soft); }
+  .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .mcard .ph { aspect-ratio: 4/4.4; border-radius: 24px; background: var(--img) center/cover; margin-bottom: 20px; }
+  .mcard .num { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--taupe); }
+  .mcard h3 { font-size: 1.7rem; margin: 2px 0 8px; }
+  .mcard p { font-size: .86rem; color: var(--ink-soft); }
+
+  /* ---- For whom ---- */
+  .forwhom { padding: 110px 0; }
+  .fw-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+  .fw-grid .lead { margin-top: 22px; }
+  .fw-photo { margin-top: 36px; aspect-ratio: 4/3; border-radius: 24px; background: var(--img) center/cover; }
 
   /* ---- Video ---- */
-  .video { padding: 0 0 100px; }
-  .video-frame { position: relative; aspect-ratio: 21/9; border-radius: var(--r-lg); overflow: hidden; background: var(--taupe); }
+  .video { padding: 0 0 110px; }
+  .video-frame { position: relative; aspect-ratio: 21/9; border-radius: 26px; overflow: hidden; background: var(--taupe); }
   .video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .video-frame .label { position: absolute; left: 24px; bottom: 22px; background: rgba(255,253,249,.92); color: var(--burgundy); font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 1.2rem; padding: 10px 16px; border-radius: 12px; }
+  .video-frame .label { position: absolute; left: 30px; bottom: 26px; color: var(--card); font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem); text-shadow: 0 2px 20px rgba(0,0,0,.35); }
 
   /* ---- More + Instagram ---- */
-  .more { padding: 0 0 100px; }
-  .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .more-card { display: flex; flex-direction: column; gap: 10px; padding: 30px 28px; border-radius: var(--r-md); background: var(--card); border: 1px solid var(--line); text-decoration: none; transition: transform .2s; }
+  .more { padding: 0 0 110px; }
+  .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .more-card { display: flex; flex-direction: column; gap: 12px; padding: 34px 32px; border-radius: 22px; background: var(--card); text-decoration: none; transition: transform .2s; }
   .more-card:hover { transform: translateY(-3px); }
-  .more-card small { color: var(--taupe); font-weight: 600; }
-  .more-card h3 { font-size: 1.6rem; }
-  .more-card p { color: var(--ink-soft); font-size: .9rem; flex: 1; }
-  .more-card .pill { margin-top: 10px; }
-  .insta { padding: 0 0 100px; }
+  .more-card h3 { font-size: 2rem; }
+  .more-card p { color: var(--ink-soft); font-size: .88rem; flex: 1; }
+  .more-card .btn { align-self: flex-start; margin-top: 8px; }
+  .insta { padding: 0 0 110px; }
+  .insta .split-head { margin-bottom: 30px; }
+  .insta .split-head > div:last-child { text-align: right; }
   .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
-  .insta-grid img { aspect-ratio: 1; width: 100%; height: auto; object-fit: cover; border-radius: 12px; transition: opacity .2s; }
+  .insta-grid img { aspect-ratio: 1; width: 100%; height: auto; object-fit: cover; border-radius: 16px; transition: opacity .2s; }
   .insta-grid a:hover img { opacity: .85; }
-  .insta .sec-head { margin-bottom: 28px; }
 
   /* ---- FAQ ---- */
-  .faq { padding: 30px 0 110px; }
-  .faq-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 56px; align-items: start; }
-  .faq-side h2 { margin-bottom: 40px; }
-  .ask { background: var(--burgundy); color: var(--beige); border-radius: var(--r-md); padding: 28px 26px; max-width: 340px; }
-  .ask h3 { color: var(--card); font-size: 1.5rem; margin-bottom: 8px; }
-  .ask p { font-size: .88rem; opacity: .85; margin-bottom: 22px; }
-  .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 10px; padding: 0 20px; }
-  .faq summary { cursor: pointer; list-style: none; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 1.02rem; color: var(--burgundy); }
+  .faq { padding: 100px 0 110px; background: var(--bg-2); }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+  .faq-side p { margin: 20px 0 28px; color: var(--ink-soft); }
+  .faq details { border-top: 1px solid var(--line); }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; color: var(--burgundy); }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq summary::after { content: "+"; flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); font-family: var(--body); font-size: 1.1rem; transition: transform .2s, background .2s; }
-  .faq details[open] summary::after { transform: rotate(45deg); background: var(--burgundy); color: var(--beige); border-color: var(--burgundy); }
-  .faq details p { padding: 0 0 20px; color: var(--ink-soft); font-size: .92rem; }
+  .faq summary::after { content: "+"; font-family: var(--sans); font-size: 1.2rem; font-weight: 300; transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { padding: 0 0 22px; color: var(--ink-soft); max-width: 600px; }
 
-  /* ---- CTA + footer ---- */
-  .closing { padding: 80px 0 40px; }
-  .cta-row { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-bottom: 56px; }
-  .cta-row h2 { max-width: 520px; }
-  .foot-card { background: var(--card); color: var(--ink); border-radius: var(--r-lg); padding: 44px 40px 26px; }
-  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 34px; }
-  .foot-grid .logo img { height: 46px; }
-  .foot-grid > div > p { margin-top: 16px; font-size: .88rem; color: var(--ink-soft); max-width: 300px; }
-  .foot-grid h4 { margin: 0 0 14px; font-family: var(--head); text-transform: uppercase; font-size: .95rem; color: var(--burgundy); }
-  .foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .88rem; }
-  .foot-grid a { text-decoration: none; color: var(--ink-soft); }
-  .foot-grid a:hover { color: var(--burgundy); }
-  .foot-grid address { font-style: normal; font-size: .88rem; color: var(--ink-soft); display: grid; gap: 8px; }
-  .legal { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .78rem; color: var(--ink-soft); }
+  /* ---- Footer ---- */
+  footer { background: var(--burgundy); color: var(--beige); padding: 100px 0 34px; }
+  .foot-cta { text-align: center; margin-bottom: 90px; }
+  .foot-cta h2 { color: var(--card); font-size: clamp(2.8rem, 6vw, 4.8rem); }
+  .foot-cta p { margin: 18px auto 30px; max-width: 480px; opacity: .85; }
+  .foot-cta .hero-btns { justify-content: center; }
+  .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 34px; padding-top: 50px; border-top: 1px solid rgba(232,212,187,.2); font-size: .86rem; }
+  .foot-grid .logo img { height: 84px; }
+  .foot-grid > div > p { margin-top: 16px; opacity: .75; max-width: 280px; }
+  .foot-grid h4 { margin: 0 0 14px; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; opacity: .7; }
+  .foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .foot-grid a { text-decoration: none; opacity: .9; }
+  .foot-grid a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+  .foot-grid address { font-style: normal; display: grid; gap: 8px; }
+  .legal { margin-top: 50px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .74rem; opacity: .6; }
   .legal a { text-decoration: none; }
 
-  .wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: var(--wa); color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.18); transition: transform .2s; }
+  .wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; background: var(--wa); color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.18); transition: transform .2s; }
   .wa-float:hover { transform: scale(1.07); }
-  .wa-float svg { width: 30px; height: 30px; }
+  .wa-float svg { width: 28px; height: 28px; }
 
   /* ---- Responsive ---- */
-  @media (max-width: 1080px) {
-    .cards4 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 1000px) {
+    .svc-grid { grid-template-columns: 1fr 1fr; }
     .foot-grid { grid-template-columns: 1fr 1fr; }
-    .nav ul { gap: 16px; }
+    .nav ul { gap: 14px; }
   }
-  @media (max-width: 920px) {
-    .menu-toggle { display: block; order: -1; }
-    .nav { justify-content: space-between; }
-    .nav ul { display: none; position: absolute; top: 76px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--cream); border-bottom: 1px solid var(--line); padding: 8px 24px 18px; }
+  @media (max-width: 860px) {
+    .nav { grid-template-columns: auto 1fr auto; }
+    .menu-toggle { display: block; }
+    .nav ul { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px 28px 18px; }
     .nav ul.open { display: flex; }
-    .nav ul a { display: block; padding: 12px 0; font-size: 1rem; }
-    .nav-links .pill { display: none; }
-    .logo img { height: 32px; }
-    .hero-grid, .about-grid, .faq-grid { grid-template-columns: 1fr; }
-    .hero-photo { min-height: 420px; }
-    .bento { grid-template-columns: 1fr 1fr; }
-    .tile-photo { grid-column: 1 / -1; grid-row: auto; min-height: 320px; order: -1; }
-    .how-grid { grid-template-columns: 1fr; }
-    .sec-head { flex-direction: column; align-items: flex-start; }
-    .cta-row { flex-direction: column; align-items: flex-start; }
+    .nav ul a { display: block; padding: 12px 0; font-size: .95rem; }
+    .logo { justify-self: center; }
+    .logo img { height: 28px; }
+    .nav-right .btn { display: none; }
+    .intro-grid, .split-head, .fw-grid, .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+    .stack { height: 440px; max-width: 520px; }
+    .group { grid-template-columns: 1fr; }
+    .method-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
     .insta-grid { grid-template-columns: repeat(3, 1fr); }
+    .insta .split-head > div:last-child { text-align: left; }
     .video-frame { aspect-ratio: 16/10; }
   }
   @media (max-width: 600px) {
-    .wrap { padding: 0 16px; }
-    .hero-top { grid-template-columns: 1fr; }
-    .loc { min-height: 120px; }
-    .hero-card { padding: 30px 22px; }
-    .bento, .cards4, .more-grid, .foot-grid { grid-template-columns: 1fr; }
-    .checks { grid-template-columns: 1fr; }
-    .stats { gap: 10px; }
-    .foot-card { padding: 32px 22px 22px; }
-    .ask { max-width: none; }
+    .wrap { padding: 0 18px; }
+    .hero { min-height: 640px; align-items: flex-end; padding-bottom: 56px; }
+    .hero::before { background: linear-gradient(0deg, rgba(43,22,28,.85) 10%, rgba(43,22,28,.25) 70%); }
+    .svc-grid, .more-grid, .foot-grid { grid-template-columns: 1fr; }
+    .stack { height: 360px; }
+    .group .body { padding: 30px 24px; }
   }
 </style>
 </head>
@@ -302,205 +248,155 @@
 
 <header>
   <nav class="wrap nav" aria-label="{{nav_label}}">
-    <a class="logo" href="#top"><img src="{{base}}img/logotipo-burdeos.png" alt="Activa'M · Entrenament personal &amp; rehabilitació" width="1200" height="243"></a>
     <button class="menu-toggle" aria-label="{{menu_open}}" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
-    <div class="nav-links">
-      <ul id="menu">
-        <li><a href="#{{id_services}}">{{nav_services}}</a></li>
-        <li><a href="#{{id_about}}">{{nav_about}}</a></li>
-        <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">{{nav_groups}}</a></li>
-        <li><a href="#{{id_faq}}">{{nav_faq}}</a></li>
-      </ul>
+    <ul id="menu">
+      <li><a href="#{{id_about}}">{{nav_about}}</a></li>
+      <li><a href="#{{id_services}}">{{nav_services}}</a></li>
+      <li><a href="#{{id_how}}">{{steps_h2}}</a></li>
+      <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">{{nav_groups}}</a></li>
+      <li><a href="#{{id_faq}}">{{nav_faq}}</a></li>
+    </ul>
+    <a class="logo" href="#top"><img src="{{base}}img/logotipo-burdeos.png" alt="Activa'M · Entrenament personal &amp; rehabilitació" width="1200" height="243"></a>
+    <div class="nav-right">
       <div class="langs">{{lang_links}}</div>
-      <a class="pill" href="#{{id_contact}}"><span>{{nav_contact}}</span><i>{{arrow}}</i></a>
+      <a class="btn btn--solid" href="{{wa_general}}" target="_blank" rel="noopener">{{cta_short}}</a>
     </div>
   </nav>
 </header>
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-left">
-        <div class="hero-top">
-          <div class="loc" style="--img:url({{base}}img/insta-4.jpg)"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Sant Andreu, BCN</span></div>
-          <div class="trust">
-            <img src="{{base}}img/simbolo-burdeos.png" alt="" width="900" height="496">
-            <p>{{trust}}</p>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div>
-            <h1>{{hero_h1}}</h1>
-            <p>{{hero_p}}</p>
-          </div>
-          <a class="cta-box" href="{{wa_general}}" target="_blank" rel="noopener">
-            <span class="wa">{{wa_icon}} WhatsApp · 7–22 h</span>
-            <span class="row"><strong>{{cta_long}}</strong><span class="arrow">{{arrow_ne}}</span></span>
-          </a>
-        </div>
-      </div>
-      <div class="hero-photo" style="--img:url({{base}}img/hero.jpg)" role="img" aria-label="{{alt_hero}}">
-        <div class="tag"><span>{{pt_title}}</span><span>{{rh_title}}</span><span>{{nu_title}}</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES BENTO -->
-  <section class="services dark" id="{{id_services}}">
+  <section class="hero" style="--img:url({{base}}img/hero-wide.jpg)">
     <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow">{{svc_eyebrow}}</span><h2>{{svc_h2}}</h2></div>
-        <a class="pill" href="{{wa_general}}" target="_blank" rel="noopener"><span>{{cta_short}}</span><i>{{arrow}}</i></a>
-      </div>
-      <div class="bento">
-        <a class="tile" href="#{{id_how}}" data-tab="0">
-          <span class="ico">{{ico_pt}}</span>
-          <div><h3>{{pt_title}}</h3><p>{{pt_short}}</p></div>
-        </a>
-        <a class="tile-photo" href="#{{id_contact}}" style="--img:url({{base}}img/grupo.jpg)" aria-label="{{alt_about}}">
-          <small>Carrer de Malats, 22 · 08030 Barcelona</small>
-          <h3>{{svc_center_h}}</h3>
-          <p>{{svc_center_p}}</p>
-        </a>
-        <a class="tile tile--hi" href="https://www.activampilates.cat/" target="_blank" rel="noopener">
-          <span class="ico">{{ico_gr}}</span>
-          <div><h3>{{gr_title}} ↗</h3><p>{{gr_short}}</p></div>
-        </a>
-        <a class="tile tile--hi" href="#{{id_how}}" data-tab="1">
-          <span class="ico">{{ico_rh}}</span>
-          <div><h3>{{rh_title}}</h3><p>{{rh_short}}</p></div>
-        </a>
-        <a class="tile" href="#{{id_how}}" data-tab="2">
-          <span class="ico">{{ico_nu}}</span>
-          <div><h3>{{nu_title}}</h3><p>{{nu_short}}</p></div>
-        </a>
+      <h1>{{hero_h1_em}}</h1>
+      <p>{{hero_p}}</p>
+      <span class="kicker">{{hero_meta}}</span>
+      <div class="hero-btns">
+        <a class="btn btn--ghost" href="#{{id_services}}">{{intro_cta}} {{arrow}}</a>
+        <a class="btn btn--light" href="{{wa_general}}" target="_blank" rel="noopener">{{cta_long}} {{arrow}}</a>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT + STATS -->
-  <section class="about" id="{{id_about}}">
-    <div class="wrap about-grid">
-      <div class="about-photo" style="--img:url({{base}}img/detalle-entrenamiento.jpg)" role="img" aria-label="{{alt_pt}}"></div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track">{{marquee}}{{marquee}}</div></div>
+
+  <section class="intro" id="{{id_about}}">
+    <div class="wrap intro-grid">
+      <div class="stack">
+        <img src="{{base}}img/arco-1.jpg" alt="{{alt_hero}}" width="700" height="933" loading="lazy">
+        <img src="{{base}}img/arco-2.jpg" alt="{{alt_intro1}}" width="700" height="933" loading="lazy">
+      </div>
       <div>
-        <div class="stats">
-          <div><strong>2013</strong><span>{{stat_1}}</span></div>
-          <div><strong>4</strong><span>{{stat_2}}</span></div>
-          <div><strong>1:1</strong><span>{{stat_3}}</span></div>
-        </div>
-        <p class="statement">{{statement}}</p>
-        <ul class="checks">{{why_list}}</ul>
-        <a class="pill pill--dark" href="{{wa_general}}" target="_blank" rel="noopener"><span>{{cta_short}}</span><i>{{arrow}}</i></a>
+        <span class="kicker">{{intro_eyebrow}}</span>
+        <p class="lead">{{intro_lead}}</p>
+        <ul class="feats">{{feats}}</ul>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="how dark" id="{{id_how}}">
+  <section class="services" id="{{id_services}}">
     <div class="wrap">
-      <div class="sec-center"><span class="eyebrow">{{steps_h2}}</span><h2>{{how_h2}}</h2></div>
-      <div class="tabs" role="tablist">
-        <button role="tab" aria-selected="true" aria-controls="p0" id="t0">{{pt_title}}</button>
-        <button role="tab" aria-selected="false" aria-controls="p1" id="t1">{{rh_title}}</button>
-        <button role="tab" aria-selected="false" aria-controls="p2" id="t2">{{nu_title}}</button>
+      <div class="split-head">
+        <h2>{{svc_q}}</h2>
+        <p>{{svc_p}}</p>
       </div>
-      <div class="how-grid">
-        <div class="steps-card">{{steps}}</div>
-        <div class="panel" role="tabpanel" id="p0" aria-labelledby="t0">
-          <div class="panel-main" id="{{id_pt}}">
-            <h3>{{pt_title}}</h3><p>{{pt_long}}</p>
-            <a class="pill pill--dark" href="{{wa_pt}}" target="_blank" rel="noopener"><span>{{ask_info}}</span><i>{{arrow}}</i></a>
-          </div>
-          <div class="panel-side">
-            <div class="ph" style="--img:url({{base}}img/entrenamiento-personal.jpg)" role="img" aria-label="{{alt_pt}}"></div>
-            <div class="body"><h4>{{ideal_for}}</h4><ul class="checks">{{pt_list}}</ul></div>
-          </div>
-        </div>
-        <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
-          <div class="panel-main" id="{{id_rehab}}">
-            <h3>{{rh_title}}</h3><p>{{rh_long}}</p>
-            <a class="pill pill--dark" href="{{wa_rh}}" target="_blank" rel="noopener"><span>{{ask_info}}</span><i>{{arrow}}</i></a>
-          </div>
-          <div class="panel-side">
-            <div class="ph" style="--img:url({{base}}img/rehabilitacion.jpg)" role="img" aria-label="{{alt_rh}}"></div>
-            <div class="body"><h4>{{rh_sub}}</h4><ul class="checks">{{rh_list}}</ul></div>
-          </div>
-        </div>
-        <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2">
-          <div class="panel-main" id="{{id_nutri}}">
-            <h3>{{nu_title}}</h3><p>{{nu_long}}</p>
-            <a class="pill pill--dark" href="{{wa_nu}}" target="_blank" rel="noopener"><span>{{ask_info}}</span><i>{{arrow}}</i></a>
-          </div>
-          <div class="panel-side">
-            <div class="ph ph--brand" aria-hidden="true"><img src="{{base}}img/simbolo-beige.png" alt="" width="900" height="496"></div>
-            <div class="body"><h4>{{nu_sub}}</h4><ul class="checks">{{nu_list}}</ul></div>
-          </div>
-        </div>
+      <div class="svc-grid">
+        <article class="svc" id="{{id_pt}}">
+          <h3>{{pt_title_em}}</h3>
+          <details open><summary>{{lbl_start}}</summary><p>{{pt_short}}</p></details>
+          <details><summary>{{lbl_how}}</summary><p>{{pt_long}}</p></details>
+          <details><summary>{{ideal_for}}</summary><ul>{{pt_list}}</ul></details>
+          <a class="btn btn--solid" href="{{wa_pt}}" target="_blank" rel="noopener">{{cta_short}} {{arrow}}</a>
+        </article>
+        <article class="svc" id="{{id_rehab}}">
+          <h3>{{rh_title_em}}</h3>
+          <details open><summary>{{lbl_start}}</summary><p>{{rh_short}}</p></details>
+          <details><summary>{{lbl_how}}</summary><p>{{rh_long}}</p></details>
+          <details><summary>{{rh_sub}}</summary><ul>{{rh_list}}</ul></details>
+          <a class="btn btn--solid" href="{{wa_rh}}" target="_blank" rel="noopener">{{cta_short}} {{arrow}}</a>
+        </article>
+        <article class="svc" id="{{id_nutri}}">
+          <h3>{{nu_title_em}}</h3>
+          <details open><summary>{{lbl_start}}</summary><p>{{nu_short}}</p></details>
+          <details><summary>{{lbl_how}}</summary><p>{{nu_long}}</p></details>
+          <details><summary>{{nu_sub}}</summary><ul>{{nu_list}}</ul></details>
+          <a class="btn btn--solid" href="{{wa_nu}}" target="_blank" rel="noopener">{{cta_short}} {{arrow}}</a>
+        </article>
       </div>
+      <a class="group" href="https://www.activampilates.cat/" target="_blank" rel="noopener">
+        <div class="ph" style="--img:url({{base}}img/grupo.jpg)" role="img" aria-label="{{gr_title}}"></div>
+        <div class="body">
+          <span class="kicker">Activa'M Pilates Training</span>
+          <h3>{{gr_title_em}}</h3>
+          <p>{{pilates_p}}</p>
+          <span class="btn">{{gr_more}} {{arrow}}</span>
+        </div>
+      </a>
     </div>
   </section>
 
-  <!-- FOR WHOM -->
+  <section class="method" id="{{id_how}}">
+    <div class="wrap">
+      <div class="center-head"><span class="kicker">{{steps_h2}}</span><h2>{{method_h2}}</h2></div>
+      <div class="method-grid">{{method_cards}}</div>
+    </div>
+  </section>
+
   <section class="forwhom">
-    <div class="wrap">
-      <div class="sec-center"><span class="eyebrow">{{fw_eyebrow}}</span><h2>{{fw_h2}}</h2><p>{{fw_p}}</p></div>
-      <div class="cards4">{{fw_cards}}</div>
+    <div class="wrap fw-grid">
+      <div>
+        <span class="kicker">{{fw_eyebrow}}</span>
+        <h2>{{fw_h2_em}}</h2>
+        <p class="lead">{{fw_p}}</p>
+        <div class="fw-photo" style="--img:url({{base}}img/og.jpg)" role="img" aria-label="{{alt_hero}}"></div>
+      </div>
+      <ul class="feats">{{fw_rows}}</ul>
     </div>
   </section>
 
-  <!-- VIDEO -->
   <section class="video">
     <div class="wrap">
       <div class="video-frame">
         <!-- Sustituir por el vídeo nuevo cuando esté disponible -->
         <video src="{{base}}video/activam.mp4" poster="{{base}}img/video-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="{{video_h2}}"></video>
-        <span class="label">{{video_h2}}</span>
+        <span class="label">{{video_h2_em}}</span>
       </div>
     </div>
   </section>
 
-  <!-- MORE ACTIVA'M -->
   <section class="more">
     <div class="wrap">
-      <div class="sec-head"><div><span class="eyebrow">{{more_eyebrow}}</span><h2>{{more_h2}}</h2></div></div>
       <div class="more-grid">
         <a class="more-card" href="https://www.activampilates.cat/" target="_blank" rel="noopener">
-          <small>activampilates.cat</small><h3>Activa'M Pilates Training</h3><p>{{pilates_p}}</p>
-          <span class="pill pill--dark"><span>{{visit}}</span><i>{{arrow}}</i></span>
+          <span class="kicker">activampilates.cat</span><h3>Activa'M <em>Pilates</em></h3><p>{{pilates_p}}</p>
+          <span class="btn">{{visit}} {{arrow}}</span>
         </a>
         <a class="more-card" href="https://mtb.activam.es/" target="_blank" rel="noopener">
-          <small>mtb.activam.es</small><h3>MTB Xperience by Activa'M</h3><p>{{mtb_p}}</p>
-          <span class="pill pill--dark"><span>{{visit}}</span><i>{{arrow}}</i></span>
+          <span class="kicker">mtb.activam.es</span><h3>MTB <em>Xperience</em></h3><p>{{mtb_p}}</p>
+          <span class="btn">{{visit}} {{arrow}}</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- INSTAGRAM -->
   <section class="insta">
     <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow">@activamstandreu</span><h2>{{insta_h2}}</h2></div>
-        <a class="pill" href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><span>{{insta_cta}}</span><i>{{arrow}}</i></a>
+      <div class="split-head">
+        <div><span class="kicker">@activamstandreu</span><h2>{{insta_h2_em}}</h2></div>
+        <div><a class="btn" href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">{{insta_cta}} {{arrow}}</a></div>
       </div>
       <!-- Sustituir por el widget de feed (Behold / LightWidget / Elfsight) cuando tengamos acceso a la cuenta -->
       <div class="insta-grid" id="instagram-feed">{{insta}}</div>
     </div>
   </section>
 
-  <!-- FAQ -->
   <section class="faq" id="{{id_faq}}">
     <div class="wrap faq-grid">
       <div class="faq-side">
-        <span class="eyebrow">{{faq_eyebrow}}</span>
-        <h2>{{faq_h2}}</h2>
-        <div class="ask">
-          <h3>{{ask_h}}</h3>
-          <p>{{ask_p}}</p>
-          <a class="pill" href="{{wa_general}}" target="_blank" rel="noopener"><span>WhatsApp</span><i>{{arrow}}</i></a>
-        </div>
+        <span class="kicker">{{faq_eyebrow}}</span>
+        <h2>{{faq_h2_em}}</h2>
+        <p>{{ask_p}}</p>
+        <a class="btn btn--solid" href="{{wa_general}}" target="_blank" rel="noopener">WhatsApp {{arrow}}</a>
       </div>
       <div>{{faq_html}}</div>
     </div>
@@ -508,55 +404,53 @@
 
 </main>
 
-<!-- CTA + FOOTER -->
-<footer class="closing dark" id="{{id_contact}}">
+<footer id="{{id_contact}}">
   <div class="wrap">
-    <div class="cta-row">
-      <h2>{{cta_h2}}</h2>
-      <a class="cta-box cta-box--light" href="{{wa_general}}" target="_blank" rel="noopener">
-        <span class="wa">{{wa_icon}} +34 626 660 770</span>
-        <span class="row"><strong>{{cta_long}}</strong><span class="arrow">{{arrow_ne}}</span></span>
-      </a>
+    <div class="foot-cta">
+      <h2>{{cta_h2_em}}</h2>
+      <p>{{hours}} · Carrer de Malats, 22</p>
+      <div class="hero-btns">
+        <a class="btn btn--light" href="{{wa_general}}" target="_blank" rel="noopener">{{cta_long}} {{arrow}}</a>
+        <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=Carrer%20de%20Malats%2022%2C%2008030%20Barcelona" target="_blank" rel="noopener">{{directions}} {{arrow}}</a>
+      </div>
     </div>
-    <div class="foot-card">
-      <div class="foot-grid">
-        <div>
-          <a class="logo" href="#top"><img src="{{base}}img/logo-burdeos.png" alt="Activa'M" width="1200" height="679" style="height:90px"></a>
-          <p>{{foot_p}}</p>
-        </div>
-        <div>
-          <h4>{{nav_services}}</h4>
-          <ul>
-            <li><a href="#{{id_how}}">{{pt_title}}</a></li>
-            <li><a href="#{{id_how}}">{{rh_title}}</a></li>
-            <li><a href="#{{id_how}}">{{nu_title}}</a></li>
-            <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">{{gr_title}}</a></li>
-            <li><a href="https://mtb.activam.es/" target="_blank" rel="noopener">MTB Xperience</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Activa'M</h4>
-          <ul>
-            <li><a href="#{{id_about}}">{{nav_about}}</a></li>
-            <li><a href="#{{id_faq}}">{{nav_faq}}</a></li>
-            <li><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://www.facebook.com/activamsantandreu/" target="_blank" rel="noopener">Facebook</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>{{nav_contact}}</h4>
-          <address>
-            <a href="https://www.google.com/maps/search/?api=1&query=Carrer%20de%20Malats%2022%2C%2008030%20Barcelona" target="_blank" rel="noopener">Carrer de Malats, 22<br>08030 Sant Andreu, Barcelona</a>
-            <span>{{hours}}</span>
-            <a href="https://wa.me/34626660770">WhatsApp +34 626 660 770</a>
-            <a href="mailto:info@activam.es">info@activam.es</a>
-          </address>
-        </div>
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top"><img src="{{base}}img/logo-beige.png" alt="Activa'M" width="1200" height="679"></a>
+        <p>{{foot_p}}</p>
       </div>
-      <div class="legal">
-        <span>© <span id="year">2026</span> Activa'M · Sant Andreu, Barcelona</span>
-        <span>{{legal_links}}</span>
+      <div>
+        <h4>{{nav_services}}</h4>
+        <ul>
+          <li><a href="#{{id_pt}}">{{pt_title}}</a></li>
+          <li><a href="#{{id_rehab}}">{{rh_title}}</a></li>
+          <li><a href="#{{id_nutri}}">{{nu_title}}</a></li>
+          <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">{{gr_title}}</a></li>
+          <li><a href="https://mtb.activam.es/" target="_blank" rel="noopener">MTB Xperience</a></li>
+        </ul>
       </div>
+      <div>
+        <h4>Activa'M</h4>
+        <ul>
+          <li><a href="#{{id_about}}">{{nav_about}}</a></li>
+          <li><a href="#{{id_faq}}">{{nav_faq}}</a></li>
+          <li><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/activamsantandreu/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>{{nav_contact}}</h4>
+        <address>
+          <span>Carrer de Malats, 22<br>08030 Sant Andreu, Barcelona</span>
+          <span>{{hours}}</span>
+          <a href="https://wa.me/34626660770">WhatsApp +34 626 660 770</a>
+          <a href="mailto:info@activam.es">info@activam.es</a>
+        </address>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="year">2026</span> Activa'M · Sant Andreu, Barcelona</span>
+      <span>{{legal_links}}</span>
     </div>
   </div>
 </footer>
@@ -571,18 +465,6 @@
     toggle.setAttribute('aria-expanded', open);
   });
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
-
-  // Pestañas de "cómo funciona"
-  const tabs = [...document.querySelectorAll('.tabs [role=tab]')];
-  const panels = [...document.querySelectorAll('.panel')];
-  function show(i) {
-    tabs.forEach((t, j) => t.setAttribute('aria-selected', i === j));
-    panels.forEach((p, j) => p.hidden = i !== j);
-  }
-  tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
-  document.querySelectorAll('[data-tab]').forEach(a => a.addEventListener('click', () => show(+a.dataset.tab)));
-  show(0);
-
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
