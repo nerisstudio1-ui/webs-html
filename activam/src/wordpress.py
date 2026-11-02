@@ -99,6 +99,24 @@ def to_wordpress(lang, t, template):
             + f'<div class="{SCOPE[1:]}">\n{body}\n</div>\n')
 
 
+def embed_images(code):
+    """Versión con las imágenes incrustadas (base64): funciona sin subir nada a Medios."""
+    import base64
+    mime = {".jpg": "image/jpeg", ".png": "image/png", ".svg": "image/svg+xml"}
+
+    def data_uri(m):
+        f = build.ROOT / "img" / m.group(1)
+        if not f.exists():
+            return m.group(0)
+        return f"data:{mime[f.suffix]};base64," + base64.b64encode(f.read_bytes()).decode()
+
+    # los datos estructurados (JSON-LD) mantienen URLs normales; solo se incrusta el contenido visible
+    head, sep, body = code.partition('</script>\n<div class="activam-lp">')
+    code = head + sep + re.sub(re.escape(IMG_BASE) + r"([\w.-]+\.(?:jpg|png|svg))", data_uri, body)
+    # sin vídeo todavía: dejar solo el póster
+    return re.sub(r'<video src="' + re.escape(IMG_BASE) + r'activam\.mp4"', "<video", code)
+
+
 def main():
     template = (build.SRC / "template.html").read_text()
     OUT.mkdir(exist_ok=True)
@@ -106,6 +124,7 @@ def main():
         code = to_wordpress(lang, t, template)
         (OUT / f"{lang}.html").write_text(code)
         (OUT / f"codigo-{lang}.txt").write_text(code)
+        (OUT / f"codigo-{lang}-con-imagenes.txt").write_text(embed_images(code))
         print("ok", f"wordpress/{lang}.html", f"wordpress/codigo-{lang}.txt")
 
     used = set()
