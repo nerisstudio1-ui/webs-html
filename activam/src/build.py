@@ -336,6 +336,52 @@ LANGS = {
 }
 
 
+ICONS = dict(
+    arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l5 5-5 5M13 7l5 5-5 5"/></svg>',
+    arrow_ne='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>',
+    wa_icon='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>',
+    ico_pt='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg>',
+    ico_rh='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>',
+    ico_nu='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7c-2-2-6-1.5-6 3 0 5 3 10 6 10s6-5 6-10c0-4.5-4-5-6-3z"/><path d="M12 7c0-2 1-3.5 3-4"/></svg>',
+    ico_gr='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5M15 14.5c3 0 6 1.3 6 4.5"/></svg>',
+)
+
+EXTRA = {
+    "es": dict(
+        hero_h1="Entrenamiento personal y rehabilitación",
+        trust="<strong>Desde 2013</strong> cuidando la salud de Sant Andreu con un equipo de entrenadores, fisios y nutricionistas.",
+        svc_center_h="Un centro, cuatro especialidades",
+        svc_center_p="Un equipo que trabaja junto sobre tu caso, en el corazón de Sant Andreu.",
+        statement="Combinamos fisioterapia, entrenamiento y nutrición en un mismo centro para que te recuperes, ganes salud y no vuelvas a lesionarte.",
+        id_how="como-funciona", how_h2="Tu plan, paso a paso",
+        ask_h="¿Tienes más dudas?", ask_p="Escríbenos por WhatsApp y te respondemos lo antes posible.",
+        cta_h2="¿Listo para activarte?", read_more="Pide información", fw_photos=["insta-3", "detalle-fuerza", "insta-5", "intro-2"],
+    ),
+    "ca": dict(
+        hero_h1="Entrenament personal i rehabilitació",
+        trust="<strong>Des del 2013</strong> cuidant la salut de Sant Andreu amb un equip d'entrenadors, fisios i nutricionistes.",
+        svc_center_h="Un centre, quatre especialitats",
+        svc_center_p="Un equip que treballa junt sobre el teu cas, al cor de Sant Andreu.",
+        statement="Combinem fisioteràpia, entrenament i nutrició en un mateix centre perquè et recuperis, guanyis salut i no et tornis a lesionar.",
+        id_how="com-funciona", how_h2="El teu pla, pas a pas",
+        ask_h="Tens més dubtes?", ask_p="Escriu-nos per WhatsApp i et responem al més aviat possible.",
+        cta_h2="A punt per activar-te?", read_more="Demana informació", fw_photos=["insta-3", "detalle-fuerza", "insta-5", "intro-2"],
+    ),
+    "en": dict(
+        hero_h1="Personal training &amp; rehabilitation",
+        trust="<strong>Since 2013</strong> looking after Sant Andreu's health with a team of trainers, physios and nutritionists.",
+        svc_center_h="One centre, four specialities",
+        svc_center_p="A team that works on your case together, in the heart of Sant Andreu.",
+        statement="We combine physiotherapy, training and nutrition in one centre so you recover, get healthier and avoid getting injured again.",
+        id_how="how-it-works", how_h2="Your plan, step by step",
+        ask_h="Still have questions?", ask_p="Message us on WhatsApp and we'll get back to you as soon as we can.",
+        cta_h2="Ready to get active?", read_more="Ask for information", fw_photos=["insta-3", "detalle-fuerza", "insta-5", "intro-2"],
+    ),
+}
+for _code, _extra in EXTRA.items():
+    LANGS[_code].update(_extra)
+
+
 def lis(items):
     return "".join(f"<li>{i}</li>" for i in items)
 
@@ -393,9 +439,14 @@ def render(lang, t, template):
     v["marquee"] = "<span>" + "".join(f"{w} {STAR} " for w in t["marquee_words"]) + "</span>"
     for key in ("pt_list", "rh_list", "nu_list", "why_list"):
         v[key] = lis(t[key])
-    v["fw_cards"] = "".join(f'<div class="who"><h3>{h}</h3><p>{p}</p></div>' for h, p in t["fw_cards"])
-    v["steps"] = "".join(f'<div class="step"><span class="eyebrow">{e}</span><h3>{h}</h3><p>{p}</p></div>'
-                         for e, h, p in t["steps"])
+    v.update(ICONS)
+    v["fw_cards"] = "".join(
+        f'<article class="pcard"><div class="ph" style="--img:url({base}img/{img}.jpg)"></div>'
+        f'<div class="body"><h3>{h}</h3><p>{p}</p>'
+        f'<a href="{v["wa_general"]}" target="_blank" rel="noopener">{t["read_more"]}<i>{ICONS["arrow"]}</i></a></div></article>'
+        for (h, p), img in zip(t["fw_cards"], t["fw_photos"]))
+    v["steps"] = "".join(f'<div class="step"><h3>{i}. {h}</h3><p>{p}</p></div>'
+                         for i, (_, h, p) in enumerate(t["steps"], 1))
     v["insta"] = "".join(
         f'<a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">'
         f'<img src="{base}img/insta-{i}.jpg" alt="{t["insta_alt"]}" width="600" height="600" loading="lazy"></a>'

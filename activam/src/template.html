@@ -26,8 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Nunito como sustituto web de Gotham Rounded. Si hay licencia web de Gotham Rounded, añadir @font-face y se usará primero. -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {{jsonld}}
@@ -37,243 +36,265 @@
   :root {
     /* Paleta de la propuesta de marca */
     --burgundy: #49252f;
+    --burgundy-2: #5a2f3a;
     --beige: #e8d4bb;
     --taupe: #a59584;
     --graphite: #333333;
-    --black: #111312;
     /* Derivados */
-    --sand: #f1e6d7;
-    --cream: #faf6f0;
-    --ink: var(--graphite);
-    --ink-soft: #5e5650;
+    --cream: #f6f1ea;
+    --card: #fffdf9;
+    --line: #e6dccf;
+    --ink: #2a2124;
+    --ink-soft: #6b5f5a;
     --wa: #25d366;
-    --radius: 22px;
-    --font: "Gotham Rounded", "Nunito", "Varela Round", system-ui, sans-serif;
-    --max: 1180px;
+    --r-lg: 22px;
+    --r-md: 16px;
+    --head: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --body: "Barlow", system-ui, sans-serif;
+    --max: 1200px;
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family: var(--font);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
-  h1, h2, h3 { color: var(--burgundy); font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.05; margin: 0; }
-  h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+  h1, h2, h3 { font-family: var(--head); font-weight: 700; text-transform: uppercase; line-height: 1; letter-spacing: .005em; margin: 0; color: var(--burgundy); }
+  h2 { font-size: clamp(2.1rem, 4.2vw, 3.2rem); }
   p { margin: 0; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-  .eyebrow { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--taupe); margin-bottom: 10px; }
+  .dark { background: var(--burgundy); color: var(--beige); }
+  .dark h2, .dark h3 { color: var(--card); }
 
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 26px; border: 1.5px solid var(--burgundy); border-radius: 6px;
-    font: 700 .78rem/1 var(--font); letter-spacing: .1em; text-transform: uppercase;
-    text-decoration: none; color: var(--burgundy); background: transparent;
-    transition: background .2s, color .2s;
-  }
-  .btn:hover { background: var(--burgundy); color: var(--cream); }
-  .btn--solid { background: var(--burgundy); color: var(--cream); }
-  .btn--solid:hover { background: var(--black); border-color: var(--black); }
-  .btn svg { width: 18px; height: 18px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 600; color: var(--taupe); margin-bottom: 12px; }
+  .eyebrow::before { content: "«"; }
+  .eyebrow::after { content: "»"; }
+  .dark .eyebrow { color: var(--beige); opacity: .8; }
 
-  .ph { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--img, none) center/cover no-repeat, linear-gradient(135deg, var(--beige), var(--taupe)); }
-  .ph--brand { background: var(--burgundy); display: grid; place-items: center; }
-  .ph--brand img { width: 50%; height: auto; }
+  /* Botón pill + círculo con flecha */
+  .pill { display: inline-flex; align-items: center; gap: 0; text-decoration: none; font-weight: 600; font-size: .86rem; }
+  .pill span { padding: 11px 20px; border-radius: 999px; background: var(--card); color: var(--burgundy); border: 1px solid var(--line); }
+  .pill i { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--burgundy); color: var(--beige); margin-left: -4px; transition: transform .2s; }
+  .pill i svg { width: 16px; height: 16px; }
+  .pill:hover i { transform: translateX(3px); }
+  .pill--dark span { background: var(--burgundy); color: var(--beige); border-color: var(--burgundy); }
+  .pill--dark i { background: var(--beige); color: var(--burgundy); }
+  .dark .pill span { background: rgba(232,212,187,.12); color: var(--beige); border-color: rgba(232,212,187,.3); }
+  .dark .pill i { background: var(--beige); color: var(--burgundy); }
+  .pill--dark span, .dark .pill--dark span { background: var(--burgundy); color: var(--beige); border-color: var(--burgundy); }
+  .pill--dark i, .dark .pill--dark i { background: var(--beige); color: var(--burgundy); }
+  .panel-main .pill--dark i { background: var(--card); }
+  .ask .pill i { background: var(--beige); color: var(--burgundy); }
+
+  /* Caja CTA tipo "book a call" */
+  .cta-box { display: inline-flex; flex-direction: column; gap: 14px; padding: 18px 18px 18px 20px; border-radius: var(--r-md); background: var(--burgundy); color: var(--beige); text-decoration: none; min-width: 240px; transition: transform .2s; }
+  .cta-box:hover { transform: translateY(-3px); }
+  .cta-box .wa { display: flex; align-items: center; gap: 8px; font-size: .78rem; opacity: .85; }
+  .cta-box .wa svg { width: 20px; height: 20px; color: var(--wa); }
+  .cta-box .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; }
+  .cta-box strong { font-family: var(--head); font-size: 1.15rem; text-transform: uppercase; line-height: 1.05; }
+  .cta-box .arrow { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: var(--beige); color: var(--burgundy); flex: none; }
+  .cta-box .arrow svg { width: 16px; height: 16px; }
+  .cta-box--light { background: var(--beige); color: var(--burgundy); }
+  .cta-box--light .arrow { background: var(--burgundy); color: var(--beige); }
 
   /* ---- Header ---- */
-  header { position: sticky; top: 0; z-index: 50; background: rgba(250,246,240,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--beige); }
-  .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; }
+  header { position: sticky; top: 0; z-index: 50; background: rgba(246,241,234,.94); backdrop-filter: blur(10px); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px; }
+  .logo img { height: 40px; width: auto; }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
   .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; }
-  .nav ul a { font-size: .82rem; font-weight: 600; text-decoration: none; color: var(--ink-soft); }
-  .nav ul a:hover { color: var(--burgundy); text-decoration: underline; text-underline-offset: 5px; }
-  .logo { display: block; text-decoration: none; }
-  .logo img { height: 44px; width: auto; }
-  .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
-  .langs { display: flex; gap: 2px; font-size: .74rem; font-weight: 700; letter-spacing: .06em; }
-  .langs a { text-decoration: none; color: var(--taupe); padding: 4px 6px; border-radius: 4px; }
+  .nav ul a { font-size: .86rem; font-weight: 500; text-decoration: none; color: var(--ink-soft); }
+  .nav ul a:hover { color: var(--burgundy); }
+  .langs { display: flex; gap: 2px; font-size: .74rem; font-weight: 700; }
+  .langs a { text-decoration: none; color: var(--taupe); padding: 4px 7px; border-radius: 999px; }
   .langs a:hover { color: var(--burgundy); }
   .langs a[aria-current] { color: var(--burgundy); background: var(--beige); }
-  .nav-right .social { display: flex; gap: 12px; }
-  .nav-right .social a { display: grid; place-items: center; width: 22px; height: 22px; color: var(--ink-soft); }
-  .nav-right .social svg { width: 17px; height: 17px; }
-  .nav-right .btn { padding: 11px 16px; font-size: .7rem; }
   .menu-toggle { display: none; background: none; border: 0; padding: 8px; cursor: pointer; }
   .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--burgundy); margin: 5px 0; border-radius: 2px; }
 
-  /* ---- Hero ---- */
-  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(80vh, 700px); background: var(--sand); }
-  .hero .ph { border-radius: 0; min-height: 360px; background-position: center 35%; }
-  .hero-copy { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 64px 48px; }
-  .hero h1 { font-size: clamp(2.1rem, 4.2vw, 3.5rem); }
-  .hero h1 .underline { position: relative; display: inline-block; }
-  .hero h1 .underline svg { position: absolute; left: -2%; bottom: -10px; width: 104%; height: 14px; color: var(--burgundy); }
-  .hero p { max-width: 450px; margin: 26px 0 30px; color: var(--ink-soft); }
-  .hero .meta { margin-top: 22px; font-size: .78rem; color: var(--ink-soft); letter-spacing: .04em; }
+  /* ---- Hero bento ---- */
+  .hero { padding: 8px 0 90px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .hero-left { display: grid; grid-template-rows: auto 1fr; gap: 14px; }
+  .hero-top { display: grid; grid-template-columns: 150px 1fr; gap: 14px; }
+  .loc { position: relative; border-radius: var(--r-md); overflow: hidden; min-height: 150px; background: var(--img) center/cover; color: var(--card); }
+  .loc::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(73,37,47,.75), rgba(73,37,47,0) 60%); }
+  .loc span { position: relative; display: flex; align-items: center; gap: 6px; padding: 12px; font-size: .78rem; font-weight: 600; }
+  .loc svg { width: 14px; height: 14px; }
+  .trust { border-radius: var(--r-md); background: var(--card); border: 1px solid var(--line); padding: 18px 20px; display: flex; align-items: center; gap: 16px; }
+  .trust img { width: 54px; height: auto; flex: none; }
+  .trust p { font-size: .86rem; color: var(--ink-soft); }
+  .trust strong { color: var(--burgundy); }
+  .hero-card { border-radius: var(--r-lg); background: var(--card); border: 1px solid var(--line); padding: 40px 36px; display: flex; flex-direction: column; justify-content: space-between; gap: 30px; }
+  .hero-card h1 { font-size: clamp(2.6rem, 5vw, 4.3rem); }
+  .hero-card p { margin-top: 16px; color: var(--ink-soft); max-width: 440px; }
+  .hero-photo { position: relative; border-radius: var(--r-lg); overflow: hidden; min-height: 520px; background: var(--img) center 35%/cover; }
+  .hero-photo .tag { position: absolute; left: 18px; bottom: 18px; right: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero-photo .tag span { background: rgba(255,253,249,.92); color: var(--burgundy); font-size: .78rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; }
 
-  /* ---- Marquee ---- */
-  .marquee { overflow: hidden; background: var(--sand); padding: 10px 0 0; border-top: 1px solid var(--beige); }
-  .marquee-track { display: flex; width: max-content; animation: scroll 38s linear infinite; }
-  .marquee-track span { display: flex; align-items: center; gap: 40px; padding-right: 40px; font-weight: 900; text-transform: uppercase; font-size: clamp(3.4rem, 9vw, 7.5rem); line-height: 1.05; color: var(--taupe); white-space: nowrap; }
-  .marquee-track svg { width: .55em; height: .55em; color: var(--burgundy); flex: none; }
-  @keyframes scroll { to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+  /* ---- Services bento (dark) ---- */
+  .services { padding: 90px 0; }
+  .sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 44px; }
+  .sec-head h2 { max-width: 640px; }
+  .sec-center { text-align: center; margin: 0 auto 44px; max-width: 720px; }
+  .sec-center p { margin-top: 14px; color: var(--ink-soft); }
+  .dark .sec-center p { color: rgba(232,212,187,.8); }
+  .bento { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 14px; }
+  .tile { border-radius: var(--r-md); padding: 26px 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 230px; text-decoration: none; transition: transform .2s; border: 1px solid rgba(232,212,187,.22); }
+  .tile:hover { transform: translateY(-3px); }
+  .tile .ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: rgba(232,212,187,.14); color: var(--beige); }
+  .tile .ico svg { width: 20px; height: 20px; }
+  .tile h3 { font-size: 1.5rem; color: var(--beige); margin-bottom: 8px; }
+  .tile p { font-size: .88rem; color: rgba(232,212,187,.8); }
+  .tile--hi { background: var(--beige); border-color: var(--beige); }
+  .tile--hi .ico { background: var(--burgundy); color: var(--beige); }
+  .tile--hi h3 { color: var(--burgundy); }
+  .tile--hi p { color: var(--ink-soft); }
+  .tile-photo { grid-row: span 2; grid-column: 2; position: relative; border-radius: var(--r-md); overflow: hidden; background: var(--img) center/cover; min-height: 460px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; text-decoration: none; }
+  .tile-photo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(40,18,24,.9), rgba(40,18,24,0) 60%); }
+  .tile-photo > * { position: relative; }
+  .tile-photo small { color: var(--beige); opacity: .85; font-size: .78rem; display: block; margin-bottom: 14px; }
+  .tile-photo h3 { color: var(--card); font-size: 1.5rem; margin-bottom: 8px; }
+  .tile-photo p { color: rgba(255,253,249,.85); font-size: .88rem; }
 
-  /* ---- Intro ---- */
-  .intro { background: var(--sand); padding: 70px 0 100px; }
-  .intro-grid { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 48px; align-items: center; }
-  .intro-grid > .ph:first-child { aspect-ratio: 4/3.4; margin-top: 70px; }
-  .intro-grid > .ph:last-child { aspect-ratio: 4/4.6; margin-top: -70px; }
-  .intro-copy { text-align: center; }
-  .intro-copy p { margin: 22px auto 30px; max-width: 520px; color: var(--ink-soft); font-size: .95rem; }
+  /* ---- About + stats ---- */
+  .about { padding: 100px 0; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
+  .about-photo { border-radius: var(--r-lg); aspect-ratio: 4/4.2; background: var(--img) center/cover; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-top: 24px; border-top: 1px solid var(--line); margin-bottom: 44px; }
+  .stats strong { display: block; font-family: var(--head); font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1; color: var(--burgundy); }
+  .stats span { font-size: .8rem; color: var(--ink-soft); }
+  .statement { font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: clamp(1.35rem, 2.3vw, 1.75rem); line-height: 1.2; color: var(--burgundy); margin-bottom: 26px; }
+  .checks { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  .checks li { position: relative; padding-left: 26px; font-size: .9rem; }
+  .checks li::before { content: ""; position: absolute; left: 0; top: .2em; width: 16px; height: 16px; border-radius: 50%; background: var(--beige) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2349252f' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center/10px no-repeat; }
 
-  /* ---- Stats band ---- */
-  .stats-band { background: var(--cream); padding: 56px 0; border-bottom: 1px solid var(--beige); }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
-  .stats strong { display: block; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; line-height: 1; color: var(--burgundy); }
-  .stats span { display: block; margin-top: 8px; font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); }
+  /* ---- How it works (dark, tabs) ---- */
+  .how { padding: 90px 0; }
+  .tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; width: fit-content; margin: 0 auto 34px; padding: 5px; border: 1px solid rgba(232,212,187,.3); border-radius: 999px; }
+  .tabs button { font: 600 .84rem var(--body); color: var(--beige); background: none; border: 0; padding: 9px 18px; border-radius: 999px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--beige); color: var(--burgundy); }
+  .how-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .steps-card { background: var(--card); color: var(--ink); border-radius: var(--r-md); padding: 10px 24px; }
+  .steps-card .step { padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .steps-card .step:last-child { border-bottom: 0; }
+  .steps-card h3 { font-size: 1.25rem; color: var(--burgundy); margin-bottom: 6px; }
+  .steps-card p { font-size: .86rem; color: var(--ink-soft); }
+  .panel { display: contents; }
+  .panel[hidden] { display: none; }
+  .panel-main { background: var(--beige); color: var(--ink); border-radius: var(--r-md); padding: 28px 26px; display: flex; flex-direction: column; gap: 16px; }
+  .panel-main h3 { font-size: 1.8rem; color: var(--burgundy); }
+  .panel-main p { font-size: .92rem; color: var(--ink-soft); }
+  .panel-main .pill { margin-top: auto; }
+  .panel-side { background: var(--card); color: var(--ink); border-radius: var(--r-md); overflow: hidden; display: flex; flex-direction: column; }
+  .panel-side .ph { aspect-ratio: 16/10; background: var(--img) center/cover; }
+  .panel-side .ph--brand { background: var(--burgundy); display: grid; place-items: center; }
+  .panel-side .ph--brand img { width: 45%; }
+  .panel-side .body { padding: 22px 24px 26px; }
+  .panel-side h4 { margin: 0 0 14px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--taupe); }
+  .panel-side .checks { grid-template-columns: 1fr; margin: 0; }
 
-  /* ---- Services ---- */
-  .services { padding: 100px 0; background: var(--cream); }
-  .section-head { text-align: center; margin-bottom: 54px; }
-  .section-head p { max-width: 600px; margin: 16px auto 0; color: var(--ink-soft); }
-  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-  .service { display: flex; flex-direction: column; background: var(--sand); border-radius: var(--radius); overflow: hidden; text-decoration: none; transition: transform .25s; }
-  .service:hover { transform: translateY(-4px); }
-  .service .ph { aspect-ratio: 4/4.4; border-radius: 0; }
-  .service-body { padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-  .service h3 { font-size: 1.12rem; }
-  .service p { font-size: .88rem; color: var(--ink-soft); flex: 1; }
-  .service .more { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--burgundy); }
-
-  /* ---- Detail blocks ---- */
-  .detail { padding: 90px 0; }
-  .detail:nth-of-type(odd) { background: var(--sand); }
-  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-  .detail.reverse .detail-grid > .ph { order: 2; }
-  .detail-grid > .ph { aspect-ratio: 5/4; }
-  .detail-copy p { color: var(--ink-soft); margin: 18px 0 22px; }
-  .detail-copy h3.sub { font-size: .8rem; letter-spacing: .12em; color: var(--taupe); margin-bottom: 12px; }
-  .checks { list-style: none; padding: 0; margin: 0 0 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; }
-  .checks li { position: relative; padding-left: 18px; font-size: .9rem; }
-  .checks li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--burgundy); }
-
-  /* ---- For whom ---- */
-  .forwhom { background: var(--burgundy); padding: 96px 0; color: var(--beige); }
-  .forwhom .section-head h2 { color: var(--beige); }
-  .forwhom .section-head p { color: rgba(232,212,187,.8); }
-  .forwhom-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  .who { background: rgba(232,212,187,.08); border: 1px solid rgba(232,212,187,.22); border-radius: var(--radius); padding: 28px 24px; }
-  .who h3 { color: var(--beige); font-size: 1.05rem; margin-bottom: 10px; }
-  .who p { font-size: .88rem; color: rgba(232,212,187,.85); }
-
-  /* ---- Steps ---- */
-  .steps { background: var(--sand); padding: 96px 0; }
-  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .step { background: var(--cream); border-radius: var(--radius); padding: 30px 28px 34px; }
-  .step h3 { font-size: 1.3rem; margin-bottom: 12px; }
-  .step p { font-size: .9rem; color: var(--ink-soft); }
-
-  /* ---- About ---- */
-  .about { padding: 110px 0; background: var(--cream); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; align-items: center; }
-  .about-grid > .ph { aspect-ratio: 4/4.6; }
-  .about-copy > p { color: var(--ink-soft); margin: 20px 0 28px; }
+  /* ---- For whom (cards with photo) ---- */
+  .forwhom { padding: 100px 0; }
+  .cards4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .pcard { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; display: flex; flex-direction: column; }
+  .pcard .ph { aspect-ratio: 4/3; background: var(--img) center/cover; }
+  .pcard .body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .pcard h3 { font-size: 1.15rem; }
+  .pcard p { font-size: .86rem; color: var(--ink-soft); flex: 1; }
+  .pcard a { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .82rem; font-weight: 600; color: var(--burgundy); text-decoration: none; }
+  .pcard a i { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--beige); }
+  .pcard a i svg { width: 13px; height: 13px; }
 
   /* ---- Video ---- */
-  .video { background: var(--sand); padding: 96px 0; }
-  .video-frame { position: relative; max-width: 920px; margin: 0 auto; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; background: var(--taupe); }
+  .video { padding: 0 0 100px; }
+  .video-frame { position: relative; aspect-ratio: 21/9; border-radius: var(--r-lg); overflow: hidden; background: var(--taupe); }
   .video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .video-frame .label { position: absolute; left: 24px; bottom: 22px; background: rgba(255,253,249,.92); color: var(--burgundy); font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 1.2rem; padding: 10px 16px; border-radius: 12px; }
 
-  /* ---- More Activa'M ---- */
-  .more-am { padding: 96px 0; background: var(--cream); }
-  .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-  .more-card { display: flex; flex-direction: column; gap: 12px; padding: 36px; border-radius: var(--radius); background: var(--sand); text-decoration: none; transition: transform .25s; }
-  .more-card:hover { transform: translateY(-4px); }
-  .more-card h3 { font-size: 1.4rem; }
-  .more-card p { color: var(--ink-soft); font-size: .92rem; flex: 1; }
-  .more-card .more { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--burgundy); }
-
-  /* ---- Instagram ---- */
-  .insta { padding: 96px 0; background: var(--sand); }
+  /* ---- More + Instagram ---- */
+  .more { padding: 0 0 100px; }
+  .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .more-card { display: flex; flex-direction: column; gap: 10px; padding: 30px 28px; border-radius: var(--r-md); background: var(--card); border: 1px solid var(--line); text-decoration: none; transition: transform .2s; }
+  .more-card:hover { transform: translateY(-3px); }
+  .more-card small { color: var(--taupe); font-weight: 600; }
+  .more-card h3 { font-size: 1.6rem; }
+  .more-card p { color: var(--ink-soft); font-size: .9rem; flex: 1; }
+  .more-card .pill { margin-top: 10px; }
+  .insta { padding: 0 0 100px; }
   .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
   .insta-grid img { aspect-ratio: 1; width: 100%; height: auto; object-fit: cover; border-radius: 12px; transition: opacity .2s; }
   .insta-grid a:hover img { opacity: .85; }
-  .insta .center { text-align: center; margin-top: 36px; }
+  .insta .sec-head { margin-bottom: 28px; }
 
   /* ---- FAQ ---- */
-  .faq { background: var(--cream); padding: 96px 0; }
-  .faq-list { max-width: 820px; margin: 0 auto; }
-  .faq details { background: var(--sand); border-radius: 16px; margin-bottom: 12px; padding: 0 26px; }
-  .faq summary { cursor: pointer; list-style: none; padding: 22px 0; font-weight: 700; display: flex; justify-content: space-between; gap: 20px; }
+  .faq { padding: 30px 0 110px; }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 56px; align-items: start; }
+  .faq-side h2 { margin-bottom: 40px; }
+  .ask { background: var(--burgundy); color: var(--beige); border-radius: var(--r-md); padding: 28px 26px; max-width: 340px; }
+  .ask h3 { color: var(--card); font-size: 1.5rem; margin-bottom: 8px; }
+  .ask p { font-size: .88rem; opacity: .85; margin-bottom: 22px; }
+  .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 10px; padding: 0 20px; }
+  .faq summary { cursor: pointer; list-style: none; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: 1.02rem; color: var(--burgundy); }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq summary::after { content: "+"; font-size: 1.4rem; line-height: 1; color: var(--burgundy); transition: transform .2s; }
-  .faq details[open] summary::after { transform: rotate(45deg); }
-  .faq details p { padding: 0 0 22px; color: var(--ink-soft); font-size: .93rem; }
+  .faq summary::after { content: "+"; flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); font-family: var(--body); font-size: 1.1rem; transition: transform .2s, background .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); background: var(--burgundy); color: var(--beige); border-color: var(--burgundy); }
+  .faq details p { padding: 0 0 20px; color: var(--ink-soft); font-size: .92rem; }
 
-  /* ---- Contact ---- */
-  .contact { padding: 110px 0; background: var(--sand); }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: stretch; }
-  .contact-card { background: var(--cream); border-radius: var(--radius); padding: 46px; display: flex; flex-direction: column; gap: 26px; }
-  .contact-card dl { margin: 0; display: grid; gap: 18px; }
-  .contact-card dt { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--taupe); }
-  .contact-card dd { margin: 4px 0 0; font-weight: 600; }
-  .contact-card dd a { text-decoration: none; }
-  .map { border-radius: var(--radius); overflow: hidden; min-height: 380px; background: var(--beige); }
-  .map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; filter: grayscale(.6) sepia(.15); }
+  /* ---- CTA + footer ---- */
+  .closing { padding: 80px 0 40px; }
+  .cta-row { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-bottom: 56px; }
+  .cta-row h2 { max-width: 520px; }
+  .foot-card { background: var(--card); color: var(--ink); border-radius: var(--r-lg); padding: 44px 40px 26px; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 34px; }
+  .foot-grid .logo img { height: 46px; }
+  .foot-grid > div > p { margin-top: 16px; font-size: .88rem; color: var(--ink-soft); max-width: 300px; }
+  .foot-grid h4 { margin: 0 0 14px; font-family: var(--head); text-transform: uppercase; font-size: .95rem; color: var(--burgundy); }
+  .foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .88rem; }
+  .foot-grid a { text-decoration: none; color: var(--ink-soft); }
+  .foot-grid a:hover { color: var(--burgundy); }
+  .foot-grid address { font-style: normal; font-size: .88rem; color: var(--ink-soft); display: grid; gap: 8px; }
+  .legal { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .78rem; color: var(--ink-soft); }
+  .legal a { text-decoration: none; }
 
-  /* ---- Footer ---- */
-  footer { background: var(--burgundy); color: var(--beige); padding: 60px 0 34px; font-size: .85rem; }
-  .foot { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
-  footer .logo img { height: 96px; }
-  footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-  footer a { text-decoration: none; color: var(--beige); opacity: .85; }
-  footer a:hover { opacity: 1; }
-  .legal { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(232,212,187,.2); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; opacity: .6; font-size: .75rem; }
-
-  /* ---- WhatsApp flotante ---- */
   .wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: var(--wa); color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.18); transition: transform .2s; }
   .wa-float:hover { transform: scale(1.07); }
   .wa-float svg { width: 30px; height: 30px; }
 
   /* ---- Responsive ---- */
   @media (max-width: 1080px) {
-    .services-grid, .forwhom-grid { grid-template-columns: repeat(2, 1fr); }
-    .nav ul { gap: 14px; }
-    .nav-right .social { display: none; }
+    .cards4 { grid-template-columns: repeat(2, 1fr); }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .nav ul { gap: 16px; }
   }
-  @media (max-width: 900px) {
-    .nav { grid-template-columns: auto 1fr auto; }
-    .menu-toggle { display: block; }
-    .nav ul { display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--cream); border-bottom: 1px solid var(--beige); padding: 8px 24px 18px; }
+  @media (max-width: 920px) {
+    .menu-toggle { display: block; order: -1; }
+    .nav { justify-content: space-between; }
+    .nav ul { display: none; position: absolute; top: 76px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--cream); border-bottom: 1px solid var(--line); padding: 8px 24px 18px; }
     .nav ul.open { display: flex; }
     .nav ul a { display: block; padding: 12px 0; font-size: 1rem; }
-    .logo { text-align: center; }
-    .logo img { height: 34px; margin: 0 auto; }
-    .nav-right .btn { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero .ph { min-height: 340px; order: 2; }
-    .intro-grid { grid-template-columns: 1fr 1fr; }
-    .intro-copy { grid-column: 1 / -1; order: -1; }
-    .intro-grid > .ph:first-child, .intro-grid > .ph:last-child { margin-top: 0; aspect-ratio: 1; }
-    .stats { grid-template-columns: repeat(2, 1fr); row-gap: 34px; }
-    .steps-grid, .more-grid { grid-template-columns: 1fr; }
-    .detail-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
-    .detail.reverse .detail-grid > .ph { order: 0; }
+    .nav-links .pill { display: none; }
+    .logo img { height: 32px; }
+    .hero-grid, .about-grid, .faq-grid { grid-template-columns: 1fr; }
+    .hero-photo { min-height: 420px; }
+    .bento { grid-template-columns: 1fr 1fr; }
+    .tile-photo { grid-column: 1 / -1; grid-row: auto; min-height: 320px; order: -1; }
+    .how-grid { grid-template-columns: 1fr; }
+    .sec-head { flex-direction: column; align-items: flex-start; }
+    .cta-row { flex-direction: column; align-items: flex-start; }
     .insta-grid { grid-template-columns: repeat(3, 1fr); }
+    .video-frame { aspect-ratio: 16/10; }
   }
-  @media (max-width: 560px) {
+  @media (max-width: 600px) {
     .wrap { padding: 0 16px; }
-    .services-grid, .forwhom-grid { grid-template-columns: 1fr; }
+    .hero-top { grid-template-columns: 1fr; }
+    .loc { min-height: 120px; }
+    .hero-card { padding: 30px 22px; }
+    .bento, .cards4, .more-grid, .foot-grid { grid-template-columns: 1fr; }
     .checks { grid-template-columns: 1fr; }
-    .hero-copy { padding: 48px 20px; }
-    .contact-card, .more-card { padding: 30px 24px; }
-    footer .logo img { height: 80px; }
+    .stats { gap: 10px; }
+    .foot-card { padding: 32px 22px 22px; }
+    .ask { max-width: none; }
   }
 </style>
 </head>
@@ -281,266 +302,266 @@
 
 <header>
   <nav class="wrap nav" aria-label="{{nav_label}}">
-    <button class="menu-toggle" aria-label="{{menu_open}}" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
-    <ul id="menu">
-      <li><a href="#{{id_about}}">{{nav_about}}</a></li>
-      <li><a href="#{{id_services}}">{{nav_services}}</a></li>
-      <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">{{nav_groups}}</a></li>
-      <li><a href="#{{id_faq}}">{{nav_faq}}</a></li>
-      <li><a href="#{{id_contact}}">{{nav_contact}}</a></li>
-    </ul>
     <a class="logo" href="#top"><img src="{{base}}img/logotipo-burdeos.png" alt="Activa'M · Entrenament personal &amp; rehabilitació" width="1200" height="243"></a>
-    <div class="nav-right">
+    <button class="menu-toggle" aria-label="{{menu_open}}" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <ul id="menu">
+        <li><a href="#{{id_services}}">{{nav_services}}</a></li>
+        <li><a href="#{{id_about}}">{{nav_about}}</a></li>
+        <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">{{nav_groups}}</a></li>
+        <li><a href="#{{id_faq}}">{{nav_faq}}</a></li>
+      </ul>
       <div class="langs">{{lang_links}}</div>
-      <div class="social">
-        <a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-        <a href="https://www.facebook.com/activamsantandreu/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V9c0-.6.4-1 1-1z"/></svg></a>
-      </div>
-      <a class="btn" href="{{wa_general}}" target="_blank" rel="noopener">{{cta_short}}</a>
+      <a class="pill" href="#{{id_contact}}"><span>{{nav_contact}}</span><i>{{arrow}}</i></a>
     </div>
   </nav>
 </header>
 
 <main id="top">
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="ph" style="--img:url({{base}}img/hero.jpg)" role="img" aria-label="{{alt_hero}}"></div>
-    <div class="hero-copy">
-      <h1>
-        <span class="underline">{{hero_h1_a}}
-          <svg viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C 80 3, 180 3, 297 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
-        </span><br>{{hero_h1_b}}
-      </h1>
-      <p>{{hero_p}}</p>
-      <a class="btn" href="{{wa_general}}" target="_blank" rel="noopener">{{cta_long}}</a>
-      <span class="meta">{{hero_meta}}</span>
-    </div>
-  </section>
-
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">{{marquee}}{{marquee}}</div>
-  </div>
-
-  <section class="intro" id="{{id_about}}">
-    <div class="wrap intro-grid">
-      <div class="ph" style="--img:url({{base}}img/intro-1.jpg)" role="img" aria-label="{{alt_intro1}}"></div>
-      <div class="intro-copy">
-        <span class="eyebrow">{{intro_eyebrow}}</span>
-        <h2>{{intro_h2}}</h2>
-        <p>{{intro_p}}</p>
-        <a class="btn" href="#{{id_services}}">{{intro_cta}}</a>
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <div class="hero-top">
+          <div class="loc" style="--img:url({{base}}img/insta-4.jpg)"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Sant Andreu, BCN</span></div>
+          <div class="trust">
+            <img src="{{base}}img/simbolo-burdeos.png" alt="" width="900" height="496">
+            <p>{{trust}}</p>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div>
+            <h1>{{hero_h1}}</h1>
+            <p>{{hero_p}}</p>
+          </div>
+          <a class="cta-box" href="{{wa_general}}" target="_blank" rel="noopener">
+            <span class="wa">{{wa_icon}} WhatsApp · 7–22 h</span>
+            <span class="row"><strong>{{cta_long}}</strong><span class="arrow">{{arrow_ne}}</span></span>
+          </a>
+        </div>
       </div>
-      <div class="ph" style="--img:url({{base}}img/intro-2.jpg)" role="img" aria-label="{{alt_intro2}}"></div>
+      <div class="hero-photo" style="--img:url({{base}}img/hero.jpg)" role="img" aria-label="{{alt_hero}}">
+        <div class="tag"><span>{{pt_title}}</span><span>{{rh_title}}</span><span>{{nu_title}}</span></div>
+      </div>
     </div>
   </section>
 
-  <section class="stats-band" aria-label="{{stats_label}}">
-    <div class="wrap stats">
-      <div><strong>2013</strong><span>{{stat_1}}</span></div>
-      <div><strong>4</strong><span>{{stat_2}}</span></div>
-      <div><strong>1:1</strong><span>{{stat_3}}</span></div>
-      <div><strong>7–22 h</strong><span>{{stat_4}}</span></div>
-    </div>
-  </section>
-
-  <section class="services" id="{{id_services}}">
+  <!-- SERVICES BENTO -->
+  <section class="services dark" id="{{id_services}}">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">{{svc_eyebrow}}</span>
-        <h2>{{svc_h2}}</h2>
-        <p>{{svc_p}}</p>
+      <div class="sec-head">
+        <div><span class="eyebrow">{{svc_eyebrow}}</span><h2>{{svc_h2}}</h2></div>
+        <a class="pill" href="{{wa_general}}" target="_blank" rel="noopener"><span>{{cta_short}}</span><i>{{arrow}}</i></a>
       </div>
-      <div class="services-grid">
-        <a class="service" href="#{{id_pt}}">
-          <div class="ph" style="--img:url({{base}}img/entrenamiento-personal.jpg)"></div>
-          <div class="service-body"><h3>{{pt_title}}</h3><p>{{pt_short}}</p><span class="more">{{more}} →</span></div>
+      <div class="bento">
+        <a class="tile" href="#{{id_how}}" data-tab="0">
+          <span class="ico">{{ico_pt}}</span>
+          <div><h3>{{pt_title}}</h3><p>{{pt_short}}</p></div>
         </a>
-        <a class="service" href="#{{id_rehab}}">
-          <div class="ph" style="--img:url({{base}}img/rehabilitacion.jpg)"></div>
-          <div class="service-body"><h3>{{rh_title}}</h3><p>{{rh_short}}</p><span class="more">{{more}} →</span></div>
+        <a class="tile-photo" href="#{{id_contact}}" style="--img:url({{base}}img/grupo.jpg)" aria-label="{{alt_about}}">
+          <small>Carrer de Malats, 22 · 08030 Barcelona</small>
+          <h3>{{svc_center_h}}</h3>
+          <p>{{svc_center_p}}</p>
         </a>
-        <a class="service" href="#{{id_nutri}}">
-          <div class="ph ph--brand" aria-hidden="true"><img src="{{base}}img/simbolo-beige.png" alt="" width="900" height="496"></div>
-          <div class="service-body"><h3>{{nu_title}}</h3><p>{{nu_short}}</p><span class="more">{{more}} →</span></div>
+        <a class="tile tile--hi" href="https://www.activampilates.cat/" target="_blank" rel="noopener">
+          <span class="ico">{{ico_gr}}</span>
+          <div><h3>{{gr_title}} ↗</h3><p>{{gr_short}}</p></div>
         </a>
-        <a class="service" href="https://www.activampilates.cat/" target="_blank" rel="noopener">
-          <div class="ph" style="--img:url({{base}}img/grupo.jpg)"></div>
-          <div class="service-body"><h3>{{gr_title}}</h3><p>{{gr_short}}</p><span class="more">{{gr_more}} ↗</span></div>
+        <a class="tile tile--hi" href="#{{id_how}}" data-tab="1">
+          <span class="ico">{{ico_rh}}</span>
+          <div><h3>{{rh_title}}</h3><p>{{rh_short}}</p></div>
+        </a>
+        <a class="tile" href="#{{id_how}}" data-tab="2">
+          <span class="ico">{{ico_nu}}</span>
+          <div><h3>{{nu_title}}</h3><p>{{nu_short}}</p></div>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="detail" id="{{id_pt}}">
-    <div class="wrap detail-grid">
-      <div class="ph" style="--img:url({{base}}img/detalle-entrenamiento.jpg)" role="img" aria-label="{{alt_pt}}"></div>
-      <div class="detail-copy">
-        <span class="eyebrow">01</span>
-        <h2>{{pt_title}}</h2>
-        <p>{{pt_long}}</p>
-        <h3 class="sub">{{ideal_for}}</h3>
-        <ul class="checks">{{pt_list}}</ul>
-        <a class="btn btn--solid" href="{{wa_pt}}" target="_blank" rel="noopener">{{ask_info}}</a>
+  <!-- ABOUT + STATS -->
+  <section class="about" id="{{id_about}}">
+    <div class="wrap about-grid">
+      <div class="about-photo" style="--img:url({{base}}img/detalle-entrenamiento.jpg)" role="img" aria-label="{{alt_pt}}"></div>
+      <div>
+        <div class="stats">
+          <div><strong>2013</strong><span>{{stat_1}}</span></div>
+          <div><strong>4</strong><span>{{stat_2}}</span></div>
+          <div><strong>1:1</strong><span>{{stat_3}}</span></div>
+        </div>
+        <p class="statement">{{statement}}</p>
+        <ul class="checks">{{why_list}}</ul>
+        <a class="pill pill--dark" href="{{wa_general}}" target="_blank" rel="noopener"><span>{{cta_short}}</span><i>{{arrow}}</i></a>
       </div>
     </div>
   </section>
 
-  <section class="detail reverse" id="{{id_rehab}}">
-    <div class="wrap detail-grid">
-      <div class="ph" style="--img:url({{base}}img/detalle-rehabilitacion.jpg)" role="img" aria-label="{{alt_rh}}"></div>
-      <div class="detail-copy">
-        <span class="eyebrow">02</span>
-        <h2>{{rh_title}}</h2>
-        <p>{{rh_long}}</p>
-        <h3 class="sub">{{rh_sub}}</h3>
-        <ul class="checks">{{rh_list}}</ul>
-        <a class="btn btn--solid" href="{{wa_rh}}" target="_blank" rel="noopener">{{ask_info}}</a>
+  <!-- HOW IT WORKS -->
+  <section class="how dark" id="{{id_how}}">
+    <div class="wrap">
+      <div class="sec-center"><span class="eyebrow">{{steps_h2}}</span><h2>{{how_h2}}</h2></div>
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" aria-controls="p0" id="t0">{{pt_title}}</button>
+        <button role="tab" aria-selected="false" aria-controls="p1" id="t1">{{rh_title}}</button>
+        <button role="tab" aria-selected="false" aria-controls="p2" id="t2">{{nu_title}}</button>
+      </div>
+      <div class="how-grid">
+        <div class="steps-card">{{steps}}</div>
+        <div class="panel" role="tabpanel" id="p0" aria-labelledby="t0">
+          <div class="panel-main" id="{{id_pt}}">
+            <h3>{{pt_title}}</h3><p>{{pt_long}}</p>
+            <a class="pill pill--dark" href="{{wa_pt}}" target="_blank" rel="noopener"><span>{{ask_info}}</span><i>{{arrow}}</i></a>
+          </div>
+          <div class="panel-side">
+            <div class="ph" style="--img:url({{base}}img/entrenamiento-personal.jpg)" role="img" aria-label="{{alt_pt}}"></div>
+            <div class="body"><h4>{{ideal_for}}</h4><ul class="checks">{{pt_list}}</ul></div>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+          <div class="panel-main" id="{{id_rehab}}">
+            <h3>{{rh_title}}</h3><p>{{rh_long}}</p>
+            <a class="pill pill--dark" href="{{wa_rh}}" target="_blank" rel="noopener"><span>{{ask_info}}</span><i>{{arrow}}</i></a>
+          </div>
+          <div class="panel-side">
+            <div class="ph" style="--img:url({{base}}img/rehabilitacion.jpg)" role="img" aria-label="{{alt_rh}}"></div>
+            <div class="body"><h4>{{rh_sub}}</h4><ul class="checks">{{rh_list}}</ul></div>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2">
+          <div class="panel-main" id="{{id_nutri}}">
+            <h3>{{nu_title}}</h3><p>{{nu_long}}</p>
+            <a class="pill pill--dark" href="{{wa_nu}}" target="_blank" rel="noopener"><span>{{ask_info}}</span><i>{{arrow}}</i></a>
+          </div>
+          <div class="panel-side">
+            <div class="ph ph--brand" aria-hidden="true"><img src="{{base}}img/simbolo-beige.png" alt="" width="900" height="496"></div>
+            <div class="body"><h4>{{nu_sub}}</h4><ul class="checks">{{nu_list}}</ul></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="detail" id="{{id_nutri}}">
-    <div class="wrap detail-grid">
-      <div class="ph" style="--img:url({{base}}img/detalle-fuerza.jpg)" role="img" aria-label="{{alt_nu}}"></div>
-      <div class="detail-copy">
-        <span class="eyebrow">03</span>
-        <h2>{{nu_title}}</h2>
-        <p>{{nu_long}}</p>
-        <h3 class="sub">{{nu_sub}}</h3>
-        <ul class="checks">{{nu_list}}</ul>
-        <a class="btn btn--solid" href="{{wa_nu}}" target="_blank" rel="noopener">{{ask_info}}</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- FOR WHOM -->
   <section class="forwhom">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">{{fw_eyebrow}}</span><h2>{{fw_h2}}</h2><p>{{fw_p}}</p></div>
-      <div class="forwhom-grid">{{fw_cards}}</div>
+      <div class="sec-center"><span class="eyebrow">{{fw_eyebrow}}</span><h2>{{fw_h2}}</h2><p>{{fw_p}}</p></div>
+      <div class="cards4">{{fw_cards}}</div>
     </div>
   </section>
 
-  <section class="steps">
-    <div class="wrap">
-      <div class="section-head"><h2>{{steps_h2}}</h2></div>
-      <div class="steps-grid">{{steps}}</div>
-    </div>
-  </section>
-
-  <section class="about">
-    <div class="wrap about-grid">
-      <div class="ph" style="--img:url({{base}}img/equipo.jpg)" role="img" aria-label="{{alt_about}}"></div>
-      <div class="about-copy">
-        <span class="eyebrow">{{why_eyebrow}}</span>
-        <h2>{{why_h2}}</h2>
-        <p>{{why_p}}</p>
-        <ul class="checks">{{why_list}}</ul>
-        <a class="btn btn--solid" href="{{wa_general}}" target="_blank" rel="noopener">{{cta_short}}</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- VIDEO -->
   <section class="video">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">{{video_eyebrow}}</span><h2>{{video_h2}}</h2></div>
       <div class="video-frame">
         <!-- Sustituir por el vídeo nuevo cuando esté disponible -->
         <video src="{{base}}video/activam.mp4" poster="{{base}}img/video-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="{{video_h2}}"></video>
+        <span class="label">{{video_h2}}</span>
       </div>
     </div>
   </section>
 
-  <section class="more-am">
+  <!-- MORE ACTIVA'M -->
+  <section class="more">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">{{more_eyebrow}}</span><h2>{{more_h2}}</h2></div>
+      <div class="sec-head"><div><span class="eyebrow">{{more_eyebrow}}</span><h2>{{more_h2}}</h2></div></div>
       <div class="more-grid">
         <a class="more-card" href="https://www.activampilates.cat/" target="_blank" rel="noopener">
-          <span class="eyebrow">activampilates.cat</span>
-          <h3>Activa'M Pilates Training</h3>
-          <p>{{pilates_p}}</p>
-          <span class="more">{{visit}} ↗</span>
+          <small>activampilates.cat</small><h3>Activa'M Pilates Training</h3><p>{{pilates_p}}</p>
+          <span class="pill pill--dark"><span>{{visit}}</span><i>{{arrow}}</i></span>
         </a>
         <a class="more-card" href="https://mtb.activam.es/" target="_blank" rel="noopener">
-          <span class="eyebrow">mtb.activam.es</span>
-          <h3>MTB Xperience by Activa'M</h3>
-          <p>{{mtb_p}}</p>
-          <span class="more">{{visit}} ↗</span>
+          <small>mtb.activam.es</small><h3>MTB Xperience by Activa'M</h3><p>{{mtb_p}}</p>
+          <span class="pill pill--dark"><span>{{visit}}</span><i>{{arrow}}</i></span>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- INSTAGRAM -->
   <section class="insta">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">@activamstandreu</span><h2>{{insta_h2}}</h2></div>
+      <div class="sec-head">
+        <div><span class="eyebrow">@activamstandreu</span><h2>{{insta_h2}}</h2></div>
+        <a class="pill" href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener"><span>{{insta_cta}}</span><i>{{arrow}}</i></a>
+      </div>
       <!-- Sustituir por el widget de feed (Behold / LightWidget / Elfsight) cuando tengamos acceso a la cuenta -->
       <div class="insta-grid" id="instagram-feed">{{insta}}</div>
-      <div class="center"><a class="btn" href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">{{insta_cta}}</a></div>
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="faq" id="{{id_faq}}">
-    <div class="wrap">
-      <div class="section-head"><span class="eyebrow">{{faq_eyebrow}}</span><h2>{{faq_h2}}</h2></div>
-      <div class="faq-list">{{faq_html}}</div>
-    </div>
-  </section>
-
-  <section class="contact" id="{{id_contact}}">
-    <div class="wrap contact-grid">
-      <div class="contact-card">
-        <div><span class="eyebrow">{{nav_contact}}</span><h2>{{contact_h2}}</h2></div>
-        <dl>
-          <div><dt>{{lbl_address}}</dt><dd>Carrer de Malats, 22 · 08030 Sant Andreu, Barcelona</dd></div>
-          <div><dt>{{lbl_hours}}</dt><dd>{{hours}}</dd></div>
-          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/34626660770">+34 626 660 770</a></dd></div>
-          <div><dt>Email</dt><dd><a href="mailto:info@activam.es">info@activam.es</a></dd></div>
-        </dl>
-        <a class="btn btn--solid" href="{{wa_general}}" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
-          {{cta_wa}}
-        </a>
+    <div class="wrap faq-grid">
+      <div class="faq-side">
+        <span class="eyebrow">{{faq_eyebrow}}</span>
+        <h2>{{faq_h2}}</h2>
+        <div class="ask">
+          <h3>{{ask_h}}</h3>
+          <p>{{ask_p}}</p>
+          <a class="pill" href="{{wa_general}}" target="_blank" rel="noopener"><span>WhatsApp</span><i>{{arrow}}</i></a>
+        </div>
       </div>
-      <div class="map">
-        <iframe title="{{map_title}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Carrer%20de%20Malats%2022%2C%2008030%20Barcelona&hl={{lang}}&output=embed"></iframe>
-      </div>
+      <div>{{faq_html}}</div>
     </div>
   </section>
 
 </main>
 
-<footer>
+<!-- CTA + FOOTER -->
+<footer class="closing dark" id="{{id_contact}}">
   <div class="wrap">
-    <div class="foot">
-      <div>
-        <a class="logo" href="#top"><img src="{{base}}img/logo-beige.png" alt="Activa'M" width="1200" height="679"></a>
-        <p style="margin-top:14px;max-width:280px;opacity:.75">{{foot_p}}</p>
-      </div>
-      <ul>
-        <li><a href="#{{id_about}}">{{nav_about}}</a></li>
-        <li><a href="#{{id_pt}}">{{pt_title}}</a></li>
-        <li><a href="#{{id_rehab}}">{{rh_title}}</a></li>
-        <li><a href="#{{id_nutri}}">{{nu_title}}</a></li>
-        <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">{{gr_title}}</a></li>
-        <li><a href="https://mtb.activam.es/" target="_blank" rel="noopener">MTB Xperience</a></li>
-      </ul>
-      <ul>
-        <li><a href="https://wa.me/34626660770">WhatsApp</a></li>
-        <li><a href="mailto:info@activam.es">info@activam.es</a></li>
-        <li><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://www.facebook.com/activamsantandreu/" target="_blank" rel="noopener">Facebook</a></li>
-      </ul>
+    <div class="cta-row">
+      <h2>{{cta_h2}}</h2>
+      <a class="cta-box cta-box--light" href="{{wa_general}}" target="_blank" rel="noopener">
+        <span class="wa">{{wa_icon}} +34 626 660 770</span>
+        <span class="row"><strong>{{cta_long}}</strong><span class="arrow">{{arrow_ne}}</span></span>
+      </a>
     </div>
-    <div class="legal">
-      <span>© <span id="year">2026</span> Activa'M · Carrer de Malats, 22 · Barcelona</span>
-      <span>{{legal_links}}</span>
+    <div class="foot-card">
+      <div class="foot-grid">
+        <div>
+          <a class="logo" href="#top"><img src="{{base}}img/logo-burdeos.png" alt="Activa'M" width="1200" height="679" style="height:90px"></a>
+          <p>{{foot_p}}</p>
+        </div>
+        <div>
+          <h4>{{nav_services}}</h4>
+          <ul>
+            <li><a href="#{{id_how}}">{{pt_title}}</a></li>
+            <li><a href="#{{id_how}}">{{rh_title}}</a></li>
+            <li><a href="#{{id_how}}">{{nu_title}}</a></li>
+            <li><a href="https://www.activampilates.cat/" target="_blank" rel="noopener">{{gr_title}}</a></li>
+            <li><a href="https://mtb.activam.es/" target="_blank" rel="noopener">MTB Xperience</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Activa'M</h4>
+          <ul>
+            <li><a href="#{{id_about}}">{{nav_about}}</a></li>
+            <li><a href="#{{id_faq}}">{{nav_faq}}</a></li>
+            <li><a href="https://www.instagram.com/activamstandreu/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/activamsantandreu/" target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>{{nav_contact}}</h4>
+          <address>
+            <a href="https://www.google.com/maps/search/?api=1&query=Carrer%20de%20Malats%2022%2C%2008030%20Barcelona" target="_blank" rel="noopener">Carrer de Malats, 22<br>08030 Sant Andreu, Barcelona</a>
+            <span>{{hours}}</span>
+            <a href="https://wa.me/34626660770">WhatsApp +34 626 660 770</a>
+            <a href="mailto:info@activam.es">info@activam.es</a>
+          </address>
+        </div>
+      </div>
+      <div class="legal">
+        <span>© <span id="year">2026</span> Activa'M · Sant Andreu, Barcelona</span>
+        <span>{{legal_links}}</span>
+      </div>
     </div>
   </div>
 </footer>
 
-<a class="wa-float" href="{{wa_general}}" target="_blank" rel="noopener" aria-label="{{cta_wa}}">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
-</a>
+<a class="wa-float" href="{{wa_general}}" target="_blank" rel="noopener" aria-label="{{cta_wa}}">{{wa_icon}}</a>
 
 <script>
   const toggle = document.querySelector('.menu-toggle');
@@ -550,6 +571,18 @@
     toggle.setAttribute('aria-expanded', open);
   });
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Pestañas de "cómo funciona"
+  const tabs = [...document.querySelectorAll('.tabs [role=tab]')];
+  const panels = [...document.querySelectorAll('.panel')];
+  function show(i) {
+    tabs.forEach((t, j) => t.setAttribute('aria-selected', i === j));
+    panels.forEach((p, j) => p.hidden = i !== j);
+  }
+  tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+  document.querySelectorAll('[data-tab]').forEach(a => a.addEventListener('click', () => show(+a.dataset.tab)));
+  show(0);
+
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
