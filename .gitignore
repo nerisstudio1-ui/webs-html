@@ -1,3 +1,4 @@
 node_modules/
 dist/.frames-*/
 dist/stills/
+src/_phototest.html

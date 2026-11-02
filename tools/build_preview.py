@@ -13,7 +13,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 OUT = ROOT / "dist" / "preview.html"
 
-PARTS = ["fonts.css", "ad.css", "art.js", "sites.js", "ad.js", "preview.template.html"]
+PARTS = ["fonts.css", "ad.css", "photos.js", "art.js", "sites.js", "ad.js", "preview.template.html"]
 
 
 def main() -> int:
@@ -32,6 +32,9 @@ def main() -> int:
         read["ad.css"],
         "</style>",
         read["preview.template.html"],
+        "<script>",
+        read["photos.js"],
+        "</script>",
         "<script>",
         read["art.js"],
         "</script>",

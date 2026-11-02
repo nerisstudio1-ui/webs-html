@@ -23,6 +23,14 @@
 const SITES = (() => {
   const bg = (scene, seed, w, h, opts) => ART.bg(scene, seed, w, h, opts);
 
+  /* A generated photograph if one exists for this slot, otherwise the painted
+     scene. Keeps every site renderable while the photo set is still being
+     filled in, and makes adding a photo a one-file change. */
+  const photo = (name, scene, seed, w, h, opts) =>
+    (typeof PHOTOS !== 'undefined' && PHOTOS[name])
+      ? `url(${PHOTOS[name]})`
+      : bg(scene, seed, w, h, opts);
+
   /* Shared grammar. Every site gets these, so the eight read as one studio's
      work rather than eight unrelated pages. */
   const base = `
@@ -117,7 +125,7 @@ const SITES = (() => {
       <div class="nv"><span>Clases</span><span>Horarios</span><span>Bonos</span><span>Estudio</span></div>
       <div class="ghost">Primera clase gratis</div></div>
     <div class="hero">
-      <div class="im" style="background-image:${bg('mat', 3, 980, 460, { wall: '#9a9183', floor: '#8a6a44' })}"></div>
+      <div class="im" style="background-image:${photo('yoga', 'mat', 3, 980, 460, { wall: '#9a9183', floor: '#8a6a44' })}"></div>
       <div class="ko">flow</div></div>
     <div class="tag">Encuentra tu centro. Respira, muévete, transforma.</div>
     <div class="mid">
@@ -129,7 +137,7 @@ const SITES = (() => {
       <div><h3>Flow <em>yoga</em></h3>
         <p>Prácticas con atención a la respiración y al movimiento, pensadas para asentarte. Todos los niveles.</p>
         <div class="btnp">Reservar plaza</div></div>
-      <div class="arch" style="background-image:${bg('water', 9, 520, 420, { shallow: '#8fc6c0', deep: '#2e6e74' })}"></div></div>
+      <div class="arch" style="background-image:${photo('pool', 'water', 9, 520, 420, { shallow: '#8fc6c0', deep: '#2e6e74' })}"></div></div>
     ${marquee('estudio en Ruzafa', 4)}
     ${foot({ brand: 'Flow Estudio', about: 'Pilates reformer, mat y yoga en grupos de seis personas. Calle Cuba 34, Valencia.',
       groups: [{ h: 'Clases', items: ['Reformer', 'Mat', 'Yoga', 'Embarazo'] },
@@ -171,7 +179,7 @@ const SITES = (() => {
       <div class="nv"><span>La casa</span><span>Estancias</span><span>Mesa</span><span>Termas</span></div>
       <div class="ghost">Reservar</div></div>
     <div class="split">
-      <div class="im" style="background-image:${bg('tuscan', 5, 760, 440)}"></div>
+      <div class="im" style="background-image:${photo('hills', 'tuscan', 5, 760, 440)}"></div>
       <div class="blk"><div class="kick">¿Prisa? Nunca oímos hablar de ella.</div>
         <h1>Siete habitaciones que <b>PIDEN</b> <em>quedarse</em>.</h1>
         <p>Chimenea en cada una, vistas al valle y absolutamente nada que hacer. A dos horas de Madrid.</p>
@@ -181,11 +189,11 @@ const SITES = (() => {
       <p>Una casa de piedra rehabilitada en 2019, con siete estancias, termas al aire libre y mesa compartida a las nueve.</p>
       <div class="hand">lo de la mesa<br>compartida engancha<span class="arrow">↙</span></div></div>
     <div class="cards">
-      <div><div class="ph" style="background-image:${bg('chair', 21, 440, 260, { wall: '#e6ddc9', velvet: '#5c6b47', cloth: '#9a7c5e', skin: '#c99064' })}"></div>
+      <div><div class="ph" style="background-image:${photo('bedroom', 'chair', 21, 440, 260, { wall: '#e6ddc9', velvet: '#5c6b47', cloth: '#9a7c5e', skin: '#c99064' })}"></div>
         <h4>Las estancias</h4><p>Siete, todas distintas, todas con chimenea.</p></div>
-      <div><div class="ph" style="background-image:${bg('dish', 23, 440, 220, { table: '#241a10', plate: '#3f3528' })}"></div>
+      <div><div class="ph" style="background-image:${photo('table', 'dish', 23, 440, 220, { table: '#241a10', plate: '#3f3528' })}"></div>
         <h4>La mesa</h4><p>Menú corto con lo que llega de la huerta.</p></div>
-      <div><div class="ph" style="background-image:${bg('water', 27, 440, 220, { shallow: '#9ec4bd', deep: '#2f5b56' })}"></div>
+      <div><div class="ph" style="background-image:${photo('bath', 'water', 27, 440, 220, { shallow: '#9ec4bd', deep: '#2f5b56' })}"></div>
         <h4>Las termas</h4><p>Agua caliente al aire libre, de sol a sol.</p></div></div>
     ${marquee('despacio, que hay prisa', 4)}
     ${foot({ brand: 'Casa Olmo', about: 'Casa rural de siete habitaciones en la Sierra de Gredos. Registro turístico AV-0412.',
@@ -224,7 +232,7 @@ const SITES = (() => {
       <div class="nv"><span>Rutina</span><span>Productos</span><span>Ingredientes</span><span>Diario</span></div>
       <div class="ghost">Cesta · 2</div></div>
     <div class="hero">
-      <div class="im" style="background-image:${bg('macro', 11, 980, 440)}"></div>
+      <div class="im" style="background-image:${photo('skin', 'macro', 11, 980, 440)}"></div>
       <div class="tint"></div>
       <div class="tx"><h1>Encuentra tu <em>equilibrio</em> con Piel</h1>
         <div class="btnp">Ver la rutina</div></div></div>
@@ -234,11 +242,11 @@ const SITES = (() => {
       <div><b>0</b><span>perfume</span></div>
       <div><b>4,8</b><span>sobre 5</span></div></div>
     <div class="row">
-      <div><div class="ph" style="background-image:${bg('bottles', 7, 420, 300)}"></div>
+      <div><div class="ph" style="background-image:${photo('bottles', 'bottles', 7, 420, 300)}"></div>
         <h4>Limpieza</h4><span>Gel suave · 150 ml</span></div>
-      <div><div class="ph" style="background-image:${bg('bottles', 13, 420, 300, { tones: ['#a9674a', '#c08a63', '#8d5339', '#d0a07a'] })}"></div>
+      <div><div class="ph" style="background-image:${photo('cream', 'bottles', 13, 420, 300, { tones: ['#a9674a', '#c08a63', '#8d5339', '#d0a07a'] })}"></div>
         <h4>Hidratación</h4><span>Crema ligera · 50 ml</span></div>
-      <div><div class="ph" style="background-image:${bg('linen', 17, 420, 300, { cloth: '#e3cdc0' })}"></div>
+      <div><div class="ph" style="background-image:${photo('linen', 'linen', 17, 420, 300, { cloth: '#e3cdc0' })}"></div>
         <h4>Protección</h4><span>SPF 50 · 50 ml</span></div></div>
     ${marquee('fabricado en Alicante', 4)}
     ${foot({ brand: 'Piel', about: 'Cosmética corta, sin perfume y fabricada en Alicante. Cruelty free.',
@@ -280,7 +288,7 @@ const SITES = (() => {
       <div class="nv"><span>Carta</span><span>Bodega</span><span>La casa</span></div>
       <div class="ghost">Reservar mesa</div></div>
     <div class="hero">
-      <div class="im" style="background-image:${bg('dish', 29, 980, 460, { table: '#1b120b', plate: '#3a2f24', food: ['#e0761f', '#a8461a', '#f0b94a'] })}"></div>
+      <div class="im" style="background-image:${photo('food', 'dish', 29, 980, 460, { table: '#1b120b', plate: '#3a2f24', food: ['#e0761f', '#a8461a', '#f0b94a'] })}"></div>
       <div class="tint"></div>
       <span class="stick">Menú de marzo</span>
       <h1>Brasa, <em>sal</em><br>y poco más</h1></div>
@@ -335,15 +343,15 @@ const SITES = (() => {
       <div class="pc"><h1>Rebajas de <em>invierno</em></h1>
         <p>Hasta un 40 % en lana merina y alpaca hilada en Asturias. Hasta fin de existencias.</p>
         <div class="btnp">Ver rebajas</div></div>
-      <div class="ps" style="background-image:${bg('knit', 47, 700, 400, { yarn: '#9c5a44' })}"></div></div>
+      <div class="ps" style="background-image:${photo('knit', 'knit', 47, 700, 400, { yarn: '#9c5a44' })}"></div></div>
     <div class="shelf">
-      <div class="p"><div class="im" style="background-image:${bg('knit', 53, 380, 280, { yarn: '#c2955c' })}"></div>
+      <div class="p"><div class="im" style="background-image:${photo('sweater', 'knit', 53, 380, 280, { yarn: '#c2955c' })}"></div>
         <div class="n">Jersey Duna</div><div class="m">Merina · trenzado</div><div class="pr">79,00 €</div></div>
       <div class="p"><div class="im" style="background-image:${bg('knit', 59, 380, 280, { yarn: '#3f5b46' })}"></div>
         <div class="n">Cárdigan Ría</div><div class="m">Lana y alpaca</div><div class="pr">118,00 €</div></div>
       <div class="p"><div class="im" style="background-image:${bg('knit', 61, 380, 280, { yarn: '#2c3d5c' })}"></div>
         <div class="n">Chaleco Sella</div><div class="m">Algodón orgánico</div><div class="pr">64,00 €</div></div>
-      <div class="p"><div class="im" style="background-image:${bg('linen', 67, 380, 280, { cloth: '#cdd3c4' })}"></div>
+      <div class="p"><div class="im" style="background-image:${photo('linen', 'linen', 67, 380, 280, { cloth: '#cdd3c4' })}"></div>
         <div class="n">La colección</div><div class="m">42 prendas</div><div class="pr">Ver todo</div></div></div>
     <div class="tst">
       <div><p>“Llegó en dos días y la lana es exactamente la del catálogo.”</p>
@@ -394,7 +402,7 @@ const SITES = (() => {
         <h1>Etiopía<br><em>Guji Natural</em></h1>
         <p>Melocotón, jazmín y un final largo a té negro. Tostado el martes, en tu casa el jueves.</p>
         <div class="btnp">Añadir a la cesta · 14,50 €</div></div>
-      <div class="sh" style="background-image:${bg('coffee', 71, 700, 440, { table: '#4a2b17', crema: '#b06a30', saucer: '#f3ece0' })}"></div></div>
+      <div class="sh" style="background-image:${photo('coffee', 'coffee', 71, 700, 440, { table: '#4a2b17', crema: '#b06a30', saucer: '#f3ece0' })}"></div></div>
     <div class="mid"><h2>También te <em>gustará</em></h2>
       <div class="hand">este es el que<br>más repetimos<span class="arrow">↘</span></div></div>
     <div class="row">
@@ -442,16 +450,16 @@ const SITES = (() => {
       <div class="nv"><span>Series</span><span>Bodas</span><span>Editorial</span><span>Copias</span></div>
       <div class="ghost">Disponibilidad</div></div>
     <div class="hero">
-      <div class="im" style="background-image:${bg('hills', 31, 980, 470, { sky: ['#101430', '#44274f', '#a3524a', '#e8a470'], ridge: '#0d0c14' })}"></div>
+      <div class="im" style="background-image:${photo('coast', 'hills', 31, 980, 470, { sky: ['#101430', '#44274f', '#a3524a', '#e8a470'], ridge: '#0d0c14' })}"></div>
       <div class="tint"></div>
       <div class="tx"><div class="kick">Serie 04 — Costa Brava, invierno</div>
         <h1>La luz <em>que queda</em></h1></div></div>
     <div class="big">Mira <em>el</em> trabajo</div>
     <div class="grid">
-      <div style="background-image:${bg('tuscan', 37, 400, 260)}"></div>
-      <div style="background-image:${bg('water', 41, 400, 300, { shallow: '#5f9fb0', deep: '#113d52' })}"></div>
-      <div style="background-image:${bg('chair', 43, 400, 260, { wall: '#d8cfc0', velvet: '#43523f', cloth: '#8d94a8', skin: '#bf8a62' })}"></div>
-      <div style="background-image:${bg('hills', 47, 400, 260, { sky: ['#1b2340', '#4e3a5e', '#b06a52', '#f0bd86'], ridge: '#141726' })}"></div></div>
+      <div style="background-image:${photo('hills', 'tuscan', 37, 400, 260)}"></div>
+      <div style="background-image:${photo('pool', 'water', 41, 400, 300, { shallow: '#5f9fb0', deep: '#113d52' })}"></div>
+      <div style="background-image:${photo('bedroom', 'chair', 43, 400, 260, { wall: '#d8cfc0', velvet: '#43523f', cloth: '#8d94a8', skin: '#bf8a62' })}"></div>
+      <div style="background-image:${photo('coast', 'hills', 47, 400, 260, { sky: ['#1b2340', '#4e3a5e', '#b06a52', '#f0bd86'], ridge: '#141726' })}"></div></div>
     <div class="say">
       <div><p>“Nos devolvió fotos que no sabíamos que queríamos hasta que las vimos.”</p>
         <div class="btnp">Ver disponibilidad 2026</div></div>
@@ -497,7 +505,7 @@ const SITES = (() => {
         <h1>Cuidarte los dientes <em>sin sustos</em> en la factura</h1>
         <p>Diagnóstico completo con radiografía y presupuesto cerrado por escrito antes de empezar.</p>
         <div class="btnp">Pedir cita online</div></div>
-      <div class="arch" style="background-image:${bg('studio', 89, 560, 440, { wall: '#dfe4d6', pouf: '#b6ab8c', cloth: '#6d8268', skin: '#c08a63' })}"></div></div>
+      <div class="arch" style="background-image:${photo('clinic', 'studio', 89, 560, 440, { wall: '#dfe4d6', pouf: '#b6ab8c', cloth: '#6d8268', skin: '#c08a63' })}"></div></div>
     <div class="band"><h3>Dieciocho años <em>en el mismo barrio</em></h3>
       <div class="btnp">Conocer al equipo</div></div>
     <div class="stats">
