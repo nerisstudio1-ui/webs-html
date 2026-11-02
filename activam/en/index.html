@@ -376,11 +376,12 @@
 
   /* ---- Footer ---- */
   footer { background: var(--burgundy); color: var(--beige); padding: 100px 0 34px; }
-  .foot-cta { text-align: center; margin-bottom: 90px; }
+  .foot-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-bottom: 90px; }
   .foot-cta h2 { color: var(--card); font-size: clamp(2.4rem, 5vw, 4rem); }
   .foot-cta h2 em { color: var(--beige); }
-  .foot-cta p { margin: 18px auto 30px; max-width: 480px; opacity: .85; }
-  .foot-cta .hero-btns { justify-content: center; }
+  .foot-cta .book h2 { color: var(--burgundy); font-size: 1.7rem; }
+  .foot-cta .book h2 em { color: var(--taupe); }
+  .foot-cta > div > p { margin: 18px 0 30px; max-width: 480px; opacity: .85; }
   .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 34px; padding-top: 50px; border-top: 1px solid rgba(232,212,187,.2); font-size: .86rem; }
   .foot-grid .logo img { height: 84px; }
   .foot-grid > div > p { margin-top: 16px; opacity: .75; max-width: 280px; }
@@ -398,7 +399,6 @@
   .mbar { display: none; }
 
   /* ---- Booking form ---- */
-  .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; padding: 60px 28px; }
   .book { background: var(--card); color: var(--ink); border-radius: 24px; padding: 30px 28px 24px; box-shadow: 0 30px 60px -30px rgba(20,8,12,.6); display: grid; gap: 14px; }
   .book h2 { font-size: 1.7rem; }
   .book > p { font-size: .88rem; color: var(--ink-soft); margin-top: -6px; }
@@ -434,7 +434,7 @@
     .logo { justify-self: center; }
     .logo img { height: 28px; }
     .nav-right .btn { display: none; }
-    .hero-grid { grid-template-columns: 1fr; gap: 34px; padding: 70px 28px 50px; }
+    .foot-cta { grid-template-columns: 1fr; gap: 40px; }
     .wa-float { display: none; }
     .mbar { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; justify-content: center; align-items: center; gap: 10px; padding: 15px; border-radius: 999px; background: var(--wa); color: #fff; font-weight: 700; text-decoration: none; box-shadow: 0 10px 28px rgba(0,0,0,.25); }
     .mbar svg { width: 22px; height: 22px; }
@@ -449,7 +449,7 @@
   }
   @media (max-width: 600px) {
     .wrap { padding: 0 18px; }
-    .hero { min-height: 0; }
+    .hero { min-height: 600px; align-items: flex-end; padding-bottom: 56px; }
     .book { padding: 24px 20px 20px; }
     .hero::before { background: linear-gradient(0deg, rgba(43,22,28,.85) 10%, rgba(43,22,28,.25) 70%); }
     .svc-grid, .more-grid, .foot-grid { grid-template-columns: 1fr; }
@@ -481,7 +481,7 @@
 <main id="top">
 
   <section class="hero" style="--img:url(../img/hero-wide.jpg)">
-    <div class="wrap hero-grid">
+    <div class="wrap">
       <div>
         <h1>Personal training &amp; rehabilitation <em>in Sant Andreu</em></h1>
         <p>Exercise-based physiotherapists, return-to-sport trainers and nutritionists, in the heart of Sant Andreu, Barcelona.</p>
@@ -491,22 +491,6 @@
           <a class="btn btn--ghost" href="#services">See our services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
-      <form class="book" id="book" data-wa="34626660770" data-tpl="Hi Activa'M, I'm {name}. I'm interested in: {service}. Best time: {when}. {msg}" data-any="no preference">
-        <h2>Book in <em>30 seconds</em></h2>
-        <p>Choose what you need and we'll open WhatsApp with your message ready. We'll suggest a day and time.</p>
-        <fieldset>
-          <legend>What do you need?</legend>
-          <div class="chips"><label><input type="radio" name="service" value="Personal training" checked><span>Personal training</span></label><label><input type="radio" name="service" value="Rehabilitation"><span>Rehabilitation</span></label><label><input type="radio" name="service" value="Nutrition"><span>Nutrition</span></label><label><input type="radio" name="service" value="Group classes"><span>Group classes</span></label><label><input type="radio" name="service" value="Not sure yet"><span>Not sure yet</span></label></div>
-        </fieldset>
-        <fieldset>
-          <legend>When suits you best?</legend>
-          <div class="chips"><label><input type="radio" name="when" value="Morning (7 am–2 pm)"><span>Morning (7 am–2 pm)</span></label><label><input type="radio" name="when" value="Afternoon (2–10 pm)"><span>Afternoon (2–10 pm)</span></label><label><input type="radio" name="when" value="Any time" checked><span>Any time</span></label></div>
-        </fieldset>
-        <label>Your name<input type="text" name="name" autocomplete="given-name" required placeholder="Name"></label>
-        <label>Anything else? (optional)<textarea name="msg" rows="2" placeholder="E.g. I have some knee pain…"></textarea></label>
-        <button class="btn btn--solid" type="submit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg> Send on WhatsApp</button>
-        <small>Open 7 am to 10 pm, by appointment only.</small>
-      </form>
     </div>
   </section>
 
@@ -644,12 +628,30 @@
 <footer id="contact">
   <div class="wrap">
     <div class="foot-cta">
+      <div>
       <h2>Ready to <em>get active?</em></h2>
       <p>7 am to 10 pm · By appointment only · Carrer de Malats, 22</p>
       <div class="hero-btns">
         <a class="btn btn--light" href="https://wa.me/34626660770?text=Hi%20Activa%27M%2C%20I%27d%20like%20to%20book%20an%20appointment" target="_blank" rel="noopener">Book on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=Carrer%20de%20Malats%2022%2C%2008030%20Barcelona" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
+      </div>
+      <form class="book" id="book" data-wa="34626660770" data-tpl="Hi Activa'M, I'm {name}. I'm interested in: {service}. Best time: {when}. {msg}" data-any="no preference">
+        <h2>Book in <em>30 seconds</em></h2>
+        <p>Choose what you need and we'll open WhatsApp with your message ready. We'll suggest a day and time.</p>
+        <fieldset>
+          <legend>What do you need?</legend>
+          <div class="chips"><label><input type="radio" name="service" value="Personal training" checked><span>Personal training</span></label><label><input type="radio" name="service" value="Rehabilitation"><span>Rehabilitation</span></label><label><input type="radio" name="service" value="Nutrition"><span>Nutrition</span></label><label><input type="radio" name="service" value="Group classes"><span>Group classes</span></label><label><input type="radio" name="service" value="Not sure yet"><span>Not sure yet</span></label></div>
+        </fieldset>
+        <fieldset>
+          <legend>When suits you best?</legend>
+          <div class="chips"><label><input type="radio" name="when" value="Morning (7 am–2 pm)"><span>Morning (7 am–2 pm)</span></label><label><input type="radio" name="when" value="Afternoon (2–10 pm)"><span>Afternoon (2–10 pm)</span></label><label><input type="radio" name="when" value="Any time" checked><span>Any time</span></label></div>
+        </fieldset>
+        <label>Your name<input type="text" name="name" autocomplete="given-name" required placeholder="Name"></label>
+        <label>Anything else? (optional)<textarea name="msg" rows="2" placeholder="E.g. I have some knee pain…"></textarea></label>
+        <button class="btn btn--solid" type="submit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg> Send on WhatsApp</button>
+        <small>Open 7 am to 10 pm, by appointment only.</small>
+      </form>
     </div>
     <div class="foot-grid">
       <div>
