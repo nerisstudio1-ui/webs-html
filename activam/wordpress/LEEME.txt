@@ -1,0 +1,29 @@
+ACTIVA'M · VERSIÓN PARA WORDPRESS
+
+1. IMÁGENES
+   Medios > Añadir nuevo > subir TODAS las imágenes de imagenes-activam.zip (descomprimido) de una vez.
+   Deben quedar en https://activam.es/wp-content/uploads/2026/11/
+   Si se suben otro mes, cambiar IMG_BASE en src/wordpress.py y volver a generar.
+
+2. PÁGINAS (una por idioma)
+   ES -> página de inicio  (https://activam.es/)
+   CA -> página con enlace permanente /ca/
+   EN -> página con enlace permanente /en/
+   Plantilla de página: ancho completo / sin título / «Canvas» o «Blank» (sin cabecera ni pie del tema).
+
+3. CÓDIGO
+   Añadir un bloque «HTML personalizado» y pegar el contenido entero de es.html, ca.html o en.html.
+
+4. SEO (Yoast o Rank Math, en cada página)
+
+ES  (https://activam.es/)
+  Título SEO: Activa'M · Entrenamiento personal y rehabilitación en Sant Andreu (Barcelona)
+  Meta descripción: Centro de entrenamiento personal, rehabilitación, fisioterapia y nutrición en Sant Andreu, Barcelona. Fisios especializados en ejercicio y entrenadores en readaptación desde 2013. Cita previa por WhatsApp, de 7 a 22 h.
+
+CA  (https://activam.es/ca/)
+  Título SEO: Activa'M · Entrenament personal i rehabilitació a Sant Andreu (Barcelona)
+  Meta descripción: Centre d'entrenament personal, rehabilitació, fisioteràpia i nutrició a Sant Andreu, Barcelona. Fisios especialitzats en exercici i entrenadors en readaptació des del 2013. Cita prèvia per WhatsApp, de 7 a 22 h.
+
+EN  (https://activam.es/en/)
+  Título SEO: Activa'M · Personal training and rehabilitation in Sant Andreu (Barcelona)
+  Meta descripción: Personal training, rehabilitation, physiotherapy and nutrition centre in Sant Andreu, Barcelona. Exercise-based physios and return-to-sport trainers since 2013. Book on WhatsApp, 7 am to 10 pm.
