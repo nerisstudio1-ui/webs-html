@@ -2,7 +2,7 @@ ACTIVA'M · VERSIÓN PARA WORDPRESS
 
 1. IMÁGENES
    Medios > Añadir nuevo > subir TODAS las imágenes de imagenes-activam.zip (descomprimido) de una vez.
-   Deben quedar en https://activam.es/wp-content/uploads/2026/11/
+   Deben quedar en /wp-content/uploads/2026/11/
    Si se suben otro mes, cambiar IMG_BASE en src/wordpress.py y volver a generar.
 
 2. PÁGINAS (una por idioma)

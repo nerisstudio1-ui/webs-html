@@ -16,7 +16,8 @@ import build
 
 # Carpeta donde quedan las imágenes al subirlas a WordPress (Medios > Añadir nuevo).
 # WordPress las guarda por año/mes; si se suben otro mes, cambiar aquí y volver a generar.
-IMG_BASE = "https://activam.es/wp-content/uploads/2026/11/"
+# Rutas relativas al dominio: funcionan igual en el dominio provisional de Hostinger y en activam.es.
+IMG_BASE = "/wp-content/uploads/2026/11/"
 SITE = "https://activam.es/"
 SCOPE = ".activam-lp"
 OUT = build.ROOT / "wordpress"
@@ -77,10 +78,10 @@ def to_wordpress(lang, t, template):
     # rutas absolutas a las imágenes subidas a WordPress
     body = re.sub(r'(src|poster)="(?:img|video)/', rf'\1="{IMG_BASE}', body)
     body = body.replace("url(img/", f"url({IMG_BASE}")
-    jsonld = jsonld.replace("https://activam.es/img/", IMG_BASE)
+    jsonld = jsonld.replace("https://activam.es/img/", SITE.rstrip("/") + IMG_BASE)
     # selector de idioma con enlaces absolutos a las páginas de WordPress
     for code, o in build.LANGS.items():
-        body = body.replace(f'href="{o["path"]}" hreflang="{code}"', f'href="{SITE}{o["path"]}" hreflang="{code}"')
+        body = body.replace(f'href="{o["path"]}" hreflang="{code}"', f'href="/{o["path"]}" hreflang="{code}"')
 
     extra = f"""
   {SCOPE} {{ width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); }}
