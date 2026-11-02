@@ -445,7 +445,7 @@ def em_last(text):
     """Pone en cursiva la última palabra (o las dos últimas si la última es corta)."""
     words = text.split(" ")
     n = 2 if len(words) > 2 and len(words[-1]) <= 3 else 1
-    return " ".join(words[:-n]) + " <em>" + " ".join(words[-n:]) + "</em>" if len(words) > 1 else f"<em>{text}</em>"
+    return " ".join(words[:-n]) + " <em>" + " ".join(words[-n:]) + "</em>" if len(words) > 1 else text
 
 
 def lis(items):
