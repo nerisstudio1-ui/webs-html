@@ -1,4 +1,4 @@
-<!-- MOA · Moviment i Salut — bloque de HTML personalizado (en). Generado 2026-11-04 12:11 UTC.
+<!-- MOA · Moviment i Salut — bloque de HTML personalizado (en). Generado 2026-11-04 12:18 UTC.
      No editar aquí: los cambios se hacen en src/ y se regenera con build.py y build_wordpress.py. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

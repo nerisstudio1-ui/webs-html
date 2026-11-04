@@ -12,6 +12,8 @@ Cada página enlaza a las otras dos con el selector CA · ES · EN de la cabecer
 
 ## WordPress
 
+`moa-3-idiomas.html` (y `wordpress/moa-wordpress-3-idiomas.html`/`.txt`) es una sola página con los tres idiomas y selector instantáneo; la genera `build.py` junto con las otras.
+
 `wordpress/moa-wordpress-ca.html`, `-es.html` y `-en.html` son la misma web lista para pegar en un bloque de **HTML personalizado**, con todo dentro y los estilos encapsulados para que el tema no la descoloque. Instrucciones en `wordpress/INSTALACION.md`. Se regeneran con `python3 build_wordpress.py` (después de `build.py`).
 
 ## Cómo editar

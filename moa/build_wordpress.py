@@ -44,7 +44,7 @@ URLS = {"ca": "/", "es": "/es/", "en": "/en/"}
 # ve el hueco de foto. Ejemplo: "/wp-content/uploads/2026/11/portada.mp4"
 VIDEO_PORTADA = ""
 
-PAGES = {"ca": "index.html", "es": "es.html", "en": "en.html"}
+PAGES = {"ca": "index.html", "es": "es.html", "en": "en.html", "3-idiomas": "moa-3-idiomas.html"}
 
 # Clases que en la web normal van en <html> o <body> y aquí en el contenedor
 CLASES_RAIZ = {".js": ".has-js", ".loaded": ".loaded", ".menu-open": ".menu-open"}
@@ -219,7 +219,10 @@ def inline_assets(html):
             return m.group(0)
         return '%s="%s"' % (m.group(1), data(rel))
 
-    return re.sub(r'(src|href)="((?:assets|fotos)/[^"]+\.(?:svg|jpg|jpeg|png))"', repl, html)
+    html = re.sub(r'(src|href)="((?:assets|fotos)/[^"]+\.(?:svg|jpg|jpeg|png))"', repl, html)
+    # Rutas dentro de data-ta (los logos de cada idioma en la versión de tres idiomas)
+    return re.sub(r'(?<![\w/])((?:assets|fotos)/[\w./-]+\.(?:svg|jpg|jpeg|png))',
+                  lambda m: data(m.group(1)) if (ROOT / m.group(1)).exists() else m.group(0), html)
 
 
 def scope_js(js, ids):
@@ -291,6 +294,8 @@ def build(lang):
 
     # selector de idioma -> páginas de WordPress
     for code, page in PAGES.items():
+        if code not in URLS:
+            continue
         body = body.replace('href="%s" hreflang="%s"' % (page, code), 'href="%s" hreflang="%s"' % (URLS[code], code))
 
     # vídeo de portada: solo si ya está subido
@@ -316,7 +321,7 @@ def build(lang):
         % (lang, SELLO)
         + fonts + "\n"
         + "<style>\n" + compact(css) + "\n</style>\n"
-        + '<div id="moa-app" lang="%s">\n' % lang
+        + '<div id="moa-app" lang="%s">\n' % (lang if lang in URLS else "ca")
         + GUARDIA + "\n"
         + compact(body.strip()) + "\n"
         + "<script>\n" + compact(js) + "\n</script>\n"

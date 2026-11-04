@@ -1,5 +1,18 @@
 # MOA en WordPress · cómo pegarla
 
+## Opción recomendada: una sola página con los tres idiomas
+
+**`moa-wordpress-3-idiomas.txt`** (o `.html`, es lo mismo). Lleva el catalán, el castellano y el inglés dentro, con el selector **CA · ES · EN** en la cabecera, el menú del móvil y el pie. Al pulsarlo, el texto cambia al momento sin recargar la página.
+
+- Se crea **una sola página** (la de inicio) y se pega este archivo. No hace falta crear `/es/` ni `/en/`.
+- Al entrar, la web elige el idioma del navegador del visitante (catalán, castellano o inglés; si es otro, catalán) y recuerda el último que haya elegido.
+- Para enlazar directamente a un idioma: `tudominio.com/?lang=es` o `?lang=en`.
+- Pesa unos 1,4 MB.
+
+Aviso: con una sola página, Google indexa sobre todo la versión en catalán. Si más adelante interesa posicionar también en castellano o inglés, conviene usar las tres páginas separadas (opción de abajo).
+
+## Opción alternativa: una página por idioma
+
 Tres archivos, uno por idioma. Cada uno lleva **todo dentro** (estilos, animaciones, logos y la foto de Patricia), así que no hay que subir nada por FTP: se abre, se copia y se pega.
 
 | Archivo | Idioma | Página de WordPress |
