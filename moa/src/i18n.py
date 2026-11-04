@@ -17,8 +17,9 @@ TEXT = {
   "nav_services": "Serveis", "nav_method": "Com treballem", "nav_prices": "Tarifes", "nav_patricia": "Patricia",
   "nav_contact": "Contacte", "nav_cta": "Vull començar",
 
-  "ph_hero": "Foto: persona entrenant amb llum natural", "ph_intro_a": "Foto: grup entrenant",
-  "ph_intro_b": "Foto: material i exercici", "ph_patricia": "La Patricia Dorado somrient en un congost de muntanya",
+  "ph_hero": "Una alumna entrena amb una pilota medicinal a la sala de MOA", "ph_intro_a": "Una alumna fa un exercici amb una maça d'acer",
+  "aria_gallery": "Fotos de la comunitat", "ph_gal_1": "Les Tortuguites somrients després d'un entrenament", "ph_gal_2": "Entrenament en grup en moviment",
+  "ph_intro_b": "Una barra amb disc sobre el tatami", "ph_patricia": "La Patricia Dorado somrient en un congost de muntanya",
 
   "hero_l1": "El teu ritme.", "hero_l2": "El teu moviment.",
   "hero_sub": "Entrenament adaptat a tu.",
@@ -157,8 +158,9 @@ TEXT = {
   "nav_services": "Servicios", "nav_method": "Cómo trabajamos", "nav_prices": "Tarifas", "nav_patricia": "Patricia",
   "nav_contact": "Contacto", "nav_cta": "Quiero empezar",
 
-  "ph_hero": "Foto: persona entrenando con luz natural", "ph_intro_a": "Foto: grupo entrenando",
-  "ph_intro_b": "Foto: material y ejercicio", "ph_patricia": "Patricia Dorado sonriendo en un barranco de montaña",
+  "ph_hero": "Una alumna entrena con un balón medicinal en la sala de MOA", "ph_intro_a": "Una alumna hace un ejercicio con una maza de acero",
+  "aria_gallery": "Fotos de la comunidad", "ph_gal_1": "Las Tortuguitas sonriendo después de un entrenamiento", "ph_gal_2": "Entrenamiento en grupo en movimiento",
+  "ph_intro_b": "Una barra con disco sobre el tatami", "ph_patricia": "Patricia Dorado sonriendo en un barranco de montaña",
 
   "hero_l1": "Tu ritmo.", "hero_l2": "Tu movimiento.",
   "hero_sub": "Entrenamiento adaptado a ti.",
@@ -297,8 +299,9 @@ TEXT = {
   "nav_services": "Services", "nav_method": "How we work", "nav_prices": "Pricing", "nav_patricia": "Patricia",
   "nav_contact": "Contact", "nav_cta": "Get started",
 
-  "ph_hero": "Photo: person training in natural light", "ph_intro_a": "Photo: group training",
-  "ph_intro_b": "Photo: equipment and exercise", "ph_patricia": "Patricia Dorado smiling in a mountain gorge",
+  "ph_hero": "A client training with a medicine ball at MOA", "ph_intro_a": "A client doing a steel mace exercise",
+  "aria_gallery": "Community photos", "ph_gal_1": "The Tortuguitas smiling after a session", "ph_gal_2": "Group training in motion",
+  "ph_intro_b": "A barbell with a plate on the mat", "ph_patricia": "Patricia Dorado smiling in a mountain gorge",
 
   "hero_l1": "Your pace.", "hero_l2": "Your movement.",
   "hero_sub": "Training that adapts to you.",
