@@ -154,7 +154,7 @@ AJUSTES = """
   overflow-x:visible;
 }
 #moa-app .header{position:sticky;top:var(--moa-top,0px)}
-#moa-app .hero{padding-top:0;min-height:calc(100vh - 74px - var(--moa-top,0px))}
+#moa-app .hero{--hero-top:0px;padding-top:0;min-height:calc(100vh - 74px - var(--moa-top,0px))}
 #moa-app .hero,#moa-app .intro-sec,#moa-app .who,#moa-app .community,#moa-app .how,#moa-app .stats,#moa-app .behind,#moa-app .contact{overflow-x:clip}
 #moa-app .wrap{box-sizing:border-box}
 /* Botones: algunos temas pintan .btn o button con !important */

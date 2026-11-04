@@ -144,7 +144,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 [data-split].in .w>span{transform:none}
 
 /* Hero */
-.hero{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:74px}
+.hero{position:relative;overflow-x:clip;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:74px}
 .hero-media{position:relative;overflow:hidden;min-height:520px}
 .hero-layer{position:absolute;inset:-8% 0;height:116%;transform:scale(1.18);transition:transform 2.4s var(--ease) 1s}
 .loaded .hero-layer{transform:scale(1)}
@@ -431,7 +431,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .header .wrap{grid-template-columns:1fr auto}
   .menu-btn{display:block}
   .hero{grid-template-columns:1fr;min-height:0}
-  .hero-media{min-height:62vh;order:2}
+  .hero-media{min-height:0;aspect-ratio:4/3}
+  .badge{left:auto;right:24px;bottom:auto;top:calc(var(--hero-top,74px) + 75vw - 90px);margin-left:0}
   .hero-panel{padding:70px 28px 90px}
   .intro-grid{grid-template-columns:1fr 1fr;gap:20px}
   .intro-copy{grid-column:1/-1;grid-row:1}
@@ -454,7 +455,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .wrap{padding:0 18px}
   .hs-track{padding:0 18px}
   .hero-panel{padding:56px 18px 80px}
-  .badge{width:104px;height:104px;left:auto;right:16px;bottom:16px;margin-left:0}
+  .badge{width:96px;height:96px;left:auto;right:14px;bottom:auto;top:calc(var(--hero-top,74px) + 75vw - 66px);margin-left:0}
   .steps,.who-list,.row2{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
   .stat{padding-left:14px}
@@ -518,7 +519,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <section class="hero" id="inici">
   <div class="hero-media">
     <div class="hero-layer" data-speed="-0.12">
-      <img class="ph" src="fotos/entreno-balon.jpg" alt="A client training with a medicine ball at MOA" width="1600" height="1200" style="object-position:42% 50%">
+      <img class="ph" src="fotos/tortuguitas-grupo.jpg" alt="The Tortuguitas, the MOA group, smiling in the studio" width="1600" height="1071" style="object-position:55% 40%">
       <!-- Vídeo de portada: basta con dejar el archivo en fotos/portada.mp4 (en silencio y en bucle). Si no existe, se ve el hueco de foto. -->
       <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="fotos/portada.mp4" type="video/mp4"></video>
     </div>
@@ -644,7 +645,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <!-- GALERIA -->
 <section class="gallery" aria-label="Community photos">
   <div class="gallery-grid">
-    <div class="media clip" data-speed="0.05"><img class="ph" src="fotos/tortuguitas-grupo.jpg" alt="The Tortuguitas smiling after a session" width="1600" height="1071" loading="lazy"></div>
+    <div class="media clip" data-speed="0.05"><img class="ph" src="fotos/entreno-balon.jpg" alt="A client training with a medicine ball" width="1600" height="1200" loading="lazy" style="object-position:45% 50%"></div>
     <div class="media clip" style="--d:.12s" data-speed="-0.06"><img class="ph" src="fotos/grupo-movimiento.jpg" alt="Group training in motion" width="1600" height="1071" loading="lazy" style="object-position:40% 50%"></div>
   </div>
 </section>

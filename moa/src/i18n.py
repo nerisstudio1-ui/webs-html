@@ -17,8 +17,8 @@ TEXT = {
   "nav_services": "Serveis", "nav_method": "Com treballem", "nav_prices": "Tarifes", "nav_patricia": "Patricia",
   "nav_contact": "Contacte", "nav_cta": "Vull començar",
 
-  "ph_hero": "Una alumna entrena amb una pilota medicinal a la sala de MOA", "ph_intro_a": "Una alumna fa un exercici amb una maça d'acer",
-  "aria_gallery": "Fotos de la comunitat", "ph_gal_1": "Les Tortuguites somrients després d'un entrenament", "ph_gal_2": "Entrenament en grup en moviment",
+  "ph_hero": "Les Tortuguites, el grup de MOA, somrients a la sala", "ph_intro_a": "Una alumna fa un exercici amb una maça d'acer",
+  "aria_gallery": "Fotos de la comunitat", "ph_gal_1": "Una alumna entrena amb una pilota medicinal", "ph_gal_2": "Entrenament en grup en moviment",
   "ph_intro_b": "Una barra amb disc sobre el tatami", "ph_patricia": "La Patricia Dorado somrient en un congost de muntanya",
 
   "hero_l1": "El teu ritme.", "hero_l2": "El teu moviment.",
@@ -158,8 +158,8 @@ TEXT = {
   "nav_services": "Servicios", "nav_method": "Cómo trabajamos", "nav_prices": "Tarifas", "nav_patricia": "Patricia",
   "nav_contact": "Contacto", "nav_cta": "Quiero empezar",
 
-  "ph_hero": "Una alumna entrena con un balón medicinal en la sala de MOA", "ph_intro_a": "Una alumna hace un ejercicio con una maza de acero",
-  "aria_gallery": "Fotos de la comunidad", "ph_gal_1": "Las Tortuguitas sonriendo después de un entrenamiento", "ph_gal_2": "Entrenamiento en grupo en movimiento",
+  "ph_hero": "Las Tortuguitas, el grupo de MOA, sonriendo en la sala", "ph_intro_a": "Una alumna hace un ejercicio con una maza de acero",
+  "aria_gallery": "Fotos de la comunidad", "ph_gal_1": "Una alumna entrena con un balón medicinal", "ph_gal_2": "Entrenamiento en grupo en movimiento",
   "ph_intro_b": "Una barra con disco sobre el tatami", "ph_patricia": "Patricia Dorado sonriendo en un barranco de montaña",
 
   "hero_l1": "Tu ritmo.", "hero_l2": "Tu movimiento.",
@@ -299,8 +299,8 @@ TEXT = {
   "nav_services": "Services", "nav_method": "How we work", "nav_prices": "Pricing", "nav_patricia": "Patricia",
   "nav_contact": "Contact", "nav_cta": "Get started",
 
-  "ph_hero": "A client training with a medicine ball at MOA", "ph_intro_a": "A client doing a steel mace exercise",
-  "aria_gallery": "Community photos", "ph_gal_1": "The Tortuguitas smiling after a session", "ph_gal_2": "Group training in motion",
+  "ph_hero": "The Tortuguitas, the MOA group, smiling in the studio", "ph_intro_a": "A client doing a steel mace exercise",
+  "aria_gallery": "Community photos", "ph_gal_1": "A client training with a medicine ball", "ph_gal_2": "Group training in motion",
   "ph_intro_b": "A barbell with a plate on the mat", "ph_patricia": "Patricia Dorado smiling in a mountain gorge",
 
   "hero_l1": "Your pace.", "hero_l2": "Your movement.",
