@@ -6,6 +6,7 @@ Uso:  python3 activam/src/build.py
 """
 import html
 import json
+import re
 from pathlib import Path
 from urllib.parse import quote
 
@@ -101,22 +102,9 @@ LANGS = {
         visit="Visitar web",
         insta_h2="Síguenos en Instagram", insta_cta="Ver perfil", insta_alt="Instalaciones de Activa'M en Sant Andreu",
         faq_eyebrow="Preguntas frecuentes", faq_h2="Resolvemos tus dudas",
-        faq=[("¿Dónde está Activa'M?", "Estamos en el Carrer de Malats, 22, en el barrio de Sant Andreu (Barcelona)."),
-             ("¿Cuál es el horario?", "Atendemos de 7:00 a 22:00 h, siempre con cita concertada previamente por WhatsApp."),
-             ("¿Cómo pido cita?", "Escríbenos por WhatsApp al +34 626 660 770. Te preguntaremos qué necesitas y te propondremos día y hora."),
-             ("¿En qué se diferencia vuestra rehabilitación de la fisioterapia convencional?",
-              "Trabajamos la recuperación a través del ejercicio y el trabajo muscular. Fisioterapeutas especializados en ejercicio y entrenadores "
-              "especializados en readaptación te acompañan hasta que vuelves a tu actividad con seguridad."),
-             ("¿Necesito estar en forma para empezar?",
-              "No. Cada plan se adapta a tu punto de partida, tu edad, tus lesiones y tus objetivos, tanto si vienes a entrenar como a recuperarte."),
-             ("¿Qué tengo que traer a la primera sesión?",
-              "Ropa cómoda para moverte y, si tienes una lesión, los informes médicos o pruebas que tengas. Nos ayudan a valorar mejor tu caso."),
-             ("¿Puedo combinar entrenamiento, rehabilitación y nutrición?",
-              "Sí. Es una de las ventajas de Activa'M: los profesionales trabajan en equipo y coordinan tu plan."),
-             ("¿Hacéis clases en grupo?",
-              "Sí. Pilates, tonificación y fuerza en grupos reducidos en Activa'M Pilates. Toda la información está en activampilates.cat.")],
+        faq=[("No sé si necesito un fisioterapeuta o un entrenador, ¿cómo me puede ayudar Activa'M?", "No te preocupes por saber qué especialista necesitas, para eso estamos nosotros. En Activa'M funcionamos como un equipo multidisciplinar. Cuéntanos qué te ocurre (ya sea un dolor de espalda, una lesión de rodilla o simplemente que quieres empezar a cuidarte) y nosotros nos encargamos de evaluar tu caso y derivarte al especialista que mejor te pueda ayudar, combinando la fisioterapia y el entrenamiento de fuerza según lo que tu cuerpo necesite. ¡Escríbenos por WhatsApp y lo valoramos juntos!"), ('Tengo dolor de espalda o una hernia, ¿puedo hacer entrenamiento de fuerza?', "Sí, totalmente. De hecho, el entrenamiento de fuerza adaptado es la herramienta más eficaz para eliminar el dolor de espalda crónico y proteger la columna si tienes una hernia discal, protrusión o lumbago. En Activa'M no te daremos una tabla genérica: nuestros fisioterapeutas y entrenadores especializados diseñan ejercicios específicos para reforzar la musculatura del core y la espalda de forma 100% segura, devolviéndote la calidad de vida sin riesgos."), ('¿En qué se diferencia vuestra rehabilitación de la fisioterapia convencional?', "A diferencia de la fisioterapia tradicional, que se basa únicamente en masajes y tratamientos pasivos en camilla, en Activa'M nos enfocamos en la readaptación de lesiones a través del ejercicio terapéutico y la activación muscular. Si sufres dolores recurrentes de rodilla, hombro o espalda, no solo aliviamos el síntoma: corregimos la causa reforzando los músculos debilitados para que el dolor no vuelva a aparecer. Es la única manera de solucionar el problema. ¿Quieres un resultado de verdad?"), ("¿Necesito estar en forma para empezar a entrenar en Activa'M?", 'No, en absoluto. Nuestro centro está pensado precisamente para personas que necesitan mejorar su salud desde cualquier punto de partida. Tanto si tienes 30 años y quieres empezar a cuidarte, como si pasas de los 50 o 60 años y tu médico te ha recomendado reforzar la musculatura para proteger tus articulaciones, adaptamos la intensidad, las cargas y los movimientos a tus capacidades actuales.'), ('¿Tenéis clases de Pilates y entrenamientos en grupo en Sant Andreu?', 'Sí. En Activa\'M ofrecemos clases de Pilates, gimnasia hipopresiva y tonificación muscular en Sant Andreu. Creemos tanto en ello que tenemos un centro específico a muy pocos metros. Para garantizar tu seguridad y una supervisión técnica impecable, todas las clases se realizan en grupos reducidos. Son la opción ideal si buscas combinar el trabajo de fuerza con la mejora de la flexibilidad y la movilidad. Si quieres echarle un vistazo, aquí lo tienes: <a href="https://www.activampilates.cat/" target="_blank" rel="noopener">activampilates.cat</a>.'), ("¿Dónde está ubicado el centro de Activa'M y cuál es el horario?", 'Nuestro centro de entrenamiento personal y fisioterapia está en el Carrer de Malats, 22, en el barrio de Sant Andreu (Barcelona). Para que puedas compatibilizarlo fácilmente con tu vida laboral y familiar, abrimos de lunes a viernes en un amplio horario de 7:00 a 22:00 h.'), ("¿Cuánto cuesta una sesión de entrenamiento personal o fisioterapia en Activa'M?", "Depende. Tenemos precios de 40 a 60 euros la sesión, pero depende solo de ti y de lo que necesites. En Activa'M no queremos venderte nada más de lo necesario. Nuestro objetivo no es acumular bonos, sino ayudarte a reforzar tu musculatura, eliminar ese dolor de espalda o recuperarte de tu lesión de la forma más eficiente posible. Explícanos qué necesitas y cuál es tu caso, y miramos juntos la mejor manera de ayudarte con un plan a tu medida.")],
         contact_h2="Ven a vernos", lbl_address="Dirección", lbl_hours="Horario",
-        hours="De 7:00 a 22:00 h · Solo con cita previa",
+        hours="De lunes a viernes, de 7:00 a 22:00 h · Solo con cita previa",
         map_title="Mapa: Activa'M, Carrer de Malats 22, Barcelona",
         foot_p="Entrenamiento personal, rehabilitación y nutrición en Sant Andreu desde 2013.",
         legal=[("aviso-legal.html", "Aviso legal"), ("privacidad.html", "Privacidad"), ("cookies.html", "Cookies")],
@@ -206,22 +194,9 @@ LANGS = {
         visit="Visitar web",
         insta_h2="Segueix-nos a Instagram", insta_cta="Veure perfil", insta_alt="Instal·lacions d'Activa'M a Sant Andreu",
         faq_eyebrow="Preguntes freqüents", faq_h2="Resolem els teus dubtes",
-        faq=[("On és Activa'M?", "Som al carrer de Malats, 22, al barri de Sant Andreu (Barcelona)."),
-             ("Quin és l'horari?", "Atenem de 7:00 a 22:00 h, sempre amb cita concertada prèviament per WhatsApp."),
-             ("Com demano cita?", "Escriu-nos per WhatsApp al +34 626 660 770. Et preguntarem què necessites i et proposarem dia i hora."),
-             ("En què es diferencia la vostra rehabilitació de la fisioteràpia convencional?",
-              "Treballem la recuperació a través de l'exercici i el treball muscular. Fisioterapeutes especialitzats en exercici i entrenadors "
-              "especialitzats en readaptació t'acompanyen fins que tornes a la teva activitat amb seguretat."),
-             ("Cal estar en forma per començar?",
-              "No. Cada pla s'adapta al teu punt de partida, la teva edat, les teves lesions i els teus objectius, tant si véns a entrenar com a recuperar-te."),
-             ("Què he de portar a la primera sessió?",
-              "Roba còmoda per moure't i, si tens una lesió, els informes mèdics o proves que tinguis. Ens ajuden a valorar millor el teu cas."),
-             ("Puc combinar entrenament, rehabilitació i nutrició?",
-              "Sí. És un dels avantatges d'Activa'M: els professionals treballen en equip i coordinen el teu pla."),
-             ("Feu classes en grup?",
-              "Sí. Pilates, tonificació i força en grups reduïts a Activa'M Pilates. Tota la informació és a activampilates.cat.")],
+        faq=[("No sé si necessito un fisioterapeuta o un entrenador, com em pot ajudar Activa'M?", "No et preocupis per saber quin especialista necessites, per això hi som nosaltres. A Activa'M funcionem com un equip multidisciplinari. Explica'ns què et passa (ja sigui un mal d'esquena, una lesió de genoll o simplement que vols començar a cuidar-te) i nosaltres ens encarreguem d'avaluar el teu cas i derivar-te a l'especialista que millor et pugui ajudar, combinant la fisioteràpia i l'entrenament de força segons el que el teu cos necessiti. Escriu-nos per WhatsApp i ho valorem junts!"), ("Tinc mal d'esquena o una hèrnia, puc fer entrenament de força?", "Sí, totalment. De fet, l'entrenament de força adaptat és l'eina més eficaç per eliminar el mal d'esquena crònic i protegir la columna si tens una hèrnia discal, protrusió o lumbàlgia. A Activa'M no et donarem una taula genèrica: els nostres fisioterapeutes i entrenadors especialitzats dissenyen exercicis específics per reforçar la musculatura del core i l'esquena de manera 100% segura, i et tornen la qualitat de vida sense riscos."), ('En què es diferencia la vostra rehabilitació de la fisioteràpia convencional?', "A diferència de la fisioteràpia tradicional, que es basa únicament en massatges i tractaments passius a la llitera, a Activa'M ens centrem en la readaptació de lesions a través de l'exercici terapèutic i l'activació muscular. Si pateixes dolors recurrents de genoll, espatlla o esquena, no només alleugem el símptoma: corregim la causa reforçant els músculs debilitats perquè el dolor no torni. És l'única manera de solucionar el problema. Vols un resultat de debò?"), ("Cal estar en forma per començar a entrenar a Activa'M?", "No, en absolut. El nostre centre està pensat precisament per a persones que necessiten millorar la seva salut des de qualsevol punt de partida. Tant si tens 30 anys i vols començar a cuidar-te, com si passes dels 50 o 60 anys i el teu metge t'ha recomanat reforçar la musculatura per protegir les articulacions, adaptem la intensitat, les càrregues i els moviments a les teves capacitats actuals."), ('Teniu classes de Pilates i entrenaments en grup a Sant Andreu?', 'Sí. A Activa\'M oferim classes de Pilates, gimnàstica hipopressiva i tonificació muscular a Sant Andreu. Hi creiem tant que tenim un centre específic a molt pocs metres. Per garantir la teva seguretat i una supervisió tècnica impecable, totes les classes es fan en grups reduïts. Són l\'opció ideal si busques combinar el treball de força amb la millora de la flexibilitat i la mobilitat. Si vols fer-hi un cop d\'ull, aquí el tens: <a href="https://www.activampilates.cat/" target="_blank" rel="noopener">activampilates.cat</a>.'), ("On és el centre d'Activa'M i quin és l'horari?", "El nostre centre d'entrenament personal i fisioteràpia és al carrer de Malats, 22, al barri de Sant Andreu (Barcelona). Perquè ho puguis compaginar fàcilment amb la vida laboral i familiar, obrim de dilluns a divendres en un ampli horari de 7:00 a 22:00 h."), ("Quant costa una sessió d'entrenament personal o fisioteràpia a Activa'M?", "Depèn. Tenim preus de 40 a 60 euros la sessió, però depèn només de tu i del que necessitis. A Activa'M no et volem vendre res més del necessari. El nostre objectiu no és acumular bons, sinó ajudar-te a reforçar la musculatura, eliminar aquest mal d'esquena o recuperar-te de la lesió de la manera més eficient possible. Explica'ns què necessites i quin és el teu cas, i mirem junts la millor manera d'ajudar-te amb un pla a mida.")],
         contact_h2="Vine a veure'ns", lbl_address="Adreça", lbl_hours="Horari",
-        hours="De 7:00 a 22:00 h · Només amb cita prèvia",
+        hours="De dilluns a divendres, de 7:00 a 22:00 h · Només amb cita prèvia",
         map_title="Mapa: Activa'M, carrer de Malats 22, Barcelona",
         foot_p="Entrenament personal, rehabilitació i nutrició a Sant Andreu des del 2013.",
         legal=[("../aviso-legal.html", "Avís legal"), ("../privacidad.html", "Privacitat"), ("../cookies.html", "Galetes")],
@@ -553,6 +528,7 @@ def jsonld(t, lang):
                 "telephone": "+34626660770",
                 "email": "info@activam.es",
                 "foundingDate": "2013",
+                "priceRange": "40-60 €",
                 "address": {"@type": "PostalAddress", "streetAddress": "Carrer de Malats, 22", "addressLocality": "Barcelona",
                             "addressRegion": "Barcelona", "postalCode": "08030", "addressCountry": "ES"},
                 "areaServed": ["Sant Andreu", "Barcelona"],
@@ -569,7 +545,7 @@ def jsonld(t, lang):
             {"@type": "WebPage", "url": t["url"], "name": plain(t["meta_title"]), "inLanguage": lang,
              "about": {"@id": "https://activam.es/#centro"}},
             {"@type": "FAQPage", "inLanguage": lang, "mainEntity": [
-                {"@type": "Question", "name": plain(q), "acceptedAnswer": {"@type": "Answer", "text": plain(a)}}
+                {"@type": "Question", "name": plain(q), "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"<[^>]+>", "", plain(a))}}
                 for q, a in t["faq"]]},
         ],
     }

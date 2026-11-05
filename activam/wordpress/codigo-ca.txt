@@ -281,6 +281,7 @@
       "telephone": "+34626660770",
       "email": "info@activam.es",
       "foundingDate": "2013",
+      "priceRange": "40-60 €",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Carrer de Malats, 22",
@@ -370,26 +371,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "On és Activa'M?",
+          "name": "No sé si necessito un fisioterapeuta o un entrenador, com em pot ajudar Activa'M?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Som al carrer de Malats, 22, al barri de Sant Andreu (Barcelona)."
+            "text": "No et preocupis per saber quin especialista necessites, per això hi som nosaltres. A Activa'M funcionem com un equip multidisciplinari. Explica'ns què et passa (ja sigui un mal d'esquena, una lesió de genoll o simplement que vols començar a cuidar-te) i nosaltres ens encarreguem d'avaluar el teu cas i derivar-te a l'especialista que millor et pugui ajudar, combinant la fisioteràpia i l'entrenament de força segons el que el teu cos necessiti. Escriu-nos per WhatsApp i ho valorem junts!"
           }
         },
         {
           "@type": "Question",
-          "name": "Quin és l'horari?",
+          "name": "Tinc mal d'esquena o una hèrnia, puc fer entrenament de força?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Atenem de 7:00 a 22:00 h, sempre amb cita concertada prèviament per WhatsApp."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Com demano cita?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Escriu-nos per WhatsApp al +34 626 660 770. Et preguntarem què necessites i et proposarem dia i hora."
+            "text": "Sí, totalment. De fet, l'entrenament de força adaptat és l'eina més eficaç per eliminar el mal d'esquena crònic i protegir la columna si tens una hèrnia discal, protrusió o lumbàlgia. A Activa'M no et donarem una taula genèrica: els nostres fisioterapeutes i entrenadors especialitzats dissenyen exercicis específics per reforçar la musculatura del core i l'esquena de manera 100% segura, i et tornen la qualitat de vida sense riscos."
           }
         },
         {
@@ -397,39 +390,39 @@
           "name": "En què es diferencia la vostra rehabilitació de la fisioteràpia convencional?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Treballem la recuperació a través de l'exercici i el treball muscular. Fisioterapeutes especialitzats en exercici i entrenadors especialitzats en readaptació t'acompanyen fins que tornes a la teva activitat amb seguretat."
+            "text": "A diferència de la fisioteràpia tradicional, que es basa únicament en massatges i tractaments passius a la llitera, a Activa'M ens centrem en la readaptació de lesions a través de l'exercici terapèutic i l'activació muscular. Si pateixes dolors recurrents de genoll, espatlla o esquena, no només alleugem el símptoma: corregim la causa reforçant els músculs debilitats perquè el dolor no torni. És l'única manera de solucionar el problema. Vols un resultat de debò?"
           }
         },
         {
           "@type": "Question",
-          "name": "Cal estar en forma per començar?",
+          "name": "Cal estar en forma per començar a entrenar a Activa'M?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Cada pla s'adapta al teu punt de partida, la teva edat, les teves lesions i els teus objectius, tant si véns a entrenar com a recuperar-te."
+            "text": "No, en absolut. El nostre centre està pensat precisament per a persones que necessiten millorar la seva salut des de qualsevol punt de partida. Tant si tens 30 anys i vols començar a cuidar-te, com si passes dels 50 o 60 anys i el teu metge t'ha recomanat reforçar la musculatura per protegir les articulacions, adaptem la intensitat, les càrregues i els moviments a les teves capacitats actuals."
           }
         },
         {
           "@type": "Question",
-          "name": "Què he de portar a la primera sessió?",
+          "name": "Teniu classes de Pilates i entrenaments en grup a Sant Andreu?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Roba còmoda per moure't i, si tens una lesió, els informes mèdics o proves que tinguis. Ens ajuden a valorar millor el teu cas."
+            "text": "Sí. A Activa'M oferim classes de Pilates, gimnàstica hipopressiva i tonificació muscular a Sant Andreu. Hi creiem tant que tenim un centre específic a molt pocs metres. Per garantir la teva seguretat i una supervisió tècnica impecable, totes les classes es fan en grups reduïts. Són l'opció ideal si busques combinar el treball de força amb la millora de la flexibilitat i la mobilitat. Si vols fer-hi un cop d'ull, aquí el tens: activampilates.cat."
           }
         },
         {
           "@type": "Question",
-          "name": "Puc combinar entrenament, rehabilitació i nutrició?",
+          "name": "On és el centre d'Activa'M i quin és l'horari?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sí. És un dels avantatges d'Activa'M: els professionals treballen en equip i coordinen el teu pla."
+            "text": "El nostre centre d'entrenament personal i fisioteràpia és al carrer de Malats, 22, al barri de Sant Andreu (Barcelona). Perquè ho puguis compaginar fàcilment amb la vida laboral i familiar, obrim de dilluns a divendres en un ampli horari de 7:00 a 22:00 h."
           }
         },
         {
           "@type": "Question",
-          "name": "Feu classes en grup?",
+          "name": "Quant costa una sessió d'entrenament personal o fisioteràpia a Activa'M?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sí. Pilates, tonificació i força en grups reduïts a Activa'M Pilates. Tota la informació és a activampilates.cat."
+            "text": "Depèn. Tenim preus de 40 a 60 euros la sessió, però depèn només de tu i del que necessitis. A Activa'M no et volem vendre res més del necessari. El nostre objectiu no és acumular bons, sinó ajudar-te a reforçar la musculatura, eliminar aquest mal d'esquena o recuperar-te de la lesió de la manera més eficient possible. Explica'ns què necessites i quin és el teu cas, i mirem junts la millor manera d'ajudar-te amb un pla a mida."
           }
         }
       ]
@@ -597,7 +590,7 @@
         <p>Escriu-nos per WhatsApp i et responem al més aviat possible.</p>
         <a class="btn btn--solid" href="https://wa.me/34626660770?text=Hola%20Activa%27M%2C%20m%27agradaria%20demanar%20cita" target="_blank" rel="noopener">WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div><details open><summary>On és Activa'M?</summary><p>Som al carrer de Malats, 22, al barri de Sant Andreu (Barcelona).</p></details><details><summary>Quin és l'horari?</summary><p>Atenem de 7:00 a 22:00 h, sempre amb cita concertada prèviament per WhatsApp.</p></details><details><summary>Com demano cita?</summary><p>Escriu-nos per WhatsApp al +34 626 660 770. Et preguntarem què necessites i et proposarem dia i hora.</p></details><details><summary>En què es diferencia la vostra rehabilitació de la fisioteràpia convencional?</summary><p>Treballem la recuperació a través de l'exercici i el treball muscular. Fisioterapeutes especialitzats en exercici i entrenadors especialitzats en readaptació t'acompanyen fins que tornes a la teva activitat amb seguretat.</p></details><details><summary>Cal estar en forma per començar?</summary><p>No. Cada pla s'adapta al teu punt de partida, la teva edat, les teves lesions i els teus objectius, tant si véns a entrenar com a recuperar-te.</p></details><details><summary>Què he de portar a la primera sessió?</summary><p>Roba còmoda per moure't i, si tens una lesió, els informes mèdics o proves que tinguis. Ens ajuden a valorar millor el teu cas.</p></details><details><summary>Puc combinar entrenament, rehabilitació i nutrició?</summary><p>Sí. És un dels avantatges d'Activa'M: els professionals treballen en equip i coordinen el teu pla.</p></details><details><summary>Feu classes en grup?</summary><p>Sí. Pilates, tonificació i força en grups reduïts a Activa'M Pilates. Tota la informació és a activampilates.cat.</p></details></div>
+      <div><details open><summary>No sé si necessito un fisioterapeuta o un entrenador, com em pot ajudar Activa'M?</summary><p>No et preocupis per saber quin especialista necessites, per això hi som nosaltres. A Activa'M funcionem com un equip multidisciplinari. Explica'ns què et passa (ja sigui un mal d'esquena, una lesió de genoll o simplement que vols començar a cuidar-te) i nosaltres ens encarreguem d'avaluar el teu cas i derivar-te a l'especialista que millor et pugui ajudar, combinant la fisioteràpia i l'entrenament de força segons el que el teu cos necessiti. Escriu-nos per WhatsApp i ho valorem junts!</p></details><details><summary>Tinc mal d'esquena o una hèrnia, puc fer entrenament de força?</summary><p>Sí, totalment. De fet, l'entrenament de força adaptat és l'eina més eficaç per eliminar el mal d'esquena crònic i protegir la columna si tens una hèrnia discal, protrusió o lumbàlgia. A Activa'M no et donarem una taula genèrica: els nostres fisioterapeutes i entrenadors especialitzats dissenyen exercicis específics per reforçar la musculatura del core i l'esquena de manera 100% segura, i et tornen la qualitat de vida sense riscos.</p></details><details><summary>En què es diferencia la vostra rehabilitació de la fisioteràpia convencional?</summary><p>A diferència de la fisioteràpia tradicional, que es basa únicament en massatges i tractaments passius a la llitera, a Activa'M ens centrem en la readaptació de lesions a través de l'exercici terapèutic i l'activació muscular. Si pateixes dolors recurrents de genoll, espatlla o esquena, no només alleugem el símptoma: corregim la causa reforçant els músculs debilitats perquè el dolor no torni. És l'única manera de solucionar el problema. Vols un resultat de debò?</p></details><details><summary>Cal estar en forma per començar a entrenar a Activa'M?</summary><p>No, en absolut. El nostre centre està pensat precisament per a persones que necessiten millorar la seva salut des de qualsevol punt de partida. Tant si tens 30 anys i vols començar a cuidar-te, com si passes dels 50 o 60 anys i el teu metge t'ha recomanat reforçar la musculatura per protegir les articulacions, adaptem la intensitat, les càrregues i els moviments a les teves capacitats actuals.</p></details><details><summary>Teniu classes de Pilates i entrenaments en grup a Sant Andreu?</summary><p>Sí. A Activa'M oferim classes de Pilates, gimnàstica hipopressiva i tonificació muscular a Sant Andreu. Hi creiem tant que tenim un centre específic a molt pocs metres. Per garantir la teva seguretat i una supervisió tècnica impecable, totes les classes es fan en grups reduïts. Són l'opció ideal si busques combinar el treball de força amb la millora de la flexibilitat i la mobilitat. Si vols fer-hi un cop d'ull, aquí el tens: <a href="https://www.activampilates.cat/" target="_blank" rel="noopener">activampilates.cat</a>.</p></details><details><summary>On és el centre d'Activa'M i quin és l'horari?</summary><p>El nostre centre d'entrenament personal i fisioteràpia és al carrer de Malats, 22, al barri de Sant Andreu (Barcelona). Perquè ho puguis compaginar fàcilment amb la vida laboral i familiar, obrim de dilluns a divendres en un ampli horari de 7:00 a 22:00 h.</p></details><details><summary>Quant costa una sessió d'entrenament personal o fisioteràpia a Activa'M?</summary><p>Depèn. Tenim preus de 40 a 60 euros la sessió, però depèn només de tu i del que necessitis. A Activa'M no et volem vendre res més del necessari. El nostre objectiu no és acumular bons, sinó ajudar-te a reforçar la musculatura, eliminar aquest mal d'esquena o recuperar-te de la lesió de la manera més eficient possible. Explica'ns què necessites i quin és el teu cas, i mirem junts la millor manera d'ajudar-te amb un pla a mida.</p></details></div>
     </div>
   </section>
 
@@ -608,7 +601,7 @@
     <div class="foot-cta">
       <div>
       <h2>A punt per <em>activar-te?</em></h2>
-      <p>De 7:00 a 22:00 h · Només amb cita prèvia · Carrer de Malats, 22</p>
+      <p>De dilluns a divendres, de 7:00 a 22:00 h · Només amb cita prèvia · Carrer de Malats, 22</p>
       <div class="hero-btns">
         <a class="btn btn--light" href="https://wa.me/34626660770?text=Hola%20Activa%27M%2C%20m%27agradaria%20demanar%20cita" target="_blank" rel="noopener">Demana cita per WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=Carrer%20de%20Malats%2022%2C%2008030%20Barcelona" target="_blank" rel="noopener">Com arribar-hi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -658,7 +651,7 @@
         <h4>Contacte</h4>
         <address>
           <span>Carrer de Malats, 22<br>08030 Sant Andreu, Barcelona</span>
-          <span>De 7:00 a 22:00 h · Només amb cita prèvia</span>
+          <span>De dilluns a divendres, de 7:00 a 22:00 h · Només amb cita prèvia</span>
           <a href="https://wa.me/34626660770">WhatsApp +34 626 660 770</a>
           <a href="mailto:info@activam.es">info@activam.es</a>
         </address>
