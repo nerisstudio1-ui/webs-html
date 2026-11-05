@@ -506,7 +506,9 @@ for _code, _extra in EXTRA_REV.items():
 # Instagram (p. ej. Behold.so o LightWidget): feed que se actualiza solo con las publicaciones de la cuenta.
 INSTAGRAM_WIDGET = ""
 # Reseñas de Google (p. ej. Trustindex o Elfsight): se actualizan solas desde la ficha de Google.
-GOOGLE_REVIEWS_WIDGET = ""
+# Widget de Trustindex creado por el centro (id 622e01b8539712228146eef62ce). Versión HTML: funciona sin el plugin.
+GOOGLE_REVIEWS_WIDGET = ('<div class="rev-widget"><script defer async '
+                         'src="https://cdn.trustindex.io/loader.js?622e01b8539712228146eef62ce"></script></div>')
 
 ALT_SVC = {
     "es": dict(alt_svc_pt="Entrenador de Activa'M guiando a una clienta en la sala de entrenamiento",
