@@ -242,7 +242,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:nth-child(2){background:var(--violeta);color:var(--crema)}
 .svc:nth-child(3){background:var(--verde)}
 .svc:nth-child(4){background:var(--carbon);color:var(--crema)}
-.svc:nth-child(5){background:var(--blanco)}
+.svc:nth-child(5){background:#E6D8FD}
 .svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
 .svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
 .svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem}
@@ -297,6 +297,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .opt:hover{border-color:var(--carbon);transform:translateX(4px)}
 .opt input{accent-color:var(--violeta);width:18px;height:18px;flex:none}
 .opt:has(input:checked){border-color:var(--violeta);background:rgba(146,66,243,.08)}
+.q-note{margin:14px 0 0;font-size:.88rem;color:var(--gris)}
 .quiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
 .quiz-nav .btn:disabled{opacity:.35;cursor:not-allowed}
 .result{display:none}
@@ -459,6 +460,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .hero-panel{padding:56px 18px 80px}
   .badge{width:96px;height:96px;left:auto;right:14px;bottom:auto;top:calc(var(--hero-top,74px) + 75vw - 66px);margin-left:0}
   .steps,.who-list,.row2{grid-template-columns:1fr}
+  .who-list li::before,.who-list li:nth-child(4n+2)::before,.who-list li:nth-child(4n+3)::before{background:var(--carbon)}
+  .who-list li:nth-child(even)::before{background:var(--violeta)}
   .stats-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
   .stat{padding-left:14px}
   .quiz form,.form{padding:28px 20px}
@@ -616,11 +619,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       </div>
     </div>
     <div class="hs-track" id="hsTrack">
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>Entrenament personal compartit</h3><p>Grups molt reduïts. Cada persona amb el seu entrenament adaptat, compartint espai i moment. Perquè entrenar acompanyat també motiva.</p><div class="price">25 € <small>/ sessió</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal compartit">Demana informació <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>Entrenament grupal</h3><p>Entrenem junts, però cadascú troba el seu nivell dins de cada exercici. Compartim l'esforç i gaudim del moment.</p><div class="price">Des de 35 € <small>/ mes</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenament grupal">Demana informació <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>Entrenament a domicili</h3><p>Portem l'entrenament a casa teva quan desplaçar-te no és fàcil o vols aprofitar al màxim el temps.</p><div class="price">Des de 35 € <small>/ sessió</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenament a domicili">Demana informació <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>Entrenament personal en línia</h3><p>Un pla individualitzat i seguiment professional, siguis on siguis. Un entrenament que evoluciona amb tu.</p><div class="price">35 € <small>/ sessió</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal en línia">Demana informació <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>Entrenament personal amb app</h3><p>Entrenes pel teu compte i al teu ritme, amb les sessions explicades pas a pas i el nostre seguiment.</p><div class="price">Des de 65 € <small>/ mes</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal amb app">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>Entrenament personal compartit</h3><p>Grups molt reduïts. Cada persona amb el seu entrenament adaptat, compartint espai i moment. Perquè entrenar acompanyat també motiva.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal compartit">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>Entrenament grupal</h3><p>Entrenem junts, però cadascú troba el seu nivell dins de cada exercici. Compartim l'esforç i gaudim del moment.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament grupal">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>Entrenament a domicili</h3><p>Portem l'entrenament a casa teva quan desplaçar-te no és fàcil o vols aprofitar al màxim el temps.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament a domicili">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>Entrenament personal en línia</h3><p>Un pla individualitzat i seguiment professional, siguis on siguis. Un entrenament que evoluciona amb tu.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal en línia">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>Entrenament personal amb app</h3><p>Entrenes pel teu compte i al teu ritme, amb les sessions explicades pas a pas i el nostre seguiment.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal amb app">Demana informació <span>→</span></a></article>
     </div>
   </div>
 </section>
@@ -677,7 +680,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <legend>Com t'agradaria entrenar?</legend>
         <div class="opts">
           <label class="opt"><input type="radio" name="como" value="grupo"> En grup, amb bon ambient</label>
-          <label class="opt"><input type="radio" name="como" value="personal"> Amb atenció individual</label>
+          <label class="opt"><input type="radio" name="como" value="personal"> Amb entrenament personalitzat</label>
           <label class="opt"><input type="radio" name="como" value="solo"> Pel meu compte, amb un pla fet per a mi</label>
         </div>
       </fieldset>
@@ -688,6 +691,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <label class="opt"><input type="radio" name="donde" value="casa"> A casa meva</label>
           <label class="opt"><input type="radio" name="donde" value="distancia"> A distància, des d'on sigui</label>
         </div>
+        <p class="q-note" id="qGroupNote" hidden>Els entrenaments en grup són presencials, a Martorell.</p>
       </fieldset>
       <fieldset class="q">
         <legend>Hi ha alguna cosa a tenir en compte?</legend>
@@ -744,12 +748,13 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <h3 id="horaris">Horaris dels grups</h3>
         <p>Horaris habituals a dia d'avui.</p>
         <ul class="slots">
+          <li><span>Dilluns i dimecres</span><time>18:00 – 19:00</time></li>
           <li><span>Dilluns i dimecres</span><time>19:00 – 20:00</time></li>
           <li><span>Dimarts i dijous</span><time>17:00 – 18:00</time></li>
           <li><span>Dimarts i dijous</span><time>19:00 – 20:00</time></li>
         </ul>
         <div class="others">
-          <p><strong>Prefereixes al matí?</strong> Si hi ha prou demanda, obrim grups de matí.</p>
+          <p><strong>Prefereixes al matí o un altre horari?</strong> Si hi ha prou demanda, obrim nous grups.</p>
           <p><strong>App:</strong> l'horari el marques tu.</p>
           <p><strong>Resta de modalitats:</strong> l'horari l'acordem amb tu.</p>
         </div>
@@ -768,16 +773,17 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div>
     <div class="behind-copy">
       <span class="eyebrow reveal">Qui hi ha darrere</span>
-      <h2 data-split>Hola, sóc la Patricia Dorado.</h2>
-      <p class="reveal">L'esport forma part de la meva vida des de molt petita: judo i natació als 5 anys, handbol als 7 i, amb els anys, cinturó negre de judo. També m'apassionen el senderisme, l'escalada, el barranquisme, el submarinisme i el trail running.</p>
-      <p class="reveal">Vaig començar com a entrenadora d'handbol i professora de judo, i durant anys vaig fer classes col·lectives en gimnasos. A la carrera vaig descobrir que l'exercici pot ajudar algú a recuperar força i mobilitat i, en definitiva, a <strong>tornar a sentir-se capaç</strong>.</p>
-      <blockquote class="quote reveal">Cada persona és un món. El que més m'agrada de la meva feina és descobrir què necessita cadascú i adaptar l'entrenament perquè tingui sentit per a ell.</blockquote>
-      <p class="reveal">Després de més de 10 anys com a entrenadora personal, MOA és la nova etapa del meu projecte: un espai propi i una comunitat, amb la mateixa filosofia de sempre.</p>
+      <h2 data-split>Sóc la Patricia Dorado.</h2>
+      <p class="reveal">L'esport ha format part de la meva vida des que era molt petita. Vaig començar amb el judo i la natació als 5 anys i, als 7, amb l'handbol, fins a aconseguir el cinturó negre de judo. També m'apassiona tot el que té a veure amb la natura i l'aventura: senderisme, escalada, barranquisme, submarinisme i trail running.</p>
+      <p class="reveal">Sempre he sentit la necessitat d'ajudar les persones a estar bé, no només físicament, sinó en totes les seves facetes. A la carrera vaig descobrir que l'exercici podia ser molt més que millorar la condició física: podia ajudar algú a recuperar-se d'una lesió, recuperar força i mobilitat i, en definitiva, <strong>tornar a sentir-se capaç</strong>.</p>
+      <blockquote class="quote reveal">Perquè cada persona és un món. I això és el que més m'agrada de la meva feina: descobrir què necessita cadascú i adaptar l'entrenament perquè tingui sentit per a ell.</blockquote>
+      <p class="reveal">Porto més de 10 anys com a entrenadora personal i també sóc quiromassatgista. MOA és el pas que em va costar una mica fer: el meu propi projecte. Entrenem com entrenem, hi ha una cosa que no canvia: m'importa la persona que hi ha darrere de l'entrenament.</p>
       <ol class="timeline reveal">
         <li><b>01</b><div><strong>CFGS en Animació d'Activitats Físiques i Esportives</strong><span>Mentre feia classes col·lectives en diferents centres.</span></div></li>
         <li><b>02</b><div><strong>Grau en Ciències de l'Activitat Física i de l'Esport, INEFC Barcelona</strong><span>Compaginat amb la feina.</span></div></li>
         <li><b>03</b><div><strong>Màster en Prescripció d'Exercici Físic i Salut, INEFC Barcelona</strong><span>Exercici per a la salut i la recuperació.</span></div></li>
-        <li><b>04</b><div><strong>Més de 10 anys com a entrenadora personal</strong><span>I ara, MOA.</span></div></li>
+        <li><b>04</b><div><strong>Quiromassatgista</strong><span>El massatge com a complement de l'entrenament i la recuperació.</span></div></li>
+        <li><b>05</b><div><strong>Més de 10 anys com a entrenadora personal</strong><span>I ara, MOA.</span></div></li>
       </ol>
     </div>
   </div>
@@ -889,7 +895,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <script>
 (function(){
   window.MOA_OK = true;
-  var T = {"menuOpen": "Obrir el menú", "menuClose": "Tancar el menú", "waDefault": "Hola! M'agradaria informació sobre els entrenaments de MOA.", "quizNext": "Següent", "quizResult": "Veure el resultat", "services": {"compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups molt reduïts i amb bon ambient."}, "grupal": {"t": "Entrenament grupal", "d": "Entrenem junts i cadascú adapta els exercicis al seu nivell. Ideal per agafar constància."}, "domicilio": {"t": "Entrenament a domicili", "d": "Portem l'entrenament a casa teva, adaptat a com et trobes i a l'espai que tinguis."}, "online": {"t": "Entrenament personal en línia", "d": "Un pla individualitzat amb seguiment a distància, que evoluciona amb tu."}, "app": {"t": "Entrenament personal amb app", "d": "Entrenes quan i on vulguis, amb les sessions explicades pas a pas i seguiment de la teva evolució."}}, "labels": {"como": {"grupo": "en grup", "personal": "amb atenció individual", "solo": "pel meu compte amb un pla"}, "donde": {"martorell": "presencial a Martorell", "casa": "a casa", "distancia": "a distància"}, "nota": {"empezar": "vull començar o fa temps que no entreno", "salud": "vinc d'una lesió o un procés de salut", "tiempo": "tinc poc temps", "nada": "res en especial"}}, "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?", "errFields": "Escriu el teu nom i explica'ns una mica què busques.", "errConsent": "Marca la casella per poder enviar la consulta.", "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:", "mailSubject": "Consulta des de la web de MOA:"};
+  var T = {"menuOpen": "Obrir el menú", "menuClose": "Tancar el menú", "waDefault": "Hola! M'agradaria informació sobre els entrenaments de MOA.", "quizNext": "Següent", "quizResult": "Veure el resultat", "services": {"compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups molt reduïts i amb bon ambient."}, "grupal": {"t": "Entrenament grupal", "d": "Entrenem junts i cadascú adapta els exercicis al seu nivell. Ideal per agafar constància."}, "domicilio": {"t": "Entrenament a domicili", "d": "Portem l'entrenament a casa teva, adaptat a com et trobes i a l'espai que tinguis."}, "online": {"t": "Entrenament personal en línia", "d": "Un pla individualitzat amb seguiment a distància, que evoluciona amb tu."}, "app": {"t": "Entrenament personal amb app", "d": "Entrenes quan i on vulguis, amb les sessions explicades pas a pas i seguiment de la teva evolució."}}, "labels": {"como": {"grupo": "en grup", "personal": "amb entrenament personalitzat", "solo": "pel meu compte amb un pla"}, "donde": {"martorell": "presencial a Martorell", "casa": "a casa", "distancia": "a distància"}, "nota": {"empezar": "vull començar o fa temps que no entreno", "salud": "vinc d'una lesió o un procés de salut", "tiempo": "tinc poc temps", "nada": "res en especial"}}, "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?", "errFields": "Escriu el teu nom i explica'ns una mica què busques.", "errConsent": "Marca la casella per poder enviar la consulta.", "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:", "mailSubject": "Consulta des de la web de MOA:"};
   var PHONE = '34677851211';
   var EMAIL = 'patriciadoradotrainer@gmail.com';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1090,6 +1096,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   var current = 0;
   function val(n){ var c = quiz.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : null; }
   function recommend(como, donde, nota){
+    if (como === 'grupo') return nota === 'salud' ? 'compartido' : 'grupal';
     if (donde === 'casa') return 'domicilio';
     if (donde === 'distancia') return como === 'solo' ? 'app' : 'online';
     if (como === 'solo') return 'app';
@@ -1101,6 +1108,14 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     qSteps.forEach(function(s, k){ s.classList.toggle('active', k === i); });
     bars.forEach(function(b, k){ b.classList.toggle('on', k <= i); });
     back.hidden = i === 0;
+    // Los grupos solo son presenciales: con «en grupo» solo queda Martorell
+    var grupo = val('como') === 'grupo';
+    qSteps[1].querySelectorAll('input[name="donde"]').forEach(function(r){
+      var only = r.value === 'martorell';
+      r.closest('.opt').hidden = grupo && !only;
+      if (grupo) r.checked = only;
+    });
+    document.getElementById('qGroupNote').hidden = !grupo;
     next.textContent = i === qSteps.length - 1 ? T.quizResult : T.quizNext;
     next.disabled = !qSteps[i].querySelector('input:checked');
   }

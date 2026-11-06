@@ -242,7 +242,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:nth-child(2){background:var(--violeta);color:var(--crema)}
 .svc:nth-child(3){background:var(--verde)}
 .svc:nth-child(4){background:var(--carbon);color:var(--crema)}
-.svc:nth-child(5){background:var(--blanco)}
+.svc:nth-child(5){background:#E6D8FD}
 .svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
 .svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
 .svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem}
@@ -297,6 +297,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .opt:hover{border-color:var(--carbon);transform:translateX(4px)}
 .opt input{accent-color:var(--violeta);width:18px;height:18px;flex:none}
 .opt:has(input:checked){border-color:var(--violeta);background:rgba(146,66,243,.08)}
+.q-note{margin:14px 0 0;font-size:.88rem;color:var(--gris)}
 .quiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
 .quiz-nav .btn:disabled{opacity:.35;cursor:not-allowed}
 .result{display:none}
@@ -459,6 +460,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .hero-panel{padding:56px 18px 80px}
   .badge{width:96px;height:96px;left:auto;right:14px;bottom:auto;top:calc(var(--hero-top,74px) + 75vw - 66px);margin-left:0}
   .steps,.who-list,.row2{grid-template-columns:1fr}
+  .who-list li::before,.who-list li:nth-child(4n+2)::before,.who-list li:nth-child(4n+3)::before{background:var(--carbon)}
+  .who-list li:nth-child(even)::before{background:var(--violeta)}
   .stats-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
   .stat{padding-left:14px}
   .quiz form,.form{padding:28px 20px}
@@ -616,11 +619,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       </div>
     </div>
     <div class="hs-track" id="hsTrack">
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>{{svc1_t}}</h3><p>{{svc1_p}}</p><div class="price">{{svc1_price}}</div><a href="#contacte" class="link-arrow" data-servicio="{{svc1_t}}">{{svc_cta}} <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>{{svc2_t}}</h3><p>{{svc2_p}}</p><div class="price">{{svc2_price}}</div><a href="#contacte" class="link-arrow" data-servicio="{{svc2_t}}">{{svc_cta}} <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>{{svc3_t}}</h3><p>{{svc3_p}}</p><div class="price">{{svc3_price}}</div><a href="#contacte" class="link-arrow" data-servicio="{{svc3_t}}">{{svc_cta}} <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>{{svc4_t}}</h3><p>{{svc4_p}}</p><div class="price">{{svc4_price}}</div><a href="#contacte" class="link-arrow" data-servicio="{{svc4_t}}">{{svc_cta}} <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>{{svc5_t}}</h3><p>{{svc5_p}}</p><div class="price">{{svc5_price}}</div><a href="#contacte" class="link-arrow" data-servicio="{{svc5_t}}">{{svc_cta}} <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>{{svc1_t}}</h3><p>{{svc1_p}}</p><a href="#contacte" class="link-arrow" data-servicio="{{svc1_t}}">{{svc_cta}} <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>{{svc2_t}}</h3><p>{{svc2_p}}</p><a href="#contacte" class="link-arrow" data-servicio="{{svc2_t}}">{{svc_cta}} <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>{{svc3_t}}</h3><p>{{svc3_p}}</p><a href="#contacte" class="link-arrow" data-servicio="{{svc3_t}}">{{svc_cta}} <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>{{svc4_t}}</h3><p>{{svc4_p}}</p><a href="#contacte" class="link-arrow" data-servicio="{{svc4_t}}">{{svc_cta}} <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>{{svc5_t}}</h3><p>{{svc5_p}}</p><a href="#contacte" class="link-arrow" data-servicio="{{svc5_t}}">{{svc_cta}} <span>→</span></a></article>
     </div>
   </div>
 </section>
@@ -688,6 +691,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <label class="opt"><input type="radio" name="donde" value="casa"> {{q2_b}}</label>
           <label class="opt"><input type="radio" name="donde" value="distancia"> {{q2_c}}</label>
         </div>
+        <p class="q-note" id="qGroupNote" hidden>{{q2_group}}</p>
       </fieldset>
       <fieldset class="q">
         <legend>{{q3}}</legend>
@@ -744,6 +748,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <h3 id="horaris">{{sch_title}}</h3>
         <p>{{sch_sub}}</p>
         <ul class="slots">
+          <li><span>{{sch_mw}}</span><time>18:00 – 19:00</time></li>
           <li><span>{{sch_mw}}</span><time>19:00 – 20:00</time></li>
           <li><span>{{sch_tt}}</span><time>17:00 – 18:00</time></li>
           <li><span>{{sch_tt}}</span><time>19:00 – 20:00</time></li>
@@ -777,7 +782,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <li><b>01</b><div><strong>{{tl1}}</strong><span>{{tl1_s}}</span></div></li>
         <li><b>02</b><div><strong>{{tl2}}</strong><span>{{tl2_s}}</span></div></li>
         <li><b>03</b><div><strong>{{tl3}}</strong><span>{{tl3_s}}</span></div></li>
-        <li><b>04</b><div><strong>{{tl4}}</strong><span>{{tl4_s}}</span></div></li>
+        <li><b>04</b><div><strong>{{tl5}}</strong><span>{{tl5_s}}</span></div></li>
+        <li><b>05</b><div><strong>{{tl4}}</strong><span>{{tl4_s}}</span></div></li>
       </ol>
     </div>
   </div>
@@ -1090,6 +1096,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   var current = 0;
   function val(n){ var c = quiz.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : null; }
   function recommend(como, donde, nota){
+    if (como === 'grupo') return nota === 'salud' ? 'compartido' : 'grupal';
     if (donde === 'casa') return 'domicilio';
     if (donde === 'distancia') return como === 'solo' ? 'app' : 'online';
     if (como === 'solo') return 'app';
@@ -1101,6 +1108,14 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     qSteps.forEach(function(s, k){ s.classList.toggle('active', k === i); });
     bars.forEach(function(b, k){ b.classList.toggle('on', k <= i); });
     back.hidden = i === 0;
+    // Los grupos solo son presenciales: con «en grupo» solo queda Martorell
+    var grupo = val('como') === 'grupo';
+    qSteps[1].querySelectorAll('input[name="donde"]').forEach(function(r){
+      var only = r.value === 'martorell';
+      r.closest('.opt').hidden = grupo && !only;
+      if (grupo) r.checked = only;
+    });
+    document.getElementById('qGroupNote').hidden = !grupo;
     next.textContent = i === qSteps.length - 1 ? T.quizResult : T.quizNext;
     next.disabled = !qSteps[i].querySelector('input:checked');
   }

@@ -268,7 +268,15 @@ GUARDIA = (
     # ancho de la barra de desplazamiento, acotado (en móvil puede salir negativo)
     'var m=function(){var b=window.innerWidth-document.documentElement.clientWidth;'
     'if(!(b>0&&b<40))b=0;a.style.setProperty("--moa-barra",b+"px");};'
-    'm();window.addEventListener("resize",m);'
+    # Centrado a todo el ancho medido de verdad: si el tema mete el bloque en
+    # una columna descentrada (barra lateral, márgenes desiguales), el cálculo
+    # con 50% de la columna lo dejaría desplazado. Aquí se mide dónde queda y
+    # se corrige con un margen negativo exacto.
+    'var c=function(){var W=document.documentElement.clientWidth;a.style.width=W+"px";'
+    'a.style.maxWidth=W+"px";a.style.marginLeft="0px";a.style.marginRight="0px";'
+    'var l=a.getBoundingClientRect().left;a.style.marginLeft=(-l)+"px";};'
+    'm();c();window.addEventListener("resize",function(){m();c();});'
+    'window.addEventListener("load",c);'
     'var r=function(){if(!a.classList.contains("moa-ok"))a.classList.remove("has-js");};'
     'if(document.readyState==="complete"){setTimeout(r,300);}'
     'else{window.addEventListener("load",function(){setTimeout(r,300);});}'

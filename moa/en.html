@@ -242,7 +242,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:nth-child(2){background:var(--violeta);color:var(--crema)}
 .svc:nth-child(3){background:var(--verde)}
 .svc:nth-child(4){background:var(--carbon);color:var(--crema)}
-.svc:nth-child(5){background:var(--blanco)}
+.svc:nth-child(5){background:#E6D8FD}
 .svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
 .svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
 .svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem}
@@ -297,6 +297,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .opt:hover{border-color:var(--carbon);transform:translateX(4px)}
 .opt input{accent-color:var(--violeta);width:18px;height:18px;flex:none}
 .opt:has(input:checked){border-color:var(--violeta);background:rgba(146,66,243,.08)}
+.q-note{margin:14px 0 0;font-size:.88rem;color:var(--gris)}
 .quiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
 .quiz-nav .btn:disabled{opacity:.35;cursor:not-allowed}
 .result{display:none}
@@ -459,6 +460,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .hero-panel{padding:56px 18px 80px}
   .badge{width:96px;height:96px;left:auto;right:14px;bottom:auto;top:calc(var(--hero-top,74px) + 75vw - 66px);margin-left:0}
   .steps,.who-list,.row2{grid-template-columns:1fr}
+  .who-list li::before,.who-list li:nth-child(4n+2)::before,.who-list li:nth-child(4n+3)::before{background:var(--carbon)}
+  .who-list li:nth-child(even)::before{background:var(--violeta)}
   .stats-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
   .stat{padding-left:14px}
   .quiz form,.form{padding:28px 20px}
@@ -616,11 +619,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       </div>
     </div>
     <div class="hs-track" id="hsTrack">
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>Shared personal training</h3><p>Very small groups. Everyone follows their own tailored programme while sharing the space and the moment. Because training together is motivating too.</p><div class="price">€25 <small>/ session</small></div><a href="#contacte" class="link-arrow" data-servicio="Shared personal training">Ask about it <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>Group training</h3><p>We train together, but everyone finds their own level within each exercise. We share the effort and enjoy the moment.</p><div class="price">From €35 <small>/ month</small></div><a href="#contacte" class="link-arrow" data-servicio="Group training">Ask about it <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>Home training</h3><p>We bring the session to your home when getting out isn't easy, or when you want to make the most of your time.</p><div class="price">From €35 <small>/ session</small></div><a href="#contacte" class="link-arrow" data-servicio="Home training">Ask about it <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>Online personal training</h3><p>A personalised plan and professional follow-up, wherever you are. Training that evolves with you.</p><div class="price">€35 <small>/ session</small></div><a href="#contacte" class="link-arrow" data-servicio="Online personal training">Ask about it <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>App-based personal training</h3><p>Train on your own and at your pace, with every session explained step by step and our ongoing follow-up.</p><div class="price">From €65 <small>/ month</small></div><a href="#contacte" class="link-arrow" data-servicio="App-based personal training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>Shared personal training</h3><p>Very small groups. Everyone follows their own tailored programme while sharing the space and the moment. Because training together is motivating too.</p><a href="#contacte" class="link-arrow" data-servicio="Shared personal training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>Group training</h3><p>We train together, but everyone finds their own level within each exercise. We share the effort and enjoy the moment.</p><a href="#contacte" class="link-arrow" data-servicio="Group training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>Home training</h3><p>We bring the session to your home when getting out isn't easy, or when you want to make the most of your time.</p><a href="#contacte" class="link-arrow" data-servicio="Home training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>Online personal training</h3><p>A personalised plan and professional follow-up, wherever you are. Training that evolves with you.</p><a href="#contacte" class="link-arrow" data-servicio="Online personal training">Ask about it <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>App-based personal training</h3><p>Train on your own and at your pace, with every session explained step by step and our ongoing follow-up.</p><a href="#contacte" class="link-arrow" data-servicio="App-based personal training">Ask about it <span>→</span></a></article>
     </div>
   </div>
 </section>
@@ -677,7 +680,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <legend>How would you like to train?</legend>
         <div class="opts">
           <label class="opt"><input type="radio" name="como" value="grupo"> In a group, with a good vibe</label>
-          <label class="opt"><input type="radio" name="como" value="personal"> With one-to-one attention</label>
+          <label class="opt"><input type="radio" name="como" value="personal"> With personalised training</label>
           <label class="opt"><input type="radio" name="como" value="solo"> On my own, with a plan made for me</label>
         </div>
       </fieldset>
@@ -688,6 +691,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <label class="opt"><input type="radio" name="donde" value="casa"> At my home</label>
           <label class="opt"><input type="radio" name="donde" value="distancia"> Remotely, wherever I am</label>
         </div>
+        <p class="q-note" id="qGroupNote" hidden>Group sessions are in person, in Martorell.</p>
       </fieldset>
       <fieldset class="q">
         <legend>Anything we should take into account?</legend>
@@ -744,12 +748,13 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <h3 id="horaris">Group timetable</h3>
         <p>Current regular times.</p>
         <ul class="slots">
+          <li><span>Monday and Wednesday</span><time>18:00 – 19:00</time></li>
           <li><span>Monday and Wednesday</span><time>19:00 – 20:00</time></li>
           <li><span>Tuesday and Thursday</span><time>17:00 – 18:00</time></li>
           <li><span>Tuesday and Thursday</span><time>19:00 – 20:00</time></li>
         </ul>
         <div class="others">
-          <p><strong>Prefer mornings?</strong> If there's enough demand, we'll open morning groups.</p>
+          <p><strong>Prefer mornings or a different time?</strong> If there's enough demand, we'll open new groups.</p>
           <p><strong>App:</strong> you set your own schedule.</p>
           <p><strong>Other options:</strong> we agree the timetable with you.</p>
         </div>
@@ -768,16 +773,17 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div>
     <div class="behind-copy">
       <span class="eyebrow reveal">Who's behind it</span>
-      <h2 data-split>Hi, I'm Patricia Dorado.</h2>
-      <p class="reveal">Sport has been part of my life since I was very small: judo and swimming at 5, handball at 7 and, over the years, a black belt in judo. I'm also passionate about hiking, climbing, canyoning, scuba diving and trail running.</p>
-      <p class="reveal">I started out as a handball coach and judo teacher, and for years I taught group classes in gyms. While studying, I discovered that exercise can help someone regain strength and mobility and, ultimately, <strong>feel capable again</strong>.</p>
-      <blockquote class="quote reveal">Every person is a world of their own. What I love most about my job is finding out what each person needs and adapting the training so that it makes sense for them.</blockquote>
-      <p class="reveal">After more than 10 years as a personal trainer, MOA is the next stage of my project: a space of our own and a community, with the same philosophy as always.</p>
+      <h2 data-split>I'm Patricia Dorado.</h2>
+      <p class="reveal">Sport has been part of my life since I was very young. I started judo and swimming at 5 and handball at 7, and went on to earn a black belt in judo. I'm also passionate about anything to do with nature and adventure: hiking, climbing, canyoning, scuba diving and trail running.</p>
+      <p class="reveal">I've always felt the need to help people feel well, not just physically but in every way. While studying, I discovered that exercise could be much more than getting fitter: it could help someone recover from an injury, regain strength and mobility and, ultimately, <strong>feel capable again</strong>.</p>
+      <blockquote class="quote reveal">Because every person is a world of their own. And that's what I love most about my job: finding out what each person needs and adapting the training so that it makes sense for them.</blockquote>
+      <p class="reveal">I've been a personal trainer for more than 10 years and I'm also a chiromassage therapist. MOA is the step it took me a while to take: my own project. However we train, one thing doesn't change: I care about the person behind the training.</p>
       <ol class="timeline reveal">
         <li><b>01</b><div><strong>Higher Diploma in Physical and Sports Activities</strong><span>While teaching group classes at different centres.</span></div></li>
         <li><b>02</b><div><strong>Degree in Physical Activity and Sport Sciences, INEFC Barcelona</strong><span>Combined with work.</span></div></li>
         <li><b>03</b><div><strong>Master's in Exercise Prescription and Health, INEFC Barcelona</strong><span>Exercise for health and recovery.</span></div></li>
-        <li><b>04</b><div><strong>More than 10 years as a personal trainer</strong><span>And now, MOA.</span></div></li>
+        <li><b>04</b><div><strong>Chiromassage therapist</strong><span>Massage as a complement to training and recovery.</span></div></li>
+        <li><b>05</b><div><strong>More than 10 years as a personal trainer</strong><span>And now, MOA.</span></div></li>
       </ol>
     </div>
   </div>
@@ -889,7 +895,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <script>
 (function(){
   window.MOA_OK = true;
-  var T = {"menuOpen": "Open menu", "menuClose": "Close menu", "waDefault": "Hi! I'd like some information about training at MOA.", "quizNext": "Next", "quizResult": "See my result", "services": {"compartido": {"t": "Shared personal training", "d": "One-to-one attention and a plan for you, in very small groups with a great atmosphere."}, "grupal": {"t": "Group training", "d": "We train together and everyone adapts the exercises to their level. Great for building consistency."}, "domicilio": {"t": "Home training", "d": "We bring the training to your home, adapted to how you feel and the space you have."}, "online": {"t": "Online personal training", "d": "A personalised plan with remote follow-up that evolves with you."}, "app": {"t": "App-based personal training", "d": "Train whenever and wherever you like, with sessions explained step by step and your progress followed up."}}, "labels": {"como": {"grupo": "in a group", "personal": "with one-to-one attention", "solo": "on my own with a plan"}, "donde": {"martorell": "in person in Martorell", "casa": "at home", "distancia": "remotely"}, "nota": {"empezar": "I'm just starting or haven't trained in a while", "salud": "I'm coming back from an injury or health issue", "tiempo": "I'm short on time", "nada": "nothing special"}}, "quizWa": "Hi! I took the quiz on the MOA website and got \"{s}\". I'd like to train {como}, {donde}, and {nota}. Can we talk?", "errFields": "Please write your name and tell us a little about what you're looking for.", "errConsent": "Please tick the box so we can receive your enquiry.", "msgHello": "Hi! I'm {n}.", "msgInterest": "I'm interested in:", "msgPhone": "My phone:", "mailSubject": "Enquiry from the MOA website:"};
+  var T = {"menuOpen": "Open menu", "menuClose": "Close menu", "waDefault": "Hi! I'd like some information about training at MOA.", "quizNext": "Next", "quizResult": "See my result", "services": {"compartido": {"t": "Shared personal training", "d": "One-to-one attention and a plan for you, in very small groups with a great atmosphere."}, "grupal": {"t": "Group training", "d": "We train together and everyone adapts the exercises to their level. Great for building consistency."}, "domicilio": {"t": "Home training", "d": "We bring the training to your home, adapted to how you feel and the space you have."}, "online": {"t": "Online personal training", "d": "A personalised plan with remote follow-up that evolves with you."}, "app": {"t": "App-based personal training", "d": "Train whenever and wherever you like, with sessions explained step by step and your progress followed up."}}, "labels": {"como": {"grupo": "in a group", "personal": "with personalised training", "solo": "on my own with a plan"}, "donde": {"martorell": "in person in Martorell", "casa": "at home", "distancia": "remotely"}, "nota": {"empezar": "I'm just starting or haven't trained in a while", "salud": "I'm coming back from an injury or health issue", "tiempo": "I'm short on time", "nada": "nothing special"}}, "quizWa": "Hi! I took the quiz on the MOA website and got \"{s}\". I'd like to train {como}, {donde}, and {nota}. Can we talk?", "errFields": "Please write your name and tell us a little about what you're looking for.", "errConsent": "Please tick the box so we can receive your enquiry.", "msgHello": "Hi! I'm {n}.", "msgInterest": "I'm interested in:", "msgPhone": "My phone:", "mailSubject": "Enquiry from the MOA website:"};
   var PHONE = '34677851211';
   var EMAIL = 'patriciadoradotrainer@gmail.com';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1090,6 +1096,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   var current = 0;
   function val(n){ var c = quiz.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : null; }
   function recommend(como, donde, nota){
+    if (como === 'grupo') return nota === 'salud' ? 'compartido' : 'grupal';
     if (donde === 'casa') return 'domicilio';
     if (donde === 'distancia') return como === 'solo' ? 'app' : 'online';
     if (como === 'solo') return 'app';
@@ -1101,6 +1108,14 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     qSteps.forEach(function(s, k){ s.classList.toggle('active', k === i); });
     bars.forEach(function(b, k){ b.classList.toggle('on', k <= i); });
     back.hidden = i === 0;
+    // Los grupos solo son presenciales: con «en grupo» solo queda Martorell
+    var grupo = val('como') === 'grupo';
+    qSteps[1].querySelectorAll('input[name="donde"]').forEach(function(r){
+      var only = r.value === 'martorell';
+      r.closest('.opt').hidden = grupo && !only;
+      if (grupo) r.checked = only;
+    });
+    document.getElementById('qGroupNote').hidden = !grupo;
     next.textContent = i === qSteps.length - 1 ? T.quizResult : T.quizNext;
     next.disabled = !qSteps[i].querySelector('input:checked');
   }

@@ -242,7 +242,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:nth-child(2){background:var(--violeta);color:var(--crema)}
 .svc:nth-child(3){background:var(--verde)}
 .svc:nth-child(4){background:var(--carbon);color:var(--crema)}
-.svc:nth-child(5){background:var(--blanco)}
+.svc:nth-child(5){background:#E6D8FD}
 .svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
 .svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
 .svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem}
@@ -297,6 +297,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .opt:hover{border-color:var(--carbon);transform:translateX(4px)}
 .opt input{accent-color:var(--violeta);width:18px;height:18px;flex:none}
 .opt:has(input:checked){border-color:var(--violeta);background:rgba(146,66,243,.08)}
+.q-note{margin:14px 0 0;font-size:.88rem;color:var(--gris)}
 .quiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
 .quiz-nav .btn:disabled{opacity:.35;cursor:not-allowed}
 .result{display:none}
@@ -459,6 +460,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .hero-panel{padding:56px 18px 80px}
   .badge{width:96px;height:96px;left:auto;right:14px;bottom:auto;top:calc(var(--hero-top,74px) + 75vw - 66px);margin-left:0}
   .steps,.who-list,.row2{grid-template-columns:1fr}
+  .who-list li::before,.who-list li:nth-child(4n+2)::before,.who-list li:nth-child(4n+3)::before{background:var(--carbon)}
+  .who-list li:nth-child(even)::before{background:var(--violeta)}
   .stats-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
   .stat{padding-left:14px}
   .quiz form,.form{padding:28px 20px}
@@ -616,11 +619,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       </div>
     </div>
     <div class="hs-track" id="hsTrack">
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>Entrenamiento personal compartido</h3><p>Grupos muy reducidos. Cada persona con su entrenamiento adaptado, compartiendo espacio y momento. Porque entrenar acompañado también motiva.</p><div class="price">25 € <small>/ sesión</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento personal compartido">Pide información <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>Entrenamiento grupal</h3><p>Entrenamos juntos, pero cada persona encuentra su nivel dentro de cada ejercicio. Compartimos el esfuerzo y disfrutamos del momento.</p><div class="price">Desde 35 € <small>/ mes</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento grupal">Pide información <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>Entrenamiento a domicilio</h3><p>Llevamos el entrenamiento a tu casa cuando desplazarte no es fácil o quieres aprovechar al máximo tu tiempo.</p><div class="price">Desde 35 € <small>/ sesión</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento a domicilio">Pide información <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>Entrenamiento personal online</h3><p>Un plan individualizado y seguimiento profesional, estés donde estés. Un entrenamiento que evoluciona contigo.</p><div class="price">35 € <small>/ sesión</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento personal online">Pide información <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>Entrenamiento personal por app</h3><p>Entrenas por tu cuenta y a tu ritmo, con las sesiones explicadas paso a paso y nuestro seguimiento.</p><div class="price">Desde 65 € <small>/ mes</small></div><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento personal por app">Pide información <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>Entrenamiento personal compartido</h3><p>Grupos muy reducidos. Cada persona con su entrenamiento adaptado, compartiendo espacio y momento. Porque entrenar acompañado también motiva.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento personal compartido">Pide información <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>Entrenamiento grupal</h3><p>Entrenamos juntos, pero cada persona encuentra su nivel dentro de cada ejercicio. Compartimos el esfuerzo y disfrutamos del momento.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento grupal">Pide información <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>Entrenamiento a domicilio</h3><p>Llevamos el entrenamiento a tu casa cuando desplazarte no es fácil o quieres aprovechar al máximo tu tiempo.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento a domicilio">Pide información <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>Entrenamiento personal online</h3><p>Un plan individualizado y seguimiento profesional, estés donde estés. Un entrenamiento que evoluciona contigo.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento personal online">Pide información <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>Entrenamiento personal por app</h3><p>Entrenas por tu cuenta y a tu ritmo, con las sesiones explicadas paso a paso y nuestro seguimiento.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenamiento personal por app">Pide información <span>→</span></a></article>
     </div>
   </div>
 </section>
@@ -677,7 +680,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <legend>¿Cómo te gustaría entrenar?</legend>
         <div class="opts">
           <label class="opt"><input type="radio" name="como" value="grupo"> En grupo, con buen ambiente</label>
-          <label class="opt"><input type="radio" name="como" value="personal"> Con atención individual</label>
+          <label class="opt"><input type="radio" name="como" value="personal"> Con entrenamiento personalizado</label>
           <label class="opt"><input type="radio" name="como" value="solo"> Por mi cuenta, con un plan hecho para mí</label>
         </div>
       </fieldset>
@@ -688,6 +691,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <label class="opt"><input type="radio" name="donde" value="casa"> En mi casa</label>
           <label class="opt"><input type="radio" name="donde" value="distancia"> A distancia, desde donde esté</label>
         </div>
+        <p class="q-note" id="qGroupNote" hidden>Los entrenamientos en grupo son presenciales, en Martorell.</p>
       </fieldset>
       <fieldset class="q">
         <legend>¿Hay algo que debamos tener en cuenta?</legend>
@@ -744,12 +748,13 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <h3 id="horaris">Horarios de los grupos</h3>
         <p>Horarios habituales a día de hoy.</p>
         <ul class="slots">
+          <li><span>Lunes y miércoles</span><time>18:00 – 19:00</time></li>
           <li><span>Lunes y miércoles</span><time>19:00 – 20:00</time></li>
           <li><span>Martes y jueves</span><time>17:00 – 18:00</time></li>
           <li><span>Martes y jueves</span><time>19:00 – 20:00</time></li>
         </ul>
         <div class="others">
-          <p><strong>¿Prefieres por la mañana?</strong> Si hay suficiente demanda, abrimos grupos de mañana.</p>
+          <p><strong>¿Prefieres por la mañana u otro horario?</strong> Si hay suficiente demanda, abrimos nuevos grupos.</p>
           <p><strong>App:</strong> el horario lo marcas tú.</p>
           <p><strong>Resto de modalidades:</strong> el horario lo acordamos contigo.</p>
         </div>
@@ -768,16 +773,17 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div>
     <div class="behind-copy">
       <span class="eyebrow reveal">Quién está detrás</span>
-      <h2 data-split>Hola, soy Patricia Dorado.</h2>
-      <p class="reveal">El deporte forma parte de mi vida desde muy pequeña: judo y natación a los 5 años, balonmano a los 7 y, con los años, cinturón negro de judo. También me apasionan el senderismo, la escalada, el barranquismo, el submarinismo y el trail running.</p>
-      <p class="reveal">Empecé como entrenadora de balonmano y profesora de judo, y durante años di clases colectivas en gimnasios. En la carrera descubrí que el ejercicio puede ayudar a alguien a recuperar fuerza y movilidad y, en definitiva, a <strong>volver a sentirse capaz</strong>.</p>
-      <blockquote class="quote reveal">Cada persona es un mundo. Lo que más me gusta de mi trabajo es descubrir qué necesita cada una y adaptar el entrenamiento para que tenga sentido para ella.</blockquote>
-      <p class="reveal">Después de más de 10 años como entrenadora personal, MOA es la nueva etapa de mi proyecto: un espacio propio y una comunidad, con la misma filosofía de siempre.</p>
+      <h2 data-split>Soy Patricia Dorado.</h2>
+      <p class="reveal">El deporte ha formado parte de mi vida desde que era muy pequeña. Empecé con el judo y la natación a los 5 años y, a los 7, con el balonmano, hasta conseguir el cinturón negro de judo. También me apasiona todo lo relacionado con la naturaleza y la aventura: senderismo, escalada, barranquismo, submarinismo y trail running.</p>
+      <p class="reveal">Siempre he tenido la necesidad de ayudar a las personas a estar bien, no solo físicamente, sino en todas sus facetas. En la carrera descubrí que el ejercicio podía ser mucho más que mejorar la condición física: podía ayudar a alguien a recuperarse de una lesión, recuperar fuerza y movilidad y, en definitiva, <strong>volver a sentirse capaz</strong>.</p>
+      <blockquote class="quote reveal">Porque cada persona es un mundo. Y eso es lo que más me gusta de mi trabajo: descubrir qué necesita cada persona y adaptar el entrenamiento para que tenga sentido para ella.</blockquote>
+      <p class="reveal">Llevo más de 10 años como entrenadora personal y también soy quiromasajista. MOA es el paso que tardé un poco en dar: mi propio proyecto. Entrenemos como entrenemos, hay algo que no cambia: me importa la persona que hay detrás del entrenamiento.</p>
       <ol class="timeline reveal">
         <li><b>01</b><div><strong>CFGS en Animación de Actividades Físico-Deportivas</strong><span>Mientras daba clases colectivas en distintos centros.</span></div></li>
         <li><b>02</b><div><strong>Grado en Ciencias de la Actividad Física y el Deporte, INEFC Barcelona</strong><span>Compaginado con el trabajo.</span></div></li>
         <li><b>03</b><div><strong>Máster en Prescripción de Ejercicio Físico y Salud, INEFC Barcelona</strong><span>Ejercicio para la salud y la recuperación.</span></div></li>
-        <li><b>04</b><div><strong>Más de 10 años como entrenadora personal</strong><span>Y ahora, MOA.</span></div></li>
+        <li><b>04</b><div><strong>Quiromasajista</strong><span>El masaje como complemento del entrenamiento y la recuperación.</span></div></li>
+        <li><b>05</b><div><strong>Más de 10 años como entrenadora personal</strong><span>Y ahora, MOA.</span></div></li>
       </ol>
     </div>
   </div>
@@ -889,7 +895,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <script>
 (function(){
   window.MOA_OK = true;
-  var T = {"menuOpen": "Abrir menú", "menuClose": "Cerrar menú", "waDefault": "Hola, me gustaría información sobre los entrenamientos de MOA.", "quizNext": "Siguiente", "quizResult": "Ver resultado", "services": {"compartido": {"t": "Entrenamiento personal compartido", "d": "Atención individual y un plan para ti, en grupos muy reducidos y con buen ambiente."}, "grupal": {"t": "Entrenamiento grupal", "d": "Entrenamos juntos y cada persona adapta los ejercicios a su nivel. Ideal para coger constancia."}, "domicilio": {"t": "Entrenamiento a domicilio", "d": "Llevamos el entrenamiento a tu casa, adaptado a cómo te encuentras y al espacio que tengas."}, "online": {"t": "Entrenamiento personal online", "d": "Un plan individualizado con seguimiento a distancia, que evoluciona contigo."}, "app": {"t": "Entrenamiento personal por app", "d": "Entrenas cuando y donde quieras, con tus sesiones explicadas paso a paso y seguimiento de tu evolución."}}, "labels": {"como": {"grupo": "en grupo", "personal": "con atención individual", "solo": "por mi cuenta con un plan"}, "donde": {"martorell": "presencial en Martorell", "casa": "en casa", "distancia": "a distancia"}, "nota": {"empezar": "quiero empezar o llevo tiempo sin entrenar", "salud": "vengo de una lesión o proceso de salud", "tiempo": "tengo poco tiempo", "nada": "nada en especial"}}, "quizWa": "Hola, he hecho el test de la web de MOA y me sale \"{s}\". Me gustaría entrenar {como}, {donde}, y {nota}. ¿Lo hablamos?", "errFields": "Escribe tu nombre y cuéntanos un poco qué buscas.", "errConsent": "Marca la casilla para poder enviar la consulta.", "msgHello": "Hola, soy {n}.", "msgInterest": "Me interesa:", "msgPhone": "Mi teléfono:", "mailSubject": "Consulta desde la web de MOA:"};
+  var T = {"menuOpen": "Abrir menú", "menuClose": "Cerrar menú", "waDefault": "Hola, me gustaría información sobre los entrenamientos de MOA.", "quizNext": "Siguiente", "quizResult": "Ver resultado", "services": {"compartido": {"t": "Entrenamiento personal compartido", "d": "Atención individual y un plan para ti, en grupos muy reducidos y con buen ambiente."}, "grupal": {"t": "Entrenamiento grupal", "d": "Entrenamos juntos y cada persona adapta los ejercicios a su nivel. Ideal para coger constancia."}, "domicilio": {"t": "Entrenamiento a domicilio", "d": "Llevamos el entrenamiento a tu casa, adaptado a cómo te encuentras y al espacio que tengas."}, "online": {"t": "Entrenamiento personal online", "d": "Un plan individualizado con seguimiento a distancia, que evoluciona contigo."}, "app": {"t": "Entrenamiento personal por app", "d": "Entrenas cuando y donde quieras, con tus sesiones explicadas paso a paso y seguimiento de tu evolución."}}, "labels": {"como": {"grupo": "en grupo", "personal": "con entrenamiento personalizado", "solo": "por mi cuenta con un plan"}, "donde": {"martorell": "presencial en Martorell", "casa": "en casa", "distancia": "a distancia"}, "nota": {"empezar": "quiero empezar o llevo tiempo sin entrenar", "salud": "vengo de una lesión o proceso de salud", "tiempo": "tengo poco tiempo", "nada": "nada en especial"}}, "quizWa": "Hola, he hecho el test de la web de MOA y me sale \"{s}\". Me gustaría entrenar {como}, {donde}, y {nota}. ¿Lo hablamos?", "errFields": "Escribe tu nombre y cuéntanos un poco qué buscas.", "errConsent": "Marca la casilla para poder enviar la consulta.", "msgHello": "Hola, soy {n}.", "msgInterest": "Me interesa:", "msgPhone": "Mi teléfono:", "mailSubject": "Consulta desde la web de MOA:"};
   var PHONE = '34677851211';
   var EMAIL = 'patriciadoradotrainer@gmail.com';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1090,6 +1096,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   var current = 0;
   function val(n){ var c = quiz.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : null; }
   function recommend(como, donde, nota){
+    if (como === 'grupo') return nota === 'salud' ? 'compartido' : 'grupal';
     if (donde === 'casa') return 'domicilio';
     if (donde === 'distancia') return como === 'solo' ? 'app' : 'online';
     if (como === 'solo') return 'app';
@@ -1101,6 +1108,14 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     qSteps.forEach(function(s, k){ s.classList.toggle('active', k === i); });
     bars.forEach(function(b, k){ b.classList.toggle('on', k <= i); });
     back.hidden = i === 0;
+    // Los grupos solo son presenciales: con «en grupo» solo queda Martorell
+    var grupo = val('como') === 'grupo';
+    qSteps[1].querySelectorAll('input[name="donde"]').forEach(function(r){
+      var only = r.value === 'martorell';
+      r.closest('.opt').hidden = grupo && !only;
+      if (grupo) r.checked = only;
+    });
+    document.getElementById('qGroupNote').hidden = !grupo;
     next.textContent = i === qSteps.length - 1 ? T.quizResult : T.quizNext;
     next.disabled = !qSteps[i].querySelector('input:checked');
   }
