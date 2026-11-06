@@ -479,7 +479,13 @@ for _code, _extra in EXTRA_REV.items():
 
 # ---- Widgets sincronizados (pegar aquí el código que da cada servicio) ----
 # Instagram (p. ej. Behold.so o LightWidget): feed que se actualiza solo con las publicaciones de la cuenta.
-INSTAGRAM_WIDGET = ""
+# Feed de Behold creado por el centro (feed-id bVCFyndDueKGkxnuijOj).
+INSTAGRAM_WIDGET = ('<div class="insta-widget" id="instagram-feed">'
+                    '<behold-widget feed-id="bVCFyndDueKGkxnuijOj"></behold-widget>'
+                    '<script>(() => {if(window.__bhldScript)return;window.__bhldScript=true;'
+                    'const d=document,s=d.createElement("script");s.type="module";'
+                    's.src="https://w.behold.so/widget.js";setTimeout(()=>{d.head.append(s);},0);})();</script>'
+                    '</div>')
 # Reseñas de Google (p. ej. Trustindex o Elfsight): se actualizan solas desde la ficha de Google.
 # Widget de Trustindex creado por el centro (id 622e01b8539712228146eef62ce). Versión HTML: funciona sin el plugin.
 GOOGLE_REVIEWS_WIDGET = ('<div class="rev-widget"><script defer async '
