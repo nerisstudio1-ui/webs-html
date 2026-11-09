@@ -16,6 +16,11 @@ ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT / "src"))
 from i18n import PAGES, TEXT  # noqa: E402
 
+# Dirección de la aplicación web de Google Apps Script que guarda las consultas
+# del formulario en una hoja de cálculo (ver wordpress/FORMULARIO-GOOGLE-SHEETS.md).
+# Vacía: el formulario funciona igual, pero no se guarda nada.
+SHEET_URL = ""
+
 LANG_LABELS = {"ca": ("CA", "Català"), "es": ("ES", "Castellano"), "en": ("EN", "English")}
 
 
@@ -28,8 +33,13 @@ def lang_switch(current):
     return '<nav class="langs" aria-label="Idioma / Language">' + "".join(links) + "</nav>"
 
 
+def read_template():
+    t = (ROOT / "src" / "template.html").read_text(encoding="utf-8")
+    return t.replace("{{sheet_url}}", SHEET_URL.replace("'", ""))
+
+
 def build():
-    template = (ROOT / "src" / "template.html").read_text(encoding="utf-8")
+    template = read_template()
     keys = set(re.findall(r"\{\{(\w+)\}\}", template))
     for lang, page in PAGES.items():
         values = dict(TEXT[lang])
@@ -105,7 +115,6 @@ MULTI_JS = r"""
     });
     (document.getElementById('moa-app') || document.documentElement).lang = lang;
     if (!document.getElementById('moa-app')) document.title = D.meta_title;
-    document.getElementById('waFloat').href = waLink(T.waDefault);
     menuBtn.setAttribute('aria-label', document.body.classList.contains('menu-open') ? T.menuClose : T.menuOpen);
     if (result.classList.contains('active')) document.getElementById('qRestart').click(); else show(current);
     try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
@@ -188,4 +197,4 @@ def build_multi(template):
 
 if __name__ == "__main__":
     build()
-    build_multi((ROOT / "src" / "template.html").read_text(encoding="utf-8"))
+    build_multi(read_template())

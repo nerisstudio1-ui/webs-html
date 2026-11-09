@@ -240,9 +240,11 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .hs-track{display:flex;gap:22px;padding:0 28px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .hs-track::-webkit-scrollbar{display:none}
 .svc{flex:0 0 min(420px,82vw);min-height:500px;scroll-snap-align:start;border-radius:28px;padding:34px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--arena)}
-.svc:nth-child(2){background:var(--violeta);color:var(--crema)}
-.svc:nth-child(3){background:var(--verde)}
-.svc:nth-child(4){background:var(--carbon);color:var(--crema)}
+/* Orden de prioridad: compartido (lila), grupal (verde), app (negro), online, domicilio */
+.svc:nth-child(1){background:var(--violeta);color:var(--crema)}
+.svc:nth-child(2){background:var(--verde)}
+.svc:nth-child(3){background:var(--carbon);color:var(--crema)}
+.svc:nth-child(4){background:var(--arena)}
 .svc:nth-child(5){background:#E6D8FD}
 .svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
 .svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
@@ -266,6 +268,13 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .who-list li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:50%;background:var(--carbon)}
 .who-list li:nth-child(4n+2)::before,.who-list li:nth-child(4n+3)::before{background:var(--violeta)}
 .who-callout{font-family:var(--titulo);font-weight:600;font-size:1.5rem;line-height:1.2;margin-bottom:1.8rem}
+
+/* Textos justificados (con guiones para que no queden huecos en el móvil) */
+p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(.rv-note):not(.q-note):not(.form-error),
+.who-list li,.timeline span,.quote{text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+.hero-panel p,.intro-copy p,.how-head p{text-align-last:center}
+/* Frases cortas: justificadas dejarían huecos enormes entre palabras */
+.letter p,.step p,.svc p,.price-row small,.stat span,.schedule p,.review p,.who-list li,.timeline span,.ig-video figcaption{text-align:left!important}
 
 /* Galería */
 .gallery{background:var(--crema);padding:0 0 110px}
@@ -463,6 +472,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .steps,.who-list,.row2{grid-template-columns:1fr}
   .who-list li::before,.who-list li:nth-child(4n+2)::before,.who-list li:nth-child(4n+3)::before{background:var(--carbon)}
   .who-list li:nth-child(even)::before{background:var(--violeta)}
+  .letters{gap:36px;margin-top:44px;padding:0 14px}
+  .letter b{font-size:5.4rem}
+  .letter h3{margin:.9rem 0 .35rem;font-size:1.25rem}
+  .wa-float{width:48px;height:48px;right:14px;bottom:14px}
+  .wa-float svg{width:24px;height:24px}
   .stats-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
   .stat{padding-left:14px}
   .quiz form,.form{padding:28px 20px}
@@ -620,11 +634,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       </div>
     </div>
     <div class="hs-track" id="hsTrack">
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">01</span><h3>Entrenament personal compartit</h3><p>Grups molt reduïts. Cada persona amb el seu entrenament adaptat, compartint espai i moment. Perquè entrenar acompanyat també motiva.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal compartit">Demana informació <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">02</span><h3>Entrenament grupal</h3><p>Entrenem junts, però cadascú troba el seu nivell dins de cada exercici. Compartim l'esforç i gaudim del moment.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament grupal">Demana informació <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">03</span><h3>Entrenament a domicili</h3><p>Portem l'entrenament a casa teva quan desplaçar-te no és fàcil o vols aprofitar al màxim el temps.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament a domicili">Demana informació <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">04</span><h3>Entrenament personal en línia</h3><p>Un pla individualitzat i seguiment professional, siguis on siguis. Un entrenament que evoluciona amb tu.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal en línia">Demana informació <span>→</span></a></article>
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>Entrenament personal amb app</h3><p>Entrenes pel teu compte i al teu ritme, amb les sessions explicades pas a pas i el nostre seguiment.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal amb app">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">01</span><h3>Entrenament personal compartit</h3><p>Grups molt reduïts. Cada persona amb el seu entrenament adaptat, compartint espai i moment. Perquè entrenar acompanyat també motiva.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal compartit">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">02</span><h3>Entrenament grupal</h3><p>Entrenem junts, però cadascú troba el seu nivell dins de cada exercici. Compartim l'esforç i gaudim del moment.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament grupal">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">03</span><h3>Entrenament personal amb app</h3><p>Entrenes pel teu compte i al teu ritme, amb les sessions explicades pas a pas i el nostre seguiment.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal amb app">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">04</span><h3>Entrenament personal en línia</h3><p>Un pla individualitzat i seguiment professional, siguis on siguis. Un entrenament que evoluciona amb tu.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal en línia">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">05</span><h3>Entrenament a domicili</h3><p>Portem l'entrenament a casa teva quan desplaçar-te no és fàcil o vols aprofitar al màxim el temps.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament a domicili">Demana informació <span>→</span></a></article>
     </div>
   </div>
 </section>
@@ -693,6 +707,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <label class="opt"><input type="radio" name="donde" value="distancia"> A distància, des d'on sigui</label>
         </div>
         <p class="q-note" id="qGroupNote" hidden>Els entrenaments en grup són presencials, a Martorell.</p>
+        <p class="q-note" id="qSoloNote" hidden>El pla pel teu compte és a distància, des d'on vulguis.</p>
       </fieldset>
       <fieldset class="q">
         <legend>Hi ha alguna cosa a tenir en compte?</legend>
@@ -713,7 +728,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <p id="resText"></p>
         <p>És només una orientació: explica'ns el teu cas i mirem quina opció té més sentit per a tu.</p>
         <div class="btns">
-          <a class="btn btn-wa" id="resWa" href="https://wa.me/34677851211" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>Parlem-ne per WhatsApp</a>
+          <a class="btn btn-wa" id="resWa" href="#contacte"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>Parlem-ne per WhatsApp</a>
           <a class="btn" href="#contacte" id="resForm">Escriure un missatge</a>
         </div>
         <p style="margin-top:1.2rem"><button type="button" class="link-btn" id="qRestart">Tornar a fer el test</button></p>
@@ -739,9 +754,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
               <div><b>75 €</b><span>3 sessions<br>per setmana</span></div>
             </div>
           </div>
-          <div class="price-row"><div><h3>Entrenament a domicili</h3><small>Preu estimat segons el temps de desplaçament.</small></div><div class="amount"><small style="margin:0 0 4px">des de</small>35 €<small>/ sessió</small></div></div>
-          <div class="price-row"><div><h3>Entrenament personal en línia</h3><small>Pla individualitzat i seguiment a distància.</small></div><div class="amount">35 €<small>/ sessió</small></div></div>
           <div class="price-row"><div><h3>Entrenament personal amb app</h3><small>Inclou planificació individualitzada, seguiment i ajustos segons la teva evolució.</small></div><div class="amount"><small style="margin:0 0 4px">des de</small>65 €<small>/ mes</small></div></div>
+          <div class="price-row"><div><h3>Entrenament personal en línia</h3><small>Pla individualitzat i seguiment a distància.</small></div><div class="amount">35 €<small>/ sessió</small></div></div>
+          <div class="price-row"><div><h3>Entrenament a domicili</h3><small>Preu estimat segons el temps de desplaçament.</small></div><div class="amount"><small style="margin:0 0 4px">des de</small>35 €<small>/ sessió</small></div></div>
         </div>
         <p class="price-note">Tarifes subjectes a possibles canvis.</p>
       </div>
@@ -837,7 +852,6 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       <h2 data-split>Parlem?</h2>
       <p class="lead reveal">No cal que sàpigues quin servei triar. Explica'ns què busques i ho mirem junts. Per als grups, quan confirmem plaça i horari, t'incorpores directament.</p>
       <ul class="contact-list reveal">
-        <li><a href="https://wa.me/34677851211" target="_blank" rel="noopener"><span>677 85 12 11</span><small>Telèfon i WhatsApp</small></a></li>
         <li><a href="mailto:patriciadoradotrainer@gmail.com"><span>patriciadoradotrainer@gmail.com</span><small>Email</small></a></li>
         <li><a href="https://www.instagram.com/moa.salut/" target="_blank" rel="noopener"><span>@moa.salut</span><small>Instagram</small></a></li>
         <li><a href="https://www.instagram.com/patriciadoradotrainer/" target="_blank" rel="noopener"><span>@patriciadoradotrainer</span><small>Instagram</small></a></li>
@@ -857,9 +871,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <option>Encara no ho sé, vull que m'orienteu</option>
           <option>Entrenament personal compartit</option>
           <option>Entrenament grupal</option>
-          <option>Entrenament a domicili</option>
-          <option>Entrenament personal en línia</option>
           <option>Entrenament personal amb app</option>
+          <option>Entrenament personal en línia</option>
+          <option>Entrenament a domicili</option>
         </select>
       </div>
       <div class="field"><label for="f-msg">Què t'agradaria aconseguir?</label><textarea id="f-msg" name="mensaje" placeholder="Els teus objectius, com et mous ara, la teva disponibilitat o qualsevol cosa a tenir en compte." required></textarea></div>
@@ -889,7 +903,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   </div>
 </footer>
 
-<a class="wa-float" id="waFloat" href="https://wa.me/34677851211" target="_blank" rel="noopener" aria-label="WhatsApp">
+<a class="wa-float" id="waFloat" href="#contacte" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.7-.3z"/></svg>
 </a>
 
@@ -897,15 +911,39 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 (function(){
 try {
   var T = {"menuOpen": "Obrir el menú", "menuClose": "Tancar el menú", "waDefault": "Hola! M'agradaria informació sobre els entrenaments de MOA.", "quizNext": "Següent", "quizResult": "Veure el resultat", "services": {"compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups molt reduïts i amb bon ambient."}, "grupal": {"t": "Entrenament grupal", "d": "Entrenem junts i cadascú adapta els exercicis al seu nivell. Ideal per agafar constància."}, "domicilio": {"t": "Entrenament a domicili", "d": "Portem l'entrenament a casa teva, adaptat a com et trobes i a l'espai que tinguis."}, "online": {"t": "Entrenament personal en línia", "d": "Un pla individualitzat amb seguiment a distància, que evoluciona amb tu."}, "app": {"t": "Entrenament personal amb app", "d": "Entrenes quan i on vulguis, amb les sessions explicades pas a pas i seguiment de la teva evolució."}}, "labels": {"como": {"grupo": "en grup", "personal": "amb entrenament personalitzat", "solo": "pel meu compte amb un pla"}, "donde": {"martorell": "presencial a Martorell", "casa": "a casa", "distancia": "a distància"}, "nota": {"empezar": "vull començar o fa temps que no entreno", "salud": "vinc d'una lesió o un procés de salut", "tiempo": "tinc poc temps", "nada": "res en especial"}}, "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?", "errFields": "Escriu el teu nom i explica'ns una mica què busques.", "errConsent": "Marca la casella per poder enviar la consulta.", "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:", "mailSubject": "Consulta des de la web de MOA:"};
-  var PHONE = '34677851211';
+  // El número no aparece en la página: se monta solo al pulsar un botón de
+  // WhatsApp, para que no lo encuentren los programas que buscan teléfonos
+  var PHONE = ['34', '677', '85', '12', '11'].join('');
   var EMAIL = 'patriciadoradotrainer@gmail.com';
+  // Dirección de la hoja de Google Sheets donde se guardan las consultas del
+  // formulario (ver wordpress/FORMULARIO-GOOGLE-SHEETS.md). Vacía: no se guarda.
+  var SHEET_URL = '';
+  function saveToSheet(data){
+    if (!SHEET_URL) return;
+    data.idioma = (document.getElementById('moa-app') || document.documentElement).lang;
+    data.pagina = location.href;
+    var body = new URLSearchParams(data);
+    // sendBeacon sigue enviando aunque a continuación se abra WhatsApp
+    if (!(navigator.sendBeacon && navigator.sendBeacon(SHEET_URL, body))) {
+      fetch(SHEET_URL, {method: 'POST', mode: 'no-cors', body: body, keepalive: true}).catch(function(){});
+    }
+  }
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(pointer: fine)').matches;
   function waLink(text){ return 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text); }
+  // En el móvil WhatsApp se abre en la misma pestaña: al volver atrás la web
+  // aparece tal cual estaba (en una pestaña nueva, al volver fallaba)
+  var touch = window.matchMedia('(pointer: coarse)').matches;
+  function openWa(text){
+    var url = waLink(text);
+    if (touch) window.location.href = url;
+    else window.open(url, '_blank', 'noopener');
+  }
+  var waText = null;
   function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
 
   document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('waFloat').href = waLink(T.waDefault);
+  document.getElementById('waFloat').addEventListener('click', function(e){ e.preventDefault(); openWa(T.waDefault); });
   // Si un plugin de caché retrasa este guion, la página ya ha cargado cuando
   // arranca y el evento load no llega: entonces se marca en el momento
   function markLoaded(){ document.body.classList.add('loaded'); }
@@ -1121,6 +1159,7 @@ try {
   function val(n){ var c = quiz.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : null; }
   function recommend(como, donde, nota){
     if (como === 'grupo') return nota === 'salud' ? 'compartido' : 'grupal';
+    if (como === 'solo') return 'app';
     if (donde === 'casa') return 'domicilio';
     if (donde === 'distancia') return como === 'solo' ? 'app' : 'online';
     if (como === 'solo') return 'app';
@@ -1132,14 +1171,15 @@ try {
     qSteps.forEach(function(s, k){ s.classList.toggle('active', k === i); });
     bars.forEach(function(b, k){ b.classList.toggle('on', k <= i); });
     back.hidden = i === 0;
-    // Los grupos solo son presenciales: con «en grupo» solo queda Martorell
-    var grupo = val('como') === 'grupo';
+    // Los grupos solo son presenciales (Martorell) y el plan por tu cuenta
+    // solo es a distancia: en esos casos solo queda esa opción
+    var como = val('como'), only = como === 'grupo' ? 'martorell' : como === 'solo' ? 'distancia' : null;
     qSteps[1].querySelectorAll('input[name="donde"]').forEach(function(r){
-      var only = r.value === 'martorell';
-      r.closest('.opt').hidden = grupo && !only;
-      if (grupo) r.checked = only;
+      r.closest('.opt').hidden = !!only && r.value !== only;
+      if (only) r.checked = r.value === only;
     });
-    document.getElementById('qGroupNote').hidden = !grupo;
+    document.getElementById('qGroupNote').hidden = como !== 'grupo';
+    document.getElementById('qSoloNote').hidden = como !== 'solo';
     next.textContent = i === qSteps.length - 1 ? T.quizResult : T.quizNext;
     next.disabled = !qSteps[i].querySelector('input:checked');
   }
@@ -1151,11 +1191,12 @@ try {
     var s = T.services[recommend(como, donde, nota)];
     document.getElementById('resTitle').textContent = s.t;
     document.getElementById('resText').textContent = s.d;
-    document.getElementById('resWa').href = waLink(T.quizWa.replace('{s}', s.t).replace('{como}', T.labels.como[como]).replace('{donde}', T.labels.donde[donde]).replace('{nota}', T.labels.nota[nota]));
+    waText = T.quizWa.replace('{s}', s.t).replace('{como}', T.labels.como[como]).replace('{donde}', T.labels.donde[donde]).replace('{nota}', T.labels.nota[nota]);
     document.getElementById('resForm').onclick = function(){ preselect(s.t); };
     qSteps.forEach(function(st){ st.classList.remove('active'); });
     qNav.hidden = true; result.classList.add('active');
   });
+  document.getElementById('resWa').addEventListener('click', function(e){ if (waText) { e.preventDefault(); openWa(waText); } });
   document.getElementById('qRestart').addEventListener('click', function(){
     quiz.reset(); result.classList.remove('active'); qNav.hidden = false; show(0);
   });
@@ -1170,9 +1211,16 @@ try {
     if (!document.getElementById('f-ok').checked) { errorEl.textContent = T.errConsent; return; }
     errorEl.textContent = '';
     var text = T.msgHello.replace('{n}', nombre) + '\n\n' + T.msgInterest + ' ' + servicio + '\n\n' + msg + (tel ? '\n\n' + T.msgPhone + ' ' + tel : '');
-    if (via === 'wa') window.open(waLink(text), '_blank', 'noopener');
+    saveToSheet({nombre: nombre, telefono: tel, servicio: servicio, mensaje: msg, via: via});
+    if (via === 'wa') openWa(text);
     else window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(T.mailSubject + ' ' + servicio) + '&body=' + encodeURIComponent(text);
   });
+  window.addEventListener('pageshow', function(e){
+    if (!e.persisted) return;
+    markLoaded();
+    document.querySelectorAll('.reveal,.clip,.media,[data-split]').forEach(function(el){ el.classList.add('in'); });
+  });
+
   // Red de seguridad: si algo impide que los bloques entren al hacer scroll,
   // a los pocos segundos se muestran todos (sin animación, pero completos)
   var safety = setInterval(function(){

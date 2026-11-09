@@ -280,7 +280,7 @@ GUARDIA = (
     # resize al hacer scroll y recolocar ahí hacía parpadear la página
     'm();c();var lw=window.innerWidth;window.addEventListener("resize",function(){'
     'if(window.innerWidth===lw)return;lw=window.innerWidth;m();c();});'
-    'window.addEventListener("load",c);'
+    'window.addEventListener("load",c);window.addEventListener("pageshow",c);'
     'var r=function(){if(!a.classList.contains("moa-ok"))a.classList.remove("has-js");};'
     'if(document.readyState==="complete"){setTimeout(r,300);}'
     'else{window.addEventListener("load",function(){setTimeout(r,300);});}'
