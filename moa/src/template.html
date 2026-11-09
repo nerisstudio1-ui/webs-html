@@ -895,7 +895,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 
 <script>
 (function(){
-  window.MOA_OK = true;
+try {
   var T = {{js_i18n}};
   var PHONE = '34677851211';
   var EMAIL = 'patriciadoradotrainer@gmail.com';
@@ -1166,6 +1166,25 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     if (via === 'wa') window.open(waLink(text), '_blank', 'noopener');
     else window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(T.mailSubject + ' ' + servicio) + '&body=' + encodeURIComponent(text);
   });
+  // Red de seguridad: si algo impide que los bloques entren al hacer scroll,
+  // a los pocos segundos se muestran todos (sin animación, pero completos)
+  var safety = setInterval(function(){
+    var vh = window.innerHeight, stuck = false;
+    document.querySelectorAll('.reveal:not(.in),.clip:not(.in),[data-split]:not(.in)').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.height > 0 && r.top < vh * 0.6 && r.bottom > vh * 0.4) stuck = true;
+    });
+    if (stuck) {
+      document.querySelectorAll('.reveal,.clip,.media,[data-split]').forEach(function(el){ el.classList.add('in'); });
+      clearInterval(safety);
+    }
+  }, 2000);
+  window.MOA_OK = true;
+} catch (err) {
+  // Si el guion falla a medias, todo el contenido se muestra igualmente
+  document.documentElement.classList.remove('js');
+  if (window.console) console.error('MOA:', err);
+}
 })();
 </script>
 </body>

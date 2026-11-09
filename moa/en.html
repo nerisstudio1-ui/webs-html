@@ -895,7 +895,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 
 <script>
 (function(){
-  window.MOA_OK = true;
+try {
   var T = {"menuOpen": "Open menu", "menuClose": "Close menu", "waDefault": "Hi! I'd like some information about training at MOA.", "quizNext": "Next", "quizResult": "See my result", "services": {"compartido": {"t": "Shared personal training", "d": "One-to-one attention and a plan for you, in very small groups with a great atmosphere."}, "grupal": {"t": "Group training", "d": "We train together and everyone adapts the exercises to their level. Great for building consistency."}, "domicilio": {"t": "Home training", "d": "We bring the training to your home, adapted to how you feel and the space you have."}, "online": {"t": "Online personal training", "d": "A personalised plan with remote follow-up that evolves with you."}, "app": {"t": "App-based personal training", "d": "Train whenever and wherever you like, with sessions explained step by step and your progress followed up."}}, "labels": {"como": {"grupo": "in a group", "personal": "with personalised training", "solo": "on my own with a plan"}, "donde": {"martorell": "in person in Martorell", "casa": "at home", "distancia": "remotely"}, "nota": {"empezar": "I'm just starting or haven't trained in a while", "salud": "I'm coming back from an injury or health issue", "tiempo": "I'm short on time", "nada": "nothing special"}}, "quizWa": "Hi! I took the quiz on the MOA website and got \"{s}\". I'd like to train {como}, {donde}, and {nota}. Can we talk?", "errFields": "Please write your name and tell us a little about what you're looking for.", "errConsent": "Please tick the box so we can receive your enquiry.", "msgHello": "Hi! I'm {n}.", "msgInterest": "I'm interested in:", "msgPhone": "My phone:", "mailSubject": "Enquiry from the MOA website:"};
   var PHONE = '34677851211';
   var EMAIL = 'patriciadoradotrainer@gmail.com';
@@ -1166,6 +1166,25 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     if (via === 'wa') window.open(waLink(text), '_blank', 'noopener');
     else window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(T.mailSubject + ' ' + servicio) + '&body=' + encodeURIComponent(text);
   });
+  // Red de seguridad: si algo impide que los bloques entren al hacer scroll,
+  // a los pocos segundos se muestran todos (sin animación, pero completos)
+  var safety = setInterval(function(){
+    var vh = window.innerHeight, stuck = false;
+    document.querySelectorAll('.reveal:not(.in),.clip:not(.in),[data-split]:not(.in)').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.height > 0 && r.top < vh * 0.6 && r.bottom > vh * 0.4) stuck = true;
+    });
+    if (stuck) {
+      document.querySelectorAll('.reveal,.clip,.media,[data-split]').forEach(function(el){ el.classList.add('in'); });
+      clearInterval(safety);
+    }
+  }, 2000);
+  window.MOA_OK = true;
+} catch (err) {
+  // Si el guion falla a medias, todo el contenido se muestra igualmente
+  document.documentElement.classList.remove('js');
+  if (window.console) console.error('MOA:', err);
+}
 })();
 </script>
 </body>

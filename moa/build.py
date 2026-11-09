@@ -178,9 +178,9 @@ def build_multi(template):
     body = re.sub(r"\{\{(\w+)\}\}", lambda m: '<span data-t="%s">%s</span>' % (m.group(1), ca[m.group(1)]), body)
     assert "{{" not in body, "quedan marcadores sin resolver"
 
-    old = "\n})();\n</script>"
+    old = "\n  window.MOA_OK = true;\n"
     assert body.count(old) == 1, "no encuentro el final del guion"
-    body = body.replace(old, MULTI_JS + "})();\n</script>")
+    body = body.replace(old, MULTI_JS + old)
     html = head.replace('<html lang="ca">', '<html lang="ca">') + "<body>" + body
     (ROOT / MULTI).write_text(html, encoding="utf-8")
     print(f"{MULTI} generado (ca · es · en)")

@@ -1,4 +1,4 @@
-<!-- MOA · Moviment i Salut — bloque de HTML personalizado (es). Generado 2026-11-09 14:14 UTC.
+<!-- MOA · Moviment i Salut — bloque de HTML personalizado (es). Generado 2026-11-09 14:19 UTC.
      No editar aquí: los cambios se hacen en src/ y se regenera con build.py y build_wordpress.py. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -833,8 +833,7 @@
   // Todo se busca dentro del contenedor, nunca en el resto del tema
   var APP = document.getElementById('moa-app');
   if (!APP) return;
-  APP.classList.add('moa-ok');
-  window.MOA_OK = true;
+try {
   var T = {"menuOpen": "Abrir menú", "menuClose": "Cerrar menú", "waDefault": "Hola, me gustaría información sobre los entrenamientos de MOA.", "quizNext": "Siguiente", "quizResult": "Ver resultado", "services": {"compartido": {"t": "Entrenamiento personal compartido", "d": "Atención individual y un plan para ti, en grupos muy reducidos y con buen ambiente."}, "grupal": {"t": "Entrenamiento grupal", "d": "Entrenamos juntos y cada persona adapta los ejercicios a su nivel. Ideal para coger constancia."}, "domicilio": {"t": "Entrenamiento a domicilio", "d": "Llevamos el entrenamiento a tu casa, adaptado a cómo te encuentras y al espacio que tengas."}, "online": {"t": "Entrenamiento personal online", "d": "Un plan individualizado con seguimiento a distancia, que evoluciona contigo."}, "app": {"t": "Entrenamiento personal por app", "d": "Entrenas cuando y donde quieras, con tus sesiones explicadas paso a paso y seguimiento de tu evolución."}}, "labels": {"como": {"grupo": "en grupo", "personal": "con entrenamiento personalizado", "solo": "por mi cuenta con un plan"}, "donde": {"martorell": "presencial en Martorell", "casa": "en casa", "distancia": "a distancia"}, "nota": {"empezar": "quiero empezar o llevo tiempo sin entrenar", "salud": "vengo de una lesión o proceso de salud", "tiempo": "tengo poco tiempo", "nada": "nada en especial"}}, "quizWa": "Hola, he hecho el test de la web de MOA y me sale \"{s}\". Me gustaría entrenar {como}, {donde}, y {nota}. ¿Lo hablamos?", "errFields": "Escribe tu nombre y cuéntanos un poco qué buscas.", "errConsent": "Marca la casilla para poder enviar la consulta.", "msgHello": "Hola, soy {n}.", "msgInterest": "Me interesa:", "msgPhone": "Mi teléfono:", "mailSubject": "Consulta desde la web de MOA:"};
   var PHONE = '34677851211';
   var EMAIL = 'patriciadoradotrainer@gmail.com';
@@ -1086,6 +1085,26 @@
     if (via === 'wa') window.open(waLink(text), '_blank', 'noopener');
     else window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(T.mailSubject + ' ' + servicio) + '&body=' + encodeURIComponent(text);
   });
+  // Red de seguridad: si algo impide que los bloques entren al hacer scroll,
+  // a los pocos segundos se muestran todos (sin animación, pero completos)
+  var safety = setInterval(function(){
+    var vh = window.innerHeight, stuck = false;
+    APP.querySelectorAll('.reveal:not(.in),.clip:not(.in),[data-split]:not(.in)').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.height > 0 && r.top < vh * 0.6 && r.bottom > vh * 0.4) stuck = true;
+    });
+    if (stuck) {
+      APP.querySelectorAll('.reveal,.clip,.media,[data-split]').forEach(function(el){ el.classList.add('in'); });
+      clearInterval(safety);
+    }
+  }, 2000);
+  window.MOA_OK = true;
+  APP.classList.add('moa-ok');
+} catch (err) {
+  // Si el guion falla a medias, todo el contenido se muestra igualmente
+  APP.classList.remove('has-js');
+  if (window.console) console.error('MOA:', err);
+}
   APP.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click', function(e){
       var destino = document.getElementById(a.getAttribute('href').slice(1));

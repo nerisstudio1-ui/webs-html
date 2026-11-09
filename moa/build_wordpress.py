@@ -230,9 +230,11 @@ def scope_js(js, ids):
   // Todo se busca dentro del contenedor, nunca en el resto del tema
   var APP = document.getElementById('moa-app');
   if (!APP) return;
-  APP.classList.add('moa-ok');
 """, 1)
     js = js.replace("document.body.classList", "APP.classList")
+    # «Todo ha arrancado bien» se marca al final; si falla, se muestra todo
+    js = js.replace("  window.MOA_OK = true;\n", "  window.MOA_OK = true;\n  APP.classList.add('moa-ok');\n")
+    js = js.replace("document.documentElement.classList.remove('js');", "APP.classList.remove('has-js');")
     js = js.replace("document.querySelectorAll(", "APP.querySelectorAll(")
     js = js.replace("document.querySelector(", "APP.querySelector(")
     for i in ids:
