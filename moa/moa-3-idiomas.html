@@ -88,7 +88,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
 /* Cabecera */
 .header{position:fixed;inset:0 0 auto;z-index:50;transition:transform .45s var(--ease),background .3s ease,box-shadow .3s ease}
-.header.scrolled{background:rgba(254,247,229,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linea)}
+.header.scrolled{background:rgba(254,247,229,.97);box-shadow:0 1px 0 var(--linea)}
 .header.hide{transform:translateY(-100%)}
 .header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:74px;gap:20px;max-width:1400px}
 .nav-left{display:flex;gap:24px}
@@ -977,7 +977,12 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     return {track:track, x:0, dir:+(m.dataset.dir || 1), half:track.scrollWidth / 2};
   });
   document.querySelectorAll('.rv-track').forEach(function(t){ t.insertAdjacentHTML('beforeend', t.innerHTML); });
-  window.addEventListener('resize', function(){ marquees.forEach(function(m){ m.half = m.track.scrollWidth / 2; }); });
+  var lastW = window.innerWidth;
+  window.addEventListener('resize', function(){
+    if (window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
+    marquees.forEach(function(m){ m.half = m.track.scrollWidth / 2; });
+  });
 
   // Servicios: scroll horizontal anclado en pantallas grandes
   var svcSec = document.getElementById('serveis'), track = document.getElementById('hsTrack'), hsNow = document.getElementById('hsNow');
@@ -992,7 +997,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     } else { svcSec.style.height = ''; track.style.transform = ''; }
   }
   setupPin();
-  window.addEventListener('resize', setupPin);
+  var pinW = window.innerWidth;
+  window.addEventListener('resize', function(){ if (window.innerWidth !== pinW || pinned) { pinW = window.innerWidth; setupPin(); } });
   track.addEventListener('scroll', function(){
     if (pinned) return;
     var idx = Math.round(track.scrollLeft / (cards[0].offsetWidth + 22));
@@ -1004,7 +1010,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   var parallax = document.querySelectorAll('[data-speed]');
   var letters = document.querySelectorAll('#letters .letter'), lettersBox = document.getElementById('letters');
   var steps = document.getElementById('steps'), stepsFill = steps.querySelector('.steps-line i');
-  var lastY = window.scrollY, vel = 0, scrollDir = 1;
+  var lastY = window.scrollY, vel = 0, scrollDir = 1, travel = 0;
 
   function frame(){
     var y = window.scrollY, vh = window.innerHeight, dy = y - lastY;
@@ -1012,7 +1018,13 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     var max = document.documentElement.scrollHeight - vh;
     bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
     header.classList.toggle('scrolled', y > 30);
-    if (!document.body.classList.contains('menu-open')) header.classList.toggle('hide', dy > 4 && y > 300 ? true : dy < -4 ? false : header.classList.contains('hide'));
+    // La cabecera solo se esconde en pantallas grandes y tras recorrer una
+    // distancia real en un sentido: en el móvil el scroll da pequeños rebotes
+    // y la hacía aparecer y desaparecer sin parar
+    if (dy !== 0) travel = (dy > 0) === (travel > 0) ? travel + dy : dy;
+    if (document.body.classList.contains('menu-open') || window.innerWidth <= 1020 || y < 300) header.classList.remove('hide');
+    else if (travel > 80) header.classList.add('hide');
+    else if (travel < -40) header.classList.remove('hide');
 
     if (!reduce) {
       if (Math.abs(dy) > .5) scrollDir = dy > 0 ? 1 : -1;

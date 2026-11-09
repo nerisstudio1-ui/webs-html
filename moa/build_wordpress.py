@@ -242,9 +242,9 @@ def scope_js(js, ids):
     assert old in js, "no encuentro el cambio de cabecera"
     js = js.replace(old, "    var caja = header.getBoundingClientRect(), pegada = caja.top <= parseFloat(getComputedStyle(APP).getPropertyValue('--moa-top') || 0) + 1;\n"
                          "    header.classList.toggle('scrolled', pegada && y > 30);\n")
-    old = "header.classList.toggle('hide', dy > 4 && y > 300 ? true"
+    old = "window.innerWidth <= 1020 || y < 300) header.classList.remove('hide');"
     assert old in js, "no encuentro la ocultación de cabecera"
-    js = js.replace(old, "header.classList.toggle('hide', dy > 4 && y > 300 && pegada ? true")
+    js = js.replace(old, "window.innerWidth <= 1020 || y < 300 || !pegada) header.classList.remove('hide');")
     # Scroll suave de los enlaces internos, descontando la cabecera
     js = js.rstrip()
     assert js.endswith("})();")
@@ -273,9 +273,13 @@ GUARDIA = (
     # con 50% de la columna lo dejaría desplazado. Aquí se mide dónde queda y
     # se corrige con un margen negativo exacto.
     'var c=function(){var W=document.documentElement.clientWidth;a.style.width=W+"px";'
-    'a.style.maxWidth=W+"px";a.style.marginLeft="0px";a.style.marginRight="0px";'
-    'var l=a.getBoundingClientRect().left;a.style.marginLeft=(-l)+"px";};'
-    'm();c();window.addEventListener("resize",function(){m();c();});'
+    'a.style.maxWidth=W+"px";a.style.marginRight="0px";'
+    'var l=a.getBoundingClientRect().left;if(Math.abs(l)>.5){'
+    'a.style.marginLeft=((parseFloat(getComputedStyle(a).marginLeft)||0)-l)+"px";}};'
+    # Solo al cambiar el ancho: en el móvil la barra del navegador lanza
+    # resize al hacer scroll y recolocar ahí hacía parpadear la página
+    'm();c();var lw=window.innerWidth;window.addEventListener("resize",function(){'
+    'if(window.innerWidth===lw)return;lw=window.innerWidth;m();c();});'
     'window.addEventListener("load",c);'
     'var r=function(){if(!a.classList.contains("moa-ok"))a.classList.remove("has-js");};'
     'if(document.readyState==="complete"){setTimeout(r,300);}'
