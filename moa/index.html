@@ -147,7 +147,8 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .hero{position:relative;overflow-x:clip;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);padding-top:74px}
 .hero-media{position:relative;overflow:hidden}
 .hero-media::before{content:"";display:block;padding-top:66.667%}
-.hero-layer{position:absolute;inset:0;opacity:0;transition:opacity 1.2s var(--ease) .9s}
+.hero-layer{position:absolute;inset:0;transition:opacity 1.2s var(--ease) .9s}
+.js .hero-layer{opacity:0}
 .loaded .hero-layer{opacity:1}
 .hero-layer .ph,.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero-video{background:transparent}
@@ -525,7 +526,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <section class="hero" id="inici">
   <div class="hero-media">
     <div class="hero-layer">
-      <img class="ph" src="fotos/portada-grupo.jpg" alt="Alumnes de MOA posant amb manuelles, kettlebells, guants i pilota medicinal" width="1536" height="1024" style="object-position:50% 40%">
+      <img class="ph skip-lazy no-lazyload" data-no-lazy="1" data-skip-lazy="1" fetchpriority="high" src="fotos/portada-grupo.jpg" alt="Alumnes de MOA posant amb manuelles, kettlebells, guants i pilota medicinal" width="1536" height="1024" style="object-position:50% 40%">
       <!-- Vídeo de portada: basta con dejar el archivo en fotos/portada.mp4 (en silencio y en bucle). Si no existe, se ve el hueco de foto. -->
       <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="fotos/portada.mp4" type="video/mp4"></video>
     </div>
@@ -905,8 +906,12 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('waFloat').href = waLink(T.waDefault);
-  window.addEventListener('load', function(){ document.body.classList.add('loaded'); });
-  setTimeout(function(){ document.body.classList.add('loaded'); }, 1500);
+  // Si un plugin de caché retrasa este guion, la página ya ha cargado cuando
+  // arranca y el evento load no llega: entonces se marca en el momento
+  function markLoaded(){ document.body.classList.add('loaded'); }
+  if (document.readyState === 'complete') setTimeout(markLoaded, 50);
+  else window.addEventListener('load', markLoaded);
+  setTimeout(markLoaded, 1500);
 
   // Vídeo de portada: quieto si el dispositivo pide reducir movimiento
   var heroVideo = document.getElementById('heroVideo');
