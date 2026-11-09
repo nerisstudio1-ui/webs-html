@@ -244,9 +244,7 @@ def scope_js(js, ids):
     assert old in js, "no encuentro el cambio de cabecera"
     js = js.replace(old, "    var caja = header.getBoundingClientRect(), pegada = caja.top <= parseFloat(getComputedStyle(APP).getPropertyValue('--moa-top') || 0) + 1;\n"
                          "    header.classList.toggle('scrolled', pegada && y > 30);\n")
-    old = "window.innerWidth <= 1020 || y < 300) header.classList.remove('hide');"
-    assert old in js, "no encuentro la ocultación de cabecera"
-    js = js.replace(old, "window.innerWidth <= 1020 || y < 300 || !pegada) header.classList.remove('hide');")
+
     # Scroll suave de los enlaces internos, descontando la cabecera
     js = js.rstrip()
     assert js.endswith("})();")

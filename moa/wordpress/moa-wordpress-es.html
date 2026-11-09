@@ -1,4 +1,4 @@
-<!-- MOA · Moviment i Salut — bloque de HTML personalizado (es). Generado 2026-11-09 14:23 UTC.
+<!-- MOA · Moviment i Salut — bloque de HTML personalizado (es). Generado 2026-11-09 14:40 UTC.
      No editar aquí: los cambios se hacen en src/ y se regenera con build.py y build_wordpress.py. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -947,30 +947,36 @@ try {
   var letters = APP.querySelectorAll('#letters .letter'), lettersBox = document.getElementById('moa-letters');
   var steps = document.getElementById('moa-steps'), stepsFill = steps.querySelector('.steps-line i');
   var lastY = window.scrollY, vel = 0, scrollDir = 1, travel = 0;
+  // Los efectos que se recalculaban con cada movimiento del scroll (cintas que
+  // cambian de sentido, parallax de fotos, letras M·O·A) hacían parpadear la
+  // página en móvil y ordenador: se dejan en su versión estable
+  var lite = true;
+  if (lite) letters.forEach(function(l){ l.style.transform = 'none'; l.style.opacity = 1; });
+  var lastHs = '';
   function frame(){
     var y = window.scrollY, vh = window.innerHeight, dy = y - lastY;
     lastY = y;
     var max = document.documentElement.scrollHeight - vh;
-    bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    if (dy !== 0 || !bar.style.transform) bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0).toFixed(4) + ')';
     var caja = header.getBoundingClientRect(), pegada = caja.top <= parseFloat(getComputedStyle(APP).getPropertyValue('--moa-top') || 0) + 1;
     header.classList.toggle('scrolled', pegada && y > 30);
     // La cabecera solo se esconde en pantallas grandes y tras recorrer una
     // distancia real en un sentido: en el móvil el scroll da pequeños rebotes
     // y la hacía aparecer y desaparecer sin parar
     if (dy !== 0) travel = (dy > 0) === (travel > 0) ? travel + dy : dy;
-    if (APP.classList.contains('menu-open') || window.innerWidth <= 1020 || y < 300 || !pegada) header.classList.remove('hide');
-    else if (travel > 80) header.classList.add('hide');
-    else if (travel < -40) header.classList.remove('hide');
+    // La cabecera se queda siempre visible (esconderla al bajar parpadeaba)
+    header.classList.remove('hide');
     if (!reduce) {
-      if (Math.abs(dy) > .5) scrollDir = dy > 0 ? 1 : -1;
-      vel += (Math.abs(dy) - vel) * .12;
+      // El sentido de las cintas solo cambia tras un recorrido claro
+      if (!lite && Math.abs(travel) > 30) scrollDir = travel > 0 ? 1 : -1;
+      vel = lite ? 0 : vel + (Math.abs(dy) - vel) * .12;
       marquees.forEach(function(m){
-        m.x -= (0.6 + vel * .35) * m.dir * scrollDir;
+        m.x -= (0.6 + vel * .35) * m.dir * (lite ? 1 : scrollDir);
         if (m.x <= -m.half) m.x += m.half;
         if (m.x > 0) m.x -= m.half;
         m.track.style.transform = 'translate3d(' + m.x + 'px,0,0)';
       });
-      parallax.forEach(function(el){
+      if (!lite) parallax.forEach(function(el){
         var r = el.getBoundingClientRect();
         if (r.bottom < -200 || r.top > vh + 200) return;
         var off = (r.top + r.height / 2 - vh / 2) * +el.dataset.speed;
@@ -978,7 +984,7 @@ try {
       });
       var lr = lettersBox.getBoundingClientRect();
       var lp = clamp((vh - lr.top) / (vh * .75), 0, 1), le = 1 - Math.pow(1 - lp, 3);
-      letters.forEach(function(l){
+      if (!lite) letters.forEach(function(l){
         var from = +l.dataset.from;
         l.style.transform = 'translate3d(' + ((1 - le) * from * 30) + 'vw,' + ((1 - le) * (from === 0 ? 120 : 40)) + 'px,0)';
         l.style.opacity = .15 + le * .85;
@@ -988,7 +994,8 @@ try {
       if (pinned) {
         var p = clamp(-svcSec.getBoundingClientRect().top / (svcSec.offsetHeight - vh), 0, 1);
         track.style.transform = 'translate3d(' + (-p * hsDist) + 'px,0,0)';
-        hsNow.textContent = '0' + (Math.min(cards.length - 1, Math.floor(p * cards.length)) + 1);
+        var hs = '0' + (Math.min(cards.length - 1, Math.floor(p * cards.length)) + 1);
+        if (hs !== lastHs) { hsNow.textContent = hs; lastHs = hs; }
       }
     }
     requestAnimationFrame(frame);
