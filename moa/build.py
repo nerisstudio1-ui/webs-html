@@ -16,11 +16,6 @@ ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT / "src"))
 from i18n import PAGES, TEXT  # noqa: E402
 
-# Dirección de la aplicación web de Google Apps Script que guarda las consultas
-# del formulario en una hoja de cálculo (ver wordpress/FORMULARIO-GOOGLE-SHEETS.md).
-# Vacía: el formulario funciona igual, pero no se guarda nada.
-SHEET_URL = ""
-
 LANG_LABELS = {"ca": ("CA", "Català"), "es": ("ES", "Castellano"), "en": ("EN", "English")}
 
 
@@ -34,8 +29,7 @@ def lang_switch(current):
 
 
 def read_template():
-    t = (ROOT / "src" / "template.html").read_text(encoding="utf-8")
-    return t.replace("{{sheet_url}}", SHEET_URL.replace("'", ""))
+    return (ROOT / "src" / "template.html").read_text(encoding="utf-8")
 
 
 def build():

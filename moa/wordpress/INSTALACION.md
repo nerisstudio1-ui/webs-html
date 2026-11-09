@@ -77,4 +77,12 @@ y se vuelve a pegar el archivo del idioma que haya cambiado (sustituyendo todo e
 
 - Cada archivo pesa unos 660 KB porque lleva los logos y la foto dentro. Se guarda en la base de datos de WordPress, así que el editor puede tardar un segundo más en abrir esa página. Para la visita no hay diferencia apreciable.
 - Todo el código va dentro de `<div id="moa-app">` con estilos encapsulados: no cambia nada del resto del sitio y el tema no puede descolocar la web de MOA. Se ha probado dentro de un tema con estilos que chocan a propósito (otros tamaños de letra, botones forzados con `!important`, columnas estrechas): se ve igual que la web suelta.
-- El formulario de contacto abre WhatsApp o el correo con el mensaje ya escrito; no necesita ningún plugin.
+- El formulario de contacto envía cada consulta directamente a patriciadoradotrainer@gmail.com con **FormSubmit** (gratis, sin registro y sin plugin). También tiene un botón para escribir por WhatsApp.
+
+## Activar el formulario (una sola vez)
+
+1. Con la web ya publicada, enviar una consulta de prueba desde el formulario.
+2. A patriciadoradotrainer@gmail.com llega un correo de **FormSubmit** («Action Required: Activate FormSubmit…»). Si no aparece, mirar en Spam o Promociones.
+3. Pulsar el botón **Activate Form**.
+
+A partir de ahí cada consulta llega sola al correo, con el nombre, el teléfono, el servicio y el mensaje. Si un envío fallara, la web abre el correo del visitante con el mensaje ya escrito, para que no se pierda.

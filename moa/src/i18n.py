@@ -117,11 +117,12 @@ TEXT = {
   "ct_eyebrow": "Contacte", "ct_title": "Parlem?",
   "ct_lead": "No cal que sàpigues quin servei triar. Explica'ns què busques i ho mirem junts. Per als grups, quan confirmem plaça i horari, t'incorpores directament.",
   "ct_phone": "Telèfon i WhatsApp", "ct_where": "Presencial, a domicili i en línia",
-  "f_title": "Explica'ns què busques", "f_sub": "En enviar s'obrirà WhatsApp o el teu correu amb el missatge ja escrit.",
+  "f_title": "Explica'ns què busques", "f_sub": "Et respondrem al més aviat possible. Si ho prefereixes, també ens pots escriure per WhatsApp.",
   "f_name": "Nom", "f_phone": "Telèfon (opcional)", "f_service": "Què t'interessa?", "f_unsure": "Encara no ho sé, vull que m'orienteu",
   "f_msg": "Què t'agradaria aconseguir?", "f_msg_ph": "Els teus objectius, com et mous ara, la teva disponibilitat o qualsevol cosa a tenir en compte.",
   "f_consent": "Accepto que MOA utilitzi aquestes dades només per respondre la meva consulta.",
-  "f_send_wa": "Enviar per WhatsApp", "f_send_mail": "Enviar per correu",
+  "f_send_wa": "Escriure per WhatsApp", "f_send_mail": "Enviar",
+  "f_ok": "Gràcies! Hem rebut la teva consulta i et respondrem aviat.",
 
   "footer_claim": "Pas a pas.<br>Al teu ritme.", "footer_project": "Un projecte de",
 
@@ -144,6 +145,7 @@ TEXT = {
     "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?",
     "errFields": "Escriu el teu nom i explica'ns una mica què busques.",
     "errConsent": "Marca la casella per poder enviar la consulta.",
+    "sending": "Enviant…", "errSend": "No s'ha pogut enviar. T'obrim el correu amb el missatge escrit.",
     "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:",
     "mailSubject": "Consulta des de la web de MOA:"
   }
@@ -261,11 +263,12 @@ TEXT = {
   "ct_eyebrow": "Contacto", "ct_title": "¿Hablamos?",
   "ct_lead": "No hace falta que sepas qué servicio elegir. Cuéntanos qué buscas y lo vemos juntos. Para los grupos, en cuanto confirmemos plaza y horario, te incorporas directamente.",
   "ct_phone": "Teléfono y WhatsApp", "ct_where": "Presencial, a domicilio y online",
-  "f_title": "Cuéntanos qué buscas", "f_sub": "Al enviar se abrirá WhatsApp o tu email con el mensaje ya escrito.",
+  "f_title": "Cuéntanos qué buscas", "f_sub": "Te responderemos lo antes posible. Si lo prefieres, también puedes escribirnos por WhatsApp.",
   "f_name": "Nombre", "f_phone": "Teléfono (opcional)", "f_service": "¿Qué te interesa?", "f_unsure": "Aún no lo sé, quiero que me orientéis",
   "f_msg": "¿Qué te gustaría conseguir?", "f_msg_ph": "Tus objetivos, cómo te mueves ahora, tu disponibilidad o cualquier cosa a tener en cuenta.",
   "f_consent": "Acepto que MOA use estos datos solo para responder a mi consulta.",
-  "f_send_wa": "Enviar por WhatsApp", "f_send_mail": "Enviar por email",
+  "f_send_wa": "Escribir por WhatsApp", "f_send_mail": "Enviar",
+  "f_ok": "¡Gracias! Hemos recibido tu consulta y te responderemos pronto.",
 
   "footer_claim": "Paso a paso.<br>A tu ritmo.", "footer_project": "Un proyecto de",
 
@@ -288,6 +291,7 @@ TEXT = {
     "quizWa": "Hola, he hecho el test de la web de MOA y me sale \"{s}\". Me gustaría entrenar {como}, {donde}, y {nota}. ¿Lo hablamos?",
     "errFields": "Escribe tu nombre y cuéntanos un poco qué buscas.",
     "errConsent": "Marca la casilla para poder enviar la consulta.",
+    "sending": "Enviando…", "errSend": "No se ha podido enviar. Te abrimos el correo con el mensaje escrito.",
     "msgHello": "Hola, soy {n}.", "msgInterest": "Me interesa:", "msgPhone": "Mi teléfono:",
     "mailSubject": "Consulta desde la web de MOA:"
   }
@@ -405,11 +409,12 @@ TEXT = {
   "ct_eyebrow": "Contact", "ct_title": "Let's talk",
   "ct_lead": "You don't need to know which service to choose. Tell us what you're looking for and we'll figure it out together. For groups, once we confirm a place and time, you can join straight away.",
   "ct_phone": "Phone and WhatsApp", "ct_where": "In person, at home and online",
-  "f_title": "Tell us what you're looking for", "f_sub": "When you send it, WhatsApp or your email app will open with the message ready to go.",
+  "f_title": "Tell us what you're looking for", "f_sub": "We'll get back to you as soon as possible. You can also message us on WhatsApp if you prefer.",
   "f_name": "Name", "f_phone": "Phone (optional)", "f_service": "What are you interested in?", "f_unsure": "I'm not sure yet, I'd like some guidance",
   "f_msg": "What would you like to achieve?", "f_msg_ph": "Your goals, how active you are now, your availability or anything else we should know.",
   "f_consent": "I agree that MOA may use this information only to reply to my enquiry.",
-  "f_send_wa": "Send via WhatsApp", "f_send_mail": "Send by email",
+  "f_send_wa": "Message on WhatsApp", "f_send_mail": "Send",
+  "f_ok": "Thank you! We've received your enquiry and will reply soon.",
 
   "footer_claim": "Step by step.<br>At your pace.", "footer_project": "A project by",
 
@@ -432,6 +437,7 @@ TEXT = {
     "quizWa": "Hi! I took the quiz on the MOA website and got \"{s}\". I'd like to train {como}, {donde}, and {nota}. Can we talk?",
     "errFields": "Please write your name and tell us a little about what you're looking for.",
     "errConsent": "Please tick the box so we can receive your enquiry.",
+    "sending": "Sending…", "errSend": "It couldn't be sent. We're opening your email app with the message ready.",
     "msgHello": "Hi! I'm {n}.", "msgInterest": "I'm interested in:", "msgPhone": "My phone:",
     "mailSubject": "Enquiry from the MOA website:"
   }

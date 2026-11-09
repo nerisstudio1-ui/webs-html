@@ -419,6 +419,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 .check input{margin-top:4px;accent-color:var(--violeta)}
 .form-actions{display:flex;flex-wrap:wrap;gap:12px}
 .form-actions .btn{flex:1 1 220px}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.form-ok{color:var(--carbon);background:#DDF5E3;border-radius:12px;padding:14px 16px;font-weight:600;font-size:.92rem;margin:12px 0 0}
 .form-error{color:#A3122A;font-size:.88rem;font-weight:500;min-height:1.4em;margin:10px 0 0}
 
 /* Pie */
@@ -860,7 +862,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div>
     <form class="form reveal" id="contactForm" novalidate>
       <h3>Tell us what you're looking for</h3>
-      <p>When you send it, WhatsApp or your email app will open with the message ready to go.</p>
+      <p>We'll get back to you as soon as possible. You can also message us on WhatsApp if you prefer.</p>
       <div class="row2">
         <div class="field"><label for="f-nombre">Name</label><input id="f-nombre" name="nombre" autocomplete="name" required></div>
         <div class="field"><label for="f-tel">Phone (optional)</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
@@ -878,11 +880,13 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       </div>
       <div class="field"><label for="f-msg">What would you like to achieve?</label><textarea id="f-msg" name="mensaje" placeholder="Your goals, how active you are now, your availability or anything else we should know." required></textarea></div>
       <label class="check"><input type="checkbox" id="f-ok" required> I agree that MOA may use this information only to reply to my enquiry.</label>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
       <div class="form-actions">
-        <button type="submit" class="btn btn-wa" data-via="wa">Send via WhatsApp</button>
-        <button type="submit" class="btn btn-fill" data-via="mail">Send by email</button>
+        <button type="submit" class="btn btn-fill" data-via="mail" id="fSend">Send</button>
+        <button type="submit" class="btn btn-wa" data-via="wa">Message on WhatsApp</button>
       </div>
       <p class="form-error" id="formError" role="alert"></p>
+      <p class="form-ok" id="formOk" role="status" hidden>Thank you! We've received your enquiry and will reply soon.</p>
     </form>
   </div>
 </section>
@@ -910,24 +914,14 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <script>
 (function(){
 try {
-  var T = {"menuOpen": "Open menu", "menuClose": "Close menu", "waDefault": "Hi! I'd like some information about training at MOA.", "quizNext": "Next", "quizResult": "See my result", "services": {"compartido": {"t": "Shared personal training", "d": "One-to-one attention and a plan for you, in very small groups with a great atmosphere."}, "grupal": {"t": "Group training", "d": "We train together and everyone adapts the exercises to their level. Great for building consistency."}, "domicilio": {"t": "Home training", "d": "We bring the training to your home, adapted to how you feel and the space you have."}, "online": {"t": "Online personal training", "d": "A personalised plan with remote follow-up that evolves with you."}, "app": {"t": "App-based personal training", "d": "Train whenever and wherever you like, with sessions explained step by step and your progress followed up."}}, "labels": {"como": {"grupo": "in a group", "personal": "with personalised training", "solo": "on my own with a plan"}, "donde": {"martorell": "in person in Martorell", "casa": "at home", "distancia": "remotely"}, "nota": {"empezar": "I'm just starting or haven't trained in a while", "salud": "I'm coming back from an injury or health issue", "tiempo": "I'm short on time", "nada": "nothing special"}}, "quizWa": "Hi! I took the quiz on the MOA website and got \"{s}\". I'd like to train {como}, {donde}, and {nota}. Can we talk?", "errFields": "Please write your name and tell us a little about what you're looking for.", "errConsent": "Please tick the box so we can receive your enquiry.", "msgHello": "Hi! I'm {n}.", "msgInterest": "I'm interested in:", "msgPhone": "My phone:", "mailSubject": "Enquiry from the MOA website:"};
+  var T = {"menuOpen": "Open menu", "menuClose": "Close menu", "waDefault": "Hi! I'd like some information about training at MOA.", "quizNext": "Next", "quizResult": "See my result", "services": {"compartido": {"t": "Shared personal training", "d": "One-to-one attention and a plan for you, in very small groups with a great atmosphere."}, "grupal": {"t": "Group training", "d": "We train together and everyone adapts the exercises to their level. Great for building consistency."}, "domicilio": {"t": "Home training", "d": "We bring the training to your home, adapted to how you feel and the space you have."}, "online": {"t": "Online personal training", "d": "A personalised plan with remote follow-up that evolves with you."}, "app": {"t": "App-based personal training", "d": "Train whenever and wherever you like, with sessions explained step by step and your progress followed up."}}, "labels": {"como": {"grupo": "in a group", "personal": "with personalised training", "solo": "on my own with a plan"}, "donde": {"martorell": "in person in Martorell", "casa": "at home", "distancia": "remotely"}, "nota": {"empezar": "I'm just starting or haven't trained in a while", "salud": "I'm coming back from an injury or health issue", "tiempo": "I'm short on time", "nada": "nothing special"}}, "quizWa": "Hi! I took the quiz on the MOA website and got \"{s}\". I'd like to train {como}, {donde}, and {nota}. Can we talk?", "errFields": "Please write your name and tell us a little about what you're looking for.", "errConsent": "Please tick the box so we can receive your enquiry.", "sending": "Sending…", "errSend": "It couldn't be sent. We're opening your email app with the message ready.", "msgHello": "Hi! I'm {n}.", "msgInterest": "I'm interested in:", "msgPhone": "My phone:", "mailSubject": "Enquiry from the MOA website:"};
   // El número no aparece en la página: se monta solo al pulsar un botón de
   // WhatsApp, para que no lo encuentren los programas que buscan teléfonos
   var PHONE = ['34', '677', '85', '12', '11'].join('');
   var EMAIL = 'patriciadoradotrainer@gmail.com';
-  // Dirección de la hoja de Google Sheets donde se guardan las consultas del
-  // formulario (ver wordpress/FORMULARIO-GOOGLE-SHEETS.md). Vacía: no se guarda.
-  var SHEET_URL = '';
-  function saveToSheet(data){
-    if (!SHEET_URL) return;
-    data.idioma = (document.getElementById('moa-app') || document.documentElement).lang;
-    data.pagina = location.href;
-    var body = new URLSearchParams(data);
-    // sendBeacon sigue enviando aunque a continuación se abra WhatsApp
-    if (!(navigator.sendBeacon && navigator.sendBeacon(SHEET_URL, body))) {
-      fetch(SHEET_URL, {method: 'POST', mode: 'no-cors', body: body, keepalive: true}).catch(function(){});
-    }
-  }
+  // Las consultas del formulario se envían a este correo con FormSubmit (gratis,
+  // sin registro): la primera vez llega un correo para activarlo con un clic
+  var FORM_URL = 'https://formsubmit.co/ajax/' + EMAIL;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(pointer: fine)').matches;
   function waLink(text){ return 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text); }
@@ -1201,19 +1195,40 @@ try {
     quiz.reset(); result.classList.remove('active'); qNav.hidden = false; show(0);
   });
 
-  // Formulario: abre WhatsApp o el email con el mensaje escrito
-  var form = document.getElementById('contactForm'), errorEl = document.getElementById('formError'), via = 'wa';
+  // Formulario: «Enviar» manda la consulta directamente al correo de Patricia;
+  // «WhatsApp» abre el chat con el mensaje ya escrito
+  var form = document.getElementById('contactForm'), errorEl = document.getElementById('formError'), via = 'mail';
+  var okEl = document.getElementById('formOk'), sendBtn = document.getElementById('fSend');
   form.querySelectorAll('[data-via]').forEach(function(b){ b.addEventListener('click', function(){ via = b.getAttribute('data-via'); }); });
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var nombre = form.nombre.value.trim(), tel = form.telefono.value.trim(), servicio = form.servicio.value, msg = form.mensaje.value.trim();
     if (!nombre || !msg) { errorEl.textContent = T.errFields; return; }
     if (!document.getElementById('f-ok').checked) { errorEl.textContent = T.errConsent; return; }
-    errorEl.textContent = '';
+    errorEl.textContent = ''; okEl.hidden = true;
     var text = T.msgHello.replace('{n}', nombre) + '\n\n' + T.msgInterest + ' ' + servicio + '\n\n' + msg + (tel ? '\n\n' + T.msgPhone + ' ' + tel : '');
-    saveToSheet({nombre: nombre, telefono: tel, servicio: servicio, mensaje: msg, via: via});
-    if (via === 'wa') openWa(text);
-    else window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(T.mailSubject + ' ' + servicio) + '&body=' + encodeURIComponent(text);
+    if (via === 'wa') { openWa(text); return; }
+    if (form._honey.value) return;           // relleno por un robot: no se envía
+    var label = sendBtn.textContent;
+    sendBtn.disabled = true; sendBtn.textContent = T.sending;
+    fetch(FORM_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({
+        _subject: T.mailSubject + ' ' + nombre,
+        _template: 'table', _captcha: 'false',
+        Nombre: nombre, 'Teléfono': tel || '-', Servicio: servicio, Mensaje: msg,
+        Idioma: (document.getElementById('moa-app') || document.documentElement).lang
+      })
+    }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){
+      if (!r.ok || String(d.success) === 'false') throw new Error(d.message || r.status);
+    }); }).then(function(){
+      form.reset(); okEl.hidden = false;
+    }).catch(function(){
+      // Si el envío falla, se abre el correo del visitante con todo escrito
+      errorEl.textContent = T.errSend;
+      window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(T.mailSubject + ' ' + servicio) + '&body=' + encodeURIComponent(text);
+    }).then(function(){ sendBtn.disabled = false; sendBtn.textContent = label; });
   });
   window.addEventListener('pageshow', function(e){
     if (!e.persisted) return;
