@@ -1,122 +1,132 @@
-import json,os,sys
-PX=sys.argv[1]; OUT=sys.argv[2]
-def img(i): return f"file://{PX}/{i}.jpg"
+import sys,os
+PX=sys.argv[1].split(','); OUT=sys.argv[2]
+def img(i):
+    for d in PX:
+        p=f"{d}/{i}.jpg"
+        if os.path.exists(p): return f"file://{p}"
+    raise SystemExit(f"missing {i}")
+def bgi(i,pos='center'): return f"background-image:url({img(i)});background-position:{pos}"
+
+def nav(s,light=False):
+    links=''.join(f'<a>{n}</a>' for n in s['nav'])
+    return f'<nav class="{"lt" if light else ""}"><b class="logo">{s["name"]}</b><div class="links">{links}</div><a class="pillb">{s["cta"]}</a></nav>'
+def heroCard(s,photo,h1,cap,pos='center'):
+    links=''.join(f'<a>{n}</a>' for n in s['nav'])
+    return f'''<header class="heroCard"><div class="hc" style="{bgi(photo,pos)}"><div class="shade"></div>
+    <div class="top"><b class="lg">{s["name"]}</b><div class="links">{links}</div><a class="pillw">{s["cta"]}</a></div>
+    <h1>{h1}</h1><div class="cap"><p>{cap}</p><a class="pillw">{s["cta"]} →</a></div></div></header>'''
+def heroSplit(s,photo,tag,h1,p,pos='center'):
+    return nav(s)+f'''<header class="heroSplit"><div><span class="lab">{tag}</span><h1>{h1}</h1><p>{p}</p><div class="btns"><a class="pilld">{s["cta"]}</a><a class="pillo">Ver más</a></div></div><div class="hp" style="{bgi(photo,pos)}"><span>{s["name"]} — 2026</span></div></header>'''
+def heroCenter(s,photo,tag,h1,p,pos='center'):
+    return nav(s)+f'''<header class="heroCenter"><span class="lab">{tag}</span><h1>{h1}</h1><p>{p}</p><div class="btns"><a class="pilld">{s["cta"]}</a><a class="pillo">Ver más</a></div><div class="hp" style="{bgi(photo,pos)}"></div></header>'''
+def splitDark(photo,label,items,cap,pos='center',flip=False):
+    li=''.join(f'<li class="{"on" if k==len(items)-1 else ""}">{x}</li>' for k,x in enumerate(items))
+    return f'''<section class="splitDark {"flip" if flip else ""}"><div class="ph" style="{bgi(photo,pos)}"><p>{cap}</p></div><div class="dk"><span class="lab lw">{label}</span><ul>{li}</ul></div></section>'''
+def testimonials(title,items):
+    cards=''.join(f'''<div class="tp" style="{bgi(ph,'center top')}"><span><b>{n}</b>{r}</span></div><div class="tq"><q>{q}</q><div class="st"><div><b>{a}</b><i>{al}</i></div><div><b>{b}</b><i>{bl}</i></div><a class="pillg">Leer caso</a></div></div>''' for ph,q,n,r,a,al,b,bl in items)
+    return f'''<section class="testi"><h2>{title}</h2><div class="trow">{cards}</div><div class="arr"><a class="on">←</a><a>→</a></div></section>'''
+def rows(label,title,items):
+    r=''.join(f'''<div class="r"><span>0{k+1}</span><h3>{t}</h3><p>{d}</p><div class="th" style="{bgi(ph)}"></div></div>''' for k,(t,d,ph) in enumerate(items))
+    return f'''<section class="rows"><div class="rh"><span class="lab">{label}</span><h2>{title}</h2></div>{r}</section>'''
+def gallery(label,title,items):
+    g=''.join(f'<div style="{bgi(ph)}"><span>{c}</span></div>' for ph,c in items)
+    return f'''<section class="gal"><div class="rh"><span class="lab">{label}</span><h2>{title}</h2></div><div class="g">{g}</div></section>'''
+def statement(label,text):
+    return f'<section class="state"><span class="lab">{label}</span><p>{text}</p></section>'
+def stats(items):
+    return '<section class="stats">'+''.join(f'<div><b>{a}</b><span>{b}</span></div>' for a,b in items)+'</section>'
+def cta(s,h,p):
+    return f'''<footer><span class="lab lw">Contacto</span><h2>{h}</h2><p>{p}</p><a class="pillw big">{s["cta"]} →</a><div class="fc"><b>{s["name"]}</b><span>Instagram</span><span>LinkedIn</span><span>Aviso legal</span><span>© 2026</span></div></footer>'''
+
 SITES=[
- dict(id='restaurante',name='Brasa Nueve',font='Outfit',hero='A',bg='#f7f3ec',ink='#1c1814',acc='#c8502d',soft='#efe6d8',dark='#1c1814',rad=6,
-  nav=['Carta','Reservas','El local','Contacto'],cta='Reservar mesa',tag='Cocina de brasa · València',
-  h1='Fuego lento,<br>producto de mercado.',sub='Cocina mediterránea a la brasa en el corazón de Ruzafa. Abierto de martes a domingo.',
-  heroimg=262978,stats=[('4,8','en reseñas'),('12','años cocinando'),('100%','producto local')],
-  sect='Nuestra carta',cards=[(1279330,'Pastas frescas','Hechas cada mañana en casa.','desde 14 €'),(958545,'Para compartir','Entrantes pensados para el centro de la mesa.','desde 9 €'),(1640777,'De la huerta','Verduras de temporada a la brasa.','desde 11 €')],
-  about=(67468,'Un local para quedarse','Una sala luminosa, mesas amplias y una cocina abierta donde todo pasa delante de ti.',['Menú de mediodía entre semana','Terraza cubierta todo el año','Grupos y celebraciones']),
-  gal=[941861,696218,1267320,708587],quote=('La mejor brasa de la ciudad, y un trato que hace que vuelvas.','Lucía M.'),band='¿Mesa para esta semana?'),
- dict(id='estetica',name='Lúa Estética',font='Plus Jakarta Sans',hero='B',bg='#fbf6f3',ink='#2a2422',acc='#b9745f',soft='#f3e4dc',dark='#3a2c28',rad=28,
-  nav=['Tratamientos','Bonos','Centro','Contacto'],cta='Pedir cita',tag='Centro de estética avanzada',
-  h1='Tu piel, cuidada<br>con calma.',sub='Tratamientos faciales y corporales personalizados. Primera valoración gratuita.',
-  heroimg=3757942,stats=[('+2.000','clientas'),('15','tratamientos'),('9 años','de experiencia')],
-  sect='Tratamientos destacados',cards=[(3985329,'Limpieza facial profunda','Piel luminosa desde la primera sesión.','60 min · 55 €'),(3997989,'Masaje relajante','Descarga tensión de cuello y espalda.','45 min · 45 €'),(4041392,'Ritual de aceites','Hidratación intensa con cosmética natural.','75 min · 70 €')],
-  about=(3738349,'Un espacio solo para ti','Cabinas individuales, cosmética profesional y un equipo titulado que te asesora sin prisas.',['Diagnóstico de piel personalizado','Bonos de 5 y 10 sesiones','Cita online en 1 minuto']),
-  gal=[4041392,3065209,3993449,415829],quote=('Salgo siempre como nueva. Profesionales y muy atentas.','Marta R.'),band='Reserva tu primera valoración gratuita'),
- dict(id='inmobiliaria',name='Habita Norte',font='Manrope',hero='A',bg='#f5f6f4',ink='#14201b',acc='#1f6f54',soft='#e4ebe6',dark='#14201b',rad=14,
-  nav=['Comprar','Alquilar','Vender','Contacto'],cta='Valorar mi casa',tag='Inmobiliaria · Valencia y área metropolitana',
-  h1='Encuentra la casa<br>donde quieres vivir.',sub='Más de 300 viviendas seleccionadas y un equipo que te acompaña de la primera visita a la firma.',
-  heroimg=323780,stats=[('320','viviendas activas'),('45 días','venta media'),('98%','clientes satisfechos')],
-  sect='Viviendas destacadas',cards=[(1571460,'Ático con terraza · Ruzafa','3 hab · 2 baños · 128 m²','385.000 €'),(1396122,'Chalet independiente · La Eliana','4 hab · 3 baños · 240 m²','540.000 €'),(1457842,'Piso reformado · Benimaclet','2 hab · 1 baño · 82 m²','219.000 €')],
-  about=(3184465,'Vender bien empieza por una buena valoración','Analizamos tu vivienda, preparamos el reportaje y filtramos a los compradores por ti.',['Valoración gratuita en 24 h','Reportaje fotográfico profesional','Gestión de hipoteca y notaría']),
-  gal=[276724,271624,6585760,1080721],quote=('Vendimos en un mes y sin preocuparnos de nada.','Carlos y Ana'),band='¿Cuánto vale tu casa hoy?'),
- dict(id='yoga',name='Núcleo Studio',font='DM Sans',hero='C',bg='#f6f5f0',ink='#1d1f1a',acc='#5b6b3f',soft='#e8e9dc',dark='#23261d',rad=22,
-  nav=['Clases','Horarios','Tarifas','Contacto'],cta='Clase de prueba',tag='Yoga · Pilates · Movimiento',
-  h1='Muévete mejor.<br>Vive con más energía.',sub='Grupos reducidos de máximo 8 personas. Tu primera clase es gratis.',
-  heroimg=4056723,stats=[('8','personas por clase'),('32','clases semanales'),('6','profesores')],
-  sect='Nuestras clases',cards=[(3822906,'Yoga Vinyasa','Fuerza y flexibilidad en movimiento.','Todos los niveles'),(4498606,'Pilates suelo','Core fuerte y espalda sana.','Iniciación'),(841130,'Fuerza funcional','Entrena con técnica y sin lesiones.','Intermedio')],
-  about=(416778,'Entrena acompañado','Profesores titulados que corrigen tu postura en cada sesión y adaptan los ejercicios a ti.',['Bono mensual sin permanencia','Reserva de plaza desde el móvil','Clases de mañana, mediodía y tarde']),
-  gal=[1552242,3822906,4498606,4056723],quote=('En tres meses mi espalda ha cambiado por completo.','Elena G.'),band='Prueba una clase gratis esta semana'),
- dict(id='cafe',name='Tostado Café',font='Poppins',hero='B',bg='#f8f4ee',ink='#231a14',acc='#a35b2b',soft='#efe3d3',dark='#231a14',rad=18,
-  nav=['Carta','Café de origen','Eventos','Contacto'],cta='Ver la carta',tag='Café de especialidad · Brunch',
-  h1='Café de verdad,<br>tostado aquí.',sub='Desayunos, brunch y café de origen tostado cada semana en nuestro obrador.',
-  heroimg=302899,stats=[('7','orígenes de café'),('8:00','abrimos cada día'),('4,9','en reseñas')],
-  sect='Lo más pedido',cards=[(1126728,'Brunch para dos','Tabla de dulces, salados y dos cafés.','24 €'),(312418,'Flat white','Doble espresso y leche texturizada.','2,80 €'),(1855214,'Bollería del día','Horneada cada mañana.','desde 2 €')],
-  about=(2788792,'Un sitio para quedarse','Mesas compartidas, wifi y buena música. Ven a trabajar, a leer o a ponerte al día.',['Café en grano para llevar','Leches vegetales sin coste','Reservas para grupos']),
-  gal=[2253643,1126728,302899,312418],quote=('El mejor flat white del barrio, sin discusión.','Pablo S.'),band='Te esperamos con el café recién hecho'),
- dict(id='dental',name='Clínica Dental Sonría',font='Inter',hero='C',bg='#f4f8fb',ink='#10222e',acc='#1a7fc1',soft='#e0edf5',dark='#10222e',rad=20,
-  nav=['Tratamientos','Equipo','Financiación','Contacto'],cta='Pedir cita',tag='Odontología general y estética',
-  h1='Tu mejor sonrisa<br>empieza aquí.',sub='Primera visita y diagnóstico gratuitos. Financiación hasta 24 meses sin intereses.',
-  heroimg=3845810,stats=[('+5.000','pacientes'),('20 años','de experiencia'),('24 h','urgencias')],
-  sect='Tratamientos',cards=[(305568,'Implantes dentales','Recupera tu sonrisa con tecnología 3D.','Estudio gratuito'),(4047186,'Ortodoncia invisible','Alinea tus dientes sin brackets.','desde 59 €/mes'),(774909,'Blanqueamiento','Resultados visibles en una sesión.','199 €')],
-  about=(2182970,'Un equipo que te explica todo','Te contamos cada paso del tratamiento con claridad y un presupuesto cerrado desde el primer día.',['Presupuesto sin compromiso','Sedación consciente disponible','Revisiones anuales incluidas']),
-  gal=[305568,1239291,220453,3845810],quote=('Tenía pánico al dentista y aquí me lo han quitado.','Javier L.'),band='Pide tu primera visita gratuita'),
+ dict(id='consultoria',name='Norte & Co',cta='Hablemos',nav=['Servicios','Equipo','Casos','Recursos'],serif='Instrument Serif',sans='Inter Tight',bg='#dfe2e1',ink='#1b2220',dark='#1e2523',acc='#1e2523',card='#f4f5f3',
+  body=lambda s: heroCard(s,3760263,'Personas que hacen<br>crecer tu empresa.','Consultoría de talento y cultura para equipos que quieren trabajar mejor.','center 30%')
+   +statement('Qué hacemos','Ayudamos a empresas en crecimiento a <em>decidir mejor</em>, ordenar sus equipos y construir una cultura que retiene talento.')
+   +testimonials('Lo que cambia cuando trabajamos juntos',[(3777943,'Antes, cada decisión rebotaba entre equipos. Nos ayudaron a definir cómo se decide.','Daniel Ortega','Director de operaciones','+34%','Decisiones más rápidas','−42%','Rotación anual'),(3769021,'Por fin tenemos un proceso de selección claro y una bienvenida que funciona.','Paula Méndez','Responsable de personas','×2','Candidaturas válidas','21 días','Para cubrir vacantes')])
+   +splitDark(6626903,'A quién acompañamos',['Empresas en crecimiento','Fundadores','Equipos de personas','Equipos híbridos','Empresas tecnológicas'],'Estructuras que evolucionan con el equipo, sin perder el foco en las personas.','center 20%')
+   +rows('Servicios','Un acompañamiento completo',[('Selección y talento','Procesos claros para encontrar a quien encaja de verdad.',3184291),('Cultura y valores','Definimos cómo trabajáis y cómo lo contáis.',3182812),('Estructura y roles','Organigramas que se entienden y se usan.',7688336)])
+   +stats([('120+','empresas acompañadas'),('12','años de experiencia'),('94%','renuevan con nosotros'),('8','países')])
+   +cta(s,'Empieza por una conversación.','Cuéntanos en qué punto está tu equipo y te proponemos un primer paso.')),
+ dict(id='interiorismo',name='Estudio Alba',cta='Pedir propuesta',nav=['Proyectos','Estudio','Proceso','Contacto'],serif='Instrument Serif',sans='DM Sans',bg='#efece6',ink='#24211d',dark='#26221d',acc='#8a5a3c',card='#faf8f4',
+  body=lambda s: heroSplit(s,1866149,'Interiorismo · València','Espacios serenos,<br><em>hechos para vivirlos.</em>','Diseñamos viviendas y locales con materiales honestos, luz natural y atención al detalle.')
+   +stats([('86','proyectos entregados'),('14','años de estudio'),('100%','llave en mano'),('3','premios de diseño')])
+   +gallery('Proyectos','Selección reciente',[(4352247,'Casa Turia — 2026'),(6782567,'Ático Cabanyal — 2025'),(2440471,'Loft Ruzafa — 2025')])
+   +splitDark(1090638,'Cómo trabajamos',['Escucha','Concepto','Materiales','Obra','Entrega'],'Un único equipo desde el primer boceto hasta el último detalle.',flip=True)
+   +rows('Servicios','Del plano a la llave',[('Vivienda','Reformas integrales y obra nueva.',6312362),('Locales','Espacios comerciales con identidad.',1350789),('Mobiliario a medida','Piezas diseñadas para cada estancia.',1743227)])
+   +statement('Filosofía','Creemos en casas que <em>envejecen bien</em>: menos objetos, mejores materiales y una luz que cambia a lo largo del día.')
+   +cta(s,'¿Hablamos de tu espacio?','Primera visita y anteproyecto sin compromiso.')),
+ dict(id='pilates',name='Forma Estudio',cta='Reservar clase',nav=['Clases','Horarios','Equipo','Tarifas'],serif='Newsreader',sans='Inter Tight',bg='#e8e6df',ink='#23261f',dark='#2a2f28',acc='#5d6a4c',card='#f6f5f0',
+  body=lambda s: heroCard(s,8436587,'Muévete con calma.<br>Vive con fuerza.','Pilates y yoga en grupos reducidos. Tu primera clase es gratuita.','center 40%')
+   +rows('Clases','Encuentra tu ritmo',[('Pilates reformer','Fuerza profunda y postura, con máquina.',6111616),('Yoga vinyasa','Movimiento fluido guiado por la respiración.',3822906),('Suelo y movilidad','Para empezar o recuperar sin prisa.',4498606)])
+   +splitDark(4056723,'Para quién',['Si empiezas de cero','Si pasas el día sentado','Si vuelves tras una lesión','Si buscas constancia','Si quieres sentirte mejor'],'Máximo ocho personas por sesión. Corregimos cada postura.','center')
+   +testimonials('Historias del estudio',[(3394658,'En tres meses mi espalda ha cambiado por completo. Es mi hora favorita de la semana.','Elena Garrido','Alumna desde 2024','8','Personas por clase','32','Clases semanales'),(2379004,'Llegué con dolor lumbar y sin constancia. Ahora no me salto ni una.','Marc Soler','Alumno desde 2025','6','Profesores titulados','4,9','Valoración media')])
+   +statement('El estudio','Un espacio luminoso y tranquilo en el centro, pensado para que <em>desconectes al entrar</em> y salgas con más energía.')
+   +cta(s,'Tu primera clase, gratis.','Reserva plaza en un minuto desde el móvil.')),
+ dict(id='restaurante',name='Casa Olmo',cta='Reservar mesa',nav=['Carta','Bodega','El espacio','Eventos'],serif='Instrument Serif',sans='DM Sans',bg='#ece7df',ink='#1f1b17',dark='#1d1916',acc='#9a4a2a',card='#f8f5ef',
+  body=lambda s: heroCenter(s,941861,'Cocina de mercado · Desde 2014','Fuego lento,<br><em>producto de temporada.</em>','Una carta corta que cambia cada semana, brasa de encina y una bodega de pequeños productores.','center 60%')
+   +splitDark(262978,'La carta',['Entrantes','Brasa','Arroces','Postres','Menú degustación'],'Siete pases que recorren la temporada. De martes a sábado.','center')
+   +gallery('El espacio','Una sala para quedarse',[(67468,'Sala principal'),(696218,'Mesa compartida'),(2253643,'Barra y cocina vista')])
+   +statement('Filosofía','Compramos cada mañana en el mercado y cocinamos <em>sin esconder el producto</em>. Lo demás es tiempo y fuego.')
+   +rows('Experiencias','Más que una cena',[('Menú degustación','Siete pases y maridaje opcional.',1279330),('Eventos privados','La sala entera para tu celebración.',2788792),('Mesa del chef','Seis asientos frente a la cocina.',958545)])
+   +stats([('4,8','valoración media'),('12','años cocinando'),('40','referencias en bodega'),('7','pases')])
+   +cta(s,'¿Mesa para esta semana?','Reservas online con confirmación inmediata.')),
+ dict(id='clinica',name='Clínica Sera',cta='Pedir cita',nav=['Tratamientos','Equipo','Tecnología','Contacto'],serif='Newsreader',sans='DM Sans',bg='#eeeae6',ink='#2a2422',dark='#2d2623',acc='#a8705a',card='#faf7f4',
+  body=lambda s: heroSplit(s,3985329,'Dermatología y estética','El cuidado de tu piel,<br><em>con criterio médico.</em>','Tratamientos personalizados, tecnología avanzada y un equipo que te explica cada paso.','center')
+   +statement('Nuestra forma de trabajar','Cada piel es distinta. Por eso empezamos siempre por <em>un diagnóstico</em> y no por un tratamiento.')
+   +rows('Tratamientos','Qué podemos hacer por ti',[('Dermatología clínica','Diagnóstico y seguimiento de la piel.',3738349),('Medicina estética','Resultados naturales, sin excesos.',2811087),('Cuidado facial','Protocolos adaptados a tu piel.',4041392)])
+   +splitDark(3586798,'Primera visita',['Escuchamos','Analizamos tu piel','Diseñamos el plan','Tratamos','Acompañamos'],'Una hora contigo antes de recomendarte nada.','center 20%',flip=True)
+   +testimonials('Pacientes que confían en nosotros',[(1065084,'Me explicaron todo con calma y el resultado es justo lo que buscaba: natural.','Laura Vidal','Paciente desde 2023','+5.000','Pacientes atendidos','15','Años de experiencia'),(3757942,'Por fin una clínica que no intenta venderte de más. Salgo siempre tranquila.','Marta Roca','Paciente desde 2024','98%','Nos recomiendan','1 h','Primera consulta')])
+   +cta(s,'Tu piel, en buenas manos.','Primera valoración sin compromiso.')),
 ]
-def page(s):
-    r=s['rad']
-    nav=''.join(f'<a>{n}</a>' for n in s['nav'])
-    stats=''.join(f'<div><b>{a}</b><span>{b}</span></div>' for a,b in s['stats'])
-    cards=''.join(f'<article><div class="ph" style="background-image:url({img(i)})"></div><div class="cb"><h3>{t}</h3><p>{d}</p><div class="row"><strong>{p}</strong><em>Ver más →</em></div></div></article>' for i,t,d,p in s['cards'])
-    ai,at,ad,al=s['about']
-    lis=''.join(f'<li><i></i>{x}</li>' for x in al)
-    gal=''.join(f'<div style="background-image:url({img(i)})"></div>' for i in s['gal'])
-    q,qa=s['quote']
-    if s['hero']=='A':
-        hero=f'''<header class="heroA" style="background-image:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.25) 65%,rgba(0,0,0,.1)),url({img(s['heroimg'])})">
-        <nav class="light"><b class="logo">{s['name']}</b><div class="links">{nav}</div><a class="btn">{s['cta']}</a></nav>
-        <div class="ht"><span class="tag">{s['tag']}</span><h1>{s['h1']}</h1><p>{s['sub']}</p><div class="btns"><a class="btn big">{s['cta']}</a><a class="btn big ghost">Saber más</a></div></div></header>'''
-    elif s['hero']=='B':
-        hero=f'''<nav><b class="logo">{s['name']}</b><div class="links">{nav}</div><a class="btn">{s['cta']}</a></nav>
-        <header class="heroB"><div class="ht"><span class="tag">{s['tag']}</span><h1>{s['h1']}</h1><p>{s['sub']}</p><div class="btns"><a class="btn big">{s['cta']}</a><a class="btn big ghost">Saber más</a></div>
-        <div class="rev">★★★★★ <span>Más de 200 reseñas en Google</span></div></div><div class="hp" style="background-image:url({img(s['heroimg'])})"></div></header>'''
-    else:
-        hero=f'''<nav><b class="logo">{s['name']}</b><div class="links">{nav}</div><a class="btn">{s['cta']}</a></nav>
-        <header class="heroC"><span class="tag">{s['tag']}</span><h1>{s['h1']}</h1><p>{s['sub']}</p><div class="btns"><a class="btn big">{s['cta']}</a><a class="btn big ghost">Saber más</a></div>
-        <div class="hp" style="background-image:url({img(s['heroimg'])})"></div></header>'''
-    return f'''<!doctype html><html lang="es"><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family={s['font'].replace(' ','+')}:wght@400;500;600;700;800&display=block" rel="stylesheet">
-<style>
-*{{box-sizing:border-box;margin:0;padding:0}}
-body{{width:1440px;background:{s['bg']};color:{s['ink']};font-family:"{s['font']}",sans-serif;font-size:19px;line-height:1.5}}
-a{{cursor:pointer}}
-nav{{display:flex;align-items:center;gap:40px;padding:30px 80px}}
-nav .logo{{font-size:28px;font-weight:800;letter-spacing:-.02em}}
-nav .links{{display:flex;gap:38px;margin-left:auto;font-weight:500;font-size:18px}}
-nav.light{{color:#fff}}
-.btn{{display:inline-block;background:{s['acc']};color:#fff;font-weight:700;font-size:17px;padding:15px 28px;border-radius:{max(r,8)}px}}
-.btn.big{{font-size:20px;padding:20px 36px}}
-.btn.ghost{{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px currentColor}}
-.tag{{display:inline-block;font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:{s['acc']};margin-bottom:26px}}
-h1{{font-size:92px;line-height:1.02;font-weight:800;letter-spacing:-.035em}}
-h2{{font-size:56px;line-height:1.08;font-weight:800;letter-spacing:-.03em}}
-.btns{{display:flex;gap:16px;margin-top:40px}}
-.heroA{{height:900px;background-size:cover;background-position:center;color:#fff}}
-.heroA .ht{{padding:130px 80px 0;max-width:900px}} .heroA .tag{{color:#fff;opacity:.9}}
-.heroA p,.heroB p,.heroC p{{font-size:24px;margin-top:28px;max-width:620px;opacity:.86}}
-.heroB{{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:50px 80px 90px;align-items:center}}
-.heroB .hp{{height:720px;border-radius:{r*2}px;background-size:cover;background-position:center}}
-.rev{{margin-top:44px;color:{s['acc']};font-size:22px;letter-spacing:.1em}} .rev span{{color:{s['ink']};font-size:17px;letter-spacing:0;opacity:.7;margin-left:10px}}
-.heroC{{text-align:center;padding:70px 80px 0}} .heroC p{{margin-left:auto;margin-right:auto}} .heroC .btns{{justify-content:center}}
-.heroC .hp{{height:640px;margin-top:70px;border-radius:{r*2}px;background-size:cover;background-position:center}}
-.stats{{display:grid;grid-template-columns:repeat(3,1fr);margin:0 80px;padding:64px 0;border-bottom:2px solid {s['soft']}}}
-.stats div{{text-align:center}} .stats b{{display:block;font-size:66px;font-weight:800;letter-spacing:-.03em;color:{s['acc']};line-height:1}} .stats span{{font-size:19px;opacity:.75;font-weight:500}}
-section{{padding:100px 80px}}
-.head{{display:flex;align-items:end;justify-content:space-between;margin-bottom:50px}} .head a{{font-weight:700;color:{s['acc']};font-size:20px}}
-.cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}}
-article{{background:#fff;border-radius:{r}px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.07)}}
-.ph{{height:300px;background-size:cover;background-position:center}}
-.cb{{padding:28px}} h3{{font-size:26px;font-weight:700;letter-spacing:-.01em}} .cb p{{opacity:.7;margin-top:6px}}
-.row{{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:20px;border-top:2px solid {s['soft']}}} .row strong{{font-size:22px}} .row em{{font-style:normal;font-weight:700;color:{s['acc']}}}
-.about{{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;background:{s['soft']}}}
-.about .ap{{height:620px;border-radius:{r*2}px;background-size:cover;background-position:center}}
-.about p{{font-size:22px;margin-top:24px;opacity:.8}} ul{{list-style:none;margin:34px 0 40px}} li{{display:flex;align-items:center;gap:16px;font-size:21px;font-weight:600;padding:14px 0;border-bottom:2px solid rgba(0,0,0,.07)}}
-li i{{width:26px;height:26px;border-radius:50%;background:{s['acc']};flex:none;position:relative}} li i:after{{content:"";position:absolute;left:8px;top:6px;width:7px;height:11px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}}
-.gal{{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:300px 300px;gap:20px}} .gal div{{border-radius:{r}px;background-size:cover;background-position:center}} .gal div:first-child{{grid-row:span 2}} .gal div:last-child{{grid-column:span 2}}
-.quote{{background:{s['dark']};color:#fff;text-align:center;padding:110px 200px}} .quote q{{display:block;font-size:50px;font-weight:700;line-height:1.2;letter-spacing:-.02em;quotes:"“" "”"}} .quote span{{display:block;margin-top:30px;opacity:.7;font-size:20px}} .quote .st{{color:#f5b942;font-size:28px;letter-spacing:.2em;margin-bottom:26px;opacity:1}}
-.band{{background:{s['acc']};color:#fff;display:flex;align-items:center;justify-content:space-between;padding:80px}} .band .btn{{background:#fff;color:{s['acc']}}}
-footer{{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding:70px 80px;font-size:17px}} footer b{{display:block;margin-bottom:14px;font-size:19px}} footer span{{display:block;opacity:.7;line-height:1.9}}
-</style></head><body>
-{hero}
-<div class="stats">{stats}</div>
-<section><div class="head"><h2>{s['sect']}</h2><a>Ver todo →</a></div><div class="cards">{cards}</div></section>
-<section class="about"><div class="ap" style="background-image:url({img(ai)})"></div><div><span class="tag">Sobre nosotros</span><h2>{at}</h2><p>{ad}</p><ul>{lis}</ul><a class="btn big">{s['cta']}</a></div></section>
-<section><div class="head"><h2>Galería</h2><a>@{s['id']} →</a></div><div class="gal">{gal}</div></section>
-<div class="quote"><span class="st">★★★★★</span><q>{q}</q><span>{qa} · Reseña verificada</span></div>
-<div class="band"><h2>{s['band']}</h2><a class="btn big">{s['cta']}</a></div>
-<footer><div><b style="font-size:26px">{s['name']}</b><span>{s['tag']}</span></div><div><b>Horario</b><span>Lunes a viernes<br>9:00 – 20:00</span></div><div><b>Contacto</b><span>Teléfono y WhatsApp<br>Formulario web</span></div><div><b>Síguenos</b><span>Instagram<br>Google Maps</span></div></footer>
-</body></html>'''
-for s in SITES: open(f"{OUT}/{s['id']}.html",'w').write(page(s))
+CSS='''
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1440px;background:var(--bg);color:var(--ink);font-family:var(--sans),sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+[style*="background-image"]{background-size:cover;filter:saturate(.82) contrast(1.03)}
+h1,h2,h3,.state p,.splitDark li,.stats b,.tq .st b{font-family:var(--serif),serif;font-weight:400;letter-spacing:-.015em}
+em{font-style:italic}
+.lab{display:inline-block;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:99px;border:1px solid color-mix(in srgb,var(--ink) 25%,transparent)}
+.lab.lw{border-color:#ffffff40;color:#fff}
+nav{display:flex;align-items:center;padding:28px 48px}.logo{font-size:22px;font-weight:600;letter-spacing:-.02em}
+.links{display:flex;gap:34px;margin:0 auto;font-size:15px;font-weight:500}
+.pillb,.pilld{background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:99px;font-size:15px;font-weight:500}
+.pillo{padding:12px 22px;border-radius:99px;font-size:15px;font-weight:500;border:1px solid color-mix(in srgb,var(--ink) 30%,transparent)}
+.pillw{background:#fff;color:#111;padding:12px 22px;border-radius:99px;font-size:15px;font-weight:500}.pillw.big{display:inline-block;font-size:18px;padding:18px 34px}
+.pillg{background:#eceeec;color:#222;padding:10px 18px;border-radius:99px;font-size:14px;font-weight:500;margin-left:auto;align-self:center}
+.btns{display:flex;gap:12px;margin-top:38px}
+.heroCard{padding:20px}.hc{position:relative;height:840px;border-radius:30px;overflow:hidden;color:#fff;filter:none!important}
+.hc .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 30%,rgba(0,0,0,.05) 50%,rgba(0,0,0,.62))}
+.hc .top{position:absolute;left:24px;right:24px;top:24px;display:flex;align-items:center}.hc .lg{background:#fff;color:#111;padding:12px 20px;border-radius:14px;font-size:20px;font-weight:600;letter-spacing:-.02em}
+.hc h1{position:absolute;left:44px;bottom:48px;font-size:96px;line-height:.98}
+.hc .cap{position:absolute;right:44px;bottom:52px;width:320px;font-size:16px}.hc .cap p{margin-bottom:20px;opacity:.92}
+.heroSplit{display:grid;grid-template-columns:1fr 600px;gap:70px;padding:40px 48px 80px;align-items:end}
+.heroSplit h1{font-size:98px;line-height:.98;margin-top:34px}.heroSplit p,.heroCenter p{font-size:19px;max-width:470px;margin-top:30px;opacity:.75}
+.heroSplit .hp{height:720px;border-radius:30px;position:relative}.heroSplit .hp span{position:absolute;left:24px;bottom:22px;color:#fff;font-size:14px}
+.heroCenter{text-align:center;padding:60px 48px 0}.heroCenter h1{font-size:108px;line-height:.98;margin-top:30px}.heroCenter p{margin:30px auto 0}.heroCenter .btns{justify-content:center}
+.heroCenter .hp{height:660px;border-radius:30px;margin-top:70px}
+.state{padding:150px 220px;text-align:center}.state p{font-size:58px;line-height:1.14;margin-top:34px}
+.testi{padding:110px 48px 90px;background:color-mix(in srgb,var(--bg) 82%,#8a9390)}.testi h2{font-size:60px;text-align:center;margin-bottom:64px}
+.trow{display:grid;grid-template-columns:270px 1fr 270px 1fr;gap:16px}
+.tp{height:440px;border-radius:24px;position:relative}.tp span{position:absolute;left:18px;bottom:16px;color:#fff;font-size:13px;line-height:1.4}.tp b{display:block;font-weight:600}
+.tq{background:var(--card);border-radius:24px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;height:440px}
+.tq q{font-size:27px;line-height:1.22;font-weight:500;letter-spacing:-.02em;quotes:"“" "”"}
+.tq .st{display:flex;gap:34px}.tq .st b{display:block;font-size:34px}.tq .st i{font-style:normal;font-size:13px;opacity:.6}
+.arr{display:flex;gap:10px;justify-content:center;margin-top:44px}.arr a{width:54px;height:54px;border-radius:18px;background:var(--card);display:grid;place-items:center;font-size:20px}.arr .on{background:var(--dark);color:#fff}
+.splitDark{display:grid;grid-template-columns:46% 54%;height:860px;background:var(--dark);color:#fff}.splitDark.flip{grid-template-columns:54% 46%}.splitDark.flip .ph{order:2}
+.splitDark .ph{position:relative}.splitDark .ph p{position:absolute;left:40px;bottom:36px;width:330px;font-size:15px;line-height:1.45}
+.splitDark .dk{padding:90px 80px;display:flex;flex-direction:column;justify-content:flex-end;filter:none}
+.splitDark ul{list-style:none;margin-top:36px}.splitDark li{font-size:66px;line-height:1.12;color:#ffffff4d}.splitDark li.on{color:#fff}
+.rows,.gal{padding:120px 48px}.rh{display:flex;align-items:end;justify-content:space-between;margin-bottom:56px}.rh h2{font-size:68px;line-height:1}
+.r{display:grid;grid-template-columns:90px 1fr 380px 230px;align-items:center;gap:30px;padding:30px 0;border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent)}
+.r span{font-size:14px;opacity:.5}.r h3{font-size:46px}.r p{font-size:16px;opacity:.7}.th{height:140px;border-radius:16px}
+.g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}.g div{height:620px;border-radius:26px;position:relative}.g div:nth-child(2){height:540px;margin-top:80px}.g span{position:absolute;left:22px;bottom:20px;color:#fff;font-size:15px;font-weight:500;text-shadow:0 1px 12px #0008}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:0 48px;border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 16%,transparent)}
+.stats div{padding:52px 30px;border-left:1px solid color-mix(in srgb,var(--ink) 16%,transparent)}.stats div:first-child{border:0;padding-left:0}.stats b{display:block;font-size:84px;line-height:1}.stats span{font-size:15px;opacity:.65}
+footer{background:var(--dark);color:#fff;padding:110px 48px 40px;margin-top:0}footer h2{font-size:128px;line-height:.98;margin:34px 0 26px;max-width:1100px}footer p{font-size:19px;opacity:.7;margin-bottom:40px}
+.fc{display:flex;gap:40px;margin-top:120px;padding-top:28px;border-top:1px solid #ffffff26;font-size:14px;opacity:.8}.fc b{margin-right:auto;font-size:18px}
+'''
+for s in SITES:
+    fam='&'.join(f"family={f.replace(' ','+')}:ital,wght@0,400;0,500;0,600;1,400" if f not in('Instrument Serif',) else "family=Instrument+Serif:ital@0;1" for f in (s['serif'],s['sans']))
+    html=f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?{fam}&display=block" rel="stylesheet">
+<style>:root{{--bg:{s['bg']};--ink:{s['ink']};--dark:{s['dark']};--acc:{s['acc']};--card:{s['card']};--serif:"{s['serif']}";--sans:"{s['sans']}"}}{CSS}</style></head><body>{s['body'](s)}</body></html>'''
+    open(f"{OUT}/{s['id']}.html",'w').write(html)
 print(' '.join(s['id'] for s in SITES))
