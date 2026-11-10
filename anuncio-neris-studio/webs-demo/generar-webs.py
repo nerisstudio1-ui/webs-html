@@ -81,7 +81,7 @@ SITES=[
 CSS='''
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:1440px;background:var(--bg);color:var(--ink);font-family:var(--sans),sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
-[style*="background-image"]{background-size:cover;filter:saturate(.82) contrast(1.03)}
+[style*="background-image"]{background-size:cover;filter:saturate(1.18) contrast(1.07) brightness(1.04)}
 h1,h2,h3,.state p,.splitDark li,.stats b,.tq .st b{font-family:var(--serif),serif;font-weight:400;letter-spacing:-.015em}
 em{font-style:italic}
 .lab{display:inline-block;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:99px;border:1px solid color-mix(in srgb,var(--ink) 25%,transparent)}
@@ -94,7 +94,7 @@ nav{display:flex;align-items:center;padding:28px 48px}.logo{font-size:22px;font-
 .pillg{background:#eceeec;color:#222;padding:10px 18px;border-radius:99px;font-size:14px;font-weight:500;margin-left:auto;align-self:center}
 .btns{display:flex;gap:12px;margin-top:38px}
 .heroCard{padding:20px}.hc{position:relative;height:840px;border-radius:30px;overflow:hidden;color:#fff;filter:none!important}
-.hc .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 30%,rgba(0,0,0,.05) 50%,rgba(0,0,0,.62))}
+.hc .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.26),rgba(0,0,0,0) 28%,rgba(0,0,0,0) 55%,rgba(0,0,0,.5))}
 .hc .top{position:absolute;left:24px;right:24px;top:24px;display:flex;align-items:center}.hc .lg{background:#fff;color:#111;padding:12px 20px;border-radius:14px;font-size:20px;font-weight:600;letter-spacing:-.02em}
 .hc h1{position:absolute;left:44px;bottom:48px;font-size:96px;line-height:.98}
 .hc .cap{position:absolute;right:44px;bottom:52px;width:320px;font-size:16px}.hc .cap p{margin-bottom:20px;opacity:.92}
