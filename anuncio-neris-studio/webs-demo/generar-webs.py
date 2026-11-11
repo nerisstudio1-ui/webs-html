@@ -5,135 +5,150 @@ def img(i):
         p=f"{d}/{i}.jpg"
         if os.path.exists(p): return f"file://{p}"
     raise SystemExit(f"missing {i}")
-def bgi(i,pos='center'): return f"background-image:url({img(i)});background-position:{pos}"
+def bg(i,pos='center'): return f"background-image:url({img(i)});background-position:{pos}"
+BASE='''*{box-sizing:border-box;margin:0;padding:0}body{width:1440px;-webkit-font-smoothing:antialiased;line-height:1.45}
+.ph{background-size:cover;filter:saturate(.96) sepia(.1) contrast(1.04)}i,em{font-style:italic}a{cursor:pointer}'''
+def fonts(*f):
+    q='&'.join('family='+x for x in f)
+    return f'<link href="https://fonts.googleapis.com/css2?{q}&display=block" rel="stylesheet">'
+SITES={}
 
-def nav(s,light=False):
-    links=''.join(f'<a>{n}</a>' for n in s['nav'])
-    return f'<nav class="{"lt" if light else ""}"><b class="logo">{s["name"]}</b><div class="links">{links}</div><a class="pillb">{s["cta"]}</a></nav>'
-def heroCard(s,photo,h1,cap,pos='center'):
-    links=''.join(f'<a>{n}</a>' for n in s['nav'])
-    return f'''<header class="heroCard"><div class="hc" style="{bgi(photo,pos)}"><div class="shade"></div>
-    <div class="top"><b class="lg">{s["name"]}</b><div class="links">{links}</div><a class="pillw">{s["cta"]}</a></div>
-    <h1>{h1}</h1><div class="cap"><p>{cap}</p><a class="pillw">{s["cta"]} →</a></div></div></header>'''
-def heroSplit(s,photo,tag,h1,p,pos='center'):
-    return nav(s)+f'''<header class="heroSplit"><div><span class="lab">{tag}</span><h1>{h1}</h1><p>{p}</p><div class="btns"><a class="pilld">{s["cta"]}</a><a class="pillo">Ver más</a></div></div><div class="hp" style="{bgi(photo,pos)}"><span>{s["name"]} — 2026</span></div></header>'''
-def heroCenter(s,photo,tag,h1,p,pos='center'):
-    return nav(s)+f'''<header class="heroCenter"><span class="lab">{tag}</span><h1>{h1}</h1><p>{p}</p><div class="btns"><a class="pilld">{s["cta"]}</a><a class="pillo">Ver más</a></div><div class="hp" style="{bgi(photo,pos)}"></div></header>'''
-def splitDark(photo,label,items,cap,pos='center',flip=False):
-    li=''.join(f'<li class="{"on" if k==len(items)-1 else ""}">{x}</li>' for k,x in enumerate(items))
-    return f'''<section class="splitDark {"flip" if flip else ""}"><div class="ph" style="{bgi(photo,pos)}"><p>{cap}</p></div><div class="dk"><span class="lab lw">{label}</span><ul>{li}</ul></div></section>'''
-def testimonials(title,items):
-    cards=''.join(f'''<div class="tp" style="{bgi(ph,'center top')}"><span><b>{n}</b>{r}</span></div><div class="tq"><q>{q}</q><div class="st"><div><b>{a}</b><i>{al}</i></div><div><b>{b}</b><i>{bl}</i></div><a class="pillg">Leer caso</a></div></div>''' for ph,q,n,r,a,al,b,bl in items)
-    return f'''<section class="testi"><h2>{title}</h2><div class="trow"><div class="tq edge"><q>Nos ayudaron a ordenar el equipo sin perder lo que nos hacía distintos.</q></div>{cards}<div class="tp edge" style="{bgi(EDGE)}"></div></div><div class="arr"><a class="on">←</a><a>→</a></div></section>'''
-EDGE=90000
-def heroMenu(s,photo,h1,menu,pos='center'):
-    links=''.join(f'<a>{n}</a>' for n in s['nav'])
-    m=''.join(f'<li>{x}</li>' for x in menu)
-    return f'''<header class="heroMenu"><div class="hm" style="{bgi(photo,pos)}"><b class="lg">{s["name"]}</b><span class="mid">Ver vídeo</span><h1>{h1}</h1></div><div class="mr"><div class="links">{links}</div><span class="lab">Servicios</span><ul>{m}</ul><p>© 2026 {s["name"]}</p><a class="pilld">{s["cta"]}</a></div></header>'''
-def rows(label,title,items):
-    r=''.join(f'''<div class="r"><span>0{k+1}</span><h3>{t}</h3><p>{d}</p><div class="th" style="{bgi(ph)}"></div></div>''' for k,(t,d,ph) in enumerate(items))
-    return f'''<section class="rows"><div class="rh"><span class="lab">{label}</span><h2>{title}</h2></div>{r}</section>'''
-def gallery(label,title,items):
-    g=''.join(f'<div style="{bgi(ph)}"><span>{c}</span></div>' for ph,c in items)
-    return f'''<section class="gal"><div class="rh"><span class="lab">{label}</span><h2>{title}</h2></div><div class="g">{g}</div></section>'''
-def statement(label,text):
-    return f'<section class="state"><span class="lab">{label}</span><p>{text}</p></section>'
-def stats(items):
-    return '<section class="stats">'+''.join(f'<div><b>{a}</b><span>{b}</span></div>' for a,b in items)+'</section>'
-def cta(s,h,p):
-    return f'''<footer><span class="lab lw">Contacto</span><h2>{h}</h2><p>{p}</p><a class="pillw big">{s["cta"]} →</a><div class="fc"><b>{s["name"]}</b><span>Instagram</span><span>LinkedIn</span><span>Aviso legal</span><span>© 2026</span></div></footer>'''
+# ---------- Alma Piel · clínica y cosmética ----------
+SITES['clinica']=fonts('Manrope:wght@400;500;600','Playfair+Display:ital,wght@0,400;1,400')+f'''<style>{BASE}
+body{{background:#faf6ef;color:#2b1d17;font-family:Manrope,sans-serif;font-size:15px}}i{{font-family:"Playfair Display",serif}}
+nav{{text-align:center;padding:22px 60px 10px;position:relative}}nav b{{font-family:"Playfair Display",serif;font-weight:400;font-size:30px;letter-spacing:-.02em}}
+nav div{{display:flex;gap:34px;justify-content:center;font-size:13px;margin-top:14px}}nav span{{position:absolute;right:60px;top:26px;display:flex;gap:14px;font-size:12px;align-items:center}}nav span a:last-child{{background:#5b3a2e;color:#fff;padding:8px 16px}}
+.hero{{display:grid;grid-template-columns:560px 1fr;gap:30px;padding:16px 60px 0;height:660px}}
+.hero .l{{padding-top:60px}}.hero .sq{{width:140px;height:180px;margin-bottom:90px}}
+.hero h1{{font-weight:500;font-size:44px;line-height:1.08;letter-spacing:-.03em}}.hero h1 i{{color:#a8703f;font-size:1.05em}}.hero h1 u{{text-decoration:none;color:#a8703f}}
+.btn{{display:inline-block;background:#5b3a2e;color:#fff;padding:14px 22px;font-size:13px}}.hero small{{margin-left:22px;font-size:13px}}
+.hero .r{{position:relative;overflow:hidden}}.hero .r b{{position:absolute;left:-10px;bottom:-78px;color:#fff;font-weight:500;font-size:236px;letter-spacing:-.06em;white-space:nowrap;line-height:1}}
+.mq{{background:#5b3a2e;color:#fff;white-space:nowrap;overflow:hidden;padding:13px 0;font-size:15px;font-weight:500;letter-spacing:.02em}}.mq span{{margin:0 22px}}.mq em{{font-style:normal;color:#e8c9a5;margin:0 4px}}
+.st{{text-align:center;padding:80px 300px 70px;font-size:34px;line-height:1.3;letter-spacing:-.02em}}.st span{{color:#b9aca2}}.st .btn{{background:#111;display:block;width:190px;margin:34px auto 0;font-size:13px;letter-spacing:0}}
+h2{{text-align:center;font-weight:500;font-size:44px;letter-spacing:-.03em;line-height:1.05;margin-bottom:44px}}
+.c3{{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:0 60px 90px}}.c3 div{{height:540px;position:relative;color:#fff}}.c3 b{{position:absolute;left:22px;top:20px;font-weight:500;font-size:24px}}.c3 span{{position:absolute;left:22px;bottom:20px;font-size:13px}}.c3 u{{position:absolute;right:20px;bottom:16px;width:34px;height:34px;border:1px solid #fff;text-decoration:none;display:grid;place-items:center;font-size:20px}}
+.cy{{background:#5b3a2e;color:#fff;padding:90px 60px 110px}}.cy h2{{color:#fff}}.ci{{display:flex;justify-content:center}}.ci div{{width:300px;height:300px;border-radius:50%;border:1px solid #e8c9a580;margin:0 -8px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 54px}}.ci b{{font-weight:500;font-size:24px;margin-bottom:10px}}.ci span{{font-size:12.500px;opacity:.8}}
+.pr{{padding:90px 60px}}.pr .hd{{display:flex;justify-content:space-between;font-size:26px;font-weight:500;margin-bottom:18px}}.pr .hd a{{font-size:13px;text-decoration:underline}}
+.pg{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}}.pg div{{border:1px solid #d8cdc2;background:#fff;padding:14px}}.pg .ph{{height:330px;margin-bottom:16px}}.pg small{{font-size:11px;letter-spacing:.1em;color:#9a8b80}}.pg p{{font-size:14px}}.pg b{{display:flex;justify-content:space-between;font-size:17px;margin-top:6px}}
+.ad{{display:grid;grid-template-columns:repeat(3,1fr);padding:0 60px 100px;text-align:center}}.ad div{{padding:0 40px;border-left:1px solid #e3d9ce}}.ad div:first-child{{border:0}}.ad u{{display:block;width:52px;height:52px;border:1px solid #5b3a2e;border-radius:50%;margin:0 auto 18px}}.ad b{{font-size:22px;font-weight:500}}.ad p{{font-size:13px;opacity:.7;margin-top:8px}}
+footer{{background:#111;color:#fff;overflow:hidden;height:330px;position:relative}}footer p{{padding:36px 60px;font-size:13px;opacity:.7;display:flex;gap:90px}}footer b{{position:absolute;left:40px;bottom:-96px;font-weight:500;font-size:330px;letter-spacing:-.06em;white-space:nowrap;line-height:1}}
+</style><nav><b>Alma Piel</b><div><a>Tienda</a><a>Clínica</a><a>Comunidad</a><a>Resultados</a><a>Nosotros</a><a>Contacto</a></div><span><a>ACCEDER</a><a>RESERVAR</a></span></nav>
+<div class="hero"><div class="l"><div class="sq ph" style="{bg(4465831)}"></div><h1><i>ALMA PIEL</i> es un sistema completo para <u>tu piel</u>: clínica, cuidado en casa y acompañamiento.</h1><p style="margin-top:34px"><a class="btn">Reserva tu consulta</a><small>Tu aliada en salud de la piel</small></p></div><div class="r ph" style="{bg(2811087,'center 30%')}"><b>Alma Piel</b></div></div>
+<div class="mq">'''+''.join(f'<span>{c}</span><em>✦</em>' for c in ['València','Madrid','Barcelona','Sevilla','Bilbao','Málaga','Zaragoza','Palma','València','Madrid','Barcelona','Sevilla','Bilbao','Málaga'])+f'''</div>
+<div class="st">ALMA PIEL es una red de clínicas estéticas y una marca de cosmética <span>basada en la renovación natural de la piel</span><a class="btn">Nuestra historia</a></div>
+<h2><i>ALMA PIEL</i> es un sistema<br>completo para tu piel</h2>
+<div class="c3"><div class="ph" style="{bg(5069432)}"><b>Clínica</b><span>Tratamientos con diagnóstico previo</span><u>+</u></div><div class="ph" style="{bg(6621462)}"><b>Tienda</b><span>Cosmética para mantener el resultado</span><u>+</u></div><div class="ph" style="{bg(3785147)}"><b>Comunidad</b><span>Un hábito que se convierte en estilo de vida</span><u>+</u></div></div>
+<div class="cy"><h2>Ciclo <i>de la piel</i></h2><div class="ci"><div><b>Diagnóstico</b><span>Leemos el estado actual de tu piel y definimos qué necesita.</span></div><div><b>Tratamiento</b><span>Protocolos clínicos que activan su renovación natural.</span></div><div><b>Cuidado</b><span>La rutina en casa prolonga el resultado entre visitas.</span></div><div><b>Renovación</b><span>Cada 28 días la piel se vuelve más fuerte y luminosa.</span></div></div></div>
+<div class="pr"><h2><i>ALMA PIEL</i> Productos</h2><div class="hd">Novedades<a>Ver todos los productos</a></div><div class="pg"><div><div class="ph" style="{bg(4202325,'center 85%')}"></div><small>SÉRUM</small><p>Alma Piel — Renovación de barrera</p><b>49,00 €<span>+</span></b></div><div><div class="ph" style="{bg(6621462)}"></div><small>CREMA</small><p>Alma Piel — Calma nocturna</p><b>45,00 €<span>+</span></b></div><div><div class="ph" style="{bg(4041391)}"></div><small>RITUAL</small><p>Alma Piel — Ciclo completo</p><b>129,00 €<span>+</span></b></div></div></div>
+<h2>Nuestras <i>ventajas</i></h2><div class="ad"><div><u></u><b>Renovación natural</b><p>Acompañamos el ciclo de 28 días de la piel, sin agredirla.</p></div><div><u></u><b>Clínica + cuidado en casa</b><p>Cada tratamiento se combina con una rutina para que dure más.</p></div><div><u></u><b>Seguimiento personal</b><p>Adaptamos el plan al estado de tu piel en cada etapa.</p></div></div>
+<footer><p><span>Tienda<br>Tratamientos<br>Regalos</span><span>Ayuda<br>Envíos<br>Contacto</span><span>València · España<br>hola@almapiel.es</span></p><b>Alma Piel</b></footer>'''
 
-SITES=[
- dict(id='consultoria',name='Norte & Co',cta='Hablemos',nav=['Servicios','Equipo','Casos','Recursos'],serif='Instrument Serif',sans='Inter Tight',bg='#dfe2e1',ink='#1b2220',dark='#1e2523',acc='#1e2523',card='#f4f5f3',
-  body=lambda s: heroMenu(s,90001,'Equipos que<br>funcionan mejor.',['Selección y talento','Cultura y valores','Estructura y roles','Liderazgo','Acompañamiento'],'center 20%')
-   +statement('Qué hacemos','Ayudamos a empresas en crecimiento a <em>decidir mejor</em>, ordenar sus equipos y construir una cultura que retiene talento.')
-   +testimonials('Lo que cambia cuando trabajamos juntos',[(90003,'Antes, cada decisión rebotaba entre equipos. Nos ayudaron a definir cómo se decide.','Daniel Ortega','Director de operaciones','+34%','Decisiones más rápidas','−42%','Rotación anual'),(90002,'Por fin tenemos un proceso de selección claro y una bienvenida que funciona.','Paula Méndez','Responsable de personas','×2','Candidaturas válidas','21 días','Para cubrir vacantes')])
-   +splitDark(90000,'A quién acompañamos',['Empresas en crecimiento','Fundadores','Equipos de personas','Equipos híbridos','Empresas tecnológicas'],'Estructuras que evolucionan con el equipo, sin perder el foco en las personas.','center 20%')
-   +rows('Servicios','Un acompañamiento completo',[('Selección y talento','Procesos claros para encontrar a quien encaja de verdad.',90002),('Cultura y valores','Definimos cómo trabajáis y cómo lo contáis.',90001),('Estructura y roles','Organigramas que se entienden y se usan.',90003)])
-   +stats([('120+','empresas acompañadas'),('12','años de experiencia'),('94%','renuevan con nosotros'),('8','países')])
-   +cta(s,'Empieza por una conversación.','Cuéntanos en qué punto está tu equipo y te proponemos un primer paso.')),
- dict(id='interiorismo',name='Estudio Alba',cta='Pedir propuesta',nav=['Proyectos','Estudio','Proceso','Contacto'],serif='Instrument Serif',sans='DM Sans',bg='#efece6',ink='#24211d',dark='#26221d',acc='#8a5a3c',card='#faf8f4',
-  body=lambda s: heroSplit(s,1866149,'Interiorismo · València','Espacios serenos,<br><em>hechos para vivirlos.</em>','Diseñamos viviendas y locales con materiales honestos, luz natural y atención al detalle.')
-   +stats([('86','proyectos entregados'),('14','años de estudio'),('100%','llave en mano'),('3','premios de diseño')])
-   +gallery('Proyectos','Selección reciente',[(4352247,'Casa Turia — 2026'),(6782567,'Ático Cabanyal — 2025'),(2440471,'Loft Ruzafa — 2025')])
-   +splitDark(1090638,'Cómo trabajamos',['Escucha','Concepto','Materiales','Obra','Entrega'],'Un único equipo desde el primer boceto hasta el último detalle.',flip=True)
-   +rows('Servicios','Del plano a la llave',[('Vivienda','Reformas integrales y obra nueva.',6312362),('Locales','Espacios comerciales con identidad.',1350789),('Mobiliario a medida','Piezas diseñadas para cada estancia.',1743227)])
-   +statement('Filosofía','Creemos en casas que <em>envejecen bien</em>: menos objetos, mejores materiales y una luz que cambia a lo largo del día.')
-   +cta(s,'¿Hablamos de tu espacio?','Primera visita y anteproyecto sin compromiso.')),
- dict(id='pilates',name='Forma Estudio',cta='Reservar clase',nav=['Clases','Horarios','Equipo','Tarifas'],serif='Newsreader',sans='Inter Tight',bg='#e8e6df',ink='#23261f',dark='#2a2f28',acc='#5d6a4c',card='#f6f5f0',
-  body=lambda s: heroCard(s,4056723,'Muévete con calma.<br>Vive con fuerza.','Pilates y yoga en grupos reducidos. Tu primera clase es gratuita.','center 55%')
-   +rows('Clases','Encuentra tu ritmo',[('Pilates reformer','Fuerza profunda y postura, con máquina.',6111616),('Yoga vinyasa','Movimiento fluido guiado por la respiración.',3822906),('Suelo y movilidad','Para empezar o recuperar sin prisa.',4498606)])
-   +splitDark(3822906,'Para quién',['Si empiezas de cero','Si pasas el día sentado','Si vuelves tras una lesión','Si buscas constancia','Si quieres sentirte mejor'],'Máximo ocho personas por sesión. Corregimos cada postura.','center')
-   +gallery('El estudio','Luz, calma y espacio',[(6111616,'Sala reformer'),(4498606,'Suelo y movilidad'),(841130,'Fuerza')])
-   +statement('El estudio','Un espacio luminoso y tranquilo en el centro, pensado para que <em>desconectes al entrar</em> y salgas con más energía.')
-   +cta(s,'Tu primera clase, gratis.','Reserva plaza en un minuto desde el móvil.')),
- dict(id='restaurante',name='Casa Olmo',cta='Reservar mesa',nav=['Carta','Bodega','El espacio','Eventos'],serif='Instrument Serif',sans='DM Sans',bg='#ece7df',ink='#1f1b17',dark='#1d1916',acc='#9a4a2a',card='#f8f5ef',
-  body=lambda s: heroCenter(s,941861,'Cocina de mercado · Desde 2014','Fuego lento,<br><em>producto de temporada.</em>','Una carta corta que cambia cada semana, brasa de encina y una bodega de pequeños productores.','center 60%')
-   +splitDark(262978,'La carta',['Entrantes','Brasa','Arroces','Postres','Menú degustación'],'Siete pases que recorren la temporada. De martes a sábado.','center')
-   +gallery('El espacio','Una sala para quedarse',[(67468,'Sala principal'),(696218,'Mesa compartida'),(2253643,'Barra y cocina vista')])
-   +statement('Filosofía','Compramos cada mañana en el mercado y cocinamos <em>sin esconder el producto</em>. Lo demás es tiempo y fuego.')
-   +rows('Experiencias','Más que una cena',[('Menú degustación','Siete pases y maridaje opcional.',1279330),('Eventos privados','La sala entera para tu celebración.',2788792),('Mesa del chef','Seis asientos frente a la cocina.',958545)])
-   +stats([('4,8','valoración media'),('12','años cocinando'),('40','referencias en bodega'),('7','pases')])
-   +cta(s,'¿Mesa para esta semana?','Reservas online con confirmación inmediata.')),
- dict(id='clinica',name='Clínica Sera',cta='Pedir cita',nav=['Tratamientos','Equipo','Tecnología','Contacto'],serif='Newsreader',sans='DM Sans',bg='#eeeae6',ink='#2a2422',dark='#2d2623',acc='#a8705a',card='#faf7f4',
-  body=lambda s: heroSplit(s,2811087,'Dermatología y estética','El cuidado de tu piel,<br><em>con criterio médico.</em>','Tratamientos personalizados, tecnología avanzada y un equipo que te explica cada paso.','center')
-   +statement('Nuestra forma de trabajar','Cada piel es distinta. Por eso empezamos siempre por <em>un diagnóstico</em> y no por un tratamiento.')
-   +rows('Tratamientos','Qué podemos hacer por ti',[('Dermatología clínica','Diagnóstico y seguimiento de la piel.',3738349),('Medicina estética','Resultados naturales, sin excesos.',2811087),('Cuidado facial','Protocolos adaptados a tu piel.',4041392)])
-   +splitDark(3586798,'Primera visita',['Escuchamos','Analizamos tu piel','Diseñamos el plan','Tratamos','Acompañamos'],'Una hora contigo antes de recomendarte nada.','center 20%',flip=True)
-   +gallery('La clínica','Cuidado, ciencia y calma',[(4041392,'Cosmética médica'),(3738349,'Tratamiento facial'),(1065084,'Resultados naturales')])
-   +cta(s,'Tu piel, en buenas manos.','Primera valoración sin compromiso.')),
-]
-CSS='''
-*{box-sizing:border-box;margin:0;padding:0}
-body{width:1440px;background:var(--bg);color:var(--ink);font-family:var(--sans),sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
-[style*="background-image"]{background-size:cover;filter:saturate(1.02) contrast(1.06) brightness(1.02)}
-h1,h2,h3,.state p,.splitDark li,.stats b,.tq .st b{font-family:var(--serif),serif;font-weight:400;letter-spacing:-.015em}
-em{font-style:italic}
-.lab{display:inline-block;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:99px;border:1px solid color-mix(in srgb,var(--ink) 25%,transparent)}
-.lab.lw{border-color:#ffffff40;color:#fff}
-nav{display:flex;align-items:center;padding:28px 48px}.logo{font-size:22px;font-weight:600;letter-spacing:-.02em}
-.links{display:flex;gap:34px;margin:0 auto;font-size:15px;font-weight:500}
-.pillb,.pilld{background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:99px;font-size:15px;font-weight:500}
-.pillo{padding:12px 22px;border-radius:99px;font-size:15px;font-weight:500;border:1px solid color-mix(in srgb,var(--ink) 30%,transparent)}
-.pillw{background:#fff;color:#111;padding:12px 22px;border-radius:99px;font-size:15px;font-weight:500}.pillw.big{display:inline-block;font-size:18px;padding:18px 34px}
-.pillg{background:#eceeec;color:#222;padding:10px 18px;border-radius:99px;font-size:14px;font-weight:500;margin-left:auto;align-self:center}
-.btns{display:flex;gap:12px;margin-top:38px}
-.heroCard{padding:20px}.hc{position:relative;height:840px;border-radius:30px;overflow:hidden;color:#fff;filter:none!important}
-.hc .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.26),rgba(0,0,0,0) 28%,rgba(0,0,0,0) 55%,rgba(0,0,0,.5))}
-.hc .top{position:absolute;left:24px;right:24px;top:24px;display:flex;align-items:center}.hc .lg{background:#fff;color:#111;padding:12px 20px;border-radius:14px;font-size:20px;font-weight:600;letter-spacing:-.02em}
-.hc h1{position:absolute;left:44px;bottom:48px;font-size:96px;line-height:.98}
-.hc .cap{position:absolute;right:44px;bottom:52px;width:320px;font-size:16px}.hc .cap p{margin-bottom:20px;opacity:.92}
-.heroSplit{display:grid;grid-template-columns:1fr 600px;gap:70px;padding:40px 48px 80px;align-items:end}
-.heroSplit h1{font-size:98px;line-height:.98;margin-top:34px}.heroSplit p,.heroCenter p{font-size:19px;max-width:470px;margin-top:30px;opacity:.75}
-.heroSplit .hp{height:720px;border-radius:30px;position:relative}.heroSplit .hp span{position:absolute;left:24px;bottom:22px;color:#fff;font-size:14px}
-.heroCenter{text-align:center;padding:60px 48px 0}.heroCenter h1{font-size:108px;line-height:.98;margin-top:30px}.heroCenter p{margin:30px auto 0}.heroCenter .btns{justify-content:center}
-.heroCenter .hp{height:660px;border-radius:30px;margin-top:70px}
-.state{padding:150px 220px;text-align:center}.state p{font-size:58px;line-height:1.14;margin-top:34px}
-.testi{padding:110px 48px 90px;background:color-mix(in srgb,var(--bg) 82%,#8a9390)}.testi h2{font-size:60px;text-align:center;margin-bottom:64px}
-.testi{overflow:hidden}.trow{display:grid;grid-template-columns:300px 300px 420px 300px 420px 300px;gap:16px;margin-left:-190px;width:1800px}.tq.edge{opacity:.75}
-.heroMenu{display:grid;grid-template-columns:760px 1fr;gap:20px;padding:20px;height:860px}.hm{border-radius:30px;position:relative;color:#fff}.hm .lg{position:absolute;left:22px;top:22px;background:#fff;color:#111;padding:12px 20px;border-radius:14px;font-size:20px;font-weight:600}.hm h1{position:absolute;left:36px;bottom:36px;font-family:var(--sans),sans-serif;font-weight:500;font-size:52px;line-height:1.05;letter-spacing:-.03em}.hm .mid{position:absolute;left:50%;bottom:44px;background:#ffffff38;backdrop-filter:blur(10px);padding:9px 16px;border-radius:99px;font-size:13px}
-.mr{padding:14px 30px;display:flex;flex-direction:column}.mr .links{margin:0 0 150px}.mr ul{list-style:none;margin:26px 0 auto}.mr li{font-size:34px;line-height:1.5;letter-spacing:-.02em}.mr p{font-size:14px;opacity:.5;margin-bottom:18px}.mr .pilld{align-self:flex-start}
-.tp{height:440px;border-radius:24px;position:relative}.tp span{position:absolute;left:18px;bottom:16px;color:#fff;font-size:13px;line-height:1.4}.tp b{display:block;font-weight:600}
-.tq{background:var(--card);border-radius:24px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;height:440px}
-.tq q{font-size:27px;line-height:1.22;font-weight:500;letter-spacing:-.02em;quotes:"“" "”"}
-.tq .st{display:flex;gap:34px}.tq .st b{display:block;font-size:34px}.tq .st i{font-style:normal;font-size:13px;opacity:.6}
-.arr{display:flex;gap:10px;justify-content:center;margin-top:44px}.arr a{width:54px;height:54px;border-radius:18px;background:var(--card);display:grid;place-items:center;font-size:20px}.arr .on{background:var(--dark);color:#fff}
-.splitDark{display:grid;grid-template-columns:46% 54%;height:860px;background:var(--dark);color:#fff}.splitDark.flip{grid-template-columns:54% 46%}.splitDark.flip .ph{order:2}
-.splitDark .ph{position:relative}.splitDark .ph p{position:absolute;left:40px;bottom:36px;width:330px;font-size:15px;line-height:1.45}
-.splitDark .dk{padding:90px 80px;display:flex;flex-direction:column;justify-content:flex-end;filter:none}
-.splitDark ul{list-style:none;margin-top:36px}.splitDark li{font-size:66px;line-height:1.12;color:#ffffff4d}.splitDark li.on{color:#fff}
-.rows,.gal{padding:120px 48px}.rh{display:flex;align-items:end;justify-content:space-between;margin-bottom:56px}.rh h2{font-size:68px;line-height:1}
-.r{display:grid;grid-template-columns:90px 1fr 380px 230px;align-items:center;gap:30px;padding:30px 0;border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent)}
-.r span{font-size:14px;opacity:.5}.r h3{font-size:46px}.r p{font-size:16px;opacity:.7}.th{height:140px;border-radius:16px}
-.g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}.g div{height:620px;border-radius:26px;position:relative}.g div:nth-child(2){height:540px;margin-top:80px}.g span{position:absolute;left:22px;bottom:20px;color:#fff;font-size:15px;font-weight:500;text-shadow:0 1px 12px #0008}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:0 48px;border-top:1px solid color-mix(in srgb,var(--ink) 16%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 16%,transparent)}
-.stats div{padding:52px 30px;border-left:1px solid color-mix(in srgb,var(--ink) 16%,transparent)}.stats div:first-child{border:0;padding-left:0}.stats b{display:block;font-size:84px;line-height:1}.stats span{font-size:15px;opacity:.65}
-footer{background:var(--dark);color:#fff;padding:110px 48px 40px;margin-top:0}footer h2{font-size:128px;line-height:.98;margin:34px 0 26px;max-width:1100px}footer p{font-size:19px;opacity:.7;margin-bottom:40px}
-.fc{display:flex;gap:40px;margin-top:120px;padding-top:28px;border-top:1px solid #ffffff26;font-size:14px;opacity:.8}.fc b{margin-right:auto;font-size:18px}
-'''
-for s in SITES:
-    fam='&'.join(f"family={f.replace(' ','+')}:ital,wght@0,400;0,500;0,600;1,400" if f not in('Instrument Serif',) else "family=Instrument+Serif:ital@0;1" for f in (s['serif'],s['sans']))
-    html=f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><link href="https://fonts.googleapis.com/css2?{fam}&display=block" rel="stylesheet">
-<style>:root{{--bg:{s['bg']};--ink:{s['ink']};--dark:{s['dark']};--acc:{s['acc']};--card:{s['card']};--serif:"{s['serif']}";--sans:"{s['sans']}"}}{CSS}</style></head><body>{s['body'](s)}</body></html>'''
-    open(f"{OUT}/{s['id']}.html",'w').write(html)
-print(' '.join(s['id'] for s in SITES))
+# ---------- Calma · tienda de cosmética ----------
+tiles=[3762875,3785147,6621462,3762879,4202325,4041393,4465124,4041391]
+SITES['cosmetica']=fonts('Poppins:wght@300;400;500')+f'''<style>{BASE}
+body{{background:#fff;color:#1c1c1c;font-family:Poppins,sans-serif;font-weight:300;font-size:14px;padding:14px}}
+.hero{{height:520px;border-radius:36px;position:relative;color:#fff;overflow:hidden}}.hero nav{{display:flex;gap:32px;align-items:center;padding:34px 150px;font-size:13px}}.hero nav b{{font-weight:400;font-size:22px;letter-spacing:.14em;margin-right:110px}}.hero nav span{{margin-left:auto;letter-spacing:.5em}}
+.hero h1{{font-weight:300;font-size:92px;line-height:1.02;letter-spacing:-.03em;padding:44px 150px 0}}.pl{{display:flex;gap:14px;padding:34px 150px}}.pl a{{background:#fff;color:#111;border-radius:99px;padding:12px 24px;font-size:15px}}.pl a+a{{background:none;color:#fff;border:1px solid #fff}}
+.wrap{{padding:0 150px}}.tabs{{font-size:56px;letter-spacing:-.03em;padding:90px 0 34px;display:flex;gap:44px}}.tabs span{{color:#bdbdbd}}sup{{font-size:14px;margin-left:6px}}
+.pg{{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}}.pg div{{background:#f1f1f1;border-radius:34px;padding:26px;position:relative}}.pg .ph{{height:290px;border-radius:22px;margin-bottom:22px;mix-blend-mode:multiply}}.pg p{{font-size:13px;font-weight:400}}.pg b{{display:block;font-weight:300;font-size:26px;margin-top:18px}}.pg u{{position:absolute;right:26px;bottom:24px;width:50px;height:50px;border-radius:16px;background:#fff;display:grid;place-items:center;text-decoration:none;font-size:20px}}
+.dots{{text-align:center;padding:26px;letter-spacing:.4em;color:#bbb}}
+.big{{font-size:76px;line-height:1.05;letter-spacing:-.035em;padding:70px 0 44px}}.two{{display:grid;grid-template-columns:400px 400px;gap:60px;color:#777;font-size:14px}}
+.arch{{height:640px;border-radius:320px 320px 36px 36px;margin:70px 0 30px}}
+.tl{{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;-webkit-mask-image:linear-gradient(#000 55%,transparent)}}.tl div{{height:250px;border-radius:30px}}
+.ft{{background:#f1f1f1;border-radius:36px;margin-top:40px;padding:60px 150px 44px;display:grid;grid-template-columns:300px 1fr}}.ft b{{font-weight:400;font-size:22px;letter-spacing:.14em}}.ft h3{{font-weight:300;font-size:42px;line-height:1.1;letter-spacing:-.02em;margin-bottom:80px}}.ft .co{{display:grid;grid-template-columns:repeat(3,1fr);font-size:13px;line-height:2.3}}.ft .co b{{font-size:13px;letter-spacing:0;font-weight:500}}
+</style><div class="hero ph" style="{bg(3586798,'center 42%')}"><nav><b>calma</b><a>Novedades</a><a>Facial</a><a>Cabello y cuerpo</a><a>Bienestar</a><a>Maquillaje</a><span>○ ○ ○</span></nav><h1>Renueva<br>tu rutina</h1><div class="pl"><a>Cuidado facial</a><a>Ver todo →</a></div></div>
+<div class="wrap"><div class="tabs">Facial<sup>12</sup><span>Cabello<sup>12</sup></span><span>Bienestar<sup>8</sup></span></div>
+<div class="pg"><div><div class="ph" style="{bg(4202325,'center 85%')}"></div><p>CALMA · Crema reafirmante<br>de día</p><b>24,00 €</b><u>+</u></div><div><div class="ph" style="{bg(6621462)}"></div><p>CALMA · Sérum reparador<br>de noche</p><b>32,00 €</b><u>+</u></div><div><div class="ph" style="{bg(4465124)}"></div><p>CALMA · Limpiador suave<br>con aloe</p><b>18,00 €</b><u>+</u></div></div><div class="dots">● ○ ○ ○</div>
+<div class="big">Belleza consciente,<br>elegida con cuidado</div><div class="two"><p>Seleccionamos cada producto para ofrecerte fórmulas limpias en las que puedas confiar sin dudar.</p><p>El mundo cambia y también la forma de cuidarnos. Por eso buscamos marcas que piensan en el futuro.</p></div>
+<div class="arch ph" style="{bg(3997993,'center 30%')}"></div>
+<div class="tl">'''+''.join(f'<div class="ph" style="{bg(t)}"></div>' for t in tiles)+'''</div>
+<div class="ft"><b>calma</b><div><h3>Nunca es tarde para<br>empezar a cuidarte</h3><div class="co"><p><b>Nosotros</b><br>Nuestra misión<br>Recompensas<br>Blog</p><p><b>Ayuda</b><br>Buscar<br>Contacto<br>Devoluciones</p><p><b>Legal</b><br>Envíos<br>Privacidad<br>Condiciones</p></div></div></div></div>'''
+
+# ---------- Morada · interiorismo ----------
+SITES['interiorismo']=fonts('Inter+Tight:wght@400;500;600')+f'''<style>{BASE}
+body{{background:#f1efec;color:#1b1a18;font-family:"Inter Tight",sans-serif;font-size:14px}}
+.hero{{height:760px;position:relative;overflow:hidden;color:#fff}}.hero p{{position:absolute;left:22px;top:270px;width:440px;font-size:21px;line-height:1.3}}.hero a{{position:absolute;left:22px;top:430px;background:#fff;color:#111;border-radius:99px;padding:13px 26px;font-size:12px;font-weight:600;letter-spacing:.06em}}
+.hero b{{position:absolute;left:8px;bottom:-112px;font-weight:500;font-size:440px;letter-spacing:-.07em;line-height:1;white-space:nowrap}}.hero .in{{position:absolute;left:610px;top:215px;width:230px;height:240px;border:4px solid #fff}}
+.lab{{font-size:11px;letter-spacing:.12em;color:#8d8a85;padding:110px 22px 14px}}.st{{font-size:60px;line-height:1.08;letter-spacing:-.03em;padding:0 22px;width:980px}}
+.r1{{display:grid;grid-template-columns:600px 230px 1fr;gap:0;padding:60px 22px 110px;align-items:start}}.r1 u{{width:40px;height:24px;border-radius:99px;border:1.500px solid #111;display:block;position:relative}}.r1 u:after{{content:"";position:absolute;right:2px;top:2px;width:17px;height:17px;border-radius:50%;background:#111}}.r1 .ph{{height:230px}}.r1 p{{padding-left:240px;font-size:14px;line-height:1.35}}.r1 p b{{display:block;margin-top:18px;font-size:11px;letter-spacing:.1em;text-decoration:underline}}
+.r2{{display:grid;grid-template-columns:380px 1fr 1fr 1fr;gap:10px;padding:40px 22px 0;border-top:1px solid #d9d5cf;margin:0 22px;padding-left:0;padding-right:0}}.r2 p{{font-size:15px;line-height:1.3;width:270px}}.r2 .ph{{height:420px}}
+.r3{{display:grid;grid-template-columns:720px 1fr 290px;padding:110px 22px 0;align-items:end}}.r3 .a{{height:570px}}.r3 .b{{height:290px}}
+.gh{{font-weight:600;font-size:150px;letter-spacing:-.04em;line-height:.95;color:#e6e2dc;text-align:center;padding:50px 0 0;height:300px;overflow:hidden}}
+.pj{{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:40px 22px 90px}}.pj .ph{{height:520px}}.pj p{{display:flex;justify-content:space-between;font-size:15px;padding-top:12px}}
+</style><div class="hero ph" style="{bg(7018400,'center 60%')}"><p>Diseñamos espacios serenos que se viven mejor: interiorismo, mobiliario a medida y dirección de obra.</p><a>● VER PROYECTOS</a><div class="in ph" style="{bg(4210805)}"></div><b>morada</b></div>
+<div class="lab">● QUÉ HACEMOS Y QUIÉNES SOMOS</div><div class="st">En Morada diseñamos interiores y mobiliario a medida para que el resultado supere lo que imaginabas</div>
+<div class="r1"><u></u><div class="ph" style="{bg(6480707)}"></div><p>Empezamos escuchando cómo vives. Después dibujamos, elegimos materiales y acompañamos la obra hasta el último detalle.<br><br>Un único equipo, del primer boceto a la entrega de llaves.<b>MÁS SOBRE NOSOTROS</b></p></div>
+<div class="r2"><p>Espacios con buena luz y buena acústica para vivir, trabajar y descansar. Cada proyecto es único.</p><div class="ph" style="{bg(6489083)}"></div><div class="ph" style="{bg(5998120)}"></div><div class="ph" style="{bg(6585763)}"></div></div>
+<div class="r3"><div class="a ph" style="{bg(7045712)}"></div><span></span><div class="b ph" style="{bg(4202325)}"></div></div>
+<div class="gh">ARMONÍA EN<br>CADA DETALLE</div>
+<div class="pj"><div><div class="ph" style="{bg(4846097)}"></div><p><span>Casa Turia</span><span>València · 2026</span></p></div><div><div class="ph" style="{bg(6585757)}"></div><p><span>Ático Cabanyal</span><span>València · 2025</span></p></div></div>'''
+
+# ---------- Roble & Lino · taller de mobiliario ----------
+def prod(n,tag,mat,desc,price,ph): return f'<div><h4>{n}<span>{tag}</span></h4><small>{mat}</small><p>{desc}</p><b>{price}<a>Comprar</a></b><div class="ph" style="{bg(ph)}"><i>4,8 ★</i></div></div>'
+SITES['mobiliario']=fonts('Outfit:wght@300;400;500')+f'''<style>{BASE}
+body{{background:#f4f5f0;color:#1d1d1b;font-family:Outfit,sans-serif;font-size:16px}}
+nav{{display:flex;align-items:center;gap:80px;padding:44px 120px}}nav b{{font-size:38px;font-weight:500;letter-spacing:-.04em;margin-right:130px}}nav u{{margin-left:auto;width:38px;height:38px;border-radius:10px;background:#1d1d1b}}
+.wm{{font-size:252px;font-weight:400;letter-spacing:-.045em;line-height:.9;padding:10px 112px 0;white-space:nowrap}}.wm b{{font-weight:500}}
+.h{{position:relative;height:440px;padding:0 120px}}.h small{{position:absolute;right:122px;top:6px;font-size:32px}}.h p{{position:absolute;left:120px;top:120px;width:340px;font-size:16px;line-height:1.25}}.h .go{{position:absolute;left:120px;top:236px;background:#1d1d1b;color:#fff;border-radius:99px;padding:15px 84px;font-size:18px}}
+.h .ch{{position:absolute;left:480px;top:-190px;width:440px;height:580px;mix-blend-mode:multiply;filter:contrast(1.1)}}.h .mc{{position:absolute;top:100px;width:180px;height:206px;background:#1d1d1b;border-radius:26px;color:#fff;padding:10px;font-size:17px;text-align:center}}.h .mc .ph{{height:140px;border-radius:18px;margin-bottom:12px}}
+.ab{{padding:70px 120px 90px}}.ab .t{{display:flex;justify-content:space-between;align-items:center;font-size:46px;line-height:1.2;letter-spacing:-.02em;margin-bottom:26px}}.ab .t span,.ab .t em{{color:#8b8f78;font-style:normal}}.ab .t em{{font-size:30px}}
+.ab .g{{display:grid;grid-template-columns:1fr 1fr;gap:24px}}.ab .ph{{border-radius:26px}}.ab .a{{height:500px}}.ab .b{{height:290px;margin-bottom:40px}}.ab p{{font-size:16px;line-height:1.3;margin-bottom:16px}}.ab a{{color:#8b8f78;font-size:17px;display:block;margin-top:40px}}
+.dk{{background:#171717;color:#fff;padding:100px 120px 110px}}.dk .t{{display:flex;justify-content:space-between;align-items:center;font-size:48px;letter-spacing:-.02em;margin-bottom:44px}}.dk .t span{{color:#a9ad98}}.dk .t a{{background:#f4f5f0;color:#111;border-radius:99px;padding:14px 76px;font-size:16px;letter-spacing:0}}
+.cs{{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}}.cs>div{{background:#f4f5f0;color:#1d1d1b;border-radius:28px;padding:22px 20px 10px}}h4{{font-weight:500;font-size:25px;display:flex;justify-content:space-between;align-items:center}}h4 span{{font-size:13px;font-weight:400;background:#e2e4da;border:1px solid #b9bcad;border-radius:99px;padding:2px 12px}}
+.cs small{{display:block;font-size:12px;color:#666;margin:14px 0 12px}}.cs p{{font-size:14px;line-height:1.2;height:36px}}.cs b{{display:flex;justify-content:space-between;align-items:center;font-size:26px;font-weight:500;margin:22px 0}}.cs b a{{background:#14261d;color:#fff;border-radius:99px;font-size:14px;font-weight:400;padding:9px 28px}}
+.cs .ph{{height:300px;border-radius:20px;margin:0 -10px;position:relative}}.cs .ph i{{position:absolute;left:22px;bottom:16px;font-style:normal;font-size:12px;background:#0006;color:#fff;border-radius:99px;padding:2px 12px}}
+.end{{padding:90px 120px;display:flex;justify-content:space-between;align-items:end}}.end h3{{font-weight:400;font-size:76px;line-height:1;letter-spacing:-.03em}}.end h3 span{{color:#8b8f78}}
+</style><nav><b>r&amp;l</b><a>Catálogo</a><a>A medida</a><a>Proyectos</a><a>Pago y envío</a><u></u></nav>
+<div class="wm">roble<b>&amp;lino</b></div>
+<div class="h"><small>taller de mobiliario</small><p>Muebles a medida para interiores que valoran la calidad, la textura y el diseño. Cada pieza se hace para durar y para vivirla.</p><a class="go">Ver catálogo</a><div class="ch ph" style="{bg(4210805,'center')}"></div>
+<div class="mc" style="right:290px"><div class="ph" style="{bg(3932930)}"></div>Listo para ti →</div><div class="mc" style="right:120px"><div class="ph" style="{bg(1125136)}"></div>A medida →</div></div>
+<div class="ab"><div class="t"><div><span>Muebles elegantes</span><br>para interiores con carácter</div><em>01/ Nosotros</em></div><div class="g"><div class="a ph" style="{bg(6585757)}"></div><div><div class="b ph" style="{bg(7018400,'center 80%')}"></div><p>Creamos muebles con una arquitectura pensada, líneas limpias y atención al detalle, para quienes eligen no solo objetos, sino calidad de vida.</p><p>Creemos que un mueble debe sentirse bien, verse sólido y durar más que las modas.</p><a>Más sobre Roble&amp;Lino →</a></div></div></div>
+<div class="dk"><div class="t"><div><span>Nueva</span> colección</div><a>Ver catálogo completo</a></div><div class="cs">'''+prod('Nogal Curva','oferta','nogal macizo · bouclé · acero cepillado','Silla de comedor escultórica, de curvas suaves y silueta ligera','320 €',2762247)+prod('Concha Negra','popular','nogal americano · piel natural · herrajes negros','Butaca de asiento profundo con carcasa de madera hecha a mano','540 €',1148955)+prod('Ámbar Lounge','premium','nogal oscuro · piel italiana · latón macizo','Sillón elegante con tapicería de piel y estructura refinada','780 €',6480707)+'''</div></div>
+<div class="end"><h3><span>Hecho a mano</span><br>en València</h3><a style="background:#1d1d1b;color:#fff;border-radius:99px;padding:16px 60px">Pedir a medida</a></div>'''
+
+# ---------- Sama · estudio de yoga ----------
+SITES['yoga']=fonts('Jost:wght@300;400;500','Cormorant+Garamond:ital,wght@1,400;1,500')+f'''<style>{BASE}
+body{{background:#fbf7f2;color:#6b4a36;font-family:Jost,sans-serif;font-size:15px}}i{{font-family:"Cormorant Garamond",serif;text-transform:none;font-size:1.12em}}
+.hero{{height:800px;position:relative;color:#fff}}.hero:before{{content:"";position:absolute;inset:0;background:linear-gradient(#0003,#0000 30%,#0000 55%,#0007)}}
+.hero nav{{position:absolute;left:44px;right:44px;top:30px;display:flex;gap:26px;align-items:center;font-size:14px}}.hero nav b{{position:absolute;left:50%;transform:translateX(-50%);font-weight:400;font-size:30px;letter-spacing:.04em}}.hero nav span{{margin-left:auto}}.hero nav u{{background:#efe6da;color:#6b4a36;text-decoration:none;border-radius:8px;padding:11px 24px}}
+.hero .in{{position:absolute;left:600px;top:290px;width:210px;height:200px;border-radius:16px;border:2px solid #fff}}
+.hero h1{{position:absolute;left:44px;bottom:40px;font-weight:400;font-size:62px;line-height:1.04;text-transform:uppercase;letter-spacing:-.01em}}.hero .rt{{position:absolute;right:44px;bottom:44px;width:330px;font-size:15px;line-height:1.25}}.hero .rt a{{display:block;background:#efe6da;color:#6b4a36;border-radius:8px;text-align:center;padding:16px;margin-top:40px;font-weight:500}}
+.s1{{padding:100px 44px 60px}}h2{{font-weight:400;font-size:46px;line-height:1.1;text-transform:uppercase;letter-spacing:-.01em}}.s1 h2{{display:flex;justify-content:space-between}}.s1 h2 small{{font-size:14px;text-transform:none;color:#b39a88}}
+.g{{display:grid;grid-template-columns:430px 1fr 660px;margin-top:44px}}.cd{{background:#f3ece4;border-radius:18px;height:370px;position:relative;padding:260px 26px 0;overflow:hidden;font-size:15px}}.cd:before,.cd:after{{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:1.500px dashed #b39a88;top:-270px;left:-120px}}.cd:after{{left:130px}}.cd b{{font-weight:500;display:block}}
+.g .ph{{height:500px;border-radius:18px;color:#fff;padding:22px;font-size:15px;line-height:1.25}}.g .ph span{{display:block;width:330px}}
+.gi{{font-weight:300;font-size:560px;line-height:.86;letter-spacing:-.02em;color:#f1e9df;text-align:center;position:relative;height:500px}}.gi p{{position:absolute;left:50%;top:210px;transform:translateX(-50%);color:#6b4a36;font-size:17px;font-weight:500;letter-spacing:0;line-height:1.25;width:240px}}
+.s2{{display:grid;grid-template-columns:1fr 660px;gap:40px;padding:60px 44px 100px}}.s2 p{{font-size:14px;width:260px;margin:26px 0 40px}}.s2 .bt{{display:block;background:#6b4a36;color:#fff;border-radius:8px;text-align:center;padding:18px;font-weight:500;width:660px}}
+.pc{{background:#f3ece4;border-radius:18px;display:grid;grid-template-columns:420px 1fr;margin-bottom:18px;overflow:hidden}}.pc .ph{{height:340px;border-radius:18px;color:#fff;padding:16px 22px;font-size:22px;text-transform:uppercase}}.pc p{{align-self:end;padding:0 0 24px 24px;font-size:14px;width:auto;margin:0}}
+footer{{background:#6b4a36;color:#fbf7f2;padding:70px 44px;display:flex;justify-content:space-between;align-items:end}}footer b{{font-weight:400;font-size:90px;letter-spacing:.04em;line-height:1}}
+</style><div class="hero ph" style="{bg(3822864,'center 60%')}"><nav><a>Nosotras</a><a>Clases</a><a>Tarifas</a><b>SAMA</b><span>WhatsApp</span><a>Instagram</a><u>Reservar</u></nav><div class="in ph" style="{bg(3094215,'center 40%')}"></div><h1>Espacio para moverte<br><i>y encontrar equilibrio</i></h1><div class="rt">Yoga, pilates y estiramientos para quienes eligen cuidarse sin prisa y sin compararse<a>Reserva tu clase de prueba</a></div></div>
+<div class="s1"><h2><span>Un espacio para quienes<br>eligen <i>la calma</i></span><small>El estudio</small></h2><div class="g"><div class="cd"><b>Creamos un lugar para cuidar el cuerpo con cariño y atención</b>Aquí no hay carreras ni ideales: solo respiración, movimiento y equilibrio</div><span></span><div class="ph" style="{bg(4056723)}"><span>Yoga, pilates y estiramientos ayudan a fortalecer, mejorar la postura y sentir armonía entre cuerpo y respiración</span></div></div></div>
+<div class="gi">SAMA<p>Lo importante no es cómo se ve tu cuerpo, sino cómo se siente<br>•••</p></div>
+<div class="s2"><div><h2>Encuentra la práctica<br>que va <i>contigo</i></h2><p>Cada formato está pensado para ganar fuerza, flexibilidad y equilibrio interior</p><a class="bt">Reserva tu clase de prueba</a></div><div><div class="pc"><div class="ph" style="{bg(3822621)}">Yoga</div><p>Une respiración y cuerpo, desarrolla flexibilidad y atención</p></div><div class="pc"><div class="ph" style="{bg(4498606)}">Pilates</div><p>Fortalece el centro y cuida tu espalda con control</p></div></div></div>
+<footer><b>SAMA</b><span>València · Lunes a sábado · hola@samaestudio.es</span></footer>'''
+
+# ---------- Nomo · agencia creativa ----------
+def sv(n,t,ph,d,ch): return f'<div><em>{n}</em><div class="ph" style="{bg(ph)}"></div><div><h4>{t}</h4><p>{d}</p>'+''.join(f'<u>{c}</u>' for c in ch)+'</div></div>'
+SITES['agencia']=fonts('Inter+Tight:wght@400;500','Instrument+Serif:ital@0;1')+f'''<style>{BASE}
+body{{background:#fff;color:#1a1a1a;font-family:"Inter Tight",sans-serif;font-size:14px;padding:10px}}i{{font-family:"Instrument Serif",serif}}
+.top{{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:6px 10px 10px}}.top div{{display:flex;gap:34px}}.top a{{background:#1a1a1a;color:#fff;border-radius:99px;padding:6px 14px;font-size:12px}}
+.hero{{height:800px;border-radius:18px;position:relative;color:#fff;overflow:hidden}}.hero p{{position:absolute;right:140px;top:86px;width:300px;font-size:19px;line-height:1.3}}
+.hero b{{position:absolute;right:130px;top:230px;font-weight:400;font-size:240px;letter-spacing:-.06em;line-height:1}}.hero i{{position:absolute;right:140px;top:440px;font-size:112px;line-height:1}}
+.pp{{position:absolute;left:30px;right:30px;bottom:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:end;color:#1a1a1a}}.pp div{{background:#fff;border-radius:12px;padding:16px 18px;font-size:13px;display:flex;justify-content:space-between}}.pp div:first-child{{display:block}}.pp small{{display:block;color:#777;font-size:11.500px;margin:12px 0}}.pp u{{text-decoration:none;background:#f1f1f1;border-radius:6px;padding:3px 8px;font-size:11px;margin-right:6px}}
+.lg{{background:#f5f5f5;border-radius:14px;margin-top:12px;display:flex;justify-content:space-around;align-items:center;height:118px;font-size:24px;font-weight:500;letter-spacing:-.02em;color:#333}}
+.st{{display:grid;grid-template-columns:320px 1fr;padding:90px 110px 70px}}.st small{{font-size:11px;color:#666}}.st p{{font-size:43px;line-height:1.3;letter-spacing:-.025em}}.st i{{font-size:1.08em}}
+.sv{{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 110px}}.sv>div{{background:#f5f5f5;border-radius:14px;padding:24px;display:grid;grid-template-columns:140px 1fr;gap:34px;position:relative}}.sv .ph{{height:176px;border-radius:8px}}.sv em{{position:absolute;right:0;top:0;background:#fff;border-radius:0 0 0 12px;padding:6px 14px;font-style:normal;font-size:11px}}h4{{font-weight:400;font-size:24px;margin:26px 0 8px}}h4 i{{font-size:1.1em}}.sv p{{font-size:12.500px;color:#666;margin-bottom:22px;width:370px}}.sv u{{text-decoration:none;background:#fff;border-radius:6px;padding:3px 8px;font-size:11px;margin-right:8px}}
+.wk{{display:flex;justify-content:space-between;align-items:end;padding:120px 110px 40px;font-size:94px;letter-spacing:-.04em;line-height:1}}.wk a{{font-size:12px;letter-spacing:0;background:#f5f5f5;border-radius:99px;padding:8px 14px}}
+.cs{{height:640px;border-radius:18px;position:relative;color:#fff}}.cs span{{position:absolute;left:36px;bottom:30px;font-size:60px;letter-spacing:-.04em}}.cs small{{position:absolute;right:36px;bottom:44px;font-size:14px}}
+.c2{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}}.c2 .cs{{height:520px}}
+</style><div class="top"><span>nomo ®</span><div><span>Proyectos</span><span>Estudio</span><span>Blog</span><span>Contacto</span></div><a>Empezar proyecto</a></div>
+<div class="hero ph" style="{bg(4202325,'center 70%')}"><p>Tu marca merece ser inolvidable. Creamos identidades que conectan, inspiran y crecen.</p><b>nomo</b><i>diseño</i>
+<div class="pp"><div>● 01 &nbsp;Branding<small>Creamos identidades de marca con carácter, que generan confianza y una conexión duradera con tu público.</small><u>Estrategia</u><u>Identidad visual</u><u>Manual de marca</u></div><div>● 02 &nbsp;Diseño de producto<span>+</span></div><div>● 03 &nbsp;Marketing<span>+</span></div><div>● 04 &nbsp;Redes sociales<span>+</span></div></div></div>
+<div class="lg"><span>◎ acma</span><span>▥ kanva</span><span>◍ lineadoro</span><span>||| ASGARD</span><span>● UTOPÍA</span><span>○ círculo</span></div>
+<div class="st"><small>● Sobre nosotros</small><p>Nomo es un estudio creativo especializado en <i>branding</i> y <i>diseño de producto</i>: identidades con impacto, experiencias innovadoras y soluciones de <i>marketing</i> con estrategia.</p></div>
+<div class="sv">'''+sv('● 01 Branding','Identidad <i>de marca</i>',6621462,'Identidades con carácter que generan confianza y conectan con tu público.',['Estrategia','Identidad visual','Manual'])+sv('● 02 Diseño','<i>Diseño</i> de producto',4210805,'Convertimos ideas en productos funcionales y atractivos que mejoran la experiencia.',['UX/UI','Prototipos','Sistemas'])+sv('● 03 Marketing','Marketing <i>de producto</i>',3762879,'Estrategias que atraen, convierten y fidelizan con una narrativa cuidada.',['Contenidos','Publicidad','Email'])+sv('● 04 Redes','<i>Redes</i> sociales',90002,'Presencia social que hace crecer tu audiencia con contenido auténtico.',['Estrategia','Creación','Colaboraciones'])+f'''</div>
+<div class="wk"><span><i>Proyectos</i> seleccionados</span><a>Ver todos →</a></div>
+<div class="cs ph" style="{bg(7018400)}"><span>véla</span><small>Identidad · Web · 2026</small></div>
+<div class="c2"><div class="cs ph" style="{bg(4041391)}"><span>oda</span><small>Packaging · 2025</small></div><div class="cs ph" style="{bg(90000,'center 20%')}"><span>norte</span><small>Campaña · 2025</small></div></div>'''
+
+for k,v in SITES.items(): open(f"{OUT}/{k}.html",'w').write('<!doctype html><html lang="es"><head><meta charset="utf-8">'+v.replace('</style>','</style></head><body>',1)+'</body></html>')
+print(' '.join(SITES))
