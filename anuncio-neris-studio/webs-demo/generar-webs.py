@@ -24,7 +24,12 @@ def splitDark(photo,label,items,cap,pos='center',flip=False):
     return f'''<section class="splitDark {"flip" if flip else ""}"><div class="ph" style="{bgi(photo,pos)}"><p>{cap}</p></div><div class="dk"><span class="lab lw">{label}</span><ul>{li}</ul></div></section>'''
 def testimonials(title,items):
     cards=''.join(f'''<div class="tp" style="{bgi(ph,'center top')}"><span><b>{n}</b>{r}</span></div><div class="tq"><q>{q}</q><div class="st"><div><b>{a}</b><i>{al}</i></div><div><b>{b}</b><i>{bl}</i></div><a class="pillg">Leer caso</a></div></div>''' for ph,q,n,r,a,al,b,bl in items)
-    return f'''<section class="testi"><h2>{title}</h2><div class="trow">{cards}</div><div class="arr"><a class="on">←</a><a>→</a></div></section>'''
+    return f'''<section class="testi"><h2>{title}</h2><div class="trow"><div class="tq edge"><q>Nos ayudaron a ordenar el equipo sin perder lo que nos hacía distintos.</q></div>{cards}<div class="tp edge" style="{bgi(EDGE)}"></div></div><div class="arr"><a class="on">←</a><a>→</a></div></section>'''
+EDGE=91227
+def heroMenu(s,photo,h1,menu,pos='center'):
+    links=''.join(f'<a>{n}</a>' for n in s['nav'])
+    m=''.join(f'<li>{x}</li>' for x in menu)
+    return f'''<header class="heroMenu"><div class="hm" style="{bgi(photo,pos)}"><b class="lg">{s["name"]}</b><span class="mid">Ver vídeo</span><h1>{h1}</h1></div><div class="mr"><div class="links">{links}</div><span class="lab">Servicios</span><ul>{m}</ul><p>© 2026 {s["name"]}</p><a class="pilld">{s["cta"]}</a></div></header>'''
 def rows(label,title,items):
     r=''.join(f'''<div class="r"><span>0{k+1}</span><h3>{t}</h3><p>{d}</p><div class="th" style="{bgi(ph)}"></div></div>''' for k,(t,d,ph) in enumerate(items))
     return f'''<section class="rows"><div class="rh"><span class="lab">{label}</span><h2>{title}</h2></div>{r}</section>'''
@@ -40,9 +45,9 @@ def cta(s,h,p):
 
 SITES=[
  dict(id='consultoria',name='Norte & Co',cta='Hablemos',nav=['Servicios','Equipo','Casos','Recursos'],serif='Instrument Serif',sans='Inter Tight',bg='#dfe2e1',ink='#1b2220',dark='#1e2523',acc='#1e2523',card='#f4f5f3',
-  body=lambda s: heroCard(s,3760263,'Personas que hacen<br>crecer tu empresa.','Consultoría de talento y cultura para equipos que quieren trabajar mejor.','center 30%')
+  body=lambda s: heroMenu(s,3760514,'Equipos que<br>funcionan mejor.',['Selección y talento','Cultura y valores','Estructura y roles','Liderazgo','Acompañamiento'],'center 30%')
    +statement('Qué hacemos','Ayudamos a empresas en crecimiento a <em>decidir mejor</em>, ordenar sus equipos y construir una cultura que retiene talento.')
-   +testimonials('Lo que cambia cuando trabajamos juntos',[(3777943,'Antes, cada decisión rebotaba entre equipos. Nos ayudaron a definir cómo se decide.','Daniel Ortega','Director de operaciones','+34%','Decisiones más rápidas','−42%','Rotación anual'),(3769021,'Por fin tenemos un proceso de selección claro y una bienvenida que funciona.','Paula Méndez','Responsable de personas','×2','Candidaturas válidas','21 días','Para cubrir vacantes')])
+   +testimonials('Lo que cambia cuando trabajamos juntos',[(1300402,'Antes, cada decisión rebotaba entre equipos. Nos ayudaron a definir cómo se decide.','Daniel Ortega','Director de operaciones','+34%','Decisiones más rápidas','−42%','Rotación anual'),(2726111,'Por fin tenemos un proceso de selección claro y una bienvenida que funciona.','Paula Méndez','Responsable de personas','×2','Candidaturas válidas','21 días','Para cubrir vacantes')])
    +splitDark(6626903,'A quién acompañamos',['Empresas en crecimiento','Fundadores','Equipos de personas','Equipos híbridos','Empresas tecnológicas'],'Estructuras que evolucionan con el equipo, sin perder el foco en las personas.','center 20%')
    +rows('Servicios','Un acompañamiento completo',[('Selección y talento','Procesos claros para encontrar a quien encaja de verdad.',3184291),('Cultura y valores','Definimos cómo trabajáis y cómo lo contáis.',3182812),('Estructura y roles','Organigramas que se entienden y se usan.',7688336)])
    +stats([('120+','empresas acompañadas'),('12','años de experiencia'),('94%','renuevan con nosotros'),('8','países')])
@@ -56,10 +61,10 @@ SITES=[
    +statement('Filosofía','Creemos en casas que <em>envejecen bien</em>: menos objetos, mejores materiales y una luz que cambia a lo largo del día.')
    +cta(s,'¿Hablamos de tu espacio?','Primera visita y anteproyecto sin compromiso.')),
  dict(id='pilates',name='Forma Estudio',cta='Reservar clase',nav=['Clases','Horarios','Equipo','Tarifas'],serif='Newsreader',sans='Inter Tight',bg='#e8e6df',ink='#23261f',dark='#2a2f28',acc='#5d6a4c',card='#f6f5f0',
-  body=lambda s: heroCard(s,8436587,'Muévete con calma.<br>Vive con fuerza.','Pilates y yoga en grupos reducidos. Tu primera clase es gratuita.','center 40%')
+  body=lambda s: heroCard(s,4056723,'Muévete con calma.<br>Vive con fuerza.','Pilates y yoga en grupos reducidos. Tu primera clase es gratuita.','center 55%')
    +rows('Clases','Encuentra tu ritmo',[('Pilates reformer','Fuerza profunda y postura, con máquina.',6111616),('Yoga vinyasa','Movimiento fluido guiado por la respiración.',3822906),('Suelo y movilidad','Para empezar o recuperar sin prisa.',4498606)])
-   +splitDark(4056723,'Para quién',['Si empiezas de cero','Si pasas el día sentado','Si vuelves tras una lesión','Si buscas constancia','Si quieres sentirte mejor'],'Máximo ocho personas por sesión. Corregimos cada postura.','center')
-   +testimonials('Historias del estudio',[(3394658,'En tres meses mi espalda ha cambiado por completo. Es mi hora favorita de la semana.','Elena Garrido','Alumna desde 2024','8','Personas por clase','32','Clases semanales'),(2379004,'Llegué con dolor lumbar y sin constancia. Ahora no me salto ni una.','Marc Soler','Alumno desde 2025','6','Profesores titulados','4,9','Valoración media')])
+   +splitDark(3822906,'Para quién',['Si empiezas de cero','Si pasas el día sentado','Si vuelves tras una lesión','Si buscas constancia','Si quieres sentirte mejor'],'Máximo ocho personas por sesión. Corregimos cada postura.','center')
+   +gallery('El estudio','Luz, calma y espacio',[(6111616,'Sala reformer'),(4498606,'Suelo y movilidad'),(841130,'Fuerza')])
    +statement('El estudio','Un espacio luminoso y tranquilo en el centro, pensado para que <em>desconectes al entrar</em> y salgas con más energía.')
    +cta(s,'Tu primera clase, gratis.','Reserva plaza en un minuto desde el móvil.')),
  dict(id='restaurante',name='Casa Olmo',cta='Reservar mesa',nav=['Carta','Bodega','El espacio','Eventos'],serif='Instrument Serif',sans='DM Sans',bg='#ece7df',ink='#1f1b17',dark='#1d1916',acc='#9a4a2a',card='#f8f5ef',
@@ -71,17 +76,17 @@ SITES=[
    +stats([('4,8','valoración media'),('12','años cocinando'),('40','referencias en bodega'),('7','pases')])
    +cta(s,'¿Mesa para esta semana?','Reservas online con confirmación inmediata.')),
  dict(id='clinica',name='Clínica Sera',cta='Pedir cita',nav=['Tratamientos','Equipo','Tecnología','Contacto'],serif='Newsreader',sans='DM Sans',bg='#eeeae6',ink='#2a2422',dark='#2d2623',acc='#a8705a',card='#faf7f4',
-  body=lambda s: heroSplit(s,3985329,'Dermatología y estética','El cuidado de tu piel,<br><em>con criterio médico.</em>','Tratamientos personalizados, tecnología avanzada y un equipo que te explica cada paso.','center')
+  body=lambda s: heroSplit(s,2811087,'Dermatología y estética','El cuidado de tu piel,<br><em>con criterio médico.</em>','Tratamientos personalizados, tecnología avanzada y un equipo que te explica cada paso.','center')
    +statement('Nuestra forma de trabajar','Cada piel es distinta. Por eso empezamos siempre por <em>un diagnóstico</em> y no por un tratamiento.')
    +rows('Tratamientos','Qué podemos hacer por ti',[('Dermatología clínica','Diagnóstico y seguimiento de la piel.',3738349),('Medicina estética','Resultados naturales, sin excesos.',2811087),('Cuidado facial','Protocolos adaptados a tu piel.',4041392)])
    +splitDark(3586798,'Primera visita',['Escuchamos','Analizamos tu piel','Diseñamos el plan','Tratamos','Acompañamos'],'Una hora contigo antes de recomendarte nada.','center 20%',flip=True)
-   +testimonials('Pacientes que confían en nosotros',[(1065084,'Me explicaron todo con calma y el resultado es justo lo que buscaba: natural.','Laura Vidal','Paciente desde 2023','+5.000','Pacientes atendidos','15','Años de experiencia'),(3757942,'Por fin una clínica que no intenta venderte de más. Salgo siempre tranquila.','Marta Roca','Paciente desde 2024','98%','Nos recomiendan','1 h','Primera consulta')])
+   +gallery('La clínica','Cuidado, ciencia y calma',[(4041392,'Cosmética médica'),(3738349,'Tratamiento facial'),(1065084,'Resultados naturales')])
    +cta(s,'Tu piel, en buenas manos.','Primera valoración sin compromiso.')),
 ]
 CSS='''
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:1440px;background:var(--bg);color:var(--ink);font-family:var(--sans),sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
-[style*="background-image"]{background-size:cover;filter:saturate(1.18) contrast(1.07) brightness(1.04)}
+[style*="background-image"]{background-size:cover;filter:saturate(1.02) contrast(1.06) brightness(1.02)}
 h1,h2,h3,.state p,.splitDark li,.stats b,.tq .st b{font-family:var(--serif),serif;font-weight:400;letter-spacing:-.015em}
 em{font-style:italic}
 .lab{display:inline-block;align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:99px;border:1px solid color-mix(in srgb,var(--ink) 25%,transparent)}
@@ -105,7 +110,9 @@ nav{display:flex;align-items:center;padding:28px 48px}.logo{font-size:22px;font-
 .heroCenter .hp{height:660px;border-radius:30px;margin-top:70px}
 .state{padding:150px 220px;text-align:center}.state p{font-size:58px;line-height:1.14;margin-top:34px}
 .testi{padding:110px 48px 90px;background:color-mix(in srgb,var(--bg) 82%,#8a9390)}.testi h2{font-size:60px;text-align:center;margin-bottom:64px}
-.trow{display:grid;grid-template-columns:270px 1fr 270px 1fr;gap:16px}
+.testi{overflow:hidden}.trow{display:grid;grid-template-columns:300px 300px 420px 300px 420px 300px;gap:16px;margin-left:-190px;width:1800px}.tq.edge{opacity:.75}
+.heroMenu{display:grid;grid-template-columns:760px 1fr;gap:20px;padding:20px;height:860px}.hm{border-radius:30px;position:relative;color:#fff}.hm .lg{position:absolute;left:22px;top:22px;background:#fff;color:#111;padding:12px 20px;border-radius:14px;font-size:20px;font-weight:600}.hm h1{position:absolute;left:36px;bottom:36px;font-family:var(--sans),sans-serif;font-weight:500;font-size:52px;line-height:1.05;letter-spacing:-.03em}.hm .mid{position:absolute;left:50%;bottom:44px;background:#ffffff38;backdrop-filter:blur(10px);padding:9px 16px;border-radius:99px;font-size:13px}
+.mr{padding:14px 30px;display:flex;flex-direction:column}.mr .links{margin:0 0 150px}.mr ul{list-style:none;margin:26px 0 auto}.mr li{font-size:34px;line-height:1.5;letter-spacing:-.02em}.mr p{font-size:14px;opacity:.5;margin-bottom:18px}.mr .pilld{align-self:flex-start}
 .tp{height:440px;border-radius:24px;position:relative}.tp span{position:absolute;left:18px;bottom:16px;color:#fff;font-size:13px;line-height:1.4}.tp b{display:block;font-weight:600}
 .tq{background:var(--card);border-radius:24px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;height:440px}
 .tq q{font-size:27px;line-height:1.22;font-weight:500;letter-spacing:-.02em;quotes:"“" "”"}
