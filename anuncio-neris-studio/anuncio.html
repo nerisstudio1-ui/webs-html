@@ -51,10 +51,10 @@ mark{background:linear-gradient(transparent 66%,#cfd8ff 66%,#cfd8ff 94%,transpar
 <div id="stage">
   <div id="type"></div>
   <div id="hook">
-    <div class="a c" style="top:640px" data-in="0.15" data-out="2.7"><span class="pill"><b></b>Neris Studio® · Oferta especial</span></div>
-    <div class="a c h" style="top:738px;font-size:76px" data-in="0.3" data-out="2.75">Tu web profesional</div>
-    <div class="a c h" style="top:830px;font-size:290px;font-weight:800;letter-spacing:-.055em;line-height:1;color:var(--blue);white-space:nowrap;left:0;right:0" data-in="0.5" data-out="2.8">299 €</div>
-    <div class="a c p" style="top:1160px;left:110px;right:110px" data-in="0.9" data-out="2.9">Diseño a medida para atraer clientes y crecer.</div>
+    <div class="a c" style="top:640px" data-in="0.15" data-out="3.3"><span class="pill"><b></b>Neris Studio® · Oferta especial</span></div>
+    <div class="a c h" style="top:738px;font-size:76px" data-in="0.3" data-out="3.35">Tu web profesional</div>
+    <div class="a c h" style="top:830px;font-size:290px;font-weight:800;letter-spacing:-.055em;line-height:1;color:var(--blue);white-space:nowrap;left:0;right:0" data-in="0.5" data-out="3.4">299 €</div>
+    <div class="a c p" style="top:1160px;left:110px;right:110px" data-in="0.9" data-out="3.45">Diseño a medida para atraer clientes y crecer.</div>
   </div>
   <div id="stream"></div>
   <div class="a mono tagc" style="left:44px;top:44px" data-in="3.0" data-out="6.4" data-fx="fade">Neris Studio®</div>
@@ -121,8 +121,8 @@ function seek(t){
   const kB=io((t-6.5)/1.0), kD=io((t-21.5)/.9);
   const rot=lerp(lerp(-11,0,kB),-11,kD), sc=lerp(lerp(1.04,1,kB),.72,kD), ty=lerp(lerp(0,300,kB),-570,kD);
   $('stream').style.transform=`translateY(${ty}px) rotate(${rot}deg) scale(${sc})`;
-  const off=270*t, intro=(1-io((t-1.9)/2.2))*3100;
-  for(const o of cards){let y=((o.k*PITCH-off)%L+L)%L-1300+intro;
+  const ramp=t<1.4?0:t<2.4?(t-1.4)*(t-1.4)/2:t-1.9; const sm=x=>{x=cl(x);return x*x*x*(x*(x*6-15)+10)}; const dist=270*ramp+1300*sm((t-1.4)/3.6);
+  for(const o of cards){let y=o.k*PITCH+2080-dist; if(y<-1300) y+=L*Math.ceil((-1300-y)/L);
     const sway=lerp(lerp((o.k%2?55:-55),0,kB),(o.k%2?55:-55),kD);
     o.c.style.transform=`translate(${sway}px,${y}px)`;
     o.img.style.transform=`translateY(${-cl((1900-y)/2900)*o.max}px)`}
