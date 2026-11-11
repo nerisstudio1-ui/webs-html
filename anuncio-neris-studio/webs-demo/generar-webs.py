@@ -25,7 +25,7 @@ def splitDark(photo,label,items,cap,pos='center',flip=False):
 def testimonials(title,items):
     cards=''.join(f'''<div class="tp" style="{bgi(ph,'center top')}"><span><b>{n}</b>{r}</span></div><div class="tq"><q>{q}</q><div class="st"><div><b>{a}</b><i>{al}</i></div><div><b>{b}</b><i>{bl}</i></div><a class="pillg">Leer caso</a></div></div>''' for ph,q,n,r,a,al,b,bl in items)
     return f'''<section class="testi"><h2>{title}</h2><div class="trow"><div class="tq edge"><q>Nos ayudaron a ordenar el equipo sin perder lo que nos hacía distintos.</q></div>{cards}<div class="tp edge" style="{bgi(EDGE)}"></div></div><div class="arr"><a class="on">←</a><a>→</a></div></section>'''
-EDGE=91227
+EDGE=90000
 def heroMenu(s,photo,h1,menu,pos='center'):
     links=''.join(f'<a>{n}</a>' for n in s['nav'])
     m=''.join(f'<li>{x}</li>' for x in menu)
@@ -45,11 +45,11 @@ def cta(s,h,p):
 
 SITES=[
  dict(id='consultoria',name='Norte & Co',cta='Hablemos',nav=['Servicios','Equipo','Casos','Recursos'],serif='Instrument Serif',sans='Inter Tight',bg='#dfe2e1',ink='#1b2220',dark='#1e2523',acc='#1e2523',card='#f4f5f3',
-  body=lambda s: heroMenu(s,3760514,'Equipos que<br>funcionan mejor.',['Selección y talento','Cultura y valores','Estructura y roles','Liderazgo','Acompañamiento'],'center 30%')
+  body=lambda s: heroMenu(s,90001,'Equipos que<br>funcionan mejor.',['Selección y talento','Cultura y valores','Estructura y roles','Liderazgo','Acompañamiento'],'center 20%')
    +statement('Qué hacemos','Ayudamos a empresas en crecimiento a <em>decidir mejor</em>, ordenar sus equipos y construir una cultura que retiene talento.')
-   +testimonials('Lo que cambia cuando trabajamos juntos',[(1300402,'Antes, cada decisión rebotaba entre equipos. Nos ayudaron a definir cómo se decide.','Daniel Ortega','Director de operaciones','+34%','Decisiones más rápidas','−42%','Rotación anual'),(2726111,'Por fin tenemos un proceso de selección claro y una bienvenida que funciona.','Paula Méndez','Responsable de personas','×2','Candidaturas válidas','21 días','Para cubrir vacantes')])
-   +splitDark(6626903,'A quién acompañamos',['Empresas en crecimiento','Fundadores','Equipos de personas','Equipos híbridos','Empresas tecnológicas'],'Estructuras que evolucionan con el equipo, sin perder el foco en las personas.','center 20%')
-   +rows('Servicios','Un acompañamiento completo',[('Selección y talento','Procesos claros para encontrar a quien encaja de verdad.',3184291),('Cultura y valores','Definimos cómo trabajáis y cómo lo contáis.',3182812),('Estructura y roles','Organigramas que se entienden y se usan.',7688336)])
+   +testimonials('Lo que cambia cuando trabajamos juntos',[(90003,'Antes, cada decisión rebotaba entre equipos. Nos ayudaron a definir cómo se decide.','Daniel Ortega','Director de operaciones','+34%','Decisiones más rápidas','−42%','Rotación anual'),(90002,'Por fin tenemos un proceso de selección claro y una bienvenida que funciona.','Paula Méndez','Responsable de personas','×2','Candidaturas válidas','21 días','Para cubrir vacantes')])
+   +splitDark(90000,'A quién acompañamos',['Empresas en crecimiento','Fundadores','Equipos de personas','Equipos híbridos','Empresas tecnológicas'],'Estructuras que evolucionan con el equipo, sin perder el foco en las personas.','center 20%')
+   +rows('Servicios','Un acompañamiento completo',[('Selección y talento','Procesos claros para encontrar a quien encaja de verdad.',90002),('Cultura y valores','Definimos cómo trabajáis y cómo lo contáis.',90001),('Estructura y roles','Organigramas que se entienden y se usan.',90003)])
    +stats([('120+','empresas acompañadas'),('12','años de experiencia'),('94%','renuevan con nosotros'),('8','países')])
    +cta(s,'Empieza por una conversación.','Cuéntanos en qué punto está tu equipo y te proponemos un primer paso.')),
  dict(id='interiorismo',name='Estudio Alba',cta='Pedir propuesta',nav=['Proyectos','Estudio','Proceso','Contacto'],serif='Instrument Serif',sans='DM Sans',bg='#efece6',ink='#24211d',dark='#26221d',acc='#8a5a3c',card='#faf8f4',
