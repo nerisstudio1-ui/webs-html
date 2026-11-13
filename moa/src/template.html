@@ -50,6 +50,8 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{margin:0;font-family:var(--texto);font-size:16px;line-height:1.7;color:var(--carbon);background:var(--crema);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
+/* Ningún texto largo (correos, direcciones) puede ensanchar la página en el móvil */
+h1,h2,h3,p,li,span,small,a,summary,blockquote{overflow-wrap:anywhere}
 p{margin:0 0 1em}
 [hidden]{display:none!important}
 h1,h2,h3{font-family:var(--titulo);margin:0;letter-spacing:-.015em}
@@ -188,7 +190,10 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .mq-item{display:inline-flex;align-items:center;font-family:var(--titulo);font-weight:800;text-transform:uppercase;font-size:clamp(3.6rem,10vw,9rem);line-height:1;letter-spacing:.015em;word-spacing:.08em}
 .mq-item img{height:.62em;width:auto;max-width:none;flex:none;margin:0 .55em}
 .mq-soft{color:var(--carbon)}
-.mq-soft .mq-item:nth-child(even){color:var(--violeta)}
+/* Cada palabra va del mismo color que el símbolo que la precede */
+.mq-soft .c-carbon{color:var(--carbon)}
+.mq-soft .c-violeta{color:var(--violeta)}
+.mq-soft .c-verde{color:var(--verde)}
 .mq-green{background:var(--verde);color:var(--carbon)}
 .mq-outline .mq-item{color:transparent;-webkit-text-stroke:2px var(--carbon)}
 .mq-outline .mq-item:nth-child(even){color:var(--carbon);-webkit-text-stroke:0}
@@ -245,13 +250,13 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc{flex:0 0 min(420px,82vw);min-height:500px;scroll-snap-align:start;border-radius:28px;padding:34px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--arena)}
 /* Orden de prioridad: compartido (lila), grupal (verde), app (negro), online, domicilio */
 .svc:nth-child(1){background:var(--violeta);color:var(--crema)}
-.svc:nth-child(2){background:var(--verde)}
+.svc:nth-child(2){background:var(--verde);color:var(--blanco)}
 .svc:nth-child(3){background:var(--carbon);color:var(--crema)}
 .svc:nth-child(4){background:#C9EFD4}
 .svc:nth-child(5){background:#E6D8FD}
 .svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
-.svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
-.svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem}
+.svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem;min-height:3em;display:flex;align-items:flex-end}
+.svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem;min-height:7em}
 .svc .price{font-family:var(--titulo);font-weight:700;font-size:1.5rem;margin-bottom:1.3rem}
 .svc .price small{font-family:var(--texto);font-weight:500;font-size:.78rem;opacity:.8}
 .svc .link-arrow{align-self:flex-start}
@@ -403,7 +408,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 .ig-left{justify-self:center}
 .ig-left figcaption{margin-top:48px}
 .ig-left::before{background:var(--verde);transform:rotate(-3deg);inset:-18px 18px 18px -18px}
-.ig-video figcaption{margin-top:34px;font-size:.8rem;color:var(--gris);text-align:center}
+.ig-video{margin-bottom:24px}
 .community-head p{color:var(--gris)}
 .mantras{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.4rem}
 .mantras span{border:1.5px solid var(--carbon);border-radius:999px;padding:.4em 1.1em;font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .3s,color .3s}
@@ -442,7 +447,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 .contact .lead{color:rgba(255,255,255,.72)}
 .contact-list{list-style:none;padding:0;margin:2.2rem 0 0;border-top:1px solid rgba(255,255,255,.16)}
 .contact-list li{border-bottom:1px solid rgba(255,255,255,.16)}
-.contact-list a,.contact-list div{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 4px;text-decoration:none;font-weight:600;transition:padding .35s var(--ease),color .3s}
+.contact-list a,.contact-list div{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 16px;padding:18px 4px;text-decoration:none;font-weight:600;transition:padding .35s var(--ease),color .3s}
 .contact-list a:hover{padding-left:14px;color:var(--verde)}
 .contact-list small{font-weight:400;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .form{background:var(--crema);color:var(--carbon);border-radius:28px;padding:40px}
@@ -607,10 +612,10 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <!-- MARQUESINA -->
 <div class="marquee mq-soft" data-marquee aria-hidden="true">
   <div class="mq-track">
-    <span class="mq-item">{{mq_1}} <img src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""></span>
-    <span class="mq-item">{{mq_2}} <img src="assets/logos-moa/moa-simbolo-verde.svg" alt=""></span>
-    <span class="mq-item">{{mq_3}} <img src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""></span>
-    <span class="mq-item">{{mq_4}} <img src="assets/logos-moa/moa-simbolo-verde.svg" alt=""></span>
+    <span class="mq-item c-carbon"><img src="assets/logos-moa/moa-simbolo-carbon.svg" alt="">{{mq_1}}</span>
+    <span class="mq-item c-violeta"><img src="assets/logos-moa/moa-simbolo-violeta.svg" alt="">{{mq_2}}</span>
+    <span class="mq-item c-verde"><img src="assets/logos-moa/moa-simbolo-verde.svg" alt="">{{mq_3}}</span>
+    <span class="mq-item c-violeta"><img src="assets/logos-moa/moa-simbolo-violeta.svg" alt="">{{mq_4}}</span>
   </div>
 </div>
 
@@ -706,7 +711,6 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   <div class="wrap who-grid">
     <figure class="ig-video ig-left reveal">
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZpPGpHIbvv/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"><a href="https://www.instagram.com/p/DZpPGpHIbvv/" target="_blank" rel="noopener">{{ig2_fallback}} →</a></blockquote>
-      <figcaption>{{ig2_caption}}</figcaption>
     </figure>
     <div class="who-copy">
       <span class="eyebrow reveal">{{who_eyebrow}}</span>
@@ -844,26 +848,6 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   </div>
 </section>
 
-<!-- PREGUNTES -->
-<section class="faq pad" id="preguntes">
-  <div class="wrap faq-grid">
-    <div>
-      <span class="eyebrow reveal">{{faq_eyebrow}}</span>
-      <h2 data-split>{{faq_title}}</h2>
-    </div>
-    <div class="faq-list reveal">
-      <details class="faq-item"><summary>{{faq1_q}}</summary><p>{{faq1_a}}</p></details>
-      <details class="faq-item"><summary>{{faq2_q}}</summary><p>{{faq2_a}}</p></details>
-      <details class="faq-item"><summary>{{faq3_q}}</summary><p>{{faq3_a}}</p></details>
-      <details class="faq-item"><summary>{{faq4_q}}</summary><p>{{faq4_a}}</p></details>
-      <details class="faq-item"><summary>{{faq5_q}}</summary><p>{{faq5_a}}</p></details>
-      <details class="faq-item"><summary>{{faq6_q}}</summary><p>{{faq6_a}}</p></details>
-      <details class="faq-item"><summary>{{faq7_q}}</summary><p>{{faq7_a}}</p></details>
-      <details class="faq-item"><summary>{{faq8_q}}</summary><p>{{faq8_a}}</p></details>
-    </div>
-  </div>
-</section>
-{{faq_jsonld}}
 
 <!-- PATRICIA -->
 <section class="behind pad" id="patricia">
@@ -903,7 +887,6 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div>
     <figure class="ig-video reveal" id="igVideo">
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DFdp2oqOZEO/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"><a href="https://www.instagram.com/p/DFdp2oqOZEO/" target="_blank" rel="noopener">{{ig_fallback}} →</a></blockquote>
-      <figcaption>{{ig_caption}}</figcaption>
     </figure>
   </div>
   <div class="reviews" aria-label="{{aria_reviews}}">
@@ -924,6 +907,27 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="rv-modal-box"><button type="button" class="rv-close" id="rvClose" aria-label="{{rv_close}}">×</button><div id="rvBody"></div></div>
   </div>
 </section>
+
+<!-- PREGUNTES -->
+<section class="faq pad" id="preguntes">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow reveal">{{faq_eyebrow}}</span>
+      <h2 data-split>{{faq_title}}</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary>{{faq1_q}}</summary><p>{{faq1_a}}</p></details>
+      <details class="faq-item"><summary>{{faq2_q}}</summary><p>{{faq2_a}}</p></details>
+      <details class="faq-item"><summary>{{faq3_q}}</summary><p>{{faq3_a}}</p></details>
+      <details class="faq-item"><summary>{{faq4_q}}</summary><p>{{faq4_a}}</p></details>
+      <details class="faq-item"><summary>{{faq5_q}}</summary><p>{{faq5_a}}</p></details>
+      <details class="faq-item"><summary>{{faq6_q}}</summary><p>{{faq6_a}}</p></details>
+      <details class="faq-item"><summary>{{faq7_q}}</summary><p>{{faq7_a}}</p></details>
+      <details class="faq-item"><summary>{{faq8_q}}</summary><p>{{faq8_a}}</p></details>
+    </div>
+  </div>
+</section>
+{{faq_jsonld}}
 
 <!-- MARQUESINA FINAL -->
 <div class="marquee mq-green" data-marquee data-dir="-1" aria-hidden="true">

@@ -157,6 +157,8 @@ AJUSTES = """
 #moa-app .hero{--hero-top:0px;padding-top:0}
 #moa-app .hero,#moa-app .intro-sec,#moa-app .who,#moa-app .community,#moa-app .how,#moa-app .stats,#moa-app .behind,#moa-app .contact{overflow-x:clip}
 #moa-app .wrap{box-sizing:border-box}
+/* En el móvil nada puede ensanchar la página (si no, el navegador la aleja y se ve diminuta). clip no rompe la cabecera fija */
+@media (max-width:1020px){#moa-app{overflow-x:clip}}
 /* Botones: algunos temas pintan .btn o button con !important */
 #moa-app .btn,#moa-app button{background:transparent!important}
 #moa-app .btn-fill{background:var(--violeta)!important}
