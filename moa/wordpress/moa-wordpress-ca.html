@@ -1,4 +1,4 @@
-<!-- MOA · Moviment i Salut — bloque de HTML personalizado (ca). Generado 2026-11-10 13:08 UTC.
+<!-- MOA · Moviment i Salut — bloque de HTML personalizado (ca). Generado 2026-11-13 11:26 UTC.
      No editar aquí: los cambios se hacen en src/ y se regenera con build.py y build_wordpress.py. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,7 +155,7 @@
 #moa-app .mq-track{display:inline-flex;align-items:center;will-change:transform}
 #moa-app .mq-item{display:inline-flex;align-items:center;font-family:var(--titulo);font-weight:800;text-transform:uppercase;font-size:clamp(57.6px,10vw,144px);line-height:1;letter-spacing:.015em;word-spacing:.08em}
 #moa-app .mq-item img{height:.62em;width:auto;max-width:none;flex:none;margin:0 .55em}
-#moa-app .mq-soft{color:var(--arena-2)}
+#moa-app .mq-soft{color:var(--carbon)}
 #moa-app .mq-soft .mq-item:nth-child(even){color:var(--violeta)}
 #moa-app .mq-green{background:var(--verde);color:var(--carbon)}
 #moa-app .mq-outline .mq-item{color:transparent;-webkit-text-stroke:2px var(--carbon)}
@@ -163,8 +163,8 @@
 #moa-app .intro-sec{padding:70px 0 130px}
 #moa-app .intro-grid{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:50px;align-items:center}
 #moa-app .intro-grid .media{aspect-ratio:4/5}
-#moa-app .intro-grid .media.a{margin-top:120px;max-width:260px;width:100%}
-#moa-app .intro-grid .media.b{margin-top:-60px;max-width:280px;width:100%;justify-self:end}
+#moa-app .intro-grid .media.a{max-width:270px;width:100%}
+#moa-app .intro-grid .media.b{max-width:270px;width:100%;justify-self:end}
 #moa-app .intro-copy{text-align:center}
 #moa-app .intro-copy h2{margin-bottom:22.4px}
 #moa-app .intro-copy p{color:var(--gris);font-size:15.68px;margin:0 auto 32px;max-width:52ch}
@@ -206,7 +206,7 @@
 #moa-app .svc:nth-child(1){background:var(--violeta);color:var(--crema)}
 #moa-app .svc:nth-child(2){background:var(--verde)}
 #moa-app .svc:nth-child(3){background:var(--carbon);color:var(--crema)}
-#moa-app .svc:nth-child(4){background:var(--arena)}
+#moa-app .svc:nth-child(4){background:#C9EFD4}
 #moa-app .svc:nth-child(5){background:#E6D8FD}
 #moa-app .svc .num{font-family:var(--titulo);font-weight:800;font-size:88px;line-height:.8;opacity:.18;margin-bottom:auto}
 #moa-app .svc h3{font-size:30.4px;line-height:1;margin:35.2px 0 16px}
@@ -218,6 +218,16 @@
 #moa-app .svc:hover .shape{transform:translateY(-12px) rotate(-6deg)}
 #moa-app .services.is-pinned .hs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:74px 0 0}
 #moa-app .services.is-pinned .hs-track{overflow:visible;scroll-snap-type:none;will-change:transform;padding:0 max(28px,calc((100vw - var(--wrap))/2 + 28px))}
+#moa-app .extra{padding:10px 0 100px;background:var(--crema)}
+#moa-app .extra-card{position:relative;overflow:hidden;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center;background:var(--blanco);border:1.5px solid var(--linea);border-radius:28px;padding:40px 44px}
+#moa-app .extra-card .eyebrow{color:var(--verde);margin-bottom:9.6px}
+#moa-app .extra-card h3{font-size:32px;margin-bottom:12.8px}
+#moa-app .extra-card p{margin:0;color:var(--gris)}
+#moa-app .extra-card .shape{position:absolute;right:-24px;bottom:-30px;width:130px;opacity:.12;pointer-events:none}
+#moa-app .extra-side{display:grid;gap:18px;justify-items:start}
+#moa-app .extra-price{font-size:16px;line-height:1.6;color:var(--carbon)!important;text-align:left!important}
+#moa-app .extra-price b{font-family:var(--titulo);font-size:24px;font-weight:800;color:var(--violeta)}
+@media (max-width:760px){#moa-app .extra-card{grid-template-columns:1fr;gap:22px;padding:30px 24px}}
 #moa-app .who{background:var(--crema)}
 #moa-app .who-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
 #moa-app .who-grid .media{aspect-ratio:4/5}
@@ -280,6 +290,7 @@
 #moa-app .group-prices div{background:var(--crema);border:1px solid var(--linea);border-radius:14px;padding:14px 10px;text-align:center;transition:transform .35s var(--ease),background .35s}
 #moa-app .group-prices div:hover{transform:translateY(-4px);background:var(--verde)}
 #moa-app .group-prices b{display:block;font-family:var(--titulo);font-weight:800;font-size:25.6px;line-height:1.1}
+#moa-app .group-prices.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 #moa-app .group-prices span{font-size:12.16px;color:var(--gris);line-height:1.3;display:block}
 #moa-app .price-note{font-size:13.44px;color:var(--gris);margin:16px 14px 0}
 #moa-app .schedule{background:var(--carbon);color:var(--crema);border-radius:28px;padding:38px 34px;position:sticky;top:100px}
@@ -292,6 +303,17 @@
 #moa-app .schedule .others{border-top:1px solid rgba(254,247,229,.16);padding-top:18px;font-size:14.08px;color:rgba(254,247,229,.82)}
 #moa-app .schedule .others p{margin:0 0 .6em}
 #moa-app .schedule .btn{margin-top:14px}
+#moa-app .faq{background:var(--crema)}
+#moa-app .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+#moa-app .faq-list{border-top:1.5px solid var(--carbon)}
+#moa-app .faq-item{border-bottom:1px solid var(--linea)}
+#moa-app .faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 4px;font-family:var(--titulo);font-weight:600;font-size:18.4px;line-height:1.25}
+#moa-app .faq-item summary::-webkit-details-marker{display:none}
+#moa-app .faq-item summary::after{content:"+";flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--arena);font-family:var(--texto);font-weight:500;font-size:20.8px;transition:transform .3s var(--ease),background .3s}
+#moa-app .faq-item[open] summary::after{transform:rotate(45deg);background:var(--violeta);color:var(--crema)}
+#moa-app .faq-item summary:hover{color:var(--violeta)}
+#moa-app .faq-item p{margin:0;padding:0 50px 22px 4px;color:var(--gris);font-size:15.2px}
+@media (max-width:1020px){#moa-app .faq-grid{grid-template-columns:minmax(0,1fr);gap:30px}}
 #moa-app .behind{background:var(--arena)}
 #moa-app .behind-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:start}
 #moa-app .behind-visual .media{aspect-ratio:4/5;border-radius:999px 999px var(--radius) var(--radius)}
@@ -329,7 +351,17 @@
 #moa-app .rv-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 #moa-app .rv-track{display:flex;gap:20px;width:max-content;animation:moa-rv 60s linear infinite}
 #moa-app .rv-row.rev .rv-track{animation-direction:reverse;animation-duration:70s}
-#moa-app .rv-row:hover .rv-track{animation-play-state:paused}
+#moa-app .rv-row:hover .rv-track,#moa-app .rv-row.paused .rv-track{animation-play-state:paused}
+#moa-app .review{cursor:pointer}
+#moa-app .review:focus-visible{outline:3px solid var(--violeta);outline-offset:3px}
+#moa-app .rv-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background:rgba(43,45,43,.6)}
+#moa-app .rv-modal[hidden]{display:none}
+#moa-app .rv-modal-box{position:relative;max-width:560px;width:100%;max-height:85vh;overflow:auto;background:var(--crema);color:var(--carbon);border-radius:24px;padding:40px 34px 32px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+#moa-app .rv-modal-box .stars{color:var(--violeta);letter-spacing:.2em;margin-bottom:12.8px}
+#moa-app .rv-modal-box p{font-size:16.8px;line-height:1.7;text-align:left!important}
+#moa-app .rv-modal-box footer{font-weight:600;margin-top:16px}
+#moa-app .rv-modal-box footer small{display:block;font-weight:400;color:var(--gris)}
+#moa-app .rv-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:var(--arena);font-size:22.4px;line-height:1;cursor:pointer}
 @keyframes moa-rv{to{transform:translateX(calc(-50% - 10px))}}
 #moa-app .review{width:380px;flex:none;background:var(--arena);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:transform .4s var(--ease),background .4s}
 #moa-app .review:hover{transform:translateY(-6px) rotate(-.6deg);background:var(--blanco)}
@@ -387,8 +419,7 @@
 #moa-app .hero-panel{padding:70px 28px 90px}
 #moa-app .intro-grid{grid-template-columns:1fr 1fr;gap:20px}
 #moa-app .intro-copy{grid-column:1/-1;grid-row:1}
-#moa-app .intro-grid .media.a{margin-top:30px;max-width:none}
-#moa-app .intro-grid .media.b{margin-top:80px;max-width:none}
+#moa-app .intro-grid .media.a,#moa-app .intro-grid .media.b{margin-top:0;max-width:none}
 #moa-app .letters,#moa-app .stats-grid{grid-template-columns:1fr}
 #moa-app .letters{gap:50px}
 #moa-app .stats-grid{grid-template-columns:1fr 1fr;row-gap:40px}
@@ -510,7 +541,7 @@
     </div>
   </div>
   <div class="badge" aria-hidden="true">
-    <svg class="ring" viewBox="0 0 120 120"><defs><path id="moa-circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#moa-circ">PAS A PAS · AL TEU RITME · PAS A PAS · AL TEU RITME ·</textPath></text></svg>
+    <svg class="ring" viewBox="0 0 120 120"><defs><path id="moa-circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text textLength="286" lengthAdjust="spacing"><textPath href="#moa-circ" textLength="286" lengthAdjust="spacing">PASO A PASO · PAS A PAS · STEP BY STEP ·</textPath></text></svg>
     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjE2My40MyAyNDQuODMgOTMuMTQgOTguNzQiIHdpZHRoPSI5My4xNCIgaGVpZ2h0PSI5OC43NCI+PGRlZnM+PGNsaXBQYXRoIGlkPSJjIj48cmVjdCB4PSIxNjMuNDMiIHk9IjI0NC44MyIgd2lkdGg9IjkzLjE0IiBoZWlnaHQ9Ijk4Ljc0Ii8+PC9jbGlwUGF0aD48L2RlZnM+PGcgY2xpcC1wYXRoPSJ1cmwoI2MpIiBmaWxsPSIjOTI0MkYzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0gMjAwLjMyIDI0NS44NCBDIDIwMy4wMSAyNDUuMzEgMjA2LjAyIDI0NS4wMSAyMDkuMzQgMjQ0Ljk0IEMgMjEyLjY2IDI0NC44NiAyMTUuNzAgMjQ1LjA2IDIxOC40NiAyNDUuNTIgQyAyMjEuMjMgMjQ1Ljk4IDIyMy42NCAyNDYuNTMgMjI1LjcwIDI0Ny4xOSBDIDIyNy43NiAyNDcuODQgMjI5LjY2IDI0OC41NyAyMzEuNDEgMjQ5LjM3IEMgMjMzLjE1IDI1MC4xNyAyMzUuMTcgMjUxLjM3IDIzNy40OCAyNTIuOTcgQyAyMzkuNzggMjU0LjU3IDI0MS41NCAyNTUuOTUgMjQyLjc1IDI1Ny4xMiBDIDI0My45NiAyNTguMjggMjQ1LjI4IDI1OS43NiAyNDYuNzEgMjYxLjU1IEMgMjQ4LjE0IDI2My4zNCAyNDkuNDQgMjY1LjI3IDI1MC42MCAyNjcuMzMgQyAyNTEuNzYgMjY5LjM5IDI1Mi44MiAyNzEuNzMgMjUzLjc2IDI3NC4zNSBDIDI1NC43MSAyNzYuOTYgMjU1LjQxIDI3OS42NiAyNTUuODcgMjgyLjQyIEMgMjU2LjMzIDI4NS4xOCAyNTYuNTcgMjkzLjg2IDI1Ni41NyAzMDguNDUgQyAyNTYuNTcgMzIzLjA0IDI1Ni4yOSAzMzEuMjQgMjU1LjczIDMzMy4wNiBDIDI1NS4xNyAzMzQuODggMjU0LjYwIDMzNi4yNiAyNTQuMDIgMzM3LjIwIEMgMjUzLjQ0IDMzOC4xNSAyNTIuNjIgMzM5LjEwIDI1MS41NSAzNDAuMDcgQyAyNTAuNDggMzQxLjA1IDI0OS4zMSAzNDEuODIgMjQ4LjAyIDM0Mi40MCBDIDI0Ni43NCAzNDIuOTggMjQyLjU1IDM0My4yNyAyMzUuNDQgMzQzLjI3IEMgMjI4LjM0IDM0My4yNyAyMjQuMjUgMzQzLjA2IDIyMy4xNiAzNDIuNjIgQyAyMjIuMDcgMzQyLjE4IDIyMS4yMyAzNDEuNzUgMjIwLjY1IDM0MS4zMSBDIDIyMC4wNyAzNDAuODcgMjE5LjIxIDMzOS45NSAyMTguMDcgMzM4LjU1IEMgMjE2LjkyIDMzNy4xNCAyMTYuMTAgMzM1LjUxIDIxNS41OSAzMzMuNjQgQyAyMTUuMDggMzMxLjc3IDIxNC44OCAzMjYuMzEgMjE0Ljk4IDMxNy4yNSBDIDIxNS4wNyAzMDguMTggMjE1LjM3IDMwMy4xNCAyMTUuODkgMzAyLjEyIEMgMjE2LjM5IDMwMS4xMCAyMTcuMDMgMzAwLjMwIDIxNy44MSAyOTkuNzIgQyAyMTguNTkgMjk5LjE0IDIxOS4zOSAyOTguNzUgMjIwLjIxIDI5OC41NiBDIDIyMS4wMyAyOTguMzcgMjIyLjY5IDI5OC4yNSAyMjUuMTkgMjk4LjE5IEMgMjI3LjY5IDI5OC4xNSAyMjkuMTYgMjk4LjAwIDIyOS41OSAyOTcuNzYgQyAyMzAuMDMgMjk3LjUxIDIzMC4zNSAyOTcuMTMgMjMwLjU3IDI5Ni42MCBDIDIzMC43OSAyOTYuMDYgMjMwLjQ1IDI5NS4xNyAyMjkuNTUgMjkzLjkxIEMgMjI4LjY2IDI5Mi42NCAyMjYuOTQgMjkwLjc0IDIyNC4zOSAyODguMjAgQyAyMjEuODUgMjg1LjY1IDIxOS4zOSAyODMuMDIgMjE3LjAxIDI4MC4zMSBDIDIxNC42NCAyNzcuNTkgMjEzLjEwIDI3NS45MSAyMTIuMzkgMjc1LjI2IEMgMjExLjY5IDI3NC42MCAyMTEuMTUgMjc0LjIxIDIxMC43NiAyNzQuMDkgQyAyMTAuMzcgMjczLjk3IDIwOS44NSAyNzMuOTggMjA5LjE5IDI3NC4xMyBDIDIwOC41NCAyNzQuMjcgMjA3LjA4IDI3NS4zNCAyMDQuODMgMjc3LjMzIEMgMjAyLjU4IDI3OS4zMiAxOTguOTkgMjgyLjg1IDE5NC4wNyAyODcuOTQgQyAxODkuMTUgMjkzLjAzIDE4Ni43MSAyOTUuNzggMTg2LjczIDI5Ni4xOSBDIDE4Ni43NSAyOTYuNjEgMTg3LjA1IDI5Ny4wMyAxODcuNjQgMjk3LjQ3IEMgMTg4LjIyIDI5Ny45MSAxODkuNjcgMjk4LjE1IDE5Mi4wMCAyOTguMTkgQyAxOTQuMzMgMjk4LjI1IDE5Ni4xNyAyOTguNDQgMTk3LjUzIDI5OC43OCBDIDE5OC44OCAyOTkuMTIgMTk5Ljg5IDI5OS42NCAyMDAuNTQgMzAwLjM0IEMgMjAxLjIwIDMwMS4wNCAyMDEuNzEgMzAxLjk4IDIwMi4wNyAzMDMuMTQgQyAyMDIuNDMgMzA0LjMwIDIwMi42MiAzMDkuMTIgMjAyLjYyIDMxNy42MSBDIDIwMi42MiAzMjYuMDkgMjAyLjQ3IDMzMS4wMyAyMDIuMTggMzMyLjQ0IEMgMjAxLjg5IDMzMy44NSAyMDEuNjMgMzM0Ljg2IDIwMS40MiAzMzUuNSBDIDIwMS4yMCAzMzYuMTIgMjAwLjUyIDMzNy4xNCAxOTkuMzggMzM4LjU1IEMgMTk4LjI0IDMzOS45NSAxOTYuODMgMzQxLjA5IDE5NS4xNiAzNDEuOTYgQyAxOTMuNDkgMzQyLjg0IDE4OS4yNyAzNDMuMjcgMTgyLjUxIDM0My4yNyBDIDE3NS43NSAzNDMuMjcgMTcxLjQ1IDM0Mi43NSAxNjkuNjAgMzQxLjcxIEMgMTY3Ljc2IDM0MC42NyAxNjYuNDMgMzM5LjYzIDE2NS42MSAzMzguNTggQyAxNjQuNzggMzM3LjU0IDE2NC4wNCAzMzUuOTEgMTYzLjM5IDMzMy42NyBDIDE2Mi43MyAzMzEuNDUgMTYyLjM3IDMyNS41MiAxNjIuMzAgMzE1LjkwIEMgMTYyLjIzIDMwNi4yOCAxNjEuODQgMzAyLjgzIDE2MS4xNCAzMDUuNTcgQyAxNjAuNDMgMzA4LjMxIDE1OS4yNyAzMTEuNTAgMTU3LjY0IDMxNS4xNCBDIDE1Ni4wMiAzMTguNzcgMTU0LjE0IDMyMS45OCAxNTIuMDEgMzI0Ljc3IEMgMTQ5Ljg4IDMyNy41NiAxNDcuOTggMzI5LjczIDE0Ni4zMCAzMzEuMjggQyAxNDQuNjMgMzMyLjgzIDE0Mi4zOSAzMzQuNDkgMTM5LjU4IDMzNi4yNiBDIDEzNi43NiAzMzguMDMgMTMzLjk3IDMzOS40NyAxMzEuMTggMzQwLjU4IEMgMTI4LjM5IDM0MS43MCAxMjUuODYgMzQyLjQ4IDEyMy41OCAzNDIuOTEgQyAxMjEuMzAgMzQzLjM1IDExOC4xMyAzNDMuNTcgMTE0LjA2IDM0My41NyBDIDEwOS45OCAzNDMuNTcgMTA2LjQ3IDM0My4yNiAxMDMuNTEgMzQyLjY2IEMgMTAwLjU2IDM0Mi4wNSA5Ny41MyAzNDEuMDkgOTQuNDIgMzM5Ljc4IEMgOTEuMzIgMzM4LjQ4IDg4LjUzIDMzNi45NCA4Ni4wNiAzMzUuMTcgQyA4My41OSAzMzMuNDAgODEuNjcgMzMxLjgzIDgwLjMyIDMzMC40OCBDIDc4Ljk2IDMyOS4xMiA3Ny41NiAzMjcuNDcgNzYuMTAgMzI1LjUzIEMgNzQuNjUgMzIzLjU5IDczLjI1IDMyMS40MiA3MS45MiAzMTkuMDMgQyA3MC41OSAzMTYuNjMgNjkuNjEgMzE0LjY0IDY4Ljk4IDMxMy4wNyBDIDY4LjM1IDMxMS40OSA2Ny42MSAzMDguOTkgNjYuNzYgMzA1LjU3IEMgNjUuOTEgMzAyLjE2IDY1LjQ0IDMwNS4zNCA2NS4zNCAzMTUuMTQgQyA2NS4yNSAzMjQuOTMgNjUuMDYgMzMwLjU0IDY0LjgwIDMzMS45NyBDIDY0LjUzIDMzMy40MCA2NC4yNCAzMzQuNDYgNjMuOTIgMzM1LjE3IEMgNjMuNjEgMzM1Ljg3IDYyLjgzIDMzNi45NiA2MS42MCAzMzguNDQgQyA2MC4zNiAzMzkuOTIgNTkuMDggMzQxLjAxIDU3Ljc0IDM0MS43MSBDIDU2LjQxIDM0Mi40MSA1NC45NCAzNDIuOTAgNTMuMzQgMzQzLjE3IEMgNTEuNzUgMzQzLjQzIDUwLjAzIDM0My4yOSA0OC4yMiAzNDIuNzMgQyA0Ni40MCAzNDIuMTcgNDUuMTkgMzQxLjY5IDQ0LjU4IDM0MS4yOCBDIDQzLjk4IDM0MC44NiA0My4xOSAzNDAuMTIgNDIuMjIgMzM5LjA2IEMgNDEuMjUgMzM3Ljk5IDQwLjQyIDMzNi40NCAzOS43NSAzMzQuNDEgQyAzOS4wNyAzMzIuMzcgMzguNzMgMzIzLjEyIDM4LjczIDMwNi42NyBDIDM4LjczIDI5MC4yMSAzOC42NyAyODEuNzAgMzguNTUgMjgxLjE0IEMgMzguNDMgMjgwLjU5IDM4LjE3IDI4MC4xOSAzNy43OCAyNzkuOTQgQyAzNy40MCAyNzkuNzAgMzYuOTcgMjc5LjY3IDM2LjUxIDI3OS44MyBDIDM2LjA1IDI4MC4wMSAzNS43MSAyODAuNDEgMzUuNSAyODEuMDMgQyAzNS4yOCAyODEuNjcgMzUuMTcgMjg1Ljk3IDM1LjE3IDI5My45NCBDIDM1LjE3IDMwMS45MSAzNC44OCAzMDcuMjIgMzQuMzAgMzA5Ljg3IEMgMzMuNzEgMzEyLjUxIDMzLjAyIDMxNC43MCAzMi4yMiAzMTYuNDQgQyAzMS40MiAzMTguMTkgMzAuNTUgMzE5LjY5IDI5LjYwIDMyMC45NSBDIDI4LjY2IDMyMi4yMSAyNy41OSAzMjMuNDQgMjYuNDEgMzI0LjYyIEMgMjUuMjIgMzI1LjgxIDI0LjA4IDMyNi43OSAyMi45OSAzMjcuNTcgQyAyMS45MCAzMjguMzQgMjAuMTIgMzI5LjI4IDE3LjY0IDMzMC4zNyBDIDE1LjE3IDMzMS40NiAxMy4xNSAzMzIuMTUgMTEuNTcgMzMyLjQ0IEMgMTAuMDAgMzMyLjczIDguNDUgMzMyLjg4IDYuOTIgMzMyLjg4IEMgNS4zOSAzMzIuODggMy44MyAzMzIuNzUgMi4yMyAzMzIuNDggQyAwLjYzIDMzMi4yMSAtMC44NiAzMzEuODUgLTIuMjcgMzMxLjM5IEMgLTMuNjcgMzMwLjkyIC01LjI0IDMzMC4yMCAtNi45NiAzMjkuMjEgQyAtOC42OCAzMjguMjEgLTEwLjI1IDMyNy4wNyAtMTEuNjggMzI1Ljc5IEMgLTEzLjExIDMyNC41MCAtMTQuNDYgMzIyLjk2IC0xNS43MiAzMjEuMTcgQyAtMTYuOTggMzE5LjM4IC0xOC4xNyAzMTcuMDAgLTE5LjI4IDMxNC4wNSBDIC0yMC40MCAzMTEuMDkgLTIxLjA5IDMwNy43OSAtMjEuMzUgMzA0LjE2IEMgLTIxLjYyIDMwMC41MiAtMjEuNjggMjk4LjIxIC0yMS41MyAyOTcuMjEgQyAtMjEuMzkgMjk2LjIyIC0yMS4zNyAyOTMuMjkgLTIxLjQ2IDI4OC40MiBDIC0yMS41NiAyODMuNTUgLTIxLjc4IDI4MC44OCAtMjIuMTIgMjgwLjQyIEMgLTIyLjQ2IDI3OS45NiAtMjIuODEgMjc5LjcwIC0yMy4xNyAyNzkuNjYgQyAtMjMuNTMgMjc5LjYwIC0yMy45MSAyNzkuNzMgLTI0LjMwIDI4MC4wMiBDIC0yNC42OSAyODAuMzEgLTI0Ljk2IDI4MC43OSAtMjUuMTQgMjgxLjQ3IEMgLTI1LjMwIDI4Mi4xNSAtMjUuMzkgMjkwLjQ2IC0yNS4zOSAzMDYuNDEgQyAtMjUuMzkgMzIyLjM2IC0yNS42NiAzMzEuMzQgLTI2LjE5IDMzMy4zNSBDIC0yNi43MiAzMzUuMzYgLTI3LjM1IDMzNi44NSAtMjguMDggMzM3LjgyIEMgLTI4LjgxIDMzOC43OSAtMjkuNjQgMzM5LjY1IC0zMC41OSAzNDAuNDAgQyAtMzEuNTMgMzQxLjE2IC0zMi40OCAzNDEuNzMgLTMzLjQyIDM0Mi4xNSBDIC0zNC4zNyAzNDIuNTYgLTM1LjYwIDM0Mi44NiAtMzcuMTMgMzQzLjA2IEMgLTM4LjY2IDM0My4yNSAtNDAuMjIgMzQzLjEzIC00MS44MiAzNDIuNjkgQyAtNDMuNDIgMzQyLjI2IC00NC42NyAzNDEuNzIgLTQ1LjU3IDM0MS4wOSBDIC00Ni40NiAzNDAuNDYgLTQ3LjMwIDMzOS42OSAtNDguMDcgMzM4Ljc2IEMgLTQ4Ljg1IDMzNy44NSAtNDkuNDcgMzM2Ljk0IC00OS45MyAzMzYuMDQgQyAtNTAuMzkgMzM1LjE0IC01MC43NCAzMzQuMTQgLTUwLjk4IDMzMy4wMiBDIC01MS4yMyAzMzEuOTEgLTUxLjM1IDMyMS40MiAtNTEuMzUgMzAxLjU4IEMgLTUxLjM1IDI4MS43MyAtNTEuMjcgMjcxLjM3IC01MS4xMyAyNzAuNDkgQyAtNTAuOTggMjY5LjYyIC01MC41MyAyNjguMDMgLTQ5Ljc4IDI2NS43MyBDIC00OS4wMyAyNjMuNDMgLTQ3Ljc3IDI2MS4wNCAtNDYuMDAgMjU4LjU3IEMgLTQ0LjIzIDI1Ni4xMCAtNDIuNzMgMjU0LjM3IC00MS41IDI1My40MSBDIC00MC4yNiAyNTIuNDQgLTM4LjQxIDI1MS4zMiAtMzUuOTMgMjUwLjA2IEMgLTMzLjQ2IDI0OC44MCAtMzEuMTcgMjQ3Ljk1IC0yOS4wNiAyNDcuNTIgQyAtMjYuOTUgMjQ3LjA4IC0yNC44OCAyNDYuODYgLTIyLjg0IDI0Ni44NiBDIC0yMC44MSAyNDYuODYgLTE4LjgxIDI0Ny4wNyAtMTYuODUgMjQ3LjQ4IEMgLTE0Ljg4IDI0Ny44OSAtMTMuMTMgMjQ4LjQyIC0xMS41NyAyNDkuMDggQyAtMTAuMDIgMjQ5LjczIC04LjY5IDI1MC40NCAtNy41OCAyNTEuMTkgQyAtNi40NiAyNTEuOTQgLTUuMjMgMjUyLjkxIC0zLjg3IDI1NC4xMCBDIC0yLjUxIDI1NS4yOCAtMS40MyAyNTYuNDEgLTAuNjMgMjU3LjQ4IEMgMC4xNiAyNTguNTUgMS4wMiAyNTkuOTggMS45NCAyNjEuNzcgQyAyLjg2IDI2My41NiAzLjYyIDI2NS44NSA0LjIzIDI2OC42NCBDIDQuODMgMjcxLjQyIDUuMTQgMjc3Ljc0IDUuMTQgMjg3LjU4IEMgNS4xNCAyOTcuNDIgNS4yMiAzMDIuNTkgNS4zOSAzMDMuMTAgQyA1LjU2IDMwMy42MSA1Ljg4IDMwMy45MiA2LjM0IDMwNC4wNSBDIDYuODAgMzA0LjE3IDcuMjIgMzA0LjA4IDcuNjEgMzAzLjc5IEMgOC4wMCAzMDMuNTAgOC4yOCAzMDMuMDIgOC40NSAzMDIuMzQgQyA4LjYyIDMwMS42NiA4LjcwIDI5Ni40MCA4LjcwIDI4Ni41NiBDIDguNzAgMjc2LjcyIDguODMgMjcxLjA4IDkuMTAgMjY5LjY2IEMgOS4zNyAyNjguMjMgOS43MyAyNjYuODkgMTAuMTkgMjY1LjY2IEMgMTAuNjUgMjY0LjQyIDExLjIwIDI2My4xOSAxMS44MyAyNjEuOTUgQyAxMi40NiAyNjAuNzEgMTMuNjggMjU5LjA1IDE1LjUwIDI1Ni45NyBDIDE3LjMyIDI1NC44OSAxOS4xMiAyNTMuMjEgMjAuOTIgMjUxLjk1IEMgMjIuNzEgMjUwLjY5IDI0LjY1IDI0OS42NiAyNi43MyAyNDguODYgQyAyOC44MiAyNDguMDYgMzAuNTcgMjQ3LjUzIDMyLjAwIDI0Ny4yNiBDIDMzLjQzIDI0NyAzNS4zMyAyNDYuODYgMzcuNzEgMjQ2Ljg2IEMgNDAuMDkgMjQ2Ljg2IDQyLjA2IDI0Ny4wMSA0My42NCAyNDcuMzAgQyA0NS4yMSAyNDcuNTkgNDcuMDcgMjQ4LjE5IDQ5LjIwIDI0OS4xMiBDIDUxLjMzIDI1MC4wNCA1Mi45NCAyNTAuODkgNTQuMDMgMjUxLjY2IEMgNTUuMTIgMjUyLjQ0IDU2LjI2IDI1My40MiA1Ny40NSAyNTQuNjAgQyA1OC42NCAyNTUuNzkgNTkuNzggMjU3LjIwIDYwLjg3IDI1OC44MiBDIDYxLjk2IDI2MC40NSA2Mi44OCAyNjIuNSA2My42MyAyNjQuOTcgQyA2NC4zOSAyNjcuNDQgNjQuODMgMjY5LjExIDY0Ljk4IDI2OS45OCBDIDY1LjEyIDI3MC44NSA2NS4yMyAyNzQuMzIgNjUuMzAgMjgwLjM4IEMgNjUuMzggMjg2LjQ0IDY1Ljk0IDI4Ny41OSA2Ni45OCAyODMuODMgQyA2OC4wMiAyODAuMDggNjguOTQgMjc3LjI0IDY5Ljc0IDI3NS4zMyBDIDcwLjU0IDI3My40MSA3MS40NCAyNzEuNjAgNzIuNDMgMjY5Ljg3IEMgNzMuNDIgMjY4LjE2IDc1LjE2IDI2NS44MiA3Ny42MyAyNjIuODYgQyA4MC4xMCAyNTkuOTAgODIuNjUgMjU3LjQ0IDg1LjI2IDI1NS40OCBDIDg3Ljg4IDI1My41MSA5MC41MCAyNTEuODkgOTMuMTIgMjUwLjYxIEMgOTUuNzMgMjQ5LjMyIDk3LjgyIDI0OC40NCA5OS4zNyAyNDcuOTUgQyAxMDAuOTIgMjQ3LjQ3IDEwMi45MSAyNDcgMTA1LjMzIDI0Ni41MyBDIDEwNy43NSAyNDYuMDcgMTEwLjY2IDI0NS44NCAxMTQuMDYgMjQ1Ljg0IEMgMTE3LjQ1IDI0NS44NCAxMjAuOTggMjQ2LjIyIDEyNC42NCAyNDYuOTcgQyAxMjguMzAgMjQ3LjcyIDEzMS41IDI0OC42OCAxMzQuMjMgMjQ5Ljg0IEMgMTM2Ljk3IDI1MS4wMSAxMzkuMTIgMjUyLjA4IDE0MC42NyAyNTMuMDggQyAxNDIuMjIgMjU0LjA3IDE0My42NiAyNTUuMDkgMTQ1IDI1Ni4xMyBDIDE0Ni4zMyAyNTcuMTcgMTQ3LjgwIDI1OC41OCAxNDkuNDMgMjYwLjM1IEMgMTUxLjA1IDI2Mi4xMiAxNTIuNTIgMjYzLjk2IDE1My44MyAyNjUuODcgQyAxNTUuMTQgMjY3Ljc5IDE1Ni4yNiAyNjkuNzIgMTU3LjIxIDI3MS42NiBDIDE1OC4xNiAyNzMuNjAgMTU4Ljk1IDI3NS41MSAxNTkuNjEgMjc3LjQwIEMgMTYwLjI2IDI3OS4yOSAxNjAuODUgMjgxLjg2IDE2MS4zOSAyODUuMTEgQyAxNjEuOTIgMjg4LjM1IDE2Mi40NiAyODguNDUgMTYyLjk5IDI4NS40MCBDIDE2My41MiAyODIuMzQgMTY0LjI2IDI3OS40MiAxNjUuMjEgMjc2LjY0IEMgMTY2LjE1IDI3My44NSAxNjcuMTIgMjcxLjUxIDE2OC4xMiAyNjkuNjIgQyAxNjkuMTEgMjY3LjczIDE3MC40OSAyNjUuNjMgMTcyLjI2IDI2My4zMyBDIDE3NC4wMyAyNjEuMDMgMTc1LjY5IDI1OS4xMiAxNzcuMjQgMjU3LjYyIEMgMTc4Ljc5IDI1Ni4xMiAxODAuODkgMjU0LjQ4IDE4My41MyAyNTIuNzEgQyAxODYuMTcgMjUwLjk0IDE4OC45NiAyNDkuNDkgMTkxLjg5IDI0OC4zNSBDIDE5NC44MiAyNDcuMjEgMTk3LjY0IDI0Ni4zOCAyMDAuMzIgMjQ1Ljg0IFogTSAxMTMuNjIgMjczLjkxIEMgMTExLjk3IDI3My45NiAxMTAuNTcgMjc0LjA4IDEwOS40MCAyNzQuMjcgQyAxMDguMjQgMjc0LjQ3IDEwNy4wNSAyNzQuODEgMTA1Ljg0IDI3NS4yOSBDIDEwNC42MyAyNzUuNzggMTAzLjIxIDI3Ni41NyAxMDEuNTggMjc3LjY2IEMgOTkuOTYgMjc4Ljc1IDk4LjczIDI3OS43MSA5Ny44OCAyODAuNTYgQyA5Ny4wMyAyODEuNDEgOTYuMjIgMjgyLjM4IDk1LjQ0IDI4My40NyBDIDk0LjY3IDI4NC41NiA5My45OSAyODUuODMgOTMuNDEgMjg3LjI5IEMgOTIuODIgMjg4Ljc0IDkyLjM5IDI5MC4wOSA5Mi4xMCAyOTEuMzIgQyA5MS44MSAyOTIuNTYgOTEuNjYgMjk0LjAzIDkxLjY2IDI5NS43MiBDIDkxLjY2IDI5Ny40MiA5Mi4wOCAyOTkuNjIgOTIuOTMgMzAyLjM0IEMgOTMuNzggMzA1LjA1IDk0Ljg2IDMwNy4yOCA5Ni4xNyAzMDkuMDMgQyA5Ny40OCAzMTAuNzcgOTguODMgMzEyLjEzIDEwMC4yNCAzMTMuMTAgQyAxMDEuNjUgMzE0LjA3IDEwMy4xNiAzMTQuOTMgMTA0Ljc4IDMxNS42OCBDIDEwNi40MSAzMTYuNDMgMTA4LjQ0IDMxNi45NCAxMTAuODkgMzE3LjIxIEMgMTEzLjM0IDMxNy40OCAxMTUuMjggMzE3LjQ4IDExNi43MSAzMTcuMjEgQyAxMTguMTQgMzE2Ljk0IDExOS44MSAzMTYuNDEgMTIxLjczIDMxNS42MSBDIDEyMy42NCAzMTQuODEgMTI1LjUyIDMxMy42MyAxMjcuMzYgMzEyLjA4IEMgMTI5LjIwIDMxMC41MyAxMzAuNzkgMzA4LjY0IDEzMi4xMiAzMDYuNDEgQyAxMzMuNDYgMzA0LjE4IDEzNC4zNCAzMDIuMTggMTM0Ljc4IDMwMC40MSBDIDEzNS4yMSAyOTguNjQgMTM1LjQzIDI5NyAxMzUuNDMgMjk1LjQ3IEMgMTM1LjQzIDI5My45NCAxMzUuMDcgMjkxLjkzIDEzNC4zNCAyODkuNDMgQyAxMzMuNjIgMjg2Ljk0IDEzMi40NSAyODQuNjIgMTMwLjg1IDI4Mi40OSBDIDEyOS4yNSAyODAuMzYgMTI3LjkyIDI3OC44OSAxMjYuODUgMjc4LjA5IEMgMTI1Ljc5IDI3Ny4yOSAxMjQuMzcgMjc2LjUwIDEyMi42MCAyNzUuNzMgQyAxMjAuODMgMjc0Ljk1IDExOS4zMCAyNzQuNDQgMTE4LjAyIDI3NC4yMCBDIDExNi43MyAyNzMuOTYgMTE1LjI3IDI3My44NiAxMTMuNjIgMjczLjkxIFogTSAxMTAuMTMgMjg1LjQzIEMgMTExLjUzIDI4NC45OCAxMTIuODMgMjg0Ljc2IDExNC4wMiAyODQuNzggQyAxMTUuMjEgMjg0LjgwIDExNi4zNiAyODUuMDIgMTE3LjQ3IDI4NS40MyBDIDExOC41OSAyODUuODUgMTE5LjUzIDI4Ni4zNCAxMjAuMzEgMjg2LjkyIEMgMTIxLjA4IDI4Ny41MSAxMjEuODIgMjg4LjMwIDEyMi41MyAyODkuMjkgQyAxMjMuMjMgMjkwLjI4IDEyMy43OCAyOTEuNTIgMTI0LjE2IDI5MyBDIDEyNC41NSAyOTQuNDggMTI0LjYyIDI5NS45NCAxMjQuMzggMjk3LjM5IEMgMTI0LjE0IDI5OC44NSAxMjMuNzQgMzAwLjA2IDEyMy4xOCAzMDEuMDMgQyAxMjIuNjIgMzAyLjAwIDEyMS44MCAzMDIuOTYgMTIwLjcxIDMwMy45MCBDIDExOS42MiAzMDQuODUgMTE4LjMyIDMwNS41OCAxMTYuODIgMzA2LjEyIEMgMTE1LjMyIDMwNi42NSAxMTMuNzUgMzA2LjgwIDExMi4xMyAzMDYuNTYgQyAxMTAuNTEgMzA2LjMyIDEwOS4xMiAzMDUuODMgMTA3Ljk4IDMwNS4xMCBDIDEwNi44NSAzMDQuMzcgMTA1LjgyIDMwMy40NSAxMDQuODkgMzAyLjM0IEMgMTAzLjk4IDMwMS4yMyAxMDMuMzIgMzAwLjAxIDEwMi45MyAyOTguNzAgQyAxMDIuNTQgMjk3LjM5IDEwMi40OCAyOTUuOTQgMTAyLjc1IDI5NC4zNCBDIDEwMy4wMSAyOTIuNzQgMTAzLjUwIDI5MS4zNiAxMDQuMjAgMjkwLjIwIEMgMTA0LjkxIDI4OS4wMyAxMDUuNzIgMjg4LjA3IDEwNi42NCAyODcuMjkgQyAxMDcuNTYgMjg2LjUxIDEwOC43MyAyODUuODkgMTEwLjEzIDI4NS40MyBaIE0gMTEwLjEzIDI4NS40MyAiLz48L2c+PC9zdmc+Cg==" alt="" width="40" height="42">
   </div>
 </section>
@@ -588,6 +619,23 @@
     </div>
   </div>
 </section>
+<!-- QUIROMASSATGE -->
+<section class="extra" aria-labelledby="moa-quiro-title">
+  <div class="wrap">
+    <div class="extra-card reveal">
+      <img class="shape" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjE2My40MyAyNDQuODMgOTMuMTQgOTguNzQiIHdpZHRoPSI5My4xNCIgaGVpZ2h0PSI5OC43NCI+PGRlZnM+PGNsaXBQYXRoIGlkPSJjIj48cmVjdCB4PSIxNjMuNDMiIHk9IjI0NC44MyIgd2lkdGg9IjkzLjE0IiBoZWlnaHQ9Ijk4Ljc0Ii8+PC9jbGlwUGF0aD48L2RlZnM+PGcgY2xpcC1wYXRoPSJ1cmwoI2MpIiBmaWxsPSIjM0JDNjVGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0gMjAwLjMyIDI0NS44NCBDIDIwMy4wMSAyNDUuMzEgMjA2LjAyIDI0NS4wMSAyMDkuMzQgMjQ0Ljk0IEMgMjEyLjY2IDI0NC44NiAyMTUuNzAgMjQ1LjA2IDIxOC40NiAyNDUuNTIgQyAyMjEuMjMgMjQ1Ljk4IDIyMy42NCAyNDYuNTMgMjI1LjcwIDI0Ny4xOSBDIDIyNy43NiAyNDcuODQgMjI5LjY2IDI0OC41NyAyMzEuNDEgMjQ5LjM3IEMgMjMzLjE1IDI1MC4xNyAyMzUuMTcgMjUxLjM3IDIzNy40OCAyNTIuOTcgQyAyMzkuNzggMjU0LjU3IDI0MS41NCAyNTUuOTUgMjQyLjc1IDI1Ny4xMiBDIDI0My45NiAyNTguMjggMjQ1LjI4IDI1OS43NiAyNDYuNzEgMjYxLjU1IEMgMjQ4LjE0IDI2My4zNCAyNDkuNDQgMjY1LjI3IDI1MC42MCAyNjcuMzMgQyAyNTEuNzYgMjY5LjM5IDI1Mi44MiAyNzEuNzMgMjUzLjc2IDI3NC4zNSBDIDI1NC43MSAyNzYuOTYgMjU1LjQxIDI3OS42NiAyNTUuODcgMjgyLjQyIEMgMjU2LjMzIDI4NS4xOCAyNTYuNTcgMjkzLjg2IDI1Ni41NyAzMDguNDUgQyAyNTYuNTcgMzIzLjA0IDI1Ni4yOSAzMzEuMjQgMjU1LjczIDMzMy4wNiBDIDI1NS4xNyAzMzQuODggMjU0LjYwIDMzNi4yNiAyNTQuMDIgMzM3LjIwIEMgMjUzLjQ0IDMzOC4xNSAyNTIuNjIgMzM5LjEwIDI1MS41NSAzNDAuMDcgQyAyNTAuNDggMzQxLjA1IDI0OS4zMSAzNDEuODIgMjQ4LjAyIDM0Mi40MCBDIDI0Ni43NCAzNDIuOTggMjQyLjU1IDM0My4yNyAyMzUuNDQgMzQzLjI3IEMgMjI4LjM0IDM0My4yNyAyMjQuMjUgMzQzLjA2IDIyMy4xNiAzNDIuNjIgQyAyMjIuMDcgMzQyLjE4IDIyMS4yMyAzNDEuNzUgMjIwLjY1IDM0MS4zMSBDIDIyMC4wNyAzNDAuODcgMjE5LjIxIDMzOS45NSAyMTguMDcgMzM4LjU1IEMgMjE2LjkyIDMzNy4xNCAyMTYuMTAgMzM1LjUxIDIxNS41OSAzMzMuNjQgQyAyMTUuMDggMzMxLjc3IDIxNC44OCAzMjYuMzEgMjE0Ljk4IDMxNy4yNSBDIDIxNS4wNyAzMDguMTggMjE1LjM3IDMwMy4xNCAyMTUuODkgMzAyLjEyIEMgMjE2LjM5IDMwMS4xMCAyMTcuMDMgMzAwLjMwIDIxNy44MSAyOTkuNzIgQyAyMTguNTkgMjk5LjE0IDIxOS4zOSAyOTguNzUgMjIwLjIxIDI5OC41NiBDIDIyMS4wMyAyOTguMzcgMjIyLjY5IDI5OC4yNSAyMjUuMTkgMjk4LjE5IEMgMjI3LjY5IDI5OC4xNSAyMjkuMTYgMjk4LjAwIDIyOS41OSAyOTcuNzYgQyAyMzAuMDMgMjk3LjUxIDIzMC4zNSAyOTcuMTMgMjMwLjU3IDI5Ni42MCBDIDIzMC43OSAyOTYuMDYgMjMwLjQ1IDI5NS4xNyAyMjkuNTUgMjkzLjkxIEMgMjI4LjY2IDI5Mi42NCAyMjYuOTQgMjkwLjc0IDIyNC4zOSAyODguMjAgQyAyMjEuODUgMjg1LjY1IDIxOS4zOSAyODMuMDIgMjE3LjAxIDI4MC4zMSBDIDIxNC42NCAyNzcuNTkgMjEzLjEwIDI3NS45MSAyMTIuMzkgMjc1LjI2IEMgMjExLjY5IDI3NC42MCAyMTEuMTUgMjc0LjIxIDIxMC43NiAyNzQuMDkgQyAyMTAuMzcgMjczLjk3IDIwOS44NSAyNzMuOTggMjA5LjE5IDI3NC4xMyBDIDIwOC41NCAyNzQuMjcgMjA3LjA4IDI3NS4zNCAyMDQuODMgMjc3LjMzIEMgMjAyLjU4IDI3OS4zMiAxOTguOTkgMjgyLjg1IDE5NC4wNyAyODcuOTQgQyAxODkuMTUgMjkzLjAzIDE4Ni43MSAyOTUuNzggMTg2LjczIDI5Ni4xOSBDIDE4Ni43NSAyOTYuNjEgMTg3LjA1IDI5Ny4wMyAxODcuNjQgMjk3LjQ3IEMgMTg4LjIyIDI5Ny45MSAxODkuNjcgMjk4LjE1IDE5Mi4wMCAyOTguMTkgQyAxOTQuMzMgMjk4LjI1IDE5Ni4xNyAyOTguNDQgMTk3LjUzIDI5OC43OCBDIDE5OC44OCAyOTkuMTIgMTk5Ljg5IDI5OS42NCAyMDAuNTQgMzAwLjM0IEMgMjAxLjIwIDMwMS4wNCAyMDEuNzEgMzAxLjk4IDIwMi4wNyAzMDMuMTQgQyAyMDIuNDMgMzA0LjMwIDIwMi42MiAzMDkuMTIgMjAyLjYyIDMxNy42MSBDIDIwMi42MiAzMjYuMDkgMjAyLjQ3IDMzMS4wMyAyMDIuMTggMzMyLjQ0IEMgMjAxLjg5IDMzMy44NSAyMDEuNjMgMzM0Ljg2IDIwMS40MiAzMzUuNSBDIDIwMS4yMCAzMzYuMTIgMjAwLjUyIDMzNy4xNCAxOTkuMzggMzM4LjU1IEMgMTk4LjI0IDMzOS45NSAxOTYuODMgMzQxLjA5IDE5NS4xNiAzNDEuOTYgQyAxOTMuNDkgMzQyLjg0IDE4OS4yNyAzNDMuMjcgMTgyLjUxIDM0My4yNyBDIDE3NS43NSAzNDMuMjcgMTcxLjQ1IDM0Mi43NSAxNjkuNjAgMzQxLjcxIEMgMTY3Ljc2IDM0MC42NyAxNjYuNDMgMzM5LjYzIDE2NS42MSAzMzguNTggQyAxNjQuNzggMzM3LjU0IDE2NC4wNCAzMzUuOTEgMTYzLjM5IDMzMy42NyBDIDE2Mi43MyAzMzEuNDUgMTYyLjM3IDMyNS41MiAxNjIuMzAgMzE1LjkwIEMgMTYyLjIzIDMwNi4yOCAxNjEuODQgMzAyLjgzIDE2MS4xNCAzMDUuNTcgQyAxNjAuNDMgMzA4LjMxIDE1OS4yNyAzMTEuNTAgMTU3LjY0IDMxNS4xNCBDIDE1Ni4wMiAzMTguNzcgMTU0LjE0IDMyMS45OCAxNTIuMDEgMzI0Ljc3IEMgMTQ5Ljg4IDMyNy41NiAxNDcuOTggMzI5LjczIDE0Ni4zMCAzMzEuMjggQyAxNDQuNjMgMzMyLjgzIDE0Mi4zOSAzMzQuNDkgMTM5LjU4IDMzNi4yNiBDIDEzNi43NiAzMzguMDMgMTMzLjk3IDMzOS40NyAxMzEuMTggMzQwLjU4IEMgMTI4LjM5IDM0MS43MCAxMjUuODYgMzQyLjQ4IDEyMy41OCAzNDIuOTEgQyAxMjEuMzAgMzQzLjM1IDExOC4xMyAzNDMuNTcgMTE0LjA2IDM0My41NyBDIDEwOS45OCAzNDMuNTcgMTA2LjQ3IDM0My4yNiAxMDMuNTEgMzQyLjY2IEMgMTAwLjU2IDM0Mi4wNSA5Ny41MyAzNDEuMDkgOTQuNDIgMzM5Ljc4IEMgOTEuMzIgMzM4LjQ4IDg4LjUzIDMzNi45NCA4Ni4wNiAzMzUuMTcgQyA4My41OSAzMzMuNDAgODEuNjcgMzMxLjgzIDgwLjMyIDMzMC40OCBDIDc4Ljk2IDMyOS4xMiA3Ny41NiAzMjcuNDcgNzYuMTAgMzI1LjUzIEMgNzQuNjUgMzIzLjU5IDczLjI1IDMyMS40MiA3MS45MiAzMTkuMDMgQyA3MC41OSAzMTYuNjMgNjkuNjEgMzE0LjY0IDY4Ljk4IDMxMy4wNyBDIDY4LjM1IDMxMS40OSA2Ny42MSAzMDguOTkgNjYuNzYgMzA1LjU3IEMgNjUuOTEgMzAyLjE2IDY1LjQ0IDMwNS4zNCA2NS4zNCAzMTUuMTQgQyA2NS4yNSAzMjQuOTMgNjUuMDYgMzMwLjU0IDY0LjgwIDMzMS45NyBDIDY0LjUzIDMzMy40MCA2NC4yNCAzMzQuNDYgNjMuOTIgMzM1LjE3IEMgNjMuNjEgMzM1Ljg3IDYyLjgzIDMzNi45NiA2MS42MCAzMzguNDQgQyA2MC4zNiAzMzkuOTIgNTkuMDggMzQxLjAxIDU3Ljc0IDM0MS43MSBDIDU2LjQxIDM0Mi40MSA1NC45NCAzNDIuOTAgNTMuMzQgMzQzLjE3IEMgNTEuNzUgMzQzLjQzIDUwLjAzIDM0My4yOSA0OC4yMiAzNDIuNzMgQyA0Ni40MCAzNDIuMTcgNDUuMTkgMzQxLjY5IDQ0LjU4IDM0MS4yOCBDIDQzLjk4IDM0MC44NiA0My4xOSAzNDAuMTIgNDIuMjIgMzM5LjA2IEMgNDEuMjUgMzM3Ljk5IDQwLjQyIDMzNi40NCAzOS43NSAzMzQuNDEgQyAzOS4wNyAzMzIuMzcgMzguNzMgMzIzLjEyIDM4LjczIDMwNi42NyBDIDM4LjczIDI5MC4yMSAzOC42NyAyODEuNzAgMzguNTUgMjgxLjE0IEMgMzguNDMgMjgwLjU5IDM4LjE3IDI4MC4xOSAzNy43OCAyNzkuOTQgQyAzNy40MCAyNzkuNzAgMzYuOTcgMjc5LjY3IDM2LjUxIDI3OS44MyBDIDM2LjA1IDI4MC4wMSAzNS43MSAyODAuNDEgMzUuNSAyODEuMDMgQyAzNS4yOCAyODEuNjcgMzUuMTcgMjg1Ljk3IDM1LjE3IDI5My45NCBDIDM1LjE3IDMwMS45MSAzNC44OCAzMDcuMjIgMzQuMzAgMzA5Ljg3IEMgMzMuNzEgMzEyLjUxIDMzLjAyIDMxNC43MCAzMi4yMiAzMTYuNDQgQyAzMS40MiAzMTguMTkgMzAuNTUgMzE5LjY5IDI5LjYwIDMyMC45NSBDIDI4LjY2IDMyMi4yMSAyNy41OSAzMjMuNDQgMjYuNDEgMzI0LjYyIEMgMjUuMjIgMzI1LjgxIDI0LjA4IDMyNi43OSAyMi45OSAzMjcuNTcgQyAyMS45MCAzMjguMzQgMjAuMTIgMzI5LjI4IDE3LjY0IDMzMC4zNyBDIDE1LjE3IDMzMS40NiAxMy4xNSAzMzIuMTUgMTEuNTcgMzMyLjQ0IEMgMTAuMDAgMzMyLjczIDguNDUgMzMyLjg4IDYuOTIgMzMyLjg4IEMgNS4zOSAzMzIuODggMy44MyAzMzIuNzUgMi4yMyAzMzIuNDggQyAwLjYzIDMzMi4yMSAtMC44NiAzMzEuODUgLTIuMjcgMzMxLjM5IEMgLTMuNjcgMzMwLjkyIC01LjI0IDMzMC4yMCAtNi45NiAzMjkuMjEgQyAtOC42OCAzMjguMjEgLTEwLjI1IDMyNy4wNyAtMTEuNjggMzI1Ljc5IEMgLTEzLjExIDMyNC41MCAtMTQuNDYgMzIyLjk2IC0xNS43MiAzMjEuMTcgQyAtMTYuOTggMzE5LjM4IC0xOC4xNyAzMTcuMDAgLTE5LjI4IDMxNC4wNSBDIC0yMC40MCAzMTEuMDkgLTIxLjA5IDMwNy43OSAtMjEuMzUgMzA0LjE2IEMgLTIxLjYyIDMwMC41MiAtMjEuNjggMjk4LjIxIC0yMS41MyAyOTcuMjEgQyAtMjEuMzkgMjk2LjIyIC0yMS4zNyAyOTMuMjkgLTIxLjQ2IDI4OC40MiBDIC0yMS41NiAyODMuNTUgLTIxLjc4IDI4MC44OCAtMjIuMTIgMjgwLjQyIEMgLTIyLjQ2IDI3OS45NiAtMjIuODEgMjc5LjcwIC0yMy4xNyAyNzkuNjYgQyAtMjMuNTMgMjc5LjYwIC0yMy45MSAyNzkuNzMgLTI0LjMwIDI4MC4wMiBDIC0yNC42OSAyODAuMzEgLTI0Ljk2IDI4MC43OSAtMjUuMTQgMjgxLjQ3IEMgLTI1LjMwIDI4Mi4xNSAtMjUuMzkgMjkwLjQ2IC0yNS4zOSAzMDYuNDEgQyAtMjUuMzkgMzIyLjM2IC0yNS42NiAzMzEuMzQgLTI2LjE5IDMzMy4zNSBDIC0yNi43MiAzMzUuMzYgLTI3LjM1IDMzNi44NSAtMjguMDggMzM3LjgyIEMgLTI4LjgxIDMzOC43OSAtMjkuNjQgMzM5LjY1IC0zMC41OSAzNDAuNDAgQyAtMzEuNTMgMzQxLjE2IC0zMi40OCAzNDEuNzMgLTMzLjQyIDM0Mi4xNSBDIC0zNC4zNyAzNDIuNTYgLTM1LjYwIDM0Mi44NiAtMzcuMTMgMzQzLjA2IEMgLTM4LjY2IDM0My4yNSAtNDAuMjIgMzQzLjEzIC00MS44MiAzNDIuNjkgQyAtNDMuNDIgMzQyLjI2IC00NC42NyAzNDEuNzIgLTQ1LjU3IDM0MS4wOSBDIC00Ni40NiAzNDAuNDYgLTQ3LjMwIDMzOS42OSAtNDguMDcgMzM4Ljc2IEMgLTQ4Ljg1IDMzNy44NSAtNDkuNDcgMzM2Ljk0IC00OS45MyAzMzYuMDQgQyAtNTAuMzkgMzM1LjE0IC01MC43NCAzMzQuMTQgLTUwLjk4IDMzMy4wMiBDIC01MS4yMyAzMzEuOTEgLTUxLjM1IDMyMS40MiAtNTEuMzUgMzAxLjU4IEMgLTUxLjM1IDI4MS43MyAtNTEuMjcgMjcxLjM3IC01MS4xMyAyNzAuNDkgQyAtNTAuOTggMjY5LjYyIC01MC41MyAyNjguMDMgLTQ5Ljc4IDI2NS43MyBDIC00OS4wMyAyNjMuNDMgLTQ3Ljc3IDI2MS4wNCAtNDYuMDAgMjU4LjU3IEMgLTQ0LjIzIDI1Ni4xMCAtNDIuNzMgMjU0LjM3IC00MS41IDI1My40MSBDIC00MC4yNiAyNTIuNDQgLTM4LjQxIDI1MS4zMiAtMzUuOTMgMjUwLjA2IEMgLTMzLjQ2IDI0OC44MCAtMzEuMTcgMjQ3Ljk1IC0yOS4wNiAyNDcuNTIgQyAtMjYuOTUgMjQ3LjA4IC0yNC44OCAyNDYuODYgLTIyLjg0IDI0Ni44NiBDIC0yMC44MSAyNDYuODYgLTE4LjgxIDI0Ny4wNyAtMTYuODUgMjQ3LjQ4IEMgLTE0Ljg4IDI0Ny44OSAtMTMuMTMgMjQ4LjQyIC0xMS41NyAyNDkuMDggQyAtMTAuMDIgMjQ5LjczIC04LjY5IDI1MC40NCAtNy41OCAyNTEuMTkgQyAtNi40NiAyNTEuOTQgLTUuMjMgMjUyLjkxIC0zLjg3IDI1NC4xMCBDIC0yLjUxIDI1NS4yOCAtMS40MyAyNTYuNDEgLTAuNjMgMjU3LjQ4IEMgMC4xNiAyNTguNTUgMS4wMiAyNTkuOTggMS45NCAyNjEuNzcgQyAyLjg2IDI2My41NiAzLjYyIDI2NS44NSA0LjIzIDI2OC42NCBDIDQuODMgMjcxLjQyIDUuMTQgMjc3Ljc0IDUuMTQgMjg3LjU4IEMgNS4xNCAyOTcuNDIgNS4yMiAzMDIuNTkgNS4zOSAzMDMuMTAgQyA1LjU2IDMwMy42MSA1Ljg4IDMwMy45MiA2LjM0IDMwNC4wNSBDIDYuODAgMzA0LjE3IDcuMjIgMzA0LjA4IDcuNjEgMzAzLjc5IEMgOC4wMCAzMDMuNTAgOC4yOCAzMDMuMDIgOC40NSAzMDIuMzQgQyA4LjYyIDMwMS42NiA4LjcwIDI5Ni40MCA4LjcwIDI4Ni41NiBDIDguNzAgMjc2LjcyIDguODMgMjcxLjA4IDkuMTAgMjY5LjY2IEMgOS4zNyAyNjguMjMgOS43MyAyNjYuODkgMTAuMTkgMjY1LjY2IEMgMTAuNjUgMjY0LjQyIDExLjIwIDI2My4xOSAxMS44MyAyNjEuOTUgQyAxMi40NiAyNjAuNzEgMTMuNjggMjU5LjA1IDE1LjUwIDI1Ni45NyBDIDE3LjMyIDI1NC44OSAxOS4xMiAyNTMuMjEgMjAuOTIgMjUxLjk1IEMgMjIuNzEgMjUwLjY5IDI0LjY1IDI0OS42NiAyNi43MyAyNDguODYgQyAyOC44MiAyNDguMDYgMzAuNTcgMjQ3LjUzIDMyLjAwIDI0Ny4yNiBDIDMzLjQzIDI0NyAzNS4zMyAyNDYuODYgMzcuNzEgMjQ2Ljg2IEMgNDAuMDkgMjQ2Ljg2IDQyLjA2IDI0Ny4wMSA0My42NCAyNDcuMzAgQyA0NS4yMSAyNDcuNTkgNDcuMDcgMjQ4LjE5IDQ5LjIwIDI0OS4xMiBDIDUxLjMzIDI1MC4wNCA1Mi45NCAyNTAuODkgNTQuMDMgMjUxLjY2IEMgNTUuMTIgMjUyLjQ0IDU2LjI2IDI1My40MiA1Ny40NSAyNTQuNjAgQyA1OC42NCAyNTUuNzkgNTkuNzggMjU3LjIwIDYwLjg3IDI1OC44MiBDIDYxLjk2IDI2MC40NSA2Mi44OCAyNjIuNSA2My42MyAyNjQuOTcgQyA2NC4zOSAyNjcuNDQgNjQuODMgMjY5LjExIDY0Ljk4IDI2OS45OCBDIDY1LjEyIDI3MC44NSA2NS4yMyAyNzQuMzIgNjUuMzAgMjgwLjM4IEMgNjUuMzggMjg2LjQ0IDY1Ljk0IDI4Ny41OSA2Ni45OCAyODMuODMgQyA2OC4wMiAyODAuMDggNjguOTQgMjc3LjI0IDY5Ljc0IDI3NS4zMyBDIDcwLjU0IDI3My40MSA3MS40NCAyNzEuNjAgNzIuNDMgMjY5Ljg3IEMgNzMuNDIgMjY4LjE2IDc1LjE2IDI2NS44MiA3Ny42MyAyNjIuODYgQyA4MC4xMCAyNTkuOTAgODIuNjUgMjU3LjQ0IDg1LjI2IDI1NS40OCBDIDg3Ljg4IDI1My41MSA5MC41MCAyNTEuODkgOTMuMTIgMjUwLjYxIEMgOTUuNzMgMjQ5LjMyIDk3LjgyIDI0OC40NCA5OS4zNyAyNDcuOTUgQyAxMDAuOTIgMjQ3LjQ3IDEwMi45MSAyNDcgMTA1LjMzIDI0Ni41MyBDIDEwNy43NSAyNDYuMDcgMTEwLjY2IDI0NS44NCAxMTQuMDYgMjQ1Ljg0IEMgMTE3LjQ1IDI0NS44NCAxMjAuOTggMjQ2LjIyIDEyNC42NCAyNDYuOTcgQyAxMjguMzAgMjQ3LjcyIDEzMS41IDI0OC42OCAxMzQuMjMgMjQ5Ljg0IEMgMTM2Ljk3IDI1MS4wMSAxMzkuMTIgMjUyLjA4IDE0MC42NyAyNTMuMDggQyAxNDIuMjIgMjU0LjA3IDE0My42NiAyNTUuMDkgMTQ1IDI1Ni4xMyBDIDE0Ni4zMyAyNTcuMTcgMTQ3LjgwIDI1OC41OCAxNDkuNDMgMjYwLjM1IEMgMTUxLjA1IDI2Mi4xMiAxNTIuNTIgMjYzLjk2IDE1My44MyAyNjUuODcgQyAxNTUuMTQgMjY3Ljc5IDE1Ni4yNiAyNjkuNzIgMTU3LjIxIDI3MS42NiBDIDE1OC4xNiAyNzMuNjAgMTU4Ljk1IDI3NS41MSAxNTkuNjEgMjc3LjQwIEMgMTYwLjI2IDI3OS4yOSAxNjAuODUgMjgxLjg2IDE2MS4zOSAyODUuMTEgQyAxNjEuOTIgMjg4LjM1IDE2Mi40NiAyODguNDUgMTYyLjk5IDI4NS40MCBDIDE2My41MiAyODIuMzQgMTY0LjI2IDI3OS40MiAxNjUuMjEgMjc2LjY0IEMgMTY2LjE1IDI3My44NSAxNjcuMTIgMjcxLjUxIDE2OC4xMiAyNjkuNjIgQyAxNjkuMTEgMjY3LjczIDE3MC40OSAyNjUuNjMgMTcyLjI2IDI2My4zMyBDIDE3NC4wMyAyNjEuMDMgMTc1LjY5IDI1OS4xMiAxNzcuMjQgMjU3LjYyIEMgMTc4Ljc5IDI1Ni4xMiAxODAuODkgMjU0LjQ4IDE4My41MyAyNTIuNzEgQyAxODYuMTcgMjUwLjk0IDE4OC45NiAyNDkuNDkgMTkxLjg5IDI0OC4zNSBDIDE5NC44MiAyNDcuMjEgMTk3LjY0IDI0Ni4zOCAyMDAuMzIgMjQ1Ljg0IFogTSAxMTMuNjIgMjczLjkxIEMgMTExLjk3IDI3My45NiAxMTAuNTcgMjc0LjA4IDEwOS40MCAyNzQuMjcgQyAxMDguMjQgMjc0LjQ3IDEwNy4wNSAyNzQuODEgMTA1Ljg0IDI3NS4yOSBDIDEwNC42MyAyNzUuNzggMTAzLjIxIDI3Ni41NyAxMDEuNTggMjc3LjY2IEMgOTkuOTYgMjc4Ljc1IDk4LjczIDI3OS43MSA5Ny44OCAyODAuNTYgQyA5Ny4wMyAyODEuNDEgOTYuMjIgMjgyLjM4IDk1LjQ0IDI4My40NyBDIDk0LjY3IDI4NC41NiA5My45OSAyODUuODMgOTMuNDEgMjg3LjI5IEMgOTIuODIgMjg4Ljc0IDkyLjM5IDI5MC4wOSA5Mi4xMCAyOTEuMzIgQyA5MS44MSAyOTIuNTYgOTEuNjYgMjk0LjAzIDkxLjY2IDI5NS43MiBDIDkxLjY2IDI5Ny40MiA5Mi4wOCAyOTkuNjIgOTIuOTMgMzAyLjM0IEMgOTMuNzggMzA1LjA1IDk0Ljg2IDMwNy4yOCA5Ni4xNyAzMDkuMDMgQyA5Ny40OCAzMTAuNzcgOTguODMgMzEyLjEzIDEwMC4yNCAzMTMuMTAgQyAxMDEuNjUgMzE0LjA3IDEwMy4xNiAzMTQuOTMgMTA0Ljc4IDMxNS42OCBDIDEwNi40MSAzMTYuNDMgMTA4LjQ0IDMxNi45NCAxMTAuODkgMzE3LjIxIEMgMTEzLjM0IDMxNy40OCAxMTUuMjggMzE3LjQ4IDExNi43MSAzMTcuMjEgQyAxMTguMTQgMzE2Ljk0IDExOS44MSAzMTYuNDEgMTIxLjczIDMxNS42MSBDIDEyMy42NCAzMTQuODEgMTI1LjUyIDMxMy42MyAxMjcuMzYgMzEyLjA4IEMgMTI5LjIwIDMxMC41MyAxMzAuNzkgMzA4LjY0IDEzMi4xMiAzMDYuNDEgQyAxMzMuNDYgMzA0LjE4IDEzNC4zNCAzMDIuMTggMTM0Ljc4IDMwMC40MSBDIDEzNS4yMSAyOTguNjQgMTM1LjQzIDI5NyAxMzUuNDMgMjk1LjQ3IEMgMTM1LjQzIDI5My45NCAxMzUuMDcgMjkxLjkzIDEzNC4zNCAyODkuNDMgQyAxMzMuNjIgMjg2Ljk0IDEzMi40NSAyODQuNjIgMTMwLjg1IDI4Mi40OSBDIDEyOS4yNSAyODAuMzYgMTI3LjkyIDI3OC44OSAxMjYuODUgMjc4LjA5IEMgMTI1Ljc5IDI3Ny4yOSAxMjQuMzcgMjc2LjUwIDEyMi42MCAyNzUuNzMgQyAxMjAuODMgMjc0Ljk1IDExOS4zMCAyNzQuNDQgMTE4LjAyIDI3NC4yMCBDIDExNi43MyAyNzMuOTYgMTE1LjI3IDI3My44NiAxMTMuNjIgMjczLjkxIFogTSAxMTAuMTMgMjg1LjQzIEMgMTExLjUzIDI4NC45OCAxMTIuODMgMjg0Ljc2IDExNC4wMiAyODQuNzggQyAxMTUuMjEgMjg0LjgwIDExNi4zNiAyODUuMDIgMTE3LjQ3IDI4NS40MyBDIDExOC41OSAyODUuODUgMTE5LjUzIDI4Ni4zNCAxMjAuMzEgMjg2LjkyIEMgMTIxLjA4IDI4Ny41MSAxMjEuODIgMjg4LjMwIDEyMi41MyAyODkuMjkgQyAxMjMuMjMgMjkwLjI4IDEyMy43OCAyOTEuNTIgMTI0LjE2IDI5MyBDIDEyNC41NSAyOTQuNDggMTI0LjYyIDI5NS45NCAxMjQuMzggMjk3LjM5IEMgMTI0LjE0IDI5OC44NSAxMjMuNzQgMzAwLjA2IDEyMy4xOCAzMDEuMDMgQyAxMjIuNjIgMzAyLjAwIDEyMS44MCAzMDIuOTYgMTIwLjcxIDMwMy45MCBDIDExOS42MiAzMDQuODUgMTE4LjMyIDMwNS41OCAxMTYuODIgMzA2LjEyIEMgMTE1LjMyIDMwNi42NSAxMTMuNzUgMzA2LjgwIDExMi4xMyAzMDYuNTYgQyAxMTAuNTEgMzA2LjMyIDEwOS4xMiAzMDUuODMgMTA3Ljk4IDMwNS4xMCBDIDEwNi44NSAzMDQuMzcgMTA1LjgyIDMwMy40NSAxMDQuODkgMzAyLjM0IEMgMTAzLjk4IDMwMS4yMyAxMDMuMzIgMzAwLjAxIDEwMi45MyAyOTguNzAgQyAxMDIuNTQgMjk3LjM5IDEwMi40OCAyOTUuOTQgMTAyLjc1IDI5NC4zNCBDIDEwMy4wMSAyOTIuNzQgMTAzLjUwIDI5MS4zNiAxMDQuMjAgMjkwLjIwIEMgMTA0LjkxIDI4OS4wMyAxMDUuNzIgMjg4LjA3IDEwNi42NCAyODcuMjkgQyAxMDcuNTYgMjg2LjUxIDEwOC43MyAyODUuODkgMTEwLjEzIDI4NS40MyBaIE0gMTEwLjEzIDI4NS40MyAiLz48L2c+PC9zdmc+Cg==" alt="">
+      <div>
+        <span class="eyebrow">I a més</span>
+        <h3 id="moa-quiro-title">Quiromassatge</h3>
+        <p>Un massatge per complementar l’entrenament: alliberar tensions, recuperar-te després de l’esforç i cuidar el teu cos. Per a alumnes de MOA i per a qualsevol persona que ho necessiti.</p>
+      </div>
+      <div class="extra-side">
+        <p class="extra-price">Sessió d’1 hora · <b>40 €</b> alumnes de MOA · <b>45 €</b> resta</p>
+        <a href="#moa-contacte" class="link-arrow" data-servicio="Quiromassatge">Demana informació <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- PER A QUI -->
 <section class="who pad" id="moa-per-a-qui">
   <div class="wrap who-grid">
@@ -617,9 +665,9 @@
 <!-- XIFRES -->
 <section class="stats" aria-label="MOA en xifres">
   <div class="wrap stats-grid">
-    <div class="stat reveal"><b data-count="10" data-prefix="+">+10</b><span>anys com a entrenadora personal</span></div>
-    <div class="stat reveal" style="--d:.08s"><b data-count="5">5</b><span>maneres d'entrenar</span></div>
-    <div class="stat reveal" style="--d:.16s"><b data-count="3">3</b><span>formats: presencial, a domicili i en línia</span></div>
+    <div class="stat reveal"><b data-count="10" data-prefix="+" data-suffix="">+10</b><span>anys com a entrenadora personal</span></div>
+    <div class="stat reveal" style="--d:.08s"><b data-count="70" data-prefix="+" data-suffix="">+70</b><span>persones entrenant a MOA</span></div>
+    <div class="stat reveal" style="--d:.16s"><b data-count="3">3</b><span>formats: presencial, en línia i a domicili</span></div>
     <div class="stat reveal" style="--d:.24s"><b data-count="100" data-suffix="%">100%</b><span>entrenament adaptat a tu</span></div>
   </div>
 </section>
@@ -698,6 +746,12 @@
           <div class="price-row"><div><h3>Entrenament personal amb app</h3><small>Inclou planificació individualitzada, seguiment i ajustos segons la teva evolució.</small></div><div class="amount"><small style="margin:0 0 4px">des de</small>65 €<small>/ mes</small></div></div>
           <div class="price-row"><div><h3>Entrenament personal en línia</h3><small>Pla individualitzat i seguiment a distància.</small></div><div class="amount">35 €<small>/ sessió</small></div></div>
           <div class="price-row"><div><h3>Entrenament a domicili</h3><small>Preu estimat segons el temps de desplaçament.</small></div><div class="amount"><small style="margin:0 0 4px">des de</small>35 €<small>/ sessió</small></div></div>
+          <div class="price-row block"><div><h3>Quiromassatge</h3><small>Sessió d’1 hora.</small></div>
+            <div class="group-prices two">
+              <div><b>40 €</b><span>alumnes de MOA</span></div>
+              <div><b>45 €</b><span>resta de persones</span></div>
+            </div>
+          </div>
         </div>
         <p class="price-note">Tarifes subjectes a possibles canvis.</p>
       </div>
@@ -720,6 +774,26 @@
     </div>
   </div>
 </section>
+<!-- PREGUNTES -->
+<section class="faq pad" id="moa-preguntes">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow reveal">Dubtes</span>
+      <h2 data-split>Preguntes freqüents</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary>Necessito estar en forma per començar?</summary><p>Gens ni mica. Partim d’on ets tu avui, tant si fa anys que no entrenes com si no ho has fet mai.</p></details>
+      <details class="faq-item"><summary>Puc fer una sessió de prova?</summary><p>En l’entrenament grupal, sí: la primera classe és gratuïta. En l’entrenament personal comencem amb una entrevista i unes proves de valoració per conèixer el teu punt de partida. És una sessió completa i té el mateix preu que una sessió normal. A partir d’aquí dissenyem el teu entrenament.</p></details>
+      <details class="faq-item"><summary>Quantes persones hi ha en l’entrenament personal compartit?</summary><p>Són grups reduïts. Cadascú té el seu propi entrenament, adaptat als seus objectius, encara que compartiu espai i horari.</p></details>
+      <details class="faq-item"><summary>Què he de portar?</summary><p>Roba còmoda, calçat esportiu, una ampolla d’aigua i una tovallola. El material el posem nosaltres.</p></details>
+      <details class="faq-item"><summary>Puc entrenar si tinc una lesió o un problema de salut?</summary><p>Sí, i és una de les coses que més treballem. Abans de començar valorem el teu cas i adaptem cada sessió a la teva situació.</p></details>
+      <details class="faq-item"><summary>Com es paga?</summary><p>Per transferència o en efectiu, a principis de cada mes.</p></details>
+      <details class="faq-item"><summary>I si un dia no puc venir?</summary><p>Avisa’ns tan aviat com ho sàpigues i busquem un dia per recuperar la sessió. Com que les sessions es paguen a principis de mes, la pots recuperar dins del mateix mes. Si hi ha alguna situació especial, la valorem amb tu.</p></details>
+      <details class="faq-item"><summary>A quines zones feu entrenament a domicili?</summary><p>Martorell, Sant Andreu de la Barca, Abrera, Sant Esteve Sesrovires i Gelida, segons disponibilitat i horari. Si ets en una altra zona, pregunta’ns-ho.</p></details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Necessito estar en forma per començar?", "acceptedAnswer": {"@type": "Answer", "text": "Gens ni mica. Partim d’on ets tu avui, tant si fa anys que no entrenes com si no ho has fet mai."}}, {"@type": "Question", "name": "Puc fer una sessió de prova?", "acceptedAnswer": {"@type": "Answer", "text": "En l’entrenament grupal, sí: la primera classe és gratuïta. En l’entrenament personal comencem amb una entrevista i unes proves de valoració per conèixer el teu punt de partida. És una sessió completa i té el mateix preu que una sessió normal. A partir d’aquí dissenyem el teu entrenament."}}, {"@type": "Question", "name": "Quantes persones hi ha en l’entrenament personal compartit?", "acceptedAnswer": {"@type": "Answer", "text": "Són grups reduïts. Cadascú té el seu propi entrenament, adaptat als seus objectius, encara que compartiu espai i horari."}}, {"@type": "Question", "name": "Què he de portar?", "acceptedAnswer": {"@type": "Answer", "text": "Roba còmoda, calçat esportiu, una ampolla d’aigua i una tovallola. El material el posem nosaltres."}}, {"@type": "Question", "name": "Puc entrenar si tinc una lesió o un problema de salut?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, i és una de les coses que més treballem. Abans de començar valorem el teu cas i adaptem cada sessió a la teva situació."}}, {"@type": "Question", "name": "Com es paga?", "acceptedAnswer": {"@type": "Answer", "text": "Per transferència o en efectiu, a principis de cada mes."}}, {"@type": "Question", "name": "I si un dia no puc venir?", "acceptedAnswer": {"@type": "Answer", "text": "Avisa’ns tan aviat com ho sàpigues i busquem un dia per recuperar la sessió. Com que les sessions es paguen a principis de mes, la pots recuperar dins del mateix mes. Si hi ha alguna situació especial, la valorem amb tu."}}, {"@type": "Question", "name": "A quines zones feu entrenament a domicili?", "acceptedAnswer": {"@type": "Answer", "text": "Martorell, Sant Andreu de la Barca, Abrera, Sant Esteve Sesrovires i Gelida, segons disponibilitat i horari. Si ets en una altra zona, pregunta’ns-ho."}}]}</script>
 <!-- PATRICIA -->
 <section class="behind pad" id="moa-patricia">
   <div class="wrap behind-grid">
@@ -729,11 +803,12 @@
     </div>
     <div class="behind-copy">
       <span class="eyebrow reveal">Qui hi ha darrere</span>
-      <h2 data-split>Sóc la Patricia Dorado.</h2>
-      <p class="reveal">L'esport ha format part de la meva vida des que era molt petita. Vaig començar amb el judo i la natació als 5 anys i, als 7, amb l'handbol, fins a aconseguir el cinturó negre de judo. També m'apassiona tot el que té a veure amb la natura i l'aventura: senderisme, escalada, barranquisme, submarinisme i trail running.</p>
-      <p class="reveal">Sempre he sentit la necessitat d'ajudar les persones a estar bé, no només físicament, sinó en totes les seves facetes. A la carrera vaig descobrir que l'exercici podia ser molt més que millorar la condició física: podia ajudar algú a recuperar-se d'una lesió, recuperar força i mobilitat i, en definitiva, <strong>tornar a sentir-se capaç</strong>.</p>
-      <blockquote class="quote reveal">Perquè cada persona és un món. I això és el que més m'agrada de la meva feina: descobrir què necessita cadascú i adaptar l'entrenament perquè tingui sentit per a ell.</blockquote>
-      <p class="reveal">Porto més de 10 anys com a entrenadora personal i també sóc quiromassatgista. MOA és el pas que em va costar una mica fer: el meu propi projecte. Entrenem com entrenem, hi ha una cosa que no canvia: m'importa la persona que hi ha darrere de l'entrenament.</p>
+      <h2 data-split>Soc la Patricia Dorado.</h2>
+      <p class="reveal">L’esport forma part de la meva vida des de molt petita. Vaig començar amb judo i natació als 5 anys, i als 7 va arribar l’handbol. També m’apassiona tot el que té a veure amb la natura i l’aventura: senderisme, escalada, barranquisme, submarinisme, esquí i trail running.</p>
+      <p class="reveal">D’alguna manera, als 15 anys ja sabia que em volia dedicar a alguna cosa relacionada amb l’esport o l’exercici físic, tot i que encara no tenia clar quin camí agafaria. Va ser en entrar a l’INEFC quan em va començar a picar la curiositat per com l’exercici pot ajudar les persones a trobar-se millor.</p>
+      <p class="reveal">Durant la carrera vaig descobrir que l’exercici podia ser molt més que millorar la condició física. Podia ajudar algú a recuperar-se d’una lesió, a afrontar millor una malaltia, a guanyar força i mobilitat, a recuperar les ganes de moure’s i, en definitiva, a <strong>tornar-se a sentir capaç</strong>.</p>
+      <blockquote class="quote reveal">Cada persona és un món, i això és el que més m’agrada de la meva feina: descobrir què necessita cadascú i adaptar l’entrenament a la seva mida.</blockquote>
+      <p class="reveal">Porto més de 10 anys com a entrenadora personal i ara també soc quiromassatgista. MOA és el pas següent: el meu propi projecte. Un espai on cada persona es pugui moure al seu ritme, pas a pas cap als seus objectius.</p>
       <ol class="timeline reveal">
         <li><b>01</b><div><strong>CFGS en Animació d'Activitats Físiques i Esportives</strong><span>Mentre feia classes col·lectives en diferents centres.</span></div></li>
         <li><b>02</b><div><strong>Grau en Ciències de l'Activitat Física i de l'Esport, INEFC Barcelona</strong><span>Compaginat amb la feina.</span></div></li>
@@ -763,7 +838,7 @@
     <div class="rv-row"><div class="rv-track">
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Hace ya dos años que empecé a entrenar con Patri. Desde el minuto uno, me sentí muy a gusto y acompañada. Llevo un entrenamiento personalizado que me permite trabajar a mi ritmo y que se ajusta perfectamente a mis objetivos. Es una profesional de 10, con un trato excepcional.</p><footer>Mar Camacho Sánchez<small>Google</small></footer></article>
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Hace años que entreno con Patri y no cambiaría por nada! He hecho todas las modalidades posibles: presencial, a domicilio y online. Patri ha adaptado los entrenamientos al milímetro, retando y escuchando siempre a mi cuerpo. También agradezco el trato cálido y la comunidad que crea.</p><footer>Núria Domingo Dorado<small>Google</small></footer></article>
-      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Tengo fibromialgia y la atención que me ha dado es 100% personalizada. Gracias a ella he mejorado muchísimo mi calidad de vida, he ganado fuerza y constancia, y sobre todo he recuperado la confianza en mí misma. ¡Entrenadora de 10!</p><footer>Warfy Game<small>Google</small></footer></article>
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Tengo fibromialgia y la atención que me ha dado es 100% personalizada. Gracias a ella he mejorado muchísimo mi calidad de vida, he ganado fuerza y constancia, y sobre todo he recuperado la confianza en mí misma. ¡Entrenadora de 10!</p><footer>Esmeralda Gámez<small>Google</small></footer></article>
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Conocimos a Patricia hace cuatro años porque vino para la recuperación de mi madre y la experiencia fue de diez tanto en el trato profesional como humano. ¡¡¡Una gran profesional!!!</p><footer>Mercedes Hernández Ventura<small>Google</small></footer></article>
     </div></div>
     <div class="rv-row rev"><div class="rv-track">
@@ -773,6 +848,9 @@
     </div></div>
   </div>
   <p class="rv-note">Ressenyes de Google, en la llengua original.</p>
+  <div class="rv-modal" id="moa-rvModal" hidden role="dialog" aria-modal="true" aria-label="Llegir la ressenya sencera">
+    <div class="rv-modal-box"><button type="button" class="rv-close" id="moa-rvClose" aria-label="Tancar">×</button><div id="moa-rvBody"></div></div>
+  </div>
 </section>
 <!-- MARQUESINA FINAL -->
 <div class="marquee mq-green" data-marquee data-dir="-1" aria-hidden="true">
@@ -792,7 +870,7 @@
         <li><a href="mailto:patriciadoradotrainer@gmail.com"><span>patriciadoradotrainer@gmail.com</span><small>Email</small></a></li>
         <li><a href="https://www.instagram.com/moa.salut/" target="_blank" rel="noopener"><span>@moa.salut</span><small>Instagram</small></a></li>
         <li><a href="https://www.instagram.com/patriciadoradotrainer/" target="_blank" rel="noopener"><span>@patriciadoradotrainer</span><small>Instagram</small></a></li>
-        <li><div><span>Martorell (Barcelona)</span><small>Presencial, a domicili i en línia</small></div></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20del%20Cam%C3%AD%20Vell%20de%20Sant%20Esteve%2031%2C%2008760%20Martorell" target="_blank" rel="noopener"><span>Carrer del Camí Vell de Sant Esteve, 31, 08760 Martorell</span><small>On entrenem · veure al mapa</small></a></li>
       </ul>
     </div>
     <form class="form reveal" id="moa-contactForm" novalidate>
@@ -811,6 +889,7 @@
           <option>Entrenament personal amb app</option>
           <option>Entrenament personal en línia</option>
           <option>Entrenament a domicili</option>
+          <option>Quiromassatge</option>
         </select>
       </div>
       <div class="field"><label for="moa-f-msg">Què t'agradaria aconseguir?</label><textarea id="moa-f-msg" name="mensaje" placeholder="Els teus objectius, com et mous ara, la teva disponibilitat o qualsevol cosa a tenir en compte." required></textarea></div>
@@ -848,7 +927,7 @@
   var APP = document.getElementById('moa-app');
   if (!APP) return;
 try {
-  var T = {"menuOpen": "Obrir el menú", "menuClose": "Tancar el menú", "waDefault": "Hola! M'agradaria informació sobre els entrenaments de MOA.", "quizNext": "Següent", "quizResult": "Veure el resultat", "services": {"compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups molt reduïts i amb bon ambient."}, "grupal": {"t": "Entrenament grupal", "d": "Entrenem junts i cadascú adapta els exercicis al seu nivell. Ideal per agafar constància."}, "domicilio": {"t": "Entrenament a domicili", "d": "Portem l'entrenament a casa teva, adaptat a com et trobes i a l'espai que tinguis."}, "online": {"t": "Entrenament personal en línia", "d": "Un pla individualitzat amb seguiment a distància, que evoluciona amb tu."}, "app": {"t": "Entrenament personal amb app", "d": "Entrenes quan i on vulguis, amb les sessions explicades pas a pas i seguiment de la teva evolució."}}, "labels": {"como": {"grupo": "en grup", "personal": "amb entrenament personalitzat", "solo": "pel meu compte amb un pla"}, "donde": {"martorell": "presencial a Martorell", "casa": "a casa", "distancia": "a distància"}, "nota": {"empezar": "vull començar o fa temps que no entreno", "salud": "vinc d'una lesió o un procés de salut", "tiempo": "tinc poc temps", "nada": "res en especial"}}, "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?", "errFields": "Escriu el teu nom i explica'ns una mica què busques.", "errConsent": "Marca la casella per poder enviar la consulta.", "sending": "Enviant…", "errSend": "No s'ha pogut enviar. T'obrim el correu amb el missatge escrit.", "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:", "mailSubject": "Consulta des de la web de MOA:"};
+  var T = {"close": "Tancar", "menuOpen": "Obrir el menú", "menuClose": "Tancar el menú", "waDefault": "Hola! M'agradaria informació sobre els entrenaments de MOA.", "quizNext": "Següent", "quizResult": "Veure el resultat", "services": {"compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups molt reduïts i amb bon ambient."}, "grupal": {"t": "Entrenament grupal", "d": "Entrenem junts i cadascú adapta els exercicis al seu nivell. Ideal per agafar constància."}, "domicilio": {"t": "Entrenament a domicili", "d": "Portem l'entrenament a casa teva, adaptat a com et trobes i a l'espai que tinguis."}, "online": {"t": "Entrenament personal en línia", "d": "Un pla individualitzat amb seguiment a distància, que evoluciona amb tu."}, "app": {"t": "Entrenament personal amb app", "d": "Entrenes quan i on vulguis, amb les sessions explicades pas a pas i seguiment de la teva evolució."}}, "labels": {"como": {"grupo": "en grup", "personal": "amb entrenament personalitzat", "solo": "pel meu compte amb un pla"}, "donde": {"martorell": "presencial a Martorell", "casa": "a casa", "distancia": "a distància"}, "nota": {"empezar": "vull començar o fa temps que no entreno", "salud": "vinc d'una lesió o un procés de salut", "tiempo": "tinc poc temps", "nada": "res en especial"}}, "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?", "errFields": "Escriu el teu nom i explica'ns una mica què busques.", "errConsent": "Marca la casella per poder enviar la consulta.", "sending": "Enviant…", "errSend": "No s'ha pogut enviar. T'obrim el correu amb el missatge escrit.", "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:", "mailSubject": "Consulta des de la web de MOA:"};
   // El número no aparece en la página: se monta solo al pulsar un botón de
   // WhatsApp, para que no lo encuentren los programas que buscan teléfonos
   var PHONE = ['34', '677', '85', '12', '11'].join('');
@@ -889,7 +968,26 @@ try {
     document.body.style.overflow = open ? 'hidden' : '';
   }
   menuBtn.addEventListener('click', function(){ setMenu(!APP.classList.contains('menu-open')); });
-  APP.querySelectorAll('#mobileMenu a.big').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  // Enlaces internos (también los del menú del móvil): se cierra el menú, se
+  // espera a que la página recupere el scroll y se baja a la sección dejando
+  // sitio para la cabecera
+  function scrollToId(id){
+    var dest = document.getElementById(id);
+    if (!dest) return;
+    var app = document.getElementById('moa-app');
+    var off = APP.querySelector('.header').offsetHeight + (app ? (parseFloat(getComputedStyle(app).getPropertyValue('--moa-top')) || 0) : 0);
+    window.scrollTo({top: dest.getBoundingClientRect().top + window.scrollY - off + 1, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  APP.querySelectorAll('a[href^="#"]').forEach(function(a){
+    if (a.matches('.wa-float,.btn-wa')) return;
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      if (!id || !document.getElementById(id)) return;
+      e.preventDefault();
+      if (APP.classList.contains('menu-open')) { setMenu(false); setTimeout(function(){ scrollToId(id); }, 60); }
+      else scrollToId(id);
+    });
+  });
   // Titulares palabra a palabra
   APP.querySelectorAll('[data-split]').forEach(function(el){
     var i = 0;
@@ -943,6 +1041,26 @@ try {
     return {track:track, x:0, dir:+(m.dataset.dir || 1), half:track.scrollWidth / 2};
   });
   APP.querySelectorAll('.rv-track').forEach(function(t){ t.insertAdjacentHTML('beforeend', t.innerHTML); });
+  // Reseñas: se paran al tocarlas y se abren en grande al pulsar
+  var rvModal = document.getElementById('moa-rvModal'), rvBody = document.getElementById('moa-rvBody'), rvLast = null;
+  APP.querySelectorAll('.review').forEach(function(r){ r.setAttribute('tabindex', '0'); r.setAttribute('role', 'button'); });
+  APP.querySelectorAll('.rv-row').forEach(function(row){
+    var t;
+    row.addEventListener('touchstart', function(){ clearTimeout(t); row.classList.add('paused'); }, {passive:true});
+    row.addEventListener('touchend', function(){ t = setTimeout(function(){ row.classList.remove('paused'); }, 2500); }, {passive:true});
+  });
+  function openReview(r){
+    rvLast = r;
+    rvBody.innerHTML = r.innerHTML;
+    rvModal.hidden = false;
+    document.getElementById('moa-rvClose').focus();
+  }
+  function closeReview(){ rvModal.hidden = true; if (rvLast) rvLast.focus({preventScroll:true}); }
+  APP.querySelector('.reviews').addEventListener('click', function(e){ var r = e.target.closest('.review'); if (r) openReview(r); });
+  APP.querySelector('.reviews').addEventListener('keydown', function(e){ var r = e.target.closest('.review'); if (r && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openReview(r); } });
+  document.getElementById('moa-rvClose').addEventListener('click', closeReview);
+  rvModal.addEventListener('click', function(e){ if (e.target === rvModal) closeReview(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !rvModal.hidden) closeReview(); });
   var lastW = window.innerWidth;
   window.addEventListener('resize', function(){
     if (window.innerWidth === lastW) return;
@@ -1170,15 +1288,6 @@ try {
   APP.classList.remove('has-js');
   if (window.console) console.error('MOA:', err);
 }
-  APP.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var destino = document.getElementById(a.getAttribute('href').slice(1));
-      if (!destino) return;
-      e.preventDefault();
-      var top = destino.getBoundingClientRect().top + window.scrollY - 74 - (parseFloat(getComputedStyle(APP).getPropertyValue('--moa-top')) || 0);
-      window.scrollTo({top: top, behavior: reduce ? 'auto' : 'smooth'});
-    });
-  });
 })();
 </script>
 </div>

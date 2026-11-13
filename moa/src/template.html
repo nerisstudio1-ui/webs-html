@@ -186,7 +186,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .mq-track{display:inline-flex;align-items:center;will-change:transform}
 .mq-item{display:inline-flex;align-items:center;font-family:var(--titulo);font-weight:800;text-transform:uppercase;font-size:clamp(3.6rem,10vw,9rem);line-height:1;letter-spacing:.015em;word-spacing:.08em}
 .mq-item img{height:.62em;width:auto;max-width:none;flex:none;margin:0 .55em}
-.mq-soft{color:var(--arena-2)}
+.mq-soft{color:var(--carbon)}
 .mq-soft .mq-item:nth-child(even){color:var(--violeta)}
 .mq-green{background:var(--verde);color:var(--carbon)}
 .mq-outline .mq-item{color:transparent;-webkit-text-stroke:2px var(--carbon)}
@@ -196,8 +196,8 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .intro-sec{padding:70px 0 130px}
 .intro-grid{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:50px;align-items:center}
 .intro-grid .media{aspect-ratio:4/5}
-.intro-grid .media.a{margin-top:120px;max-width:260px;width:100%}
-.intro-grid .media.b{margin-top:-60px;max-width:280px;width:100%;justify-self:end}
+.intro-grid .media.a{max-width:270px;width:100%}
+.intro-grid .media.b{max-width:270px;width:100%;justify-self:end}
 .intro-copy{text-align:center}
 .intro-copy h2{margin-bottom:1.4rem}
 .intro-copy p{color:var(--gris);font-size:.98rem;margin:0 auto 2rem;max-width:52ch}
@@ -246,7 +246,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:nth-child(1){background:var(--violeta);color:var(--crema)}
 .svc:nth-child(2){background:var(--verde)}
 .svc:nth-child(3){background:var(--carbon);color:var(--crema)}
-.svc:nth-child(4){background:var(--arena)}
+.svc:nth-child(4){background:#C9EFD4}
 .svc:nth-child(5){background:#E6D8FD}
 .svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
 .svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
@@ -258,6 +258,18 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:hover .shape{transform:translateY(-12px) rotate(-6deg)}
 .services.is-pinned .hs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:74px 0 0}
 .services.is-pinned .hs-track{overflow:visible;scroll-snap-type:none;will-change:transform;padding:0 max(28px,calc((100vw - var(--wrap))/2 + 28px))}
+
+/* Quiromasaje */
+.extra{padding:10px 0 100px;background:var(--crema)}
+.extra-card{position:relative;overflow:hidden;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center;background:var(--blanco);border:1.5px solid var(--linea);border-radius:28px;padding:40px 44px}
+.extra-card .eyebrow{color:var(--verde);margin-bottom:.6rem}
+.extra-card h3{font-size:2rem;margin-bottom:.8rem}
+.extra-card p{margin:0;color:var(--gris)}
+.extra-card .shape{position:absolute;right:-24px;bottom:-30px;width:130px;opacity:.12;pointer-events:none}
+.extra-side{display:grid;gap:18px;justify-items:start}
+.extra-price{font-size:1rem;line-height:1.6;color:var(--carbon)!important;text-align:left!important}
+.extra-price b{font-family:var(--titulo);font-size:1.5rem;font-weight:800;color:var(--violeta)}
+@media (max-width:760px){.extra-card{grid-template-columns:1fr;gap:22px;padding:30px 24px}}
 
 /* Para quién */
 .who{background:var(--crema)}
@@ -334,6 +346,7 @@ p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(
 .group-prices div{background:var(--crema);border:1px solid var(--linea);border-radius:14px;padding:14px 10px;text-align:center;transition:transform .35s var(--ease),background .35s}
 .group-prices div:hover{transform:translateY(-4px);background:var(--verde)}
 .group-prices b{display:block;font-family:var(--titulo);font-weight:800;font-size:1.6rem;line-height:1.1}
+.group-prices.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .group-prices span{font-size:.76rem;color:var(--gris);line-height:1.3;display:block}
 .price-note{font-size:.84rem;color:var(--gris);margin:16px 14px 0}
 .schedule{background:var(--carbon);color:var(--crema);border-radius:28px;padding:38px 34px;position:sticky;top:100px}
@@ -346,6 +359,19 @@ p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(
 .schedule .others{border-top:1px solid rgba(254,247,229,.16);padding-top:18px;font-size:.88rem;color:rgba(254,247,229,.82)}
 .schedule .others p{margin:0 0 .6em}
 .schedule .btn{margin-top:14px}
+
+/* Preguntas frecuentes */
+.faq{background:var(--crema)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+.faq-list{border-top:1.5px solid var(--carbon)}
+.faq-item{border-bottom:1px solid var(--linea)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 4px;font-family:var(--titulo);font-weight:600;font-size:1.15rem;line-height:1.25}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--arena);font-family:var(--texto);font-weight:500;font-size:1.3rem;transition:transform .3s var(--ease),background .3s}
+.faq-item[open] summary::after{transform:rotate(45deg);background:var(--violeta);color:var(--crema)}
+.faq-item summary:hover{color:var(--violeta)}
+.faq-item p{margin:0;padding:0 50px 22px 4px;color:var(--gris);font-size:.95rem}
+@media (max-width:1020px){.faq-grid{grid-template-columns:minmax(0,1fr);gap:30px}}
 
 /* Patricia */
 .behind{background:var(--arena)}
@@ -387,7 +413,17 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 .rv-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .rv-track{display:flex;gap:20px;width:max-content;animation:rv 60s linear infinite}
 .rv-row.rev .rv-track{animation-direction:reverse;animation-duration:70s}
-.rv-row:hover .rv-track{animation-play-state:paused}
+.rv-row:hover .rv-track,.rv-row.paused .rv-track{animation-play-state:paused}
+.review{cursor:pointer}
+.review:focus-visible{outline:3px solid var(--violeta);outline-offset:3px}
+.rv-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background:rgba(43,45,43,.6)}
+.rv-modal[hidden]{display:none}
+.rv-modal-box{position:relative;max-width:560px;width:100%;max-height:85vh;overflow:auto;background:var(--crema);color:var(--carbon);border-radius:24px;padding:40px 34px 32px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+.rv-modal-box .stars{color:var(--violeta);letter-spacing:.2em;margin-bottom:.8rem}
+.rv-modal-box p{font-size:1.05rem;line-height:1.7;text-align:left!important}
+.rv-modal-box footer{font-weight:600;margin-top:1rem}
+.rv-modal-box footer small{display:block;font-weight:400;color:var(--gris)}
+.rv-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:var(--arena);font-size:1.4rem;line-height:1;cursor:pointer}
 @keyframes rv{to{transform:translateX(calc(-50% - 10px))}}
 .review{width:380px;flex:none;background:var(--arena);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:transform .4s var(--ease),background .4s}
 .review:hover{transform:translateY(-6px) rotate(-.6deg);background:var(--blanco)}
@@ -453,8 +489,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .hero-panel{padding:70px 28px 90px}
   .intro-grid{grid-template-columns:1fr 1fr;gap:20px}
   .intro-copy{grid-column:1/-1;grid-row:1}
-  .intro-grid .media.a{margin-top:30px;max-width:none}
-  .intro-grid .media.b{margin-top:80px;max-width:none}
+  .intro-grid .media.a,.intro-grid .media.b{margin-top:0;max-width:none}
   .letters,.stats-grid{grid-template-columns:1fr}
   .letters{gap:50px}
   .stats-grid{grid-template-columns:1fr 1fr;row-gap:40px}
@@ -563,7 +598,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div>
   </div>
   <div class="badge" aria-hidden="true">
-    <svg class="ring" viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#circ">{{badge_text}}</textPath></text></svg>
+    <svg class="ring" viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text textLength="286" lengthAdjust="spacing"><textPath href="#circ" textLength="286" lengthAdjust="spacing">{{badge_text}}</textPath></text></svg>
     <img src="assets/logos-moa/moa-simbolo-violeta.svg" alt="" width="40" height="42">
   </div>
 </section>
@@ -647,6 +682,24 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   </div>
 </section>
 
+<!-- QUIROMASSATGE -->
+<section class="extra" aria-labelledby="quiro-title">
+  <div class="wrap">
+    <div class="extra-card reveal">
+      <img class="shape" src="assets/logos-moa/moa-simbolo-verde.svg" alt="">
+      <div>
+        <span class="eyebrow">{{extra_eyebrow}}</span>
+        <h3 id="quiro-title">{{quiro_t}}</h3>
+        <p>{{quiro_p}}</p>
+      </div>
+      <div class="extra-side">
+        <p class="extra-price">{{quiro_price}}</p>
+        <a href="#contacte" class="link-arrow" data-servicio="{{quiro_t}}">{{svc_cta}} <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PER A QUI -->
 <section class="who pad" id="per-a-qui">
   <div class="wrap who-grid">
@@ -678,8 +731,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <!-- XIFRES -->
 <section class="stats" aria-label="{{aria_stats}}">
   <div class="wrap stats-grid">
-    <div class="stat reveal"><b data-count="10" data-prefix="+">+10</b><span>{{stat_1}}</span></div>
-    <div class="stat reveal" style="--d:.08s"><b data-count="5">5</b><span>{{stat_2}}</span></div>
+    <div class="stat reveal"><b data-count="10" data-prefix="{{stat_pre}}" data-suffix="{{stat_suf}}">{{stat_pre}}10{{stat_suf}}</b><span>{{stat_1}}</span></div>
+    <div class="stat reveal" style="--d:.08s"><b data-count="70" data-prefix="{{stat_pre}}" data-suffix="{{stat_suf}}">{{stat_pre}}70{{stat_suf}}</b><span>{{stat_2}}</span></div>
     <div class="stat reveal" style="--d:.16s"><b data-count="3">3</b><span>{{stat_3}}</span></div>
     <div class="stat reveal" style="--d:.24s"><b data-count="100" data-suffix="%">100%</b><span>{{stat_4}}</span></div>
   </div>
@@ -761,6 +814,12 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <div class="price-row"><div><h3>{{svc5_t}}</h3><small>{{pr5_note}}</small></div><div class="amount"><small style="margin:0 0 4px">{{from}}</small>65 €<small>{{per_month}}</small></div></div>
           <div class="price-row"><div><h3>{{svc4_t}}</h3><small>{{pr4_note}}</small></div><div class="amount">35 €<small>{{per_session}}</small></div></div>
           <div class="price-row"><div><h3>{{svc3_t}}</h3><small>{{pr3_note}}</small></div><div class="amount"><small style="margin:0 0 4px">{{from}}</small>35 €<small>{{per_session}}</small></div></div>
+          <div class="price-row block"><div><h3>{{quiro_t}}</h3><small>{{pr_quiro_note}}</small></div>
+            <div class="group-prices two">
+              <div><b>40 €</b><span>{{q_students}}</span></div>
+              <div><b>45 €</b><span>{{q_rest}}</span></div>
+            </div>
+          </div>
         </div>
         <p class="price-note">{{pr_disclaimer}}</p>
       </div>
@@ -784,6 +843,27 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   </div>
 </section>
 
+<!-- PREGUNTES -->
+<section class="faq pad" id="preguntes">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow reveal">{{faq_eyebrow}}</span>
+      <h2 data-split>{{faq_title}}</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary>{{faq1_q}}</summary><p>{{faq1_a}}</p></details>
+      <details class="faq-item"><summary>{{faq2_q}}</summary><p>{{faq2_a}}</p></details>
+      <details class="faq-item"><summary>{{faq3_q}}</summary><p>{{faq3_a}}</p></details>
+      <details class="faq-item"><summary>{{faq4_q}}</summary><p>{{faq4_a}}</p></details>
+      <details class="faq-item"><summary>{{faq5_q}}</summary><p>{{faq5_a}}</p></details>
+      <details class="faq-item"><summary>{{faq6_q}}</summary><p>{{faq6_a}}</p></details>
+      <details class="faq-item"><summary>{{faq7_q}}</summary><p>{{faq7_a}}</p></details>
+      <details class="faq-item"><summary>{{faq8_q}}</summary><p>{{faq8_a}}</p></details>
+    </div>
+  </div>
+</section>
+{{faq_jsonld}}
+
 <!-- PATRICIA -->
 <section class="behind pad" id="patricia">
   <div class="wrap behind-grid">
@@ -796,8 +876,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       <h2 data-split>{{pat_title}}</h2>
       <p class="reveal">{{pat_p1}}</p>
       <p class="reveal">{{pat_p2}}</p>
-      <blockquote class="quote reveal">{{pat_quote}}</blockquote>
       <p class="reveal">{{pat_p3}}</p>
+      <blockquote class="quote reveal">{{pat_quote}}</blockquote>
+      <p class="reveal">{{pat_p4}}</p>
       <ol class="timeline reveal">
         <li><b>01</b><div><strong>{{tl1}}</strong><span>{{tl1_s}}</span></div></li>
         <li><b>02</b><div><strong>{{tl2}}</strong><span>{{tl2_s}}</span></div></li>
@@ -828,7 +909,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="rv-row"><div class="rv-track">
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Hace ya dos años que empecé a entrenar con Patri. Desde el minuto uno, me sentí muy a gusto y acompañada. Llevo un entrenamiento personalizado que me permite trabajar a mi ritmo y que se ajusta perfectamente a mis objetivos. Es una profesional de 10, con un trato excepcional.</p><footer>Mar Camacho Sánchez<small>Google</small></footer></article>
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Hace años que entreno con Patri y no cambiaría por nada! He hecho todas las modalidades posibles: presencial, a domicilio y online. Patri ha adaptado los entrenamientos al milímetro, retando y escuchando siempre a mi cuerpo. También agradezco el trato cálido y la comunidad que crea.</p><footer>Núria Domingo Dorado<small>Google</small></footer></article>
-      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Tengo fibromialgia y la atención que me ha dado es 100% personalizada. Gracias a ella he mejorado muchísimo mi calidad de vida, he ganado fuerza y constancia, y sobre todo he recuperado la confianza en mí misma. ¡Entrenadora de 10!</p><footer>Warfy Game<small>Google</small></footer></article>
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Tengo fibromialgia y la atención que me ha dado es 100% personalizada. Gracias a ella he mejorado muchísimo mi calidad de vida, he ganado fuerza y constancia, y sobre todo he recuperado la confianza en mí misma. ¡Entrenadora de 10!</p><footer>Esmeralda Gámez<small>Google</small></footer></article>
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Conocimos a Patricia hace cuatro años porque vino para la recuperación de mi madre y la experiencia fue de diez tanto en el trato profesional como humano. ¡¡¡Una gran profesional!!!</p><footer>Mercedes Hernández Ventura<small>Google</small></footer></article>
     </div></div>
     <div class="rv-row rev"><div class="rv-track">
@@ -838,6 +919,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div></div>
   </div>
   <p class="rv-note">{{rv_note}}</p>
+  <div class="rv-modal" id="rvModal" hidden role="dialog" aria-modal="true" aria-label="{{rv_open}}">
+    <div class="rv-modal-box"><button type="button" class="rv-close" id="rvClose" aria-label="{{rv_close}}">×</button><div id="rvBody"></div></div>
+  </div>
 </section>
 
 <!-- MARQUESINA FINAL -->
@@ -859,7 +943,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <li><a href="mailto:patriciadoradotrainer@gmail.com"><span>patriciadoradotrainer@gmail.com</span><small>Email</small></a></li>
         <li><a href="https://www.instagram.com/moa.salut/" target="_blank" rel="noopener"><span>@moa.salut</span><small>Instagram</small></a></li>
         <li><a href="https://www.instagram.com/patriciadoradotrainer/" target="_blank" rel="noopener"><span>@patriciadoradotrainer</span><small>Instagram</small></a></li>
-        <li><div><span>Martorell (Barcelona)</span><small>{{ct_where}}</small></div></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20del%20Cam%C3%AD%20Vell%20de%20Sant%20Esteve%2031%2C%2008760%20Martorell" target="_blank" rel="noopener"><span>{{ct_address}}</span><small>{{ct_where_lbl}}</small></a></li>
       </ul>
     </div>
     <form class="form reveal" id="contactForm" novalidate>
@@ -878,6 +962,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <option>{{svc5_t}}</option>
           <option>{{svc4_t}}</option>
           <option>{{svc3_t}}</option>
+          <option>{{quiro_t}}</option>
         </select>
       </div>
       <div class="field"><label for="f-msg">{{f_msg}}</label><textarea id="f-msg" name="mensaje" placeholder="{{f_msg_ph}}" required></textarea></div>
@@ -960,7 +1045,26 @@ try {
     document.body.style.overflow = open ? 'hidden' : '';
   }
   menuBtn.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
-  document.querySelectorAll('#mobileMenu a.big').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  // Enlaces internos (también los del menú del móvil): se cierra el menú, se
+  // espera a que la página recupere el scroll y se baja a la sección dejando
+  // sitio para la cabecera
+  function scrollToId(id){
+    var dest = document.getElementById(id);
+    if (!dest) return;
+    var app = document.getElementById('moa-app');
+    var off = document.querySelector('.header').offsetHeight + (app ? (parseFloat(getComputedStyle(app).getPropertyValue('--moa-top')) || 0) : 0);
+    window.scrollTo({top: dest.getBoundingClientRect().top + window.scrollY - off + 1, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    if (a.matches('.wa-float,.btn-wa')) return;
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      if (!id || !document.getElementById(id)) return;
+      e.preventDefault();
+      if (document.body.classList.contains('menu-open')) { setMenu(false); setTimeout(function(){ scrollToId(id); }, 60); }
+      else scrollToId(id);
+    });
+  });
 
   // Titulares palabra a palabra
   document.querySelectorAll('[data-split]').forEach(function(el){
@@ -1018,6 +1122,27 @@ try {
     return {track:track, x:0, dir:+(m.dataset.dir || 1), half:track.scrollWidth / 2};
   });
   document.querySelectorAll('.rv-track').forEach(function(t){ t.insertAdjacentHTML('beforeend', t.innerHTML); });
+
+  // Reseñas: se paran al tocarlas y se abren en grande al pulsar
+  var rvModal = document.getElementById('rvModal'), rvBody = document.getElementById('rvBody'), rvLast = null;
+  document.querySelectorAll('.review').forEach(function(r){ r.setAttribute('tabindex', '0'); r.setAttribute('role', 'button'); });
+  document.querySelectorAll('.rv-row').forEach(function(row){
+    var t;
+    row.addEventListener('touchstart', function(){ clearTimeout(t); row.classList.add('paused'); }, {passive:true});
+    row.addEventListener('touchend', function(){ t = setTimeout(function(){ row.classList.remove('paused'); }, 2500); }, {passive:true});
+  });
+  function openReview(r){
+    rvLast = r;
+    rvBody.innerHTML = r.innerHTML;
+    rvModal.hidden = false;
+    document.getElementById('rvClose').focus();
+  }
+  function closeReview(){ rvModal.hidden = true; if (rvLast) rvLast.focus({preventScroll:true}); }
+  document.querySelector('.reviews').addEventListener('click', function(e){ var r = e.target.closest('.review'); if (r) openReview(r); });
+  document.querySelector('.reviews').addEventListener('keydown', function(e){ var r = e.target.closest('.review'); if (r && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openReview(r); } });
+  document.getElementById('rvClose').addEventListener('click', closeReview);
+  rvModal.addEventListener('click', function(e){ if (e.target === rvModal) closeReview(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !rvModal.hidden) closeReview(); });
   var lastW = window.innerWidth;
   window.addEventListener('resize', function(){
     if (window.innerWidth === lastW) return;

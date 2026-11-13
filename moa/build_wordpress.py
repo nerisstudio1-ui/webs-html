@@ -248,17 +248,7 @@ def scope_js(js, ids):
     # Scroll suave de los enlaces internos, descontando la cabecera
     js = js.rstrip()
     assert js.endswith("})();")
-    js = js[:-5] + """
-  APP.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      var destino = document.getElementById(a.getAttribute('href').slice(1));
-      if (!destino) return;
-      e.preventDefault();
-      var top = destino.getBoundingClientRect().top + window.scrollY - 74 - (parseFloat(getComputedStyle(APP).getPropertyValue('--moa-top')) || 0);
-      window.scrollTo({top: top, behavior: reduce ? 'auto' : 'smooth'});
-    });
-  });
-})();"""
+    # Los enlaces internos ya los gestiona el guion (scrollToId)
     return js
 
 

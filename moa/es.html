@@ -186,7 +186,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .mq-track{display:inline-flex;align-items:center;will-change:transform}
 .mq-item{display:inline-flex;align-items:center;font-family:var(--titulo);font-weight:800;text-transform:uppercase;font-size:clamp(3.6rem,10vw,9rem);line-height:1;letter-spacing:.015em;word-spacing:.08em}
 .mq-item img{height:.62em;width:auto;max-width:none;flex:none;margin:0 .55em}
-.mq-soft{color:var(--arena-2)}
+.mq-soft{color:var(--carbon)}
 .mq-soft .mq-item:nth-child(even){color:var(--violeta)}
 .mq-green{background:var(--verde);color:var(--carbon)}
 .mq-outline .mq-item{color:transparent;-webkit-text-stroke:2px var(--carbon)}
@@ -196,8 +196,8 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .intro-sec{padding:70px 0 130px}
 .intro-grid{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:50px;align-items:center}
 .intro-grid .media{aspect-ratio:4/5}
-.intro-grid .media.a{margin-top:120px;max-width:260px;width:100%}
-.intro-grid .media.b{margin-top:-60px;max-width:280px;width:100%;justify-self:end}
+.intro-grid .media.a{max-width:270px;width:100%}
+.intro-grid .media.b{max-width:270px;width:100%;justify-self:end}
 .intro-copy{text-align:center}
 .intro-copy h2{margin-bottom:1.4rem}
 .intro-copy p{color:var(--gris);font-size:.98rem;margin:0 auto 2rem;max-width:52ch}
@@ -246,7 +246,7 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:nth-child(1){background:var(--violeta);color:var(--crema)}
 .svc:nth-child(2){background:var(--verde)}
 .svc:nth-child(3){background:var(--carbon);color:var(--crema)}
-.svc:nth-child(4){background:var(--arena)}
+.svc:nth-child(4){background:#C9EFD4}
 .svc:nth-child(5){background:#E6D8FD}
 .svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
 .svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem}
@@ -258,6 +258,18 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:hover .shape{transform:translateY(-12px) rotate(-6deg)}
 .services.is-pinned .hs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:74px 0 0}
 .services.is-pinned .hs-track{overflow:visible;scroll-snap-type:none;will-change:transform;padding:0 max(28px,calc((100vw - var(--wrap))/2 + 28px))}
+
+/* Quiromasaje */
+.extra{padding:10px 0 100px;background:var(--crema)}
+.extra-card{position:relative;overflow:hidden;display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center;background:var(--blanco);border:1.5px solid var(--linea);border-radius:28px;padding:40px 44px}
+.extra-card .eyebrow{color:var(--verde);margin-bottom:.6rem}
+.extra-card h3{font-size:2rem;margin-bottom:.8rem}
+.extra-card p{margin:0;color:var(--gris)}
+.extra-card .shape{position:absolute;right:-24px;bottom:-30px;width:130px;opacity:.12;pointer-events:none}
+.extra-side{display:grid;gap:18px;justify-items:start}
+.extra-price{font-size:1rem;line-height:1.6;color:var(--carbon)!important;text-align:left!important}
+.extra-price b{font-family:var(--titulo);font-size:1.5rem;font-weight:800;color:var(--violeta)}
+@media (max-width:760px){.extra-card{grid-template-columns:1fr;gap:22px;padding:30px 24px}}
 
 /* Para quién */
 .who{background:var(--crema)}
@@ -334,6 +346,7 @@ p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(
 .group-prices div{background:var(--crema);border:1px solid var(--linea);border-radius:14px;padding:14px 10px;text-align:center;transition:transform .35s var(--ease),background .35s}
 .group-prices div:hover{transform:translateY(-4px);background:var(--verde)}
 .group-prices b{display:block;font-family:var(--titulo);font-weight:800;font-size:1.6rem;line-height:1.1}
+.group-prices.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .group-prices span{font-size:.76rem;color:var(--gris);line-height:1.3;display:block}
 .price-note{font-size:.84rem;color:var(--gris);margin:16px 14px 0}
 .schedule{background:var(--carbon);color:var(--crema);border-radius:28px;padding:38px 34px;position:sticky;top:100px}
@@ -346,6 +359,19 @@ p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(
 .schedule .others{border-top:1px solid rgba(254,247,229,.16);padding-top:18px;font-size:.88rem;color:rgba(254,247,229,.82)}
 .schedule .others p{margin:0 0 .6em}
 .schedule .btn{margin-top:14px}
+
+/* Preguntas frecuentes */
+.faq{background:var(--crema)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+.faq-list{border-top:1.5px solid var(--carbon)}
+.faq-item{border-bottom:1px solid var(--linea)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 4px;font-family:var(--titulo);font-weight:600;font-size:1.15rem;line-height:1.25}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--arena);font-family:var(--texto);font-weight:500;font-size:1.3rem;transition:transform .3s var(--ease),background .3s}
+.faq-item[open] summary::after{transform:rotate(45deg);background:var(--violeta);color:var(--crema)}
+.faq-item summary:hover{color:var(--violeta)}
+.faq-item p{margin:0;padding:0 50px 22px 4px;color:var(--gris);font-size:.95rem}
+@media (max-width:1020px){.faq-grid{grid-template-columns:minmax(0,1fr);gap:30px}}
 
 /* Patricia */
 .behind{background:var(--arena)}
@@ -387,7 +413,17 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 .rv-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .rv-track{display:flex;gap:20px;width:max-content;animation:rv 60s linear infinite}
 .rv-row.rev .rv-track{animation-direction:reverse;animation-duration:70s}
-.rv-row:hover .rv-track{animation-play-state:paused}
+.rv-row:hover .rv-track,.rv-row.paused .rv-track{animation-play-state:paused}
+.review{cursor:pointer}
+.review:focus-visible{outline:3px solid var(--violeta);outline-offset:3px}
+.rv-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background:rgba(43,45,43,.6)}
+.rv-modal[hidden]{display:none}
+.rv-modal-box{position:relative;max-width:560px;width:100%;max-height:85vh;overflow:auto;background:var(--crema);color:var(--carbon);border-radius:24px;padding:40px 34px 32px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+.rv-modal-box .stars{color:var(--violeta);letter-spacing:.2em;margin-bottom:.8rem}
+.rv-modal-box p{font-size:1.05rem;line-height:1.7;text-align:left!important}
+.rv-modal-box footer{font-weight:600;margin-top:1rem}
+.rv-modal-box footer small{display:block;font-weight:400;color:var(--gris)}
+.rv-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:var(--arena);font-size:1.4rem;line-height:1;cursor:pointer}
 @keyframes rv{to{transform:translateX(calc(-50% - 10px))}}
 .review{width:380px;flex:none;background:var(--arena);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:transform .4s var(--ease),background .4s}
 .review:hover{transform:translateY(-6px) rotate(-.6deg);background:var(--blanco)}
@@ -453,8 +489,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   .hero-panel{padding:70px 28px 90px}
   .intro-grid{grid-template-columns:1fr 1fr;gap:20px}
   .intro-copy{grid-column:1/-1;grid-row:1}
-  .intro-grid .media.a{margin-top:30px;max-width:none}
-  .intro-grid .media.b{margin-top:80px;max-width:none}
+  .intro-grid .media.a,.intro-grid .media.b{margin-top:0;max-width:none}
   .letters,.stats-grid{grid-template-columns:1fr}
   .letters{gap:50px}
   .stats-grid{grid-template-columns:1fr 1fr;row-gap:40px}
@@ -563,7 +598,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div>
   </div>
   <div class="badge" aria-hidden="true">
-    <svg class="ring" viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#circ">PASO A PASO · A TU RITMO · PASO A PASO · A TU RITMO ·</textPath></text></svg>
+    <svg class="ring" viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text textLength="286" lengthAdjust="spacing"><textPath href="#circ" textLength="286" lengthAdjust="spacing">PASO A PASO · PAS A PAS · STEP BY STEP ·</textPath></text></svg>
     <img src="assets/logos-moa/moa-simbolo-violeta.svg" alt="" width="40" height="42">
   </div>
 </section>
@@ -647,6 +682,24 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   </div>
 </section>
 
+<!-- QUIROMASSATGE -->
+<section class="extra" aria-labelledby="quiro-title">
+  <div class="wrap">
+    <div class="extra-card reveal">
+      <img class="shape" src="assets/logos-moa/moa-simbolo-verde.svg" alt="">
+      <div>
+        <span class="eyebrow">Y además</span>
+        <h3 id="quiro-title">Quiromasaje</h3>
+        <p>Un masaje para complementar el entrenamiento: liberar tensiones, recuperarte después del esfuerzo y cuidar tu cuerpo. Para alumnos de MOA y para cualquier persona que lo necesite.</p>
+      </div>
+      <div class="extra-side">
+        <p class="extra-price">Sesión de 1 hora · <b>40 €</b> alumnos de MOA · <b>45 €</b> resto</p>
+        <a href="#contacte" class="link-arrow" data-servicio="Quiromasaje">Pide información <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PER A QUI -->
 <section class="who pad" id="per-a-qui">
   <div class="wrap who-grid">
@@ -678,9 +731,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <!-- XIFRES -->
 <section class="stats" aria-label="MOA en cifras">
   <div class="wrap stats-grid">
-    <div class="stat reveal"><b data-count="10" data-prefix="+">+10</b><span>años como entrenadora personal</span></div>
-    <div class="stat reveal" style="--d:.08s"><b data-count="5">5</b><span>formas de entrenar</span></div>
-    <div class="stat reveal" style="--d:.16s"><b data-count="3">3</b><span>formatos: presencial, a domicilio y online</span></div>
+    <div class="stat reveal"><b data-count="10" data-prefix="+" data-suffix="">+10</b><span>años como entrenadora personal</span></div>
+    <div class="stat reveal" style="--d:.08s"><b data-count="70" data-prefix="+" data-suffix="">+70</b><span>personas entrenando en MOA</span></div>
+    <div class="stat reveal" style="--d:.16s"><b data-count="3">3</b><span>formatos: presencial, online y a domicilio</span></div>
     <div class="stat reveal" style="--d:.24s"><b data-count="100" data-suffix="%">100%</b><span>entrenamiento adaptado a ti</span></div>
   </div>
 </section>
@@ -761,6 +814,12 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <div class="price-row"><div><h3>Entrenamiento personal por app</h3><small>Incluye planificación individualizada, seguimiento y ajustes según tu evolución.</small></div><div class="amount"><small style="margin:0 0 4px">desde</small>65 €<small>/ mes</small></div></div>
           <div class="price-row"><div><h3>Entrenamiento personal online</h3><small>Plan individualizado y seguimiento a distancia.</small></div><div class="amount">35 €<small>/ sesión</small></div></div>
           <div class="price-row"><div><h3>Entrenamiento a domicilio</h3><small>Precio estimado según el tiempo de desplazamiento.</small></div><div class="amount"><small style="margin:0 0 4px">desde</small>35 €<small>/ sesión</small></div></div>
+          <div class="price-row block"><div><h3>Quiromasaje</h3><small>Sesión de 1 hora.</small></div>
+            <div class="group-prices two">
+              <div><b>40 €</b><span>alumnos de MOA</span></div>
+              <div><b>45 €</b><span>resto de personas</span></div>
+            </div>
+          </div>
         </div>
         <p class="price-note">Tarifas sujetas a posibles cambios.</p>
       </div>
@@ -784,6 +843,27 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
   </div>
 </section>
 
+<!-- PREGUNTES -->
+<section class="faq pad" id="preguntes">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow reveal">Dudas</span>
+      <h2 data-split>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary>¿Necesito estar en forma para empezar?</summary><p>Para nada. Partimos de donde estás tú hoy, tanto si hace años que no entrenas como si no lo has hecho nunca.</p></details>
+      <details class="faq-item"><summary>¿Puedo hacer una sesión de prueba?</summary><p>En el entrenamiento grupal, sí: la primera clase es gratuita. En el entrenamiento personal empezamos con una entrevista y unas pruebas de valoración para conocer tu punto de partida. Es una sesión completa y tiene el mismo precio que una sesión normal. A partir de ella diseñamos tu entrenamiento.</p></details>
+      <details class="faq-item"><summary>¿Cuántas personas hay en el entrenamiento personal compartido?</summary><p>Son grupos reducidos. Cada uno tiene su propio entrenamiento, adaptado a sus objetivos, aunque compartáis espacio y horario.</p></details>
+      <details class="faq-item"><summary>¿Qué tengo que traer?</summary><p>Ropa cómoda, calzado deportivo, una botella de agua y una toalla. El material lo ponemos nosotros.</p></details>
+      <details class="faq-item"><summary>¿Puedo entrenar si tengo una lesión o un problema de salud?</summary><p>Sí, y es una de las cosas que más trabajamos. Antes de empezar valoramos tu caso y adaptamos cada sesión a tu situación.</p></details>
+      <details class="faq-item"><summary>¿Cómo se paga?</summary><p>Por transferencia o en efectivo, a principios de cada mes.</p></details>
+      <details class="faq-item"><summary>¿Y si un día no puedo venir?</summary><p>Avísanos en cuanto lo sepas y buscamos un día para recuperar la sesión. Como las sesiones se pagan a principios de mes, puedes recuperarla dentro de ese mismo mes. Si hay alguna situación especial, la valoramos contigo.</p></details>
+      <details class="faq-item"><summary>¿A qué zonas vais a domicilio?</summary><p>Martorell, Sant Andreu de la Barca, Abrera, Sant Esteve Sesrovires y Gelida, según disponibilidad y horario. Si estás en otra zona, pregúntanos.</p></details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Necesito estar en forma para empezar?", "acceptedAnswer": {"@type": "Answer", "text": "Para nada. Partimos de donde estás tú hoy, tanto si hace años que no entrenas como si no lo has hecho nunca."}}, {"@type": "Question", "name": "¿Puedo hacer una sesión de prueba?", "acceptedAnswer": {"@type": "Answer", "text": "En el entrenamiento grupal, sí: la primera clase es gratuita. En el entrenamiento personal empezamos con una entrevista y unas pruebas de valoración para conocer tu punto de partida. Es una sesión completa y tiene el mismo precio que una sesión normal. A partir de ella diseñamos tu entrenamiento."}}, {"@type": "Question", "name": "¿Cuántas personas hay en el entrenamiento personal compartido?", "acceptedAnswer": {"@type": "Answer", "text": "Son grupos reducidos. Cada uno tiene su propio entrenamiento, adaptado a sus objetivos, aunque compartáis espacio y horario."}}, {"@type": "Question", "name": "¿Qué tengo que traer?", "acceptedAnswer": {"@type": "Answer", "text": "Ropa cómoda, calzado deportivo, una botella de agua y una toalla. El material lo ponemos nosotros."}}, {"@type": "Question", "name": "¿Puedo entrenar si tengo una lesión o un problema de salud?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, y es una de las cosas que más trabajamos. Antes de empezar valoramos tu caso y adaptamos cada sesión a tu situación."}}, {"@type": "Question", "name": "¿Cómo se paga?", "acceptedAnswer": {"@type": "Answer", "text": "Por transferencia o en efectivo, a principios de cada mes."}}, {"@type": "Question", "name": "¿Y si un día no puedo venir?", "acceptedAnswer": {"@type": "Answer", "text": "Avísanos en cuanto lo sepas y buscamos un día para recuperar la sesión. Como las sesiones se pagan a principios de mes, puedes recuperarla dentro de ese mismo mes. Si hay alguna situación especial, la valoramos contigo."}}, {"@type": "Question", "name": "¿A qué zonas vais a domicilio?", "acceptedAnswer": {"@type": "Answer", "text": "Martorell, Sant Andreu de la Barca, Abrera, Sant Esteve Sesrovires y Gelida, según disponibilidad y horario. Si estás en otra zona, pregúntanos."}}]}</script>
+
 <!-- PATRICIA -->
 <section class="behind pad" id="patricia">
   <div class="wrap behind-grid">
@@ -794,10 +874,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="behind-copy">
       <span class="eyebrow reveal">Quién está detrás</span>
       <h2 data-split>Soy Patricia Dorado.</h2>
-      <p class="reveal">El deporte ha formado parte de mi vida desde que era muy pequeña. Empecé con el judo y la natación a los 5 años y, a los 7, con el balonmano, hasta conseguir el cinturón negro de judo. También me apasiona todo lo relacionado con la naturaleza y la aventura: senderismo, escalada, barranquismo, submarinismo y trail running.</p>
-      <p class="reveal">Siempre he tenido la necesidad de ayudar a las personas a estar bien, no solo físicamente, sino en todas sus facetas. En la carrera descubrí que el ejercicio podía ser mucho más que mejorar la condición física: podía ayudar a alguien a recuperarse de una lesión, recuperar fuerza y movilidad y, en definitiva, <strong>volver a sentirse capaz</strong>.</p>
-      <blockquote class="quote reveal">Porque cada persona es un mundo. Y eso es lo que más me gusta de mi trabajo: descubrir qué necesita cada persona y adaptar el entrenamiento para que tenga sentido para ella.</blockquote>
-      <p class="reveal">Llevo más de 10 años como entrenadora personal y también soy quiromasajista. MOA es el paso que tardé un poco en dar: mi propio proyecto. Entrenemos como entrenemos, hay algo que no cambia: me importa la persona que hay detrás del entrenamiento.</p>
+      <p class="reveal">El deporte forma parte de mi vida desde muy pequeña. Empecé con judo y natación a los 5 años, y a los 7 llegó el balonmano. También me apasiona todo lo relacionado con la naturaleza y la aventura: senderismo, escalada, barranquismo, submarinismo, esquí y trail running.</p>
+      <p class="reveal">De alguna manera, a los 15 años ya sabía que quería dedicarme a algo relacionado con el deporte o el ejercicio físico, aunque todavía no tenía claro qué camino tomaría. Fue al entrar en el INEFC cuando empezó a picarme la curiosidad por cómo el ejercicio puede ayudar a las personas a encontrarse mejor.</p>
+      <p class="reveal">Durante la carrera descubrí que el ejercicio podía ser mucho más que mejorar la condición física. Podía ayudar a alguien a recuperarse de una lesión, a afrontar mejor una enfermedad, a ganar fuerza y movilidad, a recuperar las ganas de moverse y, en definitiva, a <strong>volverse a sentir capaz</strong>.</p>
+      <blockquote class="quote reveal">Cada persona es un mundo, y eso es lo que más me gusta de mi trabajo: descubrir qué necesita cada una y adaptar el entrenamiento a su medida.</blockquote>
+      <p class="reveal">Llevo más de 10 años como entrenadora personal y ahora también soy quiromasajista. MOA es el siguiente paso: mi propio proyecto. Un espacio donde cada persona pueda moverse a su ritmo, paso a paso hacia sus objetivos.</p>
       <ol class="timeline reveal">
         <li><b>01</b><div><strong>CFGS en Animación de Actividades Físico-Deportivas</strong><span>Mientras daba clases colectivas en distintos centros.</span></div></li>
         <li><b>02</b><div><strong>Grado en Ciencias de la Actividad Física y el Deporte, INEFC Barcelona</strong><span>Compaginado con el trabajo.</span></div></li>
@@ -828,7 +909,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="rv-row"><div class="rv-track">
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Hace ya dos años que empecé a entrenar con Patri. Desde el minuto uno, me sentí muy a gusto y acompañada. Llevo un entrenamiento personalizado que me permite trabajar a mi ritmo y que se ajusta perfectamente a mis objetivos. Es una profesional de 10, con un trato excepcional.</p><footer>Mar Camacho Sánchez<small>Google</small></footer></article>
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Hace años que entreno con Patri y no cambiaría por nada! He hecho todas las modalidades posibles: presencial, a domicilio y online. Patri ha adaptado los entrenamientos al milímetro, retando y escuchando siempre a mi cuerpo. También agradezco el trato cálido y la comunidad que crea.</p><footer>Núria Domingo Dorado<small>Google</small></footer></article>
-      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Tengo fibromialgia y la atención que me ha dado es 100% personalizada. Gracias a ella he mejorado muchísimo mi calidad de vida, he ganado fuerza y constancia, y sobre todo he recuperado la confianza en mí misma. ¡Entrenadora de 10!</p><footer>Warfy Game<small>Google</small></footer></article>
+      <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Tengo fibromialgia y la atención que me ha dado es 100% personalizada. Gracias a ella he mejorado muchísimo mi calidad de vida, he ganado fuerza y constancia, y sobre todo he recuperado la confianza en mí misma. ¡Entrenadora de 10!</p><footer>Esmeralda Gámez<small>Google</small></footer></article>
       <article class="review"><div class="stars" aria-label="5/5">★★★★★</div><p>Conocimos a Patricia hace cuatro años porque vino para la recuperación de mi madre y la experiencia fue de diez tanto en el trato profesional como humano. ¡¡¡Una gran profesional!!!</p><footer>Mercedes Hernández Ventura<small>Google</small></footer></article>
     </div></div>
     <div class="rv-row rev"><div class="rv-track">
@@ -838,6 +919,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     </div></div>
   </div>
   <p class="rv-note">Reseñas de Google.</p>
+  <div class="rv-modal" id="rvModal" hidden role="dialog" aria-modal="true" aria-label="Leer la reseña completa">
+    <div class="rv-modal-box"><button type="button" class="rv-close" id="rvClose" aria-label="Cerrar">×</button><div id="rvBody"></div></div>
+  </div>
 </section>
 
 <!-- MARQUESINA FINAL -->
@@ -859,7 +943,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <li><a href="mailto:patriciadoradotrainer@gmail.com"><span>patriciadoradotrainer@gmail.com</span><small>Email</small></a></li>
         <li><a href="https://www.instagram.com/moa.salut/" target="_blank" rel="noopener"><span>@moa.salut</span><small>Instagram</small></a></li>
         <li><a href="https://www.instagram.com/patriciadoradotrainer/" target="_blank" rel="noopener"><span>@patriciadoradotrainer</span><small>Instagram</small></a></li>
-        <li><div><span>Martorell (Barcelona)</span><small>Presencial, a domicilio y online</small></div></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20del%20Cam%C3%AD%20Vell%20de%20Sant%20Esteve%2031%2C%2008760%20Martorell" target="_blank" rel="noopener"><span>Carrer del Camí Vell de Sant Esteve, 31, 08760 Martorell</span><small>Dónde entrenamos · ver en el mapa</small></a></li>
       </ul>
     </div>
     <form class="form reveal" id="contactForm" novalidate>
@@ -878,6 +962,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
           <option>Entrenamiento personal por app</option>
           <option>Entrenamiento personal online</option>
           <option>Entrenamiento a domicilio</option>
+          <option>Quiromasaje</option>
         </select>
       </div>
       <div class="field"><label for="f-msg">¿Qué te gustaría conseguir?</label><textarea id="f-msg" name="mensaje" placeholder="Tus objetivos, cómo te mueves ahora, tu disponibilidad o cualquier cosa a tener en cuenta." required></textarea></div>
@@ -916,7 +1001,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <script>
 (function(){
 try {
-  var T = {"menuOpen": "Abrir menú", "menuClose": "Cerrar menú", "waDefault": "Hola, me gustaría información sobre los entrenamientos de MOA.", "quizNext": "Siguiente", "quizResult": "Ver resultado", "services": {"compartido": {"t": "Entrenamiento personal compartido", "d": "Atención individual y un plan para ti, en grupos muy reducidos y con buen ambiente."}, "grupal": {"t": "Entrenamiento grupal", "d": "Entrenamos juntos y cada persona adapta los ejercicios a su nivel. Ideal para coger constancia."}, "domicilio": {"t": "Entrenamiento a domicilio", "d": "Llevamos el entrenamiento a tu casa, adaptado a cómo te encuentras y al espacio que tengas."}, "online": {"t": "Entrenamiento personal online", "d": "Un plan individualizado con seguimiento a distancia, que evoluciona contigo."}, "app": {"t": "Entrenamiento personal por app", "d": "Entrenas cuando y donde quieras, con tus sesiones explicadas paso a paso y seguimiento de tu evolución."}}, "labels": {"como": {"grupo": "en grupo", "personal": "con entrenamiento personalizado", "solo": "por mi cuenta con un plan"}, "donde": {"martorell": "presencial en Martorell", "casa": "en casa", "distancia": "a distancia"}, "nota": {"empezar": "quiero empezar o llevo tiempo sin entrenar", "salud": "vengo de una lesión o proceso de salud", "tiempo": "tengo poco tiempo", "nada": "nada en especial"}}, "quizWa": "Hola, he hecho el test de la web de MOA y me sale \"{s}\". Me gustaría entrenar {como}, {donde}, y {nota}. ¿Lo hablamos?", "errFields": "Escribe tu nombre y cuéntanos un poco qué buscas.", "errConsent": "Marca la casilla para poder enviar la consulta.", "sending": "Enviando…", "errSend": "No se ha podido enviar. Te abrimos el correo con el mensaje escrito.", "msgHello": "Hola, soy {n}.", "msgInterest": "Me interesa:", "msgPhone": "Mi teléfono:", "mailSubject": "Consulta desde la web de MOA:"};
+  var T = {"close": "Cerrar", "menuOpen": "Abrir menú", "menuClose": "Cerrar menú", "waDefault": "Hola, me gustaría información sobre los entrenamientos de MOA.", "quizNext": "Siguiente", "quizResult": "Ver resultado", "services": {"compartido": {"t": "Entrenamiento personal compartido", "d": "Atención individual y un plan para ti, en grupos muy reducidos y con buen ambiente."}, "grupal": {"t": "Entrenamiento grupal", "d": "Entrenamos juntos y cada persona adapta los ejercicios a su nivel. Ideal para coger constancia."}, "domicilio": {"t": "Entrenamiento a domicilio", "d": "Llevamos el entrenamiento a tu casa, adaptado a cómo te encuentras y al espacio que tengas."}, "online": {"t": "Entrenamiento personal online", "d": "Un plan individualizado con seguimiento a distancia, que evoluciona contigo."}, "app": {"t": "Entrenamiento personal por app", "d": "Entrenas cuando y donde quieras, con tus sesiones explicadas paso a paso y seguimiento de tu evolución."}}, "labels": {"como": {"grupo": "en grupo", "personal": "con entrenamiento personalizado", "solo": "por mi cuenta con un plan"}, "donde": {"martorell": "presencial en Martorell", "casa": "en casa", "distancia": "a distancia"}, "nota": {"empezar": "quiero empezar o llevo tiempo sin entrenar", "salud": "vengo de una lesión o proceso de salud", "tiempo": "tengo poco tiempo", "nada": "nada en especial"}}, "quizWa": "Hola, he hecho el test de la web de MOA y me sale \"{s}\". Me gustaría entrenar {como}, {donde}, y {nota}. ¿Lo hablamos?", "errFields": "Escribe tu nombre y cuéntanos un poco qué buscas.", "errConsent": "Marca la casilla para poder enviar la consulta.", "sending": "Enviando…", "errSend": "No se ha podido enviar. Te abrimos el correo con el mensaje escrito.", "msgHello": "Hola, soy {n}.", "msgInterest": "Me interesa:", "msgPhone": "Mi teléfono:", "mailSubject": "Consulta desde la web de MOA:"};
   // El número no aparece en la página: se monta solo al pulsar un botón de
   // WhatsApp, para que no lo encuentren los programas que buscan teléfonos
   var PHONE = ['34', '677', '85', '12', '11'].join('');
@@ -960,7 +1045,26 @@ try {
     document.body.style.overflow = open ? 'hidden' : '';
   }
   menuBtn.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
-  document.querySelectorAll('#mobileMenu a.big').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  // Enlaces internos (también los del menú del móvil): se cierra el menú, se
+  // espera a que la página recupere el scroll y se baja a la sección dejando
+  // sitio para la cabecera
+  function scrollToId(id){
+    var dest = document.getElementById(id);
+    if (!dest) return;
+    var app = document.getElementById('moa-app');
+    var off = document.querySelector('.header').offsetHeight + (app ? (parseFloat(getComputedStyle(app).getPropertyValue('--moa-top')) || 0) : 0);
+    window.scrollTo({top: dest.getBoundingClientRect().top + window.scrollY - off + 1, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    if (a.matches('.wa-float,.btn-wa')) return;
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      if (!id || !document.getElementById(id)) return;
+      e.preventDefault();
+      if (document.body.classList.contains('menu-open')) { setMenu(false); setTimeout(function(){ scrollToId(id); }, 60); }
+      else scrollToId(id);
+    });
+  });
 
   // Titulares palabra a palabra
   document.querySelectorAll('[data-split]').forEach(function(el){
@@ -1018,6 +1122,27 @@ try {
     return {track:track, x:0, dir:+(m.dataset.dir || 1), half:track.scrollWidth / 2};
   });
   document.querySelectorAll('.rv-track').forEach(function(t){ t.insertAdjacentHTML('beforeend', t.innerHTML); });
+
+  // Reseñas: se paran al tocarlas y se abren en grande al pulsar
+  var rvModal = document.getElementById('rvModal'), rvBody = document.getElementById('rvBody'), rvLast = null;
+  document.querySelectorAll('.review').forEach(function(r){ r.setAttribute('tabindex', '0'); r.setAttribute('role', 'button'); });
+  document.querySelectorAll('.rv-row').forEach(function(row){
+    var t;
+    row.addEventListener('touchstart', function(){ clearTimeout(t); row.classList.add('paused'); }, {passive:true});
+    row.addEventListener('touchend', function(){ t = setTimeout(function(){ row.classList.remove('paused'); }, 2500); }, {passive:true});
+  });
+  function openReview(r){
+    rvLast = r;
+    rvBody.innerHTML = r.innerHTML;
+    rvModal.hidden = false;
+    document.getElementById('rvClose').focus();
+  }
+  function closeReview(){ rvModal.hidden = true; if (rvLast) rvLast.focus({preventScroll:true}); }
+  document.querySelector('.reviews').addEventListener('click', function(e){ var r = e.target.closest('.review'); if (r) openReview(r); });
+  document.querySelector('.reviews').addEventListener('keydown', function(e){ var r = e.target.closest('.review'); if (r && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openReview(r); } });
+  document.getElementById('rvClose').addEventListener('click', closeReview);
+  rvModal.addEventListener('click', function(e){ if (e.target === rvModal) closeReview(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !rvModal.hidden) closeReview(); });
   var lastW = window.innerWidth;
   window.addEventListener('resize', function(){
     if (window.innerWidth === lastW) return;

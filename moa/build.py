@@ -28,6 +28,19 @@ def lang_switch(current):
     return '<nav class="langs" aria-label="Idioma / Language">' + "".join(links) + "</nav>"
 
 
+def faq_jsonld(t):
+    """Datos estructurados de las preguntas frecuentes, para que Google las muestre."""
+    items = []
+    i = 1
+    while "faq%d_q" % i in t:
+        items.append({"@type": "Question", "name": t["faq%d_q" % i],
+                      "acceptedAnswer": {"@type": "Answer", "text": t["faq%d_a" % i]}})
+        i += 1
+    data = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": items}
+    return ('<script type="application/ld+json">' +
+            json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>")
+
+
 def read_template():
     return (ROOT / "src" / "template.html").read_text(encoding="utf-8")
 
@@ -39,6 +52,7 @@ def build():
         values = dict(TEXT[lang])
         values["lang"] = lang
         values["lang_switch"] = lang_switch(lang)
+        values["faq_jsonld"] = faq_jsonld(values)
         # </ escapado para que ningún texto pueda cerrar el <script>
         values["js_i18n"] = json.dumps(values.pop("js"), ensure_ascii=False).replace("</", "<\\/")
         missing = keys - values.keys()
@@ -103,6 +117,9 @@ MULTI_JS = r"""
       Object.keys(map).forEach(function(a){ el.setAttribute(a, map[a][lang]); });
     });
     splits.forEach(splitWords);
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      el.textContent = (el.dataset.prefix || '') + el.dataset.count + (el.dataset.suffix || '');
+    });
     document.querySelectorAll('[data-setlang]').forEach(function(a){
       if (a.getAttribute('data-setlang') === lang) a.setAttribute('aria-current', 'true');
       else a.removeAttribute('aria-current');
@@ -147,6 +164,7 @@ def build_multi(template):
     head = re.sub(r"\{\{(\w+)\}\}", lambda m: ca[m.group(1)], head)
 
     body = body.replace("{{lang_switch}}", multi_switch())
+    body = body.replace("{{faq_jsonld}}", faq_jsonld(ca))
     data = {l: {"t": vals[l], "js": TEXT[l]["js"]} for l in LANGS}
     body = body.replace("var T = {{js_i18n}};",
                         "var I18N = " + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") +
