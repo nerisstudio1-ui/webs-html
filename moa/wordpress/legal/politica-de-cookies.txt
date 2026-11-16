@@ -1,0 +1,68 @@
+<!-- MOA · politica-de-cookies. Generado con build_legal.py: los datos se cambian en src/legal/textos.py -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+#moa-legal{max-width:760px;margin:0 auto;padding:40px 20px 80px;font-family:Montserrat,system-ui,sans-serif;font-size:16px;line-height:1.7;color:#2B2D2B;text-align:left}
+#moa-legal h1{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:2.4rem;line-height:1.05;text-transform:uppercase;margin:0 0 1.5rem;color:#2B2D2B}
+#moa-legal h2{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.25rem;margin:2rem 0 .6rem;color:#2B2D2B}
+#moa-legal p,#moa-legal li{margin:0 0 .8em}
+#moa-legal ul{padding-left:1.2em}
+#moa-legal a{color:#9242F3}
+#moa-legal .langs{display:flex;gap:6px;margin:0 0 2rem}
+#moa-legal .langs a{padding:.35em .7em;border-radius:6px;border:1px solid #E6E6E3;text-decoration:none;font-weight:600;font-size:.8rem;color:#2B2D2B}
+#moa-legal .langs a.on{background:#9242F3;border-color:#9242F3;color:#fff}
+#moa-legal .falta{background:#FFF3A3;padding:0 .3em;border-radius:3px;font-weight:600}
+#moa-legal [data-lang]{display:none}
+#moa-legal [data-lang].on{display:block}
+</style>
+<div id="moa-legal"><nav class="langs"><a href="#" data-set="ca">CA</a><a href="#" data-set="es">ES</a><a href="#" data-set="en">EN</a></nav><section data-lang="ca" lang="ca" class="on"><h1>Política de cookies</h1>
+<p>Darrera actualització: noviembre de 2026.</p>
+<h2>1. Què són les galetes</h2>
+<p>Les galetes (cookies) són petits fitxers que un web desa al teu navegador per recordar informació sobre la teva visita. Tecnologies semblants, com l’emmagatzematge local del navegador, es regeixen per les mateixes normes.</p>
+<h2>2. Què fa servir aquest web</h2>
+<ul>
+<li><strong>Tècniques i de preferències (pròpies):</strong> el lloc desa al teu navegador l’idioma que tries (català, castellà o anglès) per mostrar-te’l a la propera visita. Són necessàries i no requereixen consentiment.</li>
+<li><strong>Les del mateix WordPress i de l’allotjament:</strong> poden instal·lar galetes tècniques per al funcionament i la seguretat del lloc.</li>
+<li><strong>De tercers (Instagram / Meta):</strong> el web mostra vídeos d’Instagram. En carregar-los, Instagram pot instal·lar galetes pròpies, incloses d’anàlisi o publicitat, que es regeixen per la seva política: privacycenter.instagram.com.</li>
+<li><strong>Google Fonts:</strong> les tipografies es carreguen des de servidors de Google, que rep la teva adreça IP. No instal·la galetes.</li>
+</ul>
+<h2>3. Com gestionar-les</h2>
+<p>Les galetes que no són tècniques només s’instal·len amb el teu consentiment, que pots donar o retirar en qualsevol moment des de l’avís de galetes del web. També les pots bloquejar o esborrar des de la configuració del navegador (Chrome, Safari, Firefox, Edge…), tot i que alguna part del web podria deixar de funcionar.</p>
+<h2>4. Més informació</h2>
+<p>Si tens dubtes, escriu-nos a patriciadoradotrainer@gmail.com. Per saber com tractem les teves dades, consulta la <a href="/politica-de-privacidad/">política de privacitat</a>.</p>
+</section><section data-lang="es" lang="es"><h1>Política de cookies</h1>
+<p>Última actualización: noviembre de 2026.</p>
+<h2>1. Qué son las cookies</h2>
+<p>Las cookies son pequeños archivos que una web guarda en tu navegador para recordar información sobre tu visita. Tecnologías parecidas, como el almacenamiento local del navegador, se rigen por las mismas normas.</p>
+<h2>2. Qué usa esta web</h2>
+<ul>
+<li><strong>Técnicas y de preferencias (propias):</strong> el sitio guarda en tu navegador el idioma que eliges (catalán, castellano o inglés) para mostrártelo en tu próxima visita. Son necesarias y no requieren consentimiento.</li>
+<li><strong>Las del propio WordPress y del alojamiento:</strong> pueden instalar cookies técnicas para el funcionamiento y la seguridad del sitio.</li>
+<li><strong>De terceros (Instagram / Meta):</strong> la web muestra vídeos de Instagram. Al cargarlos, Instagram puede instalar cookies propias, incluidas de análisis o publicidad, que se rigen por su política: privacycenter.instagram.com.</li>
+<li><strong>Google Fonts:</strong> las tipografías se cargan desde servidores de Google, que recibe tu dirección IP. No instala cookies.</li>
+</ul>
+<h2>3. Cómo gestionarlas</h2>
+<p>Las cookies que no son técnicas solo se instalan con tu consentimiento, que puedes dar o retirar en cualquier momento desde el aviso de cookies de la web. También puedes bloquearlas o borrarlas desde la configuración de tu navegador (Chrome, Safari, Firefox, Edge…), aunque alguna parte de la web podría dejar de funcionar.</p>
+<h2>4. Más información</h2>
+<p>Si tienes dudas, escríbenos a patriciadoradotrainer@gmail.com. Para saber cómo tratamos tus datos, consulta la <a href="/politica-de-privacidad/">política de privacidad</a>.</p>
+</section><section data-lang="en" lang="en"><h1>Cookie policy</h1>
+<p>Last updated: noviembre de 2026.</p>
+<h2>1. What cookies are</h2>
+<p>Cookies are small files that a website stores in your browser to remember information about your visit. Similar technologies, such as the browser’s local storage, follow the same rules.</p>
+<h2>2. What this website uses</h2>
+<ul>
+<li><strong>Technical and preference cookies (our own):</strong> the site stores the language you choose (Catalan, Spanish or English) in your browser to show it on your next visit. They are necessary and do not require consent.</li>
+<li><strong>WordPress and hosting cookies:</strong> may set technical cookies for the site to work and stay secure.</li>
+<li><strong>Third-party cookies (Instagram / Meta):</strong> the website shows Instagram videos. When they load, Instagram may set its own cookies, including analytics or advertising cookies, governed by its policy: privacycenter.instagram.com.</li>
+<li><strong>Google Fonts:</strong> fonts are loaded from Google’s servers, which receive your IP address. No cookies are set.</li>
+</ul>
+<h2>3. How to manage them</h2>
+<p>Non-technical cookies are only set with your consent, which you can give or withdraw at any time from the website’s cookie banner. You can also block or delete them in your browser settings (Chrome, Safari, Firefox, Edge…), although some parts of the website may stop working.</p>
+<h2>4. More information</h2>
+<p>If you have any questions, write to us at patriciadoradotrainer@gmail.com. To learn how we handle your data, see our <a href="/politica-de-privacidad/">privacy policy</a>.</p>
+</section></div>
+<script>(function(){var r=document.getElementById('moa-legal');if(!r)return;
+function set(l){r.querySelectorAll('[data-lang]').forEach(function(s){s.classList.toggle('on',s.dataset.lang===l)});
+r.querySelectorAll('.langs a').forEach(function(a){a.classList.toggle('on',a.dataset.set===l)});}
+var l='ca';try{l=localStorage.getItem('moa-lang')||l}catch(e){}
+var q=(location.search.match(/[?&]lang=(ca|es|en)/)||[])[1];if(q)l=q;set(l);
+r.querySelectorAll('.langs a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();set(a.dataset.set);try{localStorage.setItem('moa-lang',a.dataset.set)}catch(x){}})});})();</script>

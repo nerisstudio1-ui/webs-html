@@ -86,3 +86,19 @@ y se vuelve a pegar el archivo del idioma que haya cambiado (sustituyendo todo e
 3. Pulsar el botón **Activate Form**.
 
 A partir de ahí cada consulta llega sola al correo, con el nombre, el teléfono, el servicio y el mensaje. Si un envío fallara, la web abre el correo del visitante con el mensaje ya escrito, para que no se pierda.
+
+## Textos legales
+
+En `wordpress/legal/` hay tres archivos, uno por página. Cada uno lleva los tres idiomas con un selector CA · ES · EN arriba, así que se crea **una sola página por texto**:
+
+| Archivo | Página de WordPress (slug) |
+|---|---|
+| `aviso-legal.txt` | `aviso-legal` |
+| `politica-de-privacidad.txt` | `politica-de-privacidad` |
+| `politica-de-cookies.txt` | `politica-de-cookies` |
+
+Se pegan igual que la web, en un bloque **HTML personalizado**. Los slugs tienen que ser exactamente esos, porque la casilla del formulario y el pie de la web enlazan a ellos.
+
+Los datos que faltan (titular, NIF, dirección, registro profesional y dominio) salen marcados en amarillo. Para rellenarlos se escriben en `src/legal/textos.py` (en `DATOS`) y se ejecuta `python3 build_legal.py`, o se cambian a mano en WordPress buscando los recuadros amarillos.
+
+Son una plantilla para una actividad como esta; conviene que los revise una asesoría. La web carga vídeos de Instagram, que instalan cookies de terceros: hace falta un banner de cookies (Complianz o CookieYes) configurado en WordPress.
