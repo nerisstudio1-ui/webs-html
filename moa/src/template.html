@@ -254,14 +254,14 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:nth-child(3){background:var(--carbon);color:var(--crema)}
 .svc:nth-child(4){background:#C9EFD4}
 .svc:nth-child(5){background:#E6D8FD}
-.svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
-.svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem;min-height:3em;display:flex;align-items:flex-end}
+.svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto;min-height:150px}
+.svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem;min-height:3em}
 .svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem;min-height:7em}
 .svc .price{font-family:var(--titulo);font-weight:700;font-size:1.5rem;margin-bottom:1.3rem}
 .svc .price small{font-family:var(--texto);font-weight:500;font-size:.78rem;opacity:.8}
 .svc .link-arrow{align-self:flex-start}
-.svc .shape{position:absolute;right:-30px;top:-30px;width:150px;opacity:.14;transition:transform .8s var(--ease)}
-.svc:hover .shape{transform:translateY(-12px) rotate(-6deg)}
+.svc .shape{position:absolute;right:30px;top:32px;width:58px;opacity:.22;pointer-events:none}
+
 .services.is-pinned .hs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:74px 0 0}
 .services.is-pinned .hs-track{overflow:visible;scroll-snap-type:none;will-change:transform;padding:0 max(28px,calc((100vw - var(--wrap))/2 + 28px))}
 
@@ -294,7 +294,7 @@ p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(
 .who-list li,.timeline span,.quote{text-align:justify;-webkit-hyphens:auto;hyphens:auto}
 .hero-panel p,.intro-copy p,.how-head p{text-align-last:center}
 /* Frases cortas: justificadas dejarían huecos enormes entre palabras */
-.letter p,.step p,.svc p,.price-row small,.stat span,.schedule p,.review p,.who-list li,.timeline span,.ig-video figcaption{text-align:left!important}
+.letter p,.step p,.svc p,.extra-card p,.price-row small,.stat span,.schedule p,.review p,.who-list li,.timeline span,.ig-video figcaption{text-align:left!important}
 
 /* Galería */
 .gallery{background:var(--crema);padding:0 0 110px}
@@ -473,6 +473,10 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 .footer-firma{width:min(320px,100%)}
 .footer-claim{font-family:var(--titulo);font-weight:700;text-transform:uppercase;font-size:1.6rem;line-height:1.1;color:var(--crema);margin:0;text-align:right}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:26px}
+.footer .legal{display:flex;flex-wrap:wrap;gap:6px 18px}
+.footer .legal a{display:inline-block;text-decoration:underline;text-underline-offset:3px}
+.footer .legal a::first-letter{text-transform:uppercase}
+.check a{text-decoration:underline;color:var(--violeta)}
 .footer-bottom .convive{display:flex;align-items:center;gap:12px}
 .footer-bottom .convive img{height:34px;width:auto}
 .footer .langs a{color:rgba(255,255,255,.6)}
@@ -699,7 +703,6 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <p>{{quiro_p}}</p>
       </div>
       <div class="extra-side">
-        <p class="extra-price">{{quiro_price}}</p>
         <a href="#contacte" class="link-arrow" data-servicio="{{quiro_t}}">{{svc_cta}} <span>→</span></a>
       </div>
     </div>
@@ -956,8 +959,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       <p>{{f_sub}}</p>
       <div class="row2">
         <div class="field"><label for="f-nombre">{{f_name}}</label><input id="f-nombre" name="nombre" autocomplete="name" required></div>
-        <div class="field"><label for="f-tel">{{f_phone}}</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="f-email">{{f_email}}</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
       </div>
+      <div class="field"><label for="f-tel">{{f_phone}}</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
       <div class="field">
         <label for="f-servicio">{{f_service}}</label>
         <select id="f-servicio" name="servicio">
@@ -971,7 +975,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         </select>
       </div>
       <div class="field"><label for="f-msg">{{f_msg}}</label><textarea id="f-msg" name="mensaje" placeholder="{{f_msg_ph}}" required></textarea></div>
-      <label class="check"><input type="checkbox" id="f-ok" required> {{f_consent}}</label>
+      <label class="check"><input type="checkbox" id="f-ok" required> <span>{{f_consent}} <a href="/politica-de-privacidad/" target="_blank" rel="noopener">{{legal_privacy}}</a>.</span></label>
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
       <div class="form-actions">
         <button type="submit" class="btn btn-fill" data-via="mail" id="fSend">{{f_send_mail}}</button>
@@ -994,6 +998,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="footer-bottom">
       <div class="convive"><span>{{footer_project}}</span><img src="assets/pdt-logo-blanco.svg" alt="Patricia Dorado Trainer" width="79" height="34"></div>
       {{lang_switch}}
+      <nav class="legal" aria-label="{{legal_aria}}"><a href="/aviso-legal/">{{legal_notice}}</a><a href="/politica-de-privacidad/">{{legal_privacy}}</a><a href="/politica-de-cookies/">{{legal_cookies}}</a></nav>
       <span>© <span id="year">2026</span> MOA · Moviment i Salut · Martorell</span>
     </div>
   </div>
@@ -1334,8 +1339,10 @@ try {
   form.querySelectorAll('[data-via]').forEach(function(b){ b.addEventListener('click', function(){ via = b.getAttribute('data-via'); }); });
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var nombre = form.nombre.value.trim(), tel = form.telefono.value.trim(), servicio = form.servicio.value, msg = form.mensaje.value.trim();
+    var nombre = form.nombre.value.trim(), email = form.email.value.trim(), tel = form.telefono.value.trim(), servicio = form.servicio.value, msg = form.mensaje.value.trim();
     if (!nombre || !msg) { errorEl.textContent = T.errFields; return; }
+    // El correo hace falta para poder responder (por WhatsApp ya se ve el número)
+    if (via === 'mail' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errorEl.textContent = T.errEmail; form.email.focus(); return; }
     if (!document.getElementById('f-ok').checked) { errorEl.textContent = T.errConsent; return; }
     errorEl.textContent = ''; okEl.hidden = true;
     var text = T.msgHello.replace('{n}', nombre) + '\n\n' + T.msgInterest + ' ' + servicio + '\n\n' + msg + (tel ? '\n\n' + T.msgPhone + ' ' + tel : '');
@@ -1349,7 +1356,7 @@ try {
       body: JSON.stringify({
         _subject: T.mailSubject + ' ' + nombre,
         _template: 'table', _captcha: 'false',
-        Nombre: nombre, 'Teléfono': tel || '-', Servicio: servicio, Mensaje: msg,
+        Nombre: nombre, Email: email, _replyto: email, 'Teléfono': tel || '-', Servicio: servicio, Mensaje: msg,
         Idioma: (document.getElementById('moa-app') || document.documentElement).lang
       })
     }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){

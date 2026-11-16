@@ -254,14 +254,14 @@ div.ph::after{content:attr(data-label);position:absolute;left:50%;bottom:16px;tr
 .svc:nth-child(3){background:var(--carbon);color:var(--crema)}
 .svc:nth-child(4){background:#C9EFD4}
 .svc:nth-child(5){background:#E6D8FD}
-.svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto}
-.svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem;min-height:3em;display:flex;align-items:flex-end}
+.svc .num{font-family:var(--titulo);font-weight:800;font-size:5.5rem;line-height:.8;opacity:.18;margin-bottom:auto;min-height:150px}
+.svc h3{font-size:1.9rem;line-height:1;margin:2.2rem 0 1rem;min-height:3em}
 .svc p{font-size:.92rem;opacity:.85;margin-bottom:1.6rem;min-height:7em}
 .svc .price{font-family:var(--titulo);font-weight:700;font-size:1.5rem;margin-bottom:1.3rem}
 .svc .price small{font-family:var(--texto);font-weight:500;font-size:.78rem;opacity:.8}
 .svc .link-arrow{align-self:flex-start}
-.svc .shape{position:absolute;right:-30px;top:-30px;width:150px;opacity:.14;transition:transform .8s var(--ease)}
-.svc:hover .shape{transform:translateY(-12px) rotate(-6deg)}
+.svc .shape{position:absolute;right:30px;top:32px;width:58px;opacity:.22;pointer-events:none}
+
 .services.is-pinned .hs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:74px 0 0}
 .services.is-pinned .hs-track{overflow:visible;scroll-snap-type:none;will-change:transform;padding:0 max(28px,calc((100vw - var(--wrap))/2 + 28px))}
 
@@ -294,7 +294,7 @@ p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(
 .who-list li,.timeline span,.quote{text-align:justify;-webkit-hyphens:auto;hyphens:auto}
 .hero-panel p,.intro-copy p,.how-head p{text-align-last:center}
 /* Frases cortas: justificadas dejarían huecos enormes entre palabras */
-.letter p,.step p,.svc p,.price-row small,.stat span,.schedule p,.review p,.who-list li,.timeline span,.ig-video figcaption{text-align:left!important}
+.letter p,.step p,.svc p,.extra-card p,.price-row small,.stat span,.schedule p,.review p,.who-list li,.timeline span,.ig-video figcaption{text-align:left!important}
 
 /* Galería */
 .gallery{background:var(--crema);padding:0 0 110px}
@@ -473,6 +473,10 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 .footer-firma{width:min(320px,100%)}
 .footer-claim{font-family:var(--titulo);font-weight:700;text-transform:uppercase;font-size:1.6rem;line-height:1.1;color:var(--crema);margin:0;text-align:right}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:26px}
+.footer .legal{display:flex;flex-wrap:wrap;gap:6px 18px}
+.footer .legal a{display:inline-block;text-decoration:underline;text-underline-offset:3px}
+.footer .legal a::first-letter{text-transform:uppercase}
+.check a{text-decoration:underline;color:var(--violeta)}
 .footer-bottom .convive{display:flex;align-items:center;gap:12px}
 .footer-bottom .convive img{height:34px;width:auto}
 .footer .langs a{color:rgba(255,255,255,.6)}
@@ -626,7 +630,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="intro-copy">
       <span class="eyebrow reveal">Moviment i Salut</span>
       <h2 data-split>Entrenament fet a la teva mida</h2>
-      <p class="reveal">MOA és un espai i una comunitat per entrenar lluny del gimnàs convencional. Abans de planificar, t'escoltem: volem saber d'on parteixes, què necessites i com és el teu dia a dia. A partir d'aquí adaptem l'exercici a tu, i no tu a l'exercici. Sense presses i sense promeses miraculoses.</p>
+      <p class="reveal">MOA és un espai i una comunitat per entrenar lluny del gimnàs convencional. Abans de planificar, t'escoltem: volem saber d'on parteixes, què necessites i com és el teu dia a dia. A partir d'aquí l'exercici s'adapta a tu, i no tu a l'exercici. Sense presses i sense promeses miraculoses.</p>
       <a href="#contacte" class="btn magnetic reveal">En parlem?</a>
     </div>
     <div class="media b clip" style="--d:.15s" data-speed="-0.1"><img class="ph" src="fotos/material-barra.jpg" alt="Una barra amb disc sobre el tatami" width="1600" height="1071" loading="lazy" style="object-position:45% 60%"></div>
@@ -679,7 +683,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       </div>
     </div>
     <div class="hs-track" id="hsTrack">
-      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">01</span><h3>Entrenament personal compartit</h3><p>Grups molt reduïts. Cada persona amb el seu entrenament adaptat, compartint espai i moment. Perquè entrenar acompanyat també motiva.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal compartit">Demana informació <span>→</span></a></article>
+      <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">01</span><h3>Entrenament personal compartit</h3><p>Grups reduïts. Cada persona amb el seu entrenament adaptat, compartint espai i moment. Perquè entrenar acompanyat també motiva.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal compartit">Demana informació <span>→</span></a></article>
       <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-carbon.svg" alt=""><span class="num">02</span><h3>Entrenament grupal</h3><p>Entrenem junts, però cadascú troba el seu nivell dins de cada exercici. Compartim l'esforç i gaudim del moment.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament grupal">Demana informació <span>→</span></a></article>
       <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-crema.svg" alt=""><span class="num">03</span><h3>Entrenament personal amb app</h3><p>Entrenes pel teu compte i al teu ritme, amb les sessions explicades pas a pas i el nostre seguiment.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal amb app">Demana informació <span>→</span></a></article>
       <article class="svc"><img class="shape" src="assets/logos-moa/moa-simbolo-violeta.svg" alt=""><span class="num">04</span><h3>Entrenament personal en línia</h3><p>Un pla individualitzat i seguiment professional, siguis on siguis. Un entrenament que evoluciona amb tu.</p><a href="#contacte" class="link-arrow" data-servicio="Entrenament personal en línia">Demana informació <span>→</span></a></article>
@@ -699,7 +703,6 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         <p>Un massatge per complementar l’entrenament: alliberar tensions, recuperar-te després de l’esforç i cuidar el teu cos. Per a alumnes de MOA i per a qualsevol persona que ho necessiti.</p>
       </div>
       <div class="extra-side">
-        <p class="extra-price">Sessió d’1 hora · <b>40 €</b> alumnes de MOA · <b>45 €</b> resta</p>
         <a href="#contacte" class="link-arrow" data-servicio="Quiromassatge">Demana informació <span>→</span></a>
       </div>
     </div>
@@ -859,7 +862,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="behind-copy">
       <span class="eyebrow reveal">Qui hi ha darrere</span>
       <h2 data-split>Soc la Patricia Dorado.</h2>
-      <p class="reveal">L’esport forma part de la meva vida des de molt petita. Vaig començar amb judo i natació als 5 anys, i als 7 va arribar l’handbol. També m’apassiona tot el que té a veure amb la natura i l’aventura: senderisme, escalada, barranquisme, submarinisme, esquí i trail running.</p>
+      <p class="reveal">L’esport forma part de la meva vida des de molt petita. Vaig començar amb judo i natació als 5 anys, i als 7 anys s’hi va sumar l’handbol. També m’apassiona tot el que té a veure amb la natura i l’aventura: senderisme, escalada, barranquisme, submarinisme, esquí i trail running.</p>
       <p class="reveal">D’alguna manera, als 15 anys ja sabia que em volia dedicar a alguna cosa relacionada amb l’esport o l’exercici físic, tot i que encara no tenia clar quin camí agafaria. Va ser en entrar a l’INEFC quan em va començar a picar la curiositat per com l’exercici pot ajudar les persones a trobar-se millor.</p>
       <p class="reveal">Durant la carrera vaig descobrir que l’exercici podia ser molt més que millorar la condició física. Podia ajudar algú a recuperar-se d’una lesió, a afrontar millor una malaltia, a guanyar força i mobilitat, a recuperar les ganes de moure’s i, en definitiva, a <strong>tornar-se a sentir capaç</strong>.</p>
       <blockquote class="quote reveal">Cada persona és un món, i això és el que més m’agrada de la meva feina: descobrir què necessita cadascú i adaptar l’entrenament a la seva mida.</blockquote>
@@ -956,8 +959,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       <p>Et respondrem al més aviat possible. Si ho prefereixes, també ens pots escriure per WhatsApp.</p>
       <div class="row2">
         <div class="field"><label for="f-nombre">Nom</label><input id="f-nombre" name="nombre" autocomplete="name" required></div>
-        <div class="field"><label for="f-tel">Telèfon (opcional)</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="f-email">Correu electrònic</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
       </div>
+      <div class="field"><label for="f-tel">Telèfon (opcional)</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
       <div class="field">
         <label for="f-servicio">Què t'interessa?</label>
         <select id="f-servicio" name="servicio">
@@ -971,7 +975,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
         </select>
       </div>
       <div class="field"><label for="f-msg">Què t'agradaria aconseguir?</label><textarea id="f-msg" name="mensaje" placeholder="Els teus objectius, com et mous ara, la teva disponibilitat o qualsevol cosa a tenir en compte." required></textarea></div>
-      <label class="check"><input type="checkbox" id="f-ok" required> Accepto que MOA utilitzi aquestes dades només per respondre la meva consulta.</label>
+      <label class="check"><input type="checkbox" id="f-ok" required> <span>He llegit i accepto la <a href="/politica-de-privacidad/" target="_blank" rel="noopener">política de privacitat</a>.</span></label>
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
       <div class="form-actions">
         <button type="submit" class="btn btn-fill" data-via="mail" id="fSend">Enviar</button>
@@ -994,6 +998,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="footer-bottom">
       <div class="convive"><span>Un projecte de</span><img src="assets/pdt-logo-blanco.svg" alt="Patricia Dorado Trainer" width="79" height="34"></div>
       <nav class="langs" aria-label="Idioma / Language"><a href="index.html" hreflang="ca" lang="ca" title="Català" aria-current="true">CA</a><a href="es.html" hreflang="es" lang="es" title="Castellano">ES</a><a href="en.html" hreflang="en" lang="en" title="English">EN</a></nav>
+      <nav class="legal" aria-label="Textos legals"><a href="/aviso-legal/">Avís legal</a><a href="/politica-de-privacidad/">política de privacitat</a><a href="/politica-de-cookies/">Política de cookies</a></nav>
       <span>© <span id="year">2026</span> MOA · Moviment i Salut · Martorell</span>
     </div>
   </div>
@@ -1006,7 +1011,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <script>
 (function(){
 try {
-  var T = {"close": "Tancar", "menuOpen": "Obrir el menú", "menuClose": "Tancar el menú", "waDefault": "Hola! M'agradaria informació sobre els entrenaments de MOA.", "quizNext": "Següent", "quizResult": "Veure el resultat", "services": {"compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups molt reduïts i amb bon ambient."}, "grupal": {"t": "Entrenament grupal", "d": "Entrenem junts i cadascú adapta els exercicis al seu nivell. Ideal per agafar constància."}, "domicilio": {"t": "Entrenament a domicili", "d": "Portem l'entrenament a casa teva, adaptat a com et trobes i a l'espai que tinguis."}, "online": {"t": "Entrenament personal en línia", "d": "Un pla individualitzat amb seguiment a distància, que evoluciona amb tu."}, "app": {"t": "Entrenament personal amb app", "d": "Entrenes quan i on vulguis, amb les sessions explicades pas a pas i seguiment de la teva evolució."}}, "labels": {"como": {"grupo": "en grup", "personal": "amb entrenament personalitzat", "solo": "pel meu compte amb un pla"}, "donde": {"martorell": "presencial a Martorell", "casa": "a casa", "distancia": "a distància"}, "nota": {"empezar": "vull començar o fa temps que no entreno", "salud": "vinc d'una lesió o un procés de salut", "tiempo": "tinc poc temps", "nada": "res en especial"}}, "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?", "errFields": "Escriu el teu nom i explica'ns una mica què busques.", "errConsent": "Marca la casella per poder enviar la consulta.", "sending": "Enviant…", "errSend": "No s'ha pogut enviar. T'obrim el correu amb el missatge escrit.", "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:", "mailSubject": "Consulta des de la web de MOA:"};
+  var T = {"close": "Tancar", "menuOpen": "Obrir el menú", "menuClose": "Tancar el menú", "waDefault": "Hola! M'agradaria informació sobre els entrenaments de MOA.", "quizNext": "Següent", "quizResult": "Veure el resultat", "services": {"compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups reduïts i amb bon ambient."}, "grupal": {"t": "Entrenament grupal", "d": "Entrenem junts i cadascú adapta els exercicis al seu nivell. Ideal per agafar constància."}, "domicilio": {"t": "Entrenament a domicili", "d": "Portem l'entrenament a casa teva, adaptat a com et trobes i a l'espai que tinguis."}, "online": {"t": "Entrenament personal en línia", "d": "Un pla individualitzat amb seguiment a distància, que evoluciona amb tu."}, "app": {"t": "Entrenament personal amb app", "d": "Entrenes quan i on vulguis, amb les sessions explicades pas a pas i seguiment de la teva evolució."}}, "labels": {"como": {"grupo": "en grup", "personal": "amb entrenament personalitzat", "solo": "pel meu compte amb un pla"}, "donde": {"martorell": "presencial a Martorell", "casa": "a casa", "distancia": "a distància"}, "nota": {"empezar": "vull començar o fa temps que no entreno", "salud": "vinc d'una lesió o un procés de salut", "tiempo": "tinc poc temps", "nada": "res en especial"}}, "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?", "errFields": "Escriu el teu nom i explica'ns una mica què busques.", "errEmail": "Escriu el teu correu electrònic perquè et puguem respondre.", "errConsent": "Marca la casella per poder enviar la consulta.", "sending": "Enviant…", "errSend": "No s'ha pogut enviar. T'obrim el correu amb el missatge escrit.", "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:", "mailSubject": "Consulta des de la web de MOA:"};
   // El número no aparece en la página: se monta solo al pulsar un botón de
   // WhatsApp, para que no lo encuentren los programas que buscan teléfonos
   var PHONE = ['34', '677', '85', '12', '11'].join('');
@@ -1334,8 +1339,10 @@ try {
   form.querySelectorAll('[data-via]').forEach(function(b){ b.addEventListener('click', function(){ via = b.getAttribute('data-via'); }); });
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var nombre = form.nombre.value.trim(), tel = form.telefono.value.trim(), servicio = form.servicio.value, msg = form.mensaje.value.trim();
+    var nombre = form.nombre.value.trim(), email = form.email.value.trim(), tel = form.telefono.value.trim(), servicio = form.servicio.value, msg = form.mensaje.value.trim();
     if (!nombre || !msg) { errorEl.textContent = T.errFields; return; }
+    // El correo hace falta para poder responder (por WhatsApp ya se ve el número)
+    if (via === 'mail' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errorEl.textContent = T.errEmail; form.email.focus(); return; }
     if (!document.getElementById('f-ok').checked) { errorEl.textContent = T.errConsent; return; }
     errorEl.textContent = ''; okEl.hidden = true;
     var text = T.msgHello.replace('{n}', nombre) + '\n\n' + T.msgInterest + ' ' + servicio + '\n\n' + msg + (tel ? '\n\n' + T.msgPhone + ' ' + tel : '');
@@ -1349,7 +1356,7 @@ try {
       body: JSON.stringify({
         _subject: T.mailSubject + ' ' + nombre,
         _template: 'table', _captcha: 'false',
-        Nombre: nombre, 'Teléfono': tel || '-', Servicio: servicio, Mensaje: msg,
+        Nombre: nombre, Email: email, _replyto: email, 'Teléfono': tel || '-', Servicio: servicio, Mensaje: msg,
         Idioma: (document.getElementById('moa-app') || document.documentElement).lang
       })
     }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){

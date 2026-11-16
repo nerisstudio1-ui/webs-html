@@ -30,7 +30,7 @@ TEXT = {
 
   "intro_eyebrow": "Moviment i Salut",
   "intro_title": "Entrenament fet a la teva mida",
-  "intro_text": "MOA és un espai i una comunitat per entrenar lluny del gimnàs convencional. Abans de planificar, t'escoltem: volem saber d'on parteixes, què necessites i com és el teu dia a dia. A partir d'aquí adaptem l'exercici a tu, i no tu a l'exercici. Sense presses i sense promeses miraculoses.",
+  "intro_text": "MOA és un espai i una comunitat per entrenar lluny del gimnàs convencional. Abans de planificar, t'escoltem: volem saber d'on parteixes, què necessites i com és el teu dia a dia. A partir d'aquí l'exercici s'adapta a tu, i no tu a l'exercici. Sense presses i sense promeses miraculoses.",
   "intro_cta": "En parlem?",
 
   "mean_title": "El moviment comença en tu.",
@@ -48,7 +48,7 @@ TEXT = {
   "how_note": "Sense presses. <span class=\"violeta\">Cada avenç també compta.</span>",
 
   "svc_eyebrow": "Serveis", "svc_title": "Cinc maneres d'entrenar", "svc_hint": "Desplaça't", "svc_cta": "Demana informació",
-  "svc1_t": "Entrenament personal compartit", "svc1_p": "Grups molt reduïts. Cada persona amb el seu entrenament adaptat, compartint espai i moment. Perquè entrenar acompanyat també motiva.",
+  "svc1_t": "Entrenament personal compartit", "svc1_p": "Grups reduïts. Cada persona amb el seu entrenament adaptat, compartint espai i moment. Perquè entrenar acompanyat també motiva.",
   "svc1_price": "25 € <small>/ sessió</small>",
   "svc2_t": "Entrenament grupal", "svc2_p": "Entrenem junts, però cadascú troba el seu nivell dins de cada exercici. Compartim l'esforç i gaudim del moment.",
   "svc2_price": "Des de 35 € <small>/ mes</small>",
@@ -95,7 +95,7 @@ TEXT = {
   "sch_cta": "Pregunta per places",
 
   "pat_eyebrow": "Qui hi ha darrere", "pat_title": "Soc la Patricia Dorado.",
-  "pat_p1": "L’esport forma part de la meva vida des de molt petita. Vaig començar amb judo i natació als 5 anys, i als 7 va arribar l’handbol. També m’apassiona tot el que té a veure amb la natura i l’aventura: senderisme, escalada, barranquisme, submarinisme, esquí i trail running.",
+  "pat_p1": "L’esport forma part de la meva vida des de molt petita. Vaig començar amb judo i natació als 5 anys, i als 7 anys s’hi va sumar l’handbol. També m’apassiona tot el que té a veure amb la natura i l’aventura: senderisme, escalada, barranquisme, submarinisme, esquí i trail running.",
   "pat_p2": "D’alguna manera, als 15 anys ja sabia que em volia dedicar a alguna cosa relacionada amb l’esport o l’exercici físic, tot i que encara no tenia clar quin camí agafaria. Va ser en entrar a l’INEFC quan em va començar a picar la curiositat per com l’exercici pot ajudar les persones a trobar-se millor.",
   "pat_quote": "Cada persona és un món, i això és el que més m’agrada de la meva feina: descobrir què necessita cadascú i adaptar l’entrenament a la seva mida.",
   "pat_p3": "Durant la carrera vaig descobrir que l’exercici podia ser molt més que millorar la condició física. Podia ajudar algú a recuperar-se d’una lesió, a afrontar millor una malaltia, a guanyar força i mobilitat, a recuperar les ganes de moure’s i, en definitiva, a <strong>tornar-se a sentir capaç</strong>.",
@@ -118,9 +118,10 @@ TEXT = {
   "ct_lead": "No cal que sàpigues quin servei triar. Explica'ns què busques i ho mirem junts. Per als grups, quan confirmem plaça i horari, t'incorpores directament.",
   "ct_phone": "Telèfon i WhatsApp", "ct_where": "Presencial, a domicili i en línia",
   "f_title": "Explica'ns què busques", "f_sub": "Et respondrem al més aviat possible. Si ho prefereixes, també ens pots escriure per WhatsApp.",
-  "f_name": "Nom", "f_phone": "Telèfon (opcional)", "f_service": "Què t'interessa?", "f_unsure": "Encara no ho sé, vull que m'orienteu",
+  "f_name": "Nom", "f_phone": "Telèfon (opcional)", "f_email": "Correu electrònic",
+  "legal_aria": "Textos legals", "legal_notice": "Avís legal", "legal_privacy": "política de privacitat", "legal_cookies": "Política de cookies", "f_service": "Què t'interessa?", "f_unsure": "Encara no ho sé, vull que m'orienteu",
   "f_msg": "Què t'agradaria aconseguir?", "f_msg_ph": "Els teus objectius, com et mous ara, la teva disponibilitat o qualsevol cosa a tenir en compte.",
-  "f_consent": "Accepto que MOA utilitzi aquestes dades només per respondre la meva consulta.",
+  "f_consent": "He llegit i accepto la",
   "f_send_wa": "Escriure per WhatsApp", "f_send_mail": "Enviar",
   "f_ok": "Gràcies! Hem rebut la teva consulta i et respondrem aviat.",
 
@@ -163,7 +164,7 @@ TEXT = {
     "waDefault": "Hola! M'agradaria informació sobre els entrenaments de MOA.",
     "quizNext": "Següent", "quizResult": "Veure el resultat",
     "services": {
-      "compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups molt reduïts i amb bon ambient."},
+      "compartido": {"t": "Entrenament personal compartit", "d": "Atenció individual i un pla per a tu, en grups reduïts i amb bon ambient."},
       "grupal": {"t": "Entrenament grupal", "d": "Entrenem junts i cadascú adapta els exercicis al seu nivell. Ideal per agafar constància."},
       "domicilio": {"t": "Entrenament a domicili", "d": "Portem l'entrenament a casa teva, adaptat a com et trobes i a l'espai que tinguis."},
       "online": {"t": "Entrenament personal en línia", "d": "Un pla individualitzat amb seguiment a distància, que evoluciona amb tu."},
@@ -176,6 +177,7 @@ TEXT = {
     },
     "quizWa": "Hola! He fet el test de la web de MOA i em surt \"{s}\". M'agradaria entrenar {como}, {donde}, i {nota}. En parlem?",
     "errFields": "Escriu el teu nom i explica'ns una mica què busques.",
+    "errEmail": "Escriu el teu correu electrònic perquè et puguem respondre.",
     "errConsent": "Marca la casella per poder enviar la consulta.",
     "sending": "Enviant…", "errSend": "No s'ha pogut enviar. T'obrim el correu amb el missatge escrit.",
     "msgHello": "Hola! Sóc {n}.", "msgInterest": "M'interessa:", "msgPhone": "El meu telèfon:",
@@ -208,7 +210,7 @@ TEXT = {
 
   "intro_eyebrow": "Moviment i Salut",
   "intro_title": "Entrenamiento hecho a tu medida",
-  "intro_text": "MOA es un espacio y una comunidad para entrenar lejos del gimnasio convencional. Antes de planificar, te escuchamos: queremos saber de dónde partes, qué necesitas y cómo es tu día a día. A partir de ahí adaptamos el ejercicio a ti, y no tú al ejercicio. Sin prisas y sin promesas milagro.",
+  "intro_text": "MOA es un espacio y una comunidad para entrenar lejos del gimnasio convencional. Antes de planificar, te escuchamos: queremos saber de dónde partes, qué necesitas y cómo es tu día a día. A partir de ahí el ejercicio se adapta a ti, y no tú al ejercicio. Sin prisas y sin promesas milagro.",
   "intro_cta": "¿Hablamos?",
 
   "mean_title": "El movimiento empieza en ti.",
@@ -226,7 +228,7 @@ TEXT = {
   "how_note": "Sin prisas. <span class=\"violeta\">Cada avance también cuenta.</span>",
 
   "svc_eyebrow": "Servicios", "svc_title": "Cinco formas de entrenar", "svc_hint": "Desliza", "svc_cta": "Pide información",
-  "svc1_t": "Entrenamiento personal compartido", "svc1_p": "Grupos muy reducidos. Cada persona con su entrenamiento adaptado, compartiendo espacio y momento. Porque entrenar acompañado también motiva.",
+  "svc1_t": "Entrenamiento personal compartido", "svc1_p": "Grupos reducidos. Cada persona con su entrenamiento adaptado, compartiendo espacio y momento. Porque entrenar acompañado también motiva.",
   "svc1_price": "25 € <small>/ sesión</small>",
   "svc2_t": "Entrenamiento grupal", "svc2_p": "Entrenamos juntos, pero cada persona encuentra su nivel dentro de cada ejercicio. Compartimos el esfuerzo y disfrutamos del momento.",
   "svc2_price": "Desde 35 € <small>/ mes</small>",
@@ -273,7 +275,7 @@ TEXT = {
   "sch_cta": "Preguntar por plazas",
 
   "pat_eyebrow": "Quién está detrás", "pat_title": "Soy Patricia Dorado.",
-  "pat_p1": "El deporte forma parte de mi vida desde muy pequeña. Empecé con judo y natación a los 5 años, y a los 7 llegó el balonmano. También me apasiona todo lo relacionado con la naturaleza y la aventura: senderismo, escalada, barranquismo, submarinismo, esquí y trail running.",
+  "pat_p1": "El deporte forma parte de mi vida desde muy pequeña. Empecé con judo y natación a los 5 años, y a los 7 años se sumó el balonmano. También me apasiona todo lo relacionado con la naturaleza y la aventura: senderismo, escalada, barranquismo, submarinismo, esquí y trail running.",
   "pat_p2": "De alguna manera, a los 15 años ya sabía que quería dedicarme a algo relacionado con el deporte o el ejercicio físico, aunque todavía no tenía claro qué camino tomaría. Fue al entrar en el INEFC cuando empezó a picarme la curiosidad por cómo el ejercicio puede ayudar a las personas a encontrarse mejor.",
   "pat_quote": "Cada persona es un mundo, y eso es lo que más me gusta de mi trabajo: descubrir qué necesita cada una y adaptar el entrenamiento a su medida.",
   "pat_p3": "Durante la carrera descubrí que el ejercicio podía ser mucho más que mejorar la condición física. Podía ayudar a alguien a recuperarse de una lesión, a afrontar mejor una enfermedad, a ganar fuerza y movilidad, a recuperar las ganas de moverse y, en definitiva, a <strong>volverse a sentir capaz</strong>.",
@@ -296,9 +298,10 @@ TEXT = {
   "ct_lead": "No hace falta que sepas qué servicio elegir. Cuéntanos qué buscas y lo vemos juntos. Para los grupos, en cuanto confirmemos plaza y horario, te incorporas directamente.",
   "ct_phone": "Teléfono y WhatsApp", "ct_where": "Presencial, a domicilio y online",
   "f_title": "Cuéntanos qué buscas", "f_sub": "Te responderemos lo antes posible. Si lo prefieres, también puedes escribirnos por WhatsApp.",
-  "f_name": "Nombre", "f_phone": "Teléfono (opcional)", "f_service": "¿Qué te interesa?", "f_unsure": "Aún no lo sé, quiero que me orientéis",
+  "f_name": "Nombre", "f_phone": "Teléfono (opcional)", "f_email": "Correo electrónico",
+  "legal_aria": "Textos legales", "legal_notice": "Aviso legal", "legal_privacy": "política de privacidad", "legal_cookies": "Política de cookies", "f_service": "¿Qué te interesa?", "f_unsure": "Aún no lo sé, quiero que me orientéis",
   "f_msg": "¿Qué te gustaría conseguir?", "f_msg_ph": "Tus objetivos, cómo te mueves ahora, tu disponibilidad o cualquier cosa a tener en cuenta.",
-  "f_consent": "Acepto que MOA use estos datos solo para responder a mi consulta.",
+  "f_consent": "He leído y acepto la",
   "f_send_wa": "Escribir por WhatsApp", "f_send_mail": "Enviar",
   "f_ok": "¡Gracias! Hemos recibido tu consulta y te responderemos pronto.",
 
@@ -341,7 +344,7 @@ TEXT = {
     "waDefault": "Hola, me gustaría información sobre los entrenamientos de MOA.",
     "quizNext": "Siguiente", "quizResult": "Ver resultado",
     "services": {
-      "compartido": {"t": "Entrenamiento personal compartido", "d": "Atención individual y un plan para ti, en grupos muy reducidos y con buen ambiente."},
+      "compartido": {"t": "Entrenamiento personal compartido", "d": "Atención individual y un plan para ti, en grupos reducidos y con buen ambiente."},
       "grupal": {"t": "Entrenamiento grupal", "d": "Entrenamos juntos y cada persona adapta los ejercicios a su nivel. Ideal para coger constancia."},
       "domicilio": {"t": "Entrenamiento a domicilio", "d": "Llevamos el entrenamiento a tu casa, adaptado a cómo te encuentras y al espacio que tengas."},
       "online": {"t": "Entrenamiento personal online", "d": "Un plan individualizado con seguimiento a distancia, que evoluciona contigo."},
@@ -354,6 +357,7 @@ TEXT = {
     },
     "quizWa": "Hola, he hecho el test de la web de MOA y me sale \"{s}\". Me gustaría entrenar {como}, {donde}, y {nota}. ¿Lo hablamos?",
     "errFields": "Escribe tu nombre y cuéntanos un poco qué buscas.",
+    "errEmail": "Escribe tu correo electrónico para que podamos responderte.",
     "errConsent": "Marca la casilla para poder enviar la consulta.",
     "sending": "Enviando…", "errSend": "No se ha podido enviar. Te abrimos el correo con el mensaje escrito.",
     "msgHello": "Hola, soy {n}.", "msgInterest": "Me interesa:", "msgPhone": "Mi teléfono:",
@@ -386,7 +390,7 @@ TEXT = {
 
   "intro_eyebrow": "Moviment i Salut",
   "intro_title": "Training made to measure",
-  "intro_text": "MOA is a space and a community for training away from the conventional gym. Before planning anything, we listen: where you're starting from, what you need and what your day-to-day looks like. Then we adapt the exercise to you, not you to the exercise. No rush, and no miracle promises.",
+  "intro_text": "MOA is a space and a community for training away from the conventional gym. Before planning anything, we listen: where you're starting from, what you need and what your day-to-day looks like. Then the exercise adapts to you, not the other way round. No rush, and no miracle promises.",
   "intro_cta": "Let's talk",
 
   "mean_title": "Movement starts with you.",
@@ -451,7 +455,7 @@ TEXT = {
   "sch_cta": "Ask about places",
 
   "pat_eyebrow": "Who's behind it", "pat_title": "I’m Patricia Dorado.",
-  "pat_p1": "Sport has been part of my life since I was very little. I started judo and swimming at 5, and handball came along at 7. I’m also passionate about nature and adventure: hiking, climbing, canyoning, scuba diving, skiing and trail running.",
+  "pat_p1": "Sport has been part of my life since I was very little. I started judo and swimming at 5, and at 7 I added handball. I’m also passionate about nature and adventure: hiking, climbing, canyoning, scuba diving, skiing and trail running.",
   "pat_p2": "Somehow, by the age of 15 I already knew I wanted to work in sport or physical exercise, though I wasn’t yet sure which path I’d take. It was when I started at INEFC that I became curious about how exercise can help people feel better.",
   "pat_quote": "Everyone is different, and that’s what I love most about my work: finding out what each person needs and tailoring their training to them.",
   "pat_p3": "During my degree I discovered that exercise could be much more than getting fit. It could help someone recover from an injury, cope better with an illness, build strength and mobility, find the motivation to move again and, ultimately, <strong>feel capable again</strong>.",
@@ -474,9 +478,10 @@ TEXT = {
   "ct_lead": "You don't need to know which service to choose. Tell us what you're looking for and we'll figure it out together. For groups, once we confirm a place and time, you can join straight away.",
   "ct_phone": "Phone and WhatsApp", "ct_where": "In person, at home and online",
   "f_title": "Tell us what you're looking for", "f_sub": "We'll get back to you as soon as possible. You can also message us on WhatsApp if you prefer.",
-  "f_name": "Name", "f_phone": "Phone (optional)", "f_service": "What are you interested in?", "f_unsure": "I'm not sure yet, I'd like some guidance",
+  "f_name": "Name", "f_phone": "Phone (optional)", "f_email": "Email",
+  "legal_aria": "Legal", "legal_notice": "Legal notice", "legal_privacy": "privacy policy", "legal_cookies": "Cookie policy", "f_service": "What are you interested in?", "f_unsure": "I'm not sure yet, I'd like some guidance",
   "f_msg": "What would you like to achieve?", "f_msg_ph": "Your goals, how active you are now, your availability or anything else we should know.",
-  "f_consent": "I agree that MOA may use this information only to reply to my enquiry.",
+  "f_consent": "I have read and accept the",
   "f_send_wa": "Message on WhatsApp", "f_send_mail": "Send",
   "f_ok": "Thank you! We've received your enquiry and will reply soon.",
 
@@ -519,7 +524,7 @@ TEXT = {
     "waDefault": "Hi! I'd like some information about training at MOA.",
     "quizNext": "Next", "quizResult": "See my result",
     "services": {
-      "compartido": {"t": "Shared personal training", "d": "One-to-one attention and a plan for you, in very small groups with a great atmosphere."},
+      "compartido": {"t": "Shared personal training", "d": "One-to-one attention and a plan for you, in small groups with a great atmosphere."},
       "grupal": {"t": "Group training", "d": "We train together and everyone adapts the exercises to their level. Great for building consistency."},
       "domicilio": {"t": "Home training", "d": "We bring the training to your home, adapted to how you feel and the space you have."},
       "online": {"t": "Online personal training", "d": "A personalised plan with remote follow-up that evolves with you."},
@@ -532,6 +537,7 @@ TEXT = {
     },
     "quizWa": "Hi! I took the quiz on the MOA website and got \"{s}\". I'd like to train {como}, {donde}, and {nota}. Can we talk?",
     "errFields": "Please write your name and tell us a little about what you're looking for.",
+    "errEmail": "Please enter your email so we can reply to you.",
     "errConsent": "Please tick the box so we can receive your enquiry.",
     "sending": "Sending…", "errSend": "It couldn't be sent. We're opening your email app with the message ready.",
     "msgHello": "Hi! I'm {n}.", "msgInterest": "I'm interested in:", "msgPhone": "My phone:",
