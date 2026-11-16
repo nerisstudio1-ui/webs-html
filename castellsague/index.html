@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Castellsagué — Obra original</title>
+<meta name="description" content="Obra original de Cristina Castellsagué. Piezas disponibles con precio y contacto directo con la artista.">
+<meta property="og:title" content="Castellsagué — Obra original">
+<meta property="og:description" content="Obra original de Cristina Castellsagué. Piezas disponibles y contacto directo con la artista.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papel: #f4f1ea;
+    --tinta: #111111;
+    --azul: #1b2fa8;
+    --rojo: #e3301f;
+    --amarillo: #ffd21f;
+    --gris: #6b6861;
+    --linea: rgba(17, 17, 17, .16);
+    --ancho: 1240px;
+    --margen: clamp(20px, 5vw, 64px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3, p { margin: 0; }
+  .contenedor { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--margen); }
+  .contenedor.ancho { max-width: 1480px; }
+  .etiqueta {
+    font-size: 13px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  }
+  h2 {
+    font-weight: 300; font-size: clamp(44px, 8vw, 104px); line-height: .98; letter-spacing: -.02em;
+  }
+  section { padding: clamp(72px, 11vw, 150px) 0; }
+  .cabecera-seccion {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+    flex-wrap: wrap; margin-bottom: clamp(36px, 6vw, 72px);
+  }
+  .cabecera-seccion p { max-width: 34ch; }
+  :focus-visible { outline: 3px solid var(--amarillo); outline-offset: 3px; }
+
+  /* Navegación */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    background: var(--papel); border-bottom: 1px solid var(--linea);
+  }
+  .nav .contenedor { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .nav-marca {
+    font-weight: 400; letter-spacing: .3em; text-transform: uppercase; font-size: 14px;
+    text-decoration: none; color: var(--azul);
+  }
+  .nav ul { list-style: none; display: flex; gap: clamp(16px, 3vw, 40px); margin: 0; padding: 0; }
+  .nav li a {
+    text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: .18em;
+    text-transform: uppercase; padding: 8px 0; border-bottom: 2px solid transparent;
+  }
+  .nav li a:hover { border-color: var(--rojo); }
+  .nav-boton { display: none; background: none; border: 0; padding: 10px; margin-right: -10px; cursor: pointer; }
+  .nav-boton span { display: block; width: 26px; height: 2px; background: var(--tinta); margin: 6px 0; transition: transform .2s; }
+
+  /* Portada */
+  .portada { padding: 64px 0 0; min-height: 100svh; display: grid; grid-template-columns: 1.05fr 1fr; }
+  .portada-logo {
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: clamp(32px, 6vw, 80px) var(--margen);
+  }
+  .portada-logo img { width: min(100%, 440px); height: auto; max-height: 62svh; object-fit: contain; object-position: left; }
+  .portada-logo p { margin-top: clamp(24px, 4vw, 44px); max-width: 30ch; font-size: clamp(19px, 2vw, 24px); line-height: 1.4; }
+  .portada-acciones { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+  .portada-obra {
+    background: var(--azul); display: grid; place-items: center;
+    padding: clamp(28px, 5vw, 72px);
+  }
+  .portada-obra img {
+    width: auto; max-width: 100%; height: auto; max-height: calc(100svh - 64px - 2 * clamp(28px, 5vw, 72px));
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+  }
+
+  /* Botones */
+  .boton {
+    display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+    font: inherit; font-size: 13px; font-weight: 400; letter-spacing: .18em; text-transform: uppercase;
+    text-decoration: none; padding: 14px 22px; border: 1.5px solid var(--tinta);
+    background: var(--tinta); color: var(--papel); transition: background .15s, color .15s, border-color .15s;
+  }
+  .boton:hover { background: var(--rojo); border-color: var(--rojo); color: #fff; }
+  .boton.linea { background: transparent; color: var(--tinta); }
+  .boton.linea:hover { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
+
+  /* Obra */
+  .obras { display: grid; grid-template-columns: repeat(4, 1fr); align-items: start; gap: clamp(36px, 5vw, 64px) clamp(18px, 2.4vw, 36px); }
+  .obra { display: flex; flex-direction: column; }
+  .obra-imagen {
+    position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in;
+    overflow: hidden; background: transparent;
+  }
+  .obra-imagen.sin-foto { aspect-ratio: 4 / 5; }
+  .obra-imagen img { width: 100%; height: auto; transition: transform .5s; }
+  .obra-imagen:hover img { transform: scale(1.03); }
+  .obra-pendiente {
+    position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+    font: inherit; font-size: 12px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  }
+  .obra-estado {
+    position: absolute; left: 0; top: 0; background: var(--tinta); color: var(--papel);
+    font-size: 11px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; padding: 7px 12px;
+  }
+  .obra-datos { padding-top: 16px; }
+  .obra h3 { font-weight: 400; font-size: 21px; line-height: 1.25; }
+  .obra-ficha { color: var(--gris); font-size: 15.5px; line-height: 1.45; margin-top: 4px; }
+  .obra-precio { font-weight: 400; font-size: 17px; margin-top: 10px; }
+  .obra-precio.no { color: var(--gris); }
+  .obra-consulta {
+    align-self: flex-start; margin-top: 14px; font-size: 13px; font-weight: 400; letter-spacing: .18em;
+    text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--rojo); padding-bottom: 3px;
+  }
+  .obra-consulta:hover { color: var(--rojo); }
+  .nota-compra {
+    margin-top: clamp(48px, 7vw, 88px); padding: clamp(24px, 4vw, 44px); border: 1.5px solid var(--tinta);
+    display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;
+  }
+  .nota-compra p { max-width: 52ch; }
+
+  /* Biografía */
+  .bio { background: var(--azul); color: #fff; }
+  .bio-rejilla { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .bio-foto {
+    aspect-ratio: 4 / 5; background: var(--amarillo); color: var(--tinta);
+    display: grid; place-items: center; text-align: center; overflow: hidden;
+    font-size: 12px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  }
+  .bio-foto img { width: 100%; height: 100%; object-fit: cover; }
+  .bio h2 { margin: 18px 0 32px; }
+  .bio-texto p { font-size: clamp(19px, 2vw, 23px); line-height: 1.55; max-width: 38em; }
+  .bio-texto p + p { margin-top: 1.1em; }
+  .pendiente { border-left: 3px solid var(--amarillo); padding-left: 18px; }
+
+  /* Galería y eventos */
+  .eventos { background: var(--amarillo); }
+  .lista-eventos { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--tinta); }
+  .lista-eventos li {
+    display: grid; grid-template-columns: 140px 1fr auto; gap: 24px; align-items: baseline;
+    padding: 22px 0; border-bottom: 1.5px solid var(--tinta);
+  }
+  .lista-eventos .fecha { font-size: 13px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; }
+  .lista-eventos .titulo { font-size: clamp(21px, 2.6vw, 30px); line-height: 1.2; }
+  .galeria { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: clamp(40px, 6vw, 72px); }
+  .galeria figure {
+    margin: 0; aspect-ratio: 1; background: var(--tinta); color: var(--papel); overflow: hidden;
+    display: grid; place-items: center; text-align: center;
+    font-size: 11px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase;
+  }
+  .galeria figure:nth-child(2) { background: var(--rojo); color: #fff; }
+  .galeria figure:nth-child(3) { background: var(--azul); color: #fff; }
+  .galeria figure:nth-child(4) { background: var(--papel); color: var(--tinta); }
+  .galeria img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Contacto */
+  .contacto { background: var(--rojo); color: #fff; }
+  .contacto h2 { margin: 18px 0 clamp(36px, 6vw, 64px); }
+  .contacto-lista { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid #fff; }
+  .contacto-lista li { border-bottom: 1.5px solid #fff; }
+  .contacto-lista a {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap;
+    padding: 22px 0; text-decoration: none; transition: padding .2s;
+  }
+  .contacto-lista a:hover { padding-left: 14px; }
+  .contacto-lista .dato { font-size: clamp(22px, 3.6vw, 44px); line-height: 1.15; overflow-wrap: anywhere; }
+
+  /* Pie */
+  footer { background: var(--tinta); color: var(--papel); padding: 36px 0; font-size: 14px; }
+  footer .contenedor { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--amarillo); }
+
+  /* Ficha ampliada */
+  dialog {
+    border: 0; padding: 0; background: var(--papel); color: var(--tinta);
+    width: min(1100px, 94vw); max-height: 92svh; overflow: auto;
+  }
+  dialog::backdrop { background: rgba(17, 17, 17, .82); }
+  .ficha { display: grid; grid-template-columns: 1.3fr 1fr; }
+  .ficha-imagen { background: var(--tinta); min-height: 320px; display: grid; place-items: center; position: relative; }
+  .ficha-imagen img { max-height: 92svh; width: 100%; height: auto; object-fit: contain; }
+  .ficha-texto { padding: clamp(24px, 4vw, 48px); display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .ficha-texto h3 { font-weight: 300; font-size: clamp(30px, 4vw, 44px); line-height: 1.05; }
+  .ficha-texto .obra-precio { font-size: 26px; }
+  .ficha-cerrar {
+    position: absolute; right: 10px; top: 10px; z-index: 2; width: 44px; height: 44px; cursor: pointer;
+    border: 0; background: var(--tinta); color: var(--papel); font-size: 22px; line-height: 1;
+  }
+
+  @media (max-width: 1100px) {
+    .obras { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .portada { grid-template-columns: 1fr; min-height: 0; }
+    .portada-obra img { max-height: 70svh; }
+    .bio-rejilla { grid-template-columns: 1fr; }
+    .bio-foto { max-width: 360px; }
+    .galeria { grid-template-columns: repeat(2, 1fr); }
+    .ficha { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 680px) {
+    body { font-size: 17px; }
+    .nav-boton { display: block; }
+    .nav ul {
+      position: absolute; left: 0; right: 0; top: 64px; flex-direction: column; gap: 0;
+      background: var(--papel); border-bottom: 1px solid var(--linea); padding: 8px var(--margen) 20px; display: none;
+    }
+    .nav.abierta ul { display: flex; }
+    .nav li a { display: block; padding: 14px 0; font-size: 15px; }
+    .nav.abierta .nav-boton span:first-child { transform: translateY(4px) rotate(45deg); }
+    .nav.abierta .nav-boton span:last-child { transform: translateY(-4px) rotate(-45deg); }
+    .obras { grid-template-columns: 1fr; }
+    .lista-eventos li { grid-template-columns: 1fr; gap: 4px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="contenedor">
+    <a class="nav-marca" href="#inicio">Castellsagué</a>
+    <button class="nav-boton" id="nav-boton" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span></button>
+    <ul id="nav-menu">
+      <li><a href="#obra">Obra</a></li>
+      <li><a href="#bio">Biografía</a></li>
+      <li><a href="#eventos">Exposiciones</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="portada" id="inicio">
+    <div class="portada-logo">
+      <h1><img src="assets/logo.png" alt="Castellsagué" width="711" height="936"></h1>
+      <!-- PENDIENTE: frase de presentación definitiva (llegará con la bio) -->
+      <p>Obra original de Cristina Castellsagué.</p>
+      <div class="portada-acciones">
+        <a class="boton" href="#obra">Ver obra</a>
+        <a class="boton linea" href="#contacto">Contactar</a>
+      </div>
+    </div>
+    <a class="portada-obra" href="#obra">
+      <img src="assets/obras/papaya-2.jpg" alt="Papaya 2, bodegón de Cristina Castellsagué" width="1472" height="1700">
+    </a>
+  </div>
+
+  <section id="obra">
+    <div class="contenedor ancho">
+      <div class="cabecera-seccion">
+        <div>
+          <span class="etiqueta">Piezas disponibles</span>
+          <h2>Obra</h2>
+        </div>
+        <p>Cada pieza es original. Si te interesa alguna, escríbeme y lo hablamos directamente.</p>
+      </div>
+
+      <div class="obras" id="obras"></div>
+
+      <div class="nota-compra">
+        <p>La compra no se hace por la web: me escribes indicando la pieza y cerramos los detalles (envío, pago, encargos) en privado.</p>
+        <a class="boton" href="#contacto">Escríbeme</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio" id="bio">
+    <div class="contenedor bio-rejilla">
+      <!-- PENDIENTE: retrato. Sustituir el texto por <img src="assets/retrato.jpg" alt="Cristina Castellsagué"> -->
+      <div class="bio-foto">Retrato<br>pendiente</div>
+      <div class="bio-texto">
+        <span class="etiqueta">Biografía</span>
+        <h2>Cristina Castellsagué</h2>
+        <!-- PENDIENTE: biografía y presentación definitivas -->
+        <p class="pendiente">Aquí irá la biografía y la presentación de la artista. Texto provisional hasta recibir el definitivo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="eventos" id="eventos">
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <div>
+          <span class="etiqueta">Galería y eventos</span>
+          <h2>Exposiciones</h2>
+        </div>
+      </div>
+      <!-- PENDIENTE: exposiciones y eventos reales -->
+      <ul class="lista-eventos">
+        <li><span class="fecha">Fecha</span><span class="titulo">Nombre de la exposición</span><span>Lugar, ciudad</span></li>
+        <li><span class="fecha">Fecha</span><span class="titulo">Nombre de la exposición</span><span>Lugar, ciudad</span></li>
+        <li><span class="fecha">Fecha</span><span class="titulo">Nombre de la exposición</span><span>Lugar, ciudad</span></li>
+      </ul>
+      <!-- PENDIENTE: fotos de estudio, montajes e inauguraciones. Poner un <img> dentro de cada <figure> -->
+      <div class="galeria">
+        <figure>Foto pendiente</figure>
+        <figure>Foto pendiente</figure>
+        <figure>Foto pendiente</figure>
+        <figure>Foto pendiente</figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <div class="contenedor">
+      <span class="etiqueta">Contacto</span>
+      <h2>¿Te interesa una pieza?</h2>
+      <ul class="contacto-lista">
+        <li><a href="mailto:cristinacastellsague@gmail.com"><span class="etiqueta">Email</span><span class="dato">cristinacastellsague@gmail.com</span></a></li>
+        <li><a href="https://wa.me/34687460614" target="_blank" rel="noopener"><span class="etiqueta">WhatsApp / Teléfono</span><span class="dato">687 460 614</span></a></li>
+        <li><a href="https://www.instagram.com/castellsague/" target="_blank" rel="noopener"><span class="etiqueta">Instagram</span><span class="dato">@castellsague</span></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <span>© <span id="anio"></span> Cristina Castellsagué</span>
+    <a href="https://www.instagram.com/castellsague/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<dialog id="ficha" aria-labelledby="ficha-titulo">
+  <button class="ficha-cerrar" id="ficha-cerrar" aria-label="Cerrar">×</button>
+  <div class="ficha">
+    <div class="ficha-imagen" id="ficha-imagen"></div>
+    <div class="ficha-texto">
+      <span class="etiqueta" id="ficha-estado"></span>
+      <h3 id="ficha-titulo"></h3>
+      <p class="obra-ficha" id="ficha-datos"></p>
+      <p class="obra-precio" id="ficha-precio"></p>
+      <a class="boton" id="ficha-whatsapp" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+      <a class="boton linea" id="ficha-email">Consultar por email</a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  /* ============================================================
+     OBRAS — editar solo esta lista (el orden de la lista es el orden en la web).
+     imagen:     ruta de la foto. Vacío = bloque de color con "Foto pendiente".
+     precio:     número en euros (p. ej. 450). Vacío = "Precio a consultar".
+     disponible: false para marcarla como "No disponible".
+     ============================================================ */
+  const OBRAS = [
+    { titulo: "Jarrón en Paternilla 2.2", tecnica: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", medidas: "48 × 34 cm", fecha: "Agosto 2026", precio: "", imagen: "assets/obras/jarron-en-paternilla-2-2.jpg", disponible: true },
+    { titulo: "Jarrón en Paternilla 1.2", tecnica: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", medidas: "48 × 34 cm", fecha: "Agosto 2026", precio: "", imagen: "assets/obras/jarron-en-paternilla-1-2.jpg", disponible: true },
+    { titulo: "Jarrón en Paternilla 1.1", tecnica: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", medidas: "48 × 34 cm", fecha: "Agosto 2026", precio: "", imagen: "assets/obras/jarron-en-paternilla-1-1.jpg", disponible: true },
+    { titulo: "Jarrón en Paternilla 2.1", tecnica: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", medidas: "48 × 34 cm", fecha: "Agosto 2026", precio: "", imagen: "assets/obras/jarron-en-paternilla-2-1.jpg", disponible: true },
+    { titulo: "Sandía 1", tecnica: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", medidas: "63 × 53 cm", fecha: "Mayo 2026", precio: "", imagen: "assets/obras/sandia-1.jpg", disponible: false },
+    { titulo: "Papaya 1", tecnica: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", medidas: "63 × 53 cm", fecha: "Mayo 2026", precio: "", imagen: "assets/obras/papaya-1.jpg", disponible: true },
+    { titulo: "Papaya 2", tecnica: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", medidas: "63 × 53 cm", fecha: "Mayo 2026", precio: "", imagen: "assets/obras/papaya-2.jpg", disponible: true },
+    { titulo: "Sandía 2", tecnica: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", medidas: "63 × 53 cm", fecha: "Mayo 2026", precio: "", imagen: "assets/obras/sandia-2.jpg", disponible: false },
+  ];
+
+  const EMAIL = "cristinacastellsague@gmail.com";
+  const WHATSAPP = "34687460614";
+  const COLORES = [["#1b2fa8", "#fff"], ["#e3301f", "#fff"], ["#ffd21f", "#111"], ["#111111", "#f4f1ea"]];
+
+  const precioTexto = o => !o.disponible ? "No disponible" : (o.precio ? Number(o.precio).toLocaleString("es-ES") + " €" : "Precio a consultar");
+  const fichaTexto = o => [o.tecnica, o.medidas, o.fecha].filter(Boolean).join(" · ");
+  const mensaje = o => `Hola Cristina, me interesa la obra «${o.titulo}»` + (o.medidas ? ` (${o.medidas})` : "") + ". ¿Sigue disponible?";
+  const enlaceEmail = o => `mailto:${EMAIL}?subject=${encodeURIComponent("Consulta: " + o.titulo)}&body=${encodeURIComponent(mensaje(o))}`;
+  const enlaceWhatsapp = o => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje(o))}`;
+
+  function crear(etiqueta, clase, texto) {
+    const el = document.createElement(etiqueta);
+    if (clase) el.className = clase;
+    if (texto != null) el.textContent = texto;
+    return el;
+  }
+
+  function pintarImagen(caja, obra, i) {
+    const [fondo, texto] = COLORES[i % COLORES.length];
+    if (obra.imagen) {
+      const img = crear("img");
+      img.src = obra.imagen; img.alt = obra.titulo; img.loading = "lazy";
+      caja.append(img);
+    } else {
+      caja.classList.add("sin-foto"); caja.style.background = fondo;
+      const aviso = crear("span", "obra-pendiente", "Foto pendiente");
+      aviso.style.color = texto;
+      caja.append(aviso);
+    }
+  }
+
+  const rejilla = document.getElementById("obras");
+  OBRAS.forEach((obra, i) => {
+    const art = crear("article", "obra");
+    const boton = crear("button", "obra-imagen");
+    boton.type = "button";
+    boton.setAttribute("aria-label", "Ampliar: " + obra.titulo);
+    pintarImagen(boton, obra, i);
+    if (!obra.disponible) boton.append(crear("span", "obra-estado", "No disponible"));
+    boton.addEventListener("click", () => abrirFicha(obra, i));
+
+    const datos = crear("div", "obra-datos");
+    datos.append(crear("h3", "", obra.titulo), crear("p", "obra-ficha", fichaTexto(obra)),
+      crear("p", "obra-precio" + (obra.disponible ? "" : " no"), precioTexto(obra)));
+    art.append(boton, datos);
+
+    if (obra.disponible) {
+      const consulta = crear("a", "obra-consulta", "Consultar");
+      consulta.href = enlaceWhatsapp(obra); consulta.target = "_blank"; consulta.rel = "noopener";
+      art.append(consulta);
+    }
+    rejilla.append(art);
+  });
+
+  /* Ficha ampliada */
+  const ficha = document.getElementById("ficha");
+  function abrirFicha(obra, i) {
+    const caja = document.getElementById("ficha-imagen");
+    caja.replaceChildren(); caja.classList.remove("sin-foto"); caja.style.background = "";
+    pintarImagen(caja, obra, i);
+    document.getElementById("ficha-estado").textContent = obra.disponible ? "Disponible" : "No disponible";
+    document.getElementById("ficha-titulo").textContent = obra.titulo;
+    document.getElementById("ficha-datos").textContent = fichaTexto(obra);
+    document.getElementById("ficha-precio").textContent = precioTexto(obra);
+    const wa = document.getElementById("ficha-whatsapp"), em = document.getElementById("ficha-email");
+    wa.href = enlaceWhatsapp(obra); em.href = enlaceEmail(obra);
+    wa.hidden = em.hidden = !obra.disponible;
+    ficha.showModal();
+  }
+  document.getElementById("ficha-cerrar").addEventListener("click", () => ficha.close());
+  ficha.addEventListener("click", e => { if (e.target === ficha) ficha.close(); });
+
+  /* Menú móvil */
+  const nav = document.getElementById("nav"), navBoton = document.getElementById("nav-boton");
+  function menu(abierto) {
+    nav.classList.toggle("abierta", abierto);
+    navBoton.setAttribute("aria-expanded", abierto);
+    navBoton.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+  }
+  navBoton.addEventListener("click", () => menu(!nav.classList.contains("abierta")));
+  nav.querySelectorAll("ul a").forEach(a => a.addEventListener("click", () => menu(false)));
+
+  document.getElementById("anio").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
