@@ -401,6 +401,21 @@ NERIS = 'https://www.nerisstudio.com'
 # El banner no se puede montar desde aquí: va en la configuración del sitio.
 PIXEL_META = '1381891154135741'
 
+# Contenedor de Google Tag Manager (es el que lleva dentro Google Analytics).
+# Vacío = no se pone.
+#
+# Le vale lo mismo que al píxel de Meta: su sitio natural es la cabecera del
+# sitio, no el bloque, y necesita el banner de cookies antes de dispararse.
+#
+# El estudio mandó el código de Google en la variante corta —solo la etiqueta
+# <script async src="...gtm.js?id=...">—. Aquí va el código de instalación
+# completo que publica Google, que es el mismo contenedor pero además empuja el
+# evento 'gtm.js' a dataLayer. Ese evento es lo que dispara los activadores de
+# tipo «All Pages» dentro del contenedor: sin él, el contenedor carga pero sus
+# etiquetas pueden no llegar a medir nada. Se conserva también la función gtag
+# que venía en lo que mandaron, por si algo del contenedor cuenta con ella.
+GTM_GOOGLE = 'GTM-MRLZ8W7X'
+
 # A dónde llega el formulario.
 #
 # FormSubmit envía el mensaje por correo a EMAIL y no pide cuenta, clave ni
@@ -530,6 +545,31 @@ alt=""/></noscript>
 
 ''' if PIXEL_META else ''
 
+    # Lo mismo para Google: al principio del cuerpo, para que sirva a las dos
+    # versiones. El if de la primera línea evita medir dos veces si algún día el
+    # contenedor se instala además en la cabecera del sitio, que es donde debería
+    # estar: si ya se ha cargado, este no vuelve a cargarlo.
+    google = f'''<!-- Google Tag Manager -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+(function(w,d,s,l,i){{
+if(w.google_tag_manager&&w.google_tag_manager[i])return;
+w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s),
+dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+f.parentNode.insertBefore(j,f);
+}})(window,document,'script','dataLayer','{GTM_GOOGLE}');
+</script>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_GOOGLE}"
+height="0" width="0" style="display:none;visibility:hidden"
+title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager -->
+
+''' if GTM_GOOGLE else ''
+
     if FORM_ACTION:
         # El asunto va por idioma, para saber de qué página viene el mensaje.
         ocultos = dict(FORM_OCULTOS)
@@ -590,7 +630,7 @@ alt=""/></noscript>
 </script>
 </head>
 <body>
-{pixel}{SPRITE}
+{pixel}{google}{SPRITE}
 
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"></div>

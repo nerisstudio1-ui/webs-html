@@ -51,21 +51,26 @@ Sigue en el apartado **«Ajusta la cabecera»** si tu tema tiene cabecera fija.
 
 ---
 
-# El píxel de Meta
+# El píxel de Meta y Google Analytics
 
-Los cuatro archivos ya llevan dentro el píxel de Meta (id `1381891154135741`), al
-principio del bloque. Se dispara una vez por página y no hay que pegar nada más.
+Los cuatro archivos ya llevan dentro, al principio del bloque, el píxel de Meta
+(id `1381891154135741`) y el contenedor de Google Tag Manager (`GTM-MRLZ8W7X`),
+que es el que lleva Google Analytics. Se disparan una vez por página y no hay
+que pegar nada más.
 
-Dos avisos:
+Tres avisos:
 
-- **Viaja con el archivo.** Cada vez que pegues una versión nueva, el píxel viene
-  con ella; pero si algún día decides ponerlo en la cabecera del sitio (con el
-  campo de scripts del tema o con un plugin tipo WPCode), **quítalo de uno de los
-  dos sitios** o contará las visitas por duplicado.
-- **Falta el banner de cookies.** El píxel instala cookies de terceros nada más
-  abrir la página. Para cumplir la LSSI y el RGPD hace falta un banner que lo
+- **Viajan con el archivo.** Cada vez que pegues una versión nueva vienen con
+  ella; pero solo miden estas dos páginas, no el resto del sitio.
+- **Si algún día los pones en la cabecera** (con el campo de scripts del tema o
+  con un plugin tipo WPCode): el de Google mira antes si ya está cargado y no se
+  repite, así que puede convivir. **El píxel de Meta no**: quítalo de uno de los
+  dos sitios o contará las visitas por duplicado.
+- **Falta el banner de cookies.** Los dos instalan cookies de terceros nada más
+  abrir la página. Para cumplir la LSSI y el RGPD hace falta un banner que los
   retenga hasta que el visitante acepte: Complianz o CookieYes lo hacen con una
-  casilla. Eso va en la configuración de WordPress, no en el bloque.
+  casilla, y traen una para Meta y otra para Google Analytics. Eso va en la
+  configuración de WordPress, no en el bloque.
 
 ---
 
