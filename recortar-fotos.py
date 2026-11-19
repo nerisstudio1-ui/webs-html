@@ -33,7 +33,9 @@ def recorta(origen, destino, ratio, ancho, foco=0.5, calidad=72):
 recorta('5.jpg', 'hero.webp',       1.50,   1600,  0.40)   # la sala entera (cabecera y franja)
 recorta('rocio-10.jpg', 'barre.webp',   1.777,  1600,  0.62)   # Rocío con la barra de peso
 recorta('rocio-11.jpg', 'clases.webp',  0.833,  1050,  0.35)   # Rocío en la barra
-recorta('rocio-7.jpg',  'fitness.webp', 1.777,  1600,  0.76)   # Rocío en plancha
+# La sección de fitness está retirada de la web por el momento. Si vuelve,
+# basta con descomentar esta línea.
+# recorta('rocio-7.jpg',  'fitness.webp', 1.777,  1600,  0.76)   # Rocío en plancha
 recorta('2.jpg', 'calma.webp',      0.80,   1100,  0.50)   # los espejos dorados
 recorta('1.jpg', 'est-1.webp',      0.80,    800,  0.50)   # barra y cortinas, en vertical
 recorta('3.jpg', 'est-2.webp',      1.33,    900,  0.45)   # el material, de cerca

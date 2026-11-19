@@ -455,7 +455,7 @@ em{font-style:italic}
 .punto--barre{background:var(--accent)}
 .punto--fitness{background:var(--dark)}
 
-.semana{display:grid;grid-template-columns:repeat(7,1fr);gap:.6rem;align-items:start}
+.semana{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;align-items:start}
 .dia{
   background:var(--cream);border:1px solid var(--line-soft);border-radius:var(--r-md);
   padding:1rem .6rem 1.1rem;text-align:center

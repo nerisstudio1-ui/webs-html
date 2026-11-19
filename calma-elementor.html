@@ -177,7 +177,7 @@ body.calma-menu-abierto{overflow:hidden}
 }.calma-web.calma-web .pilar h3{font-family:var(--font-display);font-size:clamp(1.3rem,2.4vw,1.7rem);margin:0 0 .5rem}.calma-web.calma-web .pilar p{margin:0;font-size:.95rem}.calma-web.calma-web .horarios{margin-top:clamp(3rem,7vw,5rem)}.calma-web.calma-web .leyenda{
   display:flex;justify-content:center;flex-wrap:wrap;gap:1.4rem;
   margin:0 0 1.6rem;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase
-}.calma-web.calma-web .leyenda__it{display:inline-flex;align-items:center;gap:.5rem}.calma-web.calma-web .punto{width:9px;height:9px;border-radius:50%;display:inline-block}.calma-web.calma-web .punto--barre{background:var(--accent)}.calma-web.calma-web .punto--fitness{background:var(--dark)}.calma-web.calma-web .semana{display:grid;grid-template-columns:repeat(7,1fr);gap:.6rem;align-items:start}.calma-web.calma-web .dia{
+}.calma-web.calma-web .leyenda__it{display:inline-flex;align-items:center;gap:.5rem}.calma-web.calma-web .punto{width:9px;height:9px;border-radius:50%;display:inline-block}.calma-web.calma-web .punto--barre{background:var(--accent)}.calma-web.calma-web .punto--fitness{background:var(--dark)}.calma-web.calma-web .semana{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;align-items:start}.calma-web.calma-web .dia{
   background:var(--cream);border:1px solid var(--line-soft);border-radius:var(--r-md);
   padding:1rem .6rem 1.1rem;text-align:center
 }.calma-web.calma-web .dia__nom{
@@ -349,7 +349,6 @@ body.calma-menu-abierto{overflow:hidden}
       <a href="#calma">CALMA</a>
       <a href="#barre">¿Qué es barre?</a>
       <a href="#clases">Clases y horarios</a>
-      <a href="#fitness">Fitness</a>
       <a href="#tarifas">Tarifas</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#estudio">El estudio</a>
@@ -515,11 +514,6 @@ body.calma-menu-abierto{overflow:hidden}
     <div class="horarios" id="horarios">
       <h3 class="h2 center reveal sub-head">Horarios de la semana</h3>
 
-      <p class="leyenda reveal">
-        <span class="leyenda__it"><i class="punto punto--barre"></i>Barre</span>
-        <span class="leyenda__it"><i class="punto punto--fitness"></i>Fitness y tonificación</span>
-      </p>
-
       <div class="semana">
         <article class="dia reveal">
           <h4 class="dia__nom">Lunes</h4>
@@ -532,7 +526,6 @@ body.calma-menu-abierto{overflow:hidden}
         <article class="dia reveal" data-delay="1">
           <h4 class="dia__nom">Martes</h4>
           <ul class="dia__clases">
-            <li class="clase clase--fitness"><span class="clase__hora">9:30</span><span class="clase__tipo">Fitness</span></li>
             <li class="clase clase--barre"><span class="clase__hora">18:30</span><span class="clase__tipo">Barre</span></li>
             <li class="clase clase--barre"><span class="clase__hora">19:30</span><span class="clase__tipo">Barre</span></li>
             <li class="clase clase--barre"><span class="clase__hora">20:30</span><span class="clase__tipo">Barre</span></li>
@@ -549,7 +542,6 @@ body.calma-menu-abierto{overflow:hidden}
         <article class="dia reveal" data-delay="3">
           <h4 class="dia__nom">Jueves</h4>
           <ul class="dia__clases">
-            <li class="clase clase--fitness"><span class="clase__hora">9:30</span><span class="clase__tipo">Fitness</span></li>
             <li class="clase clase--barre"><span class="clase__hora">18:30</span><span class="clase__tipo">Barre</span></li>
             <li class="clase clase--barre"><span class="clase__hora">19:30</span><span class="clase__tipo">Barre</span></li>
             <li class="clase clase--barre"><span class="clase__hora">20:30</span><span class="clase__tipo">Barre</span></li>
@@ -559,8 +551,8 @@ body.calma-menu-abierto{overflow:hidden}
           <h4 class="dia__nom">Viernes</h4>
           <ul class="dia__clases">
             <li class="clase clase--barre"><span class="clase__hora">9:30</span><span class="clase__tipo">Barre</span></li>
+            <li class="clase clase--barre"><span class="clase__hora">17:30</span><span class="clase__tipo">Barre</span></li>
             <li class="clase clase--barre"><span class="clase__hora">18:30</span><span class="clase__tipo">Barre</span></li>
-            <li class="clase clase--barre"><span class="clase__hora">19:30</span><span class="clase__tipo">Barre</span></li>
           </ul>
         </article>
         <article class="dia reveal" data-delay="4">
@@ -570,72 +562,9 @@ body.calma-menu-abierto{overflow:hidden}
             <li class="clase clase--barre"><span class="clase__hora">11:30</span><span class="clase__tipo">Barre</span></li>
           </ul>
         </article>
-        <article class="dia reveal" data-delay="4">
-          <h4 class="dia__nom">Domingo</h4>
-          <ul class="dia__clases">
-            <li class="clase clase--barre"><span class="clase__hora">10:30</span><span class="clase__tipo">Barre</span></li>
-            <li class="clase clase--barre"><span class="clase__hora">11:30</span><span class="clase__tipo">Barre</span></li>
-          </ul>
-        </article>
       </div>
 
-      <p class="note center reveal">Eliges el horario que mejor te venga cada semana.
-        Las plazas de fitness son limitadas.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ FITNESS Y TONIFICACIÓN ═══════════ -->
-<section class="section section--nude" id="fitness">
-  <div class="wrap">
-    <div class="intro-split">
-      <div>
-        <p class="eyebrow reveal">Nueva actividad</p>
-        <h2 class="h1 reveal" data-delay="1">Fitness y<br>tonificación</h2>
-      </div>
-      <div class="intro-split__text">
-        <p class="reveal" data-delay="2"><span class="hl">¿En qué se diferencia del barre?</span>
-          El barre es bajo impacto. Aquí se sube la intensidad: <strong>fuerza con peso
-          y cardio</strong>. <strong>Se complementan</strong>, no hay que elegir.</p>
-      </div>
-    </div>
-
-    <h3 class="h2 center reveal sub-head">Cómo son las clases</h3>
-    <div class="bloques">
-      <article class="bloque reveal">
-        <p class="bloque__num">01</p>
-        <h4>Entrenamiento de fuerza</h4>
-        <p class="bloque__pie">Fuerza–resistencia para tonificar</p>
-        <ul class="bloque__lista">
-          <li>Aumenta la masa muscular</li>
-          <li>Fortalece huesos y articulaciones</li>
-          <li>Tonifica sin aumentar volumen</li>
-        </ul>
-        <p class="bloque__frase">Un cuerpo fuerte es un cuerpo sano.</p>
-      </article>
-
-      <article class="bloque reveal" data-delay="1">
-        <p class="bloque__num">02</p>
-        <h4>Cardio HIIT</h4>
-        <p class="bloque__pie">Alta intensidad, máximos resultados</p>
-        <ul class="bloque__lista">
-          <li>Mejora la capacidad cardiorrespiratoria</li>
-          <li>Más gasto calórico en menos tiempo</li>
-          <li>Pérdida de grasa y definición</li>
-        </ul>
-        <p class="bloque__frase">Más intensidad, más resultados en menos tiempo.</p>
-      </article>
-    </div>
-
-    <figure class="media-card media-card--wide reveal" data-parallax="0.05">
-      <img src="https://TU-DOMINIO.com/wp-content/uploads/calma/fitness.webp" alt="Rocío en plancha sobre una esterilla de CALMA" width="1600" height="900" loading="lazy">
-    </figure>
-
-
-    <div class="fitness-pie reveal">
-      <p><strong>Martes y jueves, 9:30 h.</strong> Plazas limitadas.</p>
-      <p><strong>Para hombres y mujeres</strong>, sea cual sea tu nivel.</p>
-      <a class="btn btn--primary" data-book target="_blank" rel="noopener" href="https://www.momoyoga.com/calma-barre-studio">Quiero probarla</a>
+      <p class="note center reveal">Eliges el horario que mejor te venga cada semana.</p>
     </div>
   </div>
 </section>
@@ -690,7 +619,7 @@ body.calma-menu-abierto{overflow:hidden}
 
     <p class="note center reveal"><strong>Los bonos no están ligados a un día fijo:</strong> puedes usarlos cualquier día,
       dentro de los horarios disponibles, según te venga mejor cada semana.<br>
-      <a href="#horarios">Consulta los horarios de barre y de fitness</a>.</p>
+      <a href="#horarios">Consulta los horarios</a>.</p>
 
     <div class="center"><a class="btn btn--primary btn--lg reveal" data-book target="_blank" rel="noopener" href="https://www.momoyoga.com/calma-barre-studio">Reservar mi clase</a></div>
   </div>
@@ -840,7 +769,7 @@ body.calma-menu-abierto{overflow:hidden}
         <div><h4>El estudio</h4>
           <a href="#calma">¿Qué es CALMA?</a><a href="#barre">Barre</a><a href="#sobre-mi">Sobre mí</a><a href="#estudio">El estudio</a></div>
         <div><h4>Clases</h4>
-          <a href="#clases">Cómo son las clases</a><a href="#fitness">Fitness</a><a href="#tarifas">Tarifas</a><a href="#faq">Preguntas frecuentes</a></div>
+          <a href="#clases">Cómo son las clases</a><a href="#tarifas">Tarifas</a><a href="#faq">Preguntas frecuentes</a></div>
         <div><h4>Contacto</h4>
           <a href="https://www.instagram.com/calma.barrestudio" target="_blank" rel="noopener">Instagram</a>
           <a href="mailto:Calma.barrestudio@gmail.com">Email</a>

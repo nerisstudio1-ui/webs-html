@@ -7,8 +7,17 @@ Devuelve 1 si encuentra alguno, para poder encadenarlo con el resto.
 Se salta el hero y la franja, donde el texto va sobre una foto y esta
 comprobación no tiene sentido.
 """
-import os, sys
+import glob, os, sys
 from playwright.sync_api import sync_playwright
+
+def chromium():
+    """El Chromium del contenedor cambia de carpeta con cada actualización."""
+    for patron in ('/opt/pw-browsers/chromium-*/chrome-linux*/chrome',
+                   '/opt/pw-browsers/chromium/chrome-linux*/chrome'):
+        encontrados = sorted(glob.glob(patron))
+        if encontrados:
+            return encontrados[-1]
+    sys.exit('No encuentro Chromium en /opt/pw-browsers')
 
 AUDIT = """() => {
   const lum = c => { const [r,g,b] = c.match(/\\d+/g).map(Number).map(v=>{
@@ -41,7 +50,7 @@ AUDIT = """() => {
 }"""
 
 with sync_playwright() as pw:
-    b = pw.chromium.launch(executable_path='/opt/pw-browsers/chromium-1194/chrome-linux/chrome')
+    b = pw.chromium.launch(executable_path=chromium())
     fallo = False
     for archivo in sys.argv[1:]:
         for w, h, et in [(393, 852, 'movil'), (1440, 900, 'escritorio')]:
