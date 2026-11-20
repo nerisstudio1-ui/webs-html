@@ -102,3 +102,13 @@ Se pegan igual que la web, en un bloque **HTML personalizado**. Los slugs tienen
 Los datos que faltan (titular, NIF, dirección, registro profesional y dominio) salen marcados en amarillo. Para rellenarlos se escriben en `src/legal/textos.py` (en `DATOS`) y se ejecuta `python3 build_legal.py`, o se cambian a mano en WordPress buscando los recuadros amarillos.
 
 Son una plantilla para una actividad como esta; conviene que los revise una asesoría. La web carga vídeos de Instagram, que instalan cookies de terceros: hace falta un banner de cookies (Complianz o CookieYes) configurado en WordPress.
+
+## Título, descripción y favicon (se ponen en WordPress, no en el bloque)
+
+El bloque HTML no puede cambiar la cabecera de la página, así que estas tres cosas se configuran en WordPress:
+
+- **Título para Google** y **descripción**: con un plugin de SEO (Yoast SEO o Rank Math), en la página de inicio:
+  - CA: «MOA Moviment | Entrenament personal a Martorell» · «MOA Moviment: entrenament personal, grupal, online i a domicili a Martorell. Quiromassatge i plans adaptats a tu. Reserva la teva primera sessió.»
+  - ES: «MOA Moviment | Entrenamiento personal en Martorell» · «MOA Moviment: entrenamiento personal, grupal, online y a domicilio en Martorell. Quiromasaje y planes adaptados a ti. Reserva tu primera sesión.»
+  - EN: «MOA Moviment | Personal training in Martorell» · «MOA Moviment: personal, group, online and at-home training in Martorell. Chiromassage and plans tailored to you. Book your first session.»
+- **Favicon**: Apariencia → Personalizar → Identidad del sitio → **Icono del sitio**, y subir `assets/favicon-512.png`. WordPress genera solo los demás tamaños. (Los archivos `favicon-16/32/180.png`, `favicon.svg` y `favicon.ico` están por si se publica fuera de WordPress.)

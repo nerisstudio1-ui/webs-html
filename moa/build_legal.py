@@ -59,8 +59,7 @@ def build():
             '<section data-lang="%s" lang="%s"%s><h1>%s</h1>%s</section>' % (
                 c, c, ' class="on"' if c == "ca" else "", langs[c]["titulo"], fill(langs[c]["html"], c))
             for c, _ in LANGS)
-        html = ("<!-- MOA · %s. Generado con build_legal.py: los datos se cambian en src/legal/textos.py -->\n"
-                % slug + CSS + '\n<div id="moa-legal">' + nav + secs + "</div>\n" + JS + "\n")
+        html = (CSS + '\n<div id="moa-legal">' + nav + secs + "</div>\n" + JS + "\n")
         html = "\n".join(l for l in html.split("\n") if l.strip())
         for ext in ("html", "txt"):
             (out_dir / ("%s.%s" % (slug, ext))).write_text(html, encoding="utf-8")

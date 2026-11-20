@@ -320,17 +320,17 @@ def build(lang):
         return "\n".join(l for l in t.split("\n") if l.strip())
 
     out = (
-        "<!-- MOA · Moviment i Salut — bloque de HTML personalizado (%s). Generado %s.\n"
-        "     No editar aquí: los cambios se hacen en src/ y se regenera con build.py y build_wordpress.py. -->\n"
-        % (lang, SELLO)
-        + fonts + "\n"
+        fonts + "\n"
         + "<style>\n" + compact(css) + "\n</style>\n"
-        + '<div id="moa-app" lang="%s">\n' % (lang if lang in URLS else "ca")
+        + '<div id="moa-app" lang="%s" data-version="%s">\n' % (lang if lang in URLS else "ca", SELLO)
         + GUARDIA + "\n"
         + compact(body.strip()) + "\n"
         + "<script>\n" + compact(js) + "\n</script>\n"
         + "</div>\n"
     )
+    # Sin comentarios HTML en lo que se publica (la versión va en data-version)
+    out = re.sub(r"<!--.*?-->\n?", "", out, flags=re.S)
+    assert "<!--" not in out
     DEST.mkdir(exist_ok=True)
     dst = DEST / ("moa-wordpress-%s.html" % lang)
     dst.write_text(out, encoding="utf-8")

@@ -8,11 +8,14 @@
 <meta property="og:title" content="{{meta_title}}">
 <meta property="og:description" content="{{meta_og}}">
 <meta property="og:locale" content="{{og_locale}}">
-<meta name="theme-color" content="#9242F3">
+<meta name="theme-color" content="#3BC65F">
 <link rel="alternate" hreflang="ca" href="index.html">
 <link rel="alternate" hreflang="es" href="es.html">
 <link rel="alternate" hreflang="en" href="en.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png" sizes="180x180">
 <script>document.documentElement.classList.add("js");addEventListener("load",function(){setTimeout(function(){if(!window.MOA_OK)document.documentElement.classList.remove("js")},300)});</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +100,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .header.scrolled{background:rgba(255,255,255,.97);box-shadow:0 1px 0 var(--linea)}
 .header.hide{transform:translateY(-100%)}
 .header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:74px;gap:20px;max-width:1400px}
-.nav-left{display:flex;gap:24px}
+.nav-left{display:flex;gap:20px}
 .nav-left a{font-size:.78rem;font-weight:500;letter-spacing:.06em;text-decoration:none;position:relative}
 .nav-left a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
 .nav-left a:hover::after{transform:scaleX(1);transform-origin:left}
@@ -344,7 +347,8 @@ p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(
 .price-row h3{font-size:1.05rem}
 .price-row small{display:block;color:var(--gris);font-size:.84rem;margin-top:4px;max-width:46ch}
 .price-row .amount{font-family:var(--titulo);font-weight:800;font-size:2rem;white-space:nowrap;text-align:right;line-height:1}
-.price-row .amount small{font-family:var(--texto);font-weight:500;font-size:.76rem;text-align:right;margin:4px 0 0}
+.price-row .amount small.from{margin:0 0 4px}
+.price-row .amount small{display:block;font-family:var(--texto);font-weight:500;font-size:.76rem;text-align:right;margin:4px 0 0}
 .price-row.block{display:block}
 .group-prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
 .group-prices div{background:var(--crema);border:1px solid var(--linea);border-radius:14px;padding:14px 10px;text-align:center;transition:transform .35s var(--ease),background .35s}
@@ -557,10 +561,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <header class="header" id="header">
   <div class="wrap">
     <nav class="nav-left" aria-label="{{aria_nav}}">
-      <a href="#serveis">{{nav_services}}</a>
       <a href="#metode">{{nav_method}}</a>
+      <a href="#serveis">{{nav_services}}</a>
       <a href="#tarifes">{{nav_prices}}</a>
       <a href="#patricia">{{nav_patricia}}</a>
+      <a href="#contacte">{{nav_contact}}</a>
     </nav>
     <a href="#inici" class="brand" aria-label="{{aria_home}}"><img src="assets/logos-moa/moa-logo-violeta.svg" alt="MOA" width="92" height="30"></a>
     <div class="nav-right">
@@ -573,8 +578,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a class="big" style="--i:0" href="#serveis">{{nav_services}}</a>
-  <a class="big" style="--i:1" href="#metode">{{nav_method}}</a>
+  <a class="big" style="--i:0" href="#metode">{{nav_method}}</a>
+  <a class="big" style="--i:1" href="#serveis">{{nav_services}}</a>
   <a class="big" style="--i:2" href="#tarifes">{{nav_prices}}</a>
   <a class="big" style="--i:3" href="#patricia">{{nav_patricia}}</a>
   <a class="big" style="--i:4" href="#contacte">{{nav_contact}}</a>
@@ -809,7 +814,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="prices-grid">
       <div class="reveal">
         <div class="price-list">
-          <div class="price-row"><div><h3>{{svc1_t}}</h3><small>{{pr1_note}}</small></div><div class="amount">25 €<small>{{per_session}}</small></div></div>
+          <div class="price-row"><div><h3>{{svc1_t}}</h3><small>{{pr1_note}}</small></div><div class="amount">25 € <small>{{per_session}}</small></div></div>
           <div class="price-row block"><div><h3>{{svc2_t}}</h3><small>{{pr2_note}}</small></div>
             <div class="group-prices">
               <div><b>35 €</b><span>{{g1}}</span></div>
@@ -817,9 +822,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
               <div><b>75 €</b><span>{{g3}}</span></div>
             </div>
           </div>
-          <div class="price-row"><div><h3>{{svc5_t}}</h3><small>{{pr5_note}}</small></div><div class="amount"><small style="margin:0 0 4px">{{from}}</small>65 €<small>{{per_month}}</small></div></div>
-          <div class="price-row"><div><h3>{{svc4_t}}</h3><small>{{pr4_note}}</small></div><div class="amount">35 €<small>{{per_session}}</small></div></div>
-          <div class="price-row"><div><h3>{{svc3_t}}</h3><small>{{pr3_note}}</small></div><div class="amount"><small style="margin:0 0 4px">{{from}}</small>35 €<small>{{per_session}}</small></div></div>
+          <div class="price-row"><div><h3>{{svc5_t}}</h3><small>{{pr5_note}}</small></div><div class="amount"><small class="from">{{from}}</small> 65 € <small>{{per_month}}</small></div></div>
+          <div class="price-row"><div><h3>{{svc4_t}}</h3><small>{{pr4_note}}</small></div><div class="amount">35 € <small>{{per_session}}</small></div></div>
+          <div class="price-row"><div><h3>{{svc3_t}}</h3><small>{{pr3_note}}</small></div><div class="amount"><small class="from">{{from}}</small> 35 € <small>{{per_session}}</small></div></div>
           <div class="price-row block"><div><h3>{{quiro_t}}</h3><small>{{pr_quiro_note}}</small></div>
             <div class="group-prices two">
               <div><b>40 €</b><span>{{q_students}}</span></div>

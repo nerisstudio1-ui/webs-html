@@ -7,8 +7,8 @@ PAGES = {"ca": "index.html", "es": "es.html", "en": "en.html"}
 TEXT = {
 # ─────────────────────────────── CATALÀ ───────────────────────────────
 "ca": {
-  "meta_title": "MOA · Moviment i Salut · Entrenament adaptat a Martorell",
-  "meta_desc": "MOA és entrenament adaptat a la persona a Martorell (Barcelona): personal, grupal, a domicili, en línia i amb app. Un projecte de Patricia Dorado Trainer. Pas a pas, al teu ritme.",
+  "meta_title": "MOA Moviment | Entrenament personal a Martorell",
+  "meta_desc": "MOA Moviment: entrenament personal, grupal, online i a domicili a Martorell. Quiromassatge i plans adaptats a tu. Reserva la teva primera sessió.",
   "meta_og": "El teu ritme. El teu moviment. Entrenament adaptat a tu.",
   "og_locale": "ca_ES",
   "firma_alt": "MOA · Moviment, Origen, Acció",
@@ -22,7 +22,7 @@ TEXT = {
   "ph_intro_b": "Una barra amb disc sobre el tatami", "ph_patricia": "La Patricia Dorado somrient en un congost de muntanya",
 
   "hero_l1": "El teu ritme.", "hero_l2": "El teu moviment.",
-  "hero_sub": "Entrenament adaptat a tu.",
+  "hero_sub": "Entrenament personal a Martorell · Presencial, a domicili i online",
   "hero_lead": "Cada persona té una història, unes necessitats i un ritme. A MOA escoltem abans de planificar i t'acompanyem perquè moure't tingui sentit a la teva vida.",
   "hero_cta": "Vull començar", "hero_cta2": "Quin entrenament és per a mi?",
   "badge_text": "PASO A PASO · PAS A PAS · STEP BY STEP ·",
@@ -82,7 +82,7 @@ TEXT = {
 
   "pr_eyebrow": "Tarifes i horaris", "pr_title": "Clar i sense lletra petita",
   "pr_lead": "Hi ha classes amb horari fix, opcions en què tu tries quan entrenar i d'altres que organitzem directament amb tu.",
-  "pr1_note": "Grups molt reduïts, entrenament adaptat a cada persona.", "pr2_note": "Quota mensual segons les sessions per setmana.",
+  "pr1_note": "Grups reduïts, entrenament adaptat a cada persona.", "pr2_note": "Quota mensual segons les sessions per setmana.",
   "pr3_note": "Preu estimat segons el temps de desplaçament.", "pr4_note": "Pla individualitzat i seguiment a distància.",
   "pr5_note": "Inclou planificació individualitzada, seguiment i ajustos segons la teva evolució.",
   "g1": "1 sessió<br>per setmana", "g2": "2 sessions<br>per setmana", "g3": "3 sessions<br>per setmana",
@@ -187,8 +187,8 @@ TEXT = {
 
 # ─────────────────────────────── CASTELLANO ───────────────────────────────
 "es": {
-  "meta_title": "MOA · Moviment i Salut · Entrenamiento adaptado en Martorell",
-  "meta_desc": "MOA es entrenamiento adaptado a la persona en Martorell (Barcelona): personal, grupal, a domicilio, online y por app. Un proyecto de Patricia Dorado Trainer. Paso a paso, a tu ritmo.",
+  "meta_title": "MOA Moviment | Entrenamiento personal en Martorell",
+  "meta_desc": "MOA Moviment: entrenamiento personal, grupal, online y a domicilio en Martorell. Quiromasaje y planes adaptados a ti. Reserva tu primera sesión.",
   "meta_og": "Tu ritmo. Tu movimiento. Entrenamiento adaptado a ti.",
   "og_locale": "es_ES",
   "firma_alt": "MOA · Movimiento, Origen, Acción",
@@ -202,7 +202,7 @@ TEXT = {
   "ph_intro_b": "Una barra con disco sobre el tatami", "ph_patricia": "Patricia Dorado sonriendo en un barranco de montaña",
 
   "hero_l1": "Tu ritmo.", "hero_l2": "Tu movimiento.",
-  "hero_sub": "Entrenamiento adaptado a ti.",
+  "hero_sub": "Entrenamiento personal en Martorell · Presencial, a domicilio y online",
   "hero_lead": "Cada persona tiene una historia, unas necesidades y un ritmo. En MOA escuchamos antes de planificar y te acompañamos para que moverte tenga sentido en tu vida.",
   "hero_cta": "Quiero empezar", "hero_cta2": "¿Qué entrenamiento es para mí?",
   "badge_text": "PASO A PASO · PAS A PAS · STEP BY STEP ·",
@@ -262,7 +262,7 @@ TEXT = {
 
   "pr_eyebrow": "Tarifas y horarios", "pr_title": "Claro y sin letra pequeña",
   "pr_lead": "Hay clases con horario fijo, opciones en las que tú eliges cuándo entrenar y otras que organizamos directamente contigo.",
-  "pr1_note": "Grupos muy reducidos, entrenamiento adaptado a cada persona.", "pr2_note": "Cuota mensual según las sesiones por semana.",
+  "pr1_note": "Grupos reducidos, entrenamiento adaptado a cada persona.", "pr2_note": "Cuota mensual según las sesiones por semana.",
   "pr3_note": "Precio estimado según el tiempo de desplazamiento.", "pr4_note": "Plan individualizado y seguimiento a distancia.",
   "pr5_note": "Incluye planificación individualizada, seguimiento y ajustes según tu evolución.",
   "g1": "1 sesión<br>por semana", "g2": "2 sesiones<br>por semana", "g3": "3 sesiones<br>por semana",
@@ -367,8 +367,8 @@ TEXT = {
 
 # ─────────────────────────────── ENGLISH ───────────────────────────────
 "en": {
-  "meta_title": "MOA · Moviment i Salut · Personal training in Martorell",
-  "meta_desc": "MOA is training that adapts to the person, in Martorell (Barcelona): personal, small-group, at home, online and via app. A project by Patricia Dorado Trainer. Step by step, at your pace.",
+  "meta_title": "MOA Moviment | Personal training in Martorell",
+  "meta_desc": "MOA Moviment: personal, group, online and at-home training in Martorell. Chiromassage and plans tailored to you. Book your first session.",
   "meta_og": "Your pace. Your movement. Training that adapts to you.",
   "og_locale": "en_GB",
   "firma_alt": "MOA · Movement, Origin, Action",
@@ -382,7 +382,7 @@ TEXT = {
   "ph_intro_b": "A barbell with a plate on the mat", "ph_patricia": "Patricia Dorado smiling in a mountain gorge",
 
   "hero_l1": "Your pace.", "hero_l2": "Your movement.",
-  "hero_sub": "Training that adapts to you.",
+  "hero_sub": "Personal training in Martorell · In person, at home and online",
   "hero_lead": "Everyone has their own story, needs and pace. At MOA we listen before we plan, and we stay by your side so that moving makes sense in your life.",
   "hero_cta": "Get started", "hero_cta2": "Which training is right for me?",
   "badge_text": "PASO A PASO · PAS A PAS · STEP BY STEP ·",
@@ -408,7 +408,7 @@ TEXT = {
   "how_note": "No rush. <span class=\"violeta\">Every step forward counts.</span>",
 
   "svc_eyebrow": "Services", "svc_title": "Five ways to train", "svc_hint": "Scroll", "svc_cta": "Ask about it",
-  "svc1_t": "Shared personal training", "svc1_p": "Very small groups. Everyone follows their own tailored programme while sharing the space and the moment. Because training together is motivating too.",
+  "svc1_t": "Shared personal training", "svc1_p": "Small groups. Everyone follows their own tailored programme while sharing the space and the moment. Because training together is motivating too.",
   "svc1_price": "€25 <small>/ session</small>",
   "svc2_t": "Group training", "svc2_p": "We train together, but everyone finds their own level within each exercise. We share the effort and enjoy the moment.",
   "svc2_price": "From €35 <small>/ month</small>",
@@ -442,7 +442,7 @@ TEXT = {
 
   "pr_eyebrow": "Pricing and timetable", "pr_title": "Clear, no small print",
   "pr_lead": "Some classes have a fixed timetable, some options let you choose when to train, and others we arrange directly with you.",
-  "pr1_note": "Very small groups, training tailored to each person.", "pr2_note": "Monthly fee based on sessions per week.",
+  "pr1_note": "Small groups, training tailored to each person.", "pr2_note": "Monthly fee based on sessions per week.",
   "pr3_note": "Estimated price depending on travel time.", "pr4_note": "Personalised plan and remote follow-up.",
   "pr5_note": "Includes a personalised plan, follow-up and adjustments as you progress.",
   "g1": "1 session<br>per week", "g2": "2 sessions<br>per week", "g3": "3 sessions<br>per week",

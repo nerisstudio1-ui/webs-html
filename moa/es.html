@@ -3,16 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MOA · Moviment i Salut · Entrenamiento adaptado en Martorell</title>
-<meta name="description" content="MOA es entrenamiento adaptado a la persona en Martorell (Barcelona): personal, grupal, a domicilio, online y por app. Un proyecto de Patricia Dorado Trainer. Paso a paso, a tu ritmo.">
-<meta property="og:title" content="MOA · Moviment i Salut · Entrenamiento adaptado en Martorell">
+<title>MOA Moviment | Entrenamiento personal en Martorell</title>
+<meta name="description" content="MOA Moviment: entrenamiento personal, grupal, online y a domicilio en Martorell. Quiromasaje y planes adaptados a ti. Reserva tu primera sesión.">
+<meta property="og:title" content="MOA Moviment | Entrenamiento personal en Martorell">
 <meta property="og:description" content="Tu ritmo. Tu movimiento. Entrenamiento adaptado a ti.">
 <meta property="og:locale" content="es_ES">
-<meta name="theme-color" content="#9242F3">
+<meta name="theme-color" content="#3BC65F">
 <link rel="alternate" hreflang="ca" href="index.html">
 <link rel="alternate" hreflang="es" href="es.html">
 <link rel="alternate" hreflang="en" href="en.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png" sizes="180x180">
 <script>document.documentElement.classList.add("js");addEventListener("load",function(){setTimeout(function(){if(!window.MOA_OK)document.documentElement.classList.remove("js")},300)});</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +100,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .header.scrolled{background:rgba(255,255,255,.97);box-shadow:0 1px 0 var(--linea)}
 .header.hide{transform:translateY(-100%)}
 .header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:74px;gap:20px;max-width:1400px}
-.nav-left{display:flex;gap:24px}
+.nav-left{display:flex;gap:20px}
 .nav-left a{font-size:.78rem;font-weight:500;letter-spacing:.06em;text-decoration:none;position:relative}
 .nav-left a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
 .nav-left a:hover::after{transform:scaleX(1);transform-origin:left}
@@ -344,7 +347,8 @@ p:not(.motto):not(.who-callout):not(.how-note):not(.footer-claim):not(.sub):not(
 .price-row h3{font-size:1.05rem}
 .price-row small{display:block;color:var(--gris);font-size:.84rem;margin-top:4px;max-width:46ch}
 .price-row .amount{font-family:var(--titulo);font-weight:800;font-size:2rem;white-space:nowrap;text-align:right;line-height:1}
-.price-row .amount small{font-family:var(--texto);font-weight:500;font-size:.76rem;text-align:right;margin:4px 0 0}
+.price-row .amount small.from{margin:0 0 4px}
+.price-row .amount small{display:block;font-family:var(--texto);font-weight:500;font-size:.76rem;text-align:right;margin:4px 0 0}
 .price-row.block{display:block}
 .group-prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
 .group-prices div{background:var(--crema);border:1px solid var(--linea);border-radius:14px;padding:14px 10px;text-align:center;transition:transform .35s var(--ease),background .35s}
@@ -557,10 +561,11 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 <header class="header" id="header">
   <div class="wrap">
     <nav class="nav-left" aria-label="Principal">
-      <a href="#serveis">Servicios</a>
       <a href="#metode">Cómo trabajamos</a>
+      <a href="#serveis">Servicios</a>
       <a href="#tarifes">Tarifas</a>
       <a href="#patricia">Patricia</a>
+      <a href="#contacte">Contacto</a>
     </nav>
     <a href="#inici" class="brand" aria-label="MOA, ir al inicio"><img src="assets/logos-moa/moa-logo-violeta.svg" alt="MOA" width="92" height="30"></a>
     <div class="nav-right">
@@ -573,8 +578,8 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a class="big" style="--i:0" href="#serveis">Servicios</a>
-  <a class="big" style="--i:1" href="#metode">Cómo trabajamos</a>
+  <a class="big" style="--i:0" href="#metode">Cómo trabajamos</a>
+  <a class="big" style="--i:1" href="#serveis">Servicios</a>
   <a class="big" style="--i:2" href="#tarifes">Tarifas</a>
   <a class="big" style="--i:3" href="#patricia">Patricia</a>
   <a class="big" style="--i:4" href="#contacte">Contacto</a>
@@ -598,7 +603,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
       <span class="line"><span>Tu ritmo.<svg class="squiggle" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 12 C 60 2, 110 18, 160 9 S 250 4, 296 11"/></svg></span></span>
       <span class="line"><span>Tu movimiento.</span></span>
     </h1>
-    <p class="sub hero-fade">Entrenamiento adaptado a ti.</p>
+    <p class="sub hero-fade">Entrenamiento personal en Martorell · Presencial, a domicilio y online</p>
     <p class="lead hero-fade">Cada persona tiene una historia, unas necesidades y un ritmo. En MOA escuchamos antes de planificar y te acompañamos para que moverte tenga sentido en tu vida.</p>
     <div class="hero-ctas hero-fade">
       <a href="#contacte" class="btn magnetic">Quiero empezar</a>
@@ -809,7 +814,7 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
     <div class="prices-grid">
       <div class="reveal">
         <div class="price-list">
-          <div class="price-row"><div><h3>Entrenamiento personal compartido</h3><small>Grupos muy reducidos, entrenamiento adaptado a cada persona.</small></div><div class="amount">25 €<small>/ sesión</small></div></div>
+          <div class="price-row"><div><h3>Entrenamiento personal compartido</h3><small>Grupos reducidos, entrenamiento adaptado a cada persona.</small></div><div class="amount">25 € <small>/ sesión</small></div></div>
           <div class="price-row block"><div><h3>Entrenamiento grupal</h3><small>Cuota mensual según las sesiones por semana.</small></div>
             <div class="group-prices">
               <div><b>35 €</b><span>1 sesión<br>por semana</span></div>
@@ -817,9 +822,9 @@ blockquote.instagram-media a:hover::before{transform:scale(1.08)}
               <div><b>75 €</b><span>3 sesiones<br>por semana</span></div>
             </div>
           </div>
-          <div class="price-row"><div><h3>Entrenamiento personal por app</h3><small>Incluye planificación individualizada, seguimiento y ajustes según tu evolución.</small></div><div class="amount"><small style="margin:0 0 4px">desde</small>65 €<small>/ mes</small></div></div>
-          <div class="price-row"><div><h3>Entrenamiento personal online</h3><small>Plan individualizado y seguimiento a distancia.</small></div><div class="amount">35 €<small>/ sesión</small></div></div>
-          <div class="price-row"><div><h3>Entrenamiento a domicilio</h3><small>Precio estimado según el tiempo de desplazamiento.</small></div><div class="amount"><small style="margin:0 0 4px">desde</small>35 €<small>/ sesión</small></div></div>
+          <div class="price-row"><div><h3>Entrenamiento personal por app</h3><small>Incluye planificación individualizada, seguimiento y ajustes según tu evolución.</small></div><div class="amount"><small class="from">desde</small> 65 € <small>/ mes</small></div></div>
+          <div class="price-row"><div><h3>Entrenamiento personal online</h3><small>Plan individualizado y seguimiento a distancia.</small></div><div class="amount">35 € <small>/ sesión</small></div></div>
+          <div class="price-row"><div><h3>Entrenamiento a domicilio</h3><small>Precio estimado según el tiempo de desplazamiento.</small></div><div class="amount"><small class="from">desde</small> 35 € <small>/ sesión</small></div></div>
           <div class="price-row block"><div><h3>Quiromasaje</h3><small>Sesión de 1 hora.</small></div>
             <div class="group-prices two">
               <div><b>40 €</b><span>alumnos de MOA</span></div>
