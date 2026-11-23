@@ -3,24 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Castellsagué — Obra original</title>
-<meta name="description" content="Obra original de Cristina Castellsagué. Piezas disponibles con precio y contacto directo con la artista.">
-<meta property="og:title" content="Castellsagué — Obra original">
+<title>Castellsagué — Pintura y papel maché</title>
+<meta name="description" content="Obra original de Cristina Castellsagué: pintura sobre cartón y lienzo y figuras de papel maché. Piezas disponibles y contacto directo con la artista.">
+<meta property="og:title" content="Castellsagué — Pintura y papel maché">
 <meta property="og:description" content="Obra original de Cristina Castellsagué. Piezas disponibles y contacto directo con la artista.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/logo.png">
+<meta property="og:image" content="assets/obras/papaya-2.jpg">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --fondo: #faf8f4;
-    --arena: #f0ebe1;
-    --tinta: #1a1a1a;
-    --gris: #77736b;
-    --azul: #1b2fa8;
-    --linea: rgba(26, 26, 26, .14);
+    /* Crudo inspirado en el Titanium Buff Deep (Amsterdam 290) que usa la artista como base */
+    --fondo: #ece4d4;
+    --arena: #e2d7c2;
+    --tinta: #1f1c18;
+    --gris: #6f675b;
+    --azul: #1d2f9e;
+    --linea: rgba(31, 28, 24, .16);
     --margen: clamp(20px, 5vw, 72px);
   }
   * { box-sizing: border-box; }
@@ -37,33 +38,50 @@
   .estrecho { max-width: 1080px; }
   .etiqueta { font-size: 12.5px; font-weight: 400; letter-spacing: .16em; text-transform: uppercase; color: var(--gris); }
   h2 { font-weight: 300; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.15; letter-spacing: -.005em; }
-  section { padding: clamp(64px, 9vw, 128px) 0; }
-  .cabecera-seccion { margin-bottom: clamp(32px, 4.5vw, 56px); }
+  section { padding: clamp(64px, 9vw, 120px) 0; }
+  .cabecera-seccion { margin-bottom: clamp(28px, 4vw, 48px); }
   .cabecera-seccion p { color: var(--gris); max-width: 46ch; margin-top: 10px; }
   :focus-visible { outline: 2px solid var(--azul); outline-offset: 4px; }
 
   /* Navegación */
-  .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; background: rgba(250, 248, 244, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linea); }
-  .nav .contenedor { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .nav-marca { font-weight: 400; letter-spacing: .26em; text-transform: uppercase; font-size: 14px; text-decoration: none; color: var(--azul); }
-  .nav ul { list-style: none; display: flex; gap: clamp(18px, 3vw, 40px); margin: 0; padding: 0; }
+  .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; background: rgba(236, 228, 212, .95); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .nav.con-borde { border-color: var(--linea); }
+  .nav .contenedor { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 20px; }
+  .nav-marca {
+    font-weight: 400; letter-spacing: .26em; text-transform: uppercase; font-size: 14px; text-decoration: none; color: var(--azul);
+    opacity: 0; pointer-events: none; transition: opacity .25s;
+  }
+  .nav.con-borde .nav-marca { opacity: 1; pointer-events: auto; }
+  .nav-derecha { display: flex; align-items: center; gap: clamp(18px, 3vw, 36px); }
+  .nav ul { list-style: none; display: flex; gap: clamp(16px, 2.6vw, 34px); margin: 0; padding: 0; }
   .nav li a { text-decoration: none; font-size: 16px; padding: 6px 0; border-bottom: 1px solid transparent; transition: border-color .15s, color .15s; }
   .nav li a:hover { color: var(--azul); border-color: var(--azul); }
+  .idioma { display: flex; gap: 2px; font-size: 13px; font-weight: 400; letter-spacing: .1em; }
+  .idioma button { font: inherit; background: none; border: 0; padding: 6px 5px; cursor: pointer; color: var(--gris); }
+  .idioma button[aria-pressed="true"] { color: var(--azul); text-decoration: underline; text-underline-offset: 4px; }
   .nav-boton { display: none; background: none; border: 0; padding: 10px; margin-right: -10px; cursor: pointer; }
   .nav-boton span { display: block; width: 24px; height: 1.5px; background: var(--tinta); margin: 6px 0; transition: transform .2s; }
 
-  /* Portada */
-  .portada {
-    min-height: 100svh; padding: 64px var(--margen) 0; text-align: center;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(22px, 3.4vw, 40px);
+  /* Portada: logo pequeño + fotos de presentación */
+  .portada { padding: 64px 0 0; }
+  .portada .contenedor {
+    min-height: calc(100svh - 64px); display: grid; grid-template-columns: .8fr 1.2fr;
+    gap: clamp(28px, 5vw, 80px); align-items: center; padding-top: clamp(24px, 4vw, 48px); padding-bottom: clamp(24px, 4vw, 48px);
   }
-  .portada img { height: min(52svh, 480px); width: auto; }
-  .portada p { font-size: clamp(18px, 1.7vw, 21px); color: var(--gris); max-width: 34ch; }
-  .enlace {
-    font-size: 16px; text-decoration: none; color: var(--azul);
-    border-bottom: 1px solid currentColor; padding-bottom: 3px; transition: opacity .15s;
-  }
+  .portada-texto { display: flex; flex-direction: column; align-items: flex-start; gap: clamp(18px, 2.4vw, 28px); }
+  .portada-texto img { width: clamp(150px, 15vw, 210px); height: auto; }
+  .portada-texto p { color: var(--gris); font-size: clamp(18px, 1.6vw, 20px); max-width: 26ch; }
+  .enlace { font-size: 16px; text-decoration: none; color: var(--azul); border-bottom: 1px solid currentColor; padding-bottom: 3px; transition: opacity .15s; }
   .enlace:hover { opacity: .65; }
+
+  .carrusel { position: relative; aspect-ratio: 4 / 5; max-height: calc(100svh - 64px - 2 * clamp(24px, 4vw, 48px)); width: 100%; justify-self: end; overflow: hidden; background: var(--arena); }
+  .carrusel figure { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 1.2s ease; }
+  .carrusel figure.activa { opacity: 1; }
+  .carrusel img { width: 100%; height: 100%; object-fit: cover; }
+  .carrusel-puntos { position: absolute; left: 0; right: 0; bottom: 16px; display: flex; justify-content: center; gap: 6px; }
+  .carrusel-puntos button { width: 28px; height: 28px; border: 0; padding: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+  .carrusel-puntos button::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .55); box-shadow: 0 0 0 1px rgba(0, 0, 0, .15); transition: background .2s; }
+  .carrusel-puntos button[aria-current="true"]::before { background: #fff; }
 
   /* Botones */
   .boton {
@@ -76,21 +94,27 @@
   .boton.linea:hover { background: var(--azul); color: #fff; }
 
   /* Obra */
-  #obra { padding-top: clamp(24px, 4vw, 56px); }
+  .filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(32px, 4.5vw, 56px); }
+  .filtros button {
+    font: inherit; font-size: 15px; padding: 8px 18px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--linea); background: transparent; color: var(--tinta); transition: border-color .15s, background .15s, color .15s;
+  }
+  .filtros button:hover { border-color: var(--azul); color: var(--azul); }
+  .filtros button[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: var(--fondo); }
   .obras { display: grid; grid-template-columns: repeat(4, 1fr); align-items: start; gap: clamp(44px, 5.5vw, 80px) clamp(20px, 2.6vw, 40px); }
+  .obras-vacio { color: var(--gris); padding: 40px 0 0; font-size: clamp(19px, 2vw, 23px); }
   .obra { display: flex; flex-direction: column; }
   .obra-imagen { position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; background: transparent; }
-  .obra-imagen.sin-foto { aspect-ratio: 4 / 5; background: var(--arena) !important; }
+  .obra-imagen.sin-foto { aspect-ratio: 4 / 5; background: var(--arena); }
   .obra-imagen img { width: 100%; height: auto; transition: opacity .25s; }
   .obra-imagen:hover img { opacity: .88; }
-  .obra-pendiente { position: absolute; inset: 0; display: grid; place-items: center; font: inherit; font-size: 13px; color: var(--gris) !important; }
-  .obra-estado { display: none; }
+  .obra-pendiente { position: absolute; inset: 0; display: grid; place-items: center; font: inherit; font-size: 13px; color: var(--gris); }
   .obra-datos { padding-top: 16px; }
   .obra h3 { font-weight: 400; font-size: 19px; line-height: 1.3; }
   .obra-ficha { color: var(--gris); font-size: 15.5px; line-height: 1.5; margin-top: 4px; }
-  .obra-precio { font-size: 16px; margin-top: 10px; }
-  .obra-precio.no { color: var(--gris); }
-  .obra-precio.no::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #c8402f; margin-right: 8px; vertical-align: 2px; }
+  .obra-precio { font-size: 17px; font-weight: 400; margin-top: 10px; }
+  .obra-precio.no { color: var(--gris); font-weight: 300; }
+  .obra-precio.no::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #b8402f; margin-right: 8px; vertical-align: 2px; }
   .obra-consulta { align-self: flex-start; margin-top: 8px; font-size: 16px; color: var(--azul); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
   .obra-consulta:hover { opacity: .65; }
   .nota-compra { margin-top: clamp(56px, 7vw, 96px); padding-top: 28px; border-top: 1px solid var(--linea); display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
@@ -106,50 +130,51 @@
   .bio-texto p + p { margin-top: 1.1em; }
   .pendiente { color: var(--gris); font-style: italic; }
 
-  /* Exposiciones */
-  .lista-eventos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
-  .lista-eventos li { display: grid; grid-template-columns: 150px 1fr auto; gap: 24px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--linea); }
-  .lista-eventos .fecha, .lista-eventos li > span:last-child { color: var(--gris); font-size: 16px; }
-  .lista-eventos .titulo { font-size: clamp(19px, 2vw, 23px); }
+  /* Exposiciones y prensa */
+  .lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+  .lista li { display: grid; grid-template-columns: 150px 1fr auto; gap: 24px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--linea); }
+  .lista .fecha, .lista li > span:last-child { color: var(--gris); font-size: 16px; }
+  .lista .titulo { font-size: clamp(19px, 2vw, 23px); }
   .galeria { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(10px, 1.4vw, 20px); margin-top: clamp(36px, 5vw, 64px); }
   .galeria figure { margin: 0; aspect-ratio: 4 / 5; background: var(--arena); color: var(--gris); overflow: hidden; display: grid; place-items: center; font-size: 13px; }
   .galeria img { width: 100%; height: 100%; object-fit: cover; }
+  .prensa { background: var(--arena); }
 
   /* Contacto */
-  .contacto { background: var(--azul); color: #fff; }
-  .contacto .etiqueta { color: rgba(255, 255, 255, .7); }
-  .contacto h2 { margin: 10px 0 clamp(32px, 5vw, 56px); max-width: 18ch; }
-  .contacto-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 28px 40px; }
+  .contacto h2 { margin: 10px 0 clamp(32px, 5vw, 52px); max-width: 20ch; color: var(--azul); }
+  .contacto-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 28px 40px; border-top: 1px solid var(--linea); padding-top: 28px; }
   .contacto-lista a { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
-  .contacto-lista .dato { font-size: clamp(19px, 2vw, 24px); border-bottom: 1px solid rgba(255, 255, 255, .45); padding-bottom: 3px; align-self: flex-start; overflow-wrap: anywhere; transition: border-color .15s; }
-  .contacto-lista a:hover .dato { border-color: #fff; }
+  .contacto-lista .dato { font-size: clamp(19px, 2vw, 23px); border-bottom: 1px solid var(--linea); padding-bottom: 3px; align-self: flex-start; overflow-wrap: anywhere; transition: border-color .15s, color .15s; }
+  .contacto-lista a:hover .dato { border-color: var(--azul); color: var(--azul); }
 
-  footer { background: var(--azul); color: rgba(255, 255, 255, .7); padding: 0 0 32px; font-size: 14px; }
-  footer .contenedor > div { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid rgba(255, 255, 255, .25); padding-top: 24px; }
+  footer { padding: 0 0 32px; font-size: 14px; color: var(--gris); }
+  footer .contenedor > div { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--linea); padding-top: 24px; }
   footer a { text-decoration: none; }
-  footer a:hover { color: #fff; }
+  footer a:hover { color: var(--azul); }
 
   /* Ficha ampliada */
   dialog { border: 0; padding: 0; background: var(--fondo); color: var(--tinta); width: min(1100px, 94vw); max-height: 92svh; overflow: auto; }
-  dialog::backdrop { background: rgba(26, 26, 26, .7); }
+  dialog::backdrop { background: rgba(31, 28, 24, .72); }
   .ficha { display: grid; grid-template-columns: 1.3fr 1fr; }
   .ficha-imagen { background: var(--arena); min-height: 320px; display: grid; place-items: center; position: relative; }
   .ficha-imagen img { max-height: 92svh; width: 100%; height: auto; object-fit: contain; }
   .ficha-texto { padding: clamp(24px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; gap: 12px; align-items: flex-start; }
   .ficha-texto h3 { font-weight: 300; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; }
-  .ficha-texto .obra-precio { font-size: 20px; margin: 4px 0 10px; }
+  .ficha-texto .obra-precio { font-size: 22px; margin: 4px 0 10px; }
   .ficha-texto .obra-precio.no::before { display: none; }
   .ficha-cerrar { position: absolute; right: 8px; top: 8px; z-index: 2; width: 44px; height: 44px; cursor: pointer; border: 0; background: transparent; color: var(--tinta); font-size: 28px; font-weight: 300; line-height: 1; }
 
   @media (max-width: 1100px) { .obras { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 900px) {
+    .portada .contenedor { grid-template-columns: 1fr; min-height: 0; }
+    .carrusel { max-height: 72svh; justify-self: stretch; }
     .bio-rejilla { grid-template-columns: 1fr; }
     .bio-foto { max-width: 340px; }
     .galeria { grid-template-columns: repeat(2, 1fr); }
     .ficha { grid-template-columns: 1fr; }
     .contacto-lista { grid-template-columns: 1fr; }
   }
-  @media (max-width: 680px) {
+  @media (max-width: 760px) {
     body { font-size: 17px; }
     .nav-boton { display: block; }
     .nav ul { position: absolute; left: 0; right: 0; top: 64px; flex-direction: column; gap: 0; background: var(--fondo); border-bottom: 1px solid var(--linea); padding: 8px var(--margen) 20px; display: none; }
@@ -157,9 +182,11 @@
     .nav li a { display: block; padding: 13px 0; font-size: 18px; }
     .nav.abierta .nav-boton span:first-child { transform: translateY(3.75px) rotate(45deg); }
     .nav.abierta .nav-boton span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
-    .portada img { height: min(46svh, 400px); }
+    .portada-texto { flex-direction: row; align-items: flex-end; flex-wrap: wrap; gap: 14px 22px; }
+    .portada-texto img { width: 120px; }
+    .portada-texto div { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
     .obras { grid-template-columns: 1fr; }
-    .lista-eventos li { grid-template-columns: 1fr; gap: 2px; }
+    .lista li { grid-template-columns: 1fr; gap: 2px; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 </style>
@@ -169,30 +196,53 @@
 <header class="nav" id="nav">
   <div class="contenedor">
     <a class="nav-marca" href="#inicio">Castellsagué</a>
-    <button class="nav-boton" id="nav-boton" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span></button>
-    <ul id="nav-menu">
-      <li><a href="#obra">Obra</a></li>
-      <li><a href="#bio">Biografía</a></li>
-      <li><a href="#eventos">Exposiciones</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
+    <div class="nav-derecha">
+      <ul id="nav-menu">
+        <li><a href="#obra" data-i18n="nav.obra">Obra</a></li>
+        <li><a href="#bio" data-i18n="nav.bio">Biografía</a></li>
+        <li><a href="#eventos" data-i18n="nav.expos">Exposiciones</a></li>
+        <li><a href="#prensa" data-i18n="nav.prensa">Prensa</a></li>
+        <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
+      </ul>
+      <div class="idioma" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="nav-boton" id="nav-boton" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
 <main>
   <div class="portada" id="inicio">
-    <h1><img src="assets/logo.png" alt="Castellsagué" width="711" height="936"></h1>
-    <!-- PENDIENTE: frase de presentación definitiva (llegará con la bio) -->
-    <p>Obra original de Cristina Castellsagué</p>
-    <a class="enlace" href="#obra">Ver obra</a>
+    <div class="contenedor">
+      <div class="portada-texto">
+        <h1><img src="assets/logo.png" alt="Castellsagué" width="711" height="936"></h1>
+        <div>
+          <!-- PENDIENTE: frase de presentación definitiva (llegará con la bio) -->
+          <p data-i18n="portada.frase">Pintura y papel maché</p>
+          <a class="enlace" href="#obra" data-i18n="portada.ver">Ver obra</a>
+        </div>
+      </div>
+      <!-- PENDIENTE: sustituir por las fotos de presentación de la artista (2 o 3). Basta con cambiar el src de cada <img>. -->
+      <div class="carrusel" id="carrusel" aria-roledescription="carrusel" aria-label="Fotos de presentación">
+        <figure class="activa"><img src="assets/obras/papaya-2.jpg" alt="Papaya 2" width="1472" height="1700"></figure>
+        <figure><img src="assets/obras/jarron-en-paternilla-2-1.jpg" alt="Jarrón en Paternilla 2.1" width="1205" height="1700" loading="lazy"></figure>
+        <figure><img src="assets/obras/sandia-1.jpg" alt="Sandía 1" width="1406" height="1700" loading="lazy"></figure>
+        <div class="carrusel-puntos" id="carrusel-puntos"></div>
+      </div>
+    </div>
   </div>
 
   <section id="obra">
     <div class="contenedor">
+      <div class="cabecera-seccion"><h2 data-i18n="obra.titulo">Obra</h2></div>
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar obra"></div>
       <div class="obras" id="obras"></div>
+      <p class="obras-vacio" id="obras-vacio" hidden data-i18n="obra.vacio">Las piezas de papel maché llegarán muy pronto.</p>
       <div class="nota-compra">
-        <p>La compra no se hace por la web. Escríbeme indicando la pieza que te interesa y cerramos los detalles en privado.</p>
-        <a class="boton" href="#contacto">Escríbeme</a>
+        <p data-i18n="obra.nota">La compra no se hace por la web. Escríbeme indicando la pieza que te interesa y cerramos los detalles en privado.</p>
+        <a class="boton" href="#contacto" data-i18n="obra.escribeme">Escríbeme</a>
       </div>
     </div>
   </section>
@@ -200,39 +250,50 @@
   <section class="bio" id="bio">
     <div class="contenedor estrecho bio-rejilla">
       <!-- PENDIENTE: retrato. Sustituir el texto por <img src="assets/retrato.jpg" alt="Cristina Castellsagué"> -->
-      <div class="bio-foto">Retrato pendiente</div>
+      <div class="bio-foto" data-i18n="bio.foto">Retrato pendiente</div>
       <div class="bio-texto">
-        <span class="etiqueta">Biografía</span>
+        <span class="etiqueta" data-i18n="nav.bio">Biografía</span>
         <h2>Cristina Castellsagué</h2>
-        <!-- PENDIENTE: biografía y presentación definitivas -->
-        <p class="pendiente">Aquí irá la biografía y la presentación de la artista. Texto provisional hasta recibir el definitivo.</p>
+        <!-- PENDIENTE: biografía y presentación definitivas (en castellano e inglés) -->
+        <p class="pendiente" data-i18n="bio.pendiente">Aquí irá la biografía y la presentación de la artista. Texto provisional hasta recibir el definitivo.</p>
       </div>
     </div>
   </section>
 
   <section id="eventos">
     <div class="contenedor estrecho">
-      <div class="cabecera-seccion"><h2>Exposiciones</h2></div>
+      <div class="cabecera-seccion"><h2 data-i18n="nav.expos">Exposiciones</h2></div>
       <!-- PENDIENTE: exposiciones y eventos reales -->
-      <ul class="lista-eventos">
-        <li><span class="fecha">Fecha</span><span class="titulo">Nombre de la exposición</span><span>Lugar, ciudad</span></li>
-        <li><span class="fecha">Fecha</span><span class="titulo">Nombre de la exposición</span><span>Lugar, ciudad</span></li>
-        <li><span class="fecha">Fecha</span><span class="titulo">Nombre de la exposición</span><span>Lugar, ciudad</span></li>
+      <ul class="lista">
+        <li><span class="fecha" data-i18n="ph.fecha">Fecha</span><span class="titulo" data-i18n="ph.expo">Nombre de la exposición</span><span data-i18n="ph.lugar">Lugar, ciudad</span></li>
+        <li><span class="fecha" data-i18n="ph.fecha">Fecha</span><span class="titulo" data-i18n="ph.expo">Nombre de la exposición</span><span data-i18n="ph.lugar">Lugar, ciudad</span></li>
+        <li><span class="fecha" data-i18n="ph.fecha">Fecha</span><span class="titulo" data-i18n="ph.expo">Nombre de la exposición</span><span data-i18n="ph.lugar">Lugar, ciudad</span></li>
       </ul>
-      <!-- PENDIENTE: fotos de estudio, montajes e inauguraciones. Poner un <img> dentro de cada <figure> -->
+      <!-- PENDIENTE: fotos de exposiciones. Poner un <img> dentro de cada <figure> -->
       <div class="galeria">
-        <figure>Foto pendiente</figure>
-        <figure>Foto pendiente</figure>
-        <figure>Foto pendiente</figure>
-        <figure>Foto pendiente</figure>
+        <figure data-i18n="ph.foto">Foto pendiente</figure>
+        <figure data-i18n="ph.foto">Foto pendiente</figure>
+        <figure data-i18n="ph.foto">Foto pendiente</figure>
+        <figure data-i18n="ph.foto">Foto pendiente</figure>
       </div>
+    </div>
+  </section>
+
+  <section class="prensa" id="prensa">
+    <div class="contenedor estrecho">
+      <div class="cabecera-seccion"><h2 data-i18n="nav.prensa">Prensa</h2></div>
+      <!-- PENDIENTE: reseñas de prensa (medio, titular, fecha y enlace o PDF) -->
+      <ul class="lista">
+        <li><span class="fecha" data-i18n="ph.fecha">Fecha</span><span class="titulo" data-i18n="ph.titular">Titular de la reseña</span><span data-i18n="ph.medio">Medio</span></li>
+        <li><span class="fecha" data-i18n="ph.fecha">Fecha</span><span class="titulo" data-i18n="ph.titular">Titular de la reseña</span><span data-i18n="ph.medio">Medio</span></li>
+      </ul>
     </div>
   </section>
 
   <section class="contacto" id="contacto">
     <div class="contenedor estrecho">
-      <span class="etiqueta">Contacto</span>
-      <h2>¿Te interesa una pieza? Escríbeme.</h2>
+      <span class="etiqueta" data-i18n="nav.contacto">Contacto</span>
+      <h2 data-i18n="contacto.titulo">¿Te interesa una pieza? Escríbeme.</h2>
       <ul class="contacto-lista">
         <li><a href="mailto:cristinacastellsague@gmail.com"><span class="etiqueta">Email</span><span class="dato">cristinacastellsague@gmail.com</span></a></li>
         <li><a href="https://wa.me/34687460614" target="_blank" rel="noopener"><span class="etiqueta">WhatsApp</span><span class="dato">687 460 614</span></a></li>
@@ -245,7 +306,7 @@
 <footer>
   <div class="contenedor estrecho"><div>
     <span>© <span id="anio"></span> Cristina Castellsagué</span>
-    <a href="#inicio">Volver arriba</a>
+    <a href="#inicio" data-i18n="pie.arriba">Volver arriba</a>
   </div></div>
 </footer>
 
@@ -258,8 +319,8 @@
       <h3 id="ficha-titulo"></h3>
       <p class="obra-ficha" id="ficha-datos"></p>
       <p class="obra-precio" id="ficha-precio"></p>
-      <a class="boton" id="ficha-whatsapp" target="_blank" rel="noopener">Consultar por WhatsApp</a>
-      <a class="boton linea" id="ficha-email">Consultar por email</a>
+      <a class="boton" id="ficha-whatsapp" target="_blank" rel="noopener"></a>
+      <a class="boton linea" id="ficha-email"></a>
     </div>
   </div>
 </dialog>
@@ -267,29 +328,83 @@
 <script>
   /* ============================================================
      OBRAS — editar solo esta lista (el orden de la lista es el orden en la web).
-     imagen:     ruta de la foto. Vacío = bloque de color con "Foto pendiente".
-     precio:     número en euros (p. ej. 450). Vacío = "Precio a consultar".
+     categoria:  "gran" (gran formato), "estandar" (formato estándar) o "papel" (papel maché).
+     soporte:    "carton" o "lienzo" (reservado por si más adelante se quiere filtrar por soporte).
+     imagen:     ruta de la foto. Vacío = "Foto pendiente".
+     precio:     número en euros. Vacío = "Precio a consultar".
      disponible: false para marcarla como "No disponible".
      ============================================================ */
+  const T_JARRON = { es: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", en: "Acrylic and oil pastel on cardboard and canvas assembled on board" };
+  const T_FRUTA  = { es: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", en: "Acrylic, oil pastel and oil stick on assembled cardboard" };
+  const AGO = { es: "Agosto 2026", en: "August 2026" }, MAY = { es: "Mayo 2026", en: "May 2026" };
   const OBRAS = [
-    { titulo: "Jarrón en Paternilla 2.2", tecnica: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", medidas: "48 × 34 cm", fecha: "Agosto 2026", precio: "", imagen: "assets/obras/jarron-en-paternilla-2-2.jpg", disponible: true },
-    { titulo: "Jarrón en Paternilla 1.2", tecnica: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", medidas: "48 × 34 cm", fecha: "Agosto 2026", precio: "", imagen: "assets/obras/jarron-en-paternilla-1-2.jpg", disponible: true },
-    { titulo: "Jarrón en Paternilla 1.1", tecnica: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", medidas: "48 × 34 cm", fecha: "Agosto 2026", precio: "", imagen: "assets/obras/jarron-en-paternilla-1-1.jpg", disponible: true },
-    { titulo: "Jarrón en Paternilla 2.1", tecnica: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", medidas: "48 × 34 cm", fecha: "Agosto 2026", precio: "", imagen: "assets/obras/jarron-en-paternilla-2-1.jpg", disponible: true },
-    { titulo: "Sandía 1", tecnica: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", medidas: "63 × 53 cm", fecha: "Mayo 2026", precio: "", imagen: "assets/obras/sandia-1.jpg", disponible: false },
-    { titulo: "Papaya 1", tecnica: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", medidas: "63 × 53 cm", fecha: "Mayo 2026", precio: "", imagen: "assets/obras/papaya-1.jpg", disponible: true },
-    { titulo: "Papaya 2", tecnica: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", medidas: "63 × 53 cm", fecha: "Mayo 2026", precio: "", imagen: "assets/obras/papaya-2.jpg", disponible: true },
-    { titulo: "Sandía 2", tecnica: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", medidas: "63 × 53 cm", fecha: "Mayo 2026", precio: "", imagen: "assets/obras/sandia-2.jpg", disponible: false },
+    { titulo: "Jarrón en Paternilla 1.1", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, categoria: "estandar", soporte: "carton", precio: 280, imagen: "assets/obras/jarron-en-paternilla-1-1.jpg", disponible: true },
+    { titulo: "Jarrón en Paternilla 1.2", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, categoria: "estandar", soporte: "carton", precio: 280, imagen: "assets/obras/jarron-en-paternilla-1-2.jpg", disponible: true },
+    { titulo: "Jarrón en Paternilla 2.1", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, categoria: "estandar", soporte: "carton", precio: 280, imagen: "assets/obras/jarron-en-paternilla-2-1.jpg", disponible: true },
+    { titulo: "Jarrón en Paternilla 2.2", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, categoria: "estandar", soporte: "carton", precio: 280, imagen: "assets/obras/jarron-en-paternilla-2-2.jpg", disponible: true },
+    { titulo: "Sandía 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagen: "assets/obras/sandia-1.jpg",  disponible: false },
+    { titulo: "Papaya 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagen: "assets/obras/papaya-1.jpg",  disponible: true },
+    { titulo: "Papaya 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagen: "assets/obras/papaya-2.jpg",  disponible: true },
+    { titulo: "Sandía 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagen: "assets/obras/sandia-2.jpg",  disponible: false },
   ];
+
+  const FILTROS = [
+    { id: "todo", es: "Todo", en: "All" },
+    { id: "gran", es: "Gran formato", en: "Large format" },
+    { id: "estandar", es: "Formato estándar", en: "Standard format" },
+    { id: "papel", es: "Papel maché", en: "Papier-mâché" },
+  ];
+
+  /* Textos de la interfaz en los dos idiomas */
+  const TEXTOS = {
+    es: {
+      "nav.obra": "Obra", "nav.bio": "Biografía", "nav.expos": "Exposiciones", "nav.prensa": "Prensa", "nav.contacto": "Contacto",
+      "portada.frase": "Pintura y papel maché", "portada.ver": "Ver obra",
+      "obra.titulo": "Obra", "obra.vacio": "Las piezas de papel maché llegarán muy pronto.",
+      "obra.nota": "La compra no se hace por la web. Escríbeme indicando la pieza que te interesa y cerramos los detalles en privado.",
+      "obra.escribeme": "Escríbeme",
+      "bio.foto": "Retrato pendiente",
+      "bio.pendiente": "Aquí irá la biografía y la presentación de la artista. Texto provisional hasta recibir el definitivo.",
+      "ph.fecha": "Fecha", "ph.expo": "Nombre de la exposición", "ph.lugar": "Lugar, ciudad", "ph.foto": "Foto pendiente",
+      "ph.titular": "Titular de la reseña", "ph.medio": "Medio",
+      "contacto.titulo": "¿Te interesa una pieza? Escríbeme.", "pie.arriba": "Volver arriba",
+      consultar: "Consultar", aConsultar: "Precio a consultar", noDisponible: "No disponible", disponible: "Disponible",
+      porWhatsapp: "Consultar por WhatsApp", porEmail: "Consultar por email", ampliar: "Ampliar", cerrar: "Cerrar",
+      fotoPendiente: "Foto pendiente", abrirMenu: "Abrir menú", cerrarMenu: "Cerrar menú",
+      mensaje: (t, m) => `Hola Cristina, me interesa la obra «${t}»${m ? ` (${m})` : ""}. ¿Sigue disponible?`,
+      asunto: t => "Consulta: " + t,
+    },
+    en: {
+      "nav.obra": "Work", "nav.bio": "About", "nav.expos": "Exhibitions", "nav.prensa": "Press", "nav.contacto": "Contact",
+      "portada.frase": "Painting and papier-mâché", "portada.ver": "See the work",
+      "obra.titulo": "Work", "obra.vacio": "Papier-mâché pieces coming soon.",
+      "obra.nota": "Pieces are not sold through the website. Write to me with the piece you are interested in and we will arrange the details privately.",
+      "obra.escribeme": "Write to me",
+      "bio.foto": "Portrait coming soon",
+      "bio.pendiente": "The artist's biography and statement will go here. Placeholder text until the final version arrives.",
+      "ph.fecha": "Date", "ph.expo": "Exhibition title", "ph.lugar": "Venue, city", "ph.foto": "Photo coming soon",
+      "ph.titular": "Review headline", "ph.medio": "Publication",
+      "contacto.titulo": "Interested in a piece? Write to me.", "pie.arriba": "Back to top",
+      consultar: "Enquire", aConsultar: "Price on request", noDisponible: "Not available", disponible: "Available",
+      porWhatsapp: "Enquire on WhatsApp", porEmail: "Enquire by email", ampliar: "Enlarge", cerrar: "Close",
+      fotoPendiente: "Photo coming soon", abrirMenu: "Open menu", cerrarMenu: "Close menu",
+      mensaje: (t, m) => `Hello Cristina, I'm interested in the piece "${t}"${m ? ` (${m})` : ""}. Is it still available?`,
+      asunto: t => "Enquiry: " + t,
+    },
+  };
 
   const EMAIL = "cristinacastellsague@gmail.com";
   const WHATSAPP = "34687460614";
-  const COLORES = [["#1b2fa8", "#fff"], ["#e3301f", "#fff"], ["#ffd21f", "#111"], ["#111111", "#f4f1ea"]];
+  let idioma = "es";
+  let filtro = "todo";
+  try { const g = localStorage.getItem("idioma"); if (g === "en" || g === "es") idioma = g; } catch (e) {}
 
-  const precioTexto = o => !o.disponible ? "No disponible" : (o.precio ? Number(o.precio).toLocaleString("es-ES") + " €" : "Precio a consultar");
-  const fichaTexto = o => [o.tecnica, o.medidas, o.fecha].filter(Boolean).join(" · ");
-  const mensaje = o => `Hola Cristina, me interesa la obra «${o.titulo}»` + (o.medidas ? ` (${o.medidas})` : "") + ". ¿Sigue disponible?";
-  const enlaceEmail = o => `mailto:${EMAIL}?subject=${encodeURIComponent("Consulta: " + o.titulo)}&body=${encodeURIComponent(mensaje(o))}`;
+  const tx = k => TEXTOS[idioma][k];
+  const loc = v => (v && typeof v === "object") ? v[idioma] : (v || "");
+  const precioTexto = o => !o.disponible ? tx("noDisponible") : (o.precio ? Number(o.precio).toLocaleString(idioma === "es" ? "es-ES" : "en-GB") + " €" : tx("aConsultar"));
+  const fichaTexto = o => [loc(o.tecnica), o.medidas, loc(o.fecha)].filter(Boolean).join(" · ");
+  const mensaje = o => tx("mensaje")(o.titulo, o.medidas);
+  const enlaceEmail = o => `mailto:${EMAIL}?subject=${encodeURIComponent(tx("asunto")(o.titulo))}&body=${encodeURIComponent(mensaje(o))}`;
   const enlaceWhatsapp = o => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje(o))}`;
 
   function crear(etiqueta, clase, texto) {
@@ -299,54 +414,72 @@
     return el;
   }
 
-  function pintarImagen(caja, obra, i) {
-    const [fondo, texto] = COLORES[i % COLORES.length];
+  function pintarImagen(caja, obra) {
     if (obra.imagen) {
       const img = crear("img");
       img.src = obra.imagen; img.alt = obra.titulo; img.loading = "lazy";
       caja.append(img);
     } else {
-      caja.classList.add("sin-foto"); caja.style.background = fondo;
-      const aviso = crear("span", "obra-pendiente", "Foto pendiente");
-      aviso.style.color = texto;
-      caja.append(aviso);
+      caja.classList.add("sin-foto");
+      caja.append(crear("span", "obra-pendiente", tx("fotoPendiente")));
     }
   }
 
-  const rejilla = document.getElementById("obras");
-  OBRAS.forEach((obra, i) => {
-    const art = crear("article", "obra");
-    const boton = crear("button", "obra-imagen");
-    boton.type = "button";
-    boton.setAttribute("aria-label", "Ampliar: " + obra.titulo);
-    pintarImagen(boton, obra, i);
-    if (!obra.disponible) boton.append(crear("span", "obra-estado", "No disponible"));
-    boton.addEventListener("click", () => abrirFicha(obra, i));
+  /* Filtros: solo se muestran los que tienen obra, más "Papel maché" que se anuncia como próximamente */
+  function pintarFiltros() {
+    const caja = document.getElementById("filtros");
+    caja.replaceChildren();
+    FILTROS.forEach(f => {
+      if (f.id !== "todo" && f.id !== "papel" && !OBRAS.some(o => o.categoria === f.id)) return;
+      const b = crear("button", "", f[idioma]);
+      b.type = "button";
+      b.setAttribute("aria-pressed", f.id === filtro);
+      b.addEventListener("click", () => { filtro = f.id; pintarFiltros(); pintarObras(); });
+      caja.append(b);
+    });
+  }
 
-    const datos = crear("div", "obra-datos");
-    datos.append(crear("h3", "", obra.titulo), crear("p", "obra-ficha", fichaTexto(obra)),
-      crear("p", "obra-precio" + (obra.disponible ? "" : " no"), precioTexto(obra)));
-    art.append(boton, datos);
+  function pintarObras() {
+    const rejilla = document.getElementById("obras");
+    rejilla.replaceChildren();
+    const lista = OBRAS.filter(o => filtro === "todo" || o.categoria === filtro);
+    document.getElementById("obras-vacio").hidden = lista.length > 0;
+    lista.forEach(obra => {
+      const art = crear("article", "obra");
+      const boton = crear("button", "obra-imagen");
+      boton.type = "button";
+      boton.setAttribute("aria-label", tx("ampliar") + ": " + obra.titulo);
+      pintarImagen(boton, obra);
+      boton.addEventListener("click", () => abrirFicha(obra));
 
-    if (obra.disponible) {
-      const consulta = crear("a", "obra-consulta", "Consultar");
-      consulta.href = enlaceWhatsapp(obra); consulta.target = "_blank"; consulta.rel = "noopener";
-      art.append(consulta);
-    }
-    rejilla.append(art);
-  });
+      const datos = crear("div", "obra-datos");
+      datos.append(crear("h3", "", obra.titulo), crear("p", "obra-ficha", fichaTexto(obra)),
+        crear("p", "obra-precio" + (obra.disponible ? "" : " no"), precioTexto(obra)));
+      art.append(boton, datos);
+
+      if (obra.disponible) {
+        const consulta = crear("a", "obra-consulta", tx("consultar"));
+        consulta.href = enlaceWhatsapp(obra); consulta.target = "_blank"; consulta.rel = "noopener";
+        art.append(consulta);
+      }
+      rejilla.append(art);
+    });
+  }
 
   /* Ficha ampliada */
   const ficha = document.getElementById("ficha");
-  function abrirFicha(obra, i) {
+  function abrirFicha(obra) {
     const caja = document.getElementById("ficha-imagen");
-    caja.replaceChildren(); caja.classList.remove("sin-foto"); caja.style.background = "";
-    pintarImagen(caja, obra, i);
-    document.getElementById("ficha-estado").textContent = obra.disponible ? "Disponible" : "No disponible";
+    caja.replaceChildren(); caja.classList.remove("sin-foto");
+    pintarImagen(caja, obra);
+    document.getElementById("ficha-estado").textContent = obra.disponible ? tx("disponible") : tx("noDisponible");
     document.getElementById("ficha-titulo").textContent = obra.titulo;
     document.getElementById("ficha-datos").textContent = fichaTexto(obra);
-    document.getElementById("ficha-precio").textContent = precioTexto(obra);
+    const precio = document.getElementById("ficha-precio");
+    precio.textContent = precioTexto(obra);
+    precio.className = "obra-precio" + (obra.disponible ? "" : " no");
     const wa = document.getElementById("ficha-whatsapp"), em = document.getElementById("ficha-email");
+    wa.textContent = tx("porWhatsapp"); em.textContent = tx("porEmail");
     wa.href = enlaceWhatsapp(obra); em.href = enlaceEmail(obra);
     wa.hidden = em.hidden = !obra.disponible;
     ficha.showModal();
@@ -354,17 +487,55 @@
   document.getElementById("ficha-cerrar").addEventListener("click", () => ficha.close());
   ficha.addEventListener("click", e => { if (e.target === ficha) ficha.close(); });
 
-  /* Menú móvil */
+  /* Idioma */
+  function aplicarIdioma(nuevo) {
+    idioma = nuevo;
+    try { localStorage.setItem("idioma", nuevo); } catch (e) {}
+    document.documentElement.lang = nuevo;
+    document.querySelectorAll("[data-i18n]").forEach(el => { const v = tx(el.dataset.i18n); if (typeof v === "string") el.textContent = v; });
+    document.querySelectorAll(".idioma button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === nuevo));
+    document.getElementById("ficha-cerrar").setAttribute("aria-label", tx("cerrar"));
+    menu(nav.classList.contains("abierta"));
+    pintarFiltros(); pintarObras();
+  }
+  document.querySelectorAll(".idioma button").forEach(b => b.addEventListener("click", () => aplicarIdioma(b.dataset.lang)));
+
+  /* Menú móvil y marca en la barra al bajar */
   const nav = document.getElementById("nav"), navBoton = document.getElementById("nav-boton");
   function menu(abierto) {
     nav.classList.toggle("abierta", abierto);
     navBoton.setAttribute("aria-expanded", abierto);
-    navBoton.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+    navBoton.setAttribute("aria-label", abierto ? tx("cerrarMenu") : tx("abrirMenu"));
   }
   navBoton.addEventListener("click", () => menu(!nav.classList.contains("abierta")));
   nav.querySelectorAll("ul a").forEach(a => a.addEventListener("click", () => menu(false)));
+  const portada = document.getElementById("inicio");
+  new IntersectionObserver(([e]) => nav.classList.toggle("con-borde", !e.isIntersecting), { rootMargin: "-64px 0px 0px 0px", threshold: .15 }).observe(portada);
+
+  /* Carrusel de presentación */
+  (function () {
+    const fotos = [...document.querySelectorAll("#carrusel figure")];
+    const puntos = document.getElementById("carrusel-puntos");
+    if (fotos.length < 2) return;
+    let actual = 0, temporizador;
+    const reducido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const botones = fotos.map((_, i) => {
+      const b = crear("button");
+      b.type = "button"; b.setAttribute("aria-label", "Foto " + (i + 1));
+      b.addEventListener("click", () => { ir(i); reiniciar(); });
+      puntos.append(b); return b;
+    });
+    function ir(i) {
+      fotos[actual].classList.remove("activa"); botones[actual].removeAttribute("aria-current");
+      actual = (i + fotos.length) % fotos.length;
+      fotos[actual].classList.add("activa"); botones[actual].setAttribute("aria-current", "true");
+    }
+    function reiniciar() { clearInterval(temporizador); if (!reducido) temporizador = setInterval(() => ir(actual + 1), 5000); }
+    ir(0); reiniciar();
+  })();
 
   document.getElementById("anio").textContent = new Date().getFullYear();
+  aplicarIdioma(idioma);
 </script>
 </body>
 </html>
