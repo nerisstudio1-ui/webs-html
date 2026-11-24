@@ -108,6 +108,11 @@
   .obra-imagen.sin-foto { aspect-ratio: 4 / 5; background: var(--arena); }
   .obra-imagen img { width: 100%; height: auto; transition: opacity .25s; }
   .obra-imagen:hover img { opacity: .88; }
+  .obra-mas { position: absolute; right: 10px; bottom: 10px; background: rgba(236, 228, 212, .92); color: var(--tinta); font-size: 13px; padding: 3px 10px; border-radius: 999px; }
+  .serie-cabecera { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--linea); padding-bottom: 12px; margin-bottom: -12px; }
+  .serie-cabecera + .obra, .obras > .serie-cabecera:not(:first-child) { margin-top: 8px; }
+  .serie-cabecera h3 { font-weight: 400; font-size: clamp(20px, 2vw, 24px); }
+  .serie-cabecera p { color: var(--gris); font-size: 16px; }
   .obra-pendiente { position: absolute; inset: 0; display: grid; place-items: center; font: inherit; font-size: 13px; color: var(--gris); }
   .obra-datos { padding-top: 16px; }
   .obra h3 { font-weight: 400; font-size: 19px; line-height: 1.3; }
@@ -156,8 +161,12 @@
   dialog { border: 0; padding: 0; background: var(--fondo); color: var(--tinta); width: min(1100px, 94vw); max-height: 92svh; overflow: auto; }
   dialog::backdrop { background: rgba(31, 28, 24, .72); }
   .ficha { display: grid; grid-template-columns: 1.3fr 1fr; }
-  .ficha-imagen { background: var(--arena); min-height: 320px; display: grid; place-items: center; position: relative; }
-  .ficha-imagen img { max-height: 92svh; width: 100%; height: auto; object-fit: contain; }
+  .ficha-imagen { background: var(--arena); min-height: 320px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .ficha-imagen > img { max-height: 82svh; width: 100%; height: auto; object-fit: contain; }
+  .ficha-miniaturas { display: flex; gap: 8px; padding: 10px; justify-content: center; flex-wrap: wrap; }
+  .ficha-miniaturas button { width: 64px; height: 64px; padding: 0; border: 2px solid transparent; background: none; cursor: pointer; opacity: .6; transition: opacity .15s, border-color .15s; }
+  .ficha-miniaturas button[aria-current="true"] { border-color: var(--azul); opacity: 1; }
+  .ficha-miniaturas img { width: 100%; height: 100%; object-fit: cover; }
   .ficha-texto { padding: clamp(24px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; gap: 12px; align-items: flex-start; }
   .ficha-texto h3 { font-weight: 300; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; }
   .ficha-texto .obra-precio { font-size: 22px; margin: 4px 0 10px; }
@@ -330,7 +339,9 @@
      OBRAS — editar solo esta lista (el orden de la lista es el orden en la web).
      categoria:  "gran" (gran formato), "estandar" (formato estándar) o "papel" (papel maché).
      soporte:    "carton" o "lienzo" (reservado por si más adelante se quiere filtrar por soporte).
-     imagen:     ruta de la foto. Vacío = "Foto pendiente".
+     imagenes:   lista de fotos de la obra (la primera es la que sale en la rejilla; el resto se ven en la ficha
+                 ampliada, p. ej. una de lejos y otra de cerca). Lista vacía = "Foto pendiente".
+     serie:      id de la serie (ver SERIES). Las obras de una misma serie se muestran juntas con su título.
      precio:     número en euros. Vacío = "Precio a consultar".
      disponible: false para marcarla como "No disponible".
      ============================================================ */
@@ -338,15 +349,20 @@
   const T_FRUTA  = { es: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", en: "Acrylic, oil pastel and oil stick on assembled cardboard" };
   const AGO = { es: "Agosto 2026", en: "August 2026" }, MAY = { es: "Mayo 2026", en: "May 2026" };
   const OBRAS = [
-    { titulo: "Jarrón en Paternilla 1.1", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, categoria: "estandar", soporte: "carton", precio: 280, imagen: "assets/obras/jarron-en-paternilla-1-1.jpg", disponible: true },
-    { titulo: "Jarrón en Paternilla 1.2", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, categoria: "estandar", soporte: "carton", precio: 280, imagen: "assets/obras/jarron-en-paternilla-1-2.jpg", disponible: true },
-    { titulo: "Jarrón en Paternilla 2.1", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, categoria: "estandar", soporte: "carton", precio: 280, imagen: "assets/obras/jarron-en-paternilla-2-1.jpg", disponible: true },
-    { titulo: "Jarrón en Paternilla 2.2", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, categoria: "estandar", soporte: "carton", precio: 280, imagen: "assets/obras/jarron-en-paternilla-2-2.jpg", disponible: true },
-    { titulo: "Sandía 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagen: "assets/obras/sandia-1.jpg",  disponible: false },
-    { titulo: "Papaya 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagen: "assets/obras/papaya-1.jpg",  disponible: true },
-    { titulo: "Papaya 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagen: "assets/obras/papaya-2.jpg",  disponible: true },
-    { titulo: "Sandía 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagen: "assets/obras/sandia-2.jpg",  disponible: false },
+    { titulo: "Jarrón en Paternilla 1.1", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, serie: "paternilla", categoria: "estandar", soporte: "carton", precio: 280, imagenes: ["assets/obras/jarron-en-paternilla-1-1.jpg"], disponible: true },
+    { titulo: "Jarrón en Paternilla 1.2", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, serie: "paternilla", categoria: "estandar", soporte: "carton", precio: 280, imagenes: ["assets/obras/jarron-en-paternilla-1-2.jpg"], disponible: true },
+    { titulo: "Jarrón en Paternilla 2.1", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, serie: "paternilla", categoria: "estandar", soporte: "carton", precio: 280, imagenes: ["assets/obras/jarron-en-paternilla-2-1.jpg"], disponible: true },
+    { titulo: "Jarrón en Paternilla 2.2", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, serie: "paternilla", categoria: "estandar", soporte: "carton", precio: 280, imagenes: ["assets/obras/jarron-en-paternilla-2-2.jpg"], disponible: true },
+    { titulo: "Sandía 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/sandia-1.jpg"],  disponible: false },
+    { titulo: "Papaya 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/papaya-1.jpg"],  disponible: true },
+    { titulo: "Papaya 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/papaya-2.jpg"],  disponible: true },
+    { titulo: "Sandía 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/sandia-2.jpg"],  disponible: false },
   ];
+
+  /* SERIES — título (y nota opcional) de cada serie. Las obras sin serie salen al final, en "Más obras". */
+  const SERIES = {
+    paternilla: { titulo: { es: "Jarrón en Paternilla", en: "Jarrón en Paternilla" }, nota: { es: "", en: "" } },
+  };
 
   const FILTROS = [
     { id: "todo", es: "Todo", en: "All" },
@@ -370,6 +386,7 @@
       "contacto.titulo": "¿Te interesa una pieza? Escríbeme.", "pie.arriba": "Volver arriba",
       consultar: "Consultar", aConsultar: "Precio a consultar", noDisponible: "No disponible", disponible: "Disponible",
       porWhatsapp: "Consultar por WhatsApp", porEmail: "Consultar por email", ampliar: "Ampliar", cerrar: "Cerrar",
+      serie: "Serie", masObras: "Más obras", obras: n => n + (n === 1 ? " obra" : " obras"), fotos: n => n + " fotos", verFoto: n => "Ver foto " + n,
       fotoPendiente: "Foto pendiente", abrirMenu: "Abrir menú", cerrarMenu: "Cerrar menú",
       mensaje: (t, m) => `Hola Cristina, me interesa la obra «${t}»${m ? ` (${m})` : ""}. ¿Sigue disponible?`,
       asunto: t => "Consulta: " + t,
@@ -387,6 +404,7 @@
       "contacto.titulo": "Interested in a piece? Write to me.", "pie.arriba": "Back to top",
       consultar: "Enquire", aConsultar: "Price on request", noDisponible: "Not available", disponible: "Available",
       porWhatsapp: "Enquire on WhatsApp", porEmail: "Enquire by email", ampliar: "Enlarge", cerrar: "Close",
+      serie: "Series", masObras: "More work", obras: n => n + (n === 1 ? " piece" : " pieces"), fotos: n => n + " photos", verFoto: n => "View photo " + n,
       fotoPendiente: "Photo coming soon", abrirMenu: "Open menu", cerrarMenu: "Close menu",
       mensaje: (t, m) => `Hello Cristina, I'm interested in the piece "${t}"${m ? ` (${m})` : ""}. Is it still available?`,
       asunto: t => "Enquiry: " + t,
@@ -414,10 +432,12 @@
     return el;
   }
 
-  function pintarImagen(caja, obra) {
-    if (obra.imagen) {
+  const fotosDe = o => (o.imagenes || []).filter(Boolean);
+  function pintarImagen(caja, obra, n = 0) {
+    const fotos = fotosDe(obra);
+    if (fotos.length) {
       const img = crear("img");
-      img.src = obra.imagen; img.alt = obra.titulo; img.loading = "lazy";
+      img.src = fotos[n]; img.alt = obra.titulo + (fotos.length > 1 ? ` (${n + 1}/${fotos.length})` : ""); img.loading = "lazy";
       caja.append(img);
     } else {
       caja.classList.add("sin-foto");
@@ -444,12 +464,36 @@
     rejilla.replaceChildren();
     const lista = OBRAS.filter(o => filtro === "todo" || o.categoria === filtro);
     document.getElementById("obras-vacio").hidden = lista.length > 0;
-    lista.forEach(obra => {
+    // Agrupar: primero cada serie (en el orden en que aparece), luego las obras sin serie
+    const grupos = [], porSerie = {};
+    lista.forEach(o => {
+      const k = SERIES[o.serie] ? o.serie : "";
+      if (!porSerie[k]) { porSerie[k] = []; if (k) grupos.push(k); }
+      porSerie[k].push(o);
+    });
+    if (porSerie[""]) grupos.push("");
+    const conCabeceras = grupos.some(Boolean);
+    grupos.forEach(k => {
+      if (conCabeceras) {
+        const cab = crear("div", "serie-cabecera");
+        cab.append(crear("span", "etiqueta", k ? tx("serie") : ""), crear("h3", "", k ? loc(SERIES[k].titulo) : tx("masObras")),
+          crear("p", "", tx("obras")(porSerie[k].length) + (k && loc(SERIES[k].nota) ? " · " + loc(SERIES[k].nota) : "")));
+        if (!k) cab.firstChild.remove();
+        rejilla.append(cab);
+      }
+      porSerie[k].forEach(pintarObra);
+    });
+  }
+
+  function pintarObra(obra) {
+    const rejilla = document.getElementById("obras");
+    {
       const art = crear("article", "obra");
       const boton = crear("button", "obra-imagen");
       boton.type = "button";
       boton.setAttribute("aria-label", tx("ampliar") + ": " + obra.titulo);
       pintarImagen(boton, obra);
+      if (fotosDe(obra).length > 1) boton.append(crear("span", "obra-mas", tx("fotos")(fotosDe(obra).length)));
       boton.addEventListener("click", () => abrirFicha(obra));
 
       const datos = crear("div", "obra-datos");
@@ -463,16 +507,32 @@
         art.append(consulta);
       }
       rejilla.append(art);
-    });
+    }
   }
 
   /* Ficha ampliada */
   const ficha = document.getElementById("ficha");
   function abrirFicha(obra) {
     const caja = document.getElementById("ficha-imagen");
-    caja.replaceChildren(); caja.classList.remove("sin-foto");
-    pintarImagen(caja, obra);
-    document.getElementById("ficha-estado").textContent = obra.disponible ? tx("disponible") : tx("noDisponible");
+    const fotos = fotosDe(obra);
+    function mostrar(n) {
+      caja.replaceChildren(); caja.classList.remove("sin-foto");
+      pintarImagen(caja, obra, n);
+      if (fotos.length > 1) {
+        const tira = crear("div", "ficha-miniaturas");
+        fotos.forEach((src, i) => {
+          const b = crear("button"); b.type = "button"; b.setAttribute("aria-label", tx("verFoto")(i + 1));
+          if (i === n) b.setAttribute("aria-current", "true");
+          const im = crear("img"); im.src = src; im.alt = ""; b.append(im);
+          b.addEventListener("click", () => mostrar(i));
+          tira.append(b);
+        });
+        caja.append(tira);
+      }
+    }
+    mostrar(0);
+    document.getElementById("ficha-estado").textContent = (obra.disponible ? tx("disponible") : tx("noDisponible")) +
+      (SERIES[obra.serie] ? " · " + tx("serie") + " " + loc(SERIES[obra.serie].titulo) : "");
     document.getElementById("ficha-titulo").textContent = obra.titulo;
     document.getElementById("ficha-datos").textContent = fichaTexto(obra);
     const precio = document.getElementById("ficha-precio");
