@@ -8,7 +8,7 @@
 <meta property="og:title" content="Castellsagué — Pintura y papel maché">
 <meta property="og:description" content="Obra original de Cristina Castellsagué. Piezas disponibles y contacto directo con la artista.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="assets/obras/papaya-2.jpg">
+<meta property="og:image" content="assets/presentacion/exposicion.jpg">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,7 +74,7 @@
   .enlace { font-size: 16px; text-decoration: none; color: var(--azul); border-bottom: 1px solid currentColor; padding-bottom: 3px; transition: opacity .15s; }
   .enlace:hover { opacity: .65; }
 
-  .carrusel { position: relative; aspect-ratio: 4 / 5; max-height: calc(100svh - 64px - 2 * clamp(24px, 4vw, 48px)); width: 100%; justify-self: end; overflow: hidden; background: var(--arena); }
+  .carrusel { position: relative; aspect-ratio: 4 / 5; height: min(calc(100svh - 64px - 2 * clamp(24px, 4vw, 48px)), 860px); width: auto; max-width: 100%; justify-self: end; overflow: hidden; background: var(--arena); }
   .carrusel figure { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 1.2s ease; }
   .carrusel figure.activa { opacity: 1; }
   .carrusel img { width: 100%; height: 100%; object-fit: cover; }
@@ -176,7 +176,7 @@
   @media (max-width: 1100px) { .obras { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 900px) {
     .portada .contenedor { grid-template-columns: 1fr; min-height: 0; }
-    .carrusel { max-height: 72svh; justify-self: stretch; }
+    .carrusel { height: auto; width: 100%; max-height: 80svh; justify-self: stretch; }
     .bio-rejilla { grid-template-columns: 1fr; }
     .bio-foto { max-width: 340px; }
     .galeria { grid-template-columns: repeat(2, 1fr); }
@@ -233,11 +233,11 @@
           <a class="enlace" href="#obra" data-i18n="portada.ver">Ver obra</a>
         </div>
       </div>
-      <!-- PENDIENTE: sustituir por las fotos de presentación de la artista (2 o 3). Basta con cambiar el src de cada <img>. -->
+      <!-- Fotos de presentación (carrusel). Para cambiar una foto, basta con cambiar el src de su <img>. -->
       <div class="carrusel" id="carrusel" aria-roledescription="carrusel" aria-label="Fotos de presentación">
-        <figure class="activa"><img src="assets/obras/papaya-2.jpg" alt="Papaya 2" width="1472" height="1700"></figure>
-        <figure><img src="assets/obras/jarron-en-paternilla-2-1.jpg" alt="Jarrón en Paternilla 2.1" width="1205" height="1700" loading="lazy"></figure>
-        <figure><img src="assets/obras/sandia-1.jpg" alt="Sandía 1" width="1406" height="1700" loading="lazy"></figure>
+        <figure class="activa"><img src="assets/presentacion/papel-mache-rosa.jpg" alt="Jarrón de papel maché rosa con flores secas ante una puerta roja" width="1305" height="1800" style="object-position: 50% 85%"></figure>
+        <figure><img src="assets/presentacion/cuadros-pared-verde.jpg" alt="Tres cuadros de jarrones enmarcados ante una pared verde con plantas" width="1080" height="1800" loading="lazy" style="object-position: 50% 45%"></figure>
+        <figure><img src="assets/presentacion/exposicion.jpg" alt="Exposición: cuatro bodegones de frutas y piezas de papel maché sobre peanas" width="750" height="868" loading="lazy" style="object-position: 50% 60%"></figure>
         <div class="carrusel-puntos" id="carrusel-puntos"></div>
       </div>
     </div>
