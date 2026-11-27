@@ -338,7 +338,7 @@
   /* ============================================================
      OBRAS — editar solo esta lista (el orden de la lista es el orden en la web).
      categoria:  "gran" (gran formato), "estandar" (formato estándar) o "papel" (papel maché).
-     soporte:    "carton" o "lienzo" (reservado por si más adelante se quiere filtrar por soporte).
+     soporte:    "carton", "lienzo" o "papel" (reservado por si más adelante se quiere filtrar por soporte).
      imagenes:   lista de fotos de la obra (la primera es la que sale en la rejilla; el resto se ven en la ficha
                  ampliada, p. ej. una de lejos y otra de cerca). Lista vacía = "Foto pendiente".
      serie:      id de la serie (ver SERIES). Las obras de una misma serie se muestran juntas con su título.
@@ -348,11 +348,15 @@
   const T_JARRON = { es: "Acrílico y oil pastel en cartón y lienzo ensamblado sobre tabla", en: "Acrylic and oil pastel on cardboard and canvas assembled on board" };
   const T_FRUTA  = { es: "Acrílico, oil pastel y oil stick sobre cartón ensamblado", en: "Acrylic, oil pastel and oil stick on assembled cardboard" };
   const AGO = { es: "Agosto 2026", en: "August 2026" }, MAY = { es: "Mayo 2026", en: "May 2026" };
+  const T_PAPEL = { es: "Acrílico sobre papel", en: "Acrylic on paper" }, MAY23 = { es: "Mayo 2023", en: "May 2023" };
   const OBRAS = [
     { titulo: "Jarrón en Paternilla 1.1", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, serie: "paternilla", categoria: "estandar", soporte: "carton", precio: 280, imagenes: ["assets/obras/jarron-en-paternilla-1-1.jpg"], disponible: true },
     { titulo: "Jarrón en Paternilla 1.2", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, serie: "paternilla", categoria: "estandar", soporte: "carton", precio: 280, imagenes: ["assets/obras/jarron-en-paternilla-1-2.jpg"], disponible: true },
     { titulo: "Jarrón en Paternilla 2.1", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, serie: "paternilla", categoria: "estandar", soporte: "carton", precio: 280, imagenes: ["assets/obras/jarron-en-paternilla-2-1.jpg"], disponible: true },
     { titulo: "Jarrón en Paternilla 2.2", tecnica: T_JARRON, medidas: "48 × 34 cm", fecha: AGO, serie: "paternilla", categoria: "estandar", soporte: "carton", precio: 280, imagenes: ["assets/obras/jarron-en-paternilla-2-2.jpg"], disponible: true },
+    { titulo: "Jarrón Todos Somos 1.1", tecnica: T_PAPEL, medidas: "59,4 × 42 cm", fecha: MAY23, serie: "todossomos", categoria: "estandar", soporte: "papel", precio: 230, imagenes: ["assets/obras/jarron-todos-somos-1-1.jpg"], disponible: false },
+    { titulo: "Jarrón Todos Somos 1.2", tecnica: T_PAPEL, medidas: "59,4 × 42 cm", fecha: MAY23, serie: "todossomos", categoria: "estandar", soporte: "papel", precio: 230, imagenes: ["assets/obras/jarron-todos-somos-1-2.jpg", "assets/obras/jarron-todos-somos-1-2-pared.jpg"], disponible: true },
+    { titulo: "Jarrón Todos Somos 1.3", tecnica: T_PAPEL, medidas: "59,4 × 42 cm", fecha: MAY23, serie: "todossomos", categoria: "estandar", soporte: "papel", precio: 230, imagenes: ["assets/obras/jarron-todos-somos-1-3.jpg", "assets/obras/jarron-todos-somos-1-3-pared.jpg"], disponible: false },
     { titulo: "Sandía 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/sandia-1.jpg"],  disponible: false },
     { titulo: "Papaya 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/papaya-1.jpg"],  disponible: true },
     { titulo: "Papaya 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/papaya-2.jpg"],  disponible: true },
@@ -362,6 +366,7 @@
   /* SERIES — título (y nota opcional) de cada serie. Las obras sin serie salen al final, en "Más obras". */
   const SERIES = {
     paternilla: { titulo: { es: "Jarrón en Paternilla", en: "Jarrón en Paternilla" }, nota: { es: "", en: "" } },
+    todossomos: { titulo: { es: "Jarrón Todos Somos", en: "Jarrón Todos Somos" }, nota: { es: "", en: "" } },
   };
 
   const FILTROS = [
