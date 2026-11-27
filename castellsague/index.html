@@ -361,13 +361,15 @@
     { titulo: "Papaya 1",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/papaya-1.jpg"],  disponible: true },
     { titulo: "Papaya 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/papaya-2.jpg"],  disponible: true },
     { titulo: "Sandía 2",  tecnica: T_FRUTA, medidas: "63 × 53 cm", fecha: MAY, categoria: "gran", soporte: "carton", precio: 435, imagenes: ["assets/obras/sandia-2.jpg"],  disponible: false },
-    { titulo: "Riad Marrakech", tecnica: "", medidas: "55,4 × 55,5 cm", fecha: "2026", categoria: "gran", soporte: "", precio: "", imagenes: ["assets/obras/riad-marrakech.jpg"], disponible: true },
+    { titulo: "Riad Marrakech", tecnica: T_FRUTA, medidas: "55,4 × 55,5 cm", fecha: "2026", categoria: "gran", soporte: "carton", precio: 330, imagenes: ["assets/obras/riad-marrakech.jpg"], disponible: true },
+    { titulo: "Porche Paternilla 1", tecnica: T_FRUTA, medidas: "56 × 54 cm", fecha: "2026", serie: "porche", categoria: "gran", soporte: "carton", precio: 330, imagenes: ["assets/obras/porche-paternilla-1.jpg", "assets/obras/porche-paternilla-1-sala.jpg"], disponible: true },
   ];
 
   /* SERIES — título (y nota opcional) de cada serie. Las obras sin serie salen al final, en "Más obras". */
   const SERIES = {
     paternilla: { titulo: { es: "Jarrón en Paternilla", en: "Jarrón en Paternilla" }, nota: { es: "", en: "" } },
     todossomos: { titulo: { es: "Jarrón Todos Somos", en: "Jarrón Todos Somos" }, nota: { es: "", en: "" } },
+    porche: { titulo: { es: "Porche Paternilla", en: "Porche Paternilla" }, nota: { es: "", en: "" } },
   };
 
   const FILTROS = [
